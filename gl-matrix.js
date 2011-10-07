@@ -1,6 +1,6 @@
 /* 
- * glMatrix.js - High performance matrix and vector operations for WebGL
- * version 0.9.7
+ * gl-matrix.js - High performance matrix and vector operations for WebGL
+ * Version 1.0.0
  */
 
 /*
