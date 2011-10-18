@@ -1,6 +1,6 @@
 /* 
  * gl-matrix.js - High performance matrix and vector operations for WebGL
- * Version 1.0.0
+ * Version 1.0.1
  */
 
 /*
@@ -1451,6 +1451,64 @@ mat4.lookAt = function (eye, center, up, dest) {
     dest[14] = -(z0 * eyex + z1 * eyey + z2 * eyez);
     dest[15] = 1;
 
+    return dest;
+};
+
+/*
+ * mat4.fromRotationTranslation
+ * Creates a matrix from a quaternion rotation and vector translation
+ * This is equivalent to (but much faster than):
+ *
+ *     mat4.identity(dest);
+ *     mat4.translate(dest, vec);
+ *     var quatMat = mat4.create();
+ *     quat4.toMat4(quat, quatMat);
+ *     mat4.multiply(dest, quatMat);
+ *
+ * Params:
+ * quat - quat4 specifying the rotation by
+ * vec - vec3 specifying the translation
+ * dest - Optional, mat4 receiving operation result. If not specified result is written to a new mat4
+ *
+ * Returns:
+ * dest if specified, a new mat4 otherwise
+ */
+mat4.fromRotationTranslation = function (quat, vec, dest) {
+    if (!dest) { dest = mat4.create(); }
+
+    // Quaternion math
+    var x = quat[0], y = quat[1], z = quat[2], w = quat[3],
+        x2 = x + x,
+        y2 = y + y,
+        z2 = z + z,
+
+        xx = x * x2,
+        xy = x * y2,
+        xz = x * z2,
+        yy = y * y2,
+        yz = y * z2,
+        zz = z * z2,
+        wx = w * x2,
+        wy = w * y2,
+        wz = w * z2;
+
+    dest[0] = 1 - (yy + zz);
+    dest[1] = xy + wz;
+    dest[2] = xz - wy;
+    dest[3] = 0;
+    dest[4] = xy - wz;
+    dest[5] = 1 - (xx + zz);
+    dest[6] = yz + wx;
+    dest[7] = 0;
+    dest[8] = xz + wy;
+    dest[9] = yz - wx;
+    dest[10] = 1 - (xx + yy);
+    dest[11] = 0;
+    dest[12] = vec[0];
+    dest[13] = vec[1];
+    dest[14] = vec[2];
+    dest[15] = 1;
+    
     return dest;
 };
 
