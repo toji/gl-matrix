@@ -411,6 +411,7 @@ mat3.set = function (mat, dest) {
  * dest
  */
 mat3.identity = function (dest) {
+    if (!dest) { dest = mat3.create(); }
     dest[0] = 1;
     dest[1] = 0;
     dest[2] = 0;
@@ -596,6 +597,7 @@ mat4.set = function (mat, dest) {
  * dest
  */
 mat4.identity = function (dest) {
+    if (!dest) { dest = mat4.create(); }
     dest[0] = 1;
     dest[1] = 0;
     dest[2] = 0;
