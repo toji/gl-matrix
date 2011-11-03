@@ -36,6 +36,13 @@ var MatrixArray = (typeof Float32Array !== 'undefined') ? Float32Array : Array, 
     mat4 = {},
     quat4 = {};
 
+// for CommonJS environments
+if (typeof(exports) != 'undefined') {
+  exports.vec3 = vec3;
+  exports.mat3 = mat3;
+  exports.mat4 = mat4;
+  exports.quat4 = quat4;
+}
 
 /*
  * vec3 - 3 Dimensional Vector

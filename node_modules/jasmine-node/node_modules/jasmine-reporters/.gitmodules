@@ -1,0 +1,3 @@
+[submodule "ext/phantomjs"]
+	path = ext/phantomjs
+	url = git://github.com/ariya/phantomjs.git
