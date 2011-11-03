@@ -16,4 +16,15 @@ describe("vec3", function() {
     expect(vec[1]).toEqual(2);
     expect(vec[2]).toEqual(3);
   });
+  
+  describe("set", function() {
+    beforeEach(function() { vec = vec3.create() });
+    
+    it("should assign values", function() {
+      vec3.set([1,2,3], vec);
+      expect(vec[0]).toEqual(1);
+      expect(vec[1]).toEqual(2);
+      expect(vec[2]).toEqual(3);
+    });
+  });
 });
