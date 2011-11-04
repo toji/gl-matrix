@@ -74,6 +74,8 @@ vec3.create = function (vec) {
         dest[0] = vec[0];
         dest[1] = vec[1];
         dest[2] = vec[2];
+    } else {
+        dest[0] = dest[1] = dest[2] = 0;
     }
 
     return dest;
