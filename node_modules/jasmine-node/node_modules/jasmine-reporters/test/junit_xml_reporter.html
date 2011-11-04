@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>JUnit XML Reporter Spec</title>
+
+    <link rel="stylesheet" href="../ext/jasmine.css" type="text/css" />
+
+    <script type="text/javascript" src="../ext/jasmine.js"></script>
+    <script type="text/javascript" src="../ext/jasmine-html.js"></script>
+    <script type="text/javascript" src="../src/jasmine.junit_reporter.js"></script>
+
+    <!-- Include spec file -->
+    <script type="text/javascript" src="JUnitXmlReporterSpec.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
+        jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter());
+        jasmine.getEnv().execute();
+    </script>
+</body>
+</html>

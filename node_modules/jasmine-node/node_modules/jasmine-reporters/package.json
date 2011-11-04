@@ -1,0 +1,15 @@
+{
+  "author": "Larry Myers",
+  "name": "jasmine-reporters",
+  "description": "Reporters for the Jasmine BDD Framework",
+  "version": "0.1.0",
+  "homepage": "https://github.com/larrymyers/jasmine-reporters",
+  "maintainers" : "Ben Loveridge <bloveridge@movenetworks.com>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/larrymyers/jasmine-reporters.git"
+  },
+  "main" : "./src/load_reporters.js",
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -29,13 +29,28 @@
 "use strict";
 
 // Type declarations
-var MatrixArray = (typeof Float32Array !== 'undefined') ? Float32Array : Array, // Fallback for systems that don't support TypedArrays
-    glMatrixArrayType = MatrixArray, // For Backwards compatibility
-    vec3 = {},
-    mat3 = {},
-    mat4 = {},
-    quat4 = {};
+(function() {
+    // account for CommonJS environments
+    var _global = (typeof(exports) != 'undefined') ? global : window;
+    _global.glMatrixArrayType = _global.MatrixArray = null;
+    _global.vec3 = {};
+    _global.mat3 = {};
+    _global.mat4 = {};
+    _global.quat4 = {};
 
+    // explicitly sets and returns the type of array to use within glMatrix
+    _global.setMatrixArrayType = function(type) {
+        return glMatrixArrayType = MatrixArray = type;
+    };
+
+    // auto-detects and returns the best type of array to use within glMatrix, falling
+    // back to Array if typed arrays are unsupported
+    _global.determineMatrixArrayType = function() {
+        return setMatrixArrayType((typeof Float32Array !== 'undefined') ? Float32Array : Array);
+    };
+
+    determineMatrixArrayType();
+})();
 
 /*
  * vec3 - 3 Dimensional Vector
@@ -59,6 +74,8 @@ vec3.create = function (vec) {
         dest[0] = vec[0];
         dest[1] = vec[1];
         dest[2] = vec[2];
+    } else {
+        dest[0] = dest[1] = dest[2] = 0;
     }
 
     return dest;
