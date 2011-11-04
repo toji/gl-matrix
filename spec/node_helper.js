@@ -1,9 +1,9 @@
 glMatrix = require("gl-matrix");
 
-// exports from glMatrix are expected to be global
-var i;
-for (i in glMatrix)
-  global[i] = glMatrix[i];
+beforeEach(function() {
+  // reset array type to default in case a test changed it
+  determineMatrixArrayType();
+});
 
 // import the specs (see Rakefile for why)
 var specs = jasmine.getAllSpecFiles("spec/javascripts", /_spec\.js$/);
