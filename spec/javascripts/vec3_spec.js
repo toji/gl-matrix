@@ -122,4 +122,30 @@ describe("vec3", function() {
       it("should modify dest vector", function() { expect(dest).toBeEqualish([2,4,6]); });
     });
   });
+  
+  describe("normalize", function() {
+    var NORMAL = [0.2672612419124244, 0.5345224838248488, 0.8017837257372732];
+    beforeEach(function() { vec = vec3.create([1,2,3]); });
+    
+    it("should return [0,0,0] if vector magnitude is 0", function() {
+      expect(vec3.normalize([0,0,0])).toBeEqualish([0,0,0]);
+    });
+    
+    it("should modify original vector if dest not given", function() {
+      vec3.normalize(vec);
+      expect(vec).toBeEqualish(NORMAL);
+    });
+    
+    it("should modify original vector if dest is original vector", function() {
+      vec3.normalize(vec, vec);
+      expect(vec).toBeEqualish(NORMAL);
+    });
+    
+    describe("if dest vector is given", function() {
+      beforeEach(function() { vec3.normalize(vec, dest = vec3.create()); });
+      
+      it("should not modify original vector", function() { expect(vec).toBeEqualish([1,2,3]); });
+      it("should modify dest vector", function() { expect(dest).toBeEqualish(NORMAL); });
+    });
+  });
 });
