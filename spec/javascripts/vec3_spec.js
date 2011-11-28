@@ -74,10 +74,31 @@ describe("vec3", function() {
     });
     
     describe("if dest vector given", function() {
-      beforeEach(function() { vec3.subtract(vec, [3,4,5], dest = vec3.create()) });
+      beforeEach(function() { vec3.subtract(vec, [3,4,5], dest = vec3.create()); });
       
       it("should not modify original vector", function() { expect(vec).toBeEqualish([3,4,5]); });
       it("should modify dest vector", function() { expect(dest).toBeEqualish([-2,-2,-2]); });
+    });
+  });
+  
+  describe("negate", function() {
+    beforeEach(function() { vec = vec3.create([1,2,3]); });
+    
+    it("should modify original vector if dest not given", function() {
+      vec3.negate(vec);
+      expect(vec).toBeEqualish([-1,-2,-3]);
+    });
+    
+    it("should modify original vector if dest is original vector", function() {
+      vec3.negate(vec, vec);
+      expect(vec).toBeEqualish([-1,-2,-3]);
+    });
+    
+    describe("if dest vector given", function() {
+      beforeEach(function() { vec3.negate(vec, dest = vec3.create()); });
+      
+      it("should not modify original vector", function() { expect(vec).toBeEqualish([1,2,3]); });
+      it("should modify dest vector", function() { expect(dest).toBeEqualish([-1,-2,-3]); });
     });
   });
 });
