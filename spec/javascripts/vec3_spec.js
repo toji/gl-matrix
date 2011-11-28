@@ -1,5 +1,5 @@
 describe("vec3", function() {
-  var vec;
+  var vec, dest;
   
   describe("when Float32Array is not supported", function() {
     beforeEach(function() { setMatrixArrayType(Array); });
@@ -31,6 +31,32 @@ describe("vec3", function() {
       expect(vec[0]).toEqual(1);
       expect(vec[1]).toEqual(2);
       expect(vec[2]).toEqual(3);
+    });
+  });
+  
+  describe("add", function() {
+    beforeEach(function() { vec = vec3.create([1,2,3]); });
+    
+    it("should modify original vector if dest not given", function() {
+      vec3.add(vec, [3,4,5]);
+      expect(vec).toBeEqualish([4,6,8]);
+    });
+    
+    it("should modify original vector if dest is original vector", function() {
+      vec3.add(vec, [3,4,5], vec);
+      expect(vec).toBeEqualish([4,6,8]);
+    });
+    
+    describe("if dest vector given", function() {
+      beforeEach(function() { vec3.add(vec, [3,4,5], dest = vec3.create()); });
+      
+      it("should not modify original vector", function() {
+        expect(vec).toBeEqualish([3,4,5]);
+      });
+      
+      it("should modify dest vector", function() {
+        expect(dest).toBeEqualish([4,6,8]);
+      });
     });
   });
 });
