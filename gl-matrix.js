@@ -1,6 +1,6 @@
 /* 
  * gl-matrix.js - High performance matrix and vector operations for WebGL
- * Version 1.0.1
+ * Version 1.1
  */
 
 /*
@@ -720,7 +720,7 @@ mat4.determinant = function (mat) {
  * dest - Optional, mat4 receiving inverse matrix. If not specified result is written to mat
  *
  * Returns:
- * dest is specified, mat otherwise
+ * dest is specified, mat otherwise, null if matrix cannot be inverted
  */
 mat4.inverse = function (mat, dest) {
     if (!dest) { dest = mat; }
@@ -744,8 +744,12 @@ mat4.inverse = function (mat, dest) {
         b10 = a21 * a33 - a23 * a31,
         b11 = a22 * a33 - a23 * a32,
 
-        // Calculate the determinant (inlined to avoid double-caching)
-        invDet = 1 / (b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06);
+        d = (b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06),
+        invDet;
+
+        // Calculate the determinant
+        if (!d) { return null; }
+        invDet = 1 / d;
 
     dest[0] = (a11 * b11 - a12 * b10 + a13 * b09) * invDet;
     dest[1] = (-a01 * b11 + a02 * b10 - a03 * b09) * invDet;
@@ -838,7 +842,7 @@ mat4.toMat3 = function (mat, dest) {
  * dest - Optional, mat3 receiving values
  *
  * Returns:
- * dest is specified, a new mat3 otherwise
+ * dest is specified, a new mat3 otherwise, null if the matrix cannot be inverted
  */
 mat4.toInverseMat3 = function (mat, dest) {
     // Cache the matrix values (makes for huge speed increases!)

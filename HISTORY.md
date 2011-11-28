@@ -3,6 +3,14 @@ Version History
 
 Note that anything with _Issue ##_ next to it refers to issues reported on the old [Google Code](http://code.google.com/p/glmatrix) repository
 
+Version 1.1 (11/28/2011)
+------------------------------------
+
+* Added unit tests by sinisterchipmunk. (Thank you!)
+* Added mat4.fromTranslationRotation
+* Calling mat3/4.identity with zero arguments will now create a new identity matrix (Thanks to Kos)
+* Fixed issue with mat4 values being set to NaN or Infinity when attempting to invert a non-invertable matrix.
+
 Version 1.0 (10/06/2011)
 ------------------------------------
 
