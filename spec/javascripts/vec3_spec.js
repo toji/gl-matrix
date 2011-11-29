@@ -148,4 +148,34 @@ describe("vec3", function() {
       it("should modify dest vector", function() { expect(dest).toBeEqualish(NORMAL); });
     });
   });
+  
+  describe("cross", function() {
+    var CROSS = [-3, 6, -3];
+    beforeEach(function() {
+      vec = vec3.create([1,2,3]);
+      vec2 = vec3.create([4,5,6]);
+    });
+    
+    it("should modify original vector if dest not given", function() {
+      vec3.cross(vec, vec2);
+      expect(vec).toBeEqualish(CROSS);
+    });
+    
+    it("should not modify vec2", function() {
+      expect(vec2).toBeEqualish([4,5,6]);
+    });
+    
+    it("should modify original mvector if dest is original vector", function() {
+      vec3.cross(vec, vec2, vec);
+      expect(vec).toBeEqualish(CROSS);
+    });
+    
+    describe("if dest vector is given", function() {
+      beforeEach(function() { vec3.cross(vec, vec2, dest = vec3.create()); });
+      
+      it("should not modify original vector", function() { expect(vec).toBeEqualish([1,2,3]); });
+      it("should not modify vec2", function() { expect(vec2).toBeEqualish([4,5,6]); });
+      it("should modify dest vector", function() { expect(dest).toBeEqualish(CROSS); });
+    });
+  });
 });
