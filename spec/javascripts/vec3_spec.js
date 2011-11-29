@@ -219,4 +219,37 @@ describe("vec3", function() {
       it("should modify dest", function() { expect(dest).toBeEqualish(DIR); });
     });
   });
+  
+  describe("lerp", function() {
+    var amount;
+    var LERP = [2.5, 3.5, 4.5];
+    
+    beforeEach(function() {
+      vec = vec3.create([1,2,3]);
+      vecB = vec3.create([4,5,6]);
+      amount = 0.5;
+    });
+    
+    it("should modify original vector if dest not given", function() {
+      vec3.lerp(vec, vecB, amount);
+      expect(vec).toBeEqualish(LERP);
+    });
+    
+    it("should modify original vector if dest is original vector", function() {
+      vec3.lerp(vec, vecB, amount, vec);
+      expect(vec).toBeEqualish(LERP);
+    });
+    
+    it("should not modify vecB", function() {
+      vec3.lerp(vec, vecB, amount);
+      expect(vecB).toBeEqualish([4,5,6]);
+    });
+    
+    describe("if dest vector is given", function() {
+      beforeEach(function() { vec3.lerp(vec, vecB, amount, dest = vec3.create()); });
+      it("should not modify vec", function() { expect(vec).toBeEqualish([1,2,3]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([4,5,6]); });
+      it("should modify dest", function() { expect(dest).toBeEqualish(LERP); });
+    });
+  });
 });
