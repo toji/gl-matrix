@@ -184,4 +184,8 @@ describe("vec3", function() {
     
     it("should return vector magnitude", function() { expect(vec3.length(vec)).toBeEqualish(3.741657); });
   });
+  
+  describe("dot", function() {
+    it("should return dot product", function() { expect(vec3.dot([1,2,3], [-4,5,6])).toBeEqualish(24); });
+  });
 });
