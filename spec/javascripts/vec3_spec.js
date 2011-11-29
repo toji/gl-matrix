@@ -178,4 +178,10 @@ describe("vec3", function() {
       it("should modify dest vector", function() { expect(dest).toBeEqualish(CROSS); });
     });
   });
+  
+  describe("length", function() {
+    beforeEach(function() { vec = vec3.create([1,2,3]); });
+    
+    it("should return vector magnitude", function() { expect(vec3.length(vec)).toBeEqualish(3.741657); });
+  });
 });
