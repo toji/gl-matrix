@@ -1,4 +1,6 @@
 beforeEach(function() {
+  var EPSILON = 0.000001;
+  
   this.addMatchers({
     /*
       Returns true if `actual` has the same length as `expected`, and
@@ -7,9 +9,12 @@ beforeEach(function() {
       of working around floating point imprecision.
     */
     toBeEqualish: function(expected) {
+      if (typeof(this.actual) == 'number')
+        return Math.abs(this.actual) - Math.abs(expected) < EPSILON;
+        
       if (this.actual.length != expected.length) return false;
       for (var i = 0; i < this.actual.length; i++)
-        if (Math.abs(this.actual[i]) - Math.abs(expected[i]) < 0.000001)
+        if (Math.abs(this.actual[i]) - Math.abs(expected[i]) < EPSILON)
           return true;
       return false;
     }
