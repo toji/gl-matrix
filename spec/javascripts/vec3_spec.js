@@ -1,5 +1,5 @@
 describe("vec3", function() {
-  var vec, dest;
+  var vec, vecB, dest;
   
   describe("when Float32Array is not supported", function() {
     beforeEach(function() { setMatrixArrayType(Array); });
@@ -124,7 +124,7 @@ describe("vec3", function() {
   });
   
   describe("normalize", function() {
-    var NORMAL = [0.2672612419124244, 0.5345224838248488, 0.8017837257372732];
+    var NORMAL = [0.267261, 0.534522, 0.801783];
     beforeEach(function() { vec = vec3.create([1,2,3]); });
     
     it("should return [0,0,0] if vector magnitude is 0", function() {
@@ -153,28 +153,28 @@ describe("vec3", function() {
     var CROSS = [-3, 6, -3];
     beforeEach(function() {
       vec = vec3.create([1,2,3]);
-      vec2 = vec3.create([4,5,6]);
+      vecB = vec3.create([4,5,6]);
     });
     
     it("should modify original vector if dest not given", function() {
-      vec3.cross(vec, vec2);
+      vec3.cross(vec, vecB);
       expect(vec).toBeEqualish(CROSS);
     });
     
-    it("should not modify vec2", function() {
-      expect(vec2).toBeEqualish([4,5,6]);
+    it("should not modify vecB", function() {
+      expect(vecB).toBeEqualish([4,5,6]);
     });
     
     it("should modify original mvector if dest is original vector", function() {
-      vec3.cross(vec, vec2, vec);
+      vec3.cross(vec, vecB, vec);
       expect(vec).toBeEqualish(CROSS);
     });
     
     describe("if dest vector is given", function() {
-      beforeEach(function() { vec3.cross(vec, vec2, dest = vec3.create()); });
+      beforeEach(function() { vec3.cross(vec, vecB, dest = vec3.create()); });
       
       it("should not modify original vector", function() { expect(vec).toBeEqualish([1,2,3]); });
-      it("should not modify vec2", function() { expect(vec2).toBeEqualish([4,5,6]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([4,5,6]); });
       it("should modify dest vector", function() { expect(dest).toBeEqualish(CROSS); });
     });
   });
@@ -187,5 +187,36 @@ describe("vec3", function() {
   
   describe("dot", function() {
     it("should return dot product", function() { expect(vec3.dot([1,2,3], [-4,5,6])).toBeEqualish(24); });
+  });
+  
+  describe("direction", function() {
+    var DIR = [0.267261, 0.534522, 0.801783];
+    
+    beforeEach(function() {
+      vec = vec3.create([1,2,3]);
+      vecB = vec3.create([-1,-2,-3]);
+    });
+    
+    it("should modify original vector if dest not given", function() {
+      vec3.direction(vec, vecB);
+      expect(vec).toBeEqualish(DIR);
+    });
+    
+    it("should modify original vector if dest is original vector", function() {
+      vec3.direction(vec, vecB, vec);
+      expect(vec).toBeEqualish(DIR);
+    });
+    
+    it("should not modify vecB", function() {
+      vec3.direction(vec, vecB);
+      expect(vecB).toBeEqualish([-1,-2,-3]);
+    });
+    
+    describe("if dest vector is given", function() {
+      beforeEach(function() { vec3.direction(vec, vecB, dest = vec3.create()); });
+      it("should not modify vec", function() { expect(vec).toBeEqualish([1,2,3]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([-1,-2,-3]); });
+      it("should modify dest", function() { expect(dest).toBeEqualish(DIR); });
+    });
   });
 });
