@@ -81,6 +81,16 @@ vec3.create = function (vec) {
     return dest;
 };
 
+
+// commonly used 'constants', should not be changed
+vec3.zero = vec3.create([0,0,0]);
+vec3.xUnitInv = vec3.create([-1,0,0]);
+vec3.yUnitInv = vec3.create([0,-1,0]);
+vec3.zUnitInv = vec3.create([0,0,-1]);
+vec3.xUnit = vec3.create([1,0,0]);
+vec3.yUnit = vec3.create([0,1,0]);
+vec3.zUnit = vec3.create([0,0,1]);
+
 /*
  * vec3.set
  * Copies the values of one vec3 to another
@@ -345,6 +355,48 @@ vec3.lerp = function (vec, vec2, lerp, dest) {
 
     return dest;
 };
+
+/*
+ * vec3.rotationTo
+ * Generates a quaternion of rotation between two given normalized vectors
+ *
+ * Params:
+ * a - normalized source vector
+ * b - normalized target vector
+ * dest - quat4 receiving operation result.
+ *
+ * Returns:
+ * dest
+ */
+vec3.rotationTo = function (a, b, dest) {
+    if (!dest) { dest = quat4.create(); }
+
+    var d = vec3.dot(a, b);
+    var axis = vec3.create();
+    if (d >= 1.0) {
+        quat4.set(quat4.identity, dest);
+    } else if (d < (0.000001 - 1.0)) {
+        vec3.cross(vec3.xUnit, a, axis);
+        if (axis.length < 0.000001) 
+            vec3.cross(vec3.yUnit, a, axis);
+        if (axis.length < 0.000001)
+            vec3.cross(vec3.zUnit, a, axis);
+        vec3.normalize(axis);
+        quat4.fromAxisAngle(axis, Math.PI, dest);
+    } else {
+        var s = Math.sqrt((1.0 + d) * 2.0);
+        var sInv = 1.0 / s;
+        vec3.cross(a, b, axis);
+        dest[0] = axis[0] * sInv;
+        dest[1] = axis[1] * sInv;
+        dest[2] = axis[2] * sInv;
+        dest[3] = s * 0.5;
+        quat4.normalize(dest);
+    }
+    if (dest[3] > 1.0) dest[3] = 1.0;
+    else if (dest[3] < -1.0) dest[3] = -1.0;
+    return dest;
+}
 
 /*
  * vec3.str
@@ -1580,6 +1632,9 @@ quat4.create = function (quat) {
     return dest;
 };
 
+// commonly used 'constants', should not be changed
+quat4.identity = quat4.create([0,0,0,1]);
+
 /*
  * quat4.set
  * Copies the values of one quat4 to another
@@ -1920,5 +1975,30 @@ quat4.slerp = function (quat, quat2, slerp, dest) {
  */
 quat4.str = function (quat) {
     return '[' + quat[0] + ', ' + quat[1] + ', ' + quat[2] + ', ' + quat[3] + ']';
+};
+
+
+/*
+ * quat4.fromAxisAngle
+ * Generates a unit quaternion from given axis angle
+ *
+ * Params:
+ * axis - vec3 axis
+ * angle - angle of revolution about axis
+ * dest - quat4 receiving operation result.
+ *
+ * Returns:
+ * dest
+ */
+quat4.fromAxisAngle = function (axis, angle, dest) {
+    if (!dest) { dest = quat4.create(); }
+
+    var sinAngle = Math.sin(angle * 0.5);
+    dest[0] = sinAngle * axis[0];
+    dest[1] = sinAngle * axis[1];
+    dest[2] = sinAngle * axis[2];
+    dest[3] = Math.cos(angle * 0.5);
+
+    return dest;
 };
 
