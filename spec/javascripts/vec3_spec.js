@@ -252,4 +252,8 @@ describe("vec3", function() {
       it("should modify dest", function() { expect(dest).toBeEqualish(LERP); });
     });
   });
+  
+  describe("str", function() {
+    it("should produce pretty string", function() { expect(vec3.str(vec3.create([1,2,3]))).toEqual("[1, 2, 3]"); });
+  });
 });
