@@ -1,6 +1,6 @@
 /* 
  * gl-matrix.js - High performance matrix and vector operations for WebGL
- * Version 1.1
+ * Version 1.2
  */
 
 /*
@@ -363,6 +363,46 @@ vec3.dist = function (vec, vec2) {
         z = vec2[2] - vec[2];
         
     return Math.sqrt(x*x + y*y + z*z);
+};
+
+/*
+ * vec3.unproject
+ * Projects the specified vec3 from screen space into object space
+ * Based on Mesa gluUnProject implementation at: 
+ * http://webcvs.freedesktop.org/mesa/Mesa/src/glu/mesa/project.c?revision=1.4&view=markup
+ *
+ * Params:
+ * vec - vec3, screen-space vector to project
+ * modelView - mat4, Model-View matrix
+ * proj - mat4, Projection matrix
+ * viewport - vec4, Viewport as given to gl.viewport [x, y, width, height]
+ * dest - Optional, vec3 receiving unprojected result. If not specified result is written to vec
+ *
+ * Returns:
+ * dest if specified, vec otherwise
+ */
+vec3.unproject = function (vec, modelView, proj, viewport, dest) {
+    if (!dest) { dest = vec; }
+
+    var m = mat4.create();
+    var v = new MatrixArray(4);
+    
+    v[0] = (vec[0] - viewport[0]) * 2.0 / viewport[2] - 1.0;
+    v[1] = (vec[1] - viewport[1]) * 2.0 / viewport[3] - 1.0;
+    v[2] = 2.0 * vec[2] - 1.0;
+    v[3] = 1.0;
+    
+    mat4.multiply(proj, modelView, m);
+    if(!mat4.inverse(m)) { return null; }
+    
+    mat4.multiplyVec4(m, v);
+    if(v[3] === 0.0) { return null; }
+
+    dest[0] = v[0] / v[3];
+    dest[1] = v[1] / v[3];
+    dest[2] = v[2] / v[3];
+    
+    return dest;
 };
 
 /*

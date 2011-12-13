@@ -253,6 +253,52 @@ describe("vec3", function() {
     });
   });
   
+  describe("unproject", function() {
+      var modelView, projection, viewport;
+      
+      var expectedVec = [0, 0, 1];
+      
+      beforeEach(function() {
+        vec = vec3.create([320, 240, 1]);
+        modelView = mat4.identity();
+        projection = mat4.perspective(45, 640/480, 1.0, 1024.0);
+        viewport = [0, 0, 640, 480];
+      });
+
+      it("should modify original vector if dest not given", function() {
+        vec3.unproject(vec, modelView, projection, viewport);
+        expect(vec).toBeEqualish(expectedVec);
+      });
+
+      it("should modify original vector if dest is original vector", function() {
+        vec3.unproject(vec, modelView, projection, viewport, vec);
+        expect(vec).toBeEqualish(expectedVec);
+      });
+
+      it("should not modify modelView", function() {
+        vec3.unproject(vec, modelView, projection, viewport, dest);
+        expect(modelView).toBeEqualish(mat4.identity());
+      });
+      
+      it("should not modify projection", function() {
+        vec3.unproject(vec, modelView, projection, viewport, dest);
+        expect(projection).toBeEqualish(mat4.perspective(45, 640/480, 1.0, 1024.0));
+      });
+      
+      it("should not modify viewport", function() {
+        vec3.unproject(vec, modelView, projection, viewport, dest);
+        expect(viewport).toBeEqualish([0, 0, 640, 480]);
+      });
+      
+      describe("if dest vector is given", function() {
+        beforeEach(function() { 
+            vec3.unproject(vec, modelView, projection, viewport, dest); 
+        });
+        it("should not modify vec", function() { expect(vec).toBeEqualish([320, 240, 1]); });
+        it("should modify dest", function() { expect(dest).toBeEqualish(expectedVec); });
+      });
+  });
+  
   describe("str", function() {
     it("should produce pretty string", function() { expect(vec3.str(vec3.create([1,2,3]))).toEqual("[1, 2, 3]"); });
   });
