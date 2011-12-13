@@ -347,6 +347,25 @@ vec3.lerp = function (vec, vec2, lerp, dest) {
 };
 
 /*
+ * vec3.dist
+ * Calculates the euclidian distance between two vec3
+ *
+ * Params:
+ * vec - vec3, first vector
+ * vec2 - vec3, second vector
+ *
+ * Returns:
+ * distance between vec and vec2
+ */
+vec3.dist = function (vec, vec2) {
+    var x = vec2[0] - vec[0],
+        y = vec2[1] - vec[1],
+        z = vec2[2] - vec[2];
+        
+    return Math.sqrt(x*x + y*y + z*z);
+};
+
+/*
  * vec3.str
  * Returns a string representation of a vector
  *
