@@ -1723,7 +1723,36 @@ quat4.calculateW = function (quat, dest) {
  * Returns:
  * dest if specified, quat otherwise
  */
-quat4.inverse = function (quat, dest) {
+quat4.inverse = function(quat, dest) {
+    var dot = quat4.dot(quat,quat),
+        invDot = 1.0/dot;
+    if(!dest || quat == dest) {
+        quat[0] *= -invDot;
+        quat[1] *= -invDot;
+        quat[2] *= -invDot;
+        quat[3] *= invDot;
+        return quat;
+    }
+    dest[0] = -quat[0]*invDot;
+    dest[1] = -quat[1]*invDot;
+    dest[2] = -quat[2]*invDot;
+    dest[3] = quat[3]*invDot;
+    return dest;
+};
+
+
+/*
+ * quat4.conjugate
+ * Calculates the conjugate of a quat4
+ *
+ * Params:
+ * quat - quat4 to calculate conjugate of
+ * dest - Optional, quat4 receiving conjugate values. If not specified result is written to quat
+ *
+ * Returns:
+ * dest if specified, quat otherwise
+ */
+quat4.conjugate = function (quat, dest) {
     if (!dest || quat === dest) {
         quat[0] *= -1;
         quat[1] *= -1;
