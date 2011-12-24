@@ -1,6 +1,6 @@
 /* 
  * gl-matrix.js - High performance matrix and vector operations for WebGL
- * Version 1.2
+ * Version 1.2.1
  */
 
 /*
@@ -149,6 +149,32 @@ vec3.subtract = function (vec, vec2, dest) {
     dest[0] = vec[0] - vec2[0];
     dest[1] = vec[1] - vec2[1];
     dest[2] = vec[2] - vec2[2];
+    return dest;
+};
+
+/*
+ * vec3.multiply
+ * Performs a vector multiplication
+ *
+ * Params:
+ * vec - vec3, first operand
+ * vec2 - vec3, second operand
+ * dest - Optional, vec3 receiving operation result. If not specified result is written to vec
+ *
+ * Returns:
+ * dest if specified, vec otherwise
+ */
+vec3.multiply = function (vec, vec2, dest) {
+    if (!dest || vec === dest) {
+        vec[0] *= vec2[0];
+        vec[1] *= vec2[1];
+        vec[2] *= vec2[2];
+        return vec;
+    }
+
+    dest[0] = vec[0] * vec2[0];
+    dest[1] = vec[1] * vec2[1];
+    dest[2] = vec[2] * vec2[2];
     return dest;
 };
 
@@ -373,7 +399,7 @@ vec3.dist = function (vec, vec2) {
  *
  * Params:
  * vec - vec3, screen-space vector to project
- * modelView - mat4, Model-View matrix
+ * view - mat4, View matrix
  * proj - mat4, Projection matrix
  * viewport - vec4, Viewport as given to gl.viewport [x, y, width, height]
  * dest - Optional, vec3 receiving unprojected result. If not specified result is written to vec
@@ -381,7 +407,7 @@ vec3.dist = function (vec, vec2) {
  * Returns:
  * dest if specified, vec otherwise
  */
-vec3.unproject = function (vec, modelView, proj, viewport, dest) {
+vec3.unproject = function (vec, view, proj, viewport, dest) {
     if (!dest) { dest = vec; }
 
     var m = mat4.create();
@@ -392,7 +418,7 @@ vec3.unproject = function (vec, modelView, proj, viewport, dest) {
     v[2] = 2.0 * vec[2] - 1.0;
     v[3] = 1.0;
     
-    mat4.multiply(proj, modelView, m);
+    mat4.multiply(proj, view, m);
     if(!mat4.inverse(m)) { return null; }
     
     mat4.multiplyVec4(m, v);
@@ -1473,9 +1499,9 @@ mat4.lookAt = function (eye, center, up, dest) {
     }
 
     //vec3.direction(eye, center, z);
-    z0 = eyex - center[0];
-    z1 = eyey - center[1];
-    z2 = eyez - center[2];
+    z0 = eyex - centerx;
+    z1 = eyey - centery;
+    z2 = eyez - centerz;
 
     // normalize (no check needed for 0 because of early return)
     len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
