@@ -1596,6 +1596,18 @@ quat4.calculateW = function (quat, dest) {
 };
 
 /**
+ * Calculates the dot product of two quaternions
+ *
+ * @param {quat4} quat First operand
+ * @param {quat4} quat2 Second operand
+ *
+ * @return {number} Dot product of quat and quat2
+ */
+quat4.dot = function(quat, quat2){
+    return quat[0]*quat2[0] + quat[1]*quat2[1] + quat[2]*quat2[2] + quat[3]*quat2[3];
+};
+
+/**
  * Calculates the inverse of a quat4
  *
  * @param {quat4} quat quat4 to calculate inverse of
@@ -1604,9 +1616,13 @@ quat4.calculateW = function (quat, dest) {
  * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.inverse = function(quat, dest) {
-    var dot = quat4.dot(quat,quat),
-        invDot = 1.0/dot;
-    if(!dest || quat == dest) {
+    var q0 = quat[0], q1 = quat[1], q2 = quat[2], q3 = quat[3],
+        dot = q0*q0 + q1*q1 + q2*q2 + q3*q3,
+        invDot = dot ? 1.0/dot : 0;
+    
+    // TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
+    
+    if(!dest || quat === dest) {
         quat[0] *= -invDot;
         quat[1] *= -invDot;
         quat[2] *= -invDot;
