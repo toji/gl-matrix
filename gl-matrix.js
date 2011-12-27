@@ -34,9 +34,31 @@
     // account for CommonJS environments
     var _global = (typeof(exports) != 'undefined') ? global : window;
     _global.glMatrixArrayType = _global.MatrixArray = null;
+	
+	_global.glMatrix = {};
+	
+	/**
+	 * @class 3 Dimensional Vector
+	 * @name vec3
+	 */
     _global.vec3 = {};
+	
+	/**
+	 * @class 3x3 Matrix
+	 * @name mat3
+	 */
     _global.mat3 = {};
+	
+	/**
+	 * @class 4x4 Matrix
+	 * @name mat4
+	 */
     _global.mat4 = {};
+	
+	/**
+	 * @class Quaternion
+	 * @name quat4
+	 */
     _global.quat4 = {};
 
     // explicitly sets and returns the type of array to use within glMatrix
@@ -54,9 +76,9 @@
 })();
 
 /*
- * vec3 - 3 Dimensional Vector
+ * vec3
  */
-
+ 
 /**
  * Creates a new instance of a vec3 using the default array type
  * Any javascript array-like objects containing at least 3 numeric elements can serve as a vec3
@@ -353,8 +375,7 @@ vec3.dist = function (vec, vec2) {
 
 /**
  * Projects the specified vec3 from screen space into object space
- * Based on Mesa gluUnProject implementation at: 
- * http://webcvs.freedesktop.org/mesa/Mesa/src/glu/mesa/project.c?revision=1.4&view=markup
+ * Based on the <a href="http://webcvs.freedesktop.org/mesa/Mesa/src/glu/mesa/project.c?revision=1.4&view=markup">Mesa gluUnProject implementation</a>
  *
  * @param {vec3} vec Screen-space vector to project
  * @param {mat4} view View matrix
@@ -400,7 +421,7 @@ vec3.str = function (vec) {
 };
 
 /*
- * mat3 - 3x3 Matrix
+ * mat3
  */
 
 /**
@@ -555,7 +576,7 @@ mat3.str = function (mat) {
 };
 
 /*
- * mat4 - 4x4 Matrix
+ * mat4
  */
 
 /**
@@ -1511,7 +1532,7 @@ mat4.str = function (mat) {
 };
 
 /*
- * quat4 - Quaternions 
+ * quat4
  */
 
 /**
