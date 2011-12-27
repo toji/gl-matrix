@@ -34,31 +34,29 @@
     // account for CommonJS environments
     var _global = (typeof(exports) != 'undefined') ? global : window;
     _global.glMatrixArrayType = _global.MatrixArray = null;
-	
-	_global.glMatrix = {};
-	
-	/**
-	 * @class 3 Dimensional Vector
-	 * @name vec3
-	 */
+
+    /**
+     * @class 3 Dimensional Vector
+     * @name vec3
+     */
     _global.vec3 = {};
-	
-	/**
-	 * @class 3x3 Matrix
-	 * @name mat3
-	 */
+
+    /**
+     * @class 3x3 Matrix
+     * @name mat3
+     */
     _global.mat3 = {};
-	
-	/**
-	 * @class 4x4 Matrix
-	 * @name mat4
-	 */
+
+    /**
+     * @class 4x4 Matrix
+     * @name mat4
+     */
     _global.mat4 = {};
-	
-	/**
-	 * @class Quaternion
-	 * @name quat4
-	 */
+
+    /**
+     * @class Quaternion
+     * @name quat4
+     */
     _global.quat4 = {};
 
     // explicitly sets and returns the type of array to use within glMatrix
