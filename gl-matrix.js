@@ -1,6 +1,7 @@
-/* 
- * gl-matrix.js - High performance matrix and vector operations for WebGL
- * Version 1.2.2
+/**
+ * @fileOverview gl-matrix - High performance matrix and vector operations for WebGL
+ * @author Brandon Jones
+ * @version 1.2.2
  */
 
 /*
@@ -60,9 +61,9 @@
  * Creates a new instance of a vec3 using the default array type
  * Any javascript array-like objects containing at least 3 numeric elements can serve as a vec3
  *
- * @param {vec3} vec Optional, vec3 containing values to initialize with
+ * @param {vec3} [vec] vec3 containing values to initialize with
  *
- * @return {vec3} New vec3
+ * @returns {vec3} New vec3
  */
 vec3.create = function (vec) {
     var dest = new MatrixArray(3);
@@ -84,7 +85,7 @@ vec3.create = function (vec) {
  * @param {vec3} vec vec3 containing values to copy
  * @param {vec3} dest vec3 receiving copied values
  *
- * @return {vec3} dest
+ * @returns {vec3} dest
  */
 vec3.set = function (vec, dest) {
     dest[0] = vec[0];
@@ -99,9 +100,9 @@ vec3.set = function (vec, dest) {
  *
  * @param {vec3} vec First operand
  * @param {vec3} vec2 Second operand
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.add = function (vec, vec2, dest) {
     if (!dest || vec === dest) {
@@ -122,9 +123,9 @@ vec3.add = function (vec, vec2, dest) {
  *
  * @param {vec3} vec First operand
  * @param {vec3} vec2 Second operand
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.subtract = function (vec, vec2, dest) {
     if (!dest || vec === dest) {
@@ -145,9 +146,9 @@ vec3.subtract = function (vec, vec2, dest) {
  *
  * @param {vec3} vec First operand
  * @param {vec3} vec2 Second operand
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.multiply = function (vec, vec2, dest) {
     if (!dest || vec === dest) {
@@ -167,9 +168,9 @@ vec3.multiply = function (vec, vec2, dest) {
  * Negates the components of a vec3
  *
  * @param {vec3} vec vec3 to negate
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.negate = function (vec, dest) {
     if (!dest) { dest = vec; }
@@ -184,10 +185,10 @@ vec3.negate = function (vec, dest) {
  * Multiplies the components of a vec3 by a scalar value
  *
  * @param {vec3} vec vec3 to scale
- * @param {Number} val Value to scale by
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {number} val Value to scale by
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.scale = function (vec, val, dest) {
     if (!dest || vec === dest) {
@@ -208,9 +209,9 @@ vec3.scale = function (vec, val, dest) {
  * If vector length is 0, returns [0, 0, 0]
  *
  * @param {vec3} vec vec3 to normalize
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.normalize = function (vec, dest) {
     if (!dest) { dest = vec; }
@@ -242,9 +243,9 @@ vec3.normalize = function (vec, dest) {
  *
  * @param {vec3} vec First operand
  * @param {vec3} vec2 Second operand
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.cross = function (vec, vec2, dest) {
     if (!dest) { dest = vec; }
@@ -263,7 +264,7 @@ vec3.cross = function (vec, vec2, dest) {
  *
  * @param {vec3} vec vec3 to calculate length of
  *
- * @return {Number} Length of vec
+ * @returns {number} Length of vec
  */
 vec3.length = function (vec) {
     var x = vec[0], y = vec[1], z = vec[2];
@@ -276,7 +277,7 @@ vec3.length = function (vec) {
  * @param {vec3} vec First operand
  * @param {vec3} vec2 Second operand
  *
- * @return {Number} Dot product of vec and vec2
+ * @returns {number} Dot product of vec and vec2
  */
 vec3.dot = function (vec, vec2) {
     return vec[0] * vec2[0] + vec[1] * vec2[1] + vec[2] * vec2[2];
@@ -287,9 +288,9 @@ vec3.dot = function (vec, vec2) {
  *
  * @param {vec3} vec Origin vec3
  * @param {vec3} vec2 vec3 to point to
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.direction = function (vec, vec2, dest) {
     if (!dest) { dest = vec; }
@@ -318,10 +319,10 @@ vec3.direction = function (vec, vec2, dest) {
  *
  * @param {vec3} vec First vector
  * @param {vec3} vec2 Second vector
- * @param {Number} lerp Interpolation amount between the two inputs
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {number} lerp Interpolation amount between the two inputs
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.lerp = function (vec, vec2, lerp, dest) {
     if (!dest) { dest = vec; }
@@ -340,7 +341,7 @@ vec3.lerp = function (vec, vec2, lerp, dest) {
  * @param {vec3} vec First vector
  * @param {vec3} vec2 Second vector
  *
- * @return {Number} Distance between vec and vec2
+ * @returns {number} Distance between vec and vec2
  */
 vec3.dist = function (vec, vec2) {
     var x = vec2[0] - vec[0],
@@ -359,9 +360,9 @@ vec3.dist = function (vec, vec2) {
  * @param {mat4} view View matrix
  * @param {mat4} proj Projection matrix
  * @param {vec4} viewport Viewport as given to gl.viewport [x, y, width, height]
- * @param {vec3} dest Optional, vec3 receiving unprojected result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving unprojected result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 vec3.unproject = function (vec, view, proj, viewport, dest) {
     if (!dest) { dest = vec; }
@@ -392,7 +393,7 @@ vec3.unproject = function (vec, view, proj, viewport, dest) {
  *
  * @param {vec3} vec Vector to represent as a string
  *
- * @return {String} String representation of vec
+ * @returns {string} String representation of vec
  */
 vec3.str = function (vec) {
     return '[' + vec[0] + ', ' + vec[1] + ', ' + vec[2] + ']';
@@ -406,9 +407,9 @@ vec3.str = function (vec) {
  * Creates a new instance of a mat3 using the default array type
  * Any javascript array-like object containing at least 9 numeric elements can serve as a mat3
  *
- * @param {mat3} mat Optional, mat3 containing values to initialize with
+ * @param {mat3} [mat] mat3 containing values to initialize with
  *
- * @return {mat3} New mat3
+ * @returns {mat3} New mat3
  */
 mat3.create = function (mat) {
     var dest = new MatrixArray(9);
@@ -434,7 +435,7 @@ mat3.create = function (mat) {
  * @param {mat3} mat mat3 containing values to copy
  * @param {mat3} dest mat3 receiving copied values
  *
- * @return {mat3} dest
+ * @returns {mat3} dest
  */
 mat3.set = function (mat, dest) {
     dest[0] = mat[0];
@@ -454,7 +455,7 @@ mat3.set = function (mat, dest) {
  *
  * @param {mat3} dest mat3 to set
  *
- * @return dest if specified, otherwise a new mat3
+ * @returns dest if specified, otherwise a new mat3
  */
 mat3.identity = function (dest) {
     if (!dest) { dest = mat3.create(); }
@@ -475,9 +476,9 @@ mat3.identity = function (dest) {
  *
  * Params:
  * @param {mat3} mat mat3 to transpose
- * @param {mat3} dest Optional, mat3 receiving transposed values. If not specified result is written to mat
+ * @param {mat3} [dest] mat3 receiving transposed values. If not specified result is written to mat
  *
- * @return {mat3} dest is specified, mat otherwise
+ * @returns {mat3} dest is specified, mat otherwise
  */
 mat3.transpose = function (mat, dest) {
     // If we are transposing ourselves we can skip a few steps but have to cache some values
@@ -510,9 +511,9 @@ mat3.transpose = function (mat, dest) {
  * Copies the elements of a mat3 into the upper 3x3 elements of a mat4
  *
  * @param {mat3} mat mat3 containing values to copy
- * @param {mat4} dest Optional, mat4 receiving copied values
+ * @param {mat4} [dest] mat4 receiving copied values
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 mat3.toMat4 = function (mat, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -545,7 +546,7 @@ mat3.toMat4 = function (mat, dest) {
  *
  * @param {mat3} mat mat3 to represent as a string
  *
- * @param {String} String representation of mat
+ * @param {string} String representation of mat
  */
 mat3.str = function (mat) {
     return '[' + mat[0] + ', ' + mat[1] + ', ' + mat[2] +
@@ -561,9 +562,9 @@ mat3.str = function (mat) {
  * Creates a new instance of a mat4 using the default array type
  * Any javascript array-like object containing at least 16 numeric elements can serve as a mat4
  *
- * @param {mat4} mat Optional, mat4 containing values to initialize with
+ * @param {mat4} [mat] mat4 containing values to initialize with
  *
- * @return {mat4} New mat4
+ * @returns {mat4} New mat4
  */
 mat4.create = function (mat) {
     var dest = new MatrixArray(16);
@@ -596,7 +597,7 @@ mat4.create = function (mat) {
  * @param {mat4} mat mat4 containing values to copy
  * @param {mat4} dest mat4 receiving copied values
  *
- * @return {mat4} dest
+ * @returns {mat4} dest
  */
 mat4.set = function (mat, dest) {
     dest[0] = mat[0];
@@ -623,7 +624,7 @@ mat4.set = function (mat, dest) {
  *
  * @param {mat4} dest mat4 to set
  *
- * @return {mat4} dest
+ * @returns {mat4} dest
  */
 mat4.identity = function (dest) {
     if (!dest) { dest = mat4.create(); }
@@ -650,7 +651,7 @@ mat4.identity = function (dest) {
  * Transposes a mat4 (flips the values over the diagonal)
  *
  * @param {mat4} mat mat4 to transpose
- * @param {mat4} dest Optional, mat4 receiving transposed values. If not specified result is written to mat
+ * @param {mat4} [dest] mat4 receiving transposed values. If not specified result is written to mat
  *
  * @param {mat4} dest is specified, mat otherwise
  */
@@ -700,7 +701,7 @@ mat4.transpose = function (mat, dest) {
  *
  * @param {mat4} mat mat4 to calculate determinant of
  *
- * @return {Number} determinant of mat
+ * @returns {number} determinant of mat
  */
 mat4.determinant = function (mat) {
     // Cache the matrix values (makes for huge speed increases!)
@@ -721,7 +722,7 @@ mat4.determinant = function (mat) {
  * Calculates the inverse matrix of a mat4
  *
  * @param {mat4} mat mat4 to calculate inverse of
- * @param {mat4} dest Optional, mat4 receiving inverse matrix. If not specified result is written to mat
+ * @param {mat4} [dest] mat4 receiving inverse matrix. If not specified result is written to mat
  *
  * @param {mat4} dest is specified, mat otherwise, null if matrix cannot be inverted
  */
@@ -778,9 +779,9 @@ mat4.inverse = function (mat, dest) {
  * Copies the upper 3x3 elements of a mat4 into another mat4
  *
  * @param {mat4} mat mat4 containing values to copy
- * @param {mat4} dest Optional, mat4 receiving copied values
+ * @param {mat4} [dest] mat4 receiving copied values
  *
- * @return {mat4} dest is specified, a new mat4 otherwise
+ * @returns {mat4} dest is specified, a new mat4 otherwise
  */
 mat4.toRotationMat = function (mat, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -809,9 +810,9 @@ mat4.toRotationMat = function (mat, dest) {
  * Copies the upper 3x3 elements of a mat4 into a mat3
  *
  * @param {mat4} mat mat4 containing values to copy
- * @param {mat3} dest Optional, mat3 receiving copied values
+ * @param {mat3} [dest] mat3 receiving copied values
  *
- * @return {mat3} dest is specified, a new mat3 otherwise
+ * @returns {mat3} dest is specified, a new mat3 otherwise
  */
 mat4.toMat3 = function (mat, dest) {
     if (!dest) { dest = mat3.create(); }
@@ -835,9 +836,9 @@ mat4.toMat3 = function (mat, dest) {
  *
  * Params:
  * @param {mat4} mat mat4 containing values to invert and copy
- * @param {mat3} dest Optional, mat3 receiving values
+ * @param {mat3} [dest] mat3 receiving values
  *
- * @return {mat3} dest is specified, a new mat3 otherwise, null if the matrix cannot be inverted
+ * @returns {mat3} dest is specified, a new mat3 otherwise, null if the matrix cannot be inverted
  */
 mat4.toInverseMat3 = function (mat, dest) {
     // Cache the matrix values (makes for huge speed increases!)
@@ -875,9 +876,9 @@ mat4.toInverseMat3 = function (mat, dest) {
  *
  * @param {mat4} mat First operand
  * @param {mat4} mat2 Second operand
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
- * @return {mat4} dest if specified, mat otherwise
+ * @returns {mat4} dest if specified, mat otherwise
  */
 mat4.multiply = function (mat, mat2, dest) {
     if (!dest) { dest = mat; }
@@ -919,9 +920,9 @@ mat4.multiply = function (mat, mat2, dest) {
  *
  * @param {mat4} mat mat4 to transform the vector with
  * @param {vec3} vec vec3 to transform
- * @paran {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @paran {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return {vec3} dest if specified, vec otherwise
+ * @returns {vec3} dest if specified, vec otherwise
  */
 mat4.multiplyVec3 = function (mat, vec, dest) {
     if (!dest) { dest = vec; }
@@ -940,9 +941,9 @@ mat4.multiplyVec3 = function (mat, vec, dest) {
  *
  * @param {mat4} mat mat4 to transform the vector with
  * @param {vec4} vec vec4 to transform
- * @param {vec4} dest Optional, vec4 receiving operation result. If not specified result is written to vec
+ * @param {vec4} [dest] vec4 receiving operation result. If not specified result is written to vec
  *
- * @return {vec4} dest if specified, vec otherwise
+ * @returns {vec4} dest if specified, vec otherwise
  */
 mat4.multiplyVec4 = function (mat, vec, dest) {
     if (!dest) { dest = vec; }
@@ -962,9 +963,9 @@ mat4.multiplyVec4 = function (mat, vec, dest) {
  *
  * @param {mat4} mat mat4 to translate
  * @param {vec3} vec vec3 specifying the translation
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
- * @return {mat4} dest if specified, mat otherwise
+ * @returns {mat4} dest if specified, mat otherwise
  */
 mat4.translate = function (mat, vec, dest) {
     var x = vec[0], y = vec[1], z = vec[2],
@@ -1000,7 +1001,7 @@ mat4.translate = function (mat, vec, dest) {
  *
  * @param {mat4} mat mat4 to scale
  * @param {vec3} vec vec3 specifying the scale for each axis
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
  * @param {mat4} dest if specified, mat otherwise
  */
@@ -1047,11 +1048,11 @@ mat4.scale = function (mat, vec, dest) {
  * If rotating around a primary axis (X,Y,Z) one of the specialized rotation functions should be used instead for performance
  *
  * @param {mat4} mat mat4 to rotate
- * @param {Number} angle Angle (in radians) to rotate
+ * @param {number} angle Angle (in radians) to rotate
  * @param {vec3} axis vec3 representing the axis to rotate around 
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
- * @return {mat4} dest if specified, mat otherwise
+ * @returns {mat4} dest if specified, mat otherwise
  */
 mat4.rotate = function (mat, angle, axis, dest) {
     var x = axis[0], y = axis[1], z = axis[2],
@@ -1116,10 +1117,10 @@ mat4.rotate = function (mat, angle, axis, dest) {
  * Rotates a matrix by the given angle around the X axis
  *
  * @param {mat4} mat mat4 to rotate
- * @param {Number} angle Angle (in radians) to rotate
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {number} angle Angle (in radians) to rotate
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
- * @return {mat4} dest if specified, mat otherwise
+ * @returns {mat4} dest if specified, mat otherwise
  */
 mat4.rotateX = function (mat, angle, dest) {
     var s = Math.sin(angle),
@@ -1164,10 +1165,10 @@ mat4.rotateX = function (mat, angle, dest) {
  * Rotates a matrix by the given angle around the Y axis
  *
  * @param {mat4} mat mat4 to rotate
- * @param {Number} angle Angle (in radians) to rotate
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {number} angle Angle (in radians) to rotate
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
- * @return {mat4} dest if specified, mat otherwise
+ * @returns {mat4} dest if specified, mat otherwise
  */
 mat4.rotateY = function (mat, angle, dest) {
     var s = Math.sin(angle),
@@ -1212,10 +1213,10 @@ mat4.rotateY = function (mat, angle, dest) {
  * Rotates a matrix by the given angle around the Z axis
  *
  * @param {mat4} mat mat4 to rotate
- * @param {Number} angle Angle (in radians) to rotate
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to mat
+ * @param {number} angle Angle (in radians) to rotate
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to mat
  *
- * @return {mat4} dest if specified, mat otherwise
+ * @returns {mat4} dest if specified, mat otherwise
  */
 mat4.rotateZ = function (mat, angle, dest) {
     var s = Math.sin(angle),
@@ -1260,15 +1261,15 @@ mat4.rotateZ = function (mat, angle, dest) {
 /**
  * Generates a frustum matrix with the given bounds
  *
- * @param {Number} left Left bound of the frustum
- * @param {Number} right Right bound of the frustum
- * @param {Number} bottom Bottom bound of the frustum
- * @param {Number} top Top bound of the frustum
- * @param {Number} near Near bound of the frustum
- * @param {Number} far Far bound of the frustum
- * @param {mat4} dest Optional, mat4 frustum matrix will be written into
+ * @param {number} left Left bound of the frustum
+ * @param {number} right Right bound of the frustum
+ * @param {number} bottom Bottom bound of the frustum
+ * @param {number} top Top bound of the frustum
+ * @param {number} near Near bound of the frustum
+ * @param {number} far Far bound of the frustum
+ * @param {mat4} [dest] mat4 frustum matrix will be written into
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 mat4.frustum = function (left, right, bottom, top, near, far, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -1297,13 +1298,13 @@ mat4.frustum = function (left, right, bottom, top, near, far, dest) {
 /**
  * Generates a perspective projection matrix with the given bounds
  *
- * @param {Number} fovy Vertical field of view
- * @param {Number} aspect Aspect ratio. typically viewport width/height
- * @param {Number} near Near bound of the frustum
- * @param {Number} far Far bound of the frustum
- * @param {mat4} dest Optional, mat4 frustum matrix will be written into
+ * @param {number} fovy Vertical field of view
+ * @param {number} aspect Aspect ratio. typically viewport width/height
+ * @param {number} near Near bound of the frustum
+ * @param {number} far Far bound of the frustum
+ * @param {mat4} [dest] mat4 frustum matrix will be written into
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 mat4.perspective = function (fovy, aspect, near, far, dest) {
     var top = near * Math.tan(fovy * Math.PI / 360.0),
@@ -1314,15 +1315,15 @@ mat4.perspective = function (fovy, aspect, near, far, dest) {
 /**
  * Generates a orthogonal projection matrix with the given bounds
  *
- * @param {Number} left Left bound of the frustum
- * @param {Number} right Right bound of the frustum
- * @param {Number} bottom Bottom bound of the frustum
- * @param {Number} top Top bound of the frustum
- * @param {Number} near Near bound of the frustum
- * @param {Number} far Far bound of the frustum
- * @param {mat4} dest Optional, mat4 frustum matrix will be written into
+ * @param {number} left Left bound of the frustum
+ * @param {number} right Right bound of the frustum
+ * @param {number} bottom Bottom bound of the frustum
+ * @param {number} top Top bound of the frustum
+ * @param {number} near Near bound of the frustum
+ * @param {number} far Far bound of the frustum
+ * @param {mat4} [dest] mat4 frustum matrix will be written into
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 mat4.ortho = function (left, right, bottom, top, near, far, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -1354,9 +1355,9 @@ mat4.ortho = function (left, right, bottom, top, near, far, dest) {
  * @param {vec3} eye Position of the viewer
  * @param {vec3} center Point the viewer is looking at
  * @param {vec3} up vec3 pointing "up"
- * @param {mat4} dest Optional, mat4 frustum matrix will be written into
+ * @param {mat4} [dest] mat4 frustum matrix will be written into
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 mat4.lookAt = function (eye, center, up, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -1452,9 +1453,9 @@ mat4.lookAt = function (eye, center, up, dest) {
  *
  * @param {quat4} quat Rotation quaternion
  * @param {vec3} vec Translation vector
- * @param {mat4} dest Optional, mat4 receiving operation result. If not specified result is written to a new mat4
+ * @param {mat4} [dest] mat4 receiving operation result. If not specified result is written to a new mat4
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 mat4.fromRotationTranslation = function (quat, vec, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -1500,7 +1501,7 @@ mat4.fromRotationTranslation = function (quat, vec, dest) {
  *
  * @param {mat4} mat mat4 to represent as a string
  *
- * @return {String} String representation of mat
+ * @returns {string} String representation of mat
  */
 mat4.str = function (mat) {
     return '[' + mat[0] + ', ' + mat[1] + ', ' + mat[2] + ', ' + mat[3] +
@@ -1517,9 +1518,9 @@ mat4.str = function (mat) {
  * Creates a new instance of a quat4 using the default array type
  * Any javascript array containing at least 4 numeric elements can serve as a quat4
  *
- * @param {quat4} quat Optional, quat4 containing values to initialize with
+ * @param {quat4} [quat] quat4 containing values to initialize with
  *
- * @return {quat4} New quat4
+ * @returns {quat4} New quat4
  */
 quat4.create = function (quat) {
     var dest = new MatrixArray(4);
@@ -1540,7 +1541,7 @@ quat4.create = function (quat) {
  * @param {quat4} quat quat4 containing values to copy
  * @param {quat4} dest quat4 receiving copied values
  *
- * @return {quat4} dest
+ * @returns {quat4} dest
  */
 quat4.set = function (quat, dest) {
     dest[0] = quat[0];
@@ -1557,9 +1558,9 @@ quat4.set = function (quat, dest) {
  * Any existing W component will be ignored. 
  *
  * @param {quat4} quat quat4 to calculate W component of
- * @param {quat4} dest Optional, quat4 receiving calculated values. If not specified result is written to quat
+ * @param {quat4} [dest] quat4 receiving calculated values. If not specified result is written to quat
  *
- * @return {quat4} dest if specified, quat otherwise
+ * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.calculateW = function (quat, dest) {
     var x = quat[0], y = quat[1], z = quat[2];
@@ -1579,9 +1580,9 @@ quat4.calculateW = function (quat, dest) {
  * Calculates the inverse of a quat4
  *
  * @param {quat4} quat quat4 to calculate inverse of
- * @param {quat4} dest Optional, quat4 receiving inverse values. If not specified result is written to quat
+ * @param {quat4} [dest] quat4 receiving inverse values. If not specified result is written to quat
  *
- * @return {quat4} dest if specified, quat otherwise
+ * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.inverse = function(quat, dest) {
     var dot = quat4.dot(quat,quat),
@@ -1606,9 +1607,9 @@ quat4.inverse = function(quat, dest) {
  * If the quaternion is normalized, this function is faster than quat4.inverse and produces the same result.
  *
  * @param {quat4} quat quat4 to calculate conjugate of
- * @param {quat4} dest Optional, quat4 receiving conjugate values. If not specified result is written to quat
+ * @param {quat4} [dest] quat4 receiving conjugate values. If not specified result is written to quat
  *
- * @return {quat4} dest if specified, quat otherwise
+ * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.conjugate = function (quat, dest) {
     if (!dest || quat === dest) {
@@ -1630,7 +1631,7 @@ quat4.conjugate = function (quat, dest) {
  * Params:
  * @param {quat4} quat quat4 to calculate length of
  *
- * @return Length of quat
+ * @returns Length of quat
  */
 quat4.length = function (quat) {
     var x = quat[0], y = quat[1], z = quat[2], w = quat[3];
@@ -1642,9 +1643,9 @@ quat4.length = function (quat) {
  * If quaternion length is 0, returns [0, 0, 0, 0]
  *
  * @param {quat4} quat quat4 to normalize
- * @param {quat4} dest Optional, quat4 receiving operation result. If not specified result is written to quat
+ * @param {quat4} [dest] quat4 receiving operation result. If not specified result is written to quat
  *
- * @return {quat4} dest if specified, quat otherwise
+ * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.normalize = function (quat, dest) {
     if (!dest) { dest = quat; }
@@ -1672,9 +1673,9 @@ quat4.normalize = function (quat, dest) {
  *
  * @param {quat4} quat First operand
  * @param {quat4} quat2 Second operand
- * @param {quat4} dest Optional, quat4 receiving operation result. If not specified result is written to quat
+ * @param {quat4} [dest] quat4 receiving operation result. If not specified result is written to quat
  *
- * @return {quat4} dest if specified, quat otherwise
+ * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.multiply = function (quat, quat2, dest) {
     if (!dest) { dest = quat; }
@@ -1695,9 +1696,9 @@ quat4.multiply = function (quat, quat2, dest) {
  *
  * @param {quat4} quat quat4 to transform the vector with
  * @param {vec3} vec vec3 to transform
- * @param {vec3} dest Optional, vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
- * @return dest if specified, vec otherwise
+ * @returns dest if specified, vec otherwise
  */
 quat4.multiplyVec3 = function (quat, vec, dest) {
     if (!dest) { dest = vec; }
@@ -1723,9 +1724,9 @@ quat4.multiplyVec3 = function (quat, vec, dest) {
  * Calculates a 3x3 matrix from the given quat4
  *
  * @param {quat4} quat quat4 to create matrix from
- * @param {mat3} dest Optional, mat3 receiving operation result
+ * @param {mat3} [dest] mat3 receiving operation result
  *
- * @return {mat3} dest if specified, a new mat3 otherwise
+ * @returns {mat3} dest if specified, a new mat3 otherwise
  */
 quat4.toMat3 = function (quat, dest) {
     if (!dest) { dest = mat3.create(); }
@@ -1764,9 +1765,9 @@ quat4.toMat3 = function (quat, dest) {
  * Calculates a 4x4 matrix from the given quat4
  *
  * @param {quat4} quat quat4 to create matrix from
- * @param {mat4} dest Optional, mat4 receiving operation result
+ * @param {mat4} [dest] mat4 receiving operation result
  *
- * @return {mat4} dest if specified, a new mat4 otherwise
+ * @returns {mat4} dest if specified, a new mat4 otherwise
  */
 quat4.toMat4 = function (quat, dest) {
     if (!dest) { dest = mat4.create(); }
@@ -1814,10 +1815,10 @@ quat4.toMat4 = function (quat, dest) {
  *
  * @param {quat4} quat First quaternion
  * @param {quat4} quat2 Second quaternion
- * @param {Number} slerp Interpolation amount between the two inputs
- * @param {quat4} dest Optional, quat4 receiving operation result. If not specified result is written to quat
+ * @param {number} slerp Interpolation amount between the two inputs
+ * @param {quat4} [dest] quat4 receiving operation result. If not specified result is written to quat
  *
- * @return {quat4} dest if specified, quat otherwise
+ * @returns {quat4} dest if specified, quat otherwise
  */
 quat4.slerp = function (quat, quat2, slerp, dest) {
     if (!dest) { dest = quat; }
@@ -1865,7 +1866,7 @@ quat4.slerp = function (quat, quat2, slerp, dest) {
  *
  * @param {quat4} quat quat4 to represent as a string
  *
- * @return {String} String representation of quat
+ * @returns {string} String representation of quat
  */
 quat4.str = function (quat) {
     return '[' + quat[0] + ', ' + quat[1] + ', ' + quat[2] + ', ' + quat[3] + ']';
