@@ -1,7 +1,7 @@
 /**
  * @fileOverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
- * @version 1.2.2
+ * @version 1.2.3
  */
 
 /*
