@@ -15,6 +15,10 @@ For all functions following this format the operation will be applied to the val
 
 Any 4x4 matrix functions expect sequences at least 16 elements in length as inputs when taking a matrix.
 
+Function Documentation
+----------------------
+Documentation for the individual functions can be found [here](http://toji.github.com/gl-matrix/doc/)
+
 Examples
 --------
 Creating and using a perspective matrix
