@@ -1,5 +1,5 @@
 /**
- * @fileOverview gl-matrix - High performance matrix and vector operations for WebGL
+ * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
  * @version 1.2.3
  */
@@ -939,7 +939,7 @@ mat4.multiply = function (mat, mat2, dest) {
  *
  * @param {mat4} mat mat4 to transform the vector with
  * @param {vec3} vec vec3 to transform
- * @paran {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
  *
  * @returns {vec3} dest if specified, vec otherwise
  */
