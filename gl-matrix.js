@@ -1,7 +1,7 @@
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
- * @version 1.2.3
+ * @version 1.2.4
  */
 
 /*
@@ -30,9 +30,8 @@
 "use strict";
 
 // Type declarations
-(function() {
+(function(_global) {
     // account for CommonJS environments
-    var _global = (typeof(exports) != 'undefined') ? global : window;
     _global.glMatrixArrayType = _global.MatrixArray = null;
 
     /**
@@ -71,7 +70,7 @@
     };
 
     determineMatrixArrayType();
-})();
+})((typeof(exports) != 'undefined') ? global : (window || this));
 
 /*
  * vec3
