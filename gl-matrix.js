@@ -70,7 +70,7 @@
     };
 
     determineMatrixArrayType();
-})((typeof(exports) != 'undefined') ? global : (window || this));
+})((typeof(exports) != 'undefined') ? global : this);
 
 /*
  * vec3
