@@ -34,12 +34,24 @@
     // account for CommonJS environments
     _global.glMatrixArrayType = _global.MatrixArray = null;
 
+	/**
+	 * Vector 3 Zero Constant
+	 */
+	var vec3_zero = [0,0,0];
+	
     /**
      * @class 3 Dimensional Vector
      * @name vec3
      */
     _global.vec3 = {};
-
+	
+	/**
+	 * Define getter for zero constant
+	 */
+	_global.vec3.__defineGetter__("zero", function () {
+		return new Float32Array(vec3_zero);
+	});
+	
     /**
      * @class 3x3 Matrix
      * @name mat3
@@ -97,13 +109,6 @@ vec3.create = function (vec) {
 
     return dest;
 };
-
-/** 
- * Define zero constant
- */
-vec3.__defineGetter__("zero", function () {
-	return vec3.create([0, 0, 0]);
-});
 
 /**
  * Copies the values of one vec3 to another
