@@ -98,6 +98,13 @@ vec3.create = function (vec) {
     return dest;
 };
 
+/** 
+ * Define zero constant
+ */
+vec3.__defineGetter__("zero", function () {
+	return vec3.create([0, 0, 0]);
+});
+
 /**
  * Copies the values of one vec3 to another
  *
