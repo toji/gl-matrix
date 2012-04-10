@@ -1,0 +1,34 @@
+{
+    "predef": [
+      "define",
+      "describe",
+      "expect",
+      "it",
+      "spyOn",
+      "beforeEach"
+      "vec3",
+      "vec4",
+      "mat3",
+      "mat4",
+      "quat4"
+    ],
+    "browser" : true,
+    "jquery" : false,
+    "boss" : true,
+    "eqeqeq": false,
+    "evil": false,
+    "eqnull": true,
+    "forin": false,
+    "laxbreak": false,
+    "newcap": true,
+    "noarg": true,
+    "noempty": false,
+    "nonew": false,
+    "nomen": false,
+    "plusplus": false,
+    "regexp": false,
+    "undef": true,
+    "sub": true,
+    "strict": false,
+    "white": false
+}
