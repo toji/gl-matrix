@@ -1703,6 +1703,30 @@ quat4.normalize = function (quat, dest) {
 };
 
 /**
+ * Performs quaternion addition
+ *
+ * @param {quat4} quat First operand
+ * @param {quat4} quat2 Second operand
+ * @param {quat4} [dest] quat4 receiving operation result. If not specified result is written to quat
+ *
+ * @returns {quat4} dest if specified, quat otherwise
+ */
+quat4.add = function (quat, quat2, dest) {
+    if(!dest || quat === dest) {
+        quat[0] += quat2[0];
+        quat[1] += quat2[1];
+        quat[2] += quat2[2];
+        quat[3] += quat2[3];
+        return quat;
+    }
+    dest[0] = quat[0]+quat2[0];
+    dest[1] = quat[1]+quat2[1];
+    dest[2] = quat[2]+quat2[2];
+    dest[3] = quat[3]+quat2[3];
+    return dest;
+};
+
+/**
  * Performs a quaternion multiplication
  *
  * @param {quat4} quat First operand
@@ -1751,6 +1775,30 @@ quat4.multiplyVec3 = function (quat, vec, dest) {
     dest[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
     dest[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
 
+    return dest;
+};
+
+/**
+ * Multiplies the components of a quaternion by a scalar value
+ *
+ * @param {quat4} quat to scale
+ * @param {number} val Value to scale by
+ * @param {quat4} [dest] quat4 receiving operation result. If not specified result is written to quat
+ *
+ * @returns {quat4} dest if specified, quat otherwise
+ */
+quat4.scale = function (quat, val, dest) {
+    if(!dest || quat === dest) {
+        quat[0] *= val;
+        quat[1] *= val;
+        quat[2] *= val;
+        quat[3] *= val;
+        return quat;
+    }
+    dest[0] = quat[0]*val;
+    dest[1] = quat[1]*val;
+    dest[2] = quat[2]*val;
+    dest[3] = quat[3]*val;
     return dest;
 };
 
