@@ -526,6 +526,31 @@ mat3.transpose = function (mat, dest) {
 };
 
 /**
+ * Performs a matrix addition
+ *
+ * @param {mat3} mat First operand
+ * @param {mat3} mat2 Second operand
+ * @param {mat3} [dest] mat3 receiving operation result. If not specified result is written to mat
+ *
+ * @returns {mat3} dest if specified, mat otherwise
+ */
+mat3.add = function (mat, mat2, dest) {
+    if (!dest) { dest = mat; }
+
+    dest[0] = mat[0] + mat2[0];
+    dest[1] = mat[1] + mat2[1];
+    dest[2] = mat[2] + mat2[2];
+    dest[3] = mat[3] + mat2[3];
+    dest[4] = mat[4] + mat2[4];
+    dest[5] = mat[5] + mat2[5];
+    dest[6] = mat[6] + mat2[6];
+    dest[7] = mat[7] + mat2[7];
+    dest[8] = mat[8] + mat2[8];
+
+    return dest;
+};
+
+/**
  * Performs a matrix multiplication
  *
  * @param {mat3} mat First operand
@@ -577,6 +602,43 @@ mat3.multiplyVec3 = function (mat, vec, dest) {
     dest[1] = mat[1] * x + mat[4] * y + mat[7] * z;
     dest[2] = mat[2] * x + mat[5] * y + mat[8] * z;
 
+    return dest;
+};
+
+/**
+ * Scales a matrix by the given vector
+ *
+ * @param {mat3} mat mat3 to scale
+ * @param {vec3} vec vec3 specifying the scale for each axis
+ * @param {mat3} [dest] mat3 receiving operation result. If not specified result is written to mat
+ *
+ * @param {mat3} dest if specified, mat otherwise
+ */
+mat3.scale = function (mat, vec, dest) {
+    var x = vec[0], y = vec[1], z = vec[2];
+
+    if (!dest || mat === dest) {
+        mat[0] *= x;
+        mat[1] *= x;
+        mat[2] *= x;
+        mat[3] *= y;
+        mat[4] *= y;
+        mat[5] *= y;
+        mat[6] *= z;
+        mat[7] *= z;
+        mat[8] *= z;
+        return mat;
+    }
+
+    dest[0] = mat[0] * x;
+    dest[1] = mat[1] * x;
+    dest[2] = mat[2] * x;
+    dest[3] = mat[3] * y;
+    dest[4] = mat[4] * y;
+    dest[5] = mat[5] * y;
+    dest[6] = mat[6] * z;
+    dest[7] = mat[7] * z;
+    dest[8] = mat[8] * z;
     return dest;
 };
 
