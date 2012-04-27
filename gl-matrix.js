@@ -560,6 +560,27 @@ mat3.multiply = function (mat, mat2, dest) {
 };
 
 /**
+ * Transforms a vec3 with the given matrix
+ *
+ * @param {mat3} mat mat3 to transform the vector with
+ * @param {vec3} vec vec3 to transform
+ * @param {vec3} [dest] vec3 receiving operation result. If not specified result is written to vec
+ *
+ * @returns {vec3} dest if specified, vec otherwise
+ */
+mat3.multiplyVec3 = function (mat, vec, dest) {
+    if (!dest) { dest = vec; }
+
+    var x = vec[0], y = vec[1], z = vec[2];
+
+    dest[0] = mat[0] * x + mat[3] * y + mat[6] * z;
+    dest[1] = mat[1] * x + mat[4] * y + mat[7] * z;
+    dest[2] = mat[2] * x + mat[5] * y + mat[8] * z;
+
+    return dest;
+};
+
+/**
  * Copies the elements of a mat3 into the upper 3x3 elements of a mat4
  *
  * @param {mat3} mat mat3 containing values to copy
