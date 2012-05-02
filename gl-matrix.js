@@ -34,7 +34,7 @@
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
-        module.exports = factory();
+        module.exports = factory(global);
     } else if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], function () {
@@ -86,14 +86,14 @@
     var MatrixArray = null;
     
     // explicitly sets and returns the type of array to use within glMatrix
-    function setMatrixArrayType(type) {
+    root.setMatrixArrayType = function(type) {
         MatrixArray = type;
         return MatrixArray;
     }
 
     // auto-detects and returns the best type of array to use within glMatrix, falling
     // back to Array if typed arrays are unsupported
-    function determineMatrixArrayType() {
+    root.determineMatrixArrayType = function() {
         MatrixArray = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
         return MatrixArray;
     }
@@ -539,10 +539,10 @@
      **/
     mat3.multiplyVec3 = function(matrix, vec, dest) {
       if (!dest) dest = vec;
-      
-      dest[0] = vec[0] * matrix[0] + vec[1] * matrix[3] + vec[2] * matrix[6];
-      dest[1] = vec[0] * matrix[1] + vec[1] * matrix[4] + vec[2] * matrix[7];
-      dest[2] = vec[0] * matrix[2] + vec[1] * matrix[5] + vec[2] * matrix[8];
+      var x = vec[0], y = vec[1], z = vec[2];
+      dest[0] = x * matrix[0] + y * matrix[3] + z * matrix[6];
+      dest[1] = x * matrix[1] + y * matrix[4] + z * matrix[7];
+      dest[2] = x * matrix[2] + y * matrix[5] + z * matrix[8];
       
       return dest;
     };
