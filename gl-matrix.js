@@ -2367,8 +2367,21 @@
     vec2.dist = function (vecA, vecB) {
         var x = vecB[0] - vecA[0],
             y = vecB[1] - vecA[1];
-            
         return Math.sqrt(x*x + y*y);
+    };
+
+    /**
+     * Copies the values of one vec2 to another
+     *
+     * @param {vec2} vec vec2 containing values to copy
+     * @param {vec2} dest vec2 receiving copied values
+     *
+     * @returns {vec2} dest
+     */
+    vec2.set = function (vec, dest) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+        return dest;
     };
 
     /*

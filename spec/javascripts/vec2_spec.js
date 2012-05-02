@@ -3,6 +3,26 @@ describe("vec2", function() {
   var vecA, vecB, result;
   beforeEach(function() { vecA = [1, 2]; vecB = [3, 4]; dest = [0, 0]; });
   
+  describe("when Float32Array is not supported", function() {
+    beforeEach(function() { setMatrixArrayType(Array); });
+
+    it("should initialize to 0", function() {
+      vec = vec2.create();
+      expect(vec[0]).toEqual(0);
+      expect(vec[1]).toEqual(0);
+    });
+  });
+
+  describe("set", function() {
+    beforeEach(function() { vec = vec2.create() });
+    
+    it("should assign values", function() {
+      vec2.set([1,2], vec);
+      expect(vec[0]).toEqual(1);
+      expect(vec[1]).toEqual(2);
+    });
+  });
+  
   describe("dist", function() {
     beforeEach(function() { result = vec2.dist(vecA, vecB); });
 
