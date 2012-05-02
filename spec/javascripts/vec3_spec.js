@@ -51,7 +51,7 @@ describe("vec3", function() {
       beforeEach(function() { vec3.add(vec, [3,4,5], dest = vec3.create()); });
       
       it("should not modify original vector", function() {
-        expect(vec).toBeEqualish([3,4,5]);
+        expect(vec).toBeEqualish([1,2,3]);
       });
       
       it("should modify dest vector", function() {
@@ -76,7 +76,7 @@ describe("vec3", function() {
     describe("if dest vector given", function() {
       beforeEach(function() { vec3.subtract(vec, [3,4,5], dest = vec3.create()); });
       
-      it("should not modify original vector", function() { expect(vec).toBeEqualish([3,4,5]); });
+      it("should not modify original vector", function() { expect(vec).toBeEqualish([1,2,3]); });
       it("should modify dest vector", function() { expect(dest).toBeEqualish([-2,-2,-2]); });
     });
   });
@@ -256,7 +256,7 @@ describe("vec3", function() {
   describe("unproject", function() {
       var modelView, projection, viewport;
       
-      var expectedVec = [0, 0, 1];
+      var expectedVec = [0, 0, -1024];
       
       beforeEach(function() {
         vec = vec3.create([320, 240, 1]);
