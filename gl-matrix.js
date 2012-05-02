@@ -86,17 +86,18 @@
     var MatrixArray = null;
     
     // explicitly sets and returns the type of array to use within glMatrix
-    root.setMatrixArrayType = function(type) {
+    function setMatrixArrayType(type) {
         MatrixArray = type;
         return MatrixArray;
     }
 
     // auto-detects and returns the best type of array to use within glMatrix, falling
     // back to Array if typed arrays are unsupported
-    root.determineMatrixArrayType = function() {
+    function determineMatrixArrayType() {
         MatrixArray = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
         return MatrixArray;
     }
+    
     determineMatrixArrayType();
 
     /**

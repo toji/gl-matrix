@@ -58,6 +58,7 @@ Jshintrb::JshintTask.new :jshint do |t|
     :undef => true,
     :sub => true,
     :strict => false,
-    :white => false
+    :white => false,
+    :predef => [ 'module', 'global', 'Float32Array', 'Int32Array', 'define' ]
   }
 end
