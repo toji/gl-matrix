@@ -41,6 +41,44 @@ describe("vec2", function() {
     });
   });
   
+  describe("multiply", function() {
+    describe("with dest vec2", function() {
+      beforeEach(function() { result = vec2.multiply(vecA, vecB, dest); });
+      
+      it("should place values into dest", function() { expect(dest).toBeEqualish([3, 8]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+    
+    describe("without dest vec2", function() {
+      beforeEach(function() { result = vec2.multiply(vecA, vecB); });
+      
+      it("should place values into vecB", function() { expect(vecB).toBeEqualish([3, 8]); });
+      it("should return vecB", function() { expect(result).toBe(vecB); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+    });
+  });
+  
+  describe("divide", function() {
+    describe("with dest vec2", function() {
+      beforeEach(function() { result = vec2.divide(vecA, vecB, dest); });
+      
+      it("should place values into dest", function() { expect(dest).toBeEqualish([0.333333, 0.5]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+    
+    describe("without dest vec2", function() {
+      beforeEach(function() { result = vec2.divide(vecA, vecB); });
+      
+      it("should place values into vecB", function() { expect(vecB).toBeEqualish([0.333333, 0.5]); });
+      it("should return vecB", function() { expect(result).toBe(vecB); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+    });
+  });
+  
   describe("create", function() {
     describe("with vec", function() {
       it("should clone vec's contents", function() {
