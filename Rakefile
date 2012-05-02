@@ -30,7 +30,34 @@ task :node do
 end
 
 desc "Run Jasmine unit tests under node.js, then again under Firefox"
-task :default => :node do
+task :default => [:node, :jshint] do
   ENV['DISPLAY'] = ':99.0' # for firefox on travis
   Rake::Task['jasmine:ci'].invoke
+end
+
+require "jshintrb/jshinttask"
+desc "Run static code analysis"
+Jshintrb::JshintTask.new :jshint do |t|
+  t.pattern = 'gl-matrix.js'
+  # t.options = :defaults
+  t.options = {
+    :jquery => false,
+    :boss => true,
+    :eqeqeq => false,
+    :evil => false,
+    :eqnull => true,
+    :forin => false,
+    :laxbreak => false,
+    :newcap => true,
+    :noarg => true,
+    :noempty => false,
+    :nonew => false,
+    :nomen => false,
+    :plusplus => false,
+    :regexp => false,
+    :undef => true,
+    :sub => true,
+    :strict => false,
+    :white => false
+  }
 end
