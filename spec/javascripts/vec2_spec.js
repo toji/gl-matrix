@@ -3,6 +3,14 @@ describe("vec2", function() {
   var vecA, vecB, result;
   beforeEach(function() { vecA = [1, 2]; vecB = [3, 4]; dest = [0, 0]; });
   
+  describe("dist", function() {
+    beforeEach(function() { result = vec2.dist(vecA, vecB); });
+
+    it("should return dest", function() { expect(result).toBeEqualish(2.828427); });
+    it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+    it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+  });
+  
   describe("scale", function() {
     describe("with dest vec2", function() {
       beforeEach(function() { result = vec2.scale(vecA, 0.5, dest); });

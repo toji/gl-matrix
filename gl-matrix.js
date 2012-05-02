@@ -2355,6 +2355,22 @@
       return dest;
     };
 
+    /**
+     * Calculates the euclidian distance between two vec2
+     *
+     * Params:
+     * @param {vec2} vecA First vector
+     * @param {vec2} vecB Second vector
+     *
+     * @returns {number} Distance between vecA and vecB
+     */
+    vec2.dist = function (vecA, vecB) {
+        var x = vecB[0] - vecA[0],
+            y = vecB[1] - vecA[1];
+            
+        return Math.sqrt(x*x + y*y);
+    };
+
     /*
      * Exports
      */
