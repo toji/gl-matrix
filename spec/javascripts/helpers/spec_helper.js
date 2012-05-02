@@ -1,5 +1,5 @@
 beforeEach(function() {
-  var EPSILON = 0.000001;
+  var EPSILON = 0.00001;
   
   this.addMatchers({
     /*
@@ -10,13 +10,13 @@ beforeEach(function() {
     */
     toBeEqualish: function(expected) {
       if (typeof(this.actual) == 'number')
-        return Math.abs(this.actual) - Math.abs(expected) < EPSILON;
-        
+        return Math.abs(this.actual - expected) < EPSILON;
+
       if (this.actual.length != expected.length) return false;
       for (var i = 0; i < this.actual.length; i++)
-        if (Math.abs(this.actual[i]) - Math.abs(expected[i]) < EPSILON)
-          return true;
-      return false;
+        if (Math.abs(this.actual[i] - expected[i]) >= EPSILON)
+          return false;
+      return true;
     }
   });
 });

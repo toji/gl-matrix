@@ -72,6 +72,38 @@
     determineMatrixArrayType();
 })((typeof(exports) != 'undefined') ? global : this);
 
+(function() {
+  if (typeof(Float32Array) != 'undefined') {
+    var y = new Float32Array(1);
+    var i = new Int32Array(y.buffer);
+
+    /**
+     * Fast way to calculate the inverse square root,
+     * see http://jsperf.com/inverse-square-root/5
+     *
+     * If typed arrays are not available, a slower
+     * implementation will be used.
+     *
+     * @param {Number} number the number
+     * @returns {Number} Inverse square root
+     */
+    Math.invsqrt = function(number) {
+      var x2 = number * 0.5;
+      y[0] = number;
+      var threehalfs = 1.5;
+
+      i[0] = 0x5f3759df - (i[0] >> 1);
+
+      var number2 = y[0];
+
+      return number2 * (threehalfs - (x2 * number2 * number2));
+    };
+  } else {
+    Math.invsqrt = function(number) { return 1.0 / Math.sqrt(number); };
+  }
+})();
+
+
 /*
  * vec3
  */
@@ -1954,3 +1986,176 @@ quat4.str = function (quat) {
     return '[' + quat[0] + ', ' + quat[1] + ', ' + quat[2] + ', ' + quat[3] + ']';
 };
 
+/**
+ * Creates a quaternion from the given 3x3 rotation matrix.
+ * If dest is omitted, a new quaternion will be created.
+ *
+ * @param {mat3}  mat    the rotation matrix
+ * @param {quat4} [dest] an optional receiving quaternion
+ *
+ * @returns {quat4} the quaternion constructed from the rotation matrix
+ *
+ */
+quat4.fromRotationMatrix = function(mat, dest) {
+  if (!dest) dest = quat4.create();
+  
+  // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
+  // article "Quaternion Calculus and Fast Animation".
+
+  var fTrace = mat[0] + mat[4] + mat[8];
+  var fRoot;
+
+  if ( fTrace > 0.0 )
+  {
+    // |w| > 1/2, may as well choose w > 1/2
+    fRoot = Math.sqrt(fTrace + 1.0);  // 2w
+    dest[3] = 0.5 * fRoot;
+    fRoot = 0.5/fRoot;  // 1/(4w)
+    dest[0] = (mat[7]-mat[5])*fRoot;
+    dest[1] = (mat[2]-mat[6])*fRoot;
+    dest[2] = (mat[3]-mat[1])*fRoot;
+  }
+  else
+  {
+    // |w| <= 1/2
+    var s_iNext = quat4.fromRotationMatrix.s_iNext = quat4.fromRotationMatrix.s_iNext || [1,2,0];
+    var i = 0;
+    if ( mat[4] > mat[0] )
+      i = 1;
+    if ( mat[8] > mat[i*3+i] )
+      i = 2;
+    var j = s_iNext[i];
+    var k = s_iNext[j];
+    
+    fRoot = Math.sqrt(mat[i*3+i]-mat[j*3+j]-mat[k*3+k] + 1.0);
+    dest[i] = 0.5 * fRoot;
+    fRoot = 0.5 / fRoot;
+    dest[3] = (mat[k*3+j] - mat[j*3+k]) * fRoot;
+    dest[j] = (mat[j*3+i] + mat[i*3+j]) * fRoot;
+    dest[k] = (mat[k*3+i] + mat[i*3+k]) * fRoot;
+  }
+    
+  return dest;
+};
+
+/**
+ * Alias. See the description for quat4.fromRotationMatrix().
+ */
+mat3.toQuat4 = quat4.fromRotationMatrix;
+
+(function() {
+  var mat = mat3.create();
+  
+  /**
+   * Creates a quaternion from the 3 given vectors. They must be perpendicular
+   * to one another and represent the X, Y and Z axes.
+   *
+   * If dest is omitted, a new quat4 will be created.
+   *
+   * Example: The default OpenGL orientation has a view vector [0, 0, -1],
+   * right vector [1, 0, 0], and up vector [0, 1, 0]. A quaternion representing
+   * this orientation could be constructed with:
+   *
+   *   quat = quat4.fromAxes([0, 0, -1], [1, 0, 0], [0, 1, 0], quat4.create());
+   *
+   * @param {vec3}  view   the view vector, or direction the object is pointing in
+   * @param {vec3}  right  the right vector, or direction to the "right" of the object
+   * @param {vec3}  up     the up vector, or direction towards the object's "up"
+   * @param {quat4} [dest] an optional receiving quat4
+   *
+   * @returns {quat4} dest
+   **/
+  quat4.fromAxes = function(view, right, up, dest) {
+    mat[0] = right[0];
+    mat[3] = right[1];
+    mat[6] = right[2];
+
+    mat[1] = up[0];
+    mat[4] = up[1];
+    mat[7] = up[2];
+
+    mat[2] = view[0];
+    mat[5] = view[1];
+    mat[8] = view[2];
+
+    return quat4.fromRotationMatrix(mat, dest);
+  };
+})();
+
+/**
+ * Sets a quat4 to the Identity and returns it.
+ *
+ * @param {quat4} [dest] quat4 to set. If omitted, a
+ * new quat4 will be created.
+ *
+ * @returns {quat4} dest
+ */
+quat4.identity = function(dest) {
+  if (!dest) dest = quat4.create();
+  dest[0] = 0;
+  dest[1] = 0;
+  dest[2] = 0;
+  dest[3] = 1;
+  return dest;
+};
+
+/**
+ * Sets a quat4 from the given angle and rotation axis,
+ * then returns it. If dest is not given, a new quat4 is created.
+ * 
+ * @param {Number} angle  the angle in radians
+ * @param {vec3}   axis   the axis around which to rotate
+ * @param {quat4}  [dest] the optional quat4 to store the result
+ *
+ * @returns {quat4} dest
+ **/
+quat4.fromAngleAxis = function(angle, axis, dest) {
+  // The quaternion representing the rotation is
+  //   q = cos(A/2)+sin(A/2)*(x*i+y*j+z*k)
+  if (!dest) dest = quat4.create();
+  
+  var half = angle * 0.5;
+  var s = Math.sin(half);
+  dest[3] = Math.cos(half);
+  dest[0] = s * axis[0];
+  dest[1] = s * axis[1];
+  dest[2] = s * axis[2];
+  
+  return dest;
+};
+
+/**
+ * Stores the angle and axis in a vec4, where the XYZ components represent
+ * the axis and the W (4th) component is the angle in radians.
+ *
+ * If dest is not given, src will be modified in place and returned, after
+ * which it should not be considered not a quaternion (just an axis and angle).
+ *
+ * @param {quat4} quat   the quaternion whose angle and axis to store
+ * @param {vec4}  [dest] the optional vec4 to receive the data
+ *
+ * @returns {vec4} dest
+ */
+quat4.toAngleAxis = function(src, dest) {
+  if (!dest) dest = src;
+  // The quaternion representing the rotation is
+  //   q = cos(A/2)+sin(A/2)*(x*i+y*j+z*k)
+
+  var sqrlen = src[0]*src[0]+src[1]*src[1]+src[2]*src[2];
+  if (sqrlen > 0)
+  {
+    dest[3] = 2 * Math.acos(src[3]);
+    var invlen = Math.invsqrt(sqrlen);
+    dest[0] = src[0]*invlen;
+    dest[1] = src[1]*invlen;
+    dest[2] = src[2]*invlen;
+  } else {
+    // angle is 0 (mod 2*pi), so any axis will do
+    dest[3] = 0;
+    dest[0] = 1;
+    dest[1] = 0;
+    dest[2] = 0;
+  }
+  
+  return dest;
+};
