@@ -2271,6 +2271,38 @@
       }
       return dest;
     };
+    
+    /**
+     * Adds the vec2's together. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec2} vecA the first operand
+     * @param {vec2} vecB the second operand
+     * @param {vec2} dest the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.add = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] + vecB[0];
+      dest[1] = vecA[1] + vecB[1];
+      return dest;
+    };
+    
+    /**
+     * Subtracts vecB from vecA. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec2} vecA the first operand
+     * @param {vec2} vecB the second operand
+     * @param {vec2} dest the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.subtract = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] - vecB[0];
+      dest[1] = vecA[1] - vecB[1];
+      return dest;
+    };
 
     /*
      * Exports
