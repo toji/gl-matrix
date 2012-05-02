@@ -34,7 +34,7 @@
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like enviroments that support module.exports,
         // like Node.
-        module.exports = factory();
+        module.exports = factory(global);
     } else if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
         define([], function () {
@@ -86,14 +86,14 @@
     var MatrixArray = null;
     
     // explicitly sets and returns the type of array to use within glMatrix
-    function setMatrixArrayType(type) {
+    root.setMatrixArrayType = function(type) {
         MatrixArray = type;
         return MatrixArray;
     }
 
     // auto-detects and returns the best type of array to use within glMatrix, falling
     // back to Array if typed arrays are unsupported
-    function determineMatrixArrayType() {
+    root.determineMatrixArrayType = function() {
         MatrixArray = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
         return MatrixArray;
     }
