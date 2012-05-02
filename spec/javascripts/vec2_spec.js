@@ -12,15 +12,26 @@ describe("vec2", function() {
       expect(vec[1]).toEqual(0);
     });
   });
+  
+  describe("negate", function() {
+    describe("with dest given", function() {
+      beforeEach(function() { result = vec2.negate(vecA, dest); });
+      it("should store negation in dest", function() { expect(dest).toBeEqualish([-1, -2]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not alter vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+    });
+    
+    describe("with dest not given", function() {
+      beforeEach(function() { result = vec2.negate(vecA); });
+      it("should return vecA", function() { expect(result).toBe(vecA); });
+      it("should alter vecA", function() { expect(vecA).toBeEqualish([-1, -2]); });
+    });
+  });
 
   describe("set", function() {
-    beforeEach(function() { vec = vec2.create() });
-    
-    it("should assign values", function() {
-      vec2.set([1,2], vec);
-      expect(vec[0]).toEqual(1);
-      expect(vec[1]).toEqual(2);
-    });
+    beforeEach(function() { result = vec2.set(vecA, dest); });
+    it("should assign values", function() { expect(dest).toBeEqualish([1, 2]); });
+    it("should return dest", function() { expect(result).toBe(dest); });
   });
   
   describe("dist", function() {

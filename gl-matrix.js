@@ -2384,6 +2384,21 @@
         return dest;
     };
 
+    /**
+     * Negates the components of a vec2
+     *
+     * @param {vec2} vec vec2 to negate
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vec
+     *
+     * @returns {vec2} dest if specified, vec otherwise
+     */
+    vec2.negate = function (vec, dest) {
+        if (!dest) { dest = vec; }
+        dest[0] = -vec[0];
+        dest[1] = -vec[1];
+        return dest;
+    };
+
     /*
      * Exports
      */
