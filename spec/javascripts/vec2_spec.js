@@ -3,6 +3,22 @@ describe("vec2", function() {
   var vecA, vecB, result;
   beforeEach(function() { vecA = [1, 2]; vecB = [3, 4]; dest = [0, 0]; });
   
+  describe("scale", function() {
+    describe("with dest vec2", function() {
+      beforeEach(function() { result = vec2.scale(vecA, 0.5, dest); });
+
+      it("should place values into dest", function() { expect(dest).toBeEqualish([0.5, 1]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+    });
+    
+    describe("without dest vec2", function() {
+      beforeEach(function() { result = vec2.scale(vecA, vecB); });
+
+      it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.5, 1]); });
+    });
+  });
+  
   describe("add", function() {
     describe("with dest vec2", function() {
       beforeEach(function() { result = vec2.add(vecA, vecB, dest); });

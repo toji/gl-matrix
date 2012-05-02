@@ -2335,6 +2335,25 @@
       dest[1] = vecA[1] / vecB[1];
       return dest;
     };
+    
+    /**
+     * Scales vecA by some scalar number. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecA.
+     *
+     * This is the same as multiplying each component of vecA
+     * by the given scalar.
+     *
+     * @param {vec2} vecA the vector to be scaled
+     * @param {Number} scalar the amount to scale the vector by
+     * @param {vec2} dest the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.scale = function(vecA, scalar, dest) {
+      if (!dest) dest = vecA;
+      dest[0] = vecA[0] * scalar;
+      dest[1] = vecA[1] * scalar;
+      return dest;
+    };
 
     /*
      * Exports
