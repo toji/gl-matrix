@@ -2246,6 +2246,31 @@
     quat4.str = function (quat) {
         return '[' + quat[0] + ', ' + quat[1] + ', ' + quat[2] + ', ' + quat[3] + ']';
     };
+    
+    /**
+     * @class 2 Dimensional Vector
+     * @name vec2
+     */
+    var vec2 = {};
+     
+    /**
+     * Creates a new vec2, initializing it from vec if vec
+     * is given.
+     *
+     * @param {vec2} vec the vector's initial contents
+     * @returns {vec2} a new 2D vector
+     */
+    vec2.create = function(vec) {
+      var dest = new MatrixArray(2);
+      if (vec) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+      } else {
+        dest[0] = 0;
+        dest[1] = 0;
+      }
+      return dest;
+    };
 
     /*
      * Exports
@@ -2257,6 +2282,7 @@
         root.setMatrixArrayType = setMatrixArrayType;
         root.determineMatrixArrayType = determineMatrixArrayType;
         root.glMath = glMath;
+        root.vec2 = vec2;
         root.vec3 = vec3;
         root.mat3 = mat3;
         root.mat4 = mat4;
@@ -2269,6 +2295,7 @@
         setMatrixArrayType: setMatrixArrayType,
         determineMatrixArrayType: determineMatrixArrayType,
         glMath: glMath,
+        vec2: vec2,
         vec3: vec3,
         mat3: mat3,
         mat4: mat4,
