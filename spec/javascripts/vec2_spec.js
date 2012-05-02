@@ -13,6 +13,21 @@ describe("vec2", function() {
     });
   });
   
+  describe("normalize", function() {
+    describe("with dest given", function() {
+      beforeEach(function() { result = vec2.normalize(vecA, dest); });
+      it("should store normal in dest", function() { expect(dest).toBeEqualish([ 0.4472135954999579, 0.8944271909999159 ]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not alter vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+    });
+    
+    describe("with dest not given", function() {
+      beforeEach(function() { result = vec2.normalize(vecA); });
+      it("should store normal in vecA", function() { expect(vecA).toBeEqualish([ 0.4472135954999579, 0.8944271909999159 ]); });
+      it("should return vecA", function() { expect(result).toBe(vecA); });
+    });
+  });
+  
   describe("negate", function() {
     describe("with dest given", function() {
       beforeEach(function() { result = vec2.negate(vecA, dest); });

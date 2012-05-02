@@ -2399,6 +2399,27 @@
         return dest;
     };
 
+    /**
+     * Normlize a vec2
+     *
+     * @param {vec2} vec vec2 to normalize
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vec
+     *
+     * @returns {vec2} dest if specified, vec otherwise
+     */
+    vec2.normalize = function (vec, dest) {
+        if (!dest) { dest = vec; }
+        var mag = vec[0] * vec[0] + vec[1] * vec[1];
+        if (mag > 0) {
+          mag = Math.sqrt(mag);
+          dest[0] = vec[0] / mag;
+          dest[1] = vec[1] / mag;
+        } else {
+          dest[0] = dest[1] = 0;
+        }
+        return dest;
+    };
+
     /*
      * Exports
      */
