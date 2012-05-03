@@ -2420,6 +2420,35 @@
         return dest;
     };
 
+    /**
+     * Computes the cross product of two vec2's. Note that the cross product must by definition
+     * produce a 3D vector. If a dest vector is given, it will contain the resultant 3D vector.
+     * Otherwise, a scalar number will be returned, representing the vector's Z coordinate, since
+     * its X and Y must always equal 0.
+     *
+     * Examples:
+     *    vec2.cross([1, 2], [3, 4], vec3.create())
+     *    //=> [0, 0, -2]
+     *    
+     *    vec2.cross([1, 2], [3, 4])
+     *    //=> -2
+     *
+     * See http://stackoverflow.com/questions/243945/calculating-a-2d-vectors-cross-product
+     * for some interesting facts.
+     *
+     * @param {vec2} vecA left operand
+     * @param {vec2} vecB right operand
+     * @param {vec2} [dest] optional vec2 receiving result. If not specified a scalar is returned
+     *
+     */
+    vec2.cross = function (vecA, vecB, dest) {
+      var z = vecA[0] * vecB[1] - vecA[1] * vecB[0];
+      if (!dest) return z;
+      dest[0] = dest[1] = 0;
+      dest[2] = z;
+      return dest;
+    };
+
     /*
      * Exports
      */

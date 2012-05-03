@@ -13,6 +13,23 @@ describe("vec2", function() {
     });
   });
   
+  describe("cross", function() {
+    describe("with dest given", function() {
+      beforeEach(function() { result = vec2.cross(vecA, vecB, dest); });
+      it("should store the cross in dest", function() { expect(dest).toBeEqualish([0, 0, -2]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not alter vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+      it("should not alter vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+    
+    describe("with no dest given", function() {
+      beforeEach(function() { result = vec2.cross(vecA, vecB); });
+      it("should return the scalar Z value", function() { expect(result).toBeEqualish(-2); });
+      it("should not alter vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+      it("should not alter vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+  });
+  
   describe("normalize", function() {
     describe("with dest given", function() {
       beforeEach(function() { result = vec2.normalize(vecA, dest); });
