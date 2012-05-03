@@ -529,6 +529,23 @@
     };
 
     /**
+     * Transforms the vec2 according to the given 3x3 matrix.
+     *
+     * @param {mat3} matrix the 3x3 matrix to multiply against
+     * @param {vec2} vec    the vector to multiply
+     * @param {vec2} [dest] an optional receiving vector. If not given, vec is used.
+     *
+     * @returns {vec2} The multiplication result
+     **/
+    mat3.multiplyVec2 = function(matrix, vec, dest) {
+      if (!dest) dest = vec;
+      var x = vec[0], y = vec[1];
+      dest[0] = x * matrix[0] + y * matrix[3] + matrix[6];
+      dest[1] = x * matrix[1] + y * matrix[4] + matrix[7];
+      return dest;
+    };
+
+    /**
      * Transforms the vec3 according to this rotation matrix.
      *
      * @param {mat3} matrix the 3x3 matrix to multiply against
@@ -2643,6 +2660,28 @@
         return dest;
     }
     
+    /**
+     * Performs a matrix multiplication
+     *
+     * @param {mat2} matA First operand
+     * @param {mat2} matB Second operand
+     * @param {mat2} [dest] mat2 receiving operation result. If not specified result is written to matA
+     *
+     * @returns {mat2} dest if specified, matA otherwise
+     */
+    mat2.multiply = function (matA, matB, dest) {
+        if (!dest) { dest = matA; }
+        var a11 = matA[0],
+            a12 = matA[1],
+            a21 = matA[2],
+            a22 = matA[3];
+        dest[0] = a11 * matB[0] + a12 * matB[2];
+        dest[1] = a11 * matB[1] + a12 * matB[3];
+        dest[2] = a21 * matB[0] + a22 * matB[2];
+        dest[3] = a21 * matB[1] + a22 * matB[3];
+        return dest;
+    }
+
     /*
      * Exports
      */

@@ -85,4 +85,21 @@ describe("mat2", function() {
       it("should return a", function() { expect(result).toBe(a); });
     });
   });
+  
+  describe("multiply", function() {
+    describe("with dest", function() {
+      beforeEach(function() { result = mat2.multiply(a, b, dest); });
+      it("should set dest", function() { expect(dest).toBeEqualish([19, 22, 43, 50]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify a", function() { expect(a).toBeEqualish([1, 2, 3, 4]); });
+      it("should not modify b", function() { expect(b).toBeEqualish([5, 6, 7, 8]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = mat2.multiply(a, b); });
+      it("should set a", function() { expect(a).toBeEqualish([19, 22, 43, 50]); });
+      it("should not change b", function() { expect(b).toBeEqualish([5, 6, 7, 8]); });
+      it("should return a", function() { expect(result).toBe(a); });
+    });
+  });
 });
