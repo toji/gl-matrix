@@ -530,6 +530,23 @@
     };
 
     /**
+     * Transforms the vec2 according to the given 3x3 matrix.
+     *
+     * @param {mat3} matrix the 3x3 matrix to multiply against
+     * @param {vec2} vec    the vector to multiply
+     * @param {vec2} [dest] an optional receiving vector. If not given, vec is used.
+     *
+     * @returns {vec2} The multiplication result
+     **/
+    mat3.multiplyVec2 = function(matrix, vec, dest) {
+      if (!dest) dest = vec;
+      var x = vec[0], y = vec[1];
+      dest[0] = x * matrix[0] + y * matrix[3] + matrix[6];
+      dest[1] = x * matrix[1] + y * matrix[4] + matrix[7];
+      return dest;
+    };
+
+    /**
      * Transforms the vec3 according to this rotation matrix.
      *
      * @param {mat3} matrix the 3x3 matrix to multiply against
@@ -2247,6 +2264,501 @@
     quat4.str = function (quat) {
         return '[' + quat[0] + ', ' + quat[1] + ', ' + quat[2] + ', ' + quat[3] + ']';
     };
+    
+    /**
+     * @class 2 Dimensional Vector
+     * @name vec2
+     */
+    var vec2 = {};
+     
+    /**
+     * Creates a new vec2, initializing it from vec if vec
+     * is given.
+     *
+     * @param {vec2} [vec] the vector's initial contents
+     * @returns {vec2} a new 2D vector
+     */
+    vec2.create = function(vec) {
+      var dest = new MatrixArray(2);
+      if (vec) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+      } else {
+        dest[0] = 0;
+        dest[1] = 0;
+      }
+      return dest;
+    };
+    
+    /**
+     * Adds the vec2's together. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec2} vecA the first operand
+     * @param {vec2} vecB the second operand
+     * @param {vec2} [dest] the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.add = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] + vecB[0];
+      dest[1] = vecA[1] + vecB[1];
+      return dest;
+    };
+    
+    /**
+     * Subtracts vecB from vecA. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec2} vecA the first operand
+     * @param {vec2} vecB the second operand
+     * @param {vec2} [dest] the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.subtract = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] - vecB[0];
+      dest[1] = vecA[1] - vecB[1];
+      return dest;
+    };
+    
+    /**
+     * Multiplies vecA with vecB. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec2} vecA the first operand
+     * @param {vec2} vecB the second operand
+     * @param {vec2} [dest] the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.multiply = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] * vecB[0];
+      dest[1] = vecA[1] * vecB[1];
+      return dest;
+    };
+    
+    /**
+     * Divides vecA by vecB. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec2} vecA the first operand
+     * @param {vec2} vecB the second operand
+     * @param {vec2} [dest] the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.divide = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] / vecB[0];
+      dest[1] = vecA[1] / vecB[1];
+      return dest;
+    };
+    
+    /**
+     * Scales vecA by some scalar number. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecA.
+     *
+     * This is the same as multiplying each component of vecA
+     * by the given scalar.
+     *
+     * @param {vec2}   vecA the vector to be scaled
+     * @param {Number} scalar the amount to scale the vector by
+     * @param {vec2}   [dest] the optional receiving vector
+     * @returns {vec2} dest
+     */
+    vec2.scale = function(vecA, scalar, dest) {
+      if (!dest) dest = vecA;
+      dest[0] = vecA[0] * scalar;
+      dest[1] = vecA[1] * scalar;
+      return dest;
+    };
+
+    /**
+     * Calculates the euclidian distance between two vec2
+     *
+     * Params:
+     * @param {vec2} vecA First vector
+     * @param {vec2} vecB Second vector
+     *
+     * @returns {number} Distance between vecA and vecB
+     */
+    vec2.dist = function (vecA, vecB) {
+        var x = vecB[0] - vecA[0],
+            y = vecB[1] - vecA[1];
+        return Math.sqrt(x*x + y*y);
+    };
+
+    /**
+     * Copies the values of one vec2 to another
+     *
+     * @param {vec2} vec vec2 containing values to copy
+     * @param {vec2} dest vec2 receiving copied values
+     *
+     * @returns {vec2} dest
+     */
+    vec2.set = function (vec, dest) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+        return dest;
+    };
+
+    /**
+     * Negates the components of a vec2
+     *
+     * @param {vec2} vec vec2 to negate
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vec
+     *
+     * @returns {vec2} dest if specified, vec otherwise
+     */
+    vec2.negate = function (vec, dest) {
+        if (!dest) { dest = vec; }
+        dest[0] = -vec[0];
+        dest[1] = -vec[1];
+        return dest;
+    };
+
+    /**
+     * Normlize a vec2
+     *
+     * @param {vec2} vec vec2 to normalize
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vec
+     *
+     * @returns {vec2} dest if specified, vec otherwise
+     */
+    vec2.normalize = function (vec, dest) {
+        if (!dest) { dest = vec; }
+        var mag = vec[0] * vec[0] + vec[1] * vec[1];
+        if (mag > 0) {
+          mag = Math.sqrt(mag);
+          dest[0] = vec[0] / mag;
+          dest[1] = vec[1] / mag;
+        } else {
+          dest[0] = dest[1] = 0;
+        }
+        return dest;
+    };
+
+    /**
+     * Computes the cross product of two vec2's. Note that the cross product must by definition
+     * produce a 3D vector. If a dest vector is given, it will contain the resultant 3D vector.
+     * Otherwise, a scalar number will be returned, representing the vector's Z coordinate, since
+     * its X and Y must always equal 0.
+     *
+     * Examples:
+     *    var crossResult = vec3.create();
+     *    vec2.cross([1, 2], [3, 4], crossResult);
+     *    //=> [0, 0, -2]
+     *    
+     *    vec2.cross([1, 2], [3, 4]);
+     *    //=> -2
+     *
+     * See http://stackoverflow.com/questions/243945/calculating-a-2d-vectors-cross-product
+     * for some interesting facts.
+     *
+     * @param {vec2} vecA left operand
+     * @param {vec2} vecB right operand
+     * @param {vec2} [dest] optional vec2 receiving result. If not specified a scalar is returned
+     *
+     */
+    vec2.cross = function (vecA, vecB, dest) {
+      var z = vecA[0] * vecB[1] - vecA[1] * vecB[0];
+      if (!dest) return z;
+      dest[0] = dest[1] = 0;
+      dest[2] = z;
+      return dest;
+    };
+    
+    /**
+     * Caclulates the length of a vec2
+     *
+     * @param {vec2} vec vec2 to calculate length of
+     *
+     * @returns {Number} Length of vec
+     */
+    vec2.length = function (vec) {
+      var x = vec[0], y = vec[1];
+      return Math.sqrt(x * x + y * y);
+    };
+
+    /**
+     * Caclulates the dot product of two vec2s
+     *
+     * @param {vec3} vecA First operand
+     * @param {vec3} vecB Second operand
+     *
+     * @returns {Number} Dot product of vecA and vecB
+     */
+    vec2.dot = function (vecA, vecB) {
+        return vecA[0] * vecB[0] + vecA[1] * vecB[1];
+    };
+    
+    /**
+     * Generates a 2D unit vector pointing from one vector to another
+     *
+     * @param {vec2} vecA Origin vec2
+     * @param {vec2} vecB vec2 to point to
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vecA
+     *
+     * @returns {vec2} dest if specified, vecA otherwise
+     */
+    vec2.direction = function (vecA, vecB, dest) {
+        if (!dest) { dest = vecA; }
+
+        var x = vecA[0] - vecB[0],
+            y = vecA[1] - vecB[1],
+            len = x * x + y * y;
+
+        if (!len) {
+            dest[0] = 0;
+            dest[1] = 0;
+            dest[2] = 0;
+            return dest;
+        }
+
+        len = 1 / Math.sqrt(len);
+        dest[0] = x * len;
+        dest[1] = y * len;
+        return dest;
+    };
+
+    /**
+     * Performs a linear interpolation between two vec2
+     *
+     * @param {vec2} vecA First vector
+     * @param {vec2} vecB Second vector
+     * @param {Number} lerp Interpolation amount between the two inputs
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vecA
+     *
+     * @returns {vec2} dest if specified, vecA otherwise
+     */
+    vec2.lerp = function (vecA, vecB, lerp, dest) {
+        if (!dest) { dest = vecA; }
+        dest[0] = vecA[0] + lerp * (vecB[0] - vecA[0]);
+        dest[1] = vecA[1] + lerp * (vecB[1] - vecA[1]);
+        return dest;
+    };
+
+    /**
+     * Returns a string representation of a vector
+     *
+     * @param {vec2} vec Vector to represent as a string
+     *
+     * @returns {String} String representation of vec
+     */
+    vec2.str = function (vec) {
+        return '[' + vec[0] + ', ' + vec[1] + ']';
+    };
+    
+    /**
+     * @class 2x2 Matrix
+     * @name mat2
+     */
+    var mat2 = {};
+    
+    /**
+     * Creates a new 2x2 matrix. If src is given, the new matrix
+     * is initialized to those values.
+     *
+     * @param {mat2} [src] the seed values for the new matrix, if any
+     * @returns {mat2} a new matrix
+     */
+    mat2.create = function(src) {
+      var dest = new MatrixArray(4);
+      if (src) {
+        dest[0] = src[0];
+        dest[1] = src[1];
+        dest[2] = src[2];
+        dest[3] = src[3];
+      }
+      return dest;
+    };
+    
+    /**
+     * Copies the values of one mat2 to another
+     *
+     * @param {mat2} mat mat2 containing values to copy
+     * @param {mat2} dest mat2 receiving copied values
+     *
+     * @returns {mat2} dest
+     */
+    mat2.set = function (mat, dest) {
+        dest[0] = mat[0];
+        dest[1] = mat[1];
+        dest[2] = mat[2];
+        dest[3] = mat[3];
+        return dest;
+    };
+
+    /**
+     * Sets a mat2 to an identity matrix
+     *
+     * @param {mat2} [dest] mat2 to set. If omitted a new one will be created.
+     *
+     * @returns {mat2} dest
+     */
+    mat2.identity = function (dest) {
+        if (!dest) { dest = mat2.create(); }
+        dest[0] = 1;
+        dest[1] = 0;
+        dest[2] = 0;
+        dest[3] = 1;
+        return dest;
+    };
+
+    /**
+     * Transposes a mat2 (flips the values over the diagonal)
+     *
+     * @param {mat2} mat mat2 to transpose
+     * @param {mat2} [dest] mat2 receiving transposed values. If not specified result is written to mat
+     *
+     * @param {mat2} dest if specified, mat otherwise
+     */
+    mat2.transpose = function (mat, dest) {
+        // If we are transposing ourselves we can skip a few steps but have to cache some values
+        if (!dest || mat === dest) {
+            var a00 = mat[1];
+            mat[1] = mat[2];
+            mat[2] = a00;
+            return mat;
+        }
+        
+        dest[0] = mat[0];
+        dest[1] = mat[2];
+        dest[2] = mat[1];
+        dest[3] = mat[3];
+        return dest;
+    };
+
+    /**
+     * Calculates the determinant of a mat2
+     *
+     * @param {mat2} mat mat2 to calculate determinant of
+     *
+     * @returns {Number} determinant of mat
+     */
+    mat2.determinant = function (mat) {
+      return mat[0] * mat[3] - mat[2] * mat[1];
+    };
+    
+    /**
+     * Calculates the inverse matrix of a mat2
+     *
+     * @param {mat2} mat mat2 to calculate inverse of
+     * @param {mat2} [dest] mat2 receiving inverse matrix. If not specified result is written to mat
+     *
+     * @param {mat2} dest is specified, mat otherwise, null if matrix cannot be inverted
+     */
+    mat2.inverse = function (mat, dest) {
+        if (!dest) { dest = mat; }
+        var a0 = mat[0], a1 = mat[1], a2 = mat[2], a3 = mat[3];
+        var det = a0 * a3 - a2 * a1;
+        if (!det) return null;
+        
+        det = 1.0 / det;
+        dest[0] =  a3 * det;
+        dest[1] = -a1 * det;
+        dest[2] = -a2 * det;
+        dest[3] =  a0 * det;
+        return dest;
+    };
+    
+    /**
+     * Performs a matrix multiplication
+     *
+     * @param {mat2} matA First operand
+     * @param {mat2} matB Second operand
+     * @param {mat2} [dest] mat2 receiving operation result. If not specified result is written to matA
+     *
+     * @returns {mat2} dest if specified, matA otherwise
+     */
+    mat2.multiply = function (matA, matB, dest) {
+        if (!dest) { dest = matA; }
+        var a11 = matA[0],
+            a12 = matA[1],
+            a21 = matA[2],
+            a22 = matA[3];
+        dest[0] = a11 * matB[0] + a12 * matB[2];
+        dest[1] = a11 * matB[1] + a12 * matB[3];
+        dest[2] = a21 * matB[0] + a22 * matB[2];
+        dest[3] = a21 * matB[1] + a22 * matB[3];
+        return dest;
+    };
+
+    /**
+     * Rotates a 2x2 matrix by an angle
+     *
+     * @param {mat2}   mat   The matrix to rotate
+     * @param {Number} angle The angle in radians
+     * @param {mat2} [dest]  Optional mat2 receiving the result. If omitted mat will be used.
+     *
+     * @returns {mat2} dest if specified, mat otherwise
+     */
+    mat2.rotate = function (mat, angle, dest) {
+        if (!dest) { dest = mat; }
+        var a11 = mat[0],
+            a12 = mat[1],
+            a21 = mat[2],
+            a22 = mat[3],
+            s = Math.sin(angle),
+            c = Math.cos(angle);
+        dest[0] = a11 *  c + a12 * s;
+        dest[1] = a11 * -s + a12 * c;
+        dest[2] = a21 *  c + a22 * s;
+        dest[3] = a21 * -s + a22 * c;
+        return dest;
+    };
+
+    /**
+     * Multiplies the vec2 by the given 2x2 matrix
+     *
+     * @param {mat2} matrix the 2x2 matrix to multiply against
+     * @param {vec2} vec    the vector to multiply
+     * @param {vec2} [dest] an optional receiving vector. If not given, vec is used.
+     *
+     * @returns {vec2} The multiplication result
+     **/
+    mat2.multiplyVec2 = function(matrix, vec, dest) {
+      if (!dest) dest = vec;
+      var x = vec[0], y = vec[1];
+      dest[0] = x * matrix[0] + y * matrix[1];
+      dest[1] = x * matrix[2] + y * matrix[3];
+      return dest;
+    };
+    
+    /**
+     * Scales the mat2 by the dimensions in the given vec2
+     *
+     * @param {mat2} matrix the 2x2 matrix to scale
+     * @param {vec2} vec    the vector containing the dimensions to scale by
+     * @param {vec2} [dest] an optional receiving mat2. If not given, matrix is used.
+     *
+     * @returns {mat2} dest if specified, matrix otherwise
+     **/
+    mat2.scale = function(matrix, vec, dest) {
+      if (!dest) { dest = matrix; }
+      var a11 = matrix[0],
+          a12 = matrix[1],
+          a21 = matrix[2],
+          a22 = matrix[3],
+          b11 = vec[0],
+          b22 = vec[1];
+      dest[0] = a11 * b11;
+      dest[1] = a12 * b22;
+      dest[2] = a21 * b11;
+      dest[3] = a22 * b22;
+      return dest;
+    };
+
+    /**
+     * Returns a string representation of a mat2
+     *
+     * @param {mat2} mat mat2 to represent as a string
+     *
+     * @param {String} String representation of mat
+     */
+    mat2.str = function (mat) {
+        return '[' + mat[0] + ', ' + mat[1] + ', ' + mat[2] + ', ' + mat[3] + ']';
+    };
 
     /*
      * Exports
@@ -2258,7 +2770,9 @@
         root.setMatrixArrayType = setMatrixArrayType;
         root.determineMatrixArrayType = determineMatrixArrayType;
         root.glMath = glMath;
+        root.vec2 = vec2;
         root.vec3 = vec3;
+        root.mat2 = mat2;
         root.mat3 = mat3;
         root.mat4 = mat4;
         root.quat4 = quat4;
@@ -2270,7 +2784,9 @@
         setMatrixArrayType: setMatrixArrayType,
         determineMatrixArrayType: determineMatrixArrayType,
         glMath: glMath,
+        vec2: vec2,
         vec3: vec3,
+        mat2: mat2,
         mat3: mat3,
         mat4: mat4,
         quat4: quat4
