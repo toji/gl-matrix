@@ -2658,7 +2658,7 @@
         dest[2] = -a2 * det;
         dest[3] =  a0 * det;
         return dest;
-    }
+    };
     
     /**
      * Performs a matrix multiplication
@@ -2680,7 +2680,31 @@
         dest[2] = a21 * matB[0] + a22 * matB[2];
         dest[3] = a21 * matB[1] + a22 * matB[3];
         return dest;
-    }
+    };
+
+    /**
+     * Rotates a 2x2 matrix by an angle
+     *
+     * @param {mat2}   mat   The matrix to rotate
+     * @param {Number} angle The angle in radians
+     * @param {mat2} [dest]  Optional mat2 receiving the result. If omitted mat will be used.
+     *
+     * @returns {mat2} dest if specified, mat otherwise
+     */
+    mat2.rotate = function (mat, angle, dest) {
+        if (!dest) { dest = mat; }
+        var a11 = mat[0],
+            a12 = mat[1],
+            a21 = mat[2],
+            a22 = mat[3],
+            s = Math.sin(angle),
+            c = Math.cos(angle);
+        dest[0] = a11 *  c + a12 * s;
+        dest[1] = a11 * -s + a12 * c;
+        dest[2] = a21 *  c + a22 * s;
+        dest[3] = a21 * -s + a22 * c;
+        return dest;
+    };
 
     /**
      * Multiplies the vec2 by the given 2x2 matrix
@@ -2697,6 +2721,41 @@
       dest[0] = x * matrix[0] + y * matrix[1];
       dest[1] = x * matrix[2] + y * matrix[3];
       return dest;
+    };
+    
+    /**
+     * Scales the mat2 by the dimensions in the given vec2
+     *
+     * @param {mat2} matrix the 2x2 matrix to scale
+     * @param {vec2} vec    the vector containing the dimensions to scale by
+     * @param {vec2} [dest] an optional receiving mat2. If not given, matrix is used.
+     *
+     * @returns {mat2} dest if specified, matrix otherwise
+     **/
+    mat2.scale = function(matrix, vec, dest) {
+      if (!dest) { dest = matrix; }
+      var a11 = matrix[0],
+          a12 = matrix[1],
+          a21 = matrix[2],
+          a22 = matrix[3],
+          b11 = vec[0],
+          b22 = vec[1];
+      dest[0] = a11 * b11;
+      dest[1] = a12 * b22;
+      dest[2] = a21 * b11;
+      dest[3] = a22 * b22;
+      return dest;
+    };
+
+    /**
+     * Returns a string representation of a mat2
+     *
+     * @param {mat2} mat mat2 to represent as a string
+     *
+     * @param {String} String representation of mat
+     */
+    mat2.str = function (mat) {
+        return '[' + mat[0] + ', ' + mat[1] + ', ' + mat[2] + ', ' + mat[3] + ']';
     };
 
     /*

@@ -122,4 +122,43 @@ describe("mat2", function() {
     });
   });
 
+  describe("rotate", function() {
+    beforeEach(function() { b = Math.PI/2; });
+    
+    describe("with dest", function() {
+      beforeEach(function() { result = mat2.rotate(a, b, dest); });
+      it("should set dest", function() { expect(dest).toBeEqualish([2, -1, 4, -3]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify a", function() { expect(a).toBeEqualish([1, 2, 3, 4]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = mat2.rotate(a, b); });
+      it("should modify a", function() { expect(a).toBeEqualish([2, -1, 4, -3]); });
+      it("should return a", function() { expect(result).toBe(a); });
+    });
+  });
+
+  describe("scale", function() {
+    beforeEach(function() { b = [2, 2] });
+    
+    describe("with dest", function() {
+      beforeEach(function() { result = mat2.scale(a, b, dest); });
+      it("should set dest", function() { expect(dest).toBeEqualish([2, 4, 6, 8]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify a", function() { expect(a).toBeEqualish([1, 2, 3, 4]); });
+      it("should not modify b", function() { expect(b).toBeEqualish([2, 2]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = mat2.scale(a, b); });
+      it("should set a", function() { expect(a).toBeEqualish([2, 4, 6, 8]); });
+      it("should return a", function() { expect(result).toBe(a); });
+      it("should not modify b", function() { expect(b).toBeEqualish([2, 2]); });
+    });
+  });
+
+  describe("str", function() {
+    it("should produce pretty string", function() { expect(mat2.str(a)).toEqual("[1, 2, 3, 4]"); });
+  });
 });
