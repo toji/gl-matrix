@@ -2610,6 +2610,39 @@
         return dest;
     };
 
+    /**
+     * Calculates the determinant of a mat2
+     *
+     * @param {mat2} mat mat2 to calculate determinant of
+     *
+     * @returns {Number} determinant of mat
+     */
+    mat2.determinant = function (mat) {
+      return mat[0] * mat[3] - mat[2] * mat[1];
+    };
+    
+    /**
+     * Calculates the inverse matrix of a mat2
+     *
+     * @param {mat2} mat mat2 to calculate inverse of
+     * @param {mat2} [dest] mat2 receiving inverse matrix. If not specified result is written to mat
+     *
+     * @param {mat2} dest is specified, mat otherwise, null if matrix cannot be inverted
+     */
+    mat2.inverse = function (mat, dest) {
+        if (!dest) { dest = mat; }
+        var a0 = mat[0], a1 = mat[1], a2 = mat[2], a3 = mat[3];
+        var det = a0 * a3 - a2 * a1;
+        if (!det) return null;
+        
+        det = 1.0 / det;
+        dest[0] =  a3 * det;
+        dest[1] = -a1 * det;
+        dest[2] = -a2 * det;
+        dest[3] =  a0 * det;
+        return dest;
+    }
+    
     /*
      * Exports
      */

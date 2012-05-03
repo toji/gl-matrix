@@ -58,5 +58,31 @@ describe("mat2", function() {
       it("should return a", function() { expect(result).toBe(a); });
     });
   });
-
+  
+  describe("determinant", function() {
+    it("should produce the correct result", function() {
+      expect(mat2.determinant(a)).toBeEqualish(-2);
+    });
+  });
+  
+  describe("inverse", function() {
+    describe("when no inverse exists", function() {
+      it("should be null", function() {
+        expect(mat2.inverse([3, 4, 6, 8])).toBeNull();
+      });
+    });
+    
+    describe("with dest", function() {
+      beforeEach(function() { result = mat2.inverse(a = [4, 7, 2, 6], dest); });
+      it("should set dest", function() { expect(dest).toBeEqualish([0.6, -0.7, -0.2, 0.4]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify a", function() { expect(a).toBeEqualish([4, 7, 2, 6]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = mat2.inverse(a = [4, 7, 2, 6]); });
+      it("should set a", function() { expect(a).toBeEqualish([0.6, -0.7, -0.2, 0.4]); });
+      it("should return a", function() { expect(result).toBe(a); });
+    });
+  });
 });
