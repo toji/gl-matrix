@@ -2274,7 +2274,7 @@
      * Creates a new vec2, initializing it from vec if vec
      * is given.
      *
-     * @param {vec2} vec the vector's initial contents
+     * @param {vec2} [vec] the vector's initial contents
      * @returns {vec2} a new 2D vector
      */
     vec2.create = function(vec) {
@@ -2295,7 +2295,7 @@
      *
      * @param {vec2} vecA the first operand
      * @param {vec2} vecB the second operand
-     * @param {vec2} dest the optional receiving vector
+     * @param {vec2} [dest] the optional receiving vector
      * @returns {vec2} dest
      */
     vec2.add = function(vecA, vecB, dest) {
@@ -2311,7 +2311,7 @@
      *
      * @param {vec2} vecA the first operand
      * @param {vec2} vecB the second operand
-     * @param {vec2} dest the optional receiving vector
+     * @param {vec2} [dest] the optional receiving vector
      * @returns {vec2} dest
      */
     vec2.subtract = function(vecA, vecB, dest) {
@@ -2327,7 +2327,7 @@
      *
      * @param {vec2} vecA the first operand
      * @param {vec2} vecB the second operand
-     * @param {vec2} dest the optional receiving vector
+     * @param {vec2} [dest] the optional receiving vector
      * @returns {vec2} dest
      */
     vec2.multiply = function(vecA, vecB, dest) {
@@ -2343,7 +2343,7 @@
      *
      * @param {vec2} vecA the first operand
      * @param {vec2} vecB the second operand
-     * @param {vec2} dest the optional receiving vector
+     * @param {vec2} [dest] the optional receiving vector
      * @returns {vec2} dest
      */
     vec2.divide = function(vecA, vecB, dest) {
@@ -2360,9 +2360,9 @@
      * This is the same as multiplying each component of vecA
      * by the given scalar.
      *
-     * @param {vec2} vecA the vector to be scaled
+     * @param {vec2}   vecA the vector to be scaled
      * @param {Number} scalar the amount to scale the vector by
-     * @param {vec2} dest the optional receiving vector
+     * @param {vec2}   [dest] the optional receiving vector
      * @returns {vec2} dest
      */
     vec2.scale = function(vecA, scalar, dest) {
@@ -2444,10 +2444,11 @@
      * its X and Y must always equal 0.
      *
      * Examples:
-     *    vec2.cross([1, 2], [3, 4], vec3.create())
+     *    var crossResult = vec3.create();
+     *    vec2.cross([1, 2], [3, 4], crossResult);
      *    //=> [0, 0, -2]
      *    
-     *    vec2.cross([1, 2], [3, 4])
+     *    vec2.cross([1, 2], [3, 4]);
      *    //=> -2
      *
      * See http://stackoverflow.com/questions/243945/calculating-a-2d-vectors-cross-product
@@ -2590,7 +2591,7 @@
     /**
      * Sets a mat2 to an identity matrix
      *
-     * @param {mat2} dest mat2 to set
+     * @param {mat2} [dest] mat2 to set. If omitted a new one will be created.
      *
      * @returns {mat2} dest
      */
