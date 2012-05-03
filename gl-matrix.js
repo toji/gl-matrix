@@ -2530,6 +2530,62 @@
         return '[' + vec[0] + ', ' + vec[1] + ']';
     };
     
+    /**
+     * @class 2x2 Matrix
+     * @name mat2
+     */
+    var mat2 = {};
+    
+    /**
+     * Creates a new 2x2 matrix. If src is given, the new matrix
+     * is initialized to those values.
+     *
+     * @param {mat2} [src] the seed values for the new matrix, if any
+     * @returns {mat2} a new matrix
+     */
+    mat2.create = function(src) {
+      var dest = new MatrixArray(4);
+      if (src) {
+        dest[0] = src[0];
+        dest[1] = src[1];
+        dest[2] = src[2];
+        dest[3] = src[3];
+      }
+      return dest;
+    };
+    
+    /**
+     * Copies the values of one mat2 to another
+     *
+     * @param {mat2} mat mat2 containing values to copy
+     * @param {mat2} dest mat2 receiving copied values
+     *
+     * @returns {mat2} dest
+     */
+    mat2.set = function (mat, dest) {
+        dest[0] = mat[0];
+        dest[1] = mat[1];
+        dest[2] = mat[2];
+        dest[3] = mat[3];
+        return dest;
+    };
+
+    /**
+     * Sets a mat2 to an identity matrix
+     *
+     * @param {mat2} dest mat2 to set
+     *
+     * @returns {mat2} dest
+     */
+    mat2.identity = function (dest) {
+        if (!dest) { dest = mat2.create(); }
+        dest[0] = 1;
+        dest[1] = 0;
+        dest[2] = 0;
+        dest[3] = 1;
+        return dest;
+    };
+
     /*
      * Exports
      */
@@ -2542,6 +2598,7 @@
         root.glMath = glMath;
         root.vec2 = vec2;
         root.vec3 = vec3;
+        root.mat2 = mat2;
         root.mat3 = mat3;
         root.mat4 = mat4;
         root.quat4 = quat4;
@@ -2555,6 +2612,7 @@
         glMath: glMath,
         vec2: vec2,
         vec3: vec3,
+        mat2: mat2,
         mat3: mat3,
         mat4: mat4,
         quat4: quat4
