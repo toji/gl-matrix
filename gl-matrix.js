@@ -2682,6 +2682,23 @@
         return dest;
     }
 
+    /**
+     * Multiplies the vec2 by the given 2x2 matrix
+     *
+     * @param {mat2} matrix the 2x2 matrix to multiply against
+     * @param {vec2} vec    the vector to multiply
+     * @param {vec2} [dest] an optional receiving vector. If not given, vec is used.
+     *
+     * @returns {vec2} The multiplication result
+     **/
+    mat2.multiplyVec2 = function(matrix, vec, dest) {
+      if (!dest) dest = vec;
+      var x = vec[0], y = vec[1];
+      dest[0] = x * matrix[0] + y * matrix[1];
+      dest[1] = x * matrix[2] + y * matrix[3];
+      return dest;
+    };
+
     /*
      * Exports
      */

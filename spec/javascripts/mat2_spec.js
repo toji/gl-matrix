@@ -102,4 +102,24 @@ describe("mat2", function() {
       it("should return a", function() { expect(result).toBe(a); });
     });
   });
+
+  describe("multiplyVec2", function() {
+    beforeEach(function() { b = [5, 6]; dest = [0, 0]; });
+    
+    describe("with dest", function() {
+      beforeEach(function() { result = mat2.multiplyVec2(a, b, dest); });
+      it("should set dest", function() { expect(dest).toBeEqualish([17, 39]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not modify a", function() { expect(a).toBeEqualish([1, 2, 3, 4]); });
+      it("should not modify b", function() { expect(b).toBeEqualish([5, 6]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = mat2.multiplyVec2(a, b); });
+      it("should not change a", function() { expect(a).toBeEqualish([1, 2, 3, 4]); });
+      it("should change b", function() { expect(b).toBeEqualish([17, 39]); });
+      it("should return b", function() { expect(result).toBe(b); });
+    });
+  });
+
 });
