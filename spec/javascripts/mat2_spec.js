@@ -43,4 +43,20 @@ describe("mat2", function() {
       it("should set result to identity", function() { expect(result).toBeEqualish([1, 0, 0, 1]); });
     });
   });
+
+  describe("transpose", function() {
+    describe("with dest", function() {
+      beforeEach(function() { result = mat2.transpose(a, dest); });
+      it("should set dest to transpose", function() { expect(dest).toBeEqualish([1, 3, 2, 4]); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should not alter a", function() { expect(a).toBeEqualish([1, 2, 3, 4]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = mat2.transpose(a); });
+      it("should set a to transpose", function() { expect(a).toBeEqualish([1, 3, 2, 4]); });
+      it("should return a", function() { expect(result).toBe(a); });
+    });
+  });
+
 });

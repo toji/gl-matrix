@@ -2586,6 +2586,30 @@
         return dest;
     };
 
+    /**
+     * Transposes a mat2 (flips the values over the diagonal)
+     *
+     * @param {mat2} mat mat2 to transpose
+     * @param {mat2} [dest] mat2 receiving transposed values. If not specified result is written to mat
+     *
+     * @param {mat2} dest if specified, mat otherwise
+     */
+    mat2.transpose = function (mat, dest) {
+        // If we are transposing ourselves we can skip a few steps but have to cache some values
+        if (!dest || mat === dest) {
+            var a00 = mat[1];
+            mat[1] = mat[2];
+            mat[2] = a00;
+            return mat;
+        }
+        
+        dest[0] = mat[0];
+        dest[1] = mat[2];
+        dest[2] = mat[1];
+        dest[3] = mat[3];
+        return dest;
+    };
+
     /*
      * Exports
      */
