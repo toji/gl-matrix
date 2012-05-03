@@ -2502,6 +2502,23 @@
         return dest;
     };
 
+    /**
+     * Performs a linear interpolation between two vec2
+     *
+     * @param {vec2} vecA First vector
+     * @param {vec2} vecB Second vector
+     * @param {Number} lerp Interpolation amount between the two inputs
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vecA
+     *
+     * @returns {vec2} dest if specified, vecA otherwise
+     */
+    vec2.lerp = function (vecA, vecB, lerp, dest) {
+        if (!dest) { dest = vecA; }
+        dest[0] = vecA[0] + lerp * (vecB[0] - vecA[0]);
+        dest[1] = vecA[1] + lerp * (vecB[1] - vecA[1]);
+        return dest;
+    };
+    
     /*
      * Exports
      */

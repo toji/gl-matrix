@@ -13,6 +13,23 @@ describe("vec2", function() {
     });
   });
   
+  describe("lerp", function() {
+    describe("with dest", function() {
+      beforeEach(function() { result = vec2.lerp(vecA, vecB, 0.5, dest); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should set dest to correct value", function() { expect(dest).toBeEqualish([2, 3]); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+    
+    describe("without dest", function() {
+      beforeEach(function() { result = vec2.lerp(vecA, vecB); });
+      it("should return vecA", function() { expect(result).toBe(vecA); });
+      it("should modify vecA", function() { expect(vecA).toBeEqualish([2, 3]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+  });
+  
   describe("direction", function() {
     describe("with dest", function() {
       beforeEach(function() { result = vec2.direction(vecA, vecB, dest); });
