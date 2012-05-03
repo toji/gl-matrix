@@ -1,11 +1,12 @@
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
- * @version 1.3.0
+ * @author Colin MacKenzie IV
+ * @version 1.3.1
  */
 
 /*
- * Copyright (c) 2012 Brandon Jones
+ * Copyright (c) 2012 Brandon Jones, Colin MacKenzie IV
  *
  * This software is provided 'as-is', without any express or implied
  * warranty. In no event will the authors be held liable for any damages
