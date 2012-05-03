@@ -2461,6 +2461,47 @@
       return Math.sqrt(x * x + y * y);
     };
 
+    /**
+     * Caclulates the dot product of two vec2s
+     *
+     * @param {vec3} vecA First operand
+     * @param {vec3} vecB Second operand
+     *
+     * @returns {Number} Dot product of vecA and vecB
+     */
+    vec2.dot = function (vecA, vecB) {
+        return vecA[0] * vecB[0] + vecA[1] * vecB[1];
+    };
+    
+    /**
+     * Generates a 2D unit vector pointing from one vector to another
+     *
+     * @param {vec2} vecA Origin vec2
+     * @param {vec2} vecB vec2 to point to
+     * @param {vec2} [dest] vec2 receiving operation result. If not specified result is written to vecA
+     *
+     * @returns {vec2} dest if specified, vecA otherwise
+     */
+    vec2.direction = function (vecA, vecB, dest) {
+        if (!dest) { dest = vecA; }
+
+        var x = vecA[0] - vecB[0],
+            y = vecA[1] - vecB[1],
+            len = x * x + y * y;
+
+        if (!len) {
+            dest[0] = 0;
+            dest[1] = 0;
+            dest[2] = 0;
+            return dest;
+        }
+
+        len = 1 / Math.sqrt(len);
+        dest[0] = x * len;
+        dest[1] = y * len;
+        return dest;
+    };
+
     /*
      * Exports
      */

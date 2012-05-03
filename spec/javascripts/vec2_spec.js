@@ -13,6 +13,27 @@ describe("vec2", function() {
     });
   });
   
+  describe("direction", function() {
+    describe("with dest", function() {
+      beforeEach(function() { result = vec2.direction(vecA, vecB, dest); });
+      it("should return dest", function() { expect(result).toBe(dest); });
+      it("should set dest to correct value", function() { expect(dest).toBeEqualish([ -0.707106, -0.707106 ]); });
+      it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+
+    describe("without dest", function() {
+      beforeEach(function() { result = vec2.direction(vecA, vecB); });
+      it("should return vecA", function() { expect(result).toBe(vecA); });
+      it("should modify vecA", function() { expect(vecA).toBeEqualish([-0.707106, -0.707106]); });
+      it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+  });
+  
+  describe("dot", function() {
+    it("should return dot product", function() { expect(vec2.dot(vecA, vecB)).toBeEqualish(11); });
+  });
+
   describe("length", function() {
     it("should return the correct value", function() { expect(vec2.length(vecA)).toBeEqualish(2.236067); });
   });
