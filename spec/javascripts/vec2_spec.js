@@ -13,6 +13,10 @@ describe("vec2", function() {
     });
   });
   
+  describe("length", function() {
+    it("should return the correct value", function() { expect(vec2.length(vecA)).toBeEqualish(2.236067); });
+  });
+  
   describe("cross", function() {
     describe("with dest given", function() {
       beforeEach(function() { result = vec2.cross(vecA, vecB, dest); });

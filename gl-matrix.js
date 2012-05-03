@@ -2448,6 +2448,18 @@
       dest[2] = z;
       return dest;
     };
+    
+    /**
+     * Caclulates the length of a vec2
+     *
+     * @param {vec2} vec vec2 to calculate length of
+     *
+     * @returns {Number} Length of vec
+     */
+    vec2.length = function (vec) {
+      var x = vec[0], y = vec[1];
+      return Math.sqrt(x * x + y * y);
+    };
 
     /*
      * Exports
