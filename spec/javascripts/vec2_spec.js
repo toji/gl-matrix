@@ -13,6 +13,10 @@ describe("vec2", function() {
     });
   });
   
+  describe("str", function() {
+    it("should produce pretty string", function() { expect(vec2.str(vecA)).toEqual("[1, 2]"); });
+  });
+
   describe("lerp", function() {
     describe("with dest", function() {
       beforeEach(function() { result = vec2.lerp(vecA, vecB, 0.5, dest); });

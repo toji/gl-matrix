@@ -2518,6 +2518,17 @@
         dest[1] = vecA[1] + lerp * (vecB[1] - vecA[1]);
         return dest;
     };
+
+    /**
+     * Returns a string representation of a vector
+     *
+     * @param {vec2} vec Vector to represent as a string
+     *
+     * @returns {String} String representation of vec
+     */
+    vec2.str = function (vec) {
+        return '[' + vec[0] + ', ' + vec[1] + ']';
+    };
     
     /*
      * Exports
