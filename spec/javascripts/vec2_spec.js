@@ -27,7 +27,7 @@ describe("vec2", function() {
     });
     
     describe("without dest", function() {
-      beforeEach(function() { result = vec2.lerp(vecA, vecB); });
+      beforeEach(function() { result = vec2.lerp(vecA, vecB, 0.5); });
       it("should return vecA", function() { expect(result).toBe(vecA); });
       it("should modify vecA", function() { expect(vecA).toBeEqualish([2, 3]); });
       it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
@@ -130,7 +130,7 @@ describe("vec2", function() {
     });
     
     describe("without dest vec2", function() {
-      beforeEach(function() { result = vec2.scale(vecA, vecB); });
+      beforeEach(function() { result = vec2.scale(vecA, vecB, 0.5); });
 
       it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.5, 1]); });
     });
