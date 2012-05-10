@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Benchmark.js Adobe AIR Test Suite</title>
+<script src="AIRIntrospector.js"></script>
+<script>
+var console = air.Introspector.Console;
+</script>
+<script src="benchmark.js"></script>
+</head>
+<body>
+<script>
+(function() {
+
+  var suite = new Benchmark.Suite;
+
+  // add tests
+  suite.add('RegExp#test', function() {
+    /o/.test('Hello World!');
+  })
+  .add('String#indexOf', function() {
+    'Hello World!'.indexOf('o') > -1;
+  })
+  // add listeners
+  .on('cycle', function(bench) {
+    console.log(String(bench));
+  })
+  .on('complete', function() {
+    console.log('Fastest is ' + this.filter('fastest').pluck('name'));
+  })
+  // run async
+  .run(true);
+
+}());
+</script>
+</body>
+</html>
