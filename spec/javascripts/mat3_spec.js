@@ -7,6 +7,15 @@ describe("mat3", function() {
     dest = vec3.create();
   });
   
+  describe("when Float32Array is not supported", function() {
+    beforeEach(function() { setMatrixArrayType(Array); });
+
+    it("should initialize to 0", function() {
+      mat = mat3.create();
+      expect(mat).toBeEqualish([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    });
+  });
+  
   describe("multiplyVec2", function() {
     beforeEach(function() { vec = [1, 2]; dest = vec2.create() });
     

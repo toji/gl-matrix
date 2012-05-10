@@ -7,6 +7,15 @@ describe("mat2", function() {
     dest = [0, 0, 0, 0];
   });
   
+  describe("when Float32Array is not supported", function() {
+    beforeEach(function() { setMatrixArrayType(Array); });
+
+    it("should initialize to 0", function() {
+      mat = mat2.create();
+      expect(mat).toBeEqualish([0, 0, 0, 0]);
+    });
+  });
+  
   describe("create", function() {
     describe("with src", function() {
       beforeEach(function() { result = mat2.create(a); });

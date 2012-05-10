@@ -525,6 +525,12 @@
             dest[6] = mat[6];
             dest[7] = mat[7];
             dest[8] = mat[8];
+        } else {
+            dest[0] = dest[1] =
+            dest[2] = dest[3] =
+            dest[4] = dest[5] =
+            dest[6] = dest[7] =
+            dest[8] = 0;
         }
 
         return dest;
@@ -2570,6 +2576,8 @@
         dest[1] = src[1];
         dest[2] = src[2];
         dest[3] = src[3];
+      } else {
+        dest[0] = dest[1] = dest[2] = dest[3] = 0;
       }
       return dest;
     };
