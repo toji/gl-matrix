@@ -2760,6 +2760,191 @@
     mat2.str = function (mat) {
         return '[' + mat[0] + ', ' + mat[1] + ', ' + mat[2] + ', ' + mat[3] + ']';
     };
+    
+    /**
+     * @class 4 Dimensional Vector
+     * @name vec4
+     */
+    var vec4 = {};
+     
+    /**
+     * Creates a new vec4, initializing it from vec if vec
+     * is given.
+     *
+     * @param {vec4} [vec] the vector's initial contents
+     * @returns {vec4} a new 2D vector
+     */
+    vec4.create = function(vec) {
+      var dest = new MatrixArray(4);
+      if (vec) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+        dest[2] = vec[2];
+        dest[3] = vec[3];
+      } else {
+        dest[0] = 0;
+        dest[1] = 0;
+        dest[2] = 0;
+        dest[3] = 0;
+      }
+      return dest;
+    };
+    
+    /**
+     * Adds the vec4's together. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec4} vecA the first operand
+     * @param {vec4} vecB the second operand
+     * @param {vec4} [dest] the optional receiving vector
+     * @returns {vec4} dest
+     */
+    vec4.add = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] + vecB[0];
+      dest[1] = vecA[1] + vecB[1];
+      dest[2] = vecA[2] + vecB[2];
+      dest[3] = vecA[3] + vecB[3];
+      return dest;
+    };
+    
+    /**
+     * Subtracts vecB from vecA. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec4} vecA the first operand
+     * @param {vec4} vecB the second operand
+     * @param {vec4} [dest] the optional receiving vector
+     * @returns {vec4} dest
+     */
+    vec4.subtract = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] - vecB[0];
+      dest[1] = vecA[1] - vecB[1];
+      dest[2] = vecA[2] - vecB[2];
+      dest[3] = vecA[3] - vecB[3];
+      return dest;
+    };
+    
+    /**
+     * Multiplies vecA with vecB. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec4} vecA the first operand
+     * @param {vec4} vecB the second operand
+     * @param {vec4} [dest] the optional receiving vector
+     * @returns {vec4} dest
+     */
+    vec4.multiply = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] * vecB[0];
+      dest[1] = vecA[1] * vecB[1];
+      dest[2] = vecA[2] * vecB[2];
+      dest[3] = vecA[3] * vecB[3];
+      return dest;
+    };
+    
+    /**
+     * Divides vecA by vecB. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecB.
+     *
+     * @param {vec4} vecA the first operand
+     * @param {vec4} vecB the second operand
+     * @param {vec4} [dest] the optional receiving vector
+     * @returns {vec4} dest
+     */
+    vec4.divide = function(vecA, vecB, dest) {
+      if (!dest) dest = vecB;
+      dest[0] = vecA[0] / vecB[0];
+      dest[1] = vecA[1] / vecB[1];
+      dest[2] = vecA[2] / vecB[2];
+      dest[3] = vecA[3] / vecB[3];
+      return dest;
+    };
+    
+    /**
+     * Scales vecA by some scalar number. If dest is given, the result
+     * is stored there. Otherwise, the result is stored in vecA.
+     *
+     * This is the same as multiplying each component of vecA
+     * by the given scalar.
+     *
+     * @param {vec4}   vecA the vector to be scaled
+     * @param {Number} scalar the amount to scale the vector by
+     * @param {vec4}   [dest] the optional receiving vector
+     * @returns {vec4} dest
+     */
+    vec4.scale = function(vecA, scalar, dest) {
+      if (!dest) dest = vecA;
+      dest[0] = vecA[0] * scalar;
+      dest[1] = vecA[1] * scalar;
+      dest[2] = vecA[2] * scalar;
+      dest[3] = vecA[3] * scalar;
+      return dest;
+    };
+
+    /**
+     * Copies the values of one vec4 to another
+     *
+     * @param {vec4} vec vec4 containing values to copy
+     * @param {vec4} dest vec4 receiving copied values
+     *
+     * @returns {vec4} dest
+     */
+    vec4.set = function (vec, dest) {
+        dest[0] = vec[0];
+        dest[1] = vec[1];
+        dest[2] = vec[2];
+        dest[3] = vec[3];
+        return dest;
+    };
+
+    /**
+     * Negates the components of a vec4
+     *
+     * @param {vec4} vec vec4 to negate
+     * @param {vec4} [dest] vec4 receiving operation result. If not specified result is written to vec
+     *
+     * @returns {vec4} dest if specified, vec otherwise
+     */
+    vec4.negate = function (vec, dest) {
+        if (!dest) { dest = vec; }
+        dest[0] = -vec[0];
+        dest[1] = -vec[1];
+        dest[2] = -vec[2];
+        dest[3] = -vec[3];
+        return dest;
+    };
+
+    /**
+     * Performs a linear interpolation between two vec4
+     *
+     * @param {vec4} vecA First vector
+     * @param {vec4} vecB Second vector
+     * @param {Number} lerp Interpolation amount between the two inputs
+     * @param {vec4} [dest] vec4 receiving operation result. If not specified result is written to vecA
+     *
+     * @returns {vec4} dest if specified, vecA otherwise
+     */
+    vec4.lerp = function (vecA, vecB, lerp, dest) {
+        if (!dest) { dest = vecA; }
+        dest[0] = vecA[0] + lerp * (vecB[0] - vecA[0]);
+        dest[1] = vecA[1] + lerp * (vecB[1] - vecA[1]);
+        dest[2] = vecA[2] + lerp * (vecB[2] - vecA[2]);
+        dest[3] = vecA[3] + lerp * (vecB[3] - vecA[3]);
+        return dest;
+    };
+
+    /**
+     * Returns a string representation of a vector
+     *
+     * @param {vec4} vec Vector to represent as a string
+     *
+     * @returns {String} String representation of vec
+     */
+    vec4.str = function (vec) {
+        return '[' + vec[0] + ', ' + vec[1] + ', ' + vec[2] + ', ' + vec[3] + ']';
+    };
 
     /*
      * Exports
@@ -2773,6 +2958,7 @@
         root.glMath = glMath;
         root.vec2 = vec2;
         root.vec3 = vec3;
+        root.vec4 = vec4;
         root.mat2 = mat2;
         root.mat3 = mat3;
         root.mat4 = mat4;
@@ -2787,6 +2973,7 @@
         glMath: glMath,
         vec2: vec2,
         vec3: vec3,
+        vec4: vec4,
         mat2: mat2,
         mat3: mat3,
         mat4: mat4,
