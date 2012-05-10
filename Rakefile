@@ -14,15 +14,10 @@ end
 
 desc "Run Jasmine unit tests under node.js"
 task :node do
-  # Note that we run node_helper instead of the entire suite.
-  # This is because we want the individual specs to be environment
-  # agnostic, and if they have to require(glMatrix) they will break
-  # in web browsers. The helper takes care of bootstrapping glMatrix
-  # and loading the suite.
   base = File.dirname(__FILE__)
   if system("NODE_PATH=$NODE_PATH:#{base} "               \
             "node_modules/jasmine-node/bin/jasmine-node " \
-            "spec/node_helper.js")
+            "spec")
     puts green("Jasmine completed successfully under node")
   else
     raise red("Jasmine failed under node")

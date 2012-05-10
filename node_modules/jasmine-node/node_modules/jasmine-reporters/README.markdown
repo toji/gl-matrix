@@ -24,14 +24,14 @@ for Rhino.
 
 ### PhantomJS, PyPhantomJS
 
-PhantomJS is included as a submodule inside the `ext` directory. Our examples
-require use of PyPhantomJS with the saveToFile plugin (included) in order to
-facilitate saving XML output to the filesystem.
+PhantomJS is included as a submodule inside the `ext` directory. The included
+example runner makes use of PyPhantomJS to execute the headless tests and
+save XML output to the filesystem.
 
 While PhantomJS and PyPhantomJS both run on MacOS / Linux / Windows, there are
 specific dependencies for each platform. Specifics on installing these are not
-included here, but is left as an exercise for the reader. The project on Github
-contains links to various documentation, including installation notes.
+included here, but is left as an exercise for the reader. The [PhantomJS](https://github.com/ariya/phantomjs)
+project contains links to various documentation, including installation notes.
 
 Here is how I got it working in MacOSX 10.6 (YMMV):
 
