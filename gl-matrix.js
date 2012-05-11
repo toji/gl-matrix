@@ -2,7 +2,7 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 1.3.1
+ * @version 1.3.2
  */
 
 /*
@@ -537,9 +537,98 @@
     };
 
     /**
-     * Transforms the vec2 according to the given 3x3 matrix.
+     * Calculates the determinant of a mat3
      *
-     * @param {mat3} matrix the 3x3 matrix to multiply against
+     * @param {mat3} mat mat3 to calculate determinant of
+     *
+     * @returns {Number} determinant of mat
+     */
+    mat3.determinant = function (mat) {
+        var a00 = mat[0], a01 = mat[1], a02 = mat[2],
+            a10 = mat[3], a11 = mat[4], a12 = mat[5],
+            a20 = mat[6], a21 = mat[7], a22 = mat[8];
+
+        return a00 * (a22 * a11 - a12 * a21) + a01 * (-a22 * a10 + a12 * a20) + a02 * (a21 * a10 - a11 * a20);
+    };
+
+    /**
+     * Calculates the inverse matrix of a mat3
+     *
+     * @param {mat3} mat mat3 to calculate inverse of
+     * @param {mat3} [dest] mat3 receiving inverse matrix. If not specified result is written to mat
+     *
+     * @param {mat3} dest is specified, mat otherwise, null if matrix cannot be inverted
+     */
+    mat3.inverse = function (mat, dest) {
+        var a00 = mat[0], a01 = mat[1], a02 = mat[2],
+            a10 = mat[3], a11 = mat[4], a12 = mat[5],
+            a20 = mat[6], a21 = mat[7], a22 = mat[8],
+
+            b01 = a22 * a11 - a12 * a21,
+            b11 = -a22 * a10 + a12 * a20,
+            b21 = a21 * a10 - a11 * a20,
+
+            d = a00 * b01 + a01 * b11 + a02 * b21,
+            id;
+
+        if (!d) { return null; }
+        id = 1 / d;
+
+        if (!dest) { dest = mat3.create(); }
+
+        dest[0] = b01 * id;
+        dest[1] = (-a22 * a01 + a02 * a21) * id;
+        dest[2] = (a12 * a01 - a02 * a11) * id;
+        dest[3] = b11 * id;
+        dest[4] = (a22 * a00 - a02 * a20) * id;
+        dest[5] = (-a12 * a00 + a02 * a10) * id;
+        dest[6] = b21 * id;
+        dest[7] = (-a21 * a00 + a01 * a20) * id;
+        dest[8] = (a11 * a00 - a01 * a10) * id;
+        return dest;
+    };
+    
+    /**
+     * Performs a matrix multiplication
+     *
+     * @param {mat3} mat First operand
+     * @param {mat3} mat2 Second operand
+     * @param {mat3} [dest] mat3 receiving operation result. If not specified result is written to mat
+     *
+     * @returns {mat3} dest if specified, mat otherwise
+     */
+    mat3.multiply = function (mat, mat2, dest) {
+        if (!dest) { dest = mat; }
+        
+
+        // Cache the matrix values (makes for huge speed increases!)
+        var a00 = mat[0], a01 = mat[1], a02 = mat[2],
+            a10 = mat[3], a11 = mat[4], a12 = mat[5],
+            a20 = mat[6], a21 = mat[7], a22 = mat[8],
+
+            b00 = mat2[0], b01 = mat2[1], b02 = mat2[2],
+            b10 = mat2[3], b11 = mat2[4], b12 = mat2[5],
+            b20 = mat2[6], b21 = mat2[7], b22 = mat2[8];
+
+        dest[0] = b00 * a00 + b01 * a10 + b02 * a20;
+        dest[1] = b00 * a01 + b01 * a11 + b02 * a21;
+        dest[2] = b00 * a02 + b01 * a12 + b02 * a22;
+
+        dest[3] = b10 * a00 + b11 * a10 + b12 * a20;
+        dest[4] = b10 * a01 + b11 * a11 + b12 * a21;
+        dest[5] = b10 * a02 + b11 * a12 + b12 * a22;
+
+        dest[6] = b20 * a00 + b21 * a10 + b22 * a20;
+        dest[7] = b20 * a01 + b21 * a11 + b22 * a21;
+        dest[8] = b20 * a02 + b21 * a12 + b22 * a22;
+
+        return dest;
+    };
+
+    /**
+     * Transforms the vec2 according to the given mat3.
+     *
+     * @param {mat3} matrix mat3 to multiply against
      * @param {vec2} vec    the vector to multiply
      * @param {vec2} [dest] an optional receiving vector. If not given, vec is used.
      *
@@ -554,9 +643,9 @@
     };
 
     /**
-     * Transforms the vec3 according to this rotation matrix.
+     * Transforms the vec3 according to the given mat3
      *
-     * @param {mat3} matrix the 3x3 matrix to multiply against
+     * @param {mat3} matrix mat3 to multiply against
      * @param {vec3} vec    the vector to multiply
      * @param {vec3} [dest] an optional receiving vector. If not given, vec is used.
      *
