@@ -2,7 +2,7 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 1.3.2
+ * @version 1.3.3
  */
 
 /*
@@ -118,7 +118,11 @@
     vec3.create = function (vec) {
         var dest = new MatrixArray(3);
 
-        if (vec) {
+        if(arguments.length === 3) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+            dest[2] = arguments[2];
+        } else if (vec) {
             dest[0] = vec[0];
             dest[1] = vec[1];
             dest[2] = vec[2];
@@ -444,9 +448,9 @@
         return dest;
     };
 
-    var xUnitVec3 = vec3.create([1,0,0]);
-    var yUnitVec3 = vec3.create([0,1,0]);
-    var zUnitVec3 = vec3.create([0,0,1]);
+    var xUnitVec3 = vec3.create(1,0,0);
+    var yUnitVec3 = vec3.create(0,1,0);
+    var zUnitVec3 = vec3.create(0,0,1);
 
     /**
      * Generates a quaternion of rotation between two given normalized vectors
@@ -515,7 +519,17 @@
     mat3.create = function (mat) {
         var dest = new MatrixArray(9);
 
-        if (mat) {
+        if(arguments.length === 4) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+            dest[2] = arguments[2];
+            dest[3] = arguments[3];
+            dest[4] = arguments[4];
+            dest[5] = arguments[5];
+            dest[6] = arguments[6];
+            dest[7] = arguments[7];
+            dest[8] = arguments[8];
+        } else if (mat) {
             dest[0] = mat[0];
             dest[1] = mat[1];
             dest[2] = mat[2];
@@ -803,7 +817,24 @@
     mat4.create = function (mat) {
         var dest = new MatrixArray(16);
 
-        if (mat) {
+        if(arguments.length === 4) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+            dest[2] = arguments[2];
+            dest[3] = arguments[3];
+            dest[4] = arguments[4];
+            dest[5] = arguments[5];
+            dest[6] = arguments[6];
+            dest[7] = arguments[7];
+            dest[8] = arguments[8];
+            dest[9] = arguments[9];
+            dest[10] = arguments[10];
+            dest[11] = arguments[11];
+            dest[12] = arguments[12];
+            dest[13] = arguments[13];
+            dest[14] = arguments[14];
+            dest[15] = arguments[15];
+        } else if (mat) {
             dest[0] = mat[0];
             dest[1] = mat[1];
             dest[2] = mat[2];
@@ -1761,7 +1792,12 @@
     quat4.create = function (quat) {
         var dest = new MatrixArray(4);
 
-        if (quat) {
+        if(arguments.length === 4) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+            dest[2] = arguments[2];
+            dest[3] = arguments[3];
+        } else if (quat) {
             dest[0] = quat[0];
             dest[1] = quat[1];
             dest[2] = quat[2];
@@ -2375,14 +2411,18 @@
      * @returns {vec2} a new 2D vector
      */
     vec2.create = function(vec) {
-      var dest = new MatrixArray(2);
-      if (vec) {
-        dest[0] = vec[0];
-        dest[1] = vec[1];
-      } else {
-        dest[0] = 0;
-        dest[1] = 0;
-      }
+        var dest = new MatrixArray(2);
+
+        if(arguments.length === 2) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+        } else if (vec) {
+            dest[0] = vec[0];
+            dest[1] = vec[1];
+        } else {
+            dest[0] = 0;
+            dest[1] = 0;
+        }
       return dest;
     };
     
@@ -2659,16 +2699,22 @@
      * @returns {mat2} a new matrix
      */
     mat2.create = function(src) {
-      var dest = new MatrixArray(4);
-      if (src) {
-        dest[0] = src[0];
-        dest[1] = src[1];
-        dest[2] = src[2];
-        dest[3] = src[3];
-      } else {
-        dest[0] = dest[1] = dest[2] = dest[3] = 0;
-      }
-      return dest;
+        var dest = new MatrixArray(4);
+        
+        if(arguments.length === 4) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+            dest[2] = arguments[2];
+            dest[3] = arguments[3];
+        } else if (src) {
+            dest[0] = src[0];
+            dest[1] = src[1];
+            dest[2] = src[2];
+            dest[3] = src[3];
+        } else {
+            dest[0] = dest[1] = dest[2] = dest[3] = 0;
+        }
+        return dest;
     };
     
     /**
@@ -2872,19 +2918,25 @@
      * @returns {vec4} a new 2D vector
      */
     vec4.create = function(vec) {
-      var dest = new MatrixArray(4);
-      if (vec) {
-        dest[0] = vec[0];
-        dest[1] = vec[1];
-        dest[2] = vec[2];
-        dest[3] = vec[3];
-      } else {
-        dest[0] = 0;
-        dest[1] = 0;
-        dest[2] = 0;
-        dest[3] = 0;
-      }
-      return dest;
+        var dest = new MatrixArray(4);
+        
+        if(arguments.length === 4) {
+            dest[0] = arguments[0];
+            dest[1] = arguments[1];
+            dest[2] = arguments[2];
+            dest[3] = arguments[3];
+        } else if (vec) {
+            dest[0] = vec[0];
+            dest[1] = vec[1];
+            dest[2] = vec[2];
+            dest[3] = vec[3];
+        } else {
+            dest[0] = 0;
+            dest[1] = 0;
+            dest[2] = 0;
+            dest[3] = 0;
+        }
+        return dest;
     };
     
     /**
