@@ -2,7 +2,7 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 1.3.3
+ * @version 1.3.4
  */
 
 /*
@@ -118,17 +118,32 @@
     vec3.create = function (vec) {
         var dest = new MatrixArray(3);
 
-        if(arguments.length === 3) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-            dest[2] = arguments[2];
-        } else if (vec) {
+        if (vec) {
             dest[0] = vec[0];
             dest[1] = vec[1];
             dest[2] = vec[2];
         } else {
             dest[0] = dest[1] = dest[2] = 0;
         }
+
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a vec3, initializing it with the given arguments
+     *
+     * @param {number} x X value
+     * @param {number} y Y value
+     * @param {number} z Z value
+
+     * @returns {vec3} New vec3
+     */
+    vec3.createFrom = function (x, y, z) {
+        var dest = new MatrixArray(3);
+
+        dest[0] = x;
+        dest[1] = y;
+        dest[2] = z;
 
         return dest;
     };
@@ -448,9 +463,9 @@
         return dest;
     };
 
-    var xUnitVec3 = vec3.create(1,0,0);
-    var yUnitVec3 = vec3.create(0,1,0);
-    var zUnitVec3 = vec3.create(0,0,1);
+    var xUnitVec3 = vec3.createFrom(1,0,0);
+    var yUnitVec3 = vec3.createFrom(0,1,0);
+    var zUnitVec3 = vec3.createFrom(0,0,1);
 
     /**
      * Generates a quaternion of rotation between two given normalized vectors
@@ -519,17 +534,7 @@
     mat3.create = function (mat) {
         var dest = new MatrixArray(9);
 
-        if(arguments.length === 4) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-            dest[2] = arguments[2];
-            dest[3] = arguments[3];
-            dest[4] = arguments[4];
-            dest[5] = arguments[5];
-            dest[6] = arguments[6];
-            dest[7] = arguments[7];
-            dest[8] = arguments[8];
-        } else if (mat) {
+        if (mat) {
             dest[0] = mat[0];
             dest[1] = mat[1];
             dest[2] = mat[2];
@@ -546,6 +551,37 @@
             dest[6] = dest[7] =
             dest[8] = 0;
         }
+
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a mat3, initializing it with the given arguments
+     *
+     * @param {number} m00
+     * @param {number} m01
+     * @param {number} m02
+     * @param {number} m10
+     * @param {number} m11
+     * @param {number} m12
+     * @param {number} m20
+     * @param {number} m21
+     * @param {number} m22
+
+     * @returns {mat3} New mat3
+     */
+    mat3.createFrom = function (m00, m01, m02, m10, m11, m12, m20, m21, m22) {
+        var dest = new MatrixArray(9);
+
+        dest[0] = m00;
+        dest[1] = m01;
+        dest[2] = m02;
+        dest[3] = m10;
+        dest[4] = m11;
+        dest[5] = m12;
+        dest[6] = m20;
+        dest[7] = m21;
+        dest[8] = m22;
 
         return dest;
     };
@@ -852,6 +888,51 @@
             dest[14] = mat[14];
             dest[15] = mat[15];
         }
+
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a mat4, initializing it with the given arguments
+     *
+     * @param {number} m00
+     * @param {number} m01
+     * @param {number} m02
+     * @param {number} m03
+     * @param {number} m10
+     * @param {number} m11
+     * @param {number} m12
+     * @param {number} m13
+     * @param {number} m20
+     * @param {number} m21
+     * @param {number} m22
+     * @param {number} m23
+     * @param {number} m30
+     * @param {number} m31
+     * @param {number} m32
+     * @param {number} m33
+
+     * @returns {mat4} New mat4
+     */
+    mat4.createFrom = function (m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
+        var dest = new MatrixArray(16);
+
+        dest[0] = m00;
+        dest[1] = m01;
+        dest[2] = m02;
+        dest[3] = m03;
+        dest[4] = m10;
+        dest[5] = m11;
+        dest[6] = m12;
+        dest[7] = m13;
+        dest[8] = m20;
+        dest[9] = m21;
+        dest[10] = m22;
+        dest[11] = m23;
+        dest[12] = m30;
+        dest[13] = m31;
+        dest[14] = m32;
+        dest[15] = m33;
 
         return dest;
     };
@@ -1792,17 +1873,35 @@
     quat4.create = function (quat) {
         var dest = new MatrixArray(4);
 
-        if(arguments.length === 4) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-            dest[2] = arguments[2];
-            dest[3] = arguments[3];
-        } else if (quat) {
+        if (quat) {
             dest[0] = quat[0];
             dest[1] = quat[1];
             dest[2] = quat[2];
             dest[3] = quat[3];
+        } else {
+            dest[0] = dest[1] = dest[2] = dest[3] = 0;
         }
+
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a quat4, initializing it with the given arguments
+     *
+     * @param {number} x X value
+     * @param {number} y Y value
+     * @param {number} z Z value
+     * @param {number} w W value
+
+     * @returns {quat4} New quat4
+     */
+    quat4.createFrom = function (x, y, z, w) {
+        var dest = new MatrixArray(4);
+
+        dest[0] = x;
+        dest[1] = y;
+        dest[2] = z;
+        dest[3] = w;
 
         return dest;
     };
@@ -2413,17 +2512,31 @@
     vec2.create = function(vec) {
         var dest = new MatrixArray(2);
 
-        if(arguments.length === 2) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-        } else if (vec) {
+        if (vec) {
             dest[0] = vec[0];
             dest[1] = vec[1];
         } else {
             dest[0] = 0;
             dest[1] = 0;
         }
-      return dest;
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a vec2, initializing it with the given arguments
+     *
+     * @param {number} x X value
+     * @param {number} y Y value
+
+     * @returns {vec2} New vec2
+     */
+    vec2.createFrom = function (x, y) {
+        var dest = new MatrixArray(2);
+
+        dest[0] = x;
+        dest[1] = y;
+
+        return dest;
     };
     
     /**
@@ -2436,10 +2549,10 @@
      * @returns {vec2} dest
      */
     vec2.add = function(vecA, vecB, dest) {
-      if (!dest) dest = vecB;
-      dest[0] = vecA[0] + vecB[0];
-      dest[1] = vecA[1] + vecB[1];
-      return dest;
+        if (!dest) dest = vecB;
+        dest[0] = vecA[0] + vecB[0];
+        dest[1] = vecA[1] + vecB[1];
+        return dest;
     };
     
     /**
@@ -2452,10 +2565,10 @@
      * @returns {vec2} dest
      */
     vec2.subtract = function(vecA, vecB, dest) {
-      if (!dest) dest = vecB;
-      dest[0] = vecA[0] - vecB[0];
-      dest[1] = vecA[1] - vecB[1];
-      return dest;
+        if (!dest) dest = vecB;
+        dest[0] = vecA[0] - vecB[0];
+        dest[1] = vecA[1] - vecB[1];
+        return dest;
     };
     
     /**
@@ -2468,10 +2581,10 @@
      * @returns {vec2} dest
      */
     vec2.multiply = function(vecA, vecB, dest) {
-      if (!dest) dest = vecB;
-      dest[0] = vecA[0] * vecB[0];
-      dest[1] = vecA[1] * vecB[1];
-      return dest;
+        if (!dest) dest = vecB;
+        dest[0] = vecA[0] * vecB[0];
+        dest[1] = vecA[1] * vecB[1];
+        return dest;
     };
     
     /**
@@ -2484,10 +2597,10 @@
      * @returns {vec2} dest
      */
     vec2.divide = function(vecA, vecB, dest) {
-      if (!dest) dest = vecB;
-      dest[0] = vecA[0] / vecB[0];
-      dest[1] = vecA[1] / vecB[1];
-      return dest;
+        if (!dest) dest = vecB;
+        dest[0] = vecA[0] / vecB[0];
+        dest[1] = vecA[1] / vecB[1];
+        return dest;
     };
     
     /**
@@ -2503,10 +2616,10 @@
      * @returns {vec2} dest
      */
     vec2.scale = function(vecA, scalar, dest) {
-      if (!dest) dest = vecA;
-      dest[0] = vecA[0] * scalar;
-      dest[1] = vecA[1] * scalar;
-      return dest;
+        if (!dest) dest = vecA;
+        dest[0] = vecA[0] * scalar;
+        dest[1] = vecA[1] * scalar;
+        return dest;
     };
 
     /**
@@ -2565,11 +2678,11 @@
         if (!dest) { dest = vec; }
         var mag = vec[0] * vec[0] + vec[1] * vec[1];
         if (mag > 0) {
-          mag = Math.sqrt(mag);
-          dest[0] = vec[0] / mag;
-          dest[1] = vec[1] / mag;
+            mag = Math.sqrt(mag);
+            dest[0] = vec[0] / mag;
+            dest[1] = vec[1] / mag;
         } else {
-          dest[0] = dest[1] = 0;
+            dest[0] = dest[1] = 0;
         }
         return dest;
     };
@@ -2584,7 +2697,7 @@
      *    var crossResult = vec3.create();
      *    vec2.cross([1, 2], [3, 4], crossResult);
      *    //=> [0, 0, -2]
-     *    
+     *
      *    vec2.cross([1, 2], [3, 4]);
      *    //=> -2
      *
@@ -2597,11 +2710,11 @@
      *
      */
     vec2.cross = function (vecA, vecB, dest) {
-      var z = vecA[0] * vecB[1] - vecA[1] * vecB[0];
-      if (!dest) return z;
-      dest[0] = dest[1] = 0;
-      dest[2] = z;
-      return dest;
+        var z = vecA[0] * vecB[1] - vecA[1] * vecB[0];
+        if (!dest) return z;
+        dest[0] = dest[1] = 0;
+        dest[2] = z;
+        return dest;
     };
     
     /**
@@ -2701,12 +2814,7 @@
     mat2.create = function(src) {
         var dest = new MatrixArray(4);
         
-        if(arguments.length === 4) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-            dest[2] = arguments[2];
-            dest[3] = arguments[3];
-        } else if (src) {
+        if (src) {
             dest[0] = src[0];
             dest[1] = src[1];
             dest[2] = src[2];
@@ -2714,6 +2822,27 @@
         } else {
             dest[0] = dest[1] = dest[2] = dest[3] = 0;
         }
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a mat2, initializing it with the given arguments
+     *
+     * @param {number} m00
+     * @param {number} m01
+     * @param {number} m10
+     * @param {number} m11
+
+     * @returns {mat2} New mat2
+     */
+    mat2.createFrom = function (m00, m01, m10, m11) {
+        var dest = new MatrixArray(4);
+
+        dest[0] = m00;
+        dest[1] = m01;
+        dest[2] = m10;
+        dest[3] = m11;
+
         return dest;
     };
     
@@ -2920,12 +3049,7 @@
     vec4.create = function(vec) {
         var dest = new MatrixArray(4);
         
-        if(arguments.length === 4) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-            dest[2] = arguments[2];
-            dest[3] = arguments[3];
-        } else if (vec) {
+        if (vec) {
             dest[0] = vec[0];
             dest[1] = vec[1];
             dest[2] = vec[2];
@@ -2936,6 +3060,27 @@
             dest[2] = 0;
             dest[3] = 0;
         }
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a vec4, initializing it with the given arguments
+     *
+     * @param {number} x X value
+     * @param {number} y Y value
+     * @param {number} z Z value
+     * @param {number} w W value
+
+     * @returns {vec4} New vec4
+     */
+    vec4.createFrom = function (x, y, z, w) {
+        var dest = new MatrixArray(4);
+
+        dest[0] = x;
+        dest[1] = y;
+        dest[2] = z;
+        dest[3] = w;
+
         return dest;
     };
     
