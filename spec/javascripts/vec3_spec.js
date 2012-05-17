@@ -1,6 +1,33 @@
 describe("vec3", function() {
   var vec, vecB, dest;
   
+  describe("rotationTo", function() {
+    it("where d == 0", function() {
+      var rot = vec3.rotationTo([-1, 0, 0], [0, 1, 0]);
+      expect(quat4.multiplyVec3(rot, [-1, 0, 0])).toBeEqualish([0, 1, 0]);
+    });
+    
+    it("where d <= 1 along x axis", function() {
+      var rot = vec3.rotationTo([1, 0, 0], [-1, 0, 0]);
+      expect(quat4.multiplyVec3(rot, [1, 0, 0])).toBeEqualish([-1, 0, 0]);
+    });
+
+    it("where d <= 1 along y axis", function() {
+      var rot = vec3.rotationTo([0, 1, 0], [0, -1, 0]);
+      expect(quat4.multiplyVec3(rot, [0, 1, 0])).toBeEqualish([0, -1, 0]);
+    });
+
+    it("where d <= 1 along z axis", function() {
+      var rot = vec3.rotationTo([0, 0, 1], [0, 0, -1]);
+      expect(quat4.multiplyVec3(rot, [0, 0, 1])).toBeEqualish([0, 0, -1]);
+    });
+    
+    it("where d == 1", function() {
+      var rot = vec3.rotationTo([0, 0, 1], [0, 0, 1]);
+      expect(quat4.multiplyVec3(rot, [0, 0, 1])).toBeEqualish([0, 0, 1]);
+    });
+  });
+  
   describe("when Float32Array is not supported", function() {
     beforeEach(function() { setMatrixArrayType(Array); });
 

@@ -467,6 +467,7 @@
     var yUnitVec3 = vec3.createFrom(0,1,0);
     var zUnitVec3 = vec3.createFrom(0,0,1);
 
+    var tmpvec3 = vec3.create();
     /**
      * Generates a quaternion of rotation between two given normalized vectors
      *
@@ -478,19 +479,19 @@
      */
     vec3.rotationTo = function (a, b, dest) {
         if (!dest) { dest = quat4.create(); }
-
+        
         var d = vec3.dot(a, b);
-        var axis = vec3.create();
+        var axis = tmpvec3;
         if (d >= 1.0) {
             quat4.set(identityQuat4, dest);
         } else if (d < (0.000001 - 1.0)) {
             vec3.cross(xUnitVec3, a, axis);
-            if (axis.length < 0.000001)
+            if (vec3.length(axis) < 0.000001)
                 vec3.cross(yUnitVec3, a, axis);
-            if (axis.length < 0.000001)
+            if (vec3.length(axis) < 0.000001)
                 vec3.cross(zUnitVec3, a, axis);
             vec3.normalize(axis);
-            quat4.fromAxisAngle(axis, Math.PI, dest);
+            quat4.fromAngleAxis(Math.PI, axis, dest);
         } else {
             var s = Math.sqrt((1.0 + d) * 2.0);
             var sInv = 1.0 / s;
