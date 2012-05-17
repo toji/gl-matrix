@@ -130,7 +130,7 @@ describe("vec2", function() {
     });
     
     describe("without dest vec2", function() {
-      beforeEach(function() { result = vec2.scale(vecA, vecB, 0.5); });
+      beforeEach(function() { result = vec2.scale(vecA, 0.5); });
 
       it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.5, 1]); });
     });

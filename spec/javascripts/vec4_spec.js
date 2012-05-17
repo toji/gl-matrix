@@ -67,7 +67,7 @@ describe("vec4", function() {
     });
     
     describe("without dest vec4", function() {
-      beforeEach(function() { result = vec4.scale(vecA, vecB, 0.5); });
+      beforeEach(function() { result = vec4.scale(vecA, 0.5); });
 
       it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.5, 1, 1.5, 2]); });
     });

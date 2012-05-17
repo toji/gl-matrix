@@ -13,11 +13,12 @@ var HELPER_MATCHERS = (function() {
         return Math.abs(this.actual - expected) < EPSILON;
 
       if (this.actual.length != expected.length) return false;
-      for (var i = 0; i < this.actual.length; i++)
+      for (var i = 0; i < this.actual.length; i++) {
         if (isNaN(this.actual[i]) !== isNaN(expected[i]))
           return false;
         if (Math.abs(this.actual[i] - expected[i]) >= EPSILON)
           return false;
+      }
       return true;
     }
   };

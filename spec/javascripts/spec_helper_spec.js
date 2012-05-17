@@ -10,6 +10,10 @@ describe("spec helper", function() {
       };
     });
 
+    it("should fail if left vector is not equal to right vector", function() {
+      expect(mock([0,0,0,6.123031769111886e-17]).equalish([0,0,-0.707106,0.707106])).not.toBeTruthy();
+    });
+
     it("should fail if a is NaN and b is not", function() {
       expect(mock(NaN).equalish(1)).not.toBeTruthy()
     });
