@@ -2,7 +2,7 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 1.3.4
+ * @version 1.3.5
  */
 
 /*
@@ -338,6 +338,18 @@
     vec3.length = function (vec) {
         var x = vec[0], y = vec[1], z = vec[2];
         return Math.sqrt(x * x + y * y + z * z);
+    };
+
+    /**
+     * Caclulates the squared length of a vec3
+     *
+     * @param {vec3} vec vec3 to calculate squared length of
+     *
+     * @returns {number} Squared Length of vec
+     */
+    vec3.squaredLength = function (vec) {
+        var x = vec[0], y = vec[1], z = vec[2];
+        return x * x + y * y + z * z;
     };
 
     /**
@@ -2743,10 +2755,22 @@
     };
 
     /**
+     * Caclulates the squared length of a vec2
+     *
+     * @param {vec2} vec vec2 to calculate squared length of
+     *
+     * @returns {Number} Squared Length of vec
+     */
+    vec2.squaredLength = function (vec) {
+      var x = vec[0], y = vec[1];
+      return x * x + y * y;
+    };
+
+    /**
      * Caclulates the dot product of two vec2s
      *
-     * @param {vec3} vecA First operand
-     * @param {vec3} vecB Second operand
+     * @param {vec2} vecA First operand
+     * @param {vec2} vecB Second operand
      *
      * @returns {Number} Dot product of vecA and vecB
      */
@@ -3221,6 +3245,30 @@
         dest[2] = -vec[2];
         dest[3] = -vec[3];
         return dest;
+    };
+
+    /**
+     * Caclulates the length of a vec2
+     *
+     * @param {vec2} vec vec2 to calculate length of
+     *
+     * @returns {Number} Length of vec
+     */
+    vec4.length = function (vec) {
+      var x = vec[0], y = vec[1], z = vec[2], w = vec[3];
+      return Math.sqrt(x * x + y * y + z * z + w * w);
+    };
+
+    /**
+     * Caclulates the squared length of a vec4
+     *
+     * @param {vec4} vec vec4 to calculate squared length of
+     *
+     * @returns {Number} Squared Length of vec
+     */
+    vec4.squaredLength = function (vec) {
+      var x = vec[0], y = vec[1], z = vec[2], w = vec[3];
+      return x * x + y * y + z * z + w * w;
     };
 
     /**
