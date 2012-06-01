@@ -21,12 +21,10 @@ Documentation for the individual functions can be found [here](http://toji.githu
 
 Examples
 --------
-Creating and using a perspective matrix
+Creating a perspective matrix
 
     var persp = mat4.create();
     mat4.perspective(45, 4/3, 1, 100, persp);
-    
-    gl.uniformMatrix4fv(perspectiveUniform, false, persp);
 
 Performing multiple transforms on a matrix
 
@@ -36,6 +34,10 @@ Performing multiple transforms on a matrix
     mat4.translate(modelView, [0, 0, -10]); // Translate back 10 units
     mat4.rotate(modelView, Math.PI/2, [0, 1, 0]); // Rotate 90 degrees around the Y axis
     mat4.scale(modelView, [2, 2, 2]); // Scale by 200%
+    
+Matricies created with glMatrix don't need to undergo any transformation to be used with WebGL. They can be passed directly
+
+    gl.uniformMatrix4fv(modelViewUniform, false, modelView);
 
 Updating a destination matrix
 
