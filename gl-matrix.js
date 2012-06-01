@@ -866,24 +866,7 @@
     mat4.create = function (mat) {
         var dest = new MatrixArray(16);
 
-        if(arguments.length === 4) {
-            dest[0] = arguments[0];
-            dest[1] = arguments[1];
-            dest[2] = arguments[2];
-            dest[3] = arguments[3];
-            dest[4] = arguments[4];
-            dest[5] = arguments[5];
-            dest[6] = arguments[6];
-            dest[7] = arguments[7];
-            dest[8] = arguments[8];
-            dest[9] = arguments[9];
-            dest[10] = arguments[10];
-            dest[11] = arguments[11];
-            dest[12] = arguments[12];
-            dest[13] = arguments[13];
-            dest[14] = arguments[14];
-            dest[15] = arguments[15];
-        } else if (mat) {
+        if (mat) {
             dest[0] = mat[0];
             dest[1] = mat[1];
             dest[2] = mat[2];
