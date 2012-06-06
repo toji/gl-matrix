@@ -2,7 +2,7 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations for WebGL
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 1.3.5
+ * @version 1.3.6
  */
 
 /*
@@ -47,6 +47,9 @@
     }
 }(this, function (root) {
     "use strict";
+
+    // Tweak to your liking
+    var FLOAT_EPSILON = 0.000001;
 
     var glMath = {};
     (function() {
@@ -162,6 +165,22 @@
         dest[2] = vec[2];
 
         return dest;
+    };
+
+    /**
+     * Compares two vectors for equality within a certain margin of error
+     *
+     * @param {vec3} a First vector
+     * @param {vec3} b Second vector
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    vec3.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON
+        );
     };
 
     /**
@@ -746,6 +765,28 @@
     };
 
     /**
+     * Compares two matrices for equality within a certain margin of error
+     *
+     * @param {mat3} a First matrix
+     * @param {mat3} b Second matrix
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    mat3.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON &&
+            Math.abs(a[3] - b[3]) < FLOAT_EPSILON &&
+            Math.abs(a[4] - b[4]) < FLOAT_EPSILON &&
+            Math.abs(a[5] - b[5]) < FLOAT_EPSILON &&
+            Math.abs(a[6] - b[6]) < FLOAT_EPSILON &&
+            Math.abs(a[7] - b[7]) < FLOAT_EPSILON &&
+            Math.abs(a[8] - b[8]) < FLOAT_EPSILON
+        );
+    };
+
+    /**
      * Sets a mat3 to an identity matrix
      *
      * @param {mat3} dest mat3 to set
@@ -959,6 +1000,35 @@
         dest[14] = mat[14];
         dest[15] = mat[15];
         return dest;
+    };
+
+    /**
+     * Compares two matrices for equality within a certain margin of error
+     *
+     * @param {mat4} a First matrix
+     * @param {mat4} b Second matrix
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    mat4.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON &&
+            Math.abs(a[3] - b[3]) < FLOAT_EPSILON &&
+            Math.abs(a[4] - b[4]) < FLOAT_EPSILON &&
+            Math.abs(a[5] - b[5]) < FLOAT_EPSILON &&
+            Math.abs(a[6] - b[6]) < FLOAT_EPSILON &&
+            Math.abs(a[7] - b[7]) < FLOAT_EPSILON &&
+            Math.abs(a[8] - b[8]) < FLOAT_EPSILON &&
+            Math.abs(a[9] - b[9]) < FLOAT_EPSILON &&
+            Math.abs(a[10] - b[10]) < FLOAT_EPSILON &&
+            Math.abs(a[11] - b[11]) < FLOAT_EPSILON &&
+            Math.abs(a[12] - b[12]) < FLOAT_EPSILON &&
+            Math.abs(a[13] - b[13]) < FLOAT_EPSILON &&
+            Math.abs(a[14] - b[14]) < FLOAT_EPSILON &&
+            Math.abs(a[15] - b[15]) < FLOAT_EPSILON
+        );
     };
 
     /**
@@ -1932,6 +2002,23 @@
     };
 
     /**
+     * Compares two quaternions for equality within a certain margin of error
+     *
+     * @param {quat4} a First vector
+     * @param {quat4} b Second vector
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    quat4.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON &&
+            Math.abs(a[3] - b[3]) < FLOAT_EPSILON
+        );
+    };
+
+    /**
      * Creates a new identity Quat4
      *
      * @param {quat4} [dest] quat4 receiving copied values
@@ -2660,6 +2747,21 @@
     };
 
     /**
+     * Compares two vectors for equality within a certain margin of error
+     *
+     * @param {vec2} a First vector
+     * @param {vec2} b Second vector
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    vec2.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON
+        );
+    };
+
+    /**
      * Negates the components of a vec2
      *
      * @param {vec2} vec vec2 to negate
@@ -2880,6 +2982,23 @@
         dest[2] = mat[2];
         dest[3] = mat[3];
         return dest;
+    };
+
+    /**
+     * Compares two matrices for equality within a certain margin of error
+     *
+     * @param {mat2} a First matrix
+     * @param {mat2} b Second matrix
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    mat2.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON &&
+            Math.abs(a[3] - b[3]) < FLOAT_EPSILON
+        );
     };
 
     /**
@@ -3211,6 +3330,23 @@
         dest[2] = vec[2];
         dest[3] = vec[3];
         return dest;
+    };
+
+    /**
+     * Compares two vectors for equality within a certain margin of error
+     *
+     * @param {vec4} a First vector
+     * @param {vec4} b Second vector
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    vec4.compare = function (a, b) {
+        return (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON &&
+            Math.abs(a[3] - b[3]) < FLOAT_EPSILON
+        );
     };
 
     /**
