@@ -3420,6 +3420,262 @@
         return '[' + vec[0] + ', ' + vec[1] + ', ' + vec[2] + ', ' + vec[3] + ']';
     };
 
+
+
+
+    /*
+     * @class 2x3 Matrix
+     * @name mat2d
+     */
+    var mat2d = {};
+
+    /**
+     * Creates a new 2x3 matrix. If src is given, the new matrix
+     * is initialized to those values.
+
+     * [a, b,
+     *  c, d,
+     *  tx,ty]
+     *
+     * @param {mat2d} [src] the seed values for the new matrix, if any
+     * @returns {mat2d} a new matrix
+     */
+    mat2d.create = function (src) {
+        var dest = new MatrixArray(6);
+
+        if (src) {
+            dest[0] = src[0];
+            dest[1] = src[1];
+            dest[2] = src[2];
+            dest[3] = src[3];
+            dest[4] = src[4];
+            dest[5] = src[5];
+        } else {
+            dest[0] = dest[1] = dest[2] = dest[3] = dest[4] = dest[5] = 0;
+        }
+
+        return dest;
+    };
+
+    /**
+     * Creates a new instance of a mat2d, initializing it with the given arguments
+     *
+     * @param {number} m00
+     * @param {number} m01
+     * @param {number} m10
+     * @param {number} m11
+     * @param {number} m20
+     * @param {number} m21
+
+     * @returns {mat2d} New mat2d
+     */
+    mat2d.createFrom = function (m00, m01, m10, m11, m20, m21) {
+        var dest = new MatrixArray(6);
+
+        dest[0] = m00;
+        dest[1] = m01;
+        dest[2] = m10;
+        dest[3] = m11;
+        dest[4] = m20;
+        dest[5] = m21;
+
+        return dest;
+    };
+    /**
+     * Copies the values of one mat2d to another
+     *
+     * @param {mat2d} mat mat2d containing values to copy
+     * @param {mat2d} dest mat2d receiving copied values
+     *
+     * @returns {mat2d} dest
+     */
+    mat2d.set = function (mat, dest) {
+        dest[0] = mat[0];
+        dest[1] = mat[1];
+        dest[2] = mat[2];
+        dest[3] = mat[3];
+        dest[4] = mat[4];
+        dest[5] = mat[5];
+        return dest;
+    };
+
+    /**
+     * Compares two matrices for equality within a certain margin of error
+     *
+     * @param {mat2d} a First matrix
+     * @param {mat2d} b Second matrix
+     *
+     * @returns {Boolean} True if a is equivalent to b
+     */
+    mat2d.equal = function (a, b) {
+        return a === b || (
+            Math.abs(a[0] - b[0]) < FLOAT_EPSILON &&
+            Math.abs(a[1] - b[1]) < FLOAT_EPSILON &&
+            Math.abs(a[2] - b[2]) < FLOAT_EPSILON &&
+            Math.abs(a[3] - b[3]) < FLOAT_EPSILON &&
+            Math.abs(a[4] - b[4]) < FLOAT_EPSILON &&
+            Math.abs(a[5] - b[5]) < FLOAT_EPSILON
+        );
+    };
+
+    /**
+     * Sets a mat2d to an identity matrix
+     *
+     * @param {mat2d} dest mat2d to set. If omitted a new one will be created.
+     *
+     * @returns dest
+     */
+    mat2d.identity = function (dest) {
+        if (!dest) { dest = mat2d.create(); }
+        dest[0] = 1;
+        dest[1] = 0;
+        dest[2] = 0;
+        dest[3] = 1;
+        dest[4] = 0;
+        dest[5] = 0;
+        return dest;
+    };
+
+
+    /**
+     * Calculates the determinant of a mat2d
+     *
+     * @param {mat2d} mat mat2d to calculate determinant of
+     *
+     * @returns {Number} determinant of mat
+     */
+    mat2d.determinant = function (mat) {
+      return mat[0] * mat[3] - mat[2] * mat[1];
+    };
+
+    /**
+     * Calculates the inverse matrix of a mat2d
+     *
+     * @param {mat2d} mat mat2d to calculate inverse of
+     * @param {mat2d} [dest] mat2d receiving inverse matrix. If not specified result is written to mat
+     *
+     * @param {mat2d} dest is specified, mat otherwise, null if matrix cannot be inverted
+     */
+    mat2d.inverse = function(mat, dest){
+        if (!dest) { dest = mat; }
+        var a = mat[0], b = mat[1], c = mat[2], d = mat[3],
+            tx = mat[4], ty = mat[5];
+
+        var det = a * d - b * c;
+        if(!det) return null;
+
+        det = 1.0 / det;
+        dest[0] = d * det;
+        dest[1] = -b * det;
+        dest[2] = -c * det;
+        dest[3] = a * det;
+        dest[4] = (c * ty - d * tx) * det;
+        dest[5] = -(a * ty - b * tx) * det;
+        return dest;
+    };
+    
+    /**
+     * Translates a matrix by the given vector
+     *
+     * @param {mat2d} mat mat2d to translate
+     * @param {vec2} vec vec2 specifying the translation
+     * @param {mat2d} [dest] mat2d receiving operation result. If not specified result is written to mat
+     *
+     * @returns {mat2d} dest if specified, mat otherwise
+     */
+    mat2d.translate = function (mat, vec, dest) {
+        if (!dest) { dest = mat; }
+        else if (mat !== dest) { // If the source and destination differ, copy the unchanged rows
+            dest[0] = mat[0];
+            dest[1] = mat[1];
+            dest[2] = mat[2];
+            dest[3] = mat[3];
+        }
+        var x = vec[0], y = vec[1];
+        dest[4] = x * mat[0] + y * mat[1] + mat[4];
+        dest[5] = x * mat[2] + y * mat[3] + mat[5];
+        return dest;
+    };
+
+    /**
+     * Performs a matrix multiplication
+     *
+     * @param {mat2d} mat First operand
+     * @param {mat2d} mat2 Second operand
+     * @param {mat2d} [dest] mat2d receiving operation result. If not specified result is written to mat
+     *
+     * @returns {mat2d} dest if specified, mat otherwise
+     */
+    mat2d.multiply = function (mat, mat2, dest) {
+        if (!dest) { dest = mat; }
+
+        var a = mat[0], b = mat[1], c = mat[2], d = mat[3],
+            tx = mat[4], ty = mat[5],
+            a2 = mat2[0], b2 = mat2[1], c2 = mat2[2], d2 = mat2[3],
+            tx2 = mat2[4], ty2 = mat2[5];
+
+        dest[0] = a2 * a + c2 * b;
+        dest[1] = b2 * a + d2 * b;
+        dest[2] = a2 * c + c2 * d;
+        dest[3] = b2 * c + d2 * d;
+        dest[4] = tx + tx2 * a + ty2 * b;
+        dest[5] = ty + tx2 * c + ty2 * d;
+
+        return dest;
+    };
+
+    /**
+     * Multiplies the vec2 by the given matrix
+     *
+     * @param {mat2d} mat   mat2d to transform the vector with
+     * @param {vec2} vec    the vector to multiply
+     * @param {vec2} [dest] an optional receiving vector. If not given, vec is used.
+     *
+     * @returns {vec2} The multiplication result
+     */
+    mat2d.multiplyVec2 = function (mat, vec, dest) {
+        if (!dest) { dest = vec; }
+        var x = vec[0], y = vec[1];
+        dest[0] = x * mat[0] + y * mat[1] + mat[4];
+        dest[1] = x * mat[2] + y * mat[3] + mat[5];
+        return dest;
+    };
+
+    /**
+     * Scales the mat2d by the dimensions in the given vec2
+     *
+     * @param {mat2d} matrix the 2x3 matrix to scale
+     * @param {vec2} vec    the vector containing the dimensions to scale by
+     * @param {vec2} [dest] an optional receiving mat2. If not given, matrix is used.
+     *
+     * @returns {mat2d} dest if specified, matrix otherwise
+     **/
+    mat2d.scale = function (mat, vec, dest) {
+        if (!dest) { dest = mat; }
+        else if (mat !== dest) { // If the source and destination differ, copy the unchanged rows
+            dest[4] = mat[4];
+            dest[5] = mat[5];
+        }
+        var sx = vec[0], sy = vec[1];
+        dest[0] = mat[0] * sx;
+        dest[1] = mat[1] * sy;
+        dest[2] = mat[2] * sx;
+        dest[3] = mat[3] * sy;
+        return dest;
+    };
+
+    /**
+     * Returns a string representation of a mat2d
+     *
+     * @param {mat2d} mat mat2d to represent as a string
+     *
+     * @param {string} String representation of mat
+     */
+    mat2d.str = function (mat) {
+        return '[' + mat[0] + ', ' + mat[1] + ', ' + mat[2] +
+            ', ' + mat[3] + ', ' + mat[4] + ', ' + mat[5] + ']';
+    };
+
     /*
      * Exports
      */
@@ -3434,6 +3690,7 @@
         root.vec3 = vec3;
         root.vec4 = vec4;
         root.mat2 = mat2;
+        root.mat2d = mat2d;
         root.mat3 = mat3;
         root.mat4 = mat4;
         root.quat4 = quat4;
@@ -3449,6 +3706,7 @@
         vec3: vec3,
         vec4: vec4,
         mat2: mat2,
+        mat2d: mat2d,
         mat3: mat3,
         mat4: mat4,
         quat4: quat4
