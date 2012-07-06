@@ -3437,6 +3437,12 @@
      *  c, d,
      *  tx,ty]
      *
+     * This is a short form for the 3x3 matrix:
+     * [a, b, 0
+     *  c, d, 0
+     *  tx,ty,1]
+     * The last column is ignored and so the array is shorter and operations are faster.
+     *
      * @param {mat2d} [src] the seed values for the new matrix, if any
      * @returns {mat2d} a new matrix
      */
@@ -3570,7 +3576,7 @@
         dest[2] = -c * det;
         dest[3] = a * det;
         dest[4] = (c * ty - d * tx) * det;
-        dest[5] = -(a * ty - b * tx) * det;
+        dest[5] = (b * tx - a * ty) * det;
         return dest;
     };
     
@@ -3592,8 +3598,8 @@
             dest[3] = mat[3];
         }
         var x = vec[0], y = vec[1];
-        dest[4] = x * mat[0] + y * mat[1] + mat[4];
-        dest[5] = x * mat[2] + y * mat[3] + mat[5];
+        dest[4] = x + mat[4];
+        dest[5] = y + mat[5];
         return dest;
     };
 
@@ -3606,20 +3612,20 @@
      *
      * @returns {mat2d} dest if specified, mat otherwise
      */
-    mat2d.multiply = function (mat, mat2, dest) {
-        if (!dest) { dest = mat; }
+    mat2d.multiply = function (matA, matB, dest) {
+        if (!dest) { dest = matA; }
 
-        var a = mat[0], b = mat[1], c = mat[2], d = mat[3],
-            tx = mat[4], ty = mat[5],
-            a2 = mat2[0], b2 = mat2[1], c2 = mat2[2], d2 = mat2[3],
-            tx2 = mat2[4], ty2 = mat2[5];
+        var a = matA[0], b = matA[1], c = matA[2], d = matA[3],
+            tx = matA[4], ty = matA[5],
+            a2 = matB[0], b2 = matB[1], c2 = matB[2], d2 = matB[3],
+            tx2 = matB[4], ty2 = matB[5];
 
-        dest[0] = a2 * a + c2 * b;
-        dest[1] = b2 * a + d2 * b;
-        dest[2] = a2 * c + c2 * d;
-        dest[3] = b2 * c + d2 * d;
-        dest[4] = tx + tx2 * a + ty2 * b;
-        dest[5] = ty + tx2 * c + ty2 * d;
+        dest[0] = a*a2 + b*c2;
+        dest[1] = a*b2 + b*d2;
+        dest[2] = c*a2 + d*c2;
+        dest[3] = c*b2 + d*d2;
+        dest[4] = a2*tx + c2*ty + tx2;
+        dest[5] = b2*tx + d2*ty + ty2;
 
         return dest;
     };
@@ -3642,6 +3648,34 @@
     };
 
     /**
+     * Rotates a mat2d matrix by an angle
+     *
+     * @param {mat2d}   mat   The matrix to rotate
+     * @param {Number} angle The angle in radians
+     * @param {mat2d} [dest]  Optional mat2d receiving the result. If omitted mat will be used.
+     *
+     * @returns {mat2d} dest if specified, mat otherwise
+     */
+    mat2d.rotate = function (mat, angle, dest) {
+        if (!dest) { dest = mat; }
+        var a = mat[0],
+            b = mat[1],
+            c = mat[2],
+            d = mat[3],
+            x = mat[4],
+            y = mat[5],
+            st = Math.sin(angle),
+            ct = Math.cos(angle);
+        dest[0] = a*ct + b*st;
+        dest[1] = -a*st + b*ct;
+        dest[2] = c*ct + d*st;
+        dest[3] = -c*st + ct*d;
+        dest[4] = ct*x + st*y;
+        dest[5] = ct*y - st*x;
+        return dest;
+    };
+
+    /**
      * Scales the mat2d by the dimensions in the given vec2
      *
      * @param {mat2d} matrix the 2x3 matrix to scale
@@ -3652,15 +3686,13 @@
      **/
     mat2d.scale = function (mat, vec, dest) {
         if (!dest) { dest = mat; }
-        else if (mat !== dest) { // If the source and destination differ, copy the unchanged rows
-            dest[4] = mat[4];
-            dest[5] = mat[5];
-        }
         var sx = vec[0], sy = vec[1];
         dest[0] = mat[0] * sx;
         dest[1] = mat[1] * sy;
         dest[2] = mat[2] * sx;
         dest[3] = mat[3] * sy;
+        dest[4] = mat[4] * sx;
+        dest[5] = mat[5] * sy;
         return dest;
     };
 
