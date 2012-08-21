@@ -3441,7 +3441,7 @@
      * [a, b, 0
      *  c, d, 0
      *  tx,ty,1]
-     * The last column is ignored and so the array is shorter and operations are faster.
+     * The last column is ignored so the array is shorter and operations are faster.
      *
      * @param {mat2d} [src] the seed values for the new matrix, if any
      * @returns {mat2d} a new matrix
@@ -3642,8 +3642,8 @@
     mat2d.multiplyVec2 = function (mat, vec, dest) {
         if (!dest) { dest = vec; }
         var x = vec[0], y = vec[1];
-        dest[0] = x * mat[0] + y * mat[1] + mat[4];
-        dest[1] = x * mat[2] + y * mat[3] + mat[5];
+        dest[0] = x * mat[0] + y * mat[2] + mat[4];
+        dest[1] = x * mat[1] + y * mat[3] + mat[5];
         return dest;
     };
 

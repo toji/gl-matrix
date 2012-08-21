@@ -102,7 +102,7 @@ describe("mat2d", function() {
     
     describe("with dest", function() {
       beforeEach(function() { result = mat2d.multiplyVec2(a, b, dest); });
-      it("should set dest", function() { expect(dest).toBeEqualish([22, 45]); });
+      it("should set dest", function() { expect(dest).toBeEqualish([28, 40]); });
       it("should return dest", function() { expect(result).toBe(dest); });
       it("should not modify a", function() { expect(a).toBeEqualish([1, 2, 3, 4, 5, 6]); });
       it("should not modify b", function() { expect(b).toBeEqualish([5, 6]); });
@@ -111,7 +111,7 @@ describe("mat2d", function() {
     describe("without dest", function() {
       beforeEach(function() { result = mat2d.multiplyVec2(a, b); });
       it("should not change a", function() { expect(a).toBeEqualish([1, 2, 3, 4, 5, 6]); });
-      it("should change b", function() { expect(b).toBeEqualish([22, 45]); });
+      it("should change b", function() { expect(b).toBeEqualish([28, 40]); });
       it("should return b", function() { expect(result).toBe(b); });
     });
   });
