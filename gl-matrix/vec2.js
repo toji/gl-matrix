@@ -40,7 +40,7 @@
      * @param {vec2} b the second operand
      * @returns {vec2} out
      */
-    vec2.subtract = function(out, a, b) {
+    vec2.sub = vec2.subtract = function(out, a, b) {
         out[0] = a[0] - b[0];
         out[1] = a[1] - b[1];
         return out;
@@ -54,7 +54,7 @@
      * @param {vec2} b the second operand
      * @returns {vec2} out
      */
-    vec2.multiply = function(out, a, b) {
+    vec2.mul = vec2.multiply = function(out, a, b) {
         out[0] = a[0] * b[0];
         out[1] = a[1] * b[1];
         return out;
@@ -68,7 +68,7 @@
      * @param {vec2} b the second operand
      * @returns {vec2} out
      */
-    vec2.divide = function(out, a, b) {
+    vec2.div = vec2.divide = function(out, a, b) {
         out[0] = a[0] / b[0];
         out[1] = a[1] / b[1];
         return out;
@@ -95,7 +95,7 @@
      * @param {vec2} b the second operand
      * @returns {Number} distance between a and b
      */
-    vec2.distance = function(a, b) {
+    vec2.dist = vec2.distance = function(a, b) {
         var x = b[0] - a[0],
             y = b[1] - a[1];
         return Math.sqrt(x*x + y*y);
@@ -108,7 +108,7 @@
      * @param {vec2} b the second operand
      * @returns {Number} squared distance between a and b
      */
-    vec2.squaredDistance = function(a, b) {
+    vec2.sqrDist = vec2.squaredDistance = function(a, b) {
         var x = b[0] - a[0],
             y = b[1] - a[1];
         return x*x + y*y;
@@ -121,7 +121,7 @@
      *
      * @returns {Number} length of vec
      */
-    vec2.length = function (a) {
+    vec2.len = vec2.length = function (a) {
         var x = a[0],
             y = a[1];
         return Math.sqrt(x*x + y*y);
@@ -134,7 +134,7 @@
      *
      * @returns {Number} squared Length of vec
      */
-    vec2.squaredLength = function (a) {
+    vec2.sqrLen = vec2.squaredLength = function (a) {
         var x = a[0],
             y = a[1];
         return x*x + y*y;

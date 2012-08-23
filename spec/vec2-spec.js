@@ -31,6 +31,8 @@ describe("vec2", function() {
     });
     
     describe("subtract", function() {
+        it("should have an alias called 'sub'", function() { expect(vec2.sub).toEqual(vec2.subtract); });
+
         describe("with a separate output vector", function() {
             beforeEach(function() { result = vec2.subtract(out, vecA, vecB); });
             
@@ -58,6 +60,8 @@ describe("vec2", function() {
     });
 
     describe("multiply", function() {
+        it("should have an alias called 'mul'", function() { expect(vec2.mul).toEqual(vec2.multiply); });
+
         describe("with a separate output vector", function() {
             beforeEach(function() { result = vec2.multiply(out, vecA, vecB); });
             
@@ -85,6 +89,8 @@ describe("vec2", function() {
     });
 
     describe("divide", function() {
+        it("should have an alias called 'div'", function() { expect(vec2.div).toEqual(vec2.divide); });
+
         describe("with a separate output vector", function() {
             beforeEach(function() { result = vec2.divide(out, vecA, vecB); });
             
@@ -129,24 +135,32 @@ describe("vec2", function() {
     });
 
     describe("distance", function() {
+        it("should have an alias called 'dist'", function() { expect(vec2.dist).toEqual(vec2.distance); });
+
         beforeEach(function() { result = vec2.distance(vecA, vecB); });
         
         it("should return the distance", function() { expect(result).toBeCloseTo(2.828427); });
     });
 
     describe("squaredDistance", function() {
+        it("should have an alias called 'sqrDist'", function() { expect(vec2.sqrDist).toEqual(vec2.squaredDistance); });
+
         beforeEach(function() { result = vec2.squaredDistance(vecA, vecB); });
         
         it("should return the squared distance", function() { expect(result).toEqual(8); });
     });
 
     describe("length", function() {
+        it("should have an alias called 'len'", function() { expect(vec2.len).toEqual(vec2.length); });
+
         beforeEach(function() { result = vec2.length(vecA); });
         
         it("should return the length", function() { expect(result).toBeCloseTo(2.236067); });
     });
 
     describe("squaredLength", function() {
+        it("should have an alias called 'sqrLen'", function() { expect(vec2.sqrLen).toEqual(vec2.squaredLength); });
+
         beforeEach(function() { result = vec2.squaredLength(vecA); });
         
         it("should return the squared length", function() { expect(result).toEqual(5); });
