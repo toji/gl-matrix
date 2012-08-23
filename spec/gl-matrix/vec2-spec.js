@@ -40,6 +40,12 @@ describe("vec2", function() {
         beforeEach(function() { result = vec2.fromValues(1, 2); });
         it("should return a 2 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2]); });
     });
+
+    describe("copy", function() {
+        beforeEach(function() { result = vec2.copy(out, vecA); });
+        it("should place values into out", function() { expect(out).toBeEqualish([1, 2]); });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
     
     describe("add", function() {
         describe("with a separate output vector", function() {

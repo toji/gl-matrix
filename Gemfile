@@ -6,9 +6,6 @@ gem 'rake'
 # https://github.com/pivotal/jasmine-gem
 gem 'jasmine'
 
-# https://github.com/cowboyd/therubyracer
-gem 'therubyracer'
-
 # https://github.com/sstephenson/sprockets
 gem 'sprockets'
 
