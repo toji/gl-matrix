@@ -17,3 +17,6 @@ gem 'uglifier'
 
 # for jasmine:ci task
 gem 'json'
+
+# https://github.com/wycats/thor - for release debug
+gem 'thor'

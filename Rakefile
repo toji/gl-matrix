@@ -21,18 +21,36 @@ require File.expand_path('./lib/gl-matrix', File.dirname(__FILE__))
 include GLMatrix
 
 # finally... rake tasks!
-desc "compile sources into a single un-minified file"
-task :compile do
-  compile 'gl-matrix.js', 'lib/gl-matrix.js'
+desc "tag and release gl-matrix"
+task :release do
+  require 'thor'
+  Bundler.ui = Bundler::UI::Shell.new(Thor::Shell::Basic.new)
+  Bundler.ui.debug! if ENV['DEBUG']
+
+  # Sanity check: rebuild files just in case dev forgot to.
+  # If so, files will change and release will abort since changes
+  # were not checked in.
+  Rake::Task['build'].invoke
+
+  release do
+    # Put other release-related stuff here, such as publishing docs;
+    # if anything fails, gl-matrix will be untagged and not pushed.
+    #
+    # Example:
+    #
+    #   Rake::Task['doc:publish'].invoke
+    #
+  end
 end
 
-desc "compile and minify sources"
-task :minify do
-  minify 'gl-matrix.js', 'lib/gl-matrix-min.js'
+desc "compile & minify sources into a single file"
+task :build do
+  compile
+  minify
 end
 
 desc "run test suite with node.js"
-task :node => :compile do
+task :node => :build do
   # make sure jasmine-node exists, and barf if it doesn't
   if %x['jasmine-node'] =~ /USAGE/
     unless system 'jasmine-node', base_path.join('spec').to_s
@@ -51,7 +69,7 @@ task :node => :compile do
 end
 
 desc "Run continuous integration tests"
-RSpec::Core::RakeTask.new('jasmine:ci' => :compile) do |t|
+RSpec::Core::RakeTask.new('jasmine:ci' => :build) do |t|
   t.rspec_opts = ["--colour", "--format", ENV['JASMINE_SPEC_FORMAT'] || "progress"]
   t.verbose = true
   t.rspec_opts += ["-r #{base_path.join('lib/gl-matrix')}"]

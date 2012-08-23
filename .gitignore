@@ -1,7 +1,1 @@
 .rvmrc
-
-gl-matrix.js
-
-# these get regenerated every time a test is run
-lib/gl-matrix-min.js
-lib/gl-matrix.js

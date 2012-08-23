@@ -11,7 +11,7 @@
 #   - dist/**/*.js
 #
 src_files:
-    - lib/gl-matrix.js
+    - dist/gl-matrix.js
 
 # stylesheets
 #

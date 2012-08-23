@@ -1,3 +1,4 @@
+$:.unshift File.expand_path('.', File.dirname(__FILE__))
 require 'sprockets'
 require 'jasmine'
 
@@ -10,13 +11,20 @@ end
 class Rack::Jasmine::Runner
   alias_method :jasmine_call, :call
   def call(env)
-    GLMatrix.compile 'gl-matrix.js', 'lib/gl-matrix.js'
+    GLMatrix.compile
     jasmine_call env
   end
 end
 
 module GLMatrix
+  require 'gl-matrix/release_helper'
+  require 'gl-matrix/version'
+
   module_function
+
+  def release(&block)
+    GLMatrix::ReleaseHelper.release &block
+  end
 
   def sprockets
     env = Sprockets::Environment.new base_path
@@ -31,7 +39,7 @@ module GLMatrix
   # Compiles the source file to the dest file. If a block
   # is given, the source file is yielded and replaced with
   # the result. Returns the destination as a Pathname.
-  def compile(source, dest)
+  def compile(source = 'gl-matrix.js', dest = 'dist/gl-matrix.js')
     dest = base_path.join dest
     js = sprockets[source]
     js = yield js if block_given?
@@ -44,7 +52,7 @@ module GLMatrix
     dest
   end
 
-  def minify(source, dest)
+  def minify(source = 'gl-matrix.js', dest = 'dist/gl-matrix-min.js')
     dest = compile source, dest do |js|
       Uglifier.compile js
     end
