@@ -268,5 +268,5 @@
         return 'vec2(' + a[0] + ', ' + a[1] + ')';
     };
 
-    window.vec2 = vec2;
+    exports.vec2 = vec2;
 })();
