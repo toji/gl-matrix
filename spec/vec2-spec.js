@@ -205,4 +205,51 @@ describe("vec2", function() {
         
         it("should return the dot product", function() { expect(result).toEqual(5); });
     });
+
+    describe("cross", function() {
+        var out3;
+
+        beforeEach(function() {
+            out3 = [0, 0, 0];
+            result = vec2.cross(out3, vecA, vecB);
+        });
+
+        it("should place values into out", function() { expect(out3).toBeEqualish([0, 0, -2]); });
+        it("should return out", function() { expect(result).toBe(out3); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+    });
+
+    describe("lerp", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.lerp(out, vecA, vecB, 0.5); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([2, 3]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.lerp(vecA, vecA, vecB, 0.5); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([2, 3]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec2.lerp(vecB, vecA, vecB, 0.5); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([2, 3]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+    });
+
+    describe("str", function() {
+        beforeEach(function() { result = vec2.str(vecA); });
+        
+        it("should return a string representation of the vector", function() { expect(result).toEqual("vec2(1, 2)"); });
+    });
 });

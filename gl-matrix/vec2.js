@@ -8,10 +8,8 @@
     var vec2 = {};
      
     /**
-     * Creates a new vec2, initializing it from vec if vec
-     * is given.
+     * Creates a new, empty vec2
      *
-     * @param {vec2} [vec] the vector's initial contents
      * @returns {vec2} a new 2D vector
      */
     vec2.create = function() {
@@ -19,7 +17,7 @@
     };
 
     /**
-     * Adds two vec2's.
+     * Adds two vec2's
      *
      * @param {vec2} out the receiving vector
      * @param {vec2} a the first operand
@@ -33,7 +31,7 @@
     };
     
     /**
-     * Subtracts two vec2's.
+     * Subtracts two vec2's
      *
      * @param {vec2} out the receiving vector
      * @param {vec2} a the first operand
@@ -47,7 +45,7 @@
     };
 
     /**
-     * Multiplies two vec2's.
+     * Multiplies two vec2's
      *
      * @param {vec2} out the receiving vector
      * @param {vec2} a the first operand
@@ -61,7 +59,7 @@
     };
 
     /**
-     * Divides two vec2's.
+     * Divides two vec2's
      *
      * @param {vec2} out the receiving vector
      * @param {vec2} a the first operand
@@ -75,7 +73,7 @@
     };
 
     /**
-     * Scales a vec2 by a scalar number.
+     * Scales a vec2 by a scalar number
      *
      * @param {vec2} out the receiving vector
      * @param {vec2} a the vector to scale
@@ -118,7 +116,6 @@
      * Caclulates the length of a vec2
      *
      * @param {vec2} vec vector to calculate length of
-     *
      * @returns {Number} length of vec
      */
     vec2.len = vec2.length = function (a) {
@@ -131,7 +128,6 @@
      * Caclulates the squared length of a vec2
      *
      * @param {vec2} vec vector to calculate squared length of
-     *
      * @returns {Number} squared Length of vec
      */
     vec2.sqrLen = vec2.squaredLength = function (a) {
@@ -175,11 +171,53 @@
      *
      * @param {vec2} a the first operand
      * @param {vec2} b the second operand
-     *
      * @returns {Number} dot product of a and b
      */
     vec2.dot = function (a, b) {
         return a[0] * b[0] + a[1] * b[1];
+    };
+
+    /**
+     * Computes the cross product of two vec2's
+     * Note that the cross product must by definition produce a 3D vector
+     *
+     * @param {vec3} out the receiving vector
+     * @param {vec2} a the first operand
+     * @param {vec2} b the second operand
+     * @returns {vec3} out
+     */
+    vec2.cross = function(out, a, b) {
+        var z = a[0] * b[1] - a[1] * b[0];
+        out[0] = out[1] = 0;
+        out[2] = z;
+        return out;
+    };
+
+    /**
+     * Performs a linear interpolation between two vec2's
+     *
+     * @param {vec3} out the receiving vector
+     * @param {vec2} a the first operand
+     * @param {vec2} b the second operand
+     * @param {Number} t interpolation amount between the two inputs
+     * @returns {vec2} dest if specified, vecA otherwise
+     */
+    vec2.lerp = function (out, a, b, t) {
+        var ax = a[0],
+            ay = a[1];
+        out[0] = ax + t * (b[0] - ax);
+        out[1] = ay + t * (b[1] - ay);
+        return out;
+    };
+
+    /**
+     * Returns a string representation of a vector
+     *
+     * @param {vec2} vec Vector to represent as a string
+     * @returns {String} String representation of vec
+     */
+    vec2.str = function (a) {
+        return 'vec2(' + a[0] + ', ' + a[1] + ')';
     };
 
     window.vec2 = vec2;
