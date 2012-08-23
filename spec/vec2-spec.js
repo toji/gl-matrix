@@ -56,4 +56,139 @@ describe("vec2", function() {
             it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
         });
     });
+
+    describe("multiply", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.multiply(out, vecA, vecB); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([3, 8]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.multiply(vecA, vecA, vecB); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([3, 8]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec2.multiply(vecB, vecA, vecB); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([3, 8]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+    });
+
+    describe("divide", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.divide(out, vecA, vecB); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([0.3333333, 0.5]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.divide(vecA, vecA, vecB); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.3333333, 0.5]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec2.divide(vecB, vecA, vecB); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([0.3333333, 0.5]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+    });
+
+    describe("scale", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.scale(out, vecA, 2); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([2, 4]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.scale(vecA, vecA, 2); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([2, 4]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
+
+    describe("distance", function() {
+        beforeEach(function() { result = vec2.distance(vecA, vecB); });
+        
+        it("should return the distance", function() { expect(result).toBeCloseTo(2.828427); });
+    });
+
+    describe("squaredDistance", function() {
+        beforeEach(function() { result = vec2.squaredDistance(vecA, vecB); });
+        
+        it("should return the squared distance", function() { expect(result).toEqual(8); });
+    });
+
+    describe("length", function() {
+        beforeEach(function() { result = vec2.length(vecA); });
+        
+        it("should return the length", function() { expect(result).toBeCloseTo(2.236067); });
+    });
+
+    describe("squaredLength", function() {
+        beforeEach(function() { result = vec2.squaredLength(vecA); });
+        
+        it("should return the squared length", function() { expect(result).toEqual(5); });
+    });
+
+    describe("negate", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.negate(out, vecA); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([-1, -2]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.negate(vecA, vecA); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([-1, -2]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
+
+    describe("normalize", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.normalize(out, vecA); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([0.4472135, 0.8944271]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.normalize(vecA, vecA); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.4472135, 0.8944271]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
+
+    describe("dot", function() {
+        beforeEach(function() { result = vec2.squaredLength(vecA); });
+        
+        it("should return the dot product", function() { expect(result).toEqual(5); });
+    });
 });
