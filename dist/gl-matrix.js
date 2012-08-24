@@ -93,6 +93,8 @@
     /**
      * Creates a new vec2 initialized with the given values
      *
+     * @param {Number} x X component
+     * @param {Number} y Y component
      * @returns {vec2} a new 2D vector
      */
     vec2.fromValues = function(x, y) {
@@ -103,7 +105,7 @@
     };
 
     /**
-     * Copy the values from on vec2 to another
+     * Copy the values from one vec2 to another
      *
      * @param {vec2} out the receiving vector
      * @param {vec2} a the source vector
@@ -112,6 +114,20 @@
     vec2.copy = function(out, a) {
         out[0] = a[0];
         out[1] = a[1];
+        return out;
+    };
+
+    /**
+     * Set the components of a vec2 to the given values
+     *
+     * @param {vec2} out the receiving vector
+     * @param {Number} x X component
+     * @param {Number} y Y component
+     * @returns {vec2} out
+     */
+    vec2.set = function(out, x, y) {
+        out[0] = x;
+        out[1] = y;
         return out;
     };
 
@@ -168,6 +184,34 @@
     vec2.div = vec2.divide = function(out, a, b) {
         out[0] = a[0] / b[0];
         out[1] = a[1] / b[1];
+        return out;
+    };
+
+    /**
+     * Returns the minimum of two vec2's
+     *
+     * @param {vec2} out the receiving vector
+     * @param {vec2} a the first operand
+     * @param {vec2} b the second operand
+     * @returns {vec2} out
+     */
+    vec2.min = function(out, a, b) {
+        out[0] = Math.min(a[0], b[0]);
+        out[1] = Math.min(a[1], b[1]);
+        return out;
+    };
+
+    /**
+     * Returns the maximum of two vec2's
+     *
+     * @param {vec2} out the receiving vector
+     * @param {vec2} a the first operand
+     * @param {vec2} b the second operand
+     * @returns {vec2} out
+     */
+    vec2.max = function(out, a, b) {
+        out[0] = Math.max(a[0], b[0]);
+        out[1] = Math.max(a[1], b[1]);
         return out;
     };
 

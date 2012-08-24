@@ -46,6 +46,12 @@ describe("vec2", function() {
         it("should place values into out", function() { expect(out).toBeEqualish([1, 2]); });
         it("should return out", function() { expect(result).toBe(out); });
     });
+
+    describe("set", function() {
+        beforeEach(function() { result = vec2.set(out, 1, 2); });
+        it("should place values into out", function() { expect(out).toBeEqualish([1, 2]); });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
     
     describe("add", function() {
         describe("with a separate output vector", function() {
@@ -158,6 +164,64 @@ describe("vec2", function() {
             it("should place values into vecB", function() { expect(vecB).toBeEqualish([0.3333333, 0.5]); });
             it("should return vecB", function() { expect(result).toBe(vecB); });
             it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+    });
+
+    describe("min", function() {
+        beforeEach(function() { vecA = [1, 4]; vecB = [3, 2]; });
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.min(out, vecA, vecB); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([1, 2]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 4]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 2]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.min(vecA, vecA, vecB); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 2]); });
+        });
+
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec2.min(vecB, vecA, vecB); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([1, 2]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 4]); });
+        });
+    });
+
+    describe("max", function() {
+        beforeEach(function() { vecA = [1, 4]; vecB = [3, 2]; });
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.max(out, vecA, vecB); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([3, 4]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 4]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 2]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.max(vecA, vecA, vecB); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([3, 4]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 2]); });
+        });
+
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec2.max(vecB, vecA, vecB); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 4]); });
         });
     });
 
