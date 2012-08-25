@@ -316,10 +316,26 @@
     };
 
     /**
+     * Transforms the vec2 with a mat2
+     *
+     * @param {vec2} out the receiving vector
+     * @param {vec2} a the vector to transform
+     * @param {mat2} m matrix to transform with
+     * @returns {vec2} out
+     */
+    vec2.transform = function(out, a, m) {
+        var x = a[0],
+            y = a[1];
+        out[0] = x * m[0] + y * m[1];
+        out[1] = x * m[2] + y * m[3];
+        return out;
+    };
+
+    /**
      * Returns a string representation of a vector
      *
-     * @param {vec2} vec Vector to represent as a string
-     * @returns {String} String representation of vec
+     * @param {vec2} vec vector to represent as a string
+     * @returns {String} string representation of the vector
      */
     vec2.str = function (a) {
         return 'vec2(' + a[0] + ', ' + a[1] + ')';
