@@ -292,18 +292,20 @@ describe("vec2", function() {
     });
 
     describe("normalize", function() {
+        beforeEach(function() { vecA = [5, 0]; });
+
         describe("with a separate output vector", function() {
             beforeEach(function() { result = vec2.normalize(out, vecA); });
             
-            it("should place values into out", function() { expect(out).toBeEqualish([0.4472135, 0.8944271]); });
+            it("should place values into out", function() { expect(out).toBeEqualish([1, 0]); });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([5, 0]); });
         });
 
         describe("when vecA is the output vector", function() {
             beforeEach(function() { result = vec2.normalize(vecA, vecA); });
             
-            it("should place values into vecA", function() { expect(vecA).toBeEqualish([0.4472135, 0.8944271]); });
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([1, 0]); });
             it("should return vecA", function() { expect(result).toBe(vecA); });
         });
     });
