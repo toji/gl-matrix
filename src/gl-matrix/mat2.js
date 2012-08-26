@@ -29,6 +29,9 @@
      * @name mat2
      */
     var mat2 = {};
+    
+    var sin = Math.sin;
+    var cos = Math.cos;
 
     var mat2Identity = new Float32Array([
         1, 0,
@@ -190,8 +193,8 @@
      */
     mat2.rotate = function (out, a, rad) {
         var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
-            s = Math.sin(rad),
-            c = Math.cos(rad);
+            s = sin(rad),
+            c = cos(rad);
         out[0] = a0 *  c + a1 * s;
         out[1] = a0 * -s + a1 * c;
         out[2] = a2 *  c + a3 * s;
