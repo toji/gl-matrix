@@ -115,7 +115,7 @@ mat2.transpose = function(out, a) {
  * @param {mat2} a the source matrix
  * @returns {mat2} out
  */
-mat2.inverse = function(out, a) {
+mat2.invert = function(out, a) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
     var det = a0 * a3 - a2 * a1;
     if (!det) {

@@ -65,9 +65,9 @@ describe("mat2", function() {
         });
     });
 
-    describe("inverse", function() {
+    describe("invert", function() {
         describe("with a separate output matrix", function() {
-            beforeEach(function() { result = mat2.inverse(out, matA); });
+            beforeEach(function() { result = mat2.invert(out, matA); });
             
             it("should place values into out", function() { expect(out).toBeEqualish([-2, 1, 1.5, -0.5]); });
             it("should return out", function() { expect(result).toBe(out); });
@@ -75,7 +75,7 @@ describe("mat2", function() {
         });
 
         describe("when matA is the output matrix", function() {
-            beforeEach(function() { result = mat2.inverse(matA, matA); });
+            beforeEach(function() { result = mat2.invert(matA, matA); });
             
             it("should place values into matA", function() { expect(matA).toBeEqualish([-2, 1, 1.5, -0.5]); });
             it("should return matA", function() { expect(result).toBe(matA); });
