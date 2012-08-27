@@ -357,12 +357,12 @@ describe("vec2", function() {
         });
     });
 
-    describe("transform", function() {
+    describe("transformMat2", function() {
         var matA;
         beforeEach(function() { matA = [1, 2, 3, 4]; });
 
         describe("with a separate output vector", function() {
-            beforeEach(function() { result = vec2.transform(out, vecA, matA); });
+            beforeEach(function() { result = vec2.transformMat2(out, vecA, matA); });
             
             it("should place values into out", function() { expect(out).toBeEqualish([5, 11]); });
             it("should return out", function() { expect(result).toBe(out); });
@@ -371,7 +371,7 @@ describe("vec2", function() {
         });
 
         describe("when vecA is the output vector", function() {
-            beforeEach(function() { result = vec2.transform(vecA, vecA, matA); });
+            beforeEach(function() { result = vec2.transformMat2(vecA, vecA, matA); });
             
             it("should place values into vecA", function() { expect(vecA).toBeEqualish([5, 11]); });
             it("should return vecA", function() { expect(result).toBe(vecA); });

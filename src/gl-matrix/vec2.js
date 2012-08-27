@@ -321,7 +321,7 @@ vec2.lerp = function (out, a, b, t) {
  * @param {mat2} m matrix to transform with
  * @returns {vec2} out
  */
-vec2.transform = function(out, a, m) {
+vec2.transformMat2 = function(out, a, m) {
     var x = a[0],
         y = a[1];
     out[0] = x * m[0] + y * m[1];
