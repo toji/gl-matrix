@@ -311,9 +311,11 @@ describe("vec2", function() {
     });
 
     describe("dot", function() {
-        beforeEach(function() { result = vec2.squaredLength(vecA); });
+        beforeEach(function() { result = vec2.dot(vecA, vecB); });
         
-        it("should return the dot product", function() { expect(result).toEqual(5); });
+        it("should return the dot product", function() { expect(result).toEqual(11); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
     });
 
     describe("cross", function() {

@@ -259,7 +259,9 @@ vec2.negate = function(out, a) {
  * @returns {vec2} out
  */
 vec2.normalize = function(out, a) {
-    var len = a[0] * a[0] + a[1] * a[1];
+    var x = a[0],
+        y = a[1];
+    var len = x*x + y*y;
     if (len > 0) {
         //TODO: evaluate use of glm_invsqrt here?
         len = 1 / Math.sqrt(len);
@@ -303,7 +305,7 @@ vec2.cross = function(out, a, b) {
  * @param {vec2} a the first operand
  * @param {vec2} b the second operand
  * @param {Number} t interpolation amount between the two inputs
- * @returns {vec2} dest if specified, vecA otherwise
+ * @returns {vec2} out
  */
 vec2.lerp = function (out, a, b, t) {
     var ax = a[0],
