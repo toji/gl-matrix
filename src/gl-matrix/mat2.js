@@ -187,8 +187,8 @@ mat2.mul = mat2.multiply = function (out, a, b) {
  */
 mat2.rotate = function (out, a, rad) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
-        s = glm_sin(rad),
-        c = glm_cos(rad);
+        s = Math.sin(rad),
+        c = Math.cos(rad);
     out[0] = a0 *  c + a1 * s;
     out[1] = a0 * -s + a1 * c;
     out[2] = a2 *  c + a3 * s;

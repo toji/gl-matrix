@@ -198,7 +198,7 @@ vec2.scale = function(out, a, b) {
 vec2.dist = vec2.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
-    return glm_sqrt(x*x + y*y);
+    return Math.sqrt(x*x + y*y);
 };
 
 /**
@@ -223,7 +223,7 @@ vec2.sqrDist = vec2.squaredDistance = function(a, b) {
 vec2.len = vec2.length = function (a) {
     var x = a[0],
         y = a[1];
-    return glm_sqrt(x*x + y*y);
+    return Math.sqrt(x*x + y*y);
 };
 
 /**
@@ -262,7 +262,7 @@ vec2.normalize = function(out, a) {
     var len = a[0] * a[0] + a[1] * a[1];
     if (len > 0) {
         //TODO: evaluate use of glm_invsqrt here?
-        len = 1 / glm_sqrt(len);
+        len = 1 / Math.sqrt(len);
         out[0] = a[0] * len;
         out[1] = a[1] * len;
     }

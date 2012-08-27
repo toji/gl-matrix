@@ -59,29 +59,8 @@
  */
 
 /*
- * Common utilities and aliases used throughout the rest of the library
+ * Common utilities used throughout the rest of the library
  */
-
-/**
- * Non-namespaced alias for Math.sin
- */
-
-var glm_sin = exports.glm_sin = Math.sin;
-
-/**
- * Non-namespaced alias for Math.cos
- */
-var glm_cos = exports.glm_cos = Math.cos;
-
-/**
- * Non-namespaced alias for Math.tan
- */
-var glm_tan = exports.glm_tan = Math.tan;
-
-/**
- * Non-namespaced alias for Math.sqrt
- */
-var glm_sqrt = exports.glm_sqrt = Math.sqrt;
 
 /**
  * Fast way to calculate the inverse square root,
@@ -93,6 +72,7 @@ var glm_sqrt = exports.glm_sqrt = Math.sqrt;
  * @param {Number} n the number
  * @returns {Number} inverse square root
  */
+
 var glm_invsqrt = exports.glm_invsqrt = (function() {
     if (typeof(Float32Array) != 'undefined') {
         var y = new Float32Array(1);
@@ -310,7 +290,7 @@ vec2.scale = function(out, a, b) {
 vec2.dist = vec2.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
-    return glm_sqrt(x*x + y*y);
+    return Math.sqrt(x*x + y*y);
 };
 
 /**
@@ -335,7 +315,7 @@ vec2.sqrDist = vec2.squaredDistance = function(a, b) {
 vec2.len = vec2.length = function (a) {
     var x = a[0],
         y = a[1];
-    return glm_sqrt(x*x + y*y);
+    return Math.sqrt(x*x + y*y);
 };
 
 /**
@@ -374,7 +354,7 @@ vec2.normalize = function(out, a) {
     var len = a[0] * a[0] + a[1] * a[1];
     if (len > 0) {
         //TODO: evaluate use of glm_invsqrt here?
-        len = 1 / glm_sqrt(len);
+        len = 1 / Math.sqrt(len);
         out[0] = a[0] * len;
         out[1] = a[1] * len;
     }
@@ -642,8 +622,8 @@ mat2.mul = mat2.multiply = function (out, a, b) {
  */
 mat2.rotate = function (out, a, rad) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
-        s = glm_sin(rad),
-        c = glm_cos(rad);
+        s = Math.sin(rad),
+        c = Math.cos(rad);
     out[0] = a0 *  c + a1 * s;
     out[1] = a0 * -s + a1 * c;
     out[2] = a2 *  c + a3 * s;

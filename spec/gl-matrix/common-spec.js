@@ -22,22 +22,6 @@
  */
 
 describe("common", function() {
-    describe("glm_sin", function() {
-        it("should return equivalent output to Math.sin", function() { expect(glm_sin(1)).toBeCloseTo(Math.sin(1)); });
-    });
-
-    describe("glm_cos", function() {
-        it("should return equivalent output to Math.cos", function() { expect(glm_cos(1)).toBeCloseTo(Math.cos(1)); });
-    });
-
-    describe("glm_tan", function() {
-        it("should return equivalent output to Math.tan", function() { expect(glm_tan(1)).toBeCloseTo(Math.tan(1)); });
-    });
-
-    describe("glm_sqrt", function() {
-        it("should return equivalent output to Math.tan", function() { expect(glm_sqrt(5)).toBeCloseTo(Math.sqrt(5)); });
-    });
-
     describe("glm_invsqrt", function() {
         it("should return 1 / sqrt(n)", function() { expect(glm_invsqrt(5)).toBeCloseTo(1 / Math.sqrt(5)); });
     });

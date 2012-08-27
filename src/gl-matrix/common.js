@@ -22,28 +22,8 @@
  */
 
 /*
- * Common utilities and aliases used throughout the rest of the library
+ * Common utilities used throughout the rest of the library
  */
-
-/**
- * Non-namespaced alias for Math.sin
- */
-var glm_sin = exports.glm_sin = Math.sin;
-
-/**
- * Non-namespaced alias for Math.cos
- */
-var glm_cos = exports.glm_cos = Math.cos;
-
-/**
- * Non-namespaced alias for Math.tan
- */
-var glm_tan = exports.glm_tan = Math.tan;
-
-/**
- * Non-namespaced alias for Math.sqrt
- */
-var glm_sqrt = exports.glm_sqrt = Math.sqrt;
 
 /**
  * Fast way to calculate the inverse square root,
