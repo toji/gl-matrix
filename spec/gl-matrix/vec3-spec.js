@@ -28,17 +28,17 @@ describe("vec3", function() {
 
     describe("create", function() {
         beforeEach(function() { result = vec3.create(); });
-        it("should return a 2 element array initialized to 0s", function() { expect(result).toBeEqualish([0, 0, 0]); });
+        it("should return a 3 element array initialized to 0s", function() { expect(result).toBeEqualish([0, 0, 0]); });
     });
 
     describe("clone", function() {
         beforeEach(function() { result = vec3.clone(vecA); });
-        it("should return a 2 element array initialized to the values in vecA", function() { expect(result).toBeEqualish(vecA); });
+        it("should return a 3 element array initialized to the values in vecA", function() { expect(result).toBeEqualish(vecA); });
     });
 
     describe("fromValues", function() {
         beforeEach(function() { result = vec3.fromValues(1, 2, 3); });
-        it("should return a 2 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3]); });
+        it("should return a 3 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3]); });
     });
 
     describe("copy", function() {
