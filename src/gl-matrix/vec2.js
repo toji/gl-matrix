@@ -217,8 +217,8 @@ vec2.sqrDist = vec2.squaredDistance = function(a, b) {
 /**
  * Caclulates the length of a vec2
  *
- * @param {vec2} vec vector to calculate length of
- * @returns {Number} length of vec
+ * @param {vec2} a vector to calculate length of
+ * @returns {Number} length of a
  */
 vec2.len = vec2.length = function (a) {
     var x = a[0],
@@ -229,8 +229,8 @@ vec2.len = vec2.length = function (a) {
 /**
  * Caclulates the squared length of a vec2
  *
- * @param {vec2} vec vector to calculate squared length of
- * @returns {Number} squared Length of vec
+ * @param {vec2} a vector to calculate squared length of
+ * @returns {Number} squared length of a
  */
 vec2.sqrLen = vec2.squaredLength = function (a) {
     var x = a[0],
@@ -255,7 +255,7 @@ vec2.negate = function(out, a) {
  * Normalize a vec2
  *
  * @param {vec2} out the receiving vector
- * @param {vec2} a vector to negate
+ * @param {vec2} a vector to normalize
  * @returns {vec2} out
  */
 vec2.normalize = function(out, a) {
