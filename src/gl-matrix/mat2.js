@@ -35,14 +35,14 @@ var mat2Identity = new Float32Array([
 /**
  * Creates a new identity mat2
  *
- * @returns {mat2} a new 2D vector
+ * @returns {mat2} a new 2x2 matrix
  */
 mat2.create = function() {
     return new Float32Array(mat2Identity);
 };
 
 /**
- * Creates a new mat2 initialized with values from an existing vector
+ * Creates a new mat2 initialized with values from an existing matrix
  *
  * @param {mat2} a matrix to clone
  * @returns {mat2} a new 2x2 matrix
@@ -116,13 +116,16 @@ mat2.transpose = function(out, a) {
  * @returns {mat2} out
  */
 mat2.invert = function(out, a) {
-    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
-    var det = a0 * a3 - a2 * a1;
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
+
+        // Calculate the determinant
+        det = a0 * a3 - a2 * a1;
+
     if (!det) {
         return null;
     }
-    
     det = 1.0 / det;
+    
     out[0] =  a3 * det;
     out[1] = -a1 * det;
     out[2] = -a2 * det;
