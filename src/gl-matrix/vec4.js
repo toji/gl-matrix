@@ -361,6 +361,19 @@ vec4.transformMat4 = function(out, a, m) {
 };
 
 /**
+ * Transforms the vec4 with a quat4
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a the vector to transform
+ * @param {quat4} q quaternion to transform with
+ * @returns {vec4} out
+ */
+vec4.transformQuat4 = function(out, a, q) {
+    // TODO
+    return out;
+};
+
+/**
  * Returns a string representation of a vector
  *
  * @param {vec4} vec vector to represent as a string

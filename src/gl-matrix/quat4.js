@@ -93,6 +93,25 @@ quat4.identity = function(out) {
 };
 
 /**
+ * Sets a quat4 from the given angle and rotation axis,
+ * then returns it.
+ *
+ * @param {quat4} out the receiving quaternion
+ * @param {vec3} axis the axis around which to rotate
+ * @param {Number} rad the angle in radians
+ * @returns {quat4} out
+ **/
+quat4.setAxisAngle = function(out, axis, rad) {
+    rad = rad * 0.5;
+    var s = Math.sin(rad);
+    out[0] = s * axis[0];
+    out[1] = s * axis[1];
+    out[2] = s * axis[2];
+    out[3] = Math.cos(rad);
+    return out;
+};
+
+/**
  * Adds two quat4's
  *
  * @param {quat4} out the receiving quaternion
@@ -130,6 +149,69 @@ quat4.mul = quat4.multiply = function(out, a, b) {
  * @returns {quat4} out
  */
 quat4.scale = vec4.scale;
+
+/**
+ * Rotates a quaternion by the given angle around the X axis
+ *
+ * @param {quat4} out quat4 receiving operation result
+ * @param {quat4} a quat4 to rotate
+ * @param {number} rad angle (in radians) to rotate
+ * @returns {quat4} out
+ */
+quat4.rotateX = function (out, a, rad) {
+    rad *= 0.5; 
+
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3],
+        bx = Math.sin(rad), bw = Math.cos(rad);
+
+    out[0] = ax * bw + aw * bx;
+    out[1] = ay * bw + az * bx;
+    out[2] = az * bw - ay * bx;
+    out[3] = aw * bw - ax * bx;
+    return out;
+};
+
+/**
+ * Rotates a quaternion by the given angle around the X axis
+ *
+ * @param {quat4} out quat4 receiving operation result
+ * @param {quat4} a quat4 to rotate
+ * @param {number} rad angle (in radians) to rotate
+ * @returns {quat4} out
+ */
+quat4.rotateY = function (out, a, rad) {
+    rad *= 0.5; 
+
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3],
+        by = Math.sin(rad), bw = Math.cos(rad);
+
+    out[0] = ax * bw - az * by;
+    out[1] = ay * bw + aw * by;
+    out[2] = az * bw + ax * by;
+    out[3] = aw * bw - ay * by;
+    return out;
+};
+
+/**
+ * Rotates a quaternion by the given angle around the X axis
+ *
+ * @param {quat4} out quat4 receiving operation result
+ * @param {quat4} a quat4 to rotate
+ * @param {number} rad angle (in radians) to rotate
+ * @returns {quat4} out
+ */
+quat4.rotateZ = function (out, a, rad) {
+    rad *= 0.5; 
+
+    var ax = a[0], ay = a[1], az = a[2], aw = a[3],
+        bz = Math.sin(rad), bw = Math.cos(rad);
+
+    out[0] = ax * bw + ay * bz;
+    out[1] = ay * bw - ax * bz;
+    out[2] = az * bw + aw * bz;
+    out[3] = aw * bw - az * bz;
+    return out;
+};
 
 /**
  * Calculates the W component of a quat4 from the X, Y, and Z components.
@@ -228,7 +310,7 @@ quat4.slerp = function (out, a, b, t) {
  * @param {quat4} a quat4 to calculate inverse of
  * @returns {quat4} out
  */
-quat4.inverse = function(out, a) {
+quat4.invert = function(out, a) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
         dot = a0*a0 + a1*a1 + a2*a2 + a3*a3,
         invDot = dot ? 1.0/dot : 0;
@@ -272,7 +354,7 @@ quat4.len = quat4.length = vec4.length;
  * @param {quat4} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-quat4.sqrLen = quat4.squaredLength = vec4,squaredLength;
+quat4.sqrLen = quat4.squaredLength = vec4.squaredLength;
 
 /**
  * Normalize a quat4
