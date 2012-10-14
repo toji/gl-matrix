@@ -8,4 +8,4 @@
 //= require 'gl-matrix/mat3.js'
 //= require 'gl-matrix/mat4.js'
 
-//= require 'gl-matrix/quat4.js'
+//= require 'gl-matrix/quat.js'
