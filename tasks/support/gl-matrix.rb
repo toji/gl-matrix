@@ -17,8 +17,9 @@ class Rack::Jasmine::Runner
 end
 
 module GLMatrix
-  require 'gl-matrix/release_helper'
-  require 'gl-matrix/version'
+  autoload :ReleaseHelper, 'gl-matrix/release_helper'
+  autoload :Version,       'gl-matrix/version'
+  autoload :VERSION,       'gl-matrix/version'
 
   module_function
 
@@ -33,7 +34,7 @@ module GLMatrix
   end
 
   def base_path
-    Pathname.new File.expand_path('..', File.dirname(__FILE__))
+    Pathname.new File.expand_path('../..', File.dirname(__FILE__))
   end
 
   # Compiles the source file to the dest file. If a block
