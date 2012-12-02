@@ -390,4 +390,6 @@ vec3.str = function (a) {
     return 'vec3(' + a[0] + ', ' + a[1] + ', ' + a[2] + ')';
 };
 
-exports.vec3 = vec3;
+if(exports) {
+    exports.vec3 = vec3;
+}

@@ -260,4 +260,6 @@ mat3.str = function (a) {
                     a[6] + ', ' + a[7] + ', ' + a[8] + ')';
 };
 
-exports.mat3 = mat3;
+if(exports) {
+    exports.mat3 = mat3;
+}

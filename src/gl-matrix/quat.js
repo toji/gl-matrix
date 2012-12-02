@@ -374,4 +374,6 @@ quat.str = function (a) {
     return 'quat(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
 };
 
-exports.quat = quat;
+if(exports) {
+    exports.quat = quat;
+}

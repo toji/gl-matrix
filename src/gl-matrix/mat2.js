@@ -226,4 +226,6 @@ mat2.str = function (a) {
     return 'mat2(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
 };
 
-exports.mat2 = mat2;
+if(exports) {
+    exports.mat2 = mat2;
+}

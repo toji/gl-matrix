@@ -300,7 +300,6 @@ vec4.normalize = function(out, a) {
         w = a[3];
     var len = x*x + y*y + z*z + w*w;
     if (len > 0) {
-        //TODO: evaluate use of glm_invsqrt here?
         len = 1 / Math.sqrt(len);
         out[0] = a[0] * len;
         out[1] = a[1] * len;
@@ -394,4 +393,6 @@ vec4.str = function (a) {
     return 'vec4(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
 };
 
-exports.vec4 = vec4;
+if(exports) {
+    exports.vec4 = vec4;
+}
