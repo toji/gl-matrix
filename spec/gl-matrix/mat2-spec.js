@@ -21,29 +21,41 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 describe("mat2", function() {
-    var out, matA, matB, result;
+    var out, matA, matB, identity, result;
 
-    beforeEach(function() { matA = [1, 2, 3, 4]; matB = [5, 6, 7, 8]; out = [0, 0, 0, 0]; });
+    beforeEach(function() {
+        matA = [1, 2,
+                3, 4];
+
+        matB = [5, 6,
+                7, 8];
+
+        out =  [0, 0,
+                0, 0];
+
+        identity = [1, 0,
+                    0, 1];
+    });
 
     describe("create", function() {
         beforeEach(function() { result = mat2.create(); });
-        it("should return a 4 element array initialized to a 2x2 identity matrix", function() { expect(result).toBeEqualish([1, 0, 0, 1]); });
+        it("should return a 4 element array initialized to a 2x2 identity matrix", function() { expect(result).toBeEqualish(identity); });
     });
 
     describe("clone", function() {
         beforeEach(function() { result = mat2.clone(matA); });
-        it("should return a 2 element array initialized to the values in matA", function() { expect(result).toBeEqualish(matA); });
+        it("should return a 4 element array initialized to the values in matA", function() { expect(result).toBeEqualish(matA); });
     });
 
     describe("copy", function() {
         beforeEach(function() { result = mat2.copy(out, matA); });
-        it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4]); });
+        it("should place values into out", function() { expect(out).toBeEqualish(matA); });
         it("should return out", function() { expect(result).toBe(out); });
     });
 
     describe("identity", function() {
         beforeEach(function() { result = mat2.identity(out); });
-        it("should place values into out", function() { expect(result).toBeEqualish([1, 0, 0, 1]); });
+        it("should place values into out", function() { expect(result).toBeEqualish(identity); });
         it("should return out", function() { expect(result).toBe(out); });
     });
 
