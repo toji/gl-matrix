@@ -303,4 +303,226 @@ describe("mat4", function() {
             it("should return matA", function() { expect(result).toBe(matA); });
         });
     });
+    
+    describe("rotate", function() {
+        var rad = Math.PI * 0.5;
+        var axis = [1, 0, 0];
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat4.rotate(out, matA, rad, axis); });
+            
+            it("should place values into out", function() {
+                expect(out).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, Math.cos(rad), Math.sin(rad), 0,
+                    0, -Math.sin(rad), Math.cos(rad), 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    1, 2, 3, 1
+                ]);
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat4.rotate(matA, matA, rad, axis); });
+            
+            it("should place values into matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, Math.cos(rad), Math.sin(rad), 0,
+                    0, -Math.sin(rad), Math.cos(rad), 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("rotateX", function() {
+        var rad = Math.PI * 0.5;
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat4.rotateX(out, matA, rad); });
+            
+            it("should place values into out", function() {
+                expect(out).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, Math.cos(rad), Math.sin(rad), 0,
+                    0, -Math.sin(rad), Math.cos(rad), 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    1, 2, 3, 1
+                ]);
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat4.rotateX(matA, matA, rad); });
+            
+            it("should place values into matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, Math.cos(rad), Math.sin(rad), 0,
+                    0, -Math.sin(rad), Math.cos(rad), 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("rotateY", function() {
+        var rad = Math.PI * 0.5;
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat4.rotateY(out, matA, rad); });
+            
+            it("should place values into out", function() {
+                expect(out).toBeEqualish([
+                    Math.cos(rad), 0, -Math.sin(rad), 0,
+                    0, 1, 0, 0,
+                    Math.sin(rad), 0, Math.cos(rad), 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    1, 2, 3, 1
+                ]);
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat4.rotateY(matA, matA, rad); });
+            
+            it("should place values into matA", function() {
+                expect(matA).toBeEqualish([
+                    Math.cos(rad), 0, -Math.sin(rad), 0,
+                    0, 1, 0, 0,
+                    Math.sin(rad), 0, Math.cos(rad), 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("rotateZ", function() {
+        var rad = Math.PI * 0.5;
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat4.rotateZ(out, matA, rad); });
+            
+            it("should place values into out", function() {
+                expect(out).toBeEqualish([
+                    Math.cos(rad), Math.sin(rad), 0, 0,
+                    -Math.sin(rad), Math.cos(rad), 0, 0,
+                    0, 0, 1, 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    1, 2, 3, 1
+                ]);
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat4.rotateZ(matA, matA, rad); });
+            
+            it("should place values into matA", function() {
+                expect(matA).toBeEqualish([
+                    Math.cos(rad), Math.sin(rad), 0, 0,
+                    -Math.sin(rad), Math.cos(rad), 0, 0,
+                    0, 0, 1, 0,
+                    1, 2, 3, 1
+                ]);
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    // TODO: fromRotationTranslation
+
+    describe("frustum", function() {
+        beforeEach(function() { result = mat4.frustum(out, -1, 1, -1, 1, -1, 1); });
+        it("should place values into out", function() { expect(result).toBeEqualish([
+                -1, 0, 0, 0,
+                0, -1, 0, 0,
+                0, 0, 0, -1,
+                0, 0, 1, 0
+            ]); 
+        });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
+    describe("perspective", function() {
+        var fovy = Math.PI * 0.5;
+        beforeEach(function() { result = mat4.perspective(out, fovy, 1, 0, 1); });
+        it("should place values into out", function() { expect(result).toBeEqualish([
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, -1, -1,
+                0, 0, 0, 0
+            ]); 
+        });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
+    describe("ortho", function() {
+        beforeEach(function() { result = mat4.ortho(out, -1, 1, -1, 1, -1, 1); });
+        it("should place values into out", function() { expect(result).toBeEqualish([
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, -1, 0,
+                0, 0, 0, 1
+            ]); 
+        });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
+    describe("lookAt", function() {
+        var eye = [0, 0, 1];
+        var center = [0, 0, -1];
+        var up = [0, 1, 0];
+
+        beforeEach(function() { result = mat4.lookAt(out, eye, center, up); });
+        it("should place values into out", function() { expect(result).toBeEqualish([
+                1, 0, 0, 0,
+                0, 1, 0, 0,
+                0, 0, 1, 0,
+                0, 0, -1, 1
+            ]); 
+        });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
+    describe("str", function() {
+        beforeEach(function() { result = mat4.str(matA); });
+        
+        it("should return a string representation of the matrix", function() { expect(result).toEqual("mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 2, 3, 1)"); });
+    });
 });

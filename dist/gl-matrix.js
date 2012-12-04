@@ -2113,6 +2113,7 @@ mat4.rotate = function (out, a, rad, axis) {
         out[14] = a[14];
         out[15] = a[15];
     }
+    return out;
 };
 
 /**
@@ -2198,7 +2199,7 @@ mat4.rotateY = function (out, a, rad) {
     out[9] = a01 * s + a21 * c;
     out[10] = a02 * s + a22 * c;
     out[11] = a03 * s + a23 * c;
-    return dest;
+    return out;
 };
 
 /**
@@ -2212,14 +2213,14 @@ mat4.rotateY = function (out, a, rad) {
 mat4.rotateZ = function (out, a, rad) {
     var s = Math.sin(rad),
         c = Math.cos(rad),
-        a00 = mat[0],
-        a01 = mat[1],
-        a02 = mat[2],
-        a03 = mat[3],
-        a10 = mat[4],
-        a11 = mat[5],
-        a12 = mat[6],
-        a13 = mat[7];
+        a00 = a[0],
+        a01 = a[1],
+        a02 = a[2],
+        a03 = a[3],
+        a10 = a[4],
+        a11 = a[5],
+        a12 = a[6],
+        a13 = a[7];
 
     if (a !== out) { // If the source and destination differ, copy the unchanged last row
         out[8]  = a[8];
@@ -2241,8 +2242,7 @@ mat4.rotateZ = function (out, a, rad) {
     out[5] = a01 * -s + a11 * c;
     out[6] = a02 * -s + a12 * c;
     out[7] = a03 * -s + a13 * c;
-
-    return dest;
+    return out;
 };
 
 /**
@@ -2336,16 +2336,32 @@ mat4.frustum = function (out, left, right, bottom, top, near, far) {
  * Generates a perspective projection matrix with the given bounds
  *
  * @param {mat4} out mat4 frustum matrix will be written into
- * @param {number} fovy Vertical field of view
+ * @param {number} fovy Vertical field of view in radians
  * @param {number} aspect Aspect ratio. typically viewport width/height
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
  * @returns {mat4} out
  */
 mat4.perspective = function (out, fovy, aspect, near, far) {
-    var top = near * Math.tan(fovy * Math.PI / 360.0),
-        right = top * aspect;
-    return mat4.frustum(out, -right, right, -top, top, near, far);
+    var f = 1.0 / Math.tan(fovy / 2),
+        nf = near - far;
+    out[0] = f / aspect;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = f;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[10] = (far + near) / nf;
+    out[11] = -1;
+    out[12] = 0;
+    out[13] = 0;
+    out[14] = (2 * far * near) / nf;
+    out[15] = 0;
+    return out;
 };
 
 /**
