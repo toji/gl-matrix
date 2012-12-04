@@ -1821,9 +1821,9 @@ mat4.identity = function(out) {
 mat4.transpose = function(out, a) {
     // If we are transposing ourselves we can skip a few steps but have to cache some values
     if (out === a) {
-        var a01 = mat[1], a02 = mat[2], a03 = mat[3],
-            a12 = mat[6], a13 = mat[7],
-            a23 = mat[11];
+        var a01 = a[1], a02 = a[2], a03 = a[3],
+            a12 = a[6], a13 = a[7],
+            a23 = a[11];
 
         out[1] = a[4];
         out[2] = a[8];
@@ -1920,9 +1920,9 @@ mat4.invert = function(out, a) {
  * @param {mat4} a the source matrix
  * @returns {mat4} out
  */
-mat4.adjoint = function(out, a) {
-    // TODO!
-};
+// TODO
+/*mat4.adjoint = function(out, a) {
+};*/
 
 /**
  * Calculates the determinant of a mat4
@@ -2210,8 +2210,8 @@ mat4.rotateY = function (out, a, rad) {
  * @returns {mat4} out
  */
 mat4.rotateZ = function (out, a, rad) {
-    var s = Math.sin(angle),
-        c = Math.cos(angle),
+    var s = Math.sin(rad),
+        c = Math.cos(rad),
         a00 = mat[0],
         a01 = mat[1],
         a02 = mat[2],
