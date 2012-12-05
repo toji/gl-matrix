@@ -225,17 +225,6 @@ mat4.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat4
- *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
- * @returns {mat4} out
- */
-// TODO
-/*mat4.adjoint = function(out, a) {
-};*/
-
-/**
  * Calculates the determinant of a mat4
  *
  * @param {mat4} a the source matrix

@@ -24,13 +24,13 @@ describe("mat3", function() {
     var out, matA, matB, identity, result;
 
     beforeEach(function() {
-        matA = [1, 2, 3,
-                4, 5, 6,
-                7, 8, 9];
+        matA = [1, 0, 0,
+                0, 1, 0,
+                1, 2, 1];
 
-        matB = [10, 11, 12,
-                13, 14, 15,
-                16, 17, 18];
+        matB = [1, 0, 0,
+                0, 1, 0,
+                3, 4, 1];
 
         out =  [0, 0, 0,
                 0, 0, 0,
@@ -63,4 +63,156 @@ describe("mat3", function() {
         it("should return out", function() { expect(result).toBe(out); });
     });
 
+    describe("transpose", function() {
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.transpose(out, matA); });
+            
+            it("should place values into out", function() { 
+                expect(out).toBeEqualish([
+                    1, 0, 1,
+                    0, 1, 2,
+                    0, 0, 1
+                ]); 
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    1, 2, 1
+                ]); 
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.transpose(matA, matA); });
+            
+            it("should place values into matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 1,
+                    0, 1, 2,
+                    0, 0, 1
+                ]); 
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("invert", function() {
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.invert(out, matA); });
+            
+            it("should place values into out", function() { 
+                expect(out).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    -1, -2, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    1, 2, 1
+                ]); 
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.invert(matA, matA); });
+            
+            it("should place values into matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    -1, -2, 1
+                ]); 
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("determinant", function() {
+        beforeEach(function() { result = mat3.determinant(matA); });
+        
+        it("should return the determinant", function() { expect(result).toEqual(1); });
+    });
+
+    describe("multiply", function() {
+        it("should have an alias called 'mul'", function() { expect(mat3.mul).toEqual(mat3.multiply); });
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.multiply(out, matA, matB); });
+            
+            it("should place values into out", function() { 
+                expect(out).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    4, 6, 1
+                ]); 
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    1, 2, 1
+                ]); 
+            });
+            it("should not modify matB", function() {
+                expect(matB).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    3, 4, 1
+                ]);
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.multiply(matA, matA, matB); });
+            
+            it("should place values into matA", function() {
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    4, 6, 1
+                ]);
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() {
+                expect(matB).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    3, 4, 1
+                ]);
+            });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat3.multiply(matB, matA, matB); });
+            
+            it("should place values into matB", function() { 
+                expect(matB).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    4, 6, 1
+                ]); 
+            });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    1, 2, 1
+                ]);
+            });
+        });
+    });
+
+    describe("str", function() {
+        beforeEach(function() { result = mat3.str(matA); });
+        
+        it("should return a string representation of the matrix", function() { expect(result).toEqual("mat3(1, 0, 0, 0, 1, 0, 1, 2, 1)"); });
+    });
 });
