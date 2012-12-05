@@ -133,6 +133,41 @@ describe("mat3", function() {
         });
     });
 
+    describe("adjoint", function() {
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.adjoint(out, matA); });
+            
+            it("should place values into out", function() { 
+                expect(out).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    -1, -2, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    1, 2, 1
+                ]); 
+            });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.adjoint(matA, matA); });
+            
+            it("should place values into matA", function() { 
+                expect(matA).toBeEqualish([
+                    1, 0, 0,
+                    0, 1, 0,
+                    -1, -2, 1
+                ]); 
+            });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
     describe("determinant", function() {
         beforeEach(function() { result = mat3.determinant(matA); });
         
