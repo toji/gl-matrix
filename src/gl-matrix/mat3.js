@@ -249,6 +249,6 @@ mat3.str = function (a) {
                     a[6] + ', ' + a[7] + ', ' + a[8] + ')';
 };
 
-if(exports) {
+if(typeof(exports) !== 'undefined') {
     exports.mat3 = mat3;
 }

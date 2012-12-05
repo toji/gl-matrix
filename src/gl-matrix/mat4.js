@@ -829,6 +829,6 @@ mat4.str = function (a) {
                     a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 };
 
-if(exports) {
+if(typeof(exports) !== 'undefined') {
     exports.mat4 = mat4;
 }
