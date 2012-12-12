@@ -33,8 +33,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
   var shim = {};
   if (typeof(exports) === 'undefined') {
-    // gl-matrix lives in a browser, define its namespaces in global
-    shim.exports = window;
+    if(typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+      shim.exports = {};
+      define(function() {
+        return shim.exports;
+      });
+    } else {
+      // gl-matrix lives in a browser, define its namespaces in global
+      shim.exports = window;
+    }    
   }
   else {
     // gl-matrix lives in commonjs, define its namespaces in exports
@@ -812,9 +819,9 @@ vec3.transformQuat = function(out, a, q) {
  * Perform some operation over an array of vec3s.
  *
  * @param {Array} a the array of vectors to iterate over
- * @param {Number} stride Number of elements between the start of each vec3
+ * @param {Number} stride Number of elements between the start of each vec3. If 0 assumes tightly packed
  * @param {Number} offset Number of elements to skip at the beginning of the array
- * @param {Number} count Number of vec3s to iterate over, if 0 iterates over entire array
+ * @param {Number} count Number of vec3s to iterate over. If 0 iterates over entire array
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
