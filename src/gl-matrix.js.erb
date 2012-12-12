@@ -32,8 +32,15 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
   var shim = {};
   if (typeof(exports) === 'undefined') {
-    // gl-matrix lives in a browser, define its namespaces in global
-    shim.exports = window;
+    if(typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+      shim.exports = {};
+      define(function() {
+        return shim.exports;
+      });
+    } else {
+      // gl-matrix lives in a browser, define its namespaces in global
+      shim.exports = window;
+    }    
   }
   else {
     // gl-matrix lives in commonjs, define its namespaces in exports
