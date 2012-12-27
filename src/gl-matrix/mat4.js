@@ -33,6 +33,10 @@ var mat4Identity = new Float32Array([
     0, 0, 0, 1
 ]);
 
+if(!GLMAT_EPSILON) {
+    var GLMAT_EPSILON = 0.000001;
+}
+
 /**
  * Creates a new identity mat4
  *
@@ -197,7 +201,7 @@ mat4.invert = function(out, a) {
         b11 = a22 * a33 - a23 * a32,
 
         // Calculate the determinant
-        det = (b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06);
+        det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 
     if (!det) { 
         return null; 
@@ -205,20 +209,20 @@ mat4.invert = function(out, a) {
     det = 1.0 / det;
 
     out[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
-    out[1] = (-a01 * b11 + a02 * b10 - a03 * b09) * det;
+    out[1] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
     out[2] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
-    out[3] = (-a21 * b05 + a22 * b04 - a23 * b03) * det;
-    out[4] = (-a10 * b11 + a12 * b08 - a13 * b07) * det;
+    out[3] = (a22 * b04 - a21 * b05 - a23 * b03) * det;
+    out[4] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
     out[5] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
-    out[6] = (-a30 * b05 + a32 * b02 - a33 * b01) * det;
+    out[6] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
     out[7] = (a20 * b05 - a22 * b02 + a23 * b01) * det;
     out[8] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
-    out[9] = (-a00 * b10 + a01 * b08 - a03 * b06) * det;
+    out[9] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
     out[10] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
-    out[11] = (-a20 * b04 + a21 * b02 - a23 * b00) * det;
-    out[12] = (-a10 * b09 + a11 * b07 - a12 * b06) * det;
+    out[11] = (a21 * b02 - a20 * b04 - a23 * b00) * det;
+    out[12] = (a11 * b07 - a10 * b09 - a12 * b06) * det;
     out[13] = (a00 * b09 - a01 * b07 + a02 * b06) * det;
-    out[14] = (-a30 * b03 + a31 * b01 - a32 * b00) * det;
+    out[14] = (a31 * b01 - a30 * b03 - a32 * b00) * det;
     out[15] = (a20 * b03 - a21 * b01 + a22 * b00) * det;
 
     return out;
@@ -266,14 +270,23 @@ mat4.determinant = function (a) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
-        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
+        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15],
 
-    return (a30 * a21 * a12 * a03 - a20 * a31 * a12 * a03 - a30 * a11 * a22 * a03 + a10 * a31 * a22 * a03 +
-            a20 * a11 * a32 * a03 - a10 * a21 * a32 * a03 - a30 * a21 * a02 * a13 + a20 * a31 * a02 * a13 +
-            a30 * a01 * a22 * a13 - a00 * a31 * a22 * a13 - a20 * a01 * a32 * a13 + a00 * a21 * a32 * a13 +
-            a30 * a11 * a02 * a23 - a10 * a31 * a02 * a23 - a30 * a01 * a12 * a23 + a00 * a31 * a12 * a23 +
-            a10 * a01 * a32 * a23 - a00 * a11 * a32 * a23 - a20 * a11 * a02 * a33 + a10 * a21 * a02 * a33 +
-            a20 * a01 * a12 * a33 - a00 * a21 * a12 * a33 - a10 * a01 * a22 * a33 + a00 * a11 * a22 * a33);
+        b00 = a00 * a11 - a01 * a10,
+        b01 = a00 * a12 - a02 * a10,
+        b02 = a00 * a13 - a03 * a10,
+        b03 = a01 * a12 - a02 * a11,
+        b04 = a01 * a13 - a03 * a11,
+        b05 = a02 * a13 - a03 * a12,
+        b06 = a20 * a31 - a21 * a30,
+        b07 = a20 * a32 - a22 * a30,
+        b08 = a20 * a33 - a23 * a30,
+        b09 = a21 * a32 - a22 * a31,
+        b10 = a21 * a33 - a23 * a31,
+        b11 = a22 * a33 - a23 * a32;
+
+    // Calculate the determinant
+    return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 };
 
 /**
@@ -321,7 +334,7 @@ mat4.mul = mat4.multiply = function (out, a, b) {
  * Translate a mat4 by the given vector
  *
  * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to rotate
+ * @param {mat4} a the matrix to translate
  * @param {vec3} v vector to translate by
  * @returns {mat4} out
  */
@@ -358,7 +371,7 @@ mat4.translate = function (out, a, v) {
  * Scales the mat4 by the dimensions in the given vec3
  *
  * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to rotate
+ * @param {mat4} a the matrix to scale
  * @param {vec3} v the vec3 to scale the matrix by
  * @returns {mat4} out
  **/
@@ -404,13 +417,12 @@ mat4.rotate = function (out, a, rad, axis) {
         b10, b11, b12,
         b20, b21, b22;
 
-    if (!len) { return null; }
-    if (len !== 1) {
-        len = 1 / len;
-        x *= len;
-        y *= len;
-        z *= len;
-    }
+    if (Math.abs(len) < GLMAT_EPSILON) { return null; }
+    
+    len = 1 / len;
+    x *= len;
+    y *= len;
+    z *= len;
 
     s = Math.sin(rad);
     c = Math.cos(rad);
@@ -484,10 +496,10 @@ mat4.rotateX = function (out, a, rad) {
     out[5] = a11 * c + a21 * s;
     out[6] = a12 * c + a22 * s;
     out[7] = a13 * c + a23 * s;
-    out[8] = a10 * -s + a20 * c;
-    out[9] = a11 * -s + a21 * c;
-    out[10] = a12 * -s + a22 * c;
-    out[11] = a13 * -s + a23 * c;
+    out[8] = a20 * c - a10 * s;
+    out[9] = a21 * c - a11 * s;
+    out[10] = a22 * c - a12 * s;
+    out[11] = a23 * c - a13 * s;
     return out;
 };
 
@@ -523,10 +535,10 @@ mat4.rotateY = function (out, a, rad) {
     }
 
     // Perform axis-specific matrix multiplication
-    out[0] = a00 * c + a20 * -s;
-    out[1] = a01 * c + a21 * -s;
-    out[2] = a02 * c + a22 * -s;
-    out[3] = a03 * c + a23 * -s;
+    out[0] = a00 * c - a20 * s;
+    out[1] = a01 * c - a21 * s;
+    out[2] = a02 * c - a22 * s;
+    out[3] = a03 * c - a23 * s;
     out[8] = a00 * s + a20 * c;
     out[9] = a01 * s + a21 * c;
     out[10] = a02 * s + a22 * c;
@@ -570,10 +582,10 @@ mat4.rotateZ = function (out, a, rad) {
     out[1] = a01 * c + a11 * s;
     out[2] = a02 * c + a12 * s;
     out[3] = a03 * c + a13 * s;
-    out[4] = a00 * -s + a10 * c;
-    out[5] = a01 * -s + a11 * c;
-    out[6] = a02 * -s + a12 * c;
-    out[7] = a03 * -s + a13 * c;
+    out[4] = a10 * c - a00 * s;
+    out[5] = a11 * c - a01 * s;
+    out[6] = a12 * c - a02 * s;
+    out[7] = a13 * c - a03 * s;
     return out;
 };
 
@@ -642,24 +654,24 @@ mat4.fromRotationTranslation = function (out, q, v) {
  * @returns {mat4} out
  */
 mat4.frustum = function (out, left, right, bottom, top, near, far) {
-    var rl = (right - left),
-        tb = (top - bottom),
-        fn = (far - near);
-    out[0] = (near * 2) / rl;
+    var rl = 1 / (right - left),
+        tb = 1 / (top - bottom),
+        nf = 1 / (near - far);
+    out[0] = (near * 2) * rl;
     out[1] = 0;
     out[2] = 0;
     out[3] = 0;
     out[4] = 0;
-    out[5] = (near * 2) / tb;
+    out[5] = (near * 2) * tb;
     out[6] = 0;
     out[7] = 0;
-    out[8] = (right + left) / rl;
-    out[9] = (top + bottom) / tb;
-    out[10] = -(far + near) / fn;
+    out[8] = (right + left) * rl;
+    out[9] = (top + bottom) * tb;
+    out[10] = (far + near) * nf;
     out[11] = -1;
     out[12] = 0;
     out[13] = 0;
-    out[14] = -(far * near * 2) / fn;
+    out[14] = (far * near * 2) * nf;
     out[15] = 0;
     return out;
 };
@@ -676,7 +688,7 @@ mat4.frustum = function (out, left, right, bottom, top, near, far) {
  */
 mat4.perspective = function (out, fovy, aspect, near, far) {
     var f = 1.0 / Math.tan(fovy / 2),
-        nf = near - far;
+        nf = 1 / (near - far);
     out[0] = f / aspect;
     out[1] = 0;
     out[2] = 0;
@@ -687,11 +699,11 @@ mat4.perspective = function (out, fovy, aspect, near, far) {
     out[7] = 0;
     out[8] = 0;
     out[9] = 0;
-    out[10] = (far + near) / nf;
+    out[10] = (far + near) * nf;
     out[11] = -1;
     out[12] = 0;
     out[13] = 0;
-    out[14] = (2 * far * near) / nf;
+    out[14] = (2 * far * near) * nf;
     out[15] = 0;
     return out;
 };
@@ -709,24 +721,24 @@ mat4.perspective = function (out, fovy, aspect, near, far) {
  * @returns {mat4} out
  */
 mat4.ortho = function (out, left, right, bottom, top, near, far) {
-    var rl = (right - left),
-        tb = (top - bottom),
-        fn = (far - near);
-    out[0] = 2 / rl;
+    var lr = 1 / (left - right),
+        bt = 1 / (bottom - top),
+        nf = 1 / (near - far);
+    out[0] = -2 * lr;
     out[1] = 0;
     out[2] = 0;
     out[3] = 0;
     out[4] = 0;
-    out[5] = 2 / tb;
+    out[5] = -2 * bt;
     out[6] = 0;
     out[7] = 0;
     out[8] = 0;
     out[9] = 0;
-    out[10] = -2 / fn;
+    out[10] = 2 * nf;
     out[11] = 0;
-    out[12] = -(left + right) / rl;
-    out[13] = -(top + bottom) / tb;
-    out[14] = -(far + near) / fn;
+    out[12] = (left + right) * lr;
+    out[13] = (top + bottom) * bt;
+    out[14] = (far + near) * nf;
     out[15] = 1;
     return out;
 };
@@ -752,7 +764,9 @@ mat4.lookAt = function (out, eye, center, up) {
         centery = center[1],
         centerz = center[2];
 
-    if (eyex === centerx && eyey === centery && eyez === centerz) {
+    if (Math.abs(eyex - centerx) < GLMAT_EPSILON &&
+        Math.abs(eyey - centery) < GLMAT_EPSILON &&
+        Math.abs(eyez - centerz) < GLMAT_EPSILON) {
         return mat4.identity(out);
     }
 

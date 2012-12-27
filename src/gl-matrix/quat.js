@@ -28,6 +28,10 @@ var quat = {};
 
 var quatIdentity = new Float32Array([0, 0, 0, 1]);
 
+if(!GLMAT_EPSILON) {
+    var GLMAT_EPSILON = 0.000001;
+}
+
 /**
  * Creates a new identity quat
  *
