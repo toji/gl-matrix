@@ -380,6 +380,102 @@ describe("vec2", function() {
         });
     });
 
+    describe("forEach", function() {
+        var vecArray;
+
+        beforeEach(function() {
+            vecArray = [
+                1, 2,
+                3, 4,
+                0, 0
+            ];
+        });
+
+        describe("when performing operations that take no extra arguments", function() {
+            beforeEach(function() { result = vec2.forEach(vecArray, 0, 0, 0, vec2.normalize); });
+            
+            it("should update all values", function() { 
+                expect(vecArray).toBeEqualish([
+                    0.447214, 0.894427,
+                    0.6, 0.8,
+                    0, 0
+                ]); 
+            });
+            it("should return vecArray", function() { expect(result).toBe(vecArray); });
+        });
+
+        describe("when performing operations that takes one extra arguments", function() {
+            beforeEach(function() { result = vec2.forEach(vecArray, 0, 0, 0, vec2.add, vecA); });
+            
+            it("should update all values", function() {
+                expect(vecArray).toBeEqualish([
+                    2, 4,
+                    4, 6,
+                    1, 2
+                ]); 
+            });
+            it("should return vecArray", function() { expect(result).toBe(vecArray); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when specifying an offset", function() {
+            beforeEach(function() { result = vec2.forEach(vecArray, 0, 2, 0, vec2.add, vecA); });
+            
+            it("should update all values except the first vector", function() {
+                expect(vecArray).toBeEqualish([
+                    1, 2,
+                    4, 6,
+                    1, 2
+                ]); 
+            });
+            it("should return vecArray", function() { expect(result).toBe(vecArray); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when specifying a count", function() {
+            beforeEach(function() { result = vec2.forEach(vecArray, 0, 0, 2, vec2.add, vecA); });
+            
+            it("should update all values except the last vector", function() {
+                expect(vecArray).toBeEqualish([
+                    2, 4,
+                    4, 6,
+                    0, 0
+                ]); 
+            });
+            it("should return vecArray", function() { expect(result).toBe(vecArray); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when specifying a stride", function() {
+            beforeEach(function() { result = vec2.forEach(vecArray, 4, 0, 0, vec2.add, vecA); });
+            
+            it("should update all values except the second vector", function() {
+                expect(vecArray).toBeEqualish([
+                    2, 4,
+                    3, 4,
+                    1, 2
+                ]); 
+            });
+            it("should return vecArray", function() { expect(result).toBe(vecArray); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when calling a function that does not modify the out variable", function() {
+            beforeEach(function() { 
+                result = vec2.forEach(vecArray, 0, 0, 0, function(out, vec) {}); 
+            });
+            
+            it("values should remain unchanged", function() {
+                expect(vecArray).toBeEqualish([
+                    1, 2,
+                    3, 4,
+                    0, 0,
+                ]); 
+            });
+            it("should return vecArray", function() { expect(result).toBe(vecArray); });
+        });
+    });
+
     describe("str", function() {
         beforeEach(function() { result = vec2.str(vecA); });
         

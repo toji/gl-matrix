@@ -401,11 +401,15 @@ vec2.forEach = (function() {
         if(!stride) {
             stride = 2;
         }
+
+        if(!offset) {
+            offset = 0;
+        }
         
         if(count) {
-            l = Math.min(count * stride, a.length - offset);
+            l = Math.min((count * stride) + offset, a.length);
         } else {
-            l = a.length - offset;
+            l = a.length;
         }
 
         for(i = offset; i < l; i += stride) {
@@ -834,11 +838,15 @@ vec3.forEach = (function() {
         if(!stride) {
             stride = 3;
         }
+
+        if(!offset) {
+            offset = 0;
+        }
         
         if(count) {
-            l = Math.min(count * stride, a.length - offset);
+            l = Math.min((count * stride) + offset, a.length);
         } else {
-            l = a.length - offset;
+            l = a.length;
         }
 
         for(i = offset; i < l; i += stride) {
@@ -1270,11 +1278,15 @@ vec4.forEach = (function() {
         if(!stride) {
             stride = 4;
         }
+
+        if(!offset) {
+            offset = 0;
+        }
         
         if(count) {
-            l = Math.min(count * stride, a.length - offset);
+            l = Math.min((count * stride) + offset, a.length);
         } else {
-            l = a.length - offset;
+            l = a.length;
         }
 
         for(i = offset; i < l; i += stride) {
