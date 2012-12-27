@@ -2431,7 +2431,7 @@ mat4.fromRotationTranslation = function (out, q, v) {
     out[14] = v[2];
     out[15] = 1;
     
-    return dest;
+    return out;
 };
 
 /**
@@ -2932,8 +2932,8 @@ quat.slerp = function (out, a, b, t) {
         return out;
     }
 
-    ratioA = Math.sin((1 - slerp) * halfTheta) / sinHalfTheta;
-    ratioB = Math.sin(slerp * halfTheta) / sinHalfTheta;
+    ratioA = Math.sin((1 - t) * halfTheta) / sinHalfTheta;
+    ratioB = Math.sin(t * halfTheta) / sinHalfTheta;
 
     out[0] = (ax * ratioA + bx * ratioB);
     out[1] = (ay * ratioA + by * ratioB);
