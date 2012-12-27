@@ -626,7 +626,7 @@ mat4.fromRotationTranslation = function (out, q, v) {
     out[14] = v[2];
     out[15] = 1;
     
-    return dest;
+    return out;
 };
 
 /**
