@@ -95,6 +95,7 @@ div.sectionTitle { margin-bottom: 8px; }
 	padding: 4px;
 	border-bottom: 1px #7F8FB1 solid;
 	border-right: 1px #7F8FB1 solid;
+	border-left: 1px #7F8FB1 solid;
 }
 
 /*col#summaryAttributes {}*/
