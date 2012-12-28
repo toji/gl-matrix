@@ -1,54 +1,63 @@
 glMatrix
 =======================
 
-With the the increasing popularity of WebGL comes the need for javascript libraries that 
-handle matrix and vector operations. glMatrix is designed to handle those operations at 
-stupidly fast speeds!
+Javascript has evolved into a lanugage capable of handling realtime 3D graphics, 
+via WebGL, and computationally intensive tasks such as physics simulations.
+These types of applications demand high performance vector and matrix math,
+which is something that Javascript doesn't provide by default.
+glMatrix to the rescue!
 
-General Matrix Operations
--------------------------
-Most matrix operations share a similar format:
+glMatrix is designed to perform vector and matrix operations stupidly fast! By
+hand-tuning each function for maximum performance and encouraging efficient
+usage patterns through API conventions, glMatrix will help you get the most out
+of your browsers Javascript engine.
 
-    mat4.operation(srcMatrix, otherOperands, destMatrix (optional));
-
-For all functions following this format the operation will be applied to the values in srcMatrix and the result will be written into destMatrix, which will also be returned. If destMatrix is not specified the result will be written into srcMatrix, if destMatrix is specified srcMatrix will not be altered.
-
-Any 4x4 matrix functions expect sequences at least 16 elements in length as inputs when taking a matrix.
-
-Function Documentation
+Documentation
 ----------------------
-Documentation for the individual functions can be found [here](http://toji.github.com/gl-matrix/doc/)
+Documentation for all glMatrix functions can be found [here](http://toji.github.com/gl-matrix/doc/)
 
-Examples
---------
-Creating a perspective matrix
+What's new in 2.0?
+-------------------------
+glMatrix 2.0 is the result of a lot of excellent feedback from the community,
+and features:
 
-    var persp = mat4.create();
-    mat4.perspective(45, 4/3, 1, 100, persp);
+ - Revamped and consistent API (not backward compatible with 1.x, sorry!)
+ - New functions for each type, based on request.
+ - New array operations: vec(2/3/4).forEach
+ - Even more optimizations!
+ - A cleaner code base, broken up by type.
+ - A more complete unit testing suite.
 
-Performing multiple transforms on a matrix
+Looking for an older version?
+-----------------------------
+You can download previous versions of glMatrix [here](https://github.com/toji/gl-matrix/tags)
 
-    var modelView = mat4.create();
-    
-    mat4.identity(modelView); // Set to identity
-    mat4.translate(modelView, [0, 0, -10]); // Translate back 10 units
-    mat4.rotate(modelView, Math.PI/2, [0, 1, 0]); // Rotate 90 degrees around the Y axis
-    mat4.scale(modelView, [2, 2, 2]); // Scale by 200%
-    
-Matricies created with glMatrix don't need to undergo any transformation to be used with WebGL. They can be passed directly
+A note about Matrix formatting
+------------------------------
+glMatrix is modeled after the needs of WebGL, which in turn uses matrix
+conventions set by [OpenGL](http://www.opengl.org/archives/resources/faq/technical/transformations.htm).
+Specifically, a 4x4 matrix is an array of 16 contiguous floats with the 13th,
+14th, and 15th elements representing the X, Y, and Z, translation components.
 
-    gl.uniformMatrix4fv(modelViewUniform, false, modelView);
+This may lead to some confusion when referencing OpenGL documentation, however,
+which represents out all matricies in column-major format. This means that while
+in code a matrix may be typed out as:
 
-Updating a destination matrix
+    [1, 0, 0, 0,
+     0, 1, 0, 0,
+     0, 0, 1, 0,
+     x, y, z, 0]
 
-    var modelViewPersp = mat4.create();
+The same matrix in the [OpenGL documentation](http://www.opengl.org/sdk/docs/man2/xhtml/glTranslate.xml)
+is written as:
 
-    mat4.multiply(modelView, persp, modelViewPersp); // Sets modelViewPersp to modelView * persp 
+    1 0 0 x
+    0 1 0 y
+    0 0 1 z
+    0 0 0 0
 
-Tranforming a point
+Please rest assured, however, that they are the same thing! This is not unique
+to glMatrix, either, as OpenGL developers have long been confused by the
+apparent lack of consistency between the memory layout and the documentation.
 
-    var cameraPos = [0, 0, 0];
-    var newPos = [0, 0, 0];
-
-    mat4.multiplyVec3(modelView, cameraPos); // Result is written into cameraPos
-    mat4.multiplyVec3(modelView, cameraPos, newPos); // Result is written into newPos
+Sorry about that, but there's not much I can do about it.
