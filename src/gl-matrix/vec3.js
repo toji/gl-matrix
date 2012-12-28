@@ -122,12 +122,18 @@ vec3.add = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {vec3} out
  */
-vec3.sub = vec3.subtract = function(out, a, b) {
+vec3.subtract = function(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
     return out;
 };
+
+/**
+ * Alias for {@link vec3.subtract}
+ * @function
+ */
+vec3.sub = vec3.subtract;
 
 /**
  * Multiplies two vec3's
@@ -137,12 +143,18 @@ vec3.sub = vec3.subtract = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {vec3} out
  */
-vec3.mul = vec3.multiply = function(out, a, b) {
+vec3.multiply = function(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     out[2] = a[2] * b[2];
     return out;
 };
+
+/**
+ * Alias for {@link vec3.multiply}
+ * @function
+ */
+vec3.mul = vec3.multiply;
 
 /**
  * Divides two vec3's
@@ -152,12 +164,18 @@ vec3.mul = vec3.multiply = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {vec3} out
  */
-vec3.div = vec3.divide = function(out, a, b) {
+vec3.divide = function(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     out[2] = a[2] / b[2];
     return out;
 };
+
+/**
+ * Alias for {@link vec3.divide}
+ * @function
+ */
+vec3.div = vec3.divide;
 
 /**
  * Returns the minimum of two vec3's
@@ -211,12 +229,18 @@ vec3.scale = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {Number} distance between a and b
  */
-vec3.dist = vec3.distance = function(a, b) {
+vec3.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1],
         z = b[2] - a[2];
     return Math.sqrt(x*x + y*y + z*z);
 };
+
+/**
+ * Alias for {@link vec3.distance}
+ * @function
+ */
+vec3.dist = vec3.distance;
 
 /**
  * Calculates the squared euclidian distance between two vec3's
@@ -225,7 +249,7 @@ vec3.dist = vec3.distance = function(a, b) {
  * @param {vec3} b the second operand
  * @returns {Number} squared distance between a and b
  */
-vec3.sqrDist = vec3.squaredDistance = function(a, b) {
+vec3.squaredDistance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1],
         z = b[2] - a[2];
@@ -233,12 +257,18 @@ vec3.sqrDist = vec3.squaredDistance = function(a, b) {
 };
 
 /**
+ * Alias for {@link vec3.squaredDistance}
+ * @function
+ */
+vec3.sqrDist = vec3.squaredDistance;
+
+/**
  * Caclulates the length of a vec3
  *
  * @param {vec3} a vector to calculate length of
  * @returns {Number} length of a
  */
-vec3.len = vec3.length = function (a) {
+vec3.length = function (a) {
     var x = a[0],
         y = a[1],
         z = a[2];
@@ -246,17 +276,29 @@ vec3.len = vec3.length = function (a) {
 };
 
 /**
+ * Alias for {@link vec3.length}
+ * @function
+ */
+vec3.len = vec3.length;
+
+/**
  * Caclulates the squared length of a vec3
  *
  * @param {vec3} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-vec3.sqrLen = vec3.squaredLength = function (a) {
+vec3.squaredLength = function (a) {
     var x = a[0],
         y = a[1],
         z = a[2];
     return x*x + y*y + z*z;
 };
+
+/**
+ * Alias for {@link vec3.squaredLength}
+ * @function
+ */
+vec3.sqrLen = vec3.squaredLength;
 
 /**
  * Negates the components of a vec3
@@ -394,6 +436,7 @@ vec3.transformQuat = function(out, a, q) {
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
+ * @function
  */
 vec3.forEach = (function() {
     var vec = new Float32Array(3);

@@ -173,7 +173,7 @@ mat2.determinant = function (a) {
  * @param {mat2} b the second operand
  * @returns {mat2} out
  */
-mat2.mul = mat2.multiply = function (out, a, b) {
+mat2.multiply = function (out, a, b) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
     var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
     out[0] = a0 * b0 + a1 * b2;
@@ -182,6 +182,12 @@ mat2.mul = mat2.multiply = function (out, a, b) {
     out[3] = a2 * b1 + a3 * b3;
     return out;
 };
+
+/**
+ * Alias for {@link mat2.multiply}
+ * @function
+ */
+mat2.mul = mat2.multiply;
 
 /**
  * Rotates a mat2 by the given angle

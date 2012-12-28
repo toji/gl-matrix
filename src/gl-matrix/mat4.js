@@ -297,7 +297,7 @@ mat4.determinant = function (a) {
  * @param {mat4} b the second operand
  * @returns {mat4} out
  */
-mat4.mul = mat4.multiply = function (out, a, b) {
+mat4.multiply = function (out, a, b) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -329,6 +329,12 @@ mat4.mul = mat4.multiply = function (out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
+
+/**
+ * Alias for {@link mat4.multiply}
+ * @function
+ */
+mat4.mul = mat4.multiply;
 
 /**
  * Translate a mat4 by the given vector

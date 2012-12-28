@@ -46,6 +46,7 @@ quat.create = function() {
  *
  * @param {quat} a quaternion to clone
  * @returns {quat} a new quaternion
+ * @function
  */
 quat.clone = vec4.clone;
 
@@ -57,6 +58,7 @@ quat.clone = vec4.clone;
  * @param {Number} z Z component
  * @param {Number} w W component
  * @returns {quat} a new quaternion
+ * @function
  */
 quat.fromValues = vec4.fromValues;
 
@@ -66,6 +68,7 @@ quat.fromValues = vec4.fromValues;
  * @param {quat} out the receiving quaternion
  * @param {quat} a the source quaternion
  * @returns {quat} out
+ * @function
  */
 quat.copy = vec4.copy;
 
@@ -78,6 +81,7 @@ quat.copy = vec4.copy;
  * @param {Number} z Z component
  * @param {Number} w W component
  * @returns {quat} out
+ * @function
  */
 quat.set = vec4.set;
 
@@ -121,6 +125,7 @@ quat.setAxisAngle = function(out, axis, rad) {
  * @param {quat} a the first operand
  * @param {quat} b the second operand
  * @returns {quat} out
+ * @function
  */
 quat.add = vec4.add;
 
@@ -132,7 +137,7 @@ quat.add = vec4.add;
  * @param {quat} b the second operand
  * @returns {quat} out
  */
-quat.mul = quat.multiply = function(out, a, b) {
+quat.multiply = function(out, a, b) {
     var ax = a[0], ay = a[1], az = a[2], aw = a[3],
         bx = b[0], by = b[1], bz = b[2], bw = b[3];
 
@@ -144,12 +149,19 @@ quat.mul = quat.multiply = function(out, a, b) {
 };
 
 /**
+ * Alias for {@link quat.multiply}
+ * @function
+ */
+quat.mul = quat.multiply;
+
+/**
  * Scales a quat by a scalar number
  *
  * @param {quat} out the receiving vector
  * @param {quat} a the vector to scale
  * @param {quat} b amount to scale the vector by
  * @returns {quat} out
+ * @function
  */
 quat.scale = vec4.scale;
 
@@ -241,6 +253,7 @@ quat.calculateW = function (out, a) {
  * @param {quat} a the first operand
  * @param {quat} b the second operand
  * @returns {Number} dot product of a and b
+ * @function
  */
 quat.dot = vec4.dot;
 
@@ -252,6 +265,7 @@ quat.dot = vec4.dot;
  * @param {quat} b the second operand
  * @param {Number} t interpolation amount between the two inputs
  * @returns {quat} out
+ * @function
  */
 quat.lerp = vec4.lerp;
 
@@ -348,16 +362,30 @@ quat.conjugate = function (out, a) {
  *
  * @param {quat} a vector to calculate length of
  * @returns {Number} length of a
+ * @function
  */
-quat.len = quat.length = vec4.length;
+quat.length = vec4.length;
+
+/**
+ * Alias for {@link quat.length}
+ * @function
+ */
+quat.len = quat.length;
 
 /**
  * Caclulates the squared length of a quat
  *
  * @param {quat} a vector to calculate squared length of
  * @returns {Number} squared length of a
+ * @function
  */
-quat.sqrLen = quat.squaredLength = vec4.squaredLength;
+quat.squaredLength = vec4.squaredLength;
+
+/**
+ * Alias for {@link quat.squaredLength}
+ * @function
+ */
+quat.sqrLen = quat.squaredLength;
 
 /**
  * Normalize a quat
@@ -365,6 +393,7 @@ quat.sqrLen = quat.squaredLength = vec4.squaredLength;
  * @param {quat} out the receiving quaternion
  * @param {quat} a quaternion to normalize
  * @returns {quat} out
+ * @function
  */
 quat.normalize = vec4.normalize;
 

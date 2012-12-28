@@ -115,11 +115,17 @@ vec2.add = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {vec2} out
  */
-vec2.sub = vec2.subtract = function(out, a, b) {
+vec2.subtract = function(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     return out;
 };
+
+/**
+ * Alias for {@link vec2.subtract}
+ * @function
+ */
+vec2.sub = vec2.subtract;
 
 /**
  * Multiplies two vec2's
@@ -129,11 +135,17 @@ vec2.sub = vec2.subtract = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {vec2} out
  */
-vec2.mul = vec2.multiply = function(out, a, b) {
+vec2.multiply = function(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     return out;
 };
+
+/**
+ * Alias for {@link vec2.multiply}
+ * @function
+ */
+vec2.mul = vec2.multiply;
 
 /**
  * Divides two vec2's
@@ -143,11 +155,17 @@ vec2.mul = vec2.multiply = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {vec2} out
  */
-vec2.div = vec2.divide = function(out, a, b) {
+vec2.divide = function(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     return out;
 };
+
+/**
+ * Alias for {@link vec2.divide}
+ * @function
+ */
+vec2.div = vec2.divide;
 
 /**
  * Returns the minimum of two vec2's
@@ -198,11 +216,17 @@ vec2.scale = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {Number} distance between a and b
  */
-vec2.dist = vec2.distance = function(a, b) {
+vec2.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
     return Math.sqrt(x*x + y*y);
 };
+
+/**
+ * Alias for {@link vec2.distance}
+ * @function
+ */
+vec2.dist = vec2.distance;
 
 /**
  * Calculates the squared euclidian distance between two vec2's
@@ -211,11 +235,17 @@ vec2.dist = vec2.distance = function(a, b) {
  * @param {vec2} b the second operand
  * @returns {Number} squared distance between a and b
  */
-vec2.sqrDist = vec2.squaredDistance = function(a, b) {
+vec2.squaredDistance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
     return x*x + y*y;
 };
+
+/**
+ * Alias for {@link vec2.squaredDistance}
+ * @function
+ */
+vec2.sqrDist = vec2.squaredDistance;
 
 /**
  * Caclulates the length of a vec2
@@ -223,11 +253,17 @@ vec2.sqrDist = vec2.squaredDistance = function(a, b) {
  * @param {vec2} a vector to calculate length of
  * @returns {Number} length of a
  */
-vec2.len = vec2.length = function (a) {
+vec2.length = function (a) {
     var x = a[0],
         y = a[1];
     return Math.sqrt(x*x + y*y);
 };
+
+/**
+ * Alias for {@link vec2.length}
+ * @function
+ */
+vec2.len = vec2.length;
 
 /**
  * Caclulates the squared length of a vec2
@@ -235,11 +271,17 @@ vec2.len = vec2.length = function (a) {
  * @param {vec2} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-vec2.sqrLen = vec2.squaredLength = function (a) {
+vec2.squaredLength = function (a) {
     var x = a[0],
         y = a[1];
     return x*x + y*y;
 };
+
+/**
+ * Alias for {@link vec2.squaredLength}
+ * @function
+ */
+vec2.sqrLen = vec2.squaredLength;
 
 /**
  * Negates the components of a vec2
@@ -344,6 +386,7 @@ vec2.transformMat2 = function(out, a, m) {
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
+ * @function
  */
 vec2.forEach = (function() {
     var vec = new Float32Array(2);
