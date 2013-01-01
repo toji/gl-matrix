@@ -1,0 +1,1629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>glMatrix - mat4</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+	border-left: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li></li>
+	
+	<li><a href="../symbols/mat2.html">mat2</a></li>
+	
+	<li><a href="../symbols/mat3.html">mat3</a></li>
+	
+	<li><a href="../symbols/mat4.html">mat4</a></li>
+	
+	<li><a href="../symbols/quat.html">quat</a></li>
+	
+	<li><a href="../symbols/vec2.html">vec2</a></li>
+	
+	<li><a href="../symbols/vec3.html">vec3</a></li>
+	
+	<li><a href="../symbols/vec4.html">vec4</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class mat4
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				4x4 Matrix
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/gl-matrix_src_gl-matrix_mat4.js.html">mat4.js</a>.
+				
+			</p>
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class mat4.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.adjoint">adjoint</a></b>(out, a)
+								</div>
+								<div class="description">Caclulates the adjugate of a mat4</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.clone">clone</a></b>(a)
+								</div>
+								<div class="description">Creates a new mat4 initialized with values from an existing matrix</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.copy">copy</a></b>(out, a)
+								</div>
+								<div class="description">Copy the values from one mat4 to another</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.create">create</a></b>()
+								</div>
+								<div class="description">Creates a new identity mat4</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.determinant">determinant</a></b>(a)
+								</div>
+								<div class="description">Calculates the determinant of a mat4</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.fromRotationTranslation">fromRotationTranslation</a></b>(out, q, v)
+								</div>
+								<div class="description">Creates a matrix from a quaternion rotation and vector translation
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    var quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.frustum">frustum</a></b>(out, left, right, bottom, top, near, far)
+								</div>
+								<div class="description">Generates a frustum matrix with the given bounds</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.identity">identity</a></b>(out)
+								</div>
+								<div class="description">Set a mat4 to the identity matrix</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.invert">invert</a></b>(out, a)
+								</div>
+								<div class="description">Inverts a mat4</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.lookAt">lookAt</a></b>(out, eye, center, up)
+								</div>
+								<div class="description">Generates a look-at matrix with the given eye position, focal point, and up axis</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.mul">mul</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/mat4.html#.multiply">mat4.multiply</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.multiply">multiply</a></b>(out, a, b)
+								</div>
+								<div class="description">Multiplies two mat4's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.ortho">ortho</a></b>(out, left, right, bottom, top, near, far)
+								</div>
+								<div class="description">Generates a orthogonal projection matrix with the given bounds</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.perspective">perspective</a></b>(out, fovy, aspect, near, far)
+								</div>
+								<div class="description">Generates a perspective projection matrix with the given bounds</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.rotate">rotate</a></b>(out, a, rad, axis)
+								</div>
+								<div class="description">Rotates a mat4 by the given angle</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.rotateX">rotateX</a></b>(out, a, rad)
+								</div>
+								<div class="description">Rotates a matrix by the given angle around the X axis</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.rotateY">rotateY</a></b>(out, a, rad)
+								</div>
+								<div class="description">Rotates a matrix by the given angle around the Y axis</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.rotateZ">rotateZ</a></b>(out, a, rad)
+								</div>
+								<div class="description">Rotates a matrix by the given angle around the Z axis</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.scale">scale</a></b>(out, a, v)
+								</div>
+								<div class="description">Scales the mat4 by the dimensions in the given vec3</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.str">str</a></b>(mat)
+								</div>
+								<div class="description">Returns a string representation of a mat4</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.translate">translate</a></b>(out, a, v)
+								</div>
+								<div class="description">Translate a mat4 by the given vector</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">mat4.<b><a href="../symbols/mat4.html#.transpose">transpose</a></b>(out, a)
+								</div>
+								<div class="description">Transpose the values of a mat4</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name=".adjoint"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>adjoint</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Caclulates the adjugate of a mat4
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the source matrix</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".clone"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>clone</b>(a)
+					
+					</div>
+					<div class="description">
+						Creates a new mat4 initialized with values from an existing matrix
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>matrix to clone</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> a new 4x4 matrix</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".copy"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>copy</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Copy the values from one mat4 to another
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the source matrix</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".create"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>create</b>()
+					
+					</div>
+					<div class="description">
+						Creates a new identity mat4
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> a new 4x4 matrix</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".determinant"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<span class="light">mat4.</span><b>determinant</b>(a)
+					
+					</div>
+					<div class="description">
+						Calculates the determinant of a mat4
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the source matrix</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> determinant of a</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".fromRotationTranslation"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>fromRotationTranslation</b>(out, q, v)
+					
+					</div>
+					<div class="description">
+						Creates a matrix from a quaternion rotation and vector translation
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    var quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>mat4 receiving operation result</dd>
+							
+								<dt>
+									<span class="light fixedFont">{quat4}</span> <b>q</b>
+									
+								</dt>
+								<dd>Rotation quaternion</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>v</b>
+									
+								</dt>
+								<dd>Translation vector</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".frustum"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>frustum</b>(out, left, right, bottom, top, near, far)
+					
+					</div>
+					<div class="description">
+						Generates a frustum matrix with the given bounds
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>mat4 frustum matrix will be written into</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>left</b>
+									
+								</dt>
+								<dd>Left bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>right</b>
+									
+								</dt>
+								<dd>Right bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>bottom</b>
+									
+								</dt>
+								<dd>Bottom bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>top</b>
+									
+								</dt>
+								<dd>Top bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>near</b>
+									
+								</dt>
+								<dd>Near bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>far</b>
+									
+								</dt>
+								<dd>Far bound of the frustum</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".identity"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>identity</b>(out)
+					
+					</div>
+					<div class="description">
+						Set a mat4 to the identity matrix
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".invert"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>invert</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Inverts a mat4
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the source matrix</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".lookAt"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>lookAt</b>(out, eye, center, up)
+					
+					</div>
+					<div class="description">
+						Generates a look-at matrix with the given eye position, focal point, and up axis
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>mat4 frustum matrix will be written into</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>eye</b>
+									
+								</dt>
+								<dd>Position of the viewer</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>center</b>
+									
+								</dt>
+								<dd>Point the viewer is looking at</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>up</b>
+									
+								</dt>
+								<dd>vec3 pointing up</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".mul"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">mat4.</span><b>mul</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/mat4.html#.multiply">mat4.multiply</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".multiply"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>multiply</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Multiplies two mat4's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".ortho"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>ortho</b>(out, left, right, bottom, top, near, far)
+					
+					</div>
+					<div class="description">
+						Generates a orthogonal projection matrix with the given bounds
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>mat4 frustum matrix will be written into</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>left</b>
+									
+								</dt>
+								<dd>Left bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>right</b>
+									
+								</dt>
+								<dd>Right bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>bottom</b>
+									
+								</dt>
+								<dd>Bottom bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>top</b>
+									
+								</dt>
+								<dd>Top bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>near</b>
+									
+								</dt>
+								<dd>Near bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>far</b>
+									
+								</dt>
+								<dd>Far bound of the frustum</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".perspective"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>perspective</b>(out, fovy, aspect, near, far)
+					
+					</div>
+					<div class="description">
+						Generates a perspective projection matrix with the given bounds
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>mat4 frustum matrix will be written into</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>fovy</b>
+									
+								</dt>
+								<dd>Vertical field of view in radians</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>aspect</b>
+									
+								</dt>
+								<dd>Aspect ratio. typically viewport width/height</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>near</b>
+									
+								</dt>
+								<dd>Near bound of the frustum</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>far</b>
+									
+								</dt>
+								<dd>Far bound of the frustum</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".rotate"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>rotate</b>(out, a, rad, axis)
+					
+					</div>
+					<div class="description">
+						Rotates a mat4 by the given angle
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the matrix to rotate</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>rad</b>
+									
+								</dt>
+								<dd>the angle to rotate the matrix by</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>axis</b>
+									
+								</dt>
+								<dd>the axis to rotate around</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".rotateX"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>rotateX</b>(out, a, rad)
+					
+					</div>
+					<div class="description">
+						Rotates a matrix by the given angle around the X axis
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the matrix to rotate</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>rad</b>
+									
+								</dt>
+								<dd>the angle to rotate the matrix by</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".rotateY"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>rotateY</b>(out, a, rad)
+					
+					</div>
+					<div class="description">
+						Rotates a matrix by the given angle around the Y axis
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the matrix to rotate</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>rad</b>
+									
+								</dt>
+								<dd>the angle to rotate the matrix by</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".rotateZ"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>rotateZ</b>(out, a, rad)
+					
+					</div>
+					<div class="description">
+						Rotates a matrix by the given angle around the Z axis
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the matrix to rotate</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>rad</b>
+									
+								</dt>
+								<dd>the angle to rotate the matrix by</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".scale"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>scale</b>(out, a, v)
+					
+					</div>
+					<div class="description">
+						Scales the mat4 by the dimensions in the given vec3
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the matrix to scale</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>v</b>
+									
+								</dt>
+								<dd>the vec3 to scale the matrix by</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".str"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<span class="light">mat4.</span><b>str</b>(mat)
+					
+					</div>
+					<div class="description">
+						Returns a string representation of a mat4
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>mat</b>
+									
+								</dt>
+								<dd>matrix to represent as a string</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> string representation of the matrix</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".translate"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>translate</b>(out, a, v)
+					
+					</div>
+					<div class="description">
+						Translate a mat4 by the given vector
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the matrix to translate</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>v</b>
+									
+								</dt>
+								<dd>vector to translate by</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".transpose"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/mat4.html">mat4</a>}</span>
+					<span class="light">mat4.</span><b>transpose</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Transpose the values of a mat4
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving matrix</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the source matrix</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/mat4.html">mat4</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 28 2012 11:35:07 GMT-0800 (PST)
+		</div>
+	</body>
+</html>
