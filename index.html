@@ -1,89 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset='utf-8'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gl-matrix by toji</title>
 
-  <title>toji/gl-matrix @ GitHub</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Gl-matrix</h1>
+        <p>Javascript Matrix and Vector library for High Performance WebGL apps</p>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #660033;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #49e978; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #49e978; }
-    h3 { text-align: center; color: #49e978; }
-    a { color: #49e978; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
+        <p class="view"><a href="https://github.com/toji/gl-matrix">View the Project on GitHub <small>toji/gl-matrix</small></a></p>
 
-<body>
-  <a href="https://github.com/toji/gl-matrix"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 
-  <div id="container">
+        <ul>
+          <li><a href="https://github.com/toji/gl-matrix/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/toji/gl-matrix/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/toji/gl-matrix">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>glMatrix</h1>
 
-    <div class="download">
-      <a href="https://github.com/toji/gl-matrix/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/toji/gl-matrix/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+<p>Javascript has evolved into a lanugage capable of handling realtime 3D graphics, 
+via WebGL, and computationally intensive tasks such as physics simulations.
+These types of applications demand high performance vector and matrix math,
+which is something that Javascript doesn't provide by default.
+glMatrix to the rescue!</p>
+
+<p>glMatrix is designed to perform vector and matrix operations stupidly fast! By
+hand-tuning each function for maximum performance and encouraging efficient
+usage patterns through API conventions, glMatrix will help you get the most out
+of your browsers Javascript engine.</p>
+
+<h2>Documentation</h2>
+
+<p>Documentation for all glMatrix functions can be found <a href="http://toji.github.com/gl-matrix/docs/2.0.0">here</a></p>
+
+<h2>What's new in 2.0?</h2>
+
+<p>glMatrix 2.0 is the result of a lot of excellent feedback from the community,
+and features:</p>
+
+<ul>
+<li>Revamped and consistent API (not backward compatible with 1.x, sorry!)</li>
+<li>New functions for each type, based on request.</li>
+<li>New array operations: vec(2/3/4).forEach</li>
+<li>Even more optimizations!</li>
+<li>A cleaner code base, broken up by type.</li>
+<li>A more complete unit testing suite.</li>
+</ul><h2>Looking for an older version?</h2>
+
+<p>You can download previous versions of glMatrix <a href="https://github.com/toji/gl-matrix/tags">here</a></p>
+
+<h2>A note about Matrix formatting</h2>
+
+<p>glMatrix is modeled after the needs of WebGL, which in turn uses matrix
+conventions set by <a href="http://www.opengl.org/archives/resources/faq/technical/transformations.htm">OpenGL</a>.
+Specifically, a 4x4 matrix is an array of 16 contiguous floats with the 13th,
+14th, and 15th elements representing the X, Y, and Z, translation components.</p>
+
+<p>This may lead to some confusion when referencing OpenGL documentation, however,
+which represents out all matricies in column-major format. This means that while
+in code a matrix may be typed out as:</p>
+
+<pre><code>[1, 0, 0, 0,
+ 0, 1, 0, 0,
+ 0, 0, 1, 0,
+ x, y, z, 0]
+</code></pre>
+
+<p>The same matrix in the <a href="http://www.opengl.org/sdk/docs/man2/xhtml/glTranslate.xml">OpenGL documentation</a>
+is written as:</p>
+
+<pre><code>1 0 0 x
+0 1 0 y
+0 0 1 z
+0 0 0 0
+</code></pre>
+
+<p>Please rest assured, however, that they are the same thing! This is not unique
+to glMatrix, either, as OpenGL developers have long been confused by the
+apparent lack of consistency between the memory layout and the documentation.</p>
+
+<p>Sorry about that, but there's not much I can do about it.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/toji">toji</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
-
-    <h1><a href="https://github.com/toji/gl-matrix">glMatrix</a>
-      <span class="small">by <a href="https://github.com/toji">Brandon Jones</a></span></h1>
-
-    <div class="description">
-      Stupidly fast Javascript matrix library
-    </div>
-
+    <script src="javascripts/scale.fix.js"></script>
     
-
-    
-
-    
-
-    
-
-    
-      <h2>Author</h2>
-      <p>Brandon Jones (<a href="mailto:tojiro@gmail.com">tojiro@gmail.com</a>)
-<br/>      </p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/toji/gl-matrix/zipball/master">zip</a> or
-      <a href="https://github.com/toji/gl-matrix/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/toji/gl-matrix</pre>
-    </p>
-    
-    <h2>Documentation</h2>
-    <p>
-      <a href="doc/">Read the Documentation</a>
-    </p>
-    
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/toji/gl-matrix">toji/gl-matrix</a>
-    </div>
-
-  </div>
-
-</body>
+  </body>
 </html>
