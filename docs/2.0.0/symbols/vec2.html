@@ -1,0 +1,1938 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>glMatrix - vec2</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+	border-left: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a>
+| <a href="../files.html">File Index</a></div>
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li></li>
+	
+	<li><a href="../symbols/mat2.html">mat2</a></li>
+	
+	<li><a href="../symbols/mat3.html">mat3</a></li>
+	
+	<li><a href="../symbols/mat4.html">mat4</a></li>
+	
+	<li><a href="../symbols/quat.html">quat</a></li>
+	
+	<li><a href="../symbols/vec2.html">vec2</a></li>
+	
+	<li><a href="../symbols/vec3.html">vec3</a></li>
+	
+	<li><a href="../symbols/vec4.html">vec4</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class vec2
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				2 Dimensional Vector
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/gl-matrix_src_gl-matrix_vec2.js.html">vec2.js</a>.
+				
+			</p>
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class vec2.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.add">add</a></b>(out, a, b)
+								</div>
+								<div class="description">Adds two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.clone">clone</a></b>(a)
+								</div>
+								<div class="description">Creates a new vec2 initialized with values from an existing vector</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.copy">copy</a></b>(out, a)
+								</div>
+								<div class="description">Copy the values from one vec2 to another</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.create">create</a></b>()
+								</div>
+								<div class="description">Creates a new, empty vec2</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.cross">cross</a></b>(out, a, b)
+								</div>
+								<div class="description">Computes the cross product of two vec2's
+Note that the cross product must by definition produce a 3D vector</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.dist">dist</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.distance">vec2.distance</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.distance">distance</a></b>(a, b)
+								</div>
+								<div class="description">Calculates the euclidian distance between two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.div">div</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.divide">vec2.divide</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.divide">divide</a></b>(out, a, b)
+								</div>
+								<div class="description">Divides two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.dot">dot</a></b>(a, b)
+								</div>
+								<div class="description">Caclulates the dot product of two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.forEach">forEach</a></b>(a, stride, offset, count, fn, arg)
+								</div>
+								<div class="description">Perform some operation over an array of vec2s.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.fromValues">fromValues</a></b>(x, y)
+								</div>
+								<div class="description">Creates a new vec2 initialized with the given values</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.len">len</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.length">vec2.length</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.length">length</a></b>(a)
+								</div>
+								<div class="description">Caclulates the length of a vec2</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.lerp">lerp</a></b>(out, a, b, t)
+								</div>
+								<div class="description">Performs a linear interpolation between two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.max">max</a></b>(out, a, b)
+								</div>
+								<div class="description">Returns the maximum of two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.min">min</a></b>(out, a, b)
+								</div>
+								<div class="description">Returns the minimum of two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.mul">mul</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.multiply">vec2.multiply</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.multiply">multiply</a></b>(out, a, b)
+								</div>
+								<div class="description">Multiplies two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.negate">negate</a></b>(out, a)
+								</div>
+								<div class="description">Negates the components of a vec2</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.normalize">normalize</a></b>(out, a)
+								</div>
+								<div class="description">Normalize a vec2</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.scale">scale</a></b>(out, a, b)
+								</div>
+								<div class="description">Scales a vec2 by a scalar number</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.set">set</a></b>(out, x, y)
+								</div>
+								<div class="description">Set the components of a vec2 to the given values</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.sqrDist">sqrDist</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.squaredDistance">vec2.squaredDistance</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.sqrLen">sqrLen</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.squaredLength">vec2.squaredLength</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.squaredDistance">squaredDistance</a></b>(a, b)
+								</div>
+								<div class="description">Calculates the squared euclidian distance between two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.squaredLength">squaredLength</a></b>(a)
+								</div>
+								<div class="description">Caclulates the squared length of a vec2</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.str">str</a></b>(vec)
+								</div>
+								<div class="description">Returns a string representation of a vector</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.sub">sub</a></b>()
+								</div>
+								<div class="description">Alias for <a href="../symbols/vec2.html#.subtract">vec2.subtract</a></div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.subtract">subtract</a></b>(out, a, b)
+								</div>
+								<div class="description">Subtracts two vec2's</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="nameDescription">
+								<div class="fixedFont">vec2.<b><a href="../symbols/vec2.html#.transformMat2">transformMat2</a></b>(out, a, m)
+								</div>
+								<div class="description">Transforms the vec2 with a mat2</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name=".add"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>add</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Adds two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".clone"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>clone</b>(a)
+					
+					</div>
+					<div class="description">
+						Creates a new vec2 initialized with values from an existing vector
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>vector to clone</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> a new 2D vector</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".copy"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>copy</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Copy the values from one vec2 to another
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the source vector</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".create"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>create</b>()
+					
+					</div>
+					<div class="description">
+						Creates a new, empty vec2
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> a new 2D vector</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".cross"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec3.html">vec3</a>}</span>
+					<span class="light">vec2.</span><b>cross</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Computes the cross product of two vec2's
+Note that the cross product must by definition produce a 3D vector
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".dist"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>dist</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.distance">vec2.distance</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".distance"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<span class="light">vec2.</span><b>distance</b>(a, b)
+					
+					</div>
+					<div class="description">
+						Calculates the euclidian distance between two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> distance between a and b</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".div"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>div</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.divide">vec2.divide</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".divide"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>divide</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Divides two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".dot"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<span class="light">vec2.</span><b>dot</b>(a, b)
+					
+					</div>
+					<div class="description">
+						Caclulates the dot product of two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> dot product of a and b</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".forEach"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Array}</span>
+					<span class="light">vec2.</span><b>forEach</b>(a, stride, offset, count, fn, arg)
+					
+					</div>
+					<div class="description">
+						Perform some operation over an array of vec2s.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Array}</span> <b>a</b>
+									
+								</dt>
+								<dd>the array of vectors to iterate over</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>stride</b>
+									
+								</dt>
+								<dd>Number of elements between the start of each vec2. If 0 assumes tightly packed</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>offset</b>
+									
+								</dt>
+								<dd>Number of elements to skip at the beginning of the array</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>count</b>
+									
+								</dt>
+								<dd>Number of vec2s to iterate over. If 0 iterates over entire array</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Function}</span> <b>fn</b>
+									
+								</dt>
+								<dd>Function to call for each vector in the array</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Object}</span> <b>arg</b>
+									<i>Optional</i>
+								</dt>
+								<dd>additional argument to pass to fn</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Array}</span> a</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".fromValues"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>fromValues</b>(x, y)
+					
+					</div>
+					<div class="description">
+						Creates a new vec2 initialized with the given values
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
+									
+								</dt>
+								<dd>X component</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
+									
+								</dt>
+								<dd>Y component</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> a new 2D vector</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".len"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>len</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.length">vec2.length</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".length"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<span class="light">vec2.</span><b>length</b>(a)
+					
+					</div>
+					<div class="description">
+						Caclulates the length of a vec2
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>vector to calculate length of</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> length of a</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".lerp"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>lerp</b>(out, a, b, t)
+					
+					</div>
+					<div class="description">
+						Performs a linear interpolation between two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec3.html">vec3</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>t</b>
+									
+								</dt>
+								<dd>interpolation amount between the two inputs</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".max"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>max</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Returns the maximum of two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".min"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>min</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Returns the minimum of two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".mul"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>mul</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.multiply">vec2.multiply</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".multiply"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>multiply</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Multiplies two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".negate"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>negate</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Negates the components of a vec2
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>vector to negate</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".normalize"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>normalize</b>(out, a)
+					
+					</div>
+					<div class="description">
+						Normalize a vec2
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>vector to normalize</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".scale"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>scale</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Scales a vec2 by a scalar number
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the vector to scale</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>amount to scale the vector by</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".set"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>set</b>(out, x, y)
+					
+					</div>
+					<div class="description">
+						Set the components of a vec2 to the given values
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>x</b>
+									
+								</dt>
+								<dd>X component</dd>
+							
+								<dt>
+									<span class="light fixedFont">{Number}</span> <b>y</b>
+									
+								</dt>
+								<dd>Y component</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".sqrDist"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>sqrDist</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.squaredDistance">vec2.squaredDistance</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".sqrLen"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>sqrLen</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.squaredLength">vec2.squaredLength</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".squaredDistance"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<span class="light">vec2.</span><b>squaredDistance</b>(a, b)
+					
+					</div>
+					<div class="description">
+						Calculates the squared euclidian distance between two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> squared distance between a and b</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".squaredLength"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{Number}</span>
+					<span class="light">vec2.</span><b>squaredLength</b>(a)
+					
+					</div>
+					<div class="description">
+						Caclulates the squared length of a vec2
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>vector to calculate squared length of</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{Number}</span> squared length of a</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".str"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{String}</span>
+					<span class="light">vec2.</span><b>str</b>(vec)
+					
+					</div>
+					<div class="description">
+						Returns a string representation of a vector
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>vec</b>
+									
+								</dt>
+								<dd>vector to represent as a string</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{String}</span> string representation of the vector</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".sub"> </a>
+					<div class="fixedFont">
+					
+					
+					<span class="light">vec2.</span><b>sub</b>()
+					
+					</div>
+					<div class="description">
+						Alias for <a href="../symbols/vec2.html#.subtract">vec2.subtract</a>
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name=".subtract"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>subtract</b>(out, a, b)
+					
+					</div>
+					<div class="description">
+						Subtracts two vec2's
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the first operand</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>b</b>
+									
+								</dt>
+								<dd>the second operand</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".transformMat2"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{<a href="../symbols/vec2.html">vec2</a>}</span>
+					<span class="light">vec2.</span><b>transformMat2</b>(out, a, m)
+					
+					</div>
+					<div class="description">
+						Transforms the vec2 with a mat2
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>out</b>
+									
+								</dt>
+								<dd>the receiving vector</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> <b>a</b>
+									
+								</dt>
+								<dd>the vector to transform</dd>
+							
+								<dt>
+									<span class="light fixedFont">{<a href="../symbols/mat2.html">mat2</a>}</span> <b>m</b>
+									
+								</dt>
+								<dd>matrix to transform with</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{<a href="../symbols/vec2.html">vec2</a>}</span> out</dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Fri Dec 28 2012 11:35:07 GMT-0800 (PST)
+		</div>
+	</body>
+</html>
