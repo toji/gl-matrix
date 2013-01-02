@@ -1,7 +1,7 @@
 glMatrix
 =======================
 
-Javascript has evolved into a lanugage capable of handling realtime 3D graphics, 
+Javascript has evolved into a language capable of handling realtime 3D graphics, 
 via WebGL, and computationally intensive tasks such as physics simulations.
 These types of applications demand high performance vector and matrix math,
 which is something that Javascript doesn't provide by default.
