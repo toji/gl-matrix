@@ -5,11 +5,11 @@
   "main": "dist/gl-matrix.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/toji/gl-matrix.git"
+    "url": "http://glmatrix.net"
   },
   "author": {
     "name": "Brandon Jones",
     "email": "tojiro@gmail.com"
   },
-  "license": "MIT"
+  "license": "BSD"
 }
