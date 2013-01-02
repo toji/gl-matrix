@@ -14,7 +14,7 @@ of your browsers Javascript engine.
 
 Documentation
 ----------------------
-Documentation for all glMatrix functions can be found [here](http://toji.github.com/gl-matrix/docs/2.0.0)
+Documentation for all glMatrix functions can be found [here](http://glmatrix.net/docs/2.0.0/)
 
 What's new in 2.0?
 -------------------------
