@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -26,17 +26,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  */
 var vec2 = {};
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
- 
 /**
  * Creates a new, empty vec2
  *
  * @returns {vec2} a new 2D vector
  */
 vec2.create = function() {
-    return new Float32Array(2);
+    var out = new GLMAT_ARRAY_TYPE(2);
+    out[0] = 0;
+    out[1] = 0;
+    return out;
 };
 
 /**
@@ -46,7 +45,7 @@ vec2.create = function() {
  * @returns {vec2} a new 2D vector
  */
 vec2.clone = function(a) {
-    var out = new Float32Array(2);
+    var out = new GLMAT_ARRAY_TYPE(2);
     out[0] = a[0];
     out[1] = a[1];
     return out;
@@ -60,7 +59,7 @@ vec2.clone = function(a) {
  * @returns {vec2} a new 2D vector
  */
 vec2.fromValues = function(x, y) {
-    var out = new Float32Array(2);
+    var out = new GLMAT_ARRAY_TYPE(2);
     out[0] = x;
     out[1] = y;
     return out;
@@ -389,7 +388,7 @@ vec2.transformMat2 = function(out, a, m) {
  * @function
  */
 vec2.forEach = (function() {
-    var vec = new Float32Array(2);
+    var vec = vec2.create();
 
     return function(a, stride, offset, count, fn, arg) {
         var i, l;

@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -26,17 +26,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  */
 var vec3 = {};
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
- 
 /**
  * Creates a new, empty vec3
  *
  * @returns {vec3} a new 3D vector
  */
 vec3.create = function() {
-    return new Float32Array(3);
+    var out = new GLMAT_ARRAY_TYPE(3);
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    return out;
 };
 
 /**
@@ -46,7 +46,7 @@ vec3.create = function() {
  * @returns {vec3} a new 3D vector
  */
 vec3.clone = function(a) {
-    var out = new Float32Array(3);
+    var out = new GLMAT_ARRAY_TYPE(3);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -62,7 +62,7 @@ vec3.clone = function(a) {
  * @returns {vec3} a new 3D vector
  */
 vec3.fromValues = function(x, y, z) {
-    var out = new Float32Array(3);
+    var out = new GLMAT_ARRAY_TYPE(3);
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -439,7 +439,7 @@ vec3.transformQuat = function(out, a, q) {
  * @function
  */
 vec3.forEach = (function() {
-    var vec = new Float32Array(3);
+    var vec = vec3.create();
 
     return function(a, stride, offset, count, fn, arg) {
         var i, l;

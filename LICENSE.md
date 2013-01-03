@@ -1,4 +1,4 @@
-Copyright (c) 2012 Brandon Jones, Colin MacKenzie IV
+Copyright (c) 2013 Brandon Jones, Colin MacKenzie IV
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages

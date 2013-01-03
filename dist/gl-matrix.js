@@ -2,10 +2,10 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 2.0.0
+ * @version 2.0.1
  */
 
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -49,7 +49,57 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
   }
 
   (function(exports) {
-    /* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+    /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+  * Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+  * Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation 
+    and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+
+
+if(!GLMAT_EPSILON) {
+    var GLMAT_EPSILON = 0.000001;
+}
+
+if(!GLMAT_ARRAY_TYPE) {
+    var GLMAT_ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
+}
+
+/**
+ * @class Common utilities
+ * @name glMatrix
+ */
+var glMatrix = {};
+
+/**
+ * Sets the type of array used when creating new vectors and matricies
+ *
+ * @param {Type} type Array type, such as Float32Array or Array
+ */
+glMatrix.setMatrixArrayType = function(type) {
+    GLMAT_ARRAY_TYPE = type;
+}
+
+if(typeof(exports) !== 'undefined') {
+    exports.glMatrix = glMatrix;
+}
+;
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -78,17 +128,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 var vec2 = {};
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
- 
 /**
  * Creates a new, empty vec2
  *
  * @returns {vec2} a new 2D vector
  */
 vec2.create = function() {
-    return new Float32Array(2);
+    var out = new GLMAT_ARRAY_TYPE(2);
+    out[0] = 0;
+    out[1] = 0;
+    return out;
 };
 
 /**
@@ -98,7 +147,7 @@ vec2.create = function() {
  * @returns {vec2} a new 2D vector
  */
 vec2.clone = function(a) {
-    var out = new Float32Array(2);
+    var out = new GLMAT_ARRAY_TYPE(2);
     out[0] = a[0];
     out[1] = a[1];
     return out;
@@ -112,7 +161,7 @@ vec2.clone = function(a) {
  * @returns {vec2} a new 2D vector
  */
 vec2.fromValues = function(x, y) {
-    var out = new Float32Array(2);
+    var out = new GLMAT_ARRAY_TYPE(2);
     out[0] = x;
     out[1] = y;
     return out;
@@ -167,11 +216,17 @@ vec2.add = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {vec2} out
  */
-vec2.sub = vec2.subtract = function(out, a, b) {
+vec2.subtract = function(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     return out;
 };
+
+/**
+ * Alias for {@link vec2.subtract}
+ * @function
+ */
+vec2.sub = vec2.subtract;
 
 /**
  * Multiplies two vec2's
@@ -181,11 +236,17 @@ vec2.sub = vec2.subtract = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {vec2} out
  */
-vec2.mul = vec2.multiply = function(out, a, b) {
+vec2.multiply = function(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     return out;
 };
+
+/**
+ * Alias for {@link vec2.multiply}
+ * @function
+ */
+vec2.mul = vec2.multiply;
 
 /**
  * Divides two vec2's
@@ -195,11 +256,17 @@ vec2.mul = vec2.multiply = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {vec2} out
  */
-vec2.div = vec2.divide = function(out, a, b) {
+vec2.divide = function(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     return out;
 };
+
+/**
+ * Alias for {@link vec2.divide}
+ * @function
+ */
+vec2.div = vec2.divide;
 
 /**
  * Returns the minimum of two vec2's
@@ -250,11 +317,17 @@ vec2.scale = function(out, a, b) {
  * @param {vec2} b the second operand
  * @returns {Number} distance between a and b
  */
-vec2.dist = vec2.distance = function(a, b) {
+vec2.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
     return Math.sqrt(x*x + y*y);
 };
+
+/**
+ * Alias for {@link vec2.distance}
+ * @function
+ */
+vec2.dist = vec2.distance;
 
 /**
  * Calculates the squared euclidian distance between two vec2's
@@ -263,11 +336,17 @@ vec2.dist = vec2.distance = function(a, b) {
  * @param {vec2} b the second operand
  * @returns {Number} squared distance between a and b
  */
-vec2.sqrDist = vec2.squaredDistance = function(a, b) {
+vec2.squaredDistance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
     return x*x + y*y;
 };
+
+/**
+ * Alias for {@link vec2.squaredDistance}
+ * @function
+ */
+vec2.sqrDist = vec2.squaredDistance;
 
 /**
  * Caclulates the length of a vec2
@@ -275,11 +354,17 @@ vec2.sqrDist = vec2.squaredDistance = function(a, b) {
  * @param {vec2} a vector to calculate length of
  * @returns {Number} length of a
  */
-vec2.len = vec2.length = function (a) {
+vec2.length = function (a) {
     var x = a[0],
         y = a[1];
     return Math.sqrt(x*x + y*y);
 };
+
+/**
+ * Alias for {@link vec2.length}
+ * @function
+ */
+vec2.len = vec2.length;
 
 /**
  * Caclulates the squared length of a vec2
@@ -287,11 +372,17 @@ vec2.len = vec2.length = function (a) {
  * @param {vec2} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-vec2.sqrLen = vec2.squaredLength = function (a) {
+vec2.squaredLength = function (a) {
     var x = a[0],
         y = a[1];
     return x*x + y*y;
 };
+
+/**
+ * Alias for {@link vec2.squaredLength}
+ * @function
+ */
+vec2.sqrLen = vec2.squaredLength;
 
 /**
  * Negates the components of a vec2
@@ -396,9 +487,10 @@ vec2.transformMat2 = function(out, a, m) {
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
+ * @function
  */
 vec2.forEach = (function() {
-    var vec = new Float32Array(2);
+    var vec = vec2.create();
 
     return function(a, stride, offset, count, fn, arg) {
         var i, l;
@@ -440,7 +532,7 @@ if(typeof(exports) !== 'undefined') {
     exports.vec2 = vec2;
 }
 ;
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -469,17 +561,17 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 var vec3 = {};
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
- 
 /**
  * Creates a new, empty vec3
  *
  * @returns {vec3} a new 3D vector
  */
 vec3.create = function() {
-    return new Float32Array(3);
+    var out = new GLMAT_ARRAY_TYPE(3);
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    return out;
 };
 
 /**
@@ -489,7 +581,7 @@ vec3.create = function() {
  * @returns {vec3} a new 3D vector
  */
 vec3.clone = function(a) {
-    var out = new Float32Array(3);
+    var out = new GLMAT_ARRAY_TYPE(3);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -505,7 +597,7 @@ vec3.clone = function(a) {
  * @returns {vec3} a new 3D vector
  */
 vec3.fromValues = function(x, y, z) {
-    var out = new Float32Array(3);
+    var out = new GLMAT_ARRAY_TYPE(3);
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -565,12 +657,18 @@ vec3.add = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {vec3} out
  */
-vec3.sub = vec3.subtract = function(out, a, b) {
+vec3.subtract = function(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
     return out;
 };
+
+/**
+ * Alias for {@link vec3.subtract}
+ * @function
+ */
+vec3.sub = vec3.subtract;
 
 /**
  * Multiplies two vec3's
@@ -580,12 +678,18 @@ vec3.sub = vec3.subtract = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {vec3} out
  */
-vec3.mul = vec3.multiply = function(out, a, b) {
+vec3.multiply = function(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     out[2] = a[2] * b[2];
     return out;
 };
+
+/**
+ * Alias for {@link vec3.multiply}
+ * @function
+ */
+vec3.mul = vec3.multiply;
 
 /**
  * Divides two vec3's
@@ -595,12 +699,18 @@ vec3.mul = vec3.multiply = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {vec3} out
  */
-vec3.div = vec3.divide = function(out, a, b) {
+vec3.divide = function(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     out[2] = a[2] / b[2];
     return out;
 };
+
+/**
+ * Alias for {@link vec3.divide}
+ * @function
+ */
+vec3.div = vec3.divide;
 
 /**
  * Returns the minimum of two vec3's
@@ -654,12 +764,18 @@ vec3.scale = function(out, a, b) {
  * @param {vec3} b the second operand
  * @returns {Number} distance between a and b
  */
-vec3.dist = vec3.distance = function(a, b) {
+vec3.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1],
         z = b[2] - a[2];
     return Math.sqrt(x*x + y*y + z*z);
 };
+
+/**
+ * Alias for {@link vec3.distance}
+ * @function
+ */
+vec3.dist = vec3.distance;
 
 /**
  * Calculates the squared euclidian distance between two vec3's
@@ -668,7 +784,7 @@ vec3.dist = vec3.distance = function(a, b) {
  * @param {vec3} b the second operand
  * @returns {Number} squared distance between a and b
  */
-vec3.sqrDist = vec3.squaredDistance = function(a, b) {
+vec3.squaredDistance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1],
         z = b[2] - a[2];
@@ -676,12 +792,18 @@ vec3.sqrDist = vec3.squaredDistance = function(a, b) {
 };
 
 /**
+ * Alias for {@link vec3.squaredDistance}
+ * @function
+ */
+vec3.sqrDist = vec3.squaredDistance;
+
+/**
  * Caclulates the length of a vec3
  *
  * @param {vec3} a vector to calculate length of
  * @returns {Number} length of a
  */
-vec3.len = vec3.length = function (a) {
+vec3.length = function (a) {
     var x = a[0],
         y = a[1],
         z = a[2];
@@ -689,17 +811,29 @@ vec3.len = vec3.length = function (a) {
 };
 
 /**
+ * Alias for {@link vec3.length}
+ * @function
+ */
+vec3.len = vec3.length;
+
+/**
  * Caclulates the squared length of a vec3
  *
  * @param {vec3} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-vec3.sqrLen = vec3.squaredLength = function (a) {
+vec3.squaredLength = function (a) {
     var x = a[0],
         y = a[1],
         z = a[2];
     return x*x + y*y + z*z;
 };
+
+/**
+ * Alias for {@link vec3.squaredLength}
+ * @function
+ */
+vec3.sqrLen = vec3.squaredLength;
 
 /**
  * Negates the components of a vec3
@@ -837,9 +971,10 @@ vec3.transformQuat = function(out, a, q) {
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
+ * @function
  */
 vec3.forEach = (function() {
-    var vec = new Float32Array(3);
+    var vec = vec3.create();
 
     return function(a, stride, offset, count, fn, arg) {
         var i, l;
@@ -881,7 +1016,7 @@ if(typeof(exports) !== 'undefined') {
     exports.vec3 = vec3;
 }
 ;
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -910,17 +1045,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 var vec4 = {};
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new, empty vec4
  *
  * @returns {vec4} a new 4D vector
  */
 vec4.create = function() {
-    return new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    return out;
 };
 
 /**
@@ -930,7 +1066,7 @@ vec4.create = function() {
  * @returns {vec4} a new 4D vector
  */
 vec4.clone = function(a) {
-    var out = new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -948,7 +1084,7 @@ vec4.clone = function(a) {
  * @returns {vec4} a new 4D vector
  */
 vec4.fromValues = function(x, y, z, w) {
-    var out = new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -1013,13 +1149,19 @@ vec4.add = function(out, a, b) {
  * @param {vec4} b the second operand
  * @returns {vec4} out
  */
-vec4.sub = vec4.subtract = function(out, a, b) {
+vec4.subtract = function(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
     out[3] = a[3] - b[3];
     return out;
 };
+
+/**
+ * Alias for {@link vec4.subtract}
+ * @function
+ */
+vec4.sub = vec4.subtract;
 
 /**
  * Multiplies two vec4's
@@ -1029,13 +1171,19 @@ vec4.sub = vec4.subtract = function(out, a, b) {
  * @param {vec4} b the second operand
  * @returns {vec4} out
  */
-vec4.mul = vec4.multiply = function(out, a, b) {
+vec4.multiply = function(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     out[2] = a[2] * b[2];
     out[3] = a[3] * b[3];
     return out;
 };
+
+/**
+ * Alias for {@link vec4.multiply}
+ * @function
+ */
+vec4.mul = vec4.multiply;
 
 /**
  * Divides two vec4's
@@ -1045,13 +1193,19 @@ vec4.mul = vec4.multiply = function(out, a, b) {
  * @param {vec4} b the second operand
  * @returns {vec4} out
  */
-vec4.div = vec4.divide = function(out, a, b) {
+vec4.divide = function(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     out[2] = a[2] / b[2];
     out[3] = a[3] / b[3];
     return out;
 };
+
+/**
+ * Alias for {@link vec4.divide}
+ * @function
+ */
+vec4.div = vec4.divide;
 
 /**
  * Returns the minimum of two vec4's
@@ -1108,13 +1262,19 @@ vec4.scale = function(out, a, b) {
  * @param {vec4} b the second operand
  * @returns {Number} distance between a and b
  */
-vec4.dist = vec4.distance = function(a, b) {
+vec4.distance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1],
         z = b[2] - a[2],
         w = b[3] - a[3];
     return Math.sqrt(x*x + y*y + z*z + w*w);
 };
+
+/**
+ * Alias for {@link vec4.distance}
+ * @function
+ */
+vec4.dist = vec4.distance;
 
 /**
  * Calculates the squared euclidian distance between two vec4's
@@ -1123,7 +1283,7 @@ vec4.dist = vec4.distance = function(a, b) {
  * @param {vec4} b the second operand
  * @returns {Number} squared distance between a and b
  */
-vec4.sqrDist = vec4.squaredDistance = function(a, b) {
+vec4.squaredDistance = function(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1],
         z = b[2] - a[2],
@@ -1132,12 +1292,18 @@ vec4.sqrDist = vec4.squaredDistance = function(a, b) {
 };
 
 /**
+ * Alias for {@link vec4.squaredDistance}
+ * @function
+ */
+vec4.sqrDist = vec4.squaredDistance;
+
+/**
  * Caclulates the length of a vec4
  *
  * @param {vec4} a vector to calculate length of
  * @returns {Number} length of a
  */
-vec4.len = vec4.length = function (a) {
+vec4.length = function (a) {
     var x = a[0],
         y = a[1],
         z = a[2],
@@ -1146,18 +1312,30 @@ vec4.len = vec4.length = function (a) {
 };
 
 /**
+ * Alias for {@link vec4.length}
+ * @function
+ */
+vec4.len = vec4.length;
+
+/**
  * Caclulates the squared length of a vec4
  *
  * @param {vec4} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-vec4.sqrLen = vec4.squaredLength = function (a) {
+vec4.squaredLength = function (a) {
     var x = a[0],
         y = a[1],
         z = a[2],
         w = a[3];
     return x*x + y*y + z*z + w*w;
 };
+
+/**
+ * Alias for {@link vec4.squaredLength}
+ * @function
+ */
+vec4.sqrLen = vec4.squaredLength;
 
 /**
  * Negates the components of a vec4
@@ -1281,9 +1459,10 @@ vec4.transformQuat = function(out, a, q) {
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
+ * @function
  */
 vec4.forEach = (function() {
-    var vec = new Float32Array(4);
+    var vec = vec4.create();
 
     return function(a, stride, offset, count, fn, arg) {
         var i, l;
@@ -1325,7 +1504,7 @@ if(typeof(exports) !== 'undefined') {
     exports.vec4 = vec4;
 }
 ;
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -1359,17 +1538,18 @@ var mat2Identity = new Float32Array([
     0, 1
 ]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity mat2
  *
  * @returns {mat2} a new 2x2 matrix
  */
 mat2.create = function() {
-    return new Float32Array(mat2Identity);
+    var out = new GLMAT_ARRAY_TYPE(4);
+    out[0] = 1;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 1;
+    return out;
 };
 
 /**
@@ -1379,7 +1559,7 @@ mat2.create = function() {
  * @returns {mat2} a new 2x2 matrix
  */
 mat2.clone = function(a) {
-    var out = new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -1501,7 +1681,7 @@ mat2.determinant = function (a) {
  * @param {mat2} b the second operand
  * @returns {mat2} out
  */
-mat2.mul = mat2.multiply = function (out, a, b) {
+mat2.multiply = function (out, a, b) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
     var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
     out[0] = a0 * b0 + a1 * b2;
@@ -1510,6 +1690,12 @@ mat2.mul = mat2.multiply = function (out, a, b) {
     out[3] = a2 * b1 + a3 * b3;
     return out;
 };
+
+/**
+ * Alias for {@link mat2.multiply}
+ * @function
+ */
+mat2.mul = mat2.multiply;
 
 /**
  * Rotates a mat2 by the given angle
@@ -1562,7 +1748,7 @@ if(typeof(exports) !== 'undefined') {
     exports.mat2 = mat2;
 }
 ;
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -1597,17 +1783,23 @@ var mat3Identity = new Float32Array([
     0, 0, 1
 ]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity mat3
  *
  * @returns {mat3} a new 3x3 matrix
  */
 mat3.create = function() {
-    return new Float32Array(mat3Identity);
+    var out = new GLMAT_ARRAY_TYPE(9);
+    out[0] = 1;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 1;
+    out[5] = 0;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 1;
+    return out;
 };
 
 /**
@@ -1617,7 +1809,7 @@ mat3.create = function() {
  * @returns {mat3} a new 3x3 matrix
  */
 mat3.clone = function(a) {
-    var out = new Float32Array(9);
+    var out = new GLMAT_ARRAY_TYPE(9);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -1783,7 +1975,7 @@ mat3.determinant = function (a) {
  * @param {mat3} b the second operand
  * @returns {mat3} out
  */
-mat3.mul = mat3.multiply = function (out, a, b) {
+mat3.multiply = function (out, a, b) {
     var a00 = a[0], a01 = a[1], a02 = a[2],
         a10 = a[3], a11 = a[4], a12 = a[5],
         a20 = a[6], a21 = a[7], a22 = a[8],
@@ -1807,6 +1999,12 @@ mat3.mul = mat3.multiply = function (out, a, b) {
 };
 
 /**
+ * Alias for {@link mat3.multiply}
+ * @function
+ */
+mat3.mul = mat3.multiply;
+
+/**
  * Returns a string representation of a mat3
  *
  * @param {mat3} mat matrix to represent as a string
@@ -1822,7 +2020,7 @@ if(typeof(exports) !== 'undefined') {
     exports.mat3 = mat3;
 }
 ;
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -1858,17 +2056,30 @@ var mat4Identity = new Float32Array([
     0, 0, 0, 1
 ]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity mat4
  *
  * @returns {mat4} a new 4x4 matrix
  */
 mat4.create = function() {
-    return new Float32Array(mat4Identity);
+    var out = new GLMAT_ARRAY_TYPE(16);
+    out[0] = 1;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = 1;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[10] = 1;
+    out[11] = 0;
+    out[12] = 0;
+    out[13] = 0;
+    out[14] = 0;
+    out[15] = 1;
+    return out;
 };
 
 /**
@@ -1878,7 +2089,7 @@ mat4.create = function() {
  * @returns {mat4} a new 4x4 matrix
  */
 mat4.clone = function(a) {
-    var out = new Float32Array(16);
+    var out = new GLMAT_ARRAY_TYPE(16);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -2122,7 +2333,7 @@ mat4.determinant = function (a) {
  * @param {mat4} b the second operand
  * @returns {mat4} out
  */
-mat4.mul = mat4.multiply = function (out, a, b) {
+mat4.multiply = function (out, a, b) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -2154,6 +2365,12 @@ mat4.mul = mat4.multiply = function (out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
+
+/**
+ * Alias for {@link mat4.multiply}
+ * @function
+ */
+mat4.mul = mat4.multiply;
 
 /**
  * Translate a mat4 by the given vector
@@ -2672,7 +2889,7 @@ if(typeof(exports) !== 'undefined') {
     exports.mat4 = mat4;
 }
 ;
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -2703,17 +2920,18 @@ var quat = {};
 
 var quatIdentity = new Float32Array([0, 0, 0, 1]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity quat
  *
  * @returns {quat} a new quaternion
  */
 quat.create = function() {
-    return new Float32Array(quatIdentity);
+    var out = new GLMAT_ARRAY_TYPE(4);
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 1;
+    return out;
 };
 
 /**
@@ -2721,6 +2939,7 @@ quat.create = function() {
  *
  * @param {quat} a quaternion to clone
  * @returns {quat} a new quaternion
+ * @function
  */
 quat.clone = vec4.clone;
 
@@ -2732,6 +2951,7 @@ quat.clone = vec4.clone;
  * @param {Number} z Z component
  * @param {Number} w W component
  * @returns {quat} a new quaternion
+ * @function
  */
 quat.fromValues = vec4.fromValues;
 
@@ -2741,6 +2961,7 @@ quat.fromValues = vec4.fromValues;
  * @param {quat} out the receiving quaternion
  * @param {quat} a the source quaternion
  * @returns {quat} out
+ * @function
  */
 quat.copy = vec4.copy;
 
@@ -2753,6 +2974,7 @@ quat.copy = vec4.copy;
  * @param {Number} z Z component
  * @param {Number} w W component
  * @returns {quat} out
+ * @function
  */
 quat.set = vec4.set;
 
@@ -2796,6 +3018,7 @@ quat.setAxisAngle = function(out, axis, rad) {
  * @param {quat} a the first operand
  * @param {quat} b the second operand
  * @returns {quat} out
+ * @function
  */
 quat.add = vec4.add;
 
@@ -2807,7 +3030,7 @@ quat.add = vec4.add;
  * @param {quat} b the second operand
  * @returns {quat} out
  */
-quat.mul = quat.multiply = function(out, a, b) {
+quat.multiply = function(out, a, b) {
     var ax = a[0], ay = a[1], az = a[2], aw = a[3],
         bx = b[0], by = b[1], bz = b[2], bw = b[3];
 
@@ -2819,12 +3042,19 @@ quat.mul = quat.multiply = function(out, a, b) {
 };
 
 /**
+ * Alias for {@link quat.multiply}
+ * @function
+ */
+quat.mul = quat.multiply;
+
+/**
  * Scales a quat by a scalar number
  *
  * @param {quat} out the receiving vector
  * @param {quat} a the vector to scale
  * @param {quat} b amount to scale the vector by
  * @returns {quat} out
+ * @function
  */
 quat.scale = vec4.scale;
 
@@ -2916,6 +3146,7 @@ quat.calculateW = function (out, a) {
  * @param {quat} a the first operand
  * @param {quat} b the second operand
  * @returns {Number} dot product of a and b
+ * @function
  */
 quat.dot = vec4.dot;
 
@@ -2927,6 +3158,7 @@ quat.dot = vec4.dot;
  * @param {quat} b the second operand
  * @param {Number} t interpolation amount between the two inputs
  * @returns {quat} out
+ * @function
  */
 quat.lerp = vec4.lerp;
 
@@ -3023,16 +3255,30 @@ quat.conjugate = function (out, a) {
  *
  * @param {quat} a vector to calculate length of
  * @returns {Number} length of a
+ * @function
  */
-quat.len = quat.length = vec4.length;
+quat.length = vec4.length;
+
+/**
+ * Alias for {@link quat.length}
+ * @function
+ */
+quat.len = quat.length;
 
 /**
  * Caclulates the squared length of a quat
  *
  * @param {quat} a vector to calculate squared length of
  * @returns {Number} squared length of a
+ * @function
  */
-quat.sqrLen = quat.squaredLength = vec4.squaredLength;
+quat.squaredLength = vec4.squaredLength;
+
+/**
+ * Alias for {@link quat.squaredLength}
+ * @function
+ */
+quat.sqrLen = quat.squaredLength;
 
 /**
  * Normalize a quat
@@ -3040,6 +3286,7 @@ quat.sqrLen = quat.squaredLength = vec4.squaredLength;
  * @param {quat} out the receiving quaternion
  * @param {quat} a quaternion to normalize
  * @returns {quat} out
+ * @function
  */
 quat.normalize = vec4.normalize;
 
@@ -3057,6 +3304,8 @@ if(typeof(exports) !== 'undefined') {
     exports.quat = quat;
 }
 ;
+
+
 
 
 

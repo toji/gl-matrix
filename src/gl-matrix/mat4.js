@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -33,17 +33,30 @@ var mat4Identity = new Float32Array([
     0, 0, 0, 1
 ]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity mat4
  *
  * @returns {mat4} a new 4x4 matrix
  */
 mat4.create = function() {
-    return new Float32Array(mat4Identity);
+    var out = new GLMAT_ARRAY_TYPE(16);
+    out[0] = 1;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = 1;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[10] = 1;
+    out[11] = 0;
+    out[12] = 0;
+    out[13] = 0;
+    out[14] = 0;
+    out[15] = 1;
+    return out;
 };
 
 /**
@@ -53,7 +66,7 @@ mat4.create = function() {
  * @returns {mat4} a new 4x4 matrix
  */
 mat4.clone = function(a) {
-    var out = new Float32Array(16);
+    var out = new GLMAT_ARRAY_TYPE(16);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];

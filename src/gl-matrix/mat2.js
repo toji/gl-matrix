@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -31,17 +31,18 @@ var mat2Identity = new Float32Array([
     0, 1
 ]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity mat2
  *
  * @returns {mat2} a new 2x2 matrix
  */
 mat2.create = function() {
-    return new Float32Array(mat2Identity);
+    var out = new GLMAT_ARRAY_TYPE(4);
+    out[0] = 1;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 1;
+    return out;
 };
 
 /**
@@ -51,7 +52,7 @@ mat2.create = function() {
  * @returns {mat2} a new 2x2 matrix
  */
 mat2.clone = function(a) {
-    var out = new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];

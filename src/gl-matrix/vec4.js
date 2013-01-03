@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -26,17 +26,18 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  */
 var vec4 = {};
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new, empty vec4
  *
  * @returns {vec4} a new 4D vector
  */
 vec4.create = function() {
-    return new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    return out;
 };
 
 /**
@@ -46,7 +47,7 @@ vec4.create = function() {
  * @returns {vec4} a new 4D vector
  */
 vec4.clone = function(a) {
-    var out = new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -64,7 +65,7 @@ vec4.clone = function(a) {
  * @returns {vec4} a new 4D vector
  */
 vec4.fromValues = function(x, y, z, w) {
-    var out = new Float32Array(4);
+    var out = new GLMAT_ARRAY_TYPE(4);
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -442,7 +443,7 @@ vec4.transformQuat = function(out, a, q) {
  * @function
  */
 vec4.forEach = (function() {
-    var vec = new Float32Array(4);
+    var vec = vec4.create();
 
     return function(a, stride, offset, count, fn, arg) {
         var i, l;

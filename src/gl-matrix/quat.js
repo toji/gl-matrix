@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, Brandon Jones, Colin MacKenzie IV. All rights reserved.
+/* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -28,17 +28,18 @@ var quat = {};
 
 var quatIdentity = new Float32Array([0, 0, 0, 1]);
 
-if(!GLMAT_EPSILON) {
-    var GLMAT_EPSILON = 0.000001;
-}
-
 /**
  * Creates a new identity quat
  *
  * @returns {quat} a new quaternion
  */
 quat.create = function() {
-    return new Float32Array(quatIdentity);
+    var out = new GLMAT_ARRAY_TYPE(4);
+    out[0] = 0;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 1;
+    return out;
 };
 
 /**

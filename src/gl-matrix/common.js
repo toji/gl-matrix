@@ -1,10 +1,3 @@
-/**
- * @fileoverview gl-matrix - High performance matrix and vector operations
- * @author Brandon Jones
- * @author Colin MacKenzie IV
- * @version 2.0.1
- */
-
 /* Copyright (c) 2013, Brandon Jones, Colin MacKenzie IV. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
@@ -27,27 +20,29 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
-(function() {
-  "use strict";
+if(!GLMAT_EPSILON) {
+    var GLMAT_EPSILON = 0.000001;
+}
 
-  var shim = {};
-  if (typeof(exports) === 'undefined') {
-    if(typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-      shim.exports = {};
-      define(function() {
-        return shim.exports;
-      });
-    } else {
-      // gl-matrix lives in a browser, define its namespaces in global
-      shim.exports = window;
-    }    
-  }
-  else {
-    // gl-matrix lives in commonjs, define its namespaces in exports
-    shim.exports = exports;
-  }
+if(!GLMAT_ARRAY_TYPE) {
+    var GLMAT_ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
+}
 
-  (function(exports) {
-    <%= GLMatrix.sprockets['gl-matrix-manifest.js'] %>
-  })(shim.exports);
-})();
+/**
+ * @class Common utilities
+ * @name glMatrix
+ */
+var glMatrix = {};
+
+/**
+ * Sets the type of array used when creating new vectors and matricies
+ *
+ * @param {Type} type Array type, such as Float32Array or Array
+ */
+glMatrix.setMatrixArrayType = function(type) {
+    GLMAT_ARRAY_TYPE = type;
+}
+
+if(typeof(exports) !== 'undefined') {
+    exports.glMatrix = glMatrix;
+}
