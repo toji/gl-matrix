@@ -179,7 +179,7 @@ mat3.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat3
+ * Calculates the adjugate of a mat3
  *
  * @param {mat3} out the receiving matrix
  * @param {mat3} a the source matrix

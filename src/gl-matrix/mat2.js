@@ -139,7 +139,7 @@ mat2.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat2
+ * Calculates the adjugate of a mat2
  *
  * @param {mat2} out the receiving matrix
  * @param {mat2} a the source matrix

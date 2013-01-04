@@ -1646,7 +1646,7 @@ mat2.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat2
+ * Calculates the adjugate of a mat2
  *
  * @param {mat2} out the receiving matrix
  * @param {mat2} a the source matrix
@@ -1702,7 +1702,7 @@ mat2.mul = mat2.multiply;
  *
  * @param {mat2} out the receiving matrix
  * @param {mat2} a the matrix to rotate
- * @param {mat2} rad the angle to rotate the matrix by
+ * @param {Number} rad the angle to rotate the matrix by
  * @returns {mat2} out
  */
 mat2.rotate = function (out, a, rad) {
@@ -1930,7 +1930,7 @@ mat3.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat3
+ * Calculates the adjugate of a mat3
  *
  * @param {mat3} out the receiving matrix
  * @param {mat3} a the source matrix
@@ -2265,7 +2265,7 @@ mat4.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat4
+ * Calculates the adjugate of a mat4
  *
  * @param {mat4} out the receiving matrix
  * @param {mat4} a the source matrix
