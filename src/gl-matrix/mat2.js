@@ -195,7 +195,7 @@ mat2.mul = mat2.multiply;
  *
  * @param {mat2} out the receiving matrix
  * @param {mat2} a the matrix to rotate
- * @param {mat2} rad the angle to rotate the matrix by
+ * @param {Number} rad the angle to rotate the matrix by
  * @returns {mat2} out
  */
 mat2.rotate = function (out, a, rad) {

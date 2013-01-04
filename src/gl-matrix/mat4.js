@@ -242,7 +242,7 @@ mat4.invert = function(out, a) {
 };
 
 /**
- * Caclulates the adjugate of a mat4
+ * Calculates the adjugate of a mat4
  *
  * @param {mat4} out the receiving matrix
  * @param {mat4} a the source matrix
