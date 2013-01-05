@@ -206,7 +206,7 @@
 <span class='line'>199</span>  *
 <span class='line'>200</span>  * @param {vec2} out the receiving vector
 <span class='line'>201</span>  * @param {vec2} a the vector to scale
-<span class='line'>202</span>  * @param {vec2} b amount to scale the vector by
+<span class='line'>202</span>  * @param {Number} b amount to scale the vector by
 <span class='line'>203</span>  * @returns {vec2} out
 <span class='line'>204</span>  */</span><span class="WHIT">
 <span class='line'>205</span> </span><span class="NAME">vec2.scale</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="KEYW">function</span><span class="PUNC">(</span><span class="NAME">out</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">a</span><span class="PUNC">,</span><span class="WHIT"> </span><span class="NAME">b</span><span class="PUNC">)</span><span class="WHIT"> </span><span class="PUNC">{</span><span class="WHIT">
@@ -254,7 +254,7 @@
 <span class='line'>247</span> </span><span class="NAME">vec2.sqrDist</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">vec2.squaredDistance</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>248</span> 
 <span class='line'>249</span> </span><span class="COMM">/**
-<span class='line'>250</span>  * Caclulates the length of a vec2
+<span class='line'>250</span>  * Calculates the length of a vec2
 <span class='line'>251</span>  *
 <span class='line'>252</span>  * @param {vec2} a vector to calculate length of
 <span class='line'>253</span>  * @returns {Number} length of a
@@ -272,7 +272,7 @@
 <span class='line'>265</span> </span><span class="NAME">vec2.len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">vec2.length</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>266</span> 
 <span class='line'>267</span> </span><span class="COMM">/**
-<span class='line'>268</span>  * Caclulates the squared length of a vec2
+<span class='line'>268</span>  * Calculates the squared length of a vec2
 <span class='line'>269</span>  *
 <span class='line'>270</span>  * @param {vec2} a vector to calculate squared length of
 <span class='line'>271</span>  * @returns {Number} squared length of a
@@ -323,7 +323,7 @@
 <span class='line'>316</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>317</span> 
 <span class='line'>318</span> </span><span class="COMM">/**
-<span class='line'>319</span>  * Caclulates the dot product of two vec2's
+<span class='line'>319</span>  * Calculates the dot product of two vec2's
 <span class='line'>320</span>  *
 <span class='line'>321</span>  * @param {vec2} a the first operand
 <span class='line'>322</span>  * @param {vec2} b the second operand
@@ -352,7 +352,7 @@
 <span class='line'>345</span> </span><span class="COMM">/**
 <span class='line'>346</span>  * Performs a linear interpolation between two vec2's
 <span class='line'>347</span>  *
-<span class='line'>348</span>  * @param {vec3} out the receiving vector
+<span class='line'>348</span>  * @param {vec2} out the receiving vector
 <span class='line'>349</span>  * @param {vec2} a the first operand
 <span class='line'>350</span>  * @param {vec2} b the second operand
 <span class='line'>351</span>  * @param {Number} t interpolation amount between the two inputs
