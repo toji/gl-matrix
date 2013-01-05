@@ -225,7 +225,7 @@ vec4.max = function(out, a, b) {
  *
  * @param {vec4} out the receiving vector
  * @param {vec4} a the vector to scale
- * @param {vec4} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {vec4} out
  */
 vec4.scale = function(out, a, b) {
@@ -279,7 +279,7 @@ vec4.squaredDistance = function(a, b) {
 vec4.sqrDist = vec4.squaredDistance;
 
 /**
- * Caclulates the length of a vec4
+ * Calculates the length of a vec4
  *
  * @param {vec4} a vector to calculate length of
  * @returns {Number} length of a
@@ -299,7 +299,7 @@ vec4.length = function (a) {
 vec4.len = vec4.length;
 
 /**
- * Caclulates the squared length of a vec4
+ * Calculates the squared length of a vec4
  *
  * @param {vec4} a vector to calculate squared length of
  * @returns {Number} squared length of a
@@ -357,7 +357,7 @@ vec4.normalize = function(out, a) {
 };
 
 /**
- * Caclulates the dot product of two vec4's
+ * Calculates the dot product of two vec4's
  *
  * @param {vec4} a the first operand
  * @param {vec4} b the second operand

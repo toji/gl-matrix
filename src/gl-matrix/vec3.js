@@ -212,7 +212,7 @@ vec3.max = function(out, a, b) {
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the vector to scale
- * @param {vec3} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {vec3} out
  */
 vec3.scale = function(out, a, b) {
@@ -263,7 +263,7 @@ vec3.squaredDistance = function(a, b) {
 vec3.sqrDist = vec3.squaredDistance;
 
 /**
- * Caclulates the length of a vec3
+ * Calculates the length of a vec3
  *
  * @param {vec3} a vector to calculate length of
  * @returns {Number} length of a
@@ -282,7 +282,7 @@ vec3.length = function (a) {
 vec3.len = vec3.length;
 
 /**
- * Caclulates the squared length of a vec3
+ * Calculates the squared length of a vec3
  *
  * @param {vec3} a vector to calculate squared length of
  * @returns {Number} squared length of a
@@ -337,7 +337,7 @@ vec3.normalize = function(out, a) {
 };
 
 /**
- * Caclulates the dot product of two vec3's
+ * Calculates the dot product of two vec3's
  *
  * @param {vec3} a the first operand
  * @param {vec3} b the second operand

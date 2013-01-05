@@ -160,7 +160,7 @@ quat.mul = quat.multiply;
  *
  * @param {quat} out the receiving vector
  * @param {quat} a the vector to scale
- * @param {quat} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {quat} out
  * @function
  */
@@ -188,7 +188,7 @@ quat.rotateX = function (out, a, rad) {
 };
 
 /**
- * Rotates a quaternion by the given angle around the X axis
+ * Rotates a quaternion by the given angle around the Y axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -209,7 +209,7 @@ quat.rotateY = function (out, a, rad) {
 };
 
 /**
- * Rotates a quaternion by the given angle around the X axis
+ * Rotates a quaternion by the given angle around the Z axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -249,7 +249,7 @@ quat.calculateW = function (out, a) {
 };
 
 /**
- * Caclulates the dot product of two quat's
+ * Calculates the dot product of two quat's
  *
  * @param {quat} a the first operand
  * @param {quat} b the second operand
@@ -359,7 +359,7 @@ quat.conjugate = function (out, a) {
 };
 
 /**
- * Caclulates the length of a quat
+ * Calculates the length of a quat
  *
  * @param {quat} a vector to calculate length of
  * @returns {Number} length of a
@@ -374,7 +374,7 @@ quat.length = vec4.length;
 quat.len = quat.length;
 
 /**
- * Caclulates the squared length of a quat
+ * Calculates the squared length of a quat
  *
  * @param {quat} a vector to calculate squared length of
  * @returns {Number} squared length of a

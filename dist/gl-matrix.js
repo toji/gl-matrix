@@ -301,7 +301,7 @@ vec2.max = function(out, a, b) {
  *
  * @param {vec2} out the receiving vector
  * @param {vec2} a the vector to scale
- * @param {vec2} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {vec2} out
  */
 vec2.scale = function(out, a, b) {
@@ -349,7 +349,7 @@ vec2.squaredDistance = function(a, b) {
 vec2.sqrDist = vec2.squaredDistance;
 
 /**
- * Caclulates the length of a vec2
+ * Calculates the length of a vec2
  *
  * @param {vec2} a vector to calculate length of
  * @returns {Number} length of a
@@ -367,7 +367,7 @@ vec2.length = function (a) {
 vec2.len = vec2.length;
 
 /**
- * Caclulates the squared length of a vec2
+ * Calculates the squared length of a vec2
  *
  * @param {vec2} a vector to calculate squared length of
  * @returns {Number} squared length of a
@@ -418,7 +418,7 @@ vec2.normalize = function(out, a) {
 };
 
 /**
- * Caclulates the dot product of two vec2's
+ * Calculates the dot product of two vec2's
  *
  * @param {vec2} a the first operand
  * @param {vec2} b the second operand
@@ -447,7 +447,7 @@ vec2.cross = function(out, a, b) {
 /**
  * Performs a linear interpolation between two vec2's
  *
- * @param {vec3} out the receiving vector
+ * @param {vec2} out the receiving vector
  * @param {vec2} a the first operand
  * @param {vec2} b the second operand
  * @param {Number} t interpolation amount between the two inputs
@@ -747,7 +747,7 @@ vec3.max = function(out, a, b) {
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the vector to scale
- * @param {vec3} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {vec3} out
  */
 vec3.scale = function(out, a, b) {
@@ -798,7 +798,7 @@ vec3.squaredDistance = function(a, b) {
 vec3.sqrDist = vec3.squaredDistance;
 
 /**
- * Caclulates the length of a vec3
+ * Calculates the length of a vec3
  *
  * @param {vec3} a vector to calculate length of
  * @returns {Number} length of a
@@ -817,7 +817,7 @@ vec3.length = function (a) {
 vec3.len = vec3.length;
 
 /**
- * Caclulates the squared length of a vec3
+ * Calculates the squared length of a vec3
  *
  * @param {vec3} a vector to calculate squared length of
  * @returns {Number} squared length of a
@@ -872,7 +872,7 @@ vec3.normalize = function(out, a) {
 };
 
 /**
- * Caclulates the dot product of two vec3's
+ * Calculates the dot product of two vec3's
  *
  * @param {vec3} a the first operand
  * @param {vec3} b the second operand
@@ -1244,7 +1244,7 @@ vec4.max = function(out, a, b) {
  *
  * @param {vec4} out the receiving vector
  * @param {vec4} a the vector to scale
- * @param {vec4} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {vec4} out
  */
 vec4.scale = function(out, a, b) {
@@ -1298,7 +1298,7 @@ vec4.squaredDistance = function(a, b) {
 vec4.sqrDist = vec4.squaredDistance;
 
 /**
- * Caclulates the length of a vec4
+ * Calculates the length of a vec4
  *
  * @param {vec4} a vector to calculate length of
  * @returns {Number} length of a
@@ -1318,7 +1318,7 @@ vec4.length = function (a) {
 vec4.len = vec4.length;
 
 /**
- * Caclulates the squared length of a vec4
+ * Calculates the squared length of a vec4
  *
  * @param {vec4} a vector to calculate squared length of
  * @returns {Number} squared length of a
@@ -1376,7 +1376,7 @@ vec4.normalize = function(out, a) {
 };
 
 /**
- * Caclulates the dot product of two vec4's
+ * Calculates the dot product of two vec4's
  *
  * @param {vec4} a the first operand
  * @param {vec4} b the second operand
@@ -3052,7 +3052,7 @@ quat.mul = quat.multiply;
  *
  * @param {quat} out the receiving vector
  * @param {quat} a the vector to scale
- * @param {quat} b amount to scale the vector by
+ * @param {Number} b amount to scale the vector by
  * @returns {quat} out
  * @function
  */
@@ -3080,7 +3080,7 @@ quat.rotateX = function (out, a, rad) {
 };
 
 /**
- * Rotates a quaternion by the given angle around the X axis
+ * Rotates a quaternion by the given angle around the Y axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -3101,7 +3101,7 @@ quat.rotateY = function (out, a, rad) {
 };
 
 /**
- * Rotates a quaternion by the given angle around the X axis
+ * Rotates a quaternion by the given angle around the Z axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -3141,7 +3141,7 @@ quat.calculateW = function (out, a) {
 };
 
 /**
- * Caclulates the dot product of two quat's
+ * Calculates the dot product of two quat's
  *
  * @param {quat} a the first operand
  * @param {quat} b the second operand
@@ -3251,7 +3251,7 @@ quat.conjugate = function (out, a) {
 };
 
 /**
- * Caclulates the length of a quat
+ * Calculates the length of a quat
  *
  * @param {quat} a vector to calculate length of
  * @returns {Number} length of a
@@ -3266,7 +3266,7 @@ quat.length = vec4.length;
 quat.len = quat.length;
 
 /**
- * Caclulates the squared length of a quat
+ * Calculates the squared length of a quat
  *
  * @param {quat} a vector to calculate squared length of
  * @returns {Number} squared length of a
