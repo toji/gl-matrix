@@ -167,7 +167,7 @@
 <span class='line'>160</span>  *
 <span class='line'>161</span>  * @param {quat} out the receiving vector
 <span class='line'>162</span>  * @param {quat} a the vector to scale
-<span class='line'>163</span>  * @param {quat} b amount to scale the vector by
+<span class='line'>163</span>  * @param {Number} b amount to scale the vector by
 <span class='line'>164</span>  * @returns {quat} out
 <span class='line'>165</span>  * @function
 <span class='line'>166</span>  */</span><span class="WHIT">
@@ -195,7 +195,7 @@
 <span class='line'>188</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>189</span> 
 <span class='line'>190</span> </span><span class="COMM">/**
-<span class='line'>191</span>  * Rotates a quaternion by the given angle around the X axis
+<span class='line'>191</span>  * Rotates a quaternion by the given angle around the Y axis
 <span class='line'>192</span>  *
 <span class='line'>193</span>  * @param {quat} out quat receiving operation result
 <span class='line'>194</span>  * @param {quat} a quat to rotate
@@ -216,7 +216,7 @@
 <span class='line'>209</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>210</span> 
 <span class='line'>211</span> </span><span class="COMM">/**
-<span class='line'>212</span>  * Rotates a quaternion by the given angle around the X axis
+<span class='line'>212</span>  * Rotates a quaternion by the given angle around the Z axis
 <span class='line'>213</span>  *
 <span class='line'>214</span>  * @param {quat} out quat receiving operation result
 <span class='line'>215</span>  * @param {quat} a quat to rotate
@@ -256,7 +256,7 @@
 <span class='line'>249</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>250</span> 
 <span class='line'>251</span> </span><span class="COMM">/**
-<span class='line'>252</span>  * Caclulates the dot product of two quat's
+<span class='line'>252</span>  * Calculates the dot product of two quat's
 <span class='line'>253</span>  *
 <span class='line'>254</span>  * @param {quat} a the first operand
 <span class='line'>255</span>  * @param {quat} b the second operand
@@ -366,7 +366,7 @@
 <span class='line'>359</span> </span><span class="PUNC">}</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>360</span> 
 <span class='line'>361</span> </span><span class="COMM">/**
-<span class='line'>362</span>  * Caclulates the length of a quat
+<span class='line'>362</span>  * Calculates the length of a quat
 <span class='line'>363</span>  *
 <span class='line'>364</span>  * @param {quat} a vector to calculate length of
 <span class='line'>365</span>  * @returns {Number} length of a
@@ -381,7 +381,7 @@
 <span class='line'>374</span> </span><span class="NAME">quat.len</span><span class="WHIT"> </span><span class="PUNC">=</span><span class="WHIT"> </span><span class="NAME">quat.length</span><span class="PUNC">;</span><span class="WHIT">
 <span class='line'>375</span> 
 <span class='line'>376</span> </span><span class="COMM">/**
-<span class='line'>377</span>  * Caclulates the squared length of a quat
+<span class='line'>377</span>  * Calculates the squared length of a quat
 <span class='line'>378</span>  *
 <span class='line'>379</span>  * @param {quat} a vector to calculate squared length of
 <span class='line'>380</span>  * @returns {Number} squared length of a
