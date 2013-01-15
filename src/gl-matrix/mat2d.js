@@ -35,6 +35,15 @@ var mat2dIdentity = new Float32Array([
 /**
  * Creates a new identity mat2d
  *
+ * [a, b,
+ *  c, d,
+ *  tx,ty]
+ *
+ * This is a short form for the 3x3 matrix:
+ * [a, b, 0
+ *  c, d, 0
+ *  tx,ty,1]
+ * The last column is ignored so the array is shorter and operations are faster.
  * @returns {mat2d} a new 2x3 matrix
  */
 mat2d.create = function() {
@@ -99,38 +108,6 @@ mat2d.identity = function(out) {
 };
 
 /**
- * Transpose the values of a mat2d
- *
- * @param {mat2d} out the receiving matrix
- * @param {mat2d} a the source matrix
- * @returns {mat2d} out
- */
-// mat2d.transpose = function(out, a) {
-//     // If we are transposing ourselves we can skip a few steps but have to cache some values
-//     if (out === a) {
-//         var a01 = a[1], a02 = a[2], a12 = a[5];
-//         out[1] = a[3];
-//         out[2] = a[6];
-//         out[3] = a01;
-//         out[5] = a[7];
-//         out[6] = a02;
-//         out[7] = a12;
-//     } else {
-//         out[0] = a[0];
-//         out[1] = a[3];
-//         out[2] = a[6];
-//         out[3] = a[1];
-//         out[4] = a[4];
-//         out[5] = a[7];
-//         out[6] = a[2];
-//         out[7] = a[5];
-//         out[8] = a[8];
-//     }
-    
-//     return out;
-// };
-
-/**
  * Inverts a mat2d
  *
  * @param {mat2d} out the receiving matrix
@@ -155,30 +132,6 @@ mat2d.invert = function(out, a) {
     out[5] = (ab * atx - aa * aty) * det;
     return out;
 };
-
-/**
- * Calculates the adjugate of a mat2d
- *
- * @param {mat2d} out the receiving matrix
- * @param {mat2d} a the source matrix
- * @returns {mat2d} out
- */
-// mat2d.adjoint = function(out, a) {
-//     var a00 = a[0], a01 = a[1], a02 = a[2],
-//         a10 = a[3], a11 = a[4], a12 = a[5],
-//         a20 = a[6], a21 = a[7], a22 = a[8];
-
-//     out[0] = (a11 * a22 - a12 * a21);
-//     out[1] = (a02 * a21 - a01 * a22);
-//     out[2] = (a01 * a12 - a02 * a11);
-//     out[3] = (a12 * a20 - a10 * a22);
-//     out[4] = (a00 * a22 - a02 * a20);
-//     out[5] = (a02 * a10 - a00 * a12);
-//     out[6] = (a10 * a21 - a11 * a20);
-//     out[7] = (a01 * a20 - a00 * a21);
-//     out[8] = (a00 * a11 - a01 * a10);
-//     return out;
-// };
 
 /**
  * Calculates the determinant of a mat2d
@@ -210,7 +163,6 @@ mat2d.multiply = function (out, a, b) {
     out[3] = ac*bb + ad*bd;
     out[4] = ba*atx + bc*aty + btx;
     out[5] = bb*atx + bd*aty + bty;
-
     return out;
 };
 
@@ -252,12 +204,12 @@ mat2d.rotate = function (out, a, rad) {
  * Scales the mat2d by the dimensions in the given vec2
  *
  * @param {mat2d} out the receiving matrix
- * @param {mat2d} a the matrix to rotate
+ * @param {mat2d} a the matrix to translate
  * @param {mat2d} v the vec2 to scale the matrix by
  * @returns {mat2d} out
  **/
 mat2d.scale = function(out, a, v) {
-    var vx = vec[0], vy = vec[1];
+    var vx = v[0], vy = v[1];
     out[0] = a[0] * vx;
     out[1] = a[1] * vy;
     out[2] = a[2] * vx;
@@ -267,6 +219,23 @@ mat2d.scale = function(out, a, v) {
     return out;
 };
 
+/**
+ * Translates the mat2d by the dimensions in the given vec2
+ *
+ * @param {mat2d} out the receiving matrix
+ * @param {mat2d} a the matrix to translate
+ * @param {mat2d} v the vec2 to translate the matrix by
+ * @returns {mat2d} out
+ **/
+mat2d.translate = function(out, a, v) {
+    out[0] = a[0];
+    out[1] = a[1];
+    out[2] = a[2];
+    out[3] = a[3];
+    out[4] = a[4] + v[0];
+    out[5] = a[5] + v[1];
+    return out;
+};
 
 /**
  * Returns a string representation of a mat2d

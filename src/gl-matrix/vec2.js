@@ -376,6 +376,22 @@ vec2.transformMat2 = function(out, a, m) {
 };
 
 /**
+ * Transforms the vec2 with a mat2d
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a the vector to transform
+ * @param {mat2d} m matrix to transform with
+ * @returns {vec2} out
+ */
+vec2.transformMat2d = function(out, a, m) {
+    var x = a[0],
+        y = a[1];
+    out[0] = x * m[0] + y * m[2] + m[4];
+    out[1] = x * m[1] + y * m[3] + m[5];
+    return out;
+};
+
+/**
  * Perform some operation over an array of vec2s.
  *
  * @param {Array} a the array of vectors to iterate over

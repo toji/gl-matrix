@@ -380,6 +380,28 @@ describe("vec2", function() {
         });
     });
 
+    describe("transformMat2d", function() {
+        var matA;
+        beforeEach(function() { matA = [1, 2, 3, 4, 5, 6]; });
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.transformMat2d(out, vecA, matA); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([12, 16]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.transformMat2d(vecA, vecA, matA); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([12, 16]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6]); });
+        });
+    });
+
     describe("forEach", function() {
         var vecArray;
 
