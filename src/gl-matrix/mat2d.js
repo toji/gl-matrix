@@ -23,6 +23,21 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 /**
  * @class 2x3 Matrix
  * @name mat2d
+ * 
+ * @description 
+ * A mat2d contains six elements defined as:
+ * <pre>
+ * [a, b,
+ *  c, d,
+ *  tx,ty]
+ * </pre>
+ * This is a short form for the 3x3 matrix:
+ * <pre>
+ * [a, b, 0
+ *  c, d, 0
+ *  tx,ty,1]
+ * </pre>
+ * The last column is ignored so the array is shorter and operations are faster.
  */
 var mat2d = {};
 
@@ -35,15 +50,6 @@ var mat2dIdentity = new Float32Array([
 /**
  * Creates a new identity mat2d
  *
- * [a, b,
- *  c, d,
- *  tx,ty]
- *
- * This is a short form for the 3x3 matrix:
- * [a, b, 0
- *  c, d, 0
- *  tx,ty,1]
- * The last column is ignored so the array is shorter and operations are faster.
  * @returns {mat2d} a new 2x3 matrix
  */
 mat2d.create = function() {

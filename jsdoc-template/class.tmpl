@@ -66,7 +66,11 @@
 				</if>
 			
 				{+resolveLinks(data.classDesc)+}
-				
+
+				<if test="data.desc">
+					<div class="description">{+resolveLinks(summarize(data.desc))+}</div>
+				</if>
+
 				<if test="!data.isBuiltin()">{# isn't defined in any file #}
 					<br /><i>Defined in: </i> {+new Link().toSrc(data.srcFile)+}.
 				</if>

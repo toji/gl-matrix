@@ -399,6 +399,52 @@ quat.sqrLen = quat.squaredLength;
 quat.normalize = vec4.normalize;
 
 /**
+ * Creates a quaternion from the given 3x3 rotation matrix.
+ *
+ * @param {quat} out the receiving quaternion
+ * @param {mat3} m rotation matrix
+ * @returns {quat} out
+ * @function
+ */
+quat.fromMat3 = (function() {
+    var s_iNext = [1,2,0];
+    return function(out, m) {
+        // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
+        // article "Quaternion Calculus and Fast Animation".
+        var fTrace = m[0] + m[4] + m[8];
+        var fRoot;
+
+        if ( fTrace > 0.0 ) {
+            // |w| > 1/2, may as well choose w > 1/2
+            fRoot = Math.sqrt(fTrace + 1.0);  // 2w
+            out[3] = 0.5 * fRoot;
+            fRoot = 0.5/fRoot;  // 1/(4w)
+            out[0] = (m[7]-m[5])*fRoot;
+            out[1] = (m[2]-m[6])*fRoot;
+            out[2] = (m[3]-m[1])*fRoot;
+        } else {
+            // |w| <= 1/2
+            var i = 0;
+            if ( m[4] > m[0] )
+              i = 1;
+            if ( m[8] > m[i*3+i] )
+              i = 2;
+            var j = s_iNext[i];
+            var k = s_iNext[j];
+            
+            fRoot = Math.sqrt(m[i*3+i]-m[j*3+j]-m[k*3+k] + 1.0);
+            out[i] = 0.5 * fRoot;
+            fRoot = 0.5 / fRoot;
+            out[3] = (m[k*3+j] - m[j*3+k]) * fRoot;
+            out[j] = (m[j*3+i] + m[i*3+j]) * fRoot;
+            out[k] = (m[k*3+i] + m[i*3+k]) * fRoot;
+        }
+        
+        return out;
+    };
+})();
+
+/**
  * Returns a string representation of a quatenion
  *
  * @param {quat} vec vector to represent as a string

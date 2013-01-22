@@ -214,7 +214,7 @@ mat2.rotate = function (out, a, rad) {
  *
  * @param {mat2} out the receiving matrix
  * @param {mat2} a the matrix to rotate
- * @param {mat2} v the vec2 to scale the matrix by
+ * @param {vec2} v the vec2 to scale the matrix by
  * @returns {mat2} out
  **/
 mat2.scale = function(out, a, v) {
