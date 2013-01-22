@@ -281,7 +281,7 @@ quat.lerp = vec4.lerp;
  */
 quat.slerp = function (out, a, b, t) {
     var ax = a[0], ay = a[1], az = a[2], aw = a[3],
-        bx = b[0], by = b[1], bz = b[2], bw = a[3];
+        bx = b[0], by = b[1], bz = b[2], bw = b[3];
 
     var cosHalfTheta = ax * bx + ay * by + az * bz + aw * bw,
         halfTheta,
