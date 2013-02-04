@@ -41,6 +41,22 @@ describe("mat3", function() {
                     0, 0, 1];
     });
 
+    describe("fromMat4", function() {
+        beforeEach(function() {
+            result = mat3.fromMat4(out, [ 1, 2, 3, 4,
+                                          5, 6, 7, 8,
+                                          9,10,11,12,
+                                         13,14,15,16]); });
+
+        it("should return out", function() { expect(result).toBe(out); });
+
+        it("should calculate proper mat3", function() {
+            expect(out).toBeEqualish([ 1, 2, 3,
+                                       5, 6, 7,
+                                       9,10,11]);
+        });
+    });
+
     describe("create", function() {
         beforeEach(function() { result = mat3.create(); });
         it("should return a 9 element array initialized to a 3x3 identity matrix", function() { expect(result).toBeEqualish(identity); });
