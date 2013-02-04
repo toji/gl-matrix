@@ -41,12 +41,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  */
 var mat2d = {};
 
-var mat2dIdentity = new Float32Array([
-    1, 0,
-    0, 1,
-    0, 0
-]);
-
 /**
  * Creates a new identity mat2d
  *

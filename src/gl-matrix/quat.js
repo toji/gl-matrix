@@ -26,8 +26,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  */
 var quat = {};
 
-var quatIdentity = new Float32Array([0, 0, 0, 1]);
-
 /**
  * Creates a new identity quat
  *

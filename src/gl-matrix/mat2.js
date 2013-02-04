@@ -26,11 +26,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  */
 var mat2 = {};
 
-var mat2Identity = new Float32Array([
-    1, 0,
-    0, 1
-]);
-
 /**
  * Creates a new identity mat2
  *
