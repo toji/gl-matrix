@@ -52,6 +52,37 @@ describe("vec3", function() {
         });
     });
 
+    describe('transformMat3', function() {
+        var matr;
+        describe("with an identity", function() {
+            beforeEach(function() { matr = [1, 0, 0, 0, 1, 0, 0, 0, 1 ] });
+
+            beforeEach(function() { result = vec3.transformMat3(out, vecA, matr); });
+
+            it("should produce the input", function() {
+                expect(out).toBeEqualish([1, 2, 3]);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+
+        describe("with a lookAt normal matrix", function() {
+            beforeEach(function() {
+                matr = mat4.lookAt(mat4.create(), [5, 6, 7], [2, 6, 7], [0, 1, 0]);
+                var n = mat3.create();
+                matr = mat3.transpose(n, mat3.invert(n, mat3.fromMat4(n, matr)));
+            });
+
+            beforeEach(function() { result = vec3.transformMat3(out, vecA, matr); });
+
+            it("should rotate the input", function() {
+                expect(out).toBeEqualish([ -3, 2, 1 ]);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+    });
+
     describe("create", function() {
         beforeEach(function() { result = vec3.create(); });
         it("should return a 3 element array initialized to 0s", function() { expect(result).toBeEqualish([0, 0, 0]); });

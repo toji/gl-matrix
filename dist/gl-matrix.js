@@ -981,9 +981,25 @@ vec3.lerp = function (out, a, b, t) {
  */
 vec3.transformMat4 = function(out, a, m) {
     var x = a[0], y = a[1], z = a[2];
-    out[0] = m[0] * x + m[4] * y + m[8] * z + m[12];
-    out[1] = m[1] * x + m[5] * y + m[9] * z + m[13];
+    out[0] = m[0] * x + m[4] * y + m[ 8] * z + m[12];
+    out[1] = m[1] * x + m[5] * y + m[ 9] * z + m[13];
     out[2] = m[2] * x + m[6] * y + m[10] * z + m[14];
+    return out;
+};
+
+/**
+ * Transforms the vec3 with a mat3.
+ *
+ * @param {vec3} out the receiving vector
+ * @param {vec3} a the vector to transform
+ * @param {mat4} m the 3x3 matrix to transform with
+ * @returns {vec3} out
+ */
+vec3.transformMat3 = function(out, a, m) {
+    var x = a[0], y = a[1], z = a[2];
+    out[0] = x * m[0] + y * m[3] + z * m[6];
+    out[1] = x * m[1] + y * m[4] + z * m[7];
+    out[2] = x * m[2] + y * m[5] + z * m[8];
     return out;
 };
 
