@@ -6,6 +6,7 @@ The unit tests are built upon the following tools:
 * Jasmine -- the underlying test suite which executes the test and reports feedback
 * node.js -- used for testing at the command line, via the `jasmine-node` package
 * selenium -- used for automated in-browser testing via Ruby
+* jscoverage -- used for code coverage report generation
 
 If Ruby is installed, you can set up with:
 

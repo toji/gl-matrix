@@ -1,5 +1,12 @@
 if (typeof(exports) !== 'undefined') {
-  var glm = require("../../dist/gl-matrix");
+  var glm;
+  try {
+    glm = require("../../tmp/coverage/manifest");
+  } catch(e) {
+    if (e.code === "MODULE_NOT_FOUND")
+      glm = require("../../dist/gl-matrix");
+    else throw e;
+  }
   for (var ns in glm) {
     global[ns] = glm[ns];
   }

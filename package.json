@@ -21,5 +21,10 @@
       "email": "sinisterchipmunk@gmail.com"
     }
   ],
+  "devDependencies" : {
+    "covershot": "0.1.0",
+    "node-jsmeter": "0.1.2",
+    "jasmine-node": "1.2.2"
+  },
   "license": "BSD"
 }
