@@ -25,6 +25,33 @@ describe("vec3", function() {
 
     beforeEach(function() { vecA = [1, 2, 3]; vecB = [4, 5, 6]; out = [0, 0, 0]; });
 
+    describe('transformMat4', function() {
+        var matr;
+        describe("with an identity", function() {
+            beforeEach(function() { matr = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ] });
+
+            beforeEach(function() { result = vec3.transformMat4(out, vecA, matr); });
+
+            it("should produce the input", function() {
+                expect(out).toBeEqualish([1, 2, 3]);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+
+        describe("with a lookAt", function() {
+            beforeEach(function() { matr = mat4.lookAt(mat4.create(), [5, 6, 7], [2, 6, 7], [0, 1, 0]); });
+
+            beforeEach(function() { result = vec3.transformMat4(out, vecA, matr); });
+
+            it("should rotate and translate the input", function() {
+                expect(out).toBeEqualish([ 4, -4, -4 ]);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+    });
+
     describe("create", function() {
         beforeEach(function() { result = vec3.create(); });
         it("should return a 3 element array initialized to 0s", function() { expect(result).toBeEqualish([0, 0, 0]); });
