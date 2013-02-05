@@ -57,6 +57,16 @@ describe("mat3", function() {
         });
     });
 
+    describe("scale", function() {
+        beforeEach(function() { result = mat3.scale(out, matA, [2,2]); });
+        it("should return out", function() { expect(result).toBe(out); });
+        it('should place proper values in out', function() {
+            expect(out).toBeEqualish([ 2, 0, 0,
+                                       0, 2, 0,
+                                       1, 2, 1 ]);
+        });
+    });
+
     describe("create", function() {
         beforeEach(function() { result = mat3.create(); });
         it("should return a 9 element array initialized to a 3x3 identity matrix", function() { expect(result).toBeEqualish(identity); });

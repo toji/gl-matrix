@@ -334,7 +334,7 @@ mat3.rotate = function (out, a, rad) {
  * @returns {mat3} out
  **/
 mat3.scale = function(out, a, v) {
-    var x = v[0], y = v[2];
+    var x = v[0], y = v[1];
 
     out[0] = x * a[0];
     out[1] = x * a[1];
