@@ -3,7 +3,8 @@ if (typeof(exports) !== 'undefined') {
   try {
     glm = require("../../tmp/coverage/manifest");
   } catch(e) {
-    if (e.code === "MODULE_NOT_FOUND")
+    if (e.code === "MODULE_NOT_FOUND" ||
+        e.toString().indexOf("Cannot find module") !== -1)
       glm = require("../../dist/gl-matrix");
     else throw e;
   }
