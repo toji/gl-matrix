@@ -86,6 +86,47 @@ describe("quat", function() {
         });
     });
 
+    describe("setAxes", function() {
+        var r;
+        beforeEach(function() { r = vec3.create(); });
+
+        describe("given opengl defaults", function() {
+            var view, up, right;
+            beforeEach(function() {
+                view = [0, 0, -1];
+                up   = [0, 1,  0];
+                right= [1, 0,  0];
+                result = quat.setAxes(out, view, right, up);
+            });
+
+            it("should return out", function() {
+                expect(result).toBe(out);
+            });
+
+            it("should produce identity", function() {
+                expect(out).toBeEqualish([0, 0, 0, 1]);
+            });
+        });
+
+        describe("given a rotated view", function() {
+            var view, up, right;
+            beforeEach(function() {
+                view = [1, 0, 0];
+                up   = [0, 1, 0];
+                right= [0, 0, 1];
+                result = quat.setAxes(out, view, right, up);
+            });
+
+            it("should return out", function() {
+                expect(result).toBe(out);
+            });
+
+            it("multiplying a forward vector should point 'right'", function() {
+                expect(vec3.transformQuat([], [0,0,-1], out)).toBeEqualish([-1,0,0]);
+            });
+        });
+    });
+
     describe("rotationTo", function() {
         var r;
         beforeEach(function() { r = vec3.create(); });
