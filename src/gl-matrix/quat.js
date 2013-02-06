@@ -445,7 +445,12 @@ quat.normalize = vec4.normalize;
  * @function
  */
 quat.fromMat3 = (function() {
-    var s_iNext = [1,2,0];
+    // benchmarks:
+    //    http://jsperf.com/typed-array-access-speed
+    //    http://jsperf.com/conversion-of-3x3-matrix-to-quaternion
+
+    var s_iNext = (typeof(Int8Array) !== 'undefined' ? new Int8Array([1,2,0]) : [1,2,0]);
+
     return function(out, m) {
         // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
         // article "Quaternion Calculus and Fast Animation".
@@ -457,9 +462,9 @@ quat.fromMat3 = (function() {
             fRoot = Math.sqrt(fTrace + 1.0);  // 2w
             out[3] = 0.5 * fRoot;
             fRoot = 0.5/fRoot;  // 1/(4w)
-            out[0] = (m[7]-m[5])*fRoot;
-            out[1] = (m[2]-m[6])*fRoot;
-            out[2] = (m[3]-m[1])*fRoot;
+            out[0] = (m[5]-m[7])*fRoot;
+            out[1] = (m[6]-m[2])*fRoot;
+            out[2] = (m[1]-m[3])*fRoot;
         } else {
             // |w| <= 1/2
             var i = 0;

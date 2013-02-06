@@ -25,6 +25,67 @@ describe("quat", function() {
 
     beforeEach(function() { quatA = [1, 2, 3, 4]; quatB = [5, 6, 7, 8]; out = [0, 0, 0, 0]; });
 
+    describe("fromMat3", function() {
+        var matr;
+
+        describe("where trace > 0", function() {
+            beforeEach(function() {
+                matr = [  0, 0, 1,
+                          0, 1, 0,
+                         -1, 0, 0 ];
+                result = quat.fromMat3(out, matr);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+
+            it("should produce the same transformation as the given matrix", function() {
+                expect(vec3.transformQuat([], [3,2,-1], quat.normalize(out, out))).toBeEqualish(vec3.transformMat3([], [3,2,-1], matr));
+            });
+        });
+
+        describe("from a normal matrix looking 'backward'", function() {
+            beforeEach(function() {
+                matr = mat3.create();
+                mat3.transpose(matr, mat3.invert(matr, mat3.fromMat4(matr, mat4.lookAt(mat4.create(), [0, 0, 0], [0, 0, 1], [0, 1, 0]))));
+                result = quat.fromMat3(out, matr);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+
+            it("should produce the same transformation as the given matrix", function() {
+                expect(vec3.transformQuat([], [3,2,-1], quat.normalize(out, out))).toBeEqualish(vec3.transformMat3([], [3,2,-1], matr));
+            });
+        });
+
+        describe("from a normal matrix looking 'left' and 'upside down'", function() {
+            beforeEach(function() {
+                matr = mat3.create();
+                mat3.transpose(matr, mat3.invert(matr, mat3.fromMat4(matr, mat4.lookAt(mat4.create(), [0, 0, 0], [-1, 0, 0], [0, -1, 0]))));
+                result = quat.fromMat3(out, matr);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+
+            it("should produce the same transformation as the given matrix", function() {
+                expect(vec3.transformQuat([], [3,2,-1], quat.normalize(out, out))).toBeEqualish(vec3.transformMat3([], [3,2,-1], matr));
+            });
+        });
+
+        describe("from a normal matrix looking 'upside down'", function() {
+            beforeEach(function() {
+                matr = mat3.create();
+                mat3.transpose(matr, mat3.invert(matr, mat3.fromMat4(matr, mat4.lookAt(mat4.create(), [0, 0, 0], [0, 0, -1], [0, -1, 0]))));
+                result = quat.fromMat3(out, matr);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+
+            it("should produce the same transformation as the given matrix", function() {
+                expect(vec3.transformQuat([], [3,2,-1], quat.normalize(out, out))).toBeEqualish(vec3.transformMat3([], [3,2,-1], matr));
+            });
+        });
+    });
+
     describe("rotationTo", function() {
         var r;
         beforeEach(function() { r = vec3.create(); });
