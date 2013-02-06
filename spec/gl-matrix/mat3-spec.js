@@ -41,6 +41,19 @@ describe("mat3", function() {
                     0, 0, 1];
     });
 
+    describe("fromQuat", function() {
+        beforeEach(function() {
+            var q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
+            result = mat3.fromQuat(out, q);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+
+        it("should be equivalent to a PI rotation about the Y axis", function() {
+            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([1,0,0]);
+        });
+    });
+
     describe("fromMat4", function() {
         beforeEach(function() {
             result = mat3.fromMat4(out, [ 1, 2, 3, 4,
