@@ -469,6 +469,9 @@ quat.normalize = vec4.normalize;
 /**
  * Creates a quaternion from the given 3x3 rotation matrix.
  *
+ * NOTE: The resultant quaternion is not normalized, so you should be sure
+ * to renormalize the quaternion yourself where necessary.
+ *
  * @param {quat} out the receiving quaternion
  * @param {mat3} m rotation matrix
  * @returns {quat} out
