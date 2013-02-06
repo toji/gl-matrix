@@ -25,6 +25,63 @@ describe("quat", function() {
 
     beforeEach(function() { quatA = [1, 2, 3, 4]; quatB = [5, 6, 7, 8]; out = [0, 0, 0, 0]; });
 
+    describe("rotationTo", function() {
+        var r;
+        beforeEach(function() { r = vec3.create(); });
+
+        describe("at right angle", function() {
+            beforeEach(function() {
+                result = quat.rotationTo(out, [0, 1, 0], [1, 0, 0]);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+
+            it("should calculate proper quaternion", function() {
+                expect(out).toBeEqualish([0, 0, -0.707106, 0.707106]);
+            });
+        });
+
+        describe("when vectors are parallel", function() {
+            beforeEach(function() {
+                result = quat.rotationTo(out, [0, 1, 0], [0, 1, 0]);
+            });
+
+            it("multiplying A should produce B", function() {
+                expect(vec3.transformQuat(r, [0, 1, 0], out)).toBeEqualish([0, 1, 0]);
+            });
+        });
+
+        describe("when vectors are opposed X", function() {
+            beforeEach(function() {
+                result = quat.rotationTo(out, [1, 0, 0], [-1, 0, 0]);
+            });
+
+            it("multiplying A should produce B", function() {
+                expect(vec3.transformQuat(r, [1, 0, 0], out)).toBeEqualish([-1, 0, 0]);
+            });
+        });
+
+        describe("when vectors are opposed Y", function() {
+            beforeEach(function() {
+                result = quat.rotationTo(out, [0, 1, 0], [0, -1, 0]);
+            });
+
+            it("multiplying A should produce B", function() {
+                expect(vec3.transformQuat(r, [0, 1, 0], out)).toBeEqualish([0, -1, 0]);
+            });
+        });
+
+        describe("when vectors are opposed Z", function() {
+            beforeEach(function() {
+                result = quat.rotationTo(out, [0, 0, 1], [0, 0, -1]);
+            });
+
+            it("multiplying A should produce B", function() {
+                expect(vec3.transformQuat(r, [0, 0, 1], out)).toBeEqualish([0, 0, -1]);
+            });
+        });
+    });
+
     describe("create", function() {
         beforeEach(function() { result = quat.create(); });
         it("should return a 4 element array initialized to an identity quaternion", function() { expect(result).toBeEqualish([0, 0, 0, 1]); });

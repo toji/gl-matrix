@@ -981,8 +981,8 @@ vec3.lerp = function (out, a, b, t) {
  */
 vec3.transformMat4 = function(out, a, m) {
     var x = a[0], y = a[1], z = a[2];
-    out[0] = m[0] * x + m[4] * y + m[ 8] * z + m[12];
-    out[1] = m[1] * x + m[5] * y + m[ 9] * z + m[13];
+    out[0] = m[0] * x + m[4] * y + m[8] * z + m[12];
+    out[1] = m[1] * x + m[5] * y + m[9] * z + m[13];
     out[2] = m[2] * x + m[6] * y + m[10] * z + m[14];
     return out;
 };
@@ -3447,6 +3447,44 @@ quat.create = function() {
     out[3] = 1;
     return out;
 };
+
+/**
+ */
+quat.rotationTo = (function() {
+    var xUnitVec3 = vec3.fromValues(1,0,0);
+    var yUnitVec3 = vec3.fromValues(0,1,0);
+    var zUnitVec3 = vec3.fromValues(0,0,1);
+
+    var tmpvec3 = vec3.create();
+
+    return function(out, a, b) {
+        var d = vec3.dot(a, b);
+        var axis = tmpvec3;
+        if (d >= 1.0) {
+            quat.copy(out, quat.IDENTITY);
+        } else if (d < (0.000001 - 1.0)) {
+            vec3.cross(axis, xUnitVec3, a);
+            if (vec3.length(axis) < 0.000001)
+                vec3.cross(axis, yUnitVec3, a);
+            if (vec3.length(axis) < 0.000001)
+                vec3.cross(axis, zUnitVec3, a);
+            vec3.normalize(axis, axis);
+            quat.fromAngleAxis(out, Math.PI, axis);
+        } else {
+            var s = Math.sqrt((1.0 + d) * 2.0);
+            var sInv = 1.0 / s;
+            vec3.cross(axis, a, b);
+            out[0] = axis[0] * sInv;
+            out[1] = axis[1] * sInv;
+            out[2] = axis[2] * sInv;
+            out[3] = s * 0.5;
+            quat.normalize(out, out);
+        }
+        if (out[3] > 1.0) out[3] = 1.0;
+        else if (out[3] < -1.0) out[3] = -1.0;
+        return out;
+    };
+})();
 
 /**
  * Creates a new quat initialized with values from an existing quaternion
