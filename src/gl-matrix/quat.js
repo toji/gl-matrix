@@ -41,6 +41,13 @@ quat.create = function() {
 };
 
 /**
+ * Sets a quaternion to represent the shortest rotation from one
+ * vector to another.
+ *
+ * @param {quat} out the receiving quaternion.
+ * @param {vec3} a the initial vector
+ * @param {vec3} b the destination vector
+ * @returns {quat} out
  */
 quat.rotationTo = (function() {
     var tmpvec3 = vec3.create();
