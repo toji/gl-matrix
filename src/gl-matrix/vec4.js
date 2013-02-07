@@ -123,7 +123,7 @@ vec4.add = function(out, a, b) {
 };
 
 /**
- * Subtracts two vec4's
+ * Subtracts vector b from vector a
  *
  * @param {vec4} out the receiving vector
  * @param {vec4} a the first operand

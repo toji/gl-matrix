@@ -107,7 +107,7 @@ vec2.add = function(out, a, b) {
 };
 
 /**
- * Subtracts two vec2's
+ * Subtracts vector b from vector a
  *
  * @param {vec2} out the receiving vector
  * @param {vec2} a the first operand
