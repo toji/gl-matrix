@@ -354,8 +354,7 @@ mat3.scale = function(out, a, v) {
  * Copies the values from a mat2d into a mat3
  *
  * @param {mat3} out the receiving matrix
- * @param {mat3} a the matrix to rotate
- * @param {vec2} v the vec2 to scale the matrix by
+ * @param {mat2d} a the matrix to copy
  * @returns {mat3} out
  **/
 mat3.fromMat2d = function(out, a) {
