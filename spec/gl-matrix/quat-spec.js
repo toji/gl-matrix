@@ -22,8 +22,52 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 describe("quat", function() {
     var out, quatA, quatB, result;
+    var vec, id, deg90;
 
-    beforeEach(function() { quatA = [1, 2, 3, 4]; quatB = [5, 6, 7, 8]; out = [0, 0, 0, 0]; });
+    beforeEach(function() {
+        quatA = [1, 2, 3, 4];
+        quatB = [5, 6, 7, 8];
+        out = [0, 0, 0, 0];
+        vec = [1, 1, -1];
+        id = [0, 0, 0, 1];
+        deg90 = Math.PI / 2;
+    });
+
+    describe("rotateX", function() {
+        beforeEach(function() {
+            result = quat.rotateX(out, id, deg90);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function() {
+            vec3.transformQuat(vec, vec, out);
+            expect(vec).toBeEqualish([1, 1, 1]);
+        });
+    });
+
+    describe("rotateY", function() {
+        beforeEach(function() {
+            result = quat.rotateY(out, id, deg90);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function() {
+            vec3.transformQuat(vec, vec, out);
+            expect(vec).toBeEqualish([-1, 1, -1]);
+        });
+    });
+
+    describe("rotateZ", function() {
+        beforeEach(function() {
+            result = quat.rotateZ(out, id, deg90);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function() {
+            vec3.transformQuat(vec, vec, out);
+            expect(vec).toBeEqualish([-1, 1, -1]);
+        });
+    });
 
     describe("fromMat3", function() {
         var matr;
