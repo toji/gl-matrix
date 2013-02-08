@@ -2018,7 +2018,7 @@ mat2d.rotate = function (out, a, rad) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {mat2d} a the matrix to translate
- * @param {mat2d} v the vec2 to scale the matrix by
+ * @param {vec2} v the vec2 to scale the matrix by
  * @returns {mat2d} out
  **/
 mat2d.scale = function(out, a, v) {
@@ -2037,7 +2037,7 @@ mat2d.scale = function(out, a, v) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {mat2d} a the matrix to translate
- * @param {mat2d} v the vec2 to translate the matrix by
+ * @param {vec2} v the vec2 to translate the matrix by
  * @returns {mat2d} out
  **/
 mat2d.translate = function(out, a, v) {
@@ -3449,40 +3449,72 @@ quat.create = function() {
 };
 
 /**
+ * Sets a quaternion to represent the shortest rotation from one
+ * vector to another.
+ *
+ * Both vectors are assumed to be unit length.
+ *
+ * @param {quat} out the receiving quaternion.
+ * @param {vec3} a the initial vector
+ * @param {vec3} b the destination vector
+ * @returns {quat} out
  */
 quat.rotationTo = (function() {
+    var tmpvec3 = vec3.create();
     var xUnitVec3 = vec3.fromValues(1,0,0);
     var yUnitVec3 = vec3.fromValues(0,1,0);
-    var zUnitVec3 = vec3.fromValues(0,0,1);
-
-    var tmpvec3 = vec3.create();
 
     return function(out, a, b) {
-        var d = vec3.dot(a, b);
-        var axis = tmpvec3;
-        if (d >= 1.0) {
-            quat.copy(out, quat.IDENTITY);
-        } else if (d < (0.000001 - 1.0)) {
-            vec3.cross(axis, xUnitVec3, a);
-            if (vec3.length(axis) < 0.000001)
-                vec3.cross(axis, yUnitVec3, a);
-            if (vec3.length(axis) < 0.000001)
-                vec3.cross(axis, zUnitVec3, a);
-            vec3.normalize(axis, axis);
-            quat.fromAngleAxis(out, Math.PI, axis);
+        var dot = vec3.dot(a, b);
+        if (dot < -0.999999) {
+            vec3.cross(tmpvec3, xUnitVec3, a);
+            if (vec3.length(tmpvec3) < 0.000001)
+                vec3.cross(tmpvec3, yUnitVec3, a);
+            vec3.normalize(tmpvec3, tmpvec3);
+            quat.setAxisAngle(out, tmpvec3, Math.PI);
+        } else if (dot > 0.999999) {
+            out[0] = 0;
+            out[1] = 0;
+            out[2] = 0;
+            out[3] = 1;
         } else {
-            var s = Math.sqrt((1.0 + d) * 2.0);
-            var sInv = 1.0 / s;
-            vec3.cross(axis, a, b);
-            out[0] = axis[0] * sInv;
-            out[1] = axis[1] * sInv;
-            out[2] = axis[2] * sInv;
-            out[3] = s * 0.5;
-            quat.normalize(out, out);
+            vec3.cross(tmpvec3, a, b);
+            out[0] = tmpvec3[0];
+            out[1] = tmpvec3[1];
+            out[2] = tmpvec3[2];
+            out[3] = 1 + dot;
+            return quat.normalize(out, out);
         }
-        if (out[3] > 1.0) out[3] = 1.0;
-        else if (out[3] < -1.0) out[3] = -1.0;
-        return out;
+    };
+})();
+
+/**
+ * Sets the specified quaternion with values corresponding to the given
+ * axes. Each axis is a vec3 and is expected to be unit length and
+ * perpendicular to all other specified axes.
+ *
+ * @param {vec3} view  the vector representing the viewing direction
+ * @param {vec3} right the vector representing the local "right" direction
+ * @param {vec3} up    the vector representing the local "up" direction
+ * @returns {quat} out
+ */
+quat.setAxes = (function() {
+    var matr = mat3.create();
+
+    return function(out, view, right, up) {
+        matr[0] = right[0];
+        matr[3] = right[1];
+        matr[6] = right[2];
+
+        matr[1] = up[0];
+        matr[4] = up[1];
+        matr[7] = up[2];
+
+        matr[2] = -view[0];
+        matr[5] = -view[1];
+        matr[8] = -view[2];
+
+        return quat.normalize(out, quat.fromMat3(out, matr));
     };
 })();
 
@@ -3845,13 +3877,21 @@ quat.normalize = vec4.normalize;
 /**
  * Creates a quaternion from the given 3x3 rotation matrix.
  *
+ * NOTE: The resultant quaternion is not normalized, so you should be sure
+ * to renormalize the quaternion yourself where necessary.
+ *
  * @param {quat} out the receiving quaternion
  * @param {mat3} m rotation matrix
  * @returns {quat} out
  * @function
  */
 quat.fromMat3 = (function() {
-    var s_iNext = [1,2,0];
+    // benchmarks:
+    //    http://jsperf.com/typed-array-access-speed
+    //    http://jsperf.com/conversion-of-3x3-matrix-to-quaternion
+
+    var s_iNext = (typeof(Int8Array) !== 'undefined' ? new Int8Array([1,2,0]) : [1,2,0]);
+
     return function(out, m) {
         // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
         // article "Quaternion Calculus and Fast Animation".
@@ -3863,9 +3903,9 @@ quat.fromMat3 = (function() {
             fRoot = Math.sqrt(fTrace + 1.0);  // 2w
             out[3] = 0.5 * fRoot;
             fRoot = 0.5/fRoot;  // 1/(4w)
-            out[0] = (m[7]-m[5])*fRoot;
-            out[1] = (m[2]-m[6])*fRoot;
-            out[2] = (m[3]-m[1])*fRoot;
+            out[0] = (m[5]-m[7])*fRoot;
+            out[1] = (m[6]-m[2])*fRoot;
+            out[2] = (m[1]-m[3])*fRoot;
         } else {
             // |w| <= 1/2
             var i = 0;
