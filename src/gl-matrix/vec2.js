@@ -107,7 +107,7 @@ vec2.add = function(out, a, b) {
 };
 
 /**
- * Subtracts two vec2's
+ * Subtracts vector b from vector a
  *
  * @param {vec2} out the receiving vector
  * @param {vec2} a the first operand
@@ -205,6 +205,21 @@ vec2.max = function(out, a, b) {
 vec2.scale = function(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
+    return out;
+};
+
+/**
+ * Adds two vec2's after scaling the second operand by a scalar value
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a the first operand
+ * @param {vec2} b the second operand
+ * @param {Number} scale the amount to scale b by before adding
+ * @returns {vec2} out
+ */
+vec2.scaleAndAdd = function(out, a, b, scale) {
+    out[0] = a[0] + (b[0] * scale);
+    out[1] = a[1] + (b[1] * scale);
     return out;
 };
 

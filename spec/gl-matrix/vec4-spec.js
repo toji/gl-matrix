@@ -241,6 +241,33 @@ describe("vec4", function() {
         });
     });
 
+    describe("scaleAndAdd", function() {
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec4.scaleAndAdd(out, vecA, vecB, 0.5); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([3.5, 5, 6.5, 8]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2, 3, 4]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec4.scaleAndAdd(vecA, vecA, vecB, 0.5); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([3.5, 5, 6.5, 8]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec4.scaleAndAdd(vecB, vecA, vecB, 0.5); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([3.5, 5, 6.5, 8]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2, 3, 4]); });
+        });
+    });
+
     describe("distance", function() {
         it("should have an alias called 'dist'", function() { expect(vec4.dist).toEqual(vec4.distance); });
 
