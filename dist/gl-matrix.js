@@ -470,10 +470,10 @@ vec2.lerp = function (out, a, b, t) {
 * @returns {vec2} out
 */
 vec2.rotate = function(out, a, rad){
-    var s = Math.sin(rad),
+    var s = Math.sin(rad), 
         c = Math.cos(rad),
         a00 = c, a01 = -s,
-        a10 = s, a11 = -c,
+        a10 = s, a11 = c,
         x = a[0], 
         y = a[1];
 
@@ -496,7 +496,7 @@ vec2.rotateAround = function(out, a, b, rad){
     var s = Math.sin(rad),
         c = Math.cos(rad),
         a00 = c, a01 = -s,
-        a10 = s, a11 = -c,
+        a10 = s, a11 = c,
         x = a[0] - b[0], 
         y = a[1] - b[1];
 
