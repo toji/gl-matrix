@@ -503,4 +503,44 @@ describe("vec2", function() {
         
         it("should return a string representation of the vector", function() { expect(result).toEqual("vec2(1, 2)"); });
     });
+
+    describe("rotate", function() {
+        var rad = Math.PI * 0.5;
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.rotate(out, vecA, rad); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([-2, 1]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.rotate(vecA, vecA, rad); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([-2, 1]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
+
+    describe("rotateAround", function() {
+        var rad = Math.PI * 0.5;
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.rotateAround(out, vecA, vecB, rad); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([5, 2]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.rotateAround(vecA, vecA, vecB, rad); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([5, 2]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
 });

@@ -360,6 +360,51 @@ vec2.lerp = function (out, a, b, t) {
 };
 
 /**
+* Rotates a vec2 by the given angle around the origin
+*
+* @param {vec2} out the receiving vector
+* @param {vec2} a the vector to rotate
+* @param {Number} rad the angle to rotate the vector by
+* @returns {vec2} out
+*/
+vec2.rotate = function(out, a, rad){
+    var s = Math.sin(rad), 
+        c = Math.cos(rad),
+        a00 = c, a01 = -s,
+        a10 = s, a11 = c,
+        x = a[0], 
+        y = a[1];
+
+    out[0] = a00 * x + a01 * y;
+    out[1] = a10 * x + a11 * y;
+
+    return out;
+}
+
+/**
+* Rotates a vec2 by the given angle around another vec2
+*
+* @param {vec2} out the receiving vector
+* @param {vec2} a the vector to rotate
+* @param {vec2} b the vector to rotate around
+* @param {Number} rad the angle to rotate the vector by
+* @returns {vec2} out
+*/
+vec2.rotateAround = function(out, a, b, rad){
+    var s = Math.sin(rad),
+        c = Math.cos(rad),
+        a00 = c, a01 = -s,
+        a10 = s, a11 = c,
+        x = a[0] - b[0], 
+        y = a[1] - b[1];
+
+    out[0] = (a00 * x + a01 * y) + b[0];
+    out[1] = (a10 * x + a11 * y) + b[1];
+
+    return out;
+}
+
+/**
  * Transforms the vec2 with a mat2
  *
  * @param {vec2} out the receiving vector
