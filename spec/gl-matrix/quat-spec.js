@@ -238,6 +238,8 @@ describe("quat", function() {
                 result = quat.rotationTo(out, [0, 1, 0], [0, 1, 0]);
             });
 
+            it("should return out", function() { expect(result).toBe(out); });
+
             it("multiplying A should produce B", function() {
                 expect(vec3.transformQuat(r, [0, 1, 0], out)).toBeEqualish([0, 1, 0]);
             });
@@ -247,6 +249,8 @@ describe("quat", function() {
             beforeEach(function() {
                 result = quat.rotationTo(out, [1, 0, 0], [-1, 0, 0]);
             });
+
+            it("should return out", function() { expect(result).toBe(out); });
 
             it("multiplying A should produce B", function() {
                 expect(vec3.transformQuat(r, [1, 0, 0], out)).toBeEqualish([-1, 0, 0]);
@@ -258,6 +262,8 @@ describe("quat", function() {
                 result = quat.rotationTo(out, [0, 1, 0], [0, -1, 0]);
             });
 
+            it("should return out", function() { expect(result).toBe(out); });
+
             it("multiplying A should produce B", function() {
                 expect(vec3.transformQuat(r, [0, 1, 0], out)).toBeEqualish([0, -1, 0]);
             });
@@ -267,6 +273,8 @@ describe("quat", function() {
             beforeEach(function() {
                 result = quat.rotationTo(out, [0, 0, 1], [0, 0, -1]);
             });
+
+            it("should return out", function() { expect(result).toBe(out); });
 
             it("multiplying A should produce B", function() {
                 expect(vec3.transformQuat(r, [0, 0, 1], out)).toBeEqualish([0, 0, -1]);

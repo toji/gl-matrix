@@ -64,11 +64,13 @@ quat.rotationTo = (function() {
                 vec3.cross(tmpvec3, yUnitVec3, a);
             vec3.normalize(tmpvec3, tmpvec3);
             quat.setAxisAngle(out, tmpvec3, Math.PI);
+            return out;
         } else if (dot > 0.999999) {
             out[0] = 0;
             out[1] = 0;
             out[2] = 0;
             out[3] = 1;
+            return out;
         } else {
             vec3.cross(tmpvec3, a, b);
             out[0] = tmpvec3[0];
