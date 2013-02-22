@@ -22,8 +22,98 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 describe("quat", function() {
     var out, quatA, quatB, result;
+    var vec, id, deg90;
 
-    beforeEach(function() { quatA = [1, 2, 3, 4]; quatB = [5, 6, 7, 8]; out = [0, 0, 0, 0]; });
+    beforeEach(function() {
+        quatA = [1, 2, 3, 4];
+        quatB = [5, 6, 7, 8];
+        out = [0, 0, 0, 0];
+        vec = [1, 1, -1];
+        id = [0, 0, 0, 1];
+        deg90 = Math.PI / 2;
+    });
+
+    describe("slerp", function() {
+        describe("the normal case", function() {
+            beforeEach(function() {
+                result = quat.slerp(out, [0, 0, 0, 1], [0, 1, 0, 0], 0.5);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should calculate proper quat", function() {
+                expect(result).toBeEqualish([0, 0.707106, 0, 0.707106]);
+            });
+        });
+
+        describe("where a == b", function() {
+            beforeEach(function() {
+                result = quat.slerp(out, [0, 0, 0, 1], [0, 0, 0, 1], 0.5);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should calculate proper quat", function() {
+                expect(result).toBeEqualish([0, 0, 0, 1]);
+            });
+        });
+
+        describe("where theta == 180deg", function() {
+            beforeEach(function() {
+                quat.rotateX(quatA, [1,0,0,0], Math.PI); // 180 deg
+                result = quat.slerp(out, [1,0,0,0], quatA, 1);
+            });
+
+            it("should calculate proper quat", function() {
+                expect(result).toBeEqualish([0,0,0,-1]);
+            });
+        });
+
+        describe("where a == -b", function() {
+            beforeEach(function() {
+                result = quat.slerp(out, [1, 0, 0, 0], [-1, 0, 0, 0], 0.5);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should calculate proper quat", function() {
+                expect(result).toBeEqualish([1, 0, 0, 0]);
+            });
+        });
+    });
+
+    describe("rotateX", function() {
+        beforeEach(function() {
+            result = quat.rotateX(out, id, deg90);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function() {
+            vec3.transformQuat(vec, vec, out);
+            expect(vec).toBeEqualish([1, 1, 1]);
+        });
+    });
+
+    describe("rotateY", function() {
+        beforeEach(function() {
+            result = quat.rotateY(out, id, deg90);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function() {
+            vec3.transformQuat(vec, vec, out);
+            expect(vec).toBeEqualish([-1, 1, -1]);
+        });
+    });
+
+    describe("rotateZ", function() {
+        beforeEach(function() {
+            result = quat.rotateZ(out, id, deg90);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+        it("should transform vec accordingly", function() {
+            vec3.transformQuat(vec, vec, out);
+            expect(vec).toBeEqualish([-1, 1, -1]);
+        });
+    });
 
     describe("fromMat3", function() {
         var matr;

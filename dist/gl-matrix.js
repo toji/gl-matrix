@@ -209,7 +209,7 @@ vec2.add = function(out, a, b) {
 };
 
 /**
- * Subtracts two vec2's
+ * Subtracts vector b from vector a
  *
  * @param {vec2} out the receiving vector
  * @param {vec2} a the first operand
@@ -307,6 +307,21 @@ vec2.max = function(out, a, b) {
 vec2.scale = function(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
+    return out;
+};
+
+/**
+ * Adds two vec2's after scaling the second operand by a scalar value
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a the first operand
+ * @param {vec2} b the second operand
+ * @param {Number} scale the amount to scale b by before adding
+ * @returns {vec2} out
+ */
+vec2.scaleAndAdd = function(out, a, b, scale) {
+    out[0] = a[0] + (b[0] * scale);
+    out[1] = a[1] + (b[1] * scale);
     return out;
 };
 
@@ -701,7 +716,7 @@ vec3.add = function(out, a, b) {
 };
 
 /**
- * Subtracts two vec3's
+ * Subtracts vector b from vector a
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the first operand
@@ -805,6 +820,22 @@ vec3.scale = function(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
+    return out;
+};
+
+/**
+ * Adds two vec3's after scaling the second operand by a scalar value
+ *
+ * @param {vec3} out the receiving vector
+ * @param {vec3} a the first operand
+ * @param {vec3} b the second operand
+ * @param {Number} scale the amount to scale b by before adding
+ * @returns {vec3} out
+ */
+vec3.scaleAndAdd = function(out, a, b, scale) {
+    out[0] = a[0] + (b[0] * scale);
+    out[1] = a[1] + (b[1] * scale);
+    out[2] = a[2] + (b[2] * scale);
     return out;
 };
 
@@ -1209,7 +1240,7 @@ vec4.add = function(out, a, b) {
 };
 
 /**
- * Subtracts two vec4's
+ * Subtracts vector b from vector a
  *
  * @param {vec4} out the receiving vector
  * @param {vec4} a the first operand
@@ -1319,6 +1350,23 @@ vec4.scale = function(out, a, b) {
     out[1] = a[1] * b;
     out[2] = a[2] * b;
     out[3] = a[3] * b;
+    return out;
+};
+
+/**
+ * Adds two vec4's after scaling the second operand by a scalar value
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a the first operand
+ * @param {vec4} b the second operand
+ * @param {Number} scale the amount to scale b by before adding
+ * @returns {vec4} out
+ */
+vec4.scaleAndAdd = function(out, a, b, scale) {
+    out[0] = a[0] + (b[0] * scale);
+    out[1] = a[1] + (b[1] * scale);
+    out[2] = a[2] + (b[2] * scale);
+    out[3] = a[3] + (b[3] * scale);
     return out;
 };
 
@@ -2018,7 +2066,7 @@ mat2d.rotate = function (out, a, rad) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {mat2d} a the matrix to translate
- * @param {mat2d} v the vec2 to scale the matrix by
+ * @param {vec2} v the vec2 to scale the matrix by
  * @returns {mat2d} out
  **/
 mat2d.scale = function(out, a, v) {
@@ -2037,7 +2085,7 @@ mat2d.scale = function(out, a, v) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {mat2d} a the matrix to translate
- * @param {mat2d} v the vec2 to translate the matrix by
+ * @param {vec2} v the vec2 to translate the matrix by
  * @returns {mat2d} out
  **/
 mat2d.translate = function(out, a, v) {
@@ -2422,8 +2470,7 @@ mat3.scale = function(out, a, v) {
  * Copies the values from a mat2d into a mat3
  *
  * @param {mat3} out the receiving matrix
- * @param {mat3} a the matrix to rotate
- * @param {vec2} v the vec2 to scale the matrix by
+ * @param {mat2d} a the matrix to copy
  * @returns {mat3} out
  **/
 mat3.fromMat2d = function(out, a) {
@@ -3643,7 +3690,7 @@ quat.mul = quat.multiply;
 quat.scale = vec4.scale;
 
 /**
- * Rotates a quaternion by the given angle around the X axis
+ * Rotates a quaternion by the given angle about the X axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -3664,7 +3711,7 @@ quat.rotateX = function (out, a, rad) {
 };
 
 /**
- * Rotates a quaternion by the given angle around the Y axis
+ * Rotates a quaternion by the given angle about the Y axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -3685,7 +3732,7 @@ quat.rotateY = function (out, a, rad) {
 };
 
 /**
- * Rotates a quaternion by the given angle around the Z axis
+ * Rotates a quaternion by the given angle about the Z axis
  *
  * @param {quat} out quat receiving operation result
  * @param {quat} a quat to rotate
@@ -3756,44 +3803,43 @@ quat.lerp = vec4.lerp;
  * @returns {quat} out
  */
 quat.slerp = function (out, a, b, t) {
+    // benchmarks:
+    //    http://jsperf.com/quaternion-slerp-implementations
+
     var ax = a[0], ay = a[1], az = a[2], aw = a[3],
         bx = b[0], by = b[1], bz = b[2], bw = b[3];
 
-    var cosHalfTheta = ax * bx + ay * by + az * bz + aw * bw,
-        halfTheta,
-        sinHalfTheta,
-        ratioA,
-        ratioB;
+    var        omega, cosom, sinom, scale0, scale1;
 
-    if (Math.abs(cosHalfTheta) >= 1.0) {
-        if (out !== a) {
-            out[0] = ax;
-            out[1] = ay;
-            out[2] = az;
-            out[3] = aw;
-        }
-        return out;
+    // calc cosine
+    cosom = ax * bx + ay * by + az * bz + aw * bw;
+    // adjust signs (if necessary)
+    if ( cosom < 0.0 ) {
+        cosom = -cosom;
+        bx = - bx;
+        by = - by;
+        bz = - bz;
+        bw = - bw;
     }
-
-    halfTheta = Math.acos(cosHalfTheta);
-    sinHalfTheta = Math.sqrt(1.0 - cosHalfTheta * cosHalfTheta);
-
-    if (Math.abs(sinHalfTheta) < 0.001) {
-        out[0] = (ax * 0.5 + bx * 0.5);
-        out[1] = (ay * 0.5 + by * 0.5);
-        out[2] = (az * 0.5 + bz * 0.5);
-        out[3] = (aw * 0.5 + bw * 0.5);
-        return out;
+    // calculate coefficients
+    if ( (1.0 - cosom) > 0.000001 ) {
+        // standard case (slerp)
+        omega  = Math.acos(cosom);
+        sinom  = Math.sin(omega);
+        scale0 = Math.sin((1.0 - t) * omega) / sinom;
+        scale1 = Math.sin(t * omega) / sinom;
+    } else {        
+        // "from" and "to" quaternions are very close 
+        //  ... so we can do a linear interpolation
+        scale0 = 1.0 - t;
+        scale1 = t;
     }
-
-    ratioA = Math.sin((1 - t) * halfTheta) / sinHalfTheta;
-    ratioB = Math.sin(t * halfTheta) / sinHalfTheta;
-
-    out[0] = (ax * ratioA + bx * ratioB);
-    out[1] = (ay * ratioA + by * ratioB);
-    out[2] = (az * ratioA + bz * ratioB);
-    out[3] = (aw * ratioA + bw * ratioB);
-
+    // calculate final values
+    out[0] = scale0 * ax + scale1 * bx;
+    out[1] = scale0 * ay + scale1 * by;
+    out[2] = scale0 * az + scale1 * bz;
+    out[3] = scale0 * aw + scale1 * bw;
+    
     return out;
 };
 

@@ -205,7 +205,7 @@ mat2d.rotate = function (out, a, rad) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {mat2d} a the matrix to translate
- * @param {mat2d} v the vec2 to scale the matrix by
+ * @param {vec2} v the vec2 to scale the matrix by
  * @returns {mat2d} out
  **/
 mat2d.scale = function(out, a, v) {
@@ -224,7 +224,7 @@ mat2d.scale = function(out, a, v) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {mat2d} a the matrix to translate
- * @param {mat2d} v the vec2 to translate the matrix by
+ * @param {vec2} v the vec2 to translate the matrix by
  * @returns {mat2d} out
  **/
 mat2d.translate = function(out, a, v) {
