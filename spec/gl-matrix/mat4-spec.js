@@ -543,11 +543,64 @@ describe("mat4", function() {
     });
 
     describe("lookAt", function() {
-        var eye = [0, 0, 1];
+        var eye    = [0, 0, 1];
         var center = [0, 0, -1];
-        var up = [0, 1, 0];
+        var up     = [0, 1, 0];
+        var view, up, right;
 
-        beforeEach(function() { result = mat4.lookAt(out, eye, center, up); });
+        describe("looking down", function() {
+            beforeEach(function() {
+                view = [0, -1,  0];
+                up   = [0,  0, -1];
+                right= [1,  0,  0];
+                result = mat4.lookAt(out, [0, 0, 0], view, up);
+            });
+
+            it("should transform view into local -Z", function() {
+                result = vec3.transformMat4([], view, out);
+                expect(result).toBeEqualish([0, 0, -1]);
+            });
+
+            it("should transform up into local +Y", function() {
+                result = vec3.transformMat4([], up, out);
+                expect(result).toBeEqualish([0, 1, 0]);
+            });
+
+            it("should transform right into local +X", function() {
+                result = vec3.transformMat4([], right, out);
+                expect(result).toBeEqualish([1, 0, 0]);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+
+        describe("#74", function() {
+            beforeEach(function() {
+                mat4.lookAt(out, [0,2,0], [0,0.6,0], [0,0,-1]);
+            });
+
+            it("should transform a point 'above' into local +Y", function() {
+                result = vec3.transformMat4([], [0, 2, -1], out);
+                expect(result).toBeEqualish([0, 1, 0]);
+            });
+
+            it("should transform a point 'right of' into local +X", function() {
+                result = vec3.transformMat4([], [1, 2, 0], out);
+                expect(result).toBeEqualish([1, 0, 0]);
+            });
+
+            it("should transform a point 'in front of' into local -Z", function() {
+                result = vec3.transformMat4([], [0, 1, 0], out);
+                expect(result).toBeEqualish([0, 0, -1]);
+            });
+        });
+
+        beforeEach(function() {
+            eye    = [0, 0, 1];
+            center = [0, 0, -1];
+            up     = [0, 1, 0];
+            result = mat4.lookAt(out, eye, center, up);
+        });
         it("should place values into out", function() { expect(result).toBeEqualish([
                 1, 0, 0, 0,
                 0, 1, 0, 0,
