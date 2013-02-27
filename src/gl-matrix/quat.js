@@ -104,9 +104,9 @@ quat.setAxes = (function() {
         matr[4] = up[1];
         matr[7] = up[2];
 
-        matr[2] = -view[0];
-        matr[5] = -view[1];
-        matr[8] = -view[2];
+        matr[2] = view[0];
+        matr[5] = view[1];
+        matr[8] = view[2];
 
         return quat.normalize(out, quat.fromMat3(out, matr));
     };
@@ -496,9 +496,9 @@ quat.fromMat3 = (function() {
             fRoot = Math.sqrt(fTrace + 1.0);  // 2w
             out[3] = 0.5 * fRoot;
             fRoot = 0.5/fRoot;  // 1/(4w)
-            out[0] = (m[5]-m[7])*fRoot;
-            out[1] = (m[6]-m[2])*fRoot;
-            out[2] = (m[1]-m[3])*fRoot;
+            out[0] = (m[7]-m[5])*fRoot;
+            out[1] = (m[2]-m[6])*fRoot;
+            out[2] = (m[3]-m[1])*fRoot;
         } else {
             // |w| <= 1/2
             var i = 0;

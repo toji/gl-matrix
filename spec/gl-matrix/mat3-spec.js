@@ -50,7 +50,7 @@ describe("mat3", function() {
         it("should return out", function() { expect(result).toBe(out); });
 
         it("should be equivalent to a PI rotation about the Y axis", function() {
-            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([1,0,0]);
+            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([-1,0,0]);
         });
     });
 

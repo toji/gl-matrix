@@ -66,6 +66,36 @@ describe("vec3", function() {
             it("should return out", function() { expect(result).toBe(out); });
         });
 
+        describe("with 90deg about X", function() {
+            beforeEach(function() {
+                result = vec3.transformMat3(out, [0,1,0], [1,0,0,0,0,-1,0,1,0]);
+            });
+
+            it("should produce correct output", function() {
+                expect(out).toBeEqualish([0,0,1]);
+            });
+        });
+
+        describe("with 90deg about Y", function() {
+            beforeEach(function() {
+                result = vec3.transformMat3(out, [1,0,0], [0,0,1,0,1,0,-1,0,0]);
+            });
+
+            it("should produce correct output", function() {
+                expect(out).toBeEqualish([0,0,-1]);
+            });
+        });
+
+        describe("with 90deg about Z", function() {
+            beforeEach(function() {
+                result = vec3.transformMat3(out, [1,0,0], [0,-1,0,1,0,0,0,0,1]);
+            });
+
+            it("should produce correct output", function() {
+                expect(out).toBeEqualish([0,1,0]);
+            });
+        });
+
         describe("with a lookAt normal matrix", function() {
             beforeEach(function() {
                 matr = mat4.lookAt(mat4.create(), [5, 6, 7], [2, 6, 7], [0, 1, 0]);
@@ -73,10 +103,10 @@ describe("vec3", function() {
                 matr = mat3.transpose(n, mat3.invert(n, mat3.fromMat4(n, matr)));
             });
 
-            beforeEach(function() { result = vec3.transformMat3(out, vecA, matr); });
+            beforeEach(function() { result = vec3.transformMat3(out, [1,0,0], matr); });
 
             it("should rotate the input", function() {
-                expect(out).toBeEqualish([ -3, 2, 1 ]);
+                expect(out).toBeEqualish([ 0,0,-1 ]);
             });
 
             it("should return out", function() { expect(result).toBe(out); });

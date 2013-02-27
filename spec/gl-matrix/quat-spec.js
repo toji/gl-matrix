@@ -86,8 +86,8 @@ describe("quat", function() {
 
         it("should return out", function() { expect(result).toBe(out); });
         it("should transform vec accordingly", function() {
-            vec3.transformQuat(vec, vec, out);
-            expect(vec).toBeEqualish([1, 1, 1]);
+            vec3.transformQuat(vec, [0,0,-1], out);
+            expect(vec).toBeEqualish([0, 1, 0]);
         });
     });
 
@@ -98,8 +98,8 @@ describe("quat", function() {
 
         it("should return out", function() { expect(result).toBe(out); });
         it("should transform vec accordingly", function() {
-            vec3.transformQuat(vec, vec, out);
-            expect(vec).toBeEqualish([-1, 1, -1]);
+            vec3.transformQuat(vec, [0,0,-1], out);
+            expect(vec).toBeEqualish([-1, 0, 0]);
         });
     });
 
@@ -110,26 +110,39 @@ describe("quat", function() {
 
         it("should return out", function() { expect(result).toBe(out); });
         it("should transform vec accordingly", function() {
-            vec3.transformQuat(vec, vec, out);
-            expect(vec).toBeEqualish([-1, 1, -1]);
+            vec3.transformQuat(vec, [0,1,0], out);
+            expect(vec).toBeEqualish([-1, 0, 0]);
         });
     });
 
     describe("fromMat3", function() {
         var matr;
 
+        describe("legacy", function() {
+            beforeEach(function() {
+                matr = [ 1, 0,  0,
+                         0, 0, -1,
+                         0, 1,  0 ];
+                result = quat.fromMat3(out, matr);
+            });
+
+            it("should set dest to the correct value", function() {
+                expect(result).toBeEqualish([0.707106, 0, 0, 0.707106]);
+            });
+        });
+
         describe("where trace > 0", function() {
             beforeEach(function() {
-                matr = [  0, 0, 1,
-                          0, 1, 0,
-                         -1, 0, 0 ];
+                matr = [ 1, 0,  0,
+                         0, 0, -1,
+                         0, 1,  0 ];
                 result = quat.fromMat3(out, matr);
             });
 
             it("should return out", function() { expect(result).toBe(out); });
 
-            it("should produce the same transformation as the given matrix", function() {
-                expect(vec3.transformQuat([], [3,2,-1], quat.normalize(out, out))).toBeEqualish(vec3.transformMat3([], [3,2,-1], matr));
+            it("should produce the correct transformation", function() {
+                expect(vec3.transformQuat([], [0,1,0], out)).toBeEqualish([0,0,1]);
             });
         });
 
@@ -198,21 +211,17 @@ describe("quat", function() {
             });
         });
 
-        describe("given a rotated view", function() {
+        describe("legacy example", function() {
             var view, up, right;
             beforeEach(function() {
-                view = [1, 0, 0];
-                up   = [0, 1, 0];
-                right= [0, 0, 1];
+                right= [1,  0, 0];
+                up   = [0,  0, 1];
+                view = [0, -1, 0];
                 result = quat.setAxes(out, view, right, up);
             });
 
-            it("should return out", function() {
-                expect(result).toBe(out);
-            });
-
-            it("multiplying a forward vector should point 'right'", function() {
-                expect(vec3.transformQuat([], [0,0,-1], out)).toBeEqualish([-1,0,0]);
+            it("should set correct quat4 values", function() {
+                expect(result).toBeEqualish([0.707106, 0, 0, 0.707106]);
             });
         });
     });
