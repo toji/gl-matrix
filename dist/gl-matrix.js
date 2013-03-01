@@ -28,7 +28,7 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 
-(function() {
+(function(_global) {
   "use strict";
 
   var shim = {};
@@ -40,8 +40,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
       });
     } else {
       // gl-matrix lives in a browser, define its namespaces in global
-      shim.exports = window;
-    }    
+      shim.exports = typeof(window) !== 'undefined' ? window : _global;
+    }
   }
   else {
     // gl-matrix lives in commonjs, define its namespaces in exports
@@ -4006,4 +4006,4 @@ if(typeof(exports) !== 'undefined') {
 
 
   })(shim.exports);
-})();
+})(this);
