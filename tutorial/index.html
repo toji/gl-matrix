@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>glMatrix 2.0 Tutorial</title>
+
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="util/gl-matrix-min.js"></script>
+    <script src="util/game-shim.js"></script>
+    <script src="util/Shader.js"></script>
+    <script src="util/Camera.js"></script>
+
+    <script src="codemirror/lib/codemirror.js"></script>
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+
+    <script src="tutorial.js"></script>
+
+    <style>
+      .live-example {
+        display: block;
+        height: 15em;
+      }
+
+      .CodeMirror {
+        display: inline-block;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        height: 14em;
+        width: calc(100% - 21em);
+        margin: 0 0.15em 1em 0;
+      }
+
+      .live-example img, .live-example canvas {
+        display: inline-block;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        height: 14em;
+        width: 20em;
+        margin: 0 0 1em 0;
+        background-color: #aaa;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+<h1>glMatrix Tutorial</h1>
+
+<p>Matrix math is a core part of 3D graphics (though it has many other
+applications too!)</p>
+
+<p>This page provides interactive examples of how to use glMatrix to apply
+various transforms to a 3D scene.</p>
+
+<h2>The Basics</h2>
+
+<p>...</p>
+
+<h2>Projection Matrices</h2>
+
+<p>A projection matrix is typically used to control your viewport into a 3D
+scene. Think of it as a sort of lense for your virtual camera. The two most
+commonly used projection matrices are "Perspective" and "Orthographic".</p>
+
+<h3>Perspective</h3>
+
+<div class="live-example">
+<pre><code>function projection(out, width, height, ts) {
+  var fieldOfView = Math.PI / 2; // 90 degrees 
+  var aspectRatio = width / height;
+  var near = 0.1;
+  var far = 100.0;
+
+  mat4.perspective(out, fieldOfView, aspectRatio, near, far);
+}</code></pre>
+</div>
+
+<h3>Orthographic</h3>
+
+<div class="live-example">
+<pre><code>function projection(out, width, height, ts) {
+  var left = -width / 2;
+  var right = width / 2;
+  var top = -height / 2;
+  var bottom = height / 2;
+  var near = 0.0;
+  var far = 100.0;
+
+  mat4.ortho(out, left, right, bottom, top, near, far);
+}</code></pre>
+</div>
+
+<h2>Transform Matrices</h2>
+
+<p>Most of the time, you'll use matrices to transform the size, shape, position,
+and rotation of a 3D object in a scene. glMatrix has built-in functions for
+many of the most common transforms, and it's easy to combine them to get the
+effect you need</p>
+
+<h3>Translate</h3>
+
+<div class="live-example">
+<pre><code>var v = vec3.create();
+function transform(out, time) {
+  vec3.set(v, Math.sin(time) * 3.0, 0, Math.cos(time) * 3.0);
+  mat4.translate(out, out, v);
+}</code></pre>
+</div>
+
+<h3>Scale</h3>
+
+<div class="live-example">
+<pre><code>var v = vec3.create();
+function transform(out, time) {
+  var scale = Math.sin(time) + 1.0;
+  vec3.set(v, scale, scale, scale);
+  mat4.scale(out, out, v);
+}</code></pre>
+</div>
+
+<h3>Rotate</h3>
+
+<div class="live-example">
+<pre><code>var axis = vec3.create();
+function transform(out, time) {
+  vec3.set(axis, 0, 1, 0);
+  mat4.rotate(out, out, time, axis);
+}</code></pre>
+</div>
+
+<div class="live-example">
+<pre><code>function transform(out, time) {
+  mat4.rotateX(out, out, time);
+}</code></pre>
+</div>
+
+<div class="live-example">
+<pre><code>function transform(out, time) {
+  mat4.rotateY(out, out, time);
+}</code></pre>
+</div>
+
+<div class="live-example">
+<pre><code>function transform(out, time) {
+  mat4.rotateZ(out, out, time);
+}</code></pre>
+</div>
+
+<hr/>
+<p>This project is maintained by <a href="https://github.com/toji">toji</a> and <a href="https://github.com/sinisterchipmunk">sinisterchipmunk</a></p>
+<p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+    <script src="../javascripts/scale.fix.js"></script>
+  </body>
+</html>
