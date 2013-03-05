@@ -239,7 +239,7 @@ OrbitCamera.prototype.getViewMat = function () {
         mat4.rotateY(mv, mv, this.orbitY);
         mat4.rotateX(mv, mv, -Math.PI * 0.5);
         mat4.translate(mv, mv, this._center);
-        if(!this._yUp) { mat4.rotateX(mv, mv, Math.PI * 0.5); }
+        if(this._yUp) { mat4.rotateX(mv, mv, Math.PI * 0.5); }
         
         this._dirty = false;
     }

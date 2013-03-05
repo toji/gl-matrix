@@ -67,13 +67,13 @@ var defaultShader = new Shader();
 defaultShader.build(gl, defaultVS, defaultFS);
 
 var floorVerts = new Float32Array([
-	-10, -10, -10, 0, 1, 0,
-	-10, -10,  10, 0, 1, 0,
-	 10, -10, -10, 0, 1, 0,
+	-25, -5, -25, 0, 1, 0,
+	-25, -5,  25, 0, 1, 0,
+	 25, -5, -25, 0, 1, 0,
 
-	 10, -10, -10, 0, 1, 0,
-	-10, -10,  10, 0, 1, 0,
-	 10, -10,  10, 0, 1, 0,
+	 25, -5, -25, 0, 1, 0,
+	-25, -5,  25, 0, 1, 0,
+	 25, -5,  25, 0, 1, 0,
 ]);
 
 var floorBuffer = gl.createBuffer();
@@ -148,7 +148,7 @@ gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeIndices), gl.STATIC_DRAW);
 
 function defaultProjectionFn(out, width, height, ts) {
-  var fieldOfView = Math.PI / 2; // 90 degrees 
+  var fieldOfView = Math.PI / 4; // 45 degrees 
   var aspectRatio = width / height;
   var near = 0.1;
   var far = 100.0;
@@ -212,6 +212,8 @@ function LiveExample(element) {
 	this.camera.maxDistance = 10;
 	this.camera.minDistance = 10;
 	this.camera.setDistance(10);
+  this.camera.orbit(0, 0.2);
+  this.camera.minOrbitX = -0.5;
 
 	this.activate();
 	this.draw(0);
@@ -266,18 +268,14 @@ LiveExample.prototype.updateScript = function(script) {
 	this.transformFn = defaultTransformFn;
 }
 
-var floorColor = vec4.create();
-vec4.set(floorColor, 0.8, 0.8, 0.8, 1.0);
+var floorColor = vec4.fromValues(0.8, 0.8, 0.8, 1.0);
+var objColor = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
 
 LiveExample.prototype.draw = function(frameTime) {
 	this.ts += frameTime;
 	var ts = this.ts;
 
-	var r = (Math.sin(ts / 100) * 0.5) + 0.5;
-	var g = (Math.sin(ts / 10) * 0.5) + 0.5;
-	var b = (Math.sin(ts / 1) * 0.5) + 0.5;
-
-	gl.clearColor(r, g, b, 1.0);
+	gl.clearColor(0.8, 0.8, 1.0, 1.0);
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     gl.useProgram(defaultShader.program);
@@ -305,14 +303,14 @@ LiveExample.prototype.draw = function(frameTime) {
     gl.vertexAttribPointer(defaultShader.attribute.Position, 3, gl.FLOAT, false, 24, 0);
     gl.vertexAttribPointer(defaultShader.attribute.Normal, 3, gl.FLOAT, false, 24, 12);
 
-    //gl.drawArrays(gl.TRIANGLES, 0, 6);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
 
 	// Update Model
 	this.transformFn(this.modelMat, ts);
 	gl.uniformMatrix4fv(defaultShader.uniform.modelMat, false, this.modelMat);
 
 	// Draw the monkey!
-	gl.uniform4fv(defaultShader.uniform.color, floorColor);
+	gl.uniform4fv(defaultShader.uniform.color, objColor);
 
 	gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertBuffer);
     gl.enableVertexAttribArray(defaultShader.attribute.Position);
