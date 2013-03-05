@@ -163,11 +163,12 @@ function LiveExample(element) {
 	this.element = element;
 	this.projectionFn = defaultProjectionFn;
 	this.transformFn = defaultTransformFn;
+  
+  var codePre = this.element.querySelector("pre");
 
 	this.image = new Image();
-	this.element.appendChild(this.image);
+	this.element.insertBefore(this.image, codePre);
 
-	var codePre = this.element.querySelector("pre");
 	var sampleCode = codePre.innerText;
 	this.codeMirror = CodeMirror(function(elt) {
 		codePre.parentNode.replaceChild(elt, codePre);
