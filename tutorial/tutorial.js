@@ -61,7 +61,6 @@ var glCanvas = document.createElement("canvas");
 var gl = glCanvas.getContext("experimental-webgl", {preserveDrawingBuffer: true}); // TODO: More robustness, please!
 gl.disable(gl.CULL_FACE);
 gl.clearDepth(1.0);
-//gl.depthFunc(gl.LEQUAL);
 gl.enable(gl.DEPTH_TEST);
 
 var defaultShader = new Shader();
@@ -197,8 +196,13 @@ function LiveExample(element) {
 
 	// Activation hooks
 	function activateExample() { self.activate(); }
+	function deactivateExample() { self.deactivate(); }
+	
 	this.image.addEventListener("mouseover", activateExample, false);
+	//this.element.addEventListener("mouseout", deactivateExample, false);
+
 	this.codeMirror.on("focus", activateExample, false);
+	//this.codeMirror.on("blur", deactivateExample, false);
 
 	this.projMat = mat4.create();
 	this.modelMat = mat4.create();
@@ -207,19 +211,22 @@ function LiveExample(element) {
 	this.camera.maxDistance = 10;
 	this.camera.minDistance = 10;
 	this.camera.setDistance(10);
+
+	this.activate();
+	this.draw(0);
+	gl.finish();
+	this.deactivate();
 }
 
 LiveExample.prototype.activate = function() {
 	if(activeExample == this) { return; }
-	this.element.replaceChild(glCanvas, this.image);
+	
 	if(activeExample) {
 		activeExample.deactivate();
 	}
-	this.image.classList.add("hidden");
-	
-	glCanvas.classList.remove("hidden");
-	activeExample = this;
 
+	activeExample = this;
+	this.element.replaceChild(glCanvas, this.image);
 	glCanvas.width = glCanvas.clientWidth * window.devicePixelRatio;
 	glCanvas.height = glCanvas.clientHeight * window.devicePixelRatio;
 	gl.viewport(0, 0, glCanvas.width, glCanvas.height);
@@ -229,8 +236,7 @@ LiveExample.prototype.activate = function() {
 LiveExample.prototype.deactivate = function() {
 	if(activeExample != this) { return; }
 	this.image.src = glCanvas.toDataURL();
-	glCanvas.classList.add("hidden");
-	this.element.appendChild(this.image);
+	this.element.replaceChild(this.image, glCanvas);
 	this.camera.unhook();
 	activeExample = null;
 }
