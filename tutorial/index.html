@@ -72,7 +72,7 @@ commonly used projection matrices are "Perspective" and "Orthographic".</p>
 
 <div class="live-example">
 <pre><code>function projection(out, width, height, ts) {
-  var fieldOfView = Math.PI / 2; // 90 degrees 
+  var fieldOfView = Math.PI / 4; // 45 degrees 
   var aspectRatio = width / height;
   var near = 0.1;
   var far = 100.0;
@@ -129,7 +129,7 @@ function transform(out, time) {
 <div class="live-example">
 <pre><code>var axis = vec3.create();
 function transform(out, time) {
-  vec3.set(axis, 0, 1, 0);
+  vec3.set(axis, 1, 1, 0);
   mat4.rotate(out, out, time, axis);
 }</code></pre>
 </div>
