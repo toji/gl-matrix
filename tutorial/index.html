@@ -27,11 +27,12 @@
         uniform mat4 projectionMat;
         uniform mat4 viewMat;
         uniform mat4 modelMat;
+        uniform mat3 normalMat;
         
         varying vec3 vNormal;
     
         void main(void) {
-            vNormal = Normal;
+            vNormal = normalMat * Normal;
             gl_Position = projectionMat * viewMat * modelMat * vec4(Position, 1.0);
         }
     </script>
