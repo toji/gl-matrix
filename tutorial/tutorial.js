@@ -22,35 +22,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 "use strict"
 
-// Shader
-var defaultVS = [
-    "attribute vec3 Position;",
-    "attribute vec3 Normal;",
-    
-    "uniform mat4 modelMat;",
-    "uniform mat4 viewMat;",
-    "uniform mat4 projectionMat;",
-
-    "varying vec3 vNormal;",
-
-    "void main(void) {",
-    "	vec4 vPosition = viewMat * modelMat * vec4(Position, 1.0);",
-    "	vNormal = Normal;",
-    "   gl_Position = projectionMat * vPosition;",
-    "}"
-].join("\n");
-
-var defaultFS = [
-    "precision highp float;",
-
-    "uniform vec4 color;",
-    "varying vec3 vNormal;",
-    
-    "void main(void) {",
-    "   gl_FragColor = vec4(vNormal, 1.0) * color;",
-    "}"
-].join("\n");
-
 var activeExample = null;
 
 // We only maintain a single WebGL canvas that gets swapped with the
@@ -64,7 +35,7 @@ gl.clearDepth(1.0);
 gl.enable(gl.DEPTH_TEST);
 
 var defaultShader = new Shader();
-defaultShader.build(gl, defaultVS, defaultFS);
+defaultShader.buildFromElements(gl, "default-vs", "default-fs");
 
 var floorVerts = new Float32Array([
 	-25, -5, -25, 0, 1, 0,
@@ -146,6 +117,8 @@ gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(cubeVerts), gl.STATIC_DRAW);
 var cubeIndexBuffer = gl.createBuffer();
 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
 gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(cubeIndices), gl.STATIC_DRAW);
+
+var cubeIndexCount = cubeIndices.length;
 
 function defaultProjectionFn(out, width, height, ts) {
   var fieldOfView = Math.PI / 4; // 45 degrees 
@@ -319,7 +292,7 @@ LiveExample.prototype.draw = function(frameTime) {
     gl.vertexAttribPointer(defaultShader.attribute.Normal, 3, gl.FLOAT, false, 24, 12);
 
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, cubeIndexBuffer);
-    gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
+    gl.drawElements(gl.TRIANGLES, cubeIndexCount, gl.UNSIGNED_SHORT, 0);
 }
 
 function setupExamples() {
