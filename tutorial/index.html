@@ -19,6 +19,32 @@
     <script src="codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
     <script src="codemirror/mode/javascript/javascript.js"></script>
+    
+    <script id="default-vs" type="x-shader/x-vertex">
+        attribute vec3 Position;
+        attribute vec3 Normal;
+
+        uniform mat4 projectionMat;
+        uniform mat4 viewMat;
+        uniform mat4 modelMat;
+        
+        varying vec3 vNormal;
+    
+        void main(void) {
+            vNormal = Normal;
+            gl_Position = projectionMat * viewMat * modelMat * vec4(Position, 1.0);
+        }
+    </script>
+
+    <script id="default-fs" type="x-shader/x-fragment">
+        precision mediump float;
+        
+        varying vec3 vNormal;
+
+        void main(void) {
+            gl_FragColor = vec4(vNormal, 1.0);
+        }
+    </script>
 
     <script src="tutorial.js"></script>
 

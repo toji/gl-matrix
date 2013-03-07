@@ -122,6 +122,36 @@ Shader.prototype.buildFromUrl = function(gl, vertexShaderUrl, fragmentShaderUrl,
   this.loadShaderFromUrl(gl, fragmentShaderUrl, gl.FRAGMENT_SHADER, callback);
 };
 
+Shader.prototype.loadShaderFromElement = function(gl, id, type) {
+    var sourceElement = document.getElementById(id);
+    if (!sourceElement) {
+      return false;
+    }
+    
+    var source = "";
+    var el = sourceElement.firstChild;
+    while (el) {
+      if (el.nodeType == 3)
+          source += el.textContent;
+      el = el.nextSibling;
+    }
+    
+    if(!this.compile(gl, source, type))
+        return false;
+
+    return true;
+};
+
+Shader.prototype.buildFromElements = function(gl, vertexShaderId, fragmentShaderId) {
+  if(!this.loadShaderFromElement(gl, vertexShaderId, gl.VERTEX_SHADER))
+    return false;
+
+  if(!this.loadShaderFromElement(gl, fragmentShaderId, gl.FRAGMENT_SHADER))
+    return false;
+  
+  return this.link(gl);
+};
+
 Shader.prototype.bindAttribLocations = function(gl) {
   var attrib;
   for(attrib in Shader.AttribLocation) {
