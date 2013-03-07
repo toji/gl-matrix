@@ -243,6 +243,7 @@ LiveExample.prototype.updateScript = function(script) {
 
 var floorColor = vec4.fromValues(0.8, 0.8, 0.8, 1.0);
 var objColor = vec4.fromValues(1.0, 1.0, 1.0, 1.0);
+var normalMat = mat3.create();
 
 LiveExample.prototype.draw = function(frameTime) {
 	this.ts += frameTime;
@@ -266,6 +267,9 @@ LiveExample.prototype.draw = function(frameTime) {
 	// Initialize Model
 	mat4.identity(this.modelMat);
 	gl.uniformMatrix4fv(defaultShader.uniform.modelMat, false, this.modelMat);
+    
+    mat3.identity(normalMat);
+    gl.uniformMatrix3fv(defaultShader.uniform.normalMat, false, normalMat);
 
 	// Draw the floor
 	gl.uniform4fv(defaultShader.uniform.color, floorColor);
@@ -281,6 +285,9 @@ LiveExample.prototype.draw = function(frameTime) {
 	// Update Model
 	this.transformFn(this.modelMat, ts);
 	gl.uniformMatrix4fv(defaultShader.uniform.modelMat, false, this.modelMat);
+    
+    mat3.normalMatfromMat4(normalMat, this.modelMat);
+    gl.uniformMatrix3fv(defaultShader.uniform.normalMat, false, normalMat);
 
 	// Draw the monkey!
 	gl.uniform4fv(defaultShader.uniform.color, objColor);
