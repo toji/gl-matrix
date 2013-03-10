@@ -41,6 +41,47 @@ describe("mat3", function() {
                     0, 0, 1];
     });
 
+    describe("normalFromMat4", function() {
+        beforeEach(function() {
+            matA = [1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 0, 1];
+            result = mat3.normalFromMat4(out, matA);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+
+        describe("with translation and rotation", function() {
+            beforeEach(function() {
+                mat4.translate(matA, matA, [2, 4, 6]);
+                mat4.rotateX(matA, matA, Math.PI / 2);
+
+                result = mat3.normalFromMat4(out, matA);
+            });
+
+            it("should give rotated matrix", function() {
+                expect(result).toBeEqualish([1, 0, 0,
+                                             0, 0, 1,
+                                             0,-1, 0]);
+            });
+
+            describe("and scale", function() {
+                beforeEach(function() {
+                    mat4.scale(matA, matA, [2, 3, 4]);
+
+                    result = mat3.normalFromMat4(out, matA);
+                });
+
+                it("should give rotated matrix", function() {
+                    expect(result).toBeEqualish([0.5, 0,    0,
+                                                 0,   0,    0.333333,
+                                                 0,  -0.25, 0]);
+                });
+            });
+        });
+    });
+
     describe("fromQuat", function() {
         beforeEach(function() {
             var q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];

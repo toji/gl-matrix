@@ -419,7 +419,7 @@ mat3.fromQuat = function (out, q) {
 *
 * @returns {mat3} out
 */
-mat3.normalMatfromMat4 = function (out, a) {
+mat3.normalFromMat4 = function (out, a) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
