@@ -1028,9 +1028,9 @@ vec3.transformMat4 = function(out, a, m) {
  */
 vec3.transformMat3 = function(out, a, m) {
     var x = a[0], y = a[1], z = a[2];
-    out[0] = x * m[0] + y * m[1] + z * m[2];
-    out[1] = x * m[3] + y * m[4] + z * m[5];
-    out[2] = x * m[6] + y * m[7] + z * m[8];
+    out[0] = x * m[0] + y * m[3] + z * m[6];
+    out[1] = x * m[1] + y * m[4] + z * m[7];
+    out[2] = x * m[2] + y * m[5] + z * m[8];
     return out;
 };
 
@@ -2515,15 +2515,15 @@ mat3.fromQuat = function (out, q) {
         wz = w * z2;
 
     out[0] = 1 - (yy + zz);
-    out[1] = xy + wz;
-    out[2] = xz - wy;
+    out[3] = xy + wz;
+    out[6] = xz - wy;
 
-    out[3] = xy - wz;
+    out[1] = xy - wz;
     out[4] = 1 - (xx + zz);
-    out[5] = yz + wx;
+    out[7] = yz + wx;
 
-    out[6] = xz + wy;
-    out[7] = yz - wx;
+    out[2] = xz + wy;
+    out[5] = yz - wx;
     out[8] = 1 - (xx + yy);
 
     return out;

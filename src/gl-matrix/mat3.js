@@ -397,15 +397,15 @@ mat3.fromQuat = function (out, q) {
         wz = w * z2;
 
     out[0] = 1 - (yy + zz);
-    out[1] = xy + wz;
-    out[2] = xz - wy;
+    out[3] = xy + wz;
+    out[6] = xz - wy;
 
-    out[3] = xy - wz;
+    out[1] = xy - wz;
     out[4] = 1 - (xx + zz);
-    out[5] = yz + wx;
+    out[7] = yz + wx;
 
-    out[6] = xz + wy;
-    out[7] = yz - wx;
+    out[2] = xz + wy;
+    out[5] = yz - wx;
     out[8] = 1 - (xx + yy);
 
     return out;
