@@ -486,6 +486,22 @@ describe("vec3", function() {
         });
     });
 
+    describe("random", function() {
+        describe("with no scale", function() {
+            beforeEach(function() { result = vec3.random(out); });
+            
+            it("should result in a unit length vector", function() { expect(vec3.length(out)).toBeCloseTo(1.0); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+
+        describe("with a scale", function() {
+            beforeEach(function() { result = vec3.random(out, 5.0); });
+            
+            it("should result in a unit length vector", function() { expect(vec3.length(out)).toBeCloseTo(5.0); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+    });
+
     describe("forEach", function() {
         var vecArray;
 

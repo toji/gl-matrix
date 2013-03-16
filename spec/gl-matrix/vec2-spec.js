@@ -385,6 +385,22 @@ describe("vec2", function() {
         });
     });
 
+    describe("random", function() {
+        describe("with no scale", function() {
+            beforeEach(function() { result = vec2.random(out); });
+            
+            it("should result in a unit length vector", function() { expect(vec2.length(out)).toBeCloseTo(1.0); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+
+        describe("with a scale", function() {
+            beforeEach(function() { result = vec2.random(out, 5.0); });
+            
+            it("should result in a unit length vector", function() { expect(vec2.length(out)).toBeCloseTo(5.0); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+    });
+
     describe("transformMat2", function() {
         var matA;
         beforeEach(function() { matA = [1, 2, 3, 4]; });
