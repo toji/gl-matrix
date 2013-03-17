@@ -13,12 +13,15 @@
     <![endif]-->
     <script src="util/gl-matrix-min.js"></script>
     <script src="util/game-shim.js"></script>
+    <script src="util/mesh-utils.js"></script>
     <script src="util/Shader.js"></script>
     <script src="util/Camera.js"></script>
 
     <script src="codemirror/lib/codemirror.js"></script>
     <link rel="stylesheet" href="codemirror/lib/codemirror.css">
     <script src="codemirror/mode/javascript/javascript.js"></script>
+
+    <script src="monkey.js"></script>
     
     <script id="default-vs" type="x-shader/x-vertex">
         attribute vec3 Position;
@@ -135,7 +138,7 @@ effect you need</p>
 <div class="live-example">
 <pre><code>var v = vec3.create();
 function transform(out, time) {
-  vec3.set(v, Math.sin(time) * 3.0, 0, Math.cos(time) * 3.0);
+  vec3.set(v, Math.sin(time) * 2.0, 0, Math.cos(time) * 2.0);
   mat4.translate(out, out, v);
 }</code></pre>
 </div>
