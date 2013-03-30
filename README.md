@@ -15,3 +15,8 @@ of your browsers Javascript engine.
 Learn More
 ----------------------
 For documentation, news, tutorials, and more visit the [glMatrix Homepage](http://glmatrix.net/)
+
+Contributing
+----------------------
+Contributions are welcome! Please make pull requests agains the `dev` branch, 
+and please provide unit tests for new functionality. (See TESTING.md for details)
