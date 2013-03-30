@@ -50,3 +50,12 @@ glMatrix.setMatrixArrayType = function(type) {
 if(typeof(exports) !== 'undefined') {
     exports.glMatrix = glMatrix;
 }
+
+/**
+* Convert Degree To Radian
+*
+* @param {Number} Angle in Degrees
+*/
+glMatrix.toRadian = function(a){
+     return a * (Math.PI / 180);
+}
