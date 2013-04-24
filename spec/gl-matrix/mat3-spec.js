@@ -329,5 +329,10 @@ describe("mat3", function() {
         beforeEach(function() { result = mat3.str(matA); });
         
         it("should return a string representation of the matrix", function() { expect(result).toEqual("mat3(1, 0, 0, 0, 1, 0, 1, 2, 1)"); });
-    });
+    }); 
+
+   describe("frob", function() {
+        beforeEach(function() { result = mat3.frob(matA); });
+        it("should return the Frobenius Norm of the matrix", function() { expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(0, 2) + Math.pow(0, 2) + Math.pow(0, 2) + Math.pow(1, 2) + Math.pow(0, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(1, 2))); });
+   });
 });
