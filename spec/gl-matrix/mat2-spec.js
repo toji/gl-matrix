@@ -187,4 +187,24 @@ describe("mat2", function() {
         
         it("should return a string representation of the matrix", function() { expect(result).toEqual("mat2(1, 2, 3, 4)"); });
     });
+
+   describe("frob", function() {
+        beforeEach(function() { result = mat2.frob(matA); });
+        it("should return the Frobenius Norm of the matrix", function() { expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) + Math.pow(4, 2))); });
+   });
+
+   describe("LDU", function() {
+        beforeEach(function() {L = mat2.create(); D = mat2.create(); U = mat2.create(); result = mat2.LDU(L, D, U, [4,3,6,3]);
+                               L_result = mat2.create(); L_result[2] = 1.5;
+                               D_result = mat2.create();
+                               U_result = mat2.create();
+                               U_result[0] = 4; U_result[1] = 3; U_result[3] = -1.5;
+                              });
+        it("should return a lower triangular, a diagonal and an upper triangular matrix", function() {
+            expect(result[0]).toBeEqualish(L_result);
+            expect(result[1]).toBeEqualish(D_result);
+            expect(result[2]).toBeEqualish(U_result);
+        });
+   });
+
 });
