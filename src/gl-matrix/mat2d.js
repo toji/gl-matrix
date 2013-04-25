@@ -248,6 +248,16 @@ mat2d.str = function (a) {
                     a[3] + ', ' + a[4] + ', ' + a[5] + ')';
 };
 
+/**
+ * Returns Frobenius norm of a mat2d
+ *
+ * @param {mat2d} a the matrix to calculate Frobenius norm of
+ * @returns {Number} Frobenius norm
+ */
+mat2d.frob = function (a) { 
+    return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + 1))
+}; 
+
 if(typeof(exports) !== 'undefined') {
     exports.mat2d = mat2d;
 }
