@@ -185,4 +185,10 @@ describe("mat2d", function() {
         
         it("should return a string representation of the matrix", function() { expect(result).toEqual("mat2d(1, 2, 3, 4, 5, 6)"); });
     });
+
+   describe("frob", function() {
+        beforeEach(function() { result = mat2d.frob(matA); });
+        it("should return the Frobenius Norm of the matrix", function() { expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) + Math.pow(4, 2) + Math.pow(5, 2) + Math.pow(6, 2) + 1)); });
+   });
+
 });
