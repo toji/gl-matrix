@@ -478,48 +478,40 @@ quat.normalize = vec4.normalize;
  * @returns {quat} out
  * @function
  */
-quat.fromMat3 = (function() {
-    // benchmarks:
-    //    http://jsperf.com/typed-array-access-speed
-    //    http://jsperf.com/conversion-of-3x3-matrix-to-quaternion
+quat.fromMat3 = function(out, m) {
+    // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
+    // article "Quaternion Calculus and Fast Animation".
+    var fTrace = m[0] + m[4] + m[8];
+    var fRoot;
 
-    var s_iNext = (typeof(Int8Array) !== 'undefined' ? new Int8Array([1,2,0]) : [1,2,0]);
-
-    return function(out, m) {
-        // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
-        // article "Quaternion Calculus and Fast Animation".
-        var fTrace = m[0] + m[4] + m[8];
-        var fRoot;
-
-        if ( fTrace > 0.0 ) {
-            // |w| > 1/2, may as well choose w > 1/2
-            fRoot = Math.sqrt(fTrace + 1.0);  // 2w
-            out[3] = 0.5 * fRoot;
-            fRoot = 0.5/fRoot;  // 1/(4w)
-            out[0] = (m[7]-m[5])*fRoot;
-            out[1] = (m[2]-m[6])*fRoot;
-            out[2] = (m[3]-m[1])*fRoot;
-        } else {
-            // |w| <= 1/2
-            var i = 0;
-            if ( m[4] > m[0] )
-              i = 1;
-            if ( m[8] > m[i*3+i] )
-              i = 2;
-            var j = s_iNext[i];
-            var k = s_iNext[j];
-            
-            fRoot = Math.sqrt(m[i*3+i]-m[j*3+j]-m[k*3+k] + 1.0);
-            out[i] = 0.5 * fRoot;
-            fRoot = 0.5 / fRoot;
-            out[3] = (m[k*3+j] - m[j*3+k]) * fRoot;
-            out[j] = (m[j*3+i] + m[i*3+j]) * fRoot;
-            out[k] = (m[k*3+i] + m[i*3+k]) * fRoot;
-        }
+    if ( fTrace > 0.0 ) {
+        // |w| > 1/2, may as well choose w > 1/2
+        fRoot = Math.sqrt(fTrace + 1.0);  // 2w
+        out[3] = 0.5 * fRoot;
+        fRoot = 0.5/fRoot;  // 1/(4w)
+        out[0] = (m[7]-m[5])*fRoot;
+        out[1] = (m[2]-m[6])*fRoot;
+        out[2] = (m[3]-m[1])*fRoot;
+    } else {
+        // |w| <= 1/2
+        var i = 0;
+        if ( m[4] > m[0] )
+          i = 1;
+        if ( m[8] > m[i*3+i] )
+          i = 2;
+        var j = (i+1)%3;
+        var k = (i+2)%3;
         
-        return out;
-    };
-})();
+        fRoot = Math.sqrt(m[i*3+i]-m[j*3+j]-m[k*3+k] + 1.0);
+        out[i] = 0.5 * fRoot;
+        fRoot = 0.5 / fRoot;
+        out[3] = (m[k*3+j] - m[j*3+k]) * fRoot;
+        out[j] = (m[j*3+i] + m[i*3+j]) * fRoot;
+        out[k] = (m[k*3+i] + m[i*3+k]) * fRoot;
+    }
+    
+    return out;
+};
 
 /**
  * Returns a string representation of a quatenion
