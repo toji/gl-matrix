@@ -357,29 +357,32 @@ mat4.translate = function (out, a, v) {
         a20, a21, a22, a23,
         a30, a31, a32, a33;
 
-        a30 = a[12]; a31 = a[13]; a32 = a[14]; a33 = a[15];
-    if (a === out) {
-        out[12] = a30 + a33*x;
-        out[13] = a31 + a33*y;
-        out[14] = a32 + a33*z;
-    } else {
         a00 = a[0]; a01 = a[1]; a02 = a[2]; a03 = a[3];
         a10 = a[4]; a11 = a[5]; a12 = a[6]; a13 = a[7];
         a20 = a[8]; a21 = a[9]; a22 = a[10]; a23 = a[11];
+        a30 = a[12]; a31 = a[13]; a32 = a[14]; a33 = a[15];
+    
+    out[0] = a00 + a03*x;
+    out[1] = a01 + a03*y;
+    out[2] = a02 + a03*z;
+    out[3] = a03;
 
-        out[0] = a00; out[1] = a01; out[2] = a02; out[3] = a03;
-        out[4] = a10; out[5] = a11; out[6] = a12; out[7] = a13;
-        out[8] = a20; out[9] = a21; out[10] = a22; out[11] = a23;
+    out[4] = a10 + a13*x;
+    out[5] = a11 + a13*y;
+    out[6] = a12 + a13*z;
+    out[7] = a13;
 
-        out[12] = a30 + a33*x;
-        out[13] = a31 + a33*y;
-        out[14] = a32 + a33*z;
-        out[15] = a33;
-    }
+    out[8] = a20 + a23*x;
+    out[9] = a21 + a23*y;
+    out[10] = a22 + a23*z;
+    out[11] = a23;
+    out[12] = a30 + a33*x;
+    out[13] = a31 + a33*y;
+    out[14] = a32 + a33*z;
+    out[15] = a33;
 
     return out;
 };
-
 /**
  * Scales the mat4 by the dimensions in the given vec3
  *
