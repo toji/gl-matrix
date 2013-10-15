@@ -1954,10 +1954,10 @@ mat2.determinant = function (a) {
 mat2.multiply = function (out, a, b) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
     var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
-    out[0] = a0 * b0 + a1 * b2;
-    out[1] = a0 * b1 + a1 * b3;
-    out[2] = a2 * b0 + a3 * b2;
-    out[3] = a2 * b1 + a3 * b3;
+    out[0] = a0 * b0 + a2 * b1;
+    out[1] = a1 * b0 + a3 * b1;
+    out[2] = a0 * b2 + a2 * b3;
+    out[3] = a1 * b2 + a3 * b3;
     return out;
 };
 
@@ -1979,10 +1979,10 @@ mat2.rotate = function (out, a, rad) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
         s = Math.sin(rad),
         c = Math.cos(rad);
-    out[0] = a0 *  c + a1 * s;
-    out[1] = a0 * -s + a1 * c;
-    out[2] = a2 *  c + a3 * s;
-    out[3] = a2 * -s + a3 * c;
+    out[0] = a0 *  c + a2 * s;
+    out[1] = a1 *  c + a3 * s;
+    out[2] = a0 * -s + a2 * c;
+    out[3] = a1 * -s + a3 * c;
     return out;
 };
 
@@ -1998,8 +1998,8 @@ mat2.scale = function(out, a, v) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3],
         v0 = v[0], v1 = v[1];
     out[0] = a0 * v0;
-    out[1] = a1 * v1;
-    out[2] = a2 * v0;
+    out[1] = a1 * v0;
+    out[2] = a2 * v1;
     out[3] = a3 * v1;
     return out;
 };
@@ -2073,17 +2073,16 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
  * @description 
  * A mat2d contains six elements defined as:
  * <pre>
- * [a, b,
- *  c, d,
- *  tx,ty]
+ * [a, c, tx,
+ *  b, d, ty]
  * </pre>
  * This is a short form for the 3x3 matrix:
  * <pre>
- * [a, b, 0
- *  c, d, 0
- *  tx,ty,1]
+ * [a, c, tx,
+ *  b, d, ty,
+ *  0, 0, 1]
  * </pre>
- * The last column is ignored so the array is shorter and operations are faster.
+ * The last row is ignored so the array is shorter and operations are faster.
  */
 
 var mat2d = {};
@@ -2199,17 +2198,14 @@ mat2d.determinant = function (a) {
  * @returns {mat2d} out
  */
 mat2d.multiply = function (out, a, b) {
-    var aa = a[0], ab = a[1], ac = a[2], ad = a[3],
-        atx = a[4], aty = a[5],
-        ba = b[0], bb = b[1], bc = b[2], bd = b[3],
-        btx = b[4], bty = b[5];
-
-    out[0] = aa*ba + ab*bc;
-    out[1] = aa*bb + ab*bd;
-    out[2] = ac*ba + ad*bc;
-    out[3] = ac*bb + ad*bd;
-    out[4] = ba*atx + bc*aty + btx;
-    out[5] = bb*atx + bd*aty + bty;
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
+        b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
+    out[0] = a0 * b0 + a2 * b1;
+    out[1] = a1 * b0 + a3 * b1;
+    out[2] = a0 * b2 + a2 * b3;
+    out[3] = a1 * b2 + a3 * b3;
+    out[4] = a0 * b4 + a2 * b5 + a4;
+    out[5] = a1 * b4 + a3 * b5 + a5;
     return out;
 };
 
@@ -2229,21 +2225,15 @@ mat2d.mul = mat2d.multiply;
  * @returns {mat2d} out
  */
 mat2d.rotate = function (out, a, rad) {
-    var aa = a[0],
-        ab = a[1],
-        ac = a[2],
-        ad = a[3],
-        atx = a[4],
-        aty = a[5],
-        st = Math.sin(rad),
-        ct = Math.cos(rad);
-
-    out[0] = aa*ct + ab*st;
-    out[1] = -aa*st + ab*ct;
-    out[2] = ac*ct + ad*st;
-    out[3] = -ac*st + ct*ad;
-    out[4] = ct*atx + st*aty;
-    out[5] = ct*aty - st*atx;
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
+        s = Math.sin(rad),
+        c = Math.cos(rad);
+    out[0] = a0 *  c + a2 * s;
+    out[1] = a1 *  c + a3 * s;
+    out[2] = a0 * -s + a2 * c;
+    out[3] = a1 * -s + a3 * c;
+    out[4] = a4;
+    out[5] = a5;
     return out;
 };
 
@@ -2256,13 +2246,14 @@ mat2d.rotate = function (out, a, rad) {
  * @returns {mat2d} out
  **/
 mat2d.scale = function(out, a, v) {
-    var vx = v[0], vy = v[1];
-    out[0] = a[0] * vx;
-    out[1] = a[1] * vy;
-    out[2] = a[2] * vx;
-    out[3] = a[3] * vy;
-    out[4] = a[4] * vx;
-    out[5] = a[5] * vy;
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
+        v0 = v[0], v1 = v[1];
+    out[0] = a0 * v0;
+    out[1] = a1 * v0;
+    out[2] = a2 * v1;
+    out[3] = a3 * v1;
+    out[4] = a4;
+    out[5] = a5;
     return out;
 };
 
@@ -2275,12 +2266,14 @@ mat2d.scale = function(out, a, v) {
  * @returns {mat2d} out
  **/
 mat2d.translate = function(out, a, v) {
-    out[0] = a[0];
-    out[1] = a[1];
-    out[2] = a[2];
-    out[3] = a[3];
-    out[4] = a[4] + v[0];
-    out[5] = a[5] + v[1];
+    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
+        v0 = v[0], v1 = v[1];
+    out[0] = a0;
+    out[1] = a1;
+    out[2] = a2;
+    out[3] = a3;
+    out[4] = a0 * v0 + a2 * v1 + a4;
+    out[5] = a1 * v0 + a3 * v1 + a5;
     return out;
 };
 
