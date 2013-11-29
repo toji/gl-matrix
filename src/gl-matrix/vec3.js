@@ -505,11 +505,6 @@ vec3.rotateX = function(out, a, b, c){
 	  out[1] = r[1] + b[1];
 	  out[2] = r[2] + b[2];
 
-	  //clip
-	  out[0] = parseFloat(out[0]).toFixed(6);
-	  out[1] = parseFloat(out[1]).toFixed(6);
-	  out[2] = parseFloat(out[2]).toFixed(6);
-
   	return out;
 };
 
@@ -538,11 +533,6 @@ vec3.rotateY = function(out, a, b, c){
   	out[1] = r[1] + b[1];
   	out[2] = r[2] + b[2];
   
-  	//clip
-  	out[0] = parseFloat(out[0]).toFixed(6);
-  	out[1] = parseFloat(out[1]).toFixed(6);
-  	out[2] = parseFloat(out[2]).toFixed(6);
-  
   	return out;
 };
 
@@ -570,11 +560,6 @@ vec3.rotateZ = function(out, a, b, c){
   	out[0] = r[0] + b[0];
   	out[1] = r[1] + b[1];
   	out[2] = r[2] + b[2];
-  
-  	//clip
-  	out[0] = parseFloat(out[0]).toFixed(6);
-  	out[1] = parseFloat(out[1]).toFixed(6);
-  	out[2] = parseFloat(out[2]).toFixed(6);
   
   	return out;
 };
