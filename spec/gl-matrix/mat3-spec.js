@@ -83,15 +83,21 @@ describe("mat3", function() {
     });
 
     describe("fromQuat", function() {
+        var q;
+
         beforeEach(function() {
-            var q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
+            q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
             result = mat3.fromQuat(out, q);
         });
 
         it("should return out", function() { expect(result).toBe(out); });
 
-        it("should be equivalent to a PI rotation about the Y axis", function() {
-            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([-1,0,0]);
+        it("should rotate a vector the same as the original quat", function() {
+            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish(vec3.transformQuat([], [0,0,-1], q));
+        });
+
+        it("should rotate a vector by PI/2 radians", function() {
+            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([1,0,0]);
         });
     });
 
