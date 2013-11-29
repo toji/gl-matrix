@@ -3677,9 +3677,9 @@ quat.setAxes = (function() {
         matr[4] = up[1];
         matr[7] = up[2];
 
-        matr[2] = view[0];
-        matr[5] = view[1];
-        matr[8] = view[2];
+        matr[2] = -view[0];
+        matr[5] = -view[1];
+        matr[8] = -view[2];
 
         return quat.normalize(out, quat.fromMat3(out, matr));
     };
