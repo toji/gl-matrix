@@ -1,0 +1,28 @@
+{
+  "name": "gl-matrix",
+  "version": "2.2.0",
+  "homepage": "http://glmatrix.net",
+  "authors": [
+    "Brandon Jones <tojiro@gmail.com>",
+    "Colin MacKenzie IV <sinisterchipmunk@gmail.com>"
+  ],
+  "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
+  "main": "dist/gl-matrix.js",
+  "ignore": [
+    "**/.*",
+    "jsdoc-template",
+    "spec",
+    "src",
+    "tasks",
+    "Gemfile",
+    "Gemfile.lock",
+    "Rakefile",
+    "TESTING.md"
+  ],
+  "keywords": [
+    "webGL",
+    "matrix",
+    "vector"
+  ],
+  "license": "BSD"
+}
