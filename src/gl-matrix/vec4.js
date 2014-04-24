@@ -473,7 +473,7 @@ vec4.transformQuat = function(out, a, q) {
  * @param {Array} a the array of vectors to iterate over
  * @param {Number} stride Number of elements between the start of each vec4. If 0 assumes tightly packed
  * @param {Number} offset Number of elements to skip at the beginning of the array
- * @param {Number} count Number of vec2s to iterate over. If 0 iterates over entire array
+ * @param {Number} count Number of vec4s to iterate over. If 0 iterates over entire array
  * @param {Function} fn Function to call for each vector in the array
  * @param {Object} [arg] additional argument to pass to fn
  * @returns {Array} a
