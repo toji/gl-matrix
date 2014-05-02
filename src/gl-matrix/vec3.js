@@ -178,18 +178,6 @@ vec3.divide = function(out, a, b) {
 vec3.div = vec3.divide;
 
 /**
- * Performs a hermite interpolation with four control points
- *
- * @param {vec3} out the receiving vector
- * @param {vec3} a the first operand
- * @param {vec3} b the second operand
- * @param {vec3} c the third operand
- * @param {vec3} d the fourth operand
- * @param {Number} t interpolation amount between the two inputs
- * @returns {vec3} out
- */
-
-/**
  * Returns the minimum of two vec3's
  *
  * @param {vec3} out the receiving vector
