@@ -426,10 +426,6 @@ vec3.lerp = function (out, a, b, t) {
  * @returns {vec3} out
  */
 vec3.hermite = (function () {
-  var v1 = vec3.create();
-  var v2 = vec3.create();
-  var v3 = vec3.create();
-  var v4 = vec3.create();
   var factorTimes2, factor1, factor2, factor3, factor4;
   
   return function (out, a, b, c, d, t) {
@@ -439,14 +435,9 @@ vec3.hermite = (function () {
     factor3 = factorTimes2 * (t - 1);
     factor4 = factorTimes2 * (3 - 2 * t);
     
-    vec3.scale(v1, a, factor1);
-    vec3.scale(v2, b, factor2);
-    vec3.scale(v3, c, factor3);
-    vec3.scale(v4, d, factor4);
-    
-    out[0] = v1[0] + v2[0] + v3[0] + v4[0];
-    out[1] = v1[1] + v2[1] + v3[1] + v4[1];
-    out[2] = v1[2] + v2[2] + v3[2] + v4[2];
+    out[0] = v1[0] * factor1 + v2[0] * factor2 + v3[0] * factor3 + v4[0] * factor4;
+    out[1] = v1[1] * factor1 + v2[1] * factor2 + v3[1] * factor3 + v4[1] * factor4;
+    out[2] = v1[2] * factor1 + v2[2] * factor2 + v3[2] * factor3 + v4[2] * factor4;
     
     return out;
   };
@@ -464,10 +455,6 @@ vec3.hermite = (function () {
  * @returns {vec3} out
  */
 vec3.bezier = (function () {
-  var v1 = vec3.create();
-  var v2 = vec3.create();
-  var v3 = vec3.create();
-  var v4 = vec3.create();
   var inverseFactor, inverseFactorTimesTwo, factorTimes2, factor1, factor2, factor3, factor4;
   
   return function (out, a, b, c, d, t) {
@@ -479,14 +466,9 @@ vec3.bezier = (function () {
     factor3 = 3 * factorTimes2 * inverseFactor;
     factor4 = factorTimes2 * t;
     
-    vec3.scale(v1, a, factor1);
-    vec3.scale(v2, b, factor2);
-    vec3.scale(v3, c, factor3);
-    vec3.scale(v4, d, factor4);
-    
-    out[0] = v1[0] + v2[0] + v3[0] + v4[0];
-    out[1] = v1[1] + v2[1] + v3[1] + v4[1];
-    out[2] = v1[2] + v2[2] + v3[2] + v4[2];
+    out[0] = v1[0] * factor1 + v2[0] * factor2 + v3[0] * factor3 + v4[0] * factor4;
+    out[1] = v1[1] * factor1 + v2[1] * factor2 + v3[1] * factor3 + v4[1] * factor4;
+    out[2] = v1[2] * factor1 + v2[2] * factor2 + v3[2] * factor3 + v4[2] * factor4;
     
     return out;
   };
