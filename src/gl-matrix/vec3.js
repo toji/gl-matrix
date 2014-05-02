@@ -178,6 +178,18 @@ vec3.divide = function(out, a, b) {
 vec3.div = vec3.divide;
 
 /**
+ * Performs a hermite interpolation with four control points
+ *
+ * @param {vec3} out the receiving vector
+ * @param {vec3} a the first operand
+ * @param {vec3} b the second operand
+ * @param {vec3} c the third operand
+ * @param {vec3} d the fourth operand
+ * @param {Number} t interpolation amount between the two inputs
+ * @returns {vec3} out
+ */
+
+/**
  * Returns the minimum of two vec3's
  *
  * @param {vec3} out the receiving vector
@@ -413,6 +425,84 @@ vec3.lerp = function (out, a, b, t) {
     out[2] = az + t * (b[2] - az);
     return out;
 };
+
+/**
+ * Performs a hermite interpolation with two control points
+ *
+ * @param {vec3} out the receiving vector
+ * @param {vec3} a the first operand
+ * @param {vec3} b the second operand
+ * @param {vec3} c the third operand
+ * @param {vec3} d the fourth operand
+ * @param {Number} t interpolation amount between the two inputs
+ * @returns {vec3} out
+ */
+vec3.hermite = (function () {
+  var v1 = vec3.create();
+  var v2 = vec3.create();
+  var v3 = vec3.create();
+  var v4 = vec3.create();
+  var factorTimes2, factor1, factor2, factor3, factor4;
+  
+  return function (out, a, b, c, d, t) {
+    factorTimes2 = t * t;
+    factor1 = factorTimes2 * (2 * t - 3) + 1;
+    factor2 = factorTimes2 * (t - 2) + t;
+    factor3 = factorTimes2 * (t - 1);
+    factor4 = factorTimes2 * (3 - 2 * t);
+    
+    vec3.scale(v1, a, factor1);
+    vec3.scale(v2, b, factor2);
+    vec3.scale(v3, c, factor3);
+    vec3.scale(v4, d, factor4);
+    
+    out[0] = v1[0] + v2[0] + v3[0] + v4[0];
+    out[1] = v1[1] + v2[1] + v3[1] + v4[1];
+    out[2] = v1[2] + v2[2] + v3[2] + v4[2];
+    
+    return out;
+  };
+}());
+
+/**
+ * Performs a bezier interpolation with two control points
+ *
+ * @param {vec3} out the receiving vector
+ * @param {vec3} a the first operand
+ * @param {vec3} b the second operand
+ * @param {vec3} c the third operand
+ * @param {vec3} d the fourth operand
+ * @param {Number} t interpolation amount between the two inputs
+ * @returns {vec3} out
+ */
+vec3.bezier = (function () {
+  var v1 = vec3.create();
+  var v2 = vec3.create();
+  var v3 = vec3.create();
+  var v4 = vec3.create();
+  var inverseFactor, inverseFactorTimesTwo, factorTimes2, factor1, factor2, factor3, factor4;
+  
+  return function (out, a, b, c, d, t) {
+    inverseFactor = 1 - t;
+    inverseFactorTimesTwo = inverseFactor * inverseFactor;
+    factorTimes2 = t * t;
+    factor1 = inverseFactorTimesTwo * inverseFactor;
+    factor2 = 3 * t * inverseFactorTimesTwo;
+    factor3 = 3 * factorTimes2 * inverseFactor;
+    factor4 = factorTimes2 * t;
+    
+    vec3.scale(v1, a, factor1);
+    vec3.scale(v2, b, factor2);
+    vec3.scale(v3, c, factor3);
+    vec3.scale(v4, d, factor4);
+    
+    out[0] = v1[0] + v2[0] + v3[0] + v4[0];
+    out[1] = v1[1] + v2[1] + v3[1] + v4[1];
+    out[2] = v1[2] + v2[2] + v3[2] + v4[2];
+    
+    return out;
+  };
+}());
 
 /**
  * Generates a random vector with the given scale
