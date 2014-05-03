@@ -770,7 +770,7 @@ mat4.fromRotationTranslationScaleOrigin = function (out, q, v, s, o) {
   out[12] = v[0] + ox - (out[0] * ox + out[4] * oy + out[8] * oz);
   out[13] = v[1] + oy - (out[1] * ox + out[5] * oy + out[9] * oz);
   out[14] = v[2] + oz - (out[2] * ox + out[6] * oy + out[10] * oz);
-  out[15] = 1 - (out[3] * ox + out[7] * oy + out[11] * oz);
+  out[15] = 1;
         
   return out;
 };
