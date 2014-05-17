@@ -387,26 +387,26 @@ mat3.fromQuat = function (out, q) {
         z2 = z + z,
 
         xx = x * x2,
-        xy = x * y2,
-        xz = x * z2,
+        yx = y * x2,
         yy = y * y2,
-        yz = y * z2,
+        zx = z * x2,
+        zy = z * y2,
         zz = z * z2,
         wx = w * x2,
         wy = w * y2,
         wz = w * z2;
 
-    out[0] = 1 - (yy + zz);
-    out[3] = xy + wz;
-    out[6] = xz - wy;
+    out[0] = 1 - yy - zz;
+    out[3] = yx - wz;
+    out[6] = zx + wy;
 
-    out[1] = xy - wz;
-    out[4] = 1 - (xx + zz);
-    out[7] = yz + wx;
+    out[1] = yx + wz;
+    out[4] = 1 - xx - zz;
+    out[7] = zy - wx;
 
-    out[2] = xz + wy;
-    out[5] = yz - wx;
-    out[8] = 1 - (xx + yy);
+    out[2] = zx - wy;
+    out[5] = zy + wx;
+    out[8] = 1 - xx - yy;
 
     return out;
 };
@@ -472,6 +472,17 @@ mat3.str = function (a) {
                     a[3] + ', ' + a[4] + ', ' + a[5] + ', ' + 
                     a[6] + ', ' + a[7] + ', ' + a[8] + ')';
 };
+
+/**
+ * Returns Frobenius norm of a mat3
+ *
+ * @param {mat3} a the matrix to calculate Frobenius norm of
+ * @returns {Number} Frobenius norm
+ */
+mat3.frob = function (a) {
+    return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + Math.pow(a[6], 2) + Math.pow(a[7], 2) + Math.pow(a[8], 2)))
+};
+
 
 if(typeof(exports) !== 'undefined') {
     exports.mat3 = mat3;

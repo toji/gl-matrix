@@ -83,15 +83,21 @@ describe("mat3", function() {
     });
 
     describe("fromQuat", function() {
+        var q;
+
         beforeEach(function() {
-            var q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
+            q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
             result = mat3.fromQuat(out, q);
         });
 
         it("should return out", function() { expect(result).toBe(out); });
 
-        it("should be equivalent to a PI rotation about the Y axis", function() {
-            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([-1,0,0]);
+        it("should rotate a vector the same as the original quat", function() {
+            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish(vec3.transformQuat([], [0,0,-1], q));
+        });
+
+        it("should rotate a vector by PI/2 radians", function() {
+            expect(vec3.transformMat3([], [0,0,-1], out)).toBeEqualish([1,0,0]);
         });
     });
 
@@ -330,4 +336,10 @@ describe("mat3", function() {
         
         it("should return a string representation of the matrix", function() { expect(result).toEqual("mat3(1, 0, 0, 0, 1, 0, 1, 2, 1)"); });
     });
+
+   describe("frob", function() {
+        beforeEach(function() { result = mat3.frob(matA); });
+        it("should return the Frobenius Norm of the matrix", function() { expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(0, 2) + Math.pow(0, 2) + Math.pow(0, 2) + Math.pow(1, 2) + Math.pow(0, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(1, 2))); });
+   });
+
 });

@@ -51,11 +51,13 @@ if(typeof(exports) !== 'undefined') {
     exports.glMatrix = glMatrix;
 }
 
+var degree = Math.PI / 180;
+
 /**
 * Convert Degree To Radian
 *
 * @param {Number} Angle in Degrees
 */
 glMatrix.toRadian = function(a){
-     return a * (Math.PI / 180);
+     return a * degree;
 }

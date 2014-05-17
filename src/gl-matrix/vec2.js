@@ -311,6 +311,19 @@ vec2.negate = function(out, a) {
 };
 
 /**
+ * Returns the inverse of the components of a vec2
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a vector to invert
+ * @returns {vec2} out
+ */
+vec2.inverse = function(out, a) {
+  out[0] = 1.0 / a[0];
+  out[1] = 1.0 / a[1];
+  return out;
+};
+
+/**
  * Normalize a vec2
  *
  * @param {vec2} out the receiving vector
