@@ -421,23 +421,22 @@ vec4.lerp = function (out, a, b, t) {
 };
 
 /**
- * Generates a random vector with approximately the given length
+ * Generates a random vector with the given scale
  *
  * @param {vec4} out the receiving vector
- * @param {Number} [len] Length of the resulting vector. If omitted, a unit vector will be returned
+ * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
  * @returns {vec4} out
  */
-vec4.random = function (out, len) {
-    len = len || 1;
-    out[0] = .5 - GLMAT_RANDOM();
-    out[1] = .5 - GLMAT_RANDOM();
-    out[2] = .5 - GLMAT_RANDOM();
-    out[3] = .5 - GLMAT_RANDOM();
-    var adjust = len / vec4.length(out);
-    out[0] *= adjust;
-    out[1] *= adjust;
-    out[2] *= adjust;
-    out[3] *= adjust;
+vec4.random = function (out, scale) {
+    scale = scale || 1.0;
+
+    //TODO: This is a pretty awful way of doing this. Find something better.
+    out[0] = GLMAT_RANDOM();
+    out[1] = GLMAT_RANDOM();
+    out[2] = GLMAT_RANDOM();
+    out[3] = GLMAT_RANDOM();
+    vec4.normalize(out, out);
+    vec4.scale(out, out, scale);
     return out;
 };
 
@@ -480,6 +479,7 @@ vec4.transformQuat = function(out, a, q) {
     out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
     out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
     out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+    out[3] = a[3];
     return out;
 };
 
