@@ -83,6 +83,18 @@ describe("vec3", function() {
 
             it("should return out", function() { expect(result).toBe(out); });
         });
+
+        describe("with a perspective matrix (#92)", function() {
+            it("should transform a point from perspective(pi/2, 4/3, 1, 100)", function() {
+                matr = [0.750, 0, 0, 0,
+                        0, 1, 0, 0,
+                        0, 0, -1.02, -1,
+                        0, 0, -2.02, 0];
+                result = vec3.transformMat4([], [10, 20, 30], matr);
+                expect(result).toBeEqualish([-0.25, -0.666666, 1.087333]);
+            });
+        });
+
     });
 
     describe('transformMat3', function() {
