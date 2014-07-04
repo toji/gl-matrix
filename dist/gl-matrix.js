@@ -91,7 +91,7 @@ if(!GLMAT_RANDOM) {
 var glMatrix = {};
 
 /**
- * Sets the type of array used when creating new vectors and matricies
+ * Sets the type of array used when creating new vectors and matrices
  *
  * @param {Type} type Array type, such as Float32Array or Array
  */
