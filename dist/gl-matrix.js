@@ -1111,14 +1111,14 @@ vec3.transformQuat = function(out, a, q) {
     return out;
 };
 
-/*
-* Rotate a 3D vector around the x-axis
-* @param {vec3} out The receiving vec3
-* @param {vec3} a The vec3 point to rotate
-* @param {vec3} b The origin of the rotation
-* @param {Number} c The angle of rotation
-* @returns {vec3} out
-*/
+/**
+ * Rotate a 3D vector around the x-axis
+ * @param {vec3} out The receiving vec3
+ * @param {vec3} a The vec3 point to rotate
+ * @param {vec3} b The origin of the rotation
+ * @param {Number} c The angle of rotation
+ * @returns {vec3} out
+ */
 vec3.rotateX = function(out, a, b, c){
    var p = [], r=[];
 	  //Translate point to the origin
@@ -1139,14 +1139,14 @@ vec3.rotateX = function(out, a, b, c){
   	return out;
 };
 
-/*
-* Rotate a 3D vector around the y-axis
-* @param {vec3} out The receiving vec3
-* @param {vec3} a The vec3 point to rotate
-* @param {vec3} b The origin of the rotation
-* @param {Number} c The angle of rotation
-* @returns {vec3} out
-*/
+/**
+ * Rotate a 3D vector around the y-axis
+ * @param {vec3} out The receiving vec3
+ * @param {vec3} a The vec3 point to rotate
+ * @param {vec3} b The origin of the rotation
+ * @param {Number} c The angle of rotation
+ * @returns {vec3} out
+ */
 vec3.rotateY = function(out, a, b, c){
   	var p = [], r=[];
   	//Translate point to the origin
@@ -1167,14 +1167,14 @@ vec3.rotateY = function(out, a, b, c){
   	return out;
 };
 
-/*
-* Rotate a 3D vector around the z-axis
-* @param {vec3} out The receiving vec3
-* @param {vec3} a The vec3 point to rotate
-* @param {vec3} b The origin of the rotation
-* @param {Number} c The angle of rotation
-* @returns {vec3} out
-*/
+/**
+ * Rotate a 3D vector around the z-axis
+ * @param {vec3} out The receiving vec3
+ * @param {vec3} a The vec3 point to rotate
+ * @param {vec3} b The origin of the rotation
+ * @param {Number} c The angle of rotation
+ * @returns {vec3} out
+ */
 vec3.rotateZ = function(out, a, b, c){
   	var p = [], r=[];
   	//Translate point to the origin
