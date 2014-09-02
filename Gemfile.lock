@@ -7,6 +7,7 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.4.0)
+    ffi (1.4.0-x86-mingw32)
     hike (1.2.1)
     jasmine (1.2.1)
       jasmine-core (>= 1.2.0)
@@ -46,6 +47,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   jasmine
