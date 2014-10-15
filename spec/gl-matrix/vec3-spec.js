@@ -631,6 +631,14 @@ describe("vec3", function() {
         });
     });
 
+    describe("angle", function() {
+        beforeEach(function() { result = vec3.angle(vecA, vecB); });
+        
+        it("should return the angle", function() { expect(result).toBeEqualish(0.225726); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2, 3]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([4, 5, 6]); });
+    });
+
     describe("str", function() {
         beforeEach(function() { result = vec3.str(vecA); });
         
