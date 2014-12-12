@@ -204,6 +204,14 @@ mat2.rotate = function (out, a, rad) {
     return out;
 };
 
+mat2.setRotate = function(out, rad) {
+    out[0] = c;
+    out[1] = s;
+    out[2] = -s;
+    out[3] = c;
+    return out;
+}
+
 /**
  * Scales the mat2 by the dimensions in the given vec2
  *
@@ -221,6 +229,14 @@ mat2.scale = function(out, a, v) {
     out[3] = a3 * v1;
     return out;
 };
+
+mat2.setScale = function(out, v) {
+    out[0] = v[0];
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = v[1];
+    return out;
+}
 
 /**
  * Returns a string representation of a mat2

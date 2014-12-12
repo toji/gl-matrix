@@ -191,6 +191,24 @@ mat2d.rotate = function (out, a, rad) {
 };
 
 /**
+ * Sets a mat2d to a rotation of the given angle
+ *
+ * @param {mat2} out the receiving matrix
+ * @param {Number} rad the angle to rotate the matrix by
+ * @returns {mat2} out
+ */
+mat2d.setRotate = function(out, rad) {
+    var s = Math.sin(rad), c = Math.cos(rad);
+    out[0] = c;
+    out[1] = s;
+    out[2] = -s;
+    out[3] = c;
+    out[4] = 0;
+    out[5] = 0;
+    return out;
+}
+
+/**
  * Scales the mat2d by the dimensions in the given vec2
  *
  * @param {mat2d} out the receiving matrix
@@ -209,6 +227,16 @@ mat2d.scale = function(out, a, v) {
     out[5] = a5;
     return out;
 };
+
+mat2d.setScale = function(out, v) {
+    out[0] = v[0];
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = v[1];
+    out[4] = 0;
+    out[5] = 0;
+    return out;
+}
 
 /**
  * Translates the mat2d by the dimensions in the given vec2
@@ -229,6 +257,16 @@ mat2d.translate = function(out, a, v) {
     out[5] = a1 * v0 + a3 * v1 + a5;
     return out;
 };
+
+mat2d.setTranslate = function(out, v) {
+    out[0] = 1;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 1;
+    out[4] = v[0];
+    out[5] = v[1];
+    return out;
+}
 
 /**
  * Returns a string representation of a mat2d
