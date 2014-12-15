@@ -168,7 +168,6 @@ mat2d.multiply = function (out, a, b) {
  */
 mat2d.mul = mat2d.multiply;
 
-
 /**
  * Rotates a mat2d by the given angle
  *
@@ -191,24 +190,6 @@ mat2d.rotate = function (out, a, rad) {
 };
 
 /**
- * Sets a mat2d to a rotation of the given angle
- *
- * @param {mat2} out the receiving matrix
- * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat2} out
- */
-mat2d.setRotate = function(out, rad) {
-    var s = Math.sin(rad), c = Math.cos(rad);
-    out[0] = c;
-    out[1] = s;
-    out[2] = -s;
-    out[3] = c;
-    out[4] = 0;
-    out[5] = 0;
-    return out;
-}
-
-/**
  * Scales the mat2d by the dimensions in the given vec2
  *
  * @param {mat2d} out the receiving matrix
@@ -227,16 +208,6 @@ mat2d.scale = function(out, a, v) {
     out[5] = a5;
     return out;
 };
-
-mat2d.setScale = function(out, v) {
-    out[0] = v[0];
-    out[1] = 0;
-    out[2] = 0;
-    out[3] = v[1];
-    out[4] = 0;
-    out[5] = 0;
-    return out;
-}
 
 /**
  * Translates the mat2d by the dimensions in the given vec2
@@ -258,7 +229,61 @@ mat2d.translate = function(out, a, v) {
     return out;
 };
 
-mat2d.setTranslate = function(out, v) {
+/**
+ * Creates a matrix from a given angle
+ * This is equivalent to (but much faster than):
+ *
+ *     mat2d.identity(dest);
+ *     mat2d.rotate(dest, dest, rad);
+ *
+ * @param {mat2d} out mat2d receiving operation result
+ * @param {Number} rad the angle to rotate the matrix by
+ * @returns {mat2d} out
+ */
+mat2d.fromRotation = function(out, rad) {
+    var s = Math.sin(rad), c = Math.cos(rad);
+    out[0] = c;
+    out[1] = s;
+    out[2] = -s;
+    out[3] = c;
+    out[4] = 0;
+    out[5] = 0;
+    return out;
+}
+
+/**
+ * Creates a matrix from a vector scaling
+ * This is equivalent to (but much faster than):
+ *
+ *     mat2d.identity(dest);
+ *     mat2d.scale(dest, dest, vec);
+ *
+ * @param {mat2d} out mat2d receiving operation result
+ * @param {vec2} v Scaling vector
+ * @returns {mat2d} out
+ */
+mat2d.fromScaling = function(out, v) {
+    out[0] = v[0];
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = v[1];
+    out[4] = 0;
+    out[5] = 0;
+    return out;
+}
+
+/**
+ * Creates a matrix from a vector translation
+ * This is equivalent to (but much faster than):
+ *
+ *     mat2d.identity(dest);
+ *     mat2d.translate(dest, dest, vec);
+ *
+ * @param {mat2d} out mat2d receiving operation result
+ * @param {vec2} v Translation vector
+ * @returns {mat2d} out
+ */
+mat2d.fromTranslation = function(out, v) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
