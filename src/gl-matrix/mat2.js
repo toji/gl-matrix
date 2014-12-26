@@ -254,7 +254,7 @@ mat2.fromRotation = function(out, rad) {
  * @param {vec2} v Scaling vector
  * @returns {mat2} out
  */
-mat2.setScale = function(out, v) {
+mat2.fromScaling = function(out, v) {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
