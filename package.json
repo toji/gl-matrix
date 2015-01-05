@@ -1,7 +1,7 @@
 {
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
-  "version": "2.1.0",
+  "version": "2.3.0",
   "main": "dist/gl-matrix.js",
   "homepage": "http://glmatrix.net",
   "bugs": {
@@ -26,5 +26,5 @@
     "node-jsmeter": "0.1.2",
     "jasmine-node": "1.2.2"
   },
-  "license": "BSD"
+  "license": "MIT"
 }
