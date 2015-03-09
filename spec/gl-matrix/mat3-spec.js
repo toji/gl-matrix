@@ -329,6 +329,19 @@ describe("mat3", function() {
         });
     });
 
+    describe("projection", function() {
+        var out, width, height;
+        beforeEach(function() {
+            out = [
+                2 / width, 0, 0,
+                0, -2 /  height, 0,
+                -1, 1, 1];
+            result = mat3.projection(out, width, height);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
     describe("str", function() {
         beforeEach(function() { result = mat3.str(matA); });
         
