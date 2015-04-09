@@ -1,4 +1,4 @@
-source :gemcutter
+source 'https://rubygems.org'
 
 # core ruby
 gem 'rake'
@@ -10,10 +10,14 @@ gem 'jasmine'
 gem 'sprockets'
 
 # https://github.com/lautis/uglifier
-gem 'uglifier'
+# Newer versions than 1.2.7 result in many copies of the copyright notice in
+# the minified output.
+gem 'uglifier', '1.2.7'
 
 # for jasmine:ci task
 gem 'json'
 
 # https://github.com/wycats/thor - for release debug
 gem 'thor'
+
+gem 'rspec'
