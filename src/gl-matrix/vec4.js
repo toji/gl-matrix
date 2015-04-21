@@ -428,13 +428,27 @@ vec4.lerp = function (out, a, b, t) {
 vec4.random = function (out, scale) {
     scale = scale || 1.0;
 
-    //TODO: This is a pretty awful way of doing this. Find something better.
-    out[0] = GLMAT_RANDOM();
-    out[1] = GLMAT_RANDOM();
-    out[2] = GLMAT_RANDOM();
-    out[3] = GLMAT_RANDOM();
-    vec4.normalize(out, out);
-    vec4.scale(out, out, scale);
+    // Marsaglia, George. Choosing a Point from the Surface of a
+    // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.
+    // http://projecteuclid.org/euclid.aoms/1177692644;
+    var v1, v2, v3, v4;
+    var s1, s2;
+    do {
+        v1 = GLMAT_RANDOM() * 2 - 1;
+        v2 = GLMAT_RANDOM() * 2 - 1;
+        s1 = v1 * v1 + v2 * v2;
+    } while (s1 >= 1);
+    do {
+        v3 = GLMAT_RANDOM() * 2 - 1;
+        v4 = GLMAT_RANDOM() * 2 - 1;
+        s2 = v3 * v3 + v4 * v4;
+    } while (s2 >= 1);
+
+    var d = Math.sqrt((1 - s1) / s2);
+    out[0] = scale * v1;
+    out[1] = scale * v2;
+    out[2] = scale * v3 * d;
+    out[3] = scale * v4 * d;
     return out;
 };
 
