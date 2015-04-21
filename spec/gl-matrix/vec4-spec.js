@@ -380,7 +380,7 @@ describe("vec4", function() {
         describe("with a scale", function() {
             beforeEach(function() { result = vec4.random(out, 5.0); });
             
-            it("should result in a unit length vector", function() { expect(vec4.length(out)).toBeCloseTo(5.0); });
+            it("should result in a vector of length 5", function() { expect(vec4.length(out)).toBeCloseTo(5.0); });
             it("should return out", function() { expect(result).toBe(out); });
         });
     });
