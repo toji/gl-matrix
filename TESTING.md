@@ -25,4 +25,4 @@ If Ruby is not installed, you must test with `jasmine-node` directly:
 
     NODE_PATH=$NODE_PATH:.                       \
       node_modules/jasmine-node/bin/jasmine-node \
-      spec/helpers/node_helper.js
+      spec/helpers/node-helper.js
