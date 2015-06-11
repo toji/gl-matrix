@@ -18,6 +18,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("./common.js");
+
 /**
  * @class 2x3 Matrix
  * @name mat2d
@@ -44,7 +46,7 @@ var mat2d = {};
  * @returns {mat2d} a new 2x3 matrix
  */
 mat2d.create = function() {
-    var out = new GLMAT_ARRAY_TYPE(6);
+    var out = new glMatrix.ARRAY_TYPE(6);
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -61,7 +63,7 @@ mat2d.create = function() {
  * @returns {mat2d} a new 2x3 matrix
  */
 mat2d.clone = function(a) {
-    var out = new GLMAT_ARRAY_TYPE(6);
+    var out = new glMatrix.ARRAY_TYPE(6);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -312,6 +314,4 @@ mat2d.frob = function (a) {
     return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + 1))
 }; 
 
-if(typeof(exports) !== 'undefined') {
-    exports.mat2d = mat2d;
-}
+module.exports = mat2d;

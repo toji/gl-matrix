@@ -13,7 +13,7 @@ if (typeof(Worker) !== 'undefined') {
           }
         }
       };
-      xhr.open("GET", "/dist/gl-matrix.js");
+      xhr.open("GET", "/dist/gl-matrix-min.js");
       xhr.send();
 
       var result = null;

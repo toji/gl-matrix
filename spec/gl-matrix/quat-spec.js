@@ -19,6 +19,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 describe("quat", function() {
+    var mat3 = require("../../src/gl-matrix/mat3.js");
+    var mat4 = require("../../src/gl-matrix/mat4.js");
+    var quat = require("../../src/gl-matrix/quat.js");
+    var vec3 = require("../../src/gl-matrix/vec3.js");
+
     var out, quatA, quatB, result;
     var vec, id, deg90;
 
@@ -125,7 +130,7 @@ describe("quat", function() {
             });
 
             it("should set dest to the correct value", function() {
-                expect(result).toBeEqualish([0.707106, 0, 0, 0.707106]);
+                expect(result).toBeEqualish([-0.707106, 0, 0, 0.707106]);
             });
         });
 
@@ -140,7 +145,7 @@ describe("quat", function() {
             it("should return out", function() { expect(result).toBe(out); });
 
             it("should produce the correct transformation", function() {
-                expect(vec3.transformQuat([], [0,1,0], out)).toBeEqualish([0,0,1]);
+                expect(vec3.transformQuat([], [0,1,0], out)).toBeEqualish([0,0,-1]);
             });
         });
 
@@ -202,12 +207,12 @@ describe("quat", function() {
 
             it("should transform local view into world left", function() {
                 r = vec3.transformQuat([], [0,0,-1], result);
-                expect(r).toBeEqualish([-1, 0, 0]);
+                expect(r).toBeEqualish([1, 0, 0]);
             });
 
             it("should transform local right into world front", function() {
                 r = vec3.transformQuat([], [1,0,0], result);
-                expect(r).toBeEqualish([0, 0, -1]);
+                expect(r).toBeEqualish([0, 0, 1]);
             });
         });
 

@@ -19,6 +19,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 describe("mat3", function() {
+    var mat3 = require("../../src/gl-matrix/mat3.js");
+    var mat4 = require("../../src/gl-matrix/mat4.js");
+    var vec3 = require("../../src/gl-matrix/vec3.js");
+
     var out, matA, matB, identity, result;
 
     beforeEach(function() {

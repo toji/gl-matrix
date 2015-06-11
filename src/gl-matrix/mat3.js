@@ -18,6 +18,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("./common.js");
+
 /**
  * @class 3x3 Matrix
  * @name mat3
@@ -30,7 +32,7 @@ var mat3 = {};
  * @returns {mat3} a new 3x3 matrix
  */
 mat3.create = function() {
-    var out = new GLMAT_ARRAY_TYPE(9);
+    var out = new glMatrix.ARRAY_TYPE(9);
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -70,7 +72,7 @@ mat3.fromMat4 = function(out, a) {
  * @returns {mat3} a new 3x3 matrix
  */
 mat3.clone = function(a) {
-    var out = new GLMAT_ARRAY_TYPE(9);
+    var out = new glMatrix.ARRAY_TYPE(9);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -560,6 +562,4 @@ mat3.frob = function (a) {
 };
 
 
-if(typeof(exports) !== 'undefined') {
-    exports.mat3 = mat3;
-}
+module.exports = mat3;

@@ -18,35 +18,30 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-/**
- * @class Common utilities
- * @name glMatrix
- */
-var glMatrix = {};
+var fs = require('fs');
+var webpack = require('webpack');
 
-// Constants
-glMatrix.EPSILON = 0.000001;
-glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
-glMatrix.RANDOM = Math.random;
+var entryFile = './src/gl-matrix.js';
 
-/**
- * Sets the type of array used when creating new vectors and matrices
- *
- * @param {Type} type Array type, such as Float32Array or Array
- */
-glMatrix.setMatrixArrayType = function(type) {
-    GLMAT_ARRAY_TYPE = type;
+// Read the comments from the top of the main gl-matrix file and append them to
+// the minified version.
+var header = '';
+var mainFile = fs.readFileSync(entryFile, { encoding: 'utf8' });
+if (mainFile) {
+  var headerIndex = mainFile.indexOf('\/\/ END HEADER');
+  if (headerIndex >= 0) {
+    header = mainFile.substr(0, headerIndex);
+  }
 }
 
-var degree = Math.PI / 180;
-
-/**
-* Convert Degree To Radian
-*
-* @param {Number} Angle in Degrees
-*/
-glMatrix.toRadian = function(a){
-     return a * degree;
-}
-
-module.exports = glMatrix;
+module.exports = {
+  entry: entryFile,
+  output: {
+    path: __dirname + '/dist',
+    filename: 'gl-matrix-min.js'
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.BannerPlugin(header, { raw: true }),
+  ]
+};

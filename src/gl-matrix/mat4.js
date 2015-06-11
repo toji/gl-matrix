@@ -18,6 +18,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("./common.js");
+
 /**
  * @class 4x4 Matrix
  * @name mat4
@@ -30,7 +32,7 @@ var mat4 = {};
  * @returns {mat4} a new 4x4 matrix
  */
 mat4.create = function() {
-    var out = new GLMAT_ARRAY_TYPE(16);
+    var out = new glMatrix.ARRAY_TYPE(16);
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -57,7 +59,7 @@ mat4.create = function() {
  * @returns {mat4} a new 4x4 matrix
  */
 mat4.clone = function(a) {
-    var out = new GLMAT_ARRAY_TYPE(16);
+    var out = new glMatrix.ARRAY_TYPE(16);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -427,7 +429,7 @@ mat4.rotate = function (out, a, rad, axis) {
         b10, b11, b12,
         b20, b21, b22;
 
-    if (Math.abs(len) < GLMAT_EPSILON) { return null; }
+    if (Math.abs(len) < glMatrix.EPSILON) { return null; }
     
     len = 1 / len;
     x *= len;
@@ -678,7 +680,7 @@ mat4.fromRotation = function(out, rad, axis) {
         len = Math.sqrt(x * x + y * y + z * z),
         s, c, t;
     
-    if (Math.abs(len) < GLMAT_EPSILON) { return null; }
+    if (Math.abs(len) < glMatrix.EPSILON) { return null; }
     
     len = 1 / len;
     x *= len;
@@ -1188,9 +1190,9 @@ mat4.lookAt = function (out, eye, center, up) {
         centery = center[1],
         centerz = center[2];
 
-    if (Math.abs(eyex - centerx) < GLMAT_EPSILON &&
-        Math.abs(eyey - centery) < GLMAT_EPSILON &&
-        Math.abs(eyez - centerz) < GLMAT_EPSILON) {
+    if (Math.abs(eyex - centerx) < glMatrix.EPSILON &&
+        Math.abs(eyey - centery) < glMatrix.EPSILON &&
+        Math.abs(eyez - centerz) < glMatrix.EPSILON) {
         return mat4.identity(out);
     }
 
@@ -1278,6 +1280,4 @@ mat4.frob = function (a) {
 };
 
 
-if(typeof(exports) !== 'undefined') {
-    exports.mat4 = mat4;
-}
+module.exports = mat4;

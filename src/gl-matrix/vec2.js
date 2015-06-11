@@ -18,6 +18,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("./common.js");
+
 /**
  * @class 2 Dimensional Vector
  * @name vec2
@@ -30,7 +32,7 @@ var vec2 = {};
  * @returns {vec2} a new 2D vector
  */
 vec2.create = function() {
-    var out = new GLMAT_ARRAY_TYPE(2);
+    var out = new glMatrix.ARRAY_TYPE(2);
     out[0] = 0;
     out[1] = 0;
     return out;
@@ -43,7 +45,7 @@ vec2.create = function() {
  * @returns {vec2} a new 2D vector
  */
 vec2.clone = function(a) {
-    var out = new GLMAT_ARRAY_TYPE(2);
+    var out = new glMatrix.ARRAY_TYPE(2);
     out[0] = a[0];
     out[1] = a[1];
     return out;
@@ -57,7 +59,7 @@ vec2.clone = function(a) {
  * @returns {vec2} a new 2D vector
  */
 vec2.fromValues = function(x, y) {
-    var out = new GLMAT_ARRAY_TYPE(2);
+    var out = new glMatrix.ARRAY_TYPE(2);
     out[0] = x;
     out[1] = y;
     return out;
@@ -394,7 +396,7 @@ vec2.lerp = function (out, a, b, t) {
  */
 vec2.random = function (out, scale) {
     scale = scale || 1.0;
-    var r = GLMAT_RANDOM() * 2.0 * Math.PI;
+    var r = glMatrix.RANDOM() * 2.0 * Math.PI;
     out[0] = Math.cos(r) * scale;
     out[1] = Math.sin(r) * scale;
     return out;
@@ -518,6 +520,4 @@ vec2.str = function (a) {
     return 'vec2(' + a[0] + ', ' + a[1] + ')';
 };
 
-if(typeof(exports) !== 'undefined') {
-    exports.vec2 = vec2;
-}
+module.exports = vec2;

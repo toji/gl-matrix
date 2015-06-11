@@ -18,6 +18,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("./common.js");
+
 /**
  * @class 4 Dimensional Vector
  * @name vec4
@@ -30,7 +32,7 @@ var vec4 = {};
  * @returns {vec4} a new 4D vector
  */
 vec4.create = function() {
-    var out = new GLMAT_ARRAY_TYPE(4);
+    var out = new glMatrix.ARRAY_TYPE(4);
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -45,7 +47,7 @@ vec4.create = function() {
  * @returns {vec4} a new 4D vector
  */
 vec4.clone = function(a) {
-    var out = new GLMAT_ARRAY_TYPE(4);
+    var out = new glMatrix.ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -63,7 +65,7 @@ vec4.clone = function(a) {
  * @returns {vec4} a new 4D vector
  */
 vec4.fromValues = function(x, y, z, w) {
-    var out = new GLMAT_ARRAY_TYPE(4);
+    var out = new glMatrix.ARRAY_TYPE(4);
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -429,10 +431,10 @@ vec4.random = function (out, scale) {
     scale = scale || 1.0;
 
     //TODO: This is a pretty awful way of doing this. Find something better.
-    out[0] = GLMAT_RANDOM();
-    out[1] = GLMAT_RANDOM();
-    out[2] = GLMAT_RANDOM();
-    out[3] = GLMAT_RANDOM();
+    out[0] = glMatrix.RANDOM();
+    out[1] = glMatrix.RANDOM();
+    out[2] = glMatrix.RANDOM();
+    out[3] = glMatrix.RANDOM();
     vec4.normalize(out, out);
     vec4.scale(out, out, scale);
     return out;
@@ -532,6 +534,4 @@ vec4.str = function (a) {
     return 'vec4(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
 };
 
-if(typeof(exports) !== 'undefined') {
-    exports.vec4 = vec4;
-}
+module.exports = vec4;

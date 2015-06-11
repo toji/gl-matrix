@@ -19,6 +19,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 describe("mat2", function() {
+    var mat2 = require("../../src/gl-matrix/mat2.js");
+
     var out, matA, matB, identity, result;
 
     beforeEach(function() {

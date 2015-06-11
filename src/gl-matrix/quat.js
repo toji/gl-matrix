@@ -18,6 +18,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("./common.js");
+var mat3 = require("./mat3.js");
+var vec3 = require("./vec3.js");
+var vec4 = require("./vec4.js");
+
 /**
  * @class Quaternion
  * @name quat
@@ -30,7 +35,7 @@ var quat = {};
  * @returns {quat} a new quaternion
  */
 quat.create = function() {
-    var out = new GLMAT_ARRAY_TYPE(4);
+    var out = new glMatrix.ARRAY_TYPE(4);
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -545,6 +550,4 @@ quat.str = function (a) {
     return 'quat(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
 };
 
-if(typeof(exports) !== 'undefined') {
-    exports.quat = quat;
-}
+module.exports = quat;
