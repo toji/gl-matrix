@@ -26,11 +26,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 // END HEADER
 
-if (typeof(window) != 'undefined') {
-  // So we can use it in the browser or with node
-  exports = window;
-}
-
 exports.glMatrix = require("./gl-matrix/common.js");
 exports.mat2 = require("./gl-matrix/mat2.js");
 exports.mat2d = require("./gl-matrix/mat2d.js");

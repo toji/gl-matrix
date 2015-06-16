@@ -38,7 +38,8 @@ module.exports = {
   entry: entryFile,
   output: {
     path: __dirname + '/dist',
-    filename: 'gl-matrix-min.js'
+    filename: 'gl-matrix-min.js',
+    libraryTarget: 'umd'
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin(),
