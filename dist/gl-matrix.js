@@ -121,7 +121,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -160,7 +160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {Type} type Array type, such as Float32Array or Array
 	 */
 	glMatrix.setMatrixArrayType = function(type) {
-	    GLMAT_ARRAY_TYPE = type;
+	    glMatrix.ARRAY_TYPE = type;
 	}
 
 	var degree = Math.PI / 180;
