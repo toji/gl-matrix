@@ -35,7 +35,7 @@ glMatrix.RANDOM = Math.random;
  * @param {Type} type Array type, such as Float32Array or Array
  */
 glMatrix.setMatrixArrayType = function(type) {
-    GLMAT_ARRAY_TYPE = type;
+    glMatrix.ARRAY_TYPE = type;
 }
 
 var degree = Math.PI / 180;
