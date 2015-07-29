@@ -24,7 +24,8 @@
   "devDependencies": {
     "jasmine-node": "1.2.2",
     "node-libs-browser": "^0.5.2",
-    "webpack": "^1.9.10"
+    "webpack": "^1.9.10",
+    "simd": "2.0.0"
   },
   "license": "MIT"
 }
