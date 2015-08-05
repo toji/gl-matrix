@@ -345,47 +345,35 @@ mat4.multiplyLegacy = function (out, a, b) {
  * @returns {mat4} out
  */
 mat4.multiplySIMD = function (out, a, b) {
-    var a0 = glMatrix.FLOAT32X4(a[0], a[1], a[2], a[3]),
-        a1 = glMatrix.FLOAT32X4(a[4], a[5], a[6], a[7]),
-        a2 = glMatrix.FLOAT32X4(a[8], a[9], a[10], a[11]),
-        a3 = glMatrix.FLOAT32X4(a[12], a[13], a[14], a[15]);
+    var a0 = glMatrix.FLOAT32X4.load(a, 0),
+        a1 = glMatrix.FLOAT32X4.load(a, 4),
+        a2 = glMatrix.FLOAT32X4.load(a, 8),
+        a3 = glMatrix.FLOAT32X4.load(a, 12);
 
     var 
     _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[0]));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[1])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[2])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[3])));
-    out[0] = _out.x; 
-    out[1] = _out.y;
-    out[2] = _out.z; 
-    out[3] = _out.w;
+    glMatrix.FLOAT32X4.store(out, 0, _out);
 
     _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[4]));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[5])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[6])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[7])));
-    out[4] = _out.x; 
-    out[5] = _out.y;
-    out[6] = _out.z; 
-    out[7] = _out.w;
+    glMatrix.FLOAT32X4.store(out, 4, _out);
 
     _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[8]));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[9])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[10])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[11])));
-    out[8] = _out.x; 
-    out[9] = _out.y;
-    out[10] = _out.z;
-    out[11] = _out.w;
+    glMatrix.FLOAT32X4.store(out, 8, _out);
 
     _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[12]));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[13])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[14])));
     _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[15])));
-    out[12] = _out.x; 
-    out[13] = _out.y;
-    out[14] = _out.z; 
-    out[15] = _out.w;
+    glMatrix.FLOAT32X4.store(out, 12, _out);
 
     return out;
 }

@@ -28,8 +28,8 @@ var glMatrix = {};
 glMatrix.EPSILON = 0.000001;
 glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 glMatrix.RANDOM = Math.random;
-glMatrix.SIMD_SUPPORT = typeof SIMD != "undefined" && SIMD.float32x4;
-glMatrix.FLOAT32X4 = glMatrix.SIMD_SUPPORT ? (SIMD.float32x4 ? SIMD.float32x4 : null) : null;
+glMatrix.SIMD_SUPPORT = typeof SIMD != "undefined" && SIMD.Float32x4;
+glMatrix.FLOAT32X4 = glMatrix.SIMD_SUPPORT ? (SIMD.Float32x4 ? SIMD.Float32x4 : null) : null;
 
 /**
  * Sets the type of array used when creating new vectors and matrices
