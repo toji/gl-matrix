@@ -345,7 +345,7 @@ mat4.multiplyLegacy = function (out, a, b) {
  * @returns {mat4} out
  */
 mat4.multiplySIMD = function (out, a, b) {
-	var a0 = glMatrix.FLOAT32X4(a[0], a[1], a[2], a[3]),
+    var a0 = glMatrix.FLOAT32X4(a[0], a[1], a[2], a[3]),
         a1 = glMatrix.FLOAT32X4(a[4], a[5], a[6], a[7]),
         a2 = glMatrix.FLOAT32X4(a[8], a[9], a[10], a[11]),
         a3 = glMatrix.FLOAT32X4(a[12], a[13], a[14], a[15]);
@@ -398,12 +398,7 @@ mat4.multiplySIMD = function (out, a, b) {
  * @param {mat4} b the second operand
  * @returns {mat4} out
  */
-mat4.multiply = function (out, a, b) {
-    if (glMatrix.SIMD_SUPPORT)
-        return mat4.multiplySIMD(out, a, b);
-    else 
-        return mat4.multiplyLegacy(out, a, b);
-};
+mat4.multiply = glMatrix.SIMD_SUPPORT ? mat4.multiplySIMD : mat4.multiplyLegacy;
 
 /**
  * Alias for {@link mat4.multiply}

@@ -485,12 +485,7 @@ vec4.transformMat4SIMD = function(out, a, m) {
  * @param {mat4} m matrix to transform with
  * @returns {vec4} out
  */
-vec4.transformMat4 = function(out, a, m) {
-    if (glMatrix.SIMD_SUPPORT)
-        return vec4.transformMat4SIMD(out, a, m);
-    else 
-        return vec4.transformMat4Legacy(out, a, m);
-};
+vec4.transformMat4 = glMatrix.SIMD_SUPPORT ? vec4.transformMat4SIMD : vec4.transformMat4Legacy;
 
 /**
  * Transforms the vec4 with a quat
