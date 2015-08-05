@@ -448,25 +448,48 @@ vec4.random = function (out, scale) {
  * @param {mat4} m matrix to transform with
  * @returns {vec4} out
  */
-vec4.transformMat4 = function(out, a, m) {
-    if(glMatrix.SIMD_SUPPORT){
-        var _out = glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[0], m[1], m[2], m[3]), glMatrix.FLOAT32X4.splat(a[0]));
-        _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[4], m[5], m[6], m[7]), glMatrix.FLOAT32X4.splat(a[1])));
-        _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[8], m[9], m[10], m[11]), glMatrix.FLOAT32X4.splat(a[2])));
-        _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[12], m[13], m[14], m[15]), glMatrix.FLOAT32X4.splat(a[3])));
+vec4.transformMat4Legacy = function(out, a, m) {
+    var x = a[0], y = a[1], z = a[2], w = a[3];
+    out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
+    out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
+    out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
+    out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
+    return out;
+};
 
-        out[0] = _out.x; 
-        out[1] = _out.y;
-        out[2] = _out.z; 
-        out[3] = _out.w;
-    } else {
-        var x = a[0], y = a[1], z = a[2], w = a[3];
-        out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
-        out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
-        out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
-        out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
-        return out;
-    }
+/**
+ * Transforms the vec4 with a mat4.
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a the vector to transform
+ * @param {mat4} m matrix to transform with
+ * @returns {vec4} out
+ */
+vec4.transformMat4SIMD = function(out, a, m) {
+    var _out = glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[0], m[1], m[2], m[3]), glMatrix.FLOAT32X4.splat(a[0]));
+    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[4], m[5], m[6], m[7]), glMatrix.FLOAT32X4.splat(a[1])));
+    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[8], m[9], m[10], m[11]), glMatrix.FLOAT32X4.splat(a[2])));
+    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4(m[12], m[13], m[14], m[15]), glMatrix.FLOAT32X4.splat(a[3])));
+    out[0] = _out.x; 
+    out[1] = _out.y;
+    out[2] = _out.z; 
+    out[3] = _out.w;
+    return out;
+}
+
+/**
+ * Transforms the vec4 with a mat4.
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a the vector to transform
+ * @param {mat4} m matrix to transform with
+ * @returns {vec4} out
+ */
+vec4.transformMat4 = function(out, a, m) {
+    if (glMatrix.SIMD_SUPPORT)
+        return vec4.transformMat4SIMD(out, a, m);
+    else 
+        return vec4.transformMat4Legacy(out, a, m);
 };
 
 /**
