@@ -153,6 +153,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	glMatrix.EPSILON = 0.000001;
 	glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 	glMatrix.RANDOM = Math.random;
+	glMatrix.SIMD_SUPPORT = typeof SIMD != "undefined" && SIMD.Float32x4;
+	glMatrix.FLOAT32X4 = glMatrix.SIMD_SUPPORT ? (SIMD.Float32x4 ? SIMD.Float32x4 : null) : null;
 
 	/**
 	 * Sets the type of array used when creating new vectors and matrices
@@ -1688,7 +1690,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {mat4} b the second operand
 	 * @returns {mat4} out
 	 */
-	mat4.multiply = function (out, a, b) {
+	mat4.multiplyLegacy = function (out, a, b) {
 	    var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
 	        a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
 	        a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -1720,6 +1722,58 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
 	    return out;
 	};
+
+	/**
+	 * Multiplies two mat4's
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the first operand
+	 * @param {mat4} b the second operand
+	 * @returns {mat4} out
+	 */
+	mat4.multiplySIMD = function (out, a, b) {
+	    var a0 = glMatrix.FLOAT32X4.load(a, 0),
+	        a1 = glMatrix.FLOAT32X4.load(a, 4),
+	        a2 = glMatrix.FLOAT32X4.load(a, 8),
+	        a3 = glMatrix.FLOAT32X4.load(a, 12);
+
+	    var 
+	    _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[0]));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[1])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[2])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[3])));
+	    glMatrix.FLOAT32X4.store(out, 0, _out);
+
+	    _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[4]));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[5])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[6])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[7])));
+	    glMatrix.FLOAT32X4.store(out, 4, _out);
+
+	    _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[8]));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[9])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[10])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[11])));
+	    glMatrix.FLOAT32X4.store(out, 8, _out);
+
+	    _out = glMatrix.FLOAT32X4.mul(a0, glMatrix.FLOAT32X4.splat(b[12]));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a1, glMatrix.FLOAT32X4.splat(b[13])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a2, glMatrix.FLOAT32X4.splat(b[14])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(a3, glMatrix.FLOAT32X4.splat(b[15])));
+	    glMatrix.FLOAT32X4.store(out, 12, _out);
+
+	    return out;
+	}
+
+	/**
+	 * Multiplies two mat4's
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the first operand
+	 * @param {mat4} b the second operand
+	 * @returns {mat4} out
+	 */
+	mat4.multiply = glMatrix.SIMD_SUPPORT ? mat4.multiplySIMD : mat4.multiplyLegacy;
 
 	/**
 	 * Alias for {@link mat4.multiply}
@@ -4396,7 +4450,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {mat4} m matrix to transform with
 	 * @returns {vec4} out
 	 */
-	vec4.transformMat4 = function(out, a, m) {
+	vec4.transformMat4Legacy = function(out, a, m) {
 	    var x = a[0], y = a[1], z = a[2], w = a[3];
 	    out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
 	    out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
@@ -4404,6 +4458,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[3] = m[3] * x + m[7] * y + m[11] * z + m[15] * w;
 	    return out;
 	};
+
+	/**
+	 * Transforms the vec4 with a mat4.
+	 *
+	 * @param {vec4} out the receiving vector
+	 * @param {vec4} a the vector to transform
+	 * @param {mat4} m matrix to transform with
+	 * @returns {vec4} out
+	 */
+	vec4.transformMat4SIMD = function(out, a, m) {
+	    var _out = glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4.load(m, 0), glMatrix.FLOAT32X4.splat(a[0]));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4.load(m, 4), glMatrix.FLOAT32X4.splat(a[1])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4.load(m, 8), glMatrix.FLOAT32X4.splat(a[2])));
+	    _out = glMatrix.FLOAT32X4.add(_out, glMatrix.FLOAT32X4.mul(glMatrix.FLOAT32X4.load(m, 12), glMatrix.FLOAT32X4.splat(a[3])));
+	    glMatrix.FLOAT32X4.store(out, 0, _out);
+	    return out;
+	}
+
+	/**
+	 * Transforms the vec4 with a mat4.
+	 *
+	 * @param {vec4} out the receiving vector
+	 * @param {vec4} a the vector to transform
+	 * @param {mat4} m matrix to transform with
+	 * @returns {vec4} out
+	 */
+	vec4.transformMat4 = glMatrix.SIMD_SUPPORT ? vec4.transformMat4SIMD : vec4.transformMat4Legacy;
 
 	/**
 	 * Transforms the vec4 with a quat
