@@ -19,8 +19,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 describe("mat4", function() {
+    var glMatrix = require("../../src/gl-matrix/common.js");
     var mat4 = require("../../src/gl-matrix/mat4.js");
     var vec3 = require("../../src/gl-matrix/vec3.js");
+
+    // Inject the polyfill for testing
+    if (!glMatrix.SIMD_AVAILABLE) {
+        require("simd").shim();
+    }
 
     var out, matA, matB, identity, result;
 
@@ -262,6 +268,21 @@ describe("mat4", function() {
                     0, 1, 0, 0,
                     0, 0, 1, 0,
                     1, 2, 3, 1
+                ]);
+            });
+        });
+        describe("when using SIMD", function() {
+            beforeEach(function () {
+                result = Array.prototype.slice.call(mat4.SIMD.multiply(
+                  new Float32Array(out), new Float32Array(matA),
+                  new Float32Array(matB)));
+            });
+            it("should work", function() {
+                expect(result).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    5, 7, 9, 1
                 ]);
             });
         });
