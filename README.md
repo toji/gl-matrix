@@ -18,5 +18,4 @@ For documentation, news, tutorials, and more visit the [glMatrix Homepage](http:
 
 Contributing
 ----------------------
-Contributions are welcome! Please make pull requests agains the `dev` branch, 
-and please provide unit tests for new functionality. (See TESTING.md for details)
+Contributions are welcome! Please provide unit tests for new functionality. (See TESTING.md for details)
