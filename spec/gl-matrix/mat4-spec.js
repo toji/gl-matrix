@@ -18,16 +18,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+var glMatrix = require("../../src/gl-matrix/common.js");
+var mat4 = require("../../src/gl-matrix/mat4.js");
+var vec3 = require("../../src/gl-matrix/vec3.js");
+
+// Inject the polyfill for testing
+if (!glMatrix.SIMD_AVAILABLE) {
+  require("simd").shim();
+}
+
 function buildMat4Tests(useSIMD) {
-    var glMatrix = require("../../src/gl-matrix/common.js");
-    var mat4 = require("../../src/gl-matrix/mat4.js");
-    var vec3 = require("../../src/gl-matrix/vec3.js");
-
-    // Inject the polyfill for testing
-    if (useSIMD && !glMatrix.SIMD_AVAILABLE) {
-        require("simd").shim();
-    }
-
     mat4.TEST_PATH = useSIMD ? mat4.SIMD : mat4.scalar;
 
     return function() {
