@@ -153,6 +153,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	glMatrix.EPSILON = 0.000001;
 	glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 	glMatrix.RANDOM = Math.random;
+	glMatrix.SIMD_AVAILABLE = (glMatrix.ARRAY_TYPE !== Array) && ('SIMD' in this);
+	glMatrix.ENABLE_SIMD = false;
 
 	/**
 	 * Sets the type of array used when creating new vectors and matrices
@@ -1409,7 +1411,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @class 4x4 Matrix
 	 * @name mat4
 	 */
-	var mat4 = {};
+	var mat4 = {
+	  SISD: {},
+	  SIMD: {},
+	};
 
 	/**
 	 * Creates a new identity mat4
@@ -1681,21 +1686,78 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Multiplies two mat4's
+	 * Multiplies two mat4's explicitly using SIMD
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the first operand, must be a Float32Array
+	 * @param {mat4} b the second operand, must be a Float32Array
+	 * @returns {mat4} out
+	 */
+	mat4.SIMD.multiply = function (out, a, b) {
+	    var _a = SIMD.Float32x4.load(b, 0);
+	    var _b = SIMD.Float32x4.load(b, 4);
+	    var _c = SIMD.Float32x4.load(b, 8);
+	    var _d = SIMD.Float32x4.load(b, 12);
+
+	    var t1 = SIMD.Float32x4.splat(a[0]);
+	    var t2 = SIMD.Float32x4.mul(_a, t1);
+	    t1 = SIMD.Float32x4.splat(a[1]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_b, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[2]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_c, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[3]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_d, t1), t2);
+	    SIMD.Float32x4.store(out, 0, t2);
+
+	    t1 = SIMD.Float32x4.splat(a[4]);
+	    t2 = SIMD.Float32x4.mul(_a, t1);
+	    t1 = SIMD.Float32x4.splat(a[5]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_b, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[6]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_c, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[7]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_d, t1), t2);
+	    SIMD.Float32x4.store(out, 4, t2);
+
+	    t1 = SIMD.Float32x4.splat(a[8]);
+	    t2 = SIMD.Float32x4.mul(_a, t1);
+	    t1 = SIMD.Float32x4.splat(a[9]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_b, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[10]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_c, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[11]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_d, t1), t2);
+	    SIMD.Float32x4.store(out, 8, t2);
+
+	    t1 = SIMD.Float32x4.splat(a[12]);
+	    t2 = SIMD.Float32x4.mul(_a, t1);
+	    t1 = SIMD.Float32x4.splat(a[13]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_b, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[14]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_c, t1), t2);
+	    t1 = SIMD.Float32x4.splat(a[15]);
+	    t2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(_d, t1), t2);
+	    SIMD.Float32x4.store(out, 12, t2);
+
+	    return out;
+	};
+
+	/**
+	 * Multiplies two mat4's explicitly not using SIMD
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the first operand
 	 * @param {mat4} b the second operand
 	 * @returns {mat4} out
 	 */
-	mat4.multiply = function (out, a, b) {
+	mat4.SISD.multiply = function (out, a, b) {
 	    var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
 	        a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
 	        a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
 	        a30 = a[12], a31 = a[13], a32 = a[14], a33 = a[15];
 
 	    // Cache only the current line of the second matrix
-	    var b0  = b[0], b1 = b[1], b2 = b[2], b3 = b[3];  
+	    var b0  = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
 	    out[0] = b0*a00 + b1*a10 + b2*a20 + b3*a30;
 	    out[1] = b0*a01 + b1*a11 + b2*a21 + b3*a31;
 	    out[2] = b0*a02 + b1*a12 + b2*a22 + b3*a32;
@@ -1720,6 +1782,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
 	    return out;
 	};
+
+	/**
+	 * Multiplies two mat4's using SIMD if available and enabled
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the first operand
+	 * @param {mat4} b the second operand
+	 * @returns {mat4} out
+	 */
+	mat4.multiply = glMatrix.SIMD_AVAILABLE && glMatrix.ENABLE_SIMD ?
+	  mat4.SIMD.multiply : mat4.SISD.multiply;
 
 	/**
 	 * Alias for {@link mat4.multiply}
@@ -3564,6 +3637,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
+	 * Alias for {@link vec3.negate}
+	 * @function
+	 */
+	vec3.neg = vec3.negate;
+
+	/**
 	 * Returns the inverse of the components of a vec3
 	 *
 	 * @param {vec3} out the receiving vector
@@ -4299,6 +4378,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
+	 * Alias for {@link vec4.negate}
+	 * @function
+	 */
+	vec4.neg = vec4.negate;
+
+	/**
 	 * Returns the inverse of the components of a vec4
 	 *
 	 * @param {vec4} out the receiving vector
@@ -4800,6 +4885,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[1] = -a[1];
 	    return out;
 	};
+
+	/**
+	 * Alias for {@link vec2.negate}
+	 * @function
+	 */
+	vec2.neg = vec2.negate;
 
 	/**
 	 * Returns the inverse of the components of a vec2

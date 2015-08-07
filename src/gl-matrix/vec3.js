@@ -331,6 +331,12 @@ vec3.negate = function(out, a) {
 };
 
 /**
+ * Alias for {@link vec3.negate}
+ * @function
+ */
+vec3.neg = vec3.negate;
+
+/**
  * Returns the inverse of the components of a vec3
  *
  * @param {vec3} out the receiving vector
