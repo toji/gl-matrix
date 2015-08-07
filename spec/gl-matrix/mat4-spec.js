@@ -28,7 +28,7 @@ function buildMat4Tests(useSIMD) {
         require("simd").shim();
     }
 
-    mat4.TEST_PATH = useSIMD ? mat4.SIMD : mat4.SISD;
+    mat4.TEST_PATH = useSIMD ? mat4.SIMD : mat4.scalar;
 
     return function() {
         var out, matA, matB, identity, result;

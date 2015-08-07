@@ -25,7 +25,7 @@ var glMatrix = require("./common.js");
  * @name mat4
  */
 var mat4 = {
-  SISD: {},
+  scalar: {},
   SIMD: {},
 };
 
@@ -363,7 +363,7 @@ mat4.SIMD.multiply = function (out, a, b) {
  * @param {mat4} b the second operand
  * @returns {mat4} out
  */
-mat4.SISD.multiply = function (out, a, b) {
+mat4.scalar.multiply = function (out, a, b) {
     var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
         a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
         a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -404,8 +404,7 @@ mat4.SISD.multiply = function (out, a, b) {
  * @param {mat4} b the second operand
  * @returns {mat4} out
  */
-mat4.multiply = glMatrix.SIMD_AVAILABLE && glMatrix.ENABLE_SIMD ?
-  mat4.SIMD.multiply : mat4.SISD.multiply;
+mat4.multiply = glMatrix.USE_SIMD ? mat4.SIMD.multiply : mat4.scalar.multiply;
 
 /**
  * Alias for {@link mat4.multiply}

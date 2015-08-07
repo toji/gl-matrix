@@ -24,12 +24,15 @@ THE SOFTWARE. */
  */
 var glMatrix = {};
 
-// Constants
+// Configuration Constants
 glMatrix.EPSILON = 0.000001;
 glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 glMatrix.RANDOM = Math.random;
-glMatrix.SIMD_AVAILABLE = (glMatrix.ARRAY_TYPE !== Array) && ('SIMD' in this);
 glMatrix.ENABLE_SIMD = false;
+
+// Capability detection
+glMatrix.SIMD_AVAILABLE = (glMatrix.ARRAY_TYPE === Float32Array) && ('SIMD' in this);
+glMatrix.USE_SIMD = glMatrix.ENABLE_SIMD && glMatrix.SIMD_AVAILABLE;
 
 /**
  * Sets the type of array used when creating new vectors and matrices
