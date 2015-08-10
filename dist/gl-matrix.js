@@ -1526,13 +1526,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Transpose the values of a mat4
+	 * Transpose the values of a mat4 not using vectorization
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the source matrix
 	 * @returns {mat4} out
 	 */
-	mat4.transpose = function(out, a) {
+	mat4.scalar.transpose = function(out, a) {
 	    // If we are transposing ourselves we can skip a few steps but have to cache some values
 	    if (out === a) {
 	        var a01 = a[1], a02 = a[2], a03 = a[3],
@@ -1572,6 +1572,50 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return out;
 	};
+
+	/**
+	 * Transpose the values of a mat4 using SIMD
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the source matrix
+	 * @returns {mat4} out
+	 */
+	mat4.SIMD.transpose = function(out, a) {
+	    var a0, a1, a2, a3,
+	        tmp01, tmp23,
+	        out0, out1, out2, out3;
+
+	    a0 = SIMD.Float32x4.load(a, 0);
+	    a1 = SIMD.Float32x4.load(a, 4);
+	    a2 = SIMD.Float32x4.load(a, 8);
+	    a3 = SIMD.Float32x4.load(a, 12);
+
+	    tmp01 = SIMD.Float32x4.shuffle(a0, a1, 0, 1, 4, 5);
+	    tmp23 = SIMD.Float32x4.shuffle(a2, a3, 0, 1, 4, 5);
+	    out0  = SIMD.Float32x4.shuffle(tmp01, tmp23, 0, 2, 4, 6);
+	    out1  = SIMD.Float32x4.shuffle(tmp01, tmp23, 1, 3, 5, 7);
+	    SIMD.Float32x4.store(out, 0,  out0);
+	    SIMD.Float32x4.store(out, 4,  out1);
+
+	    tmp01 = SIMD.Float32x4.shuffle(a0, a1, 2, 3, 6, 7);
+	    tmp23 = SIMD.Float32x4.shuffle(a2, a3, 2, 3, 6, 7);
+	    out2  = SIMD.Float32x4.shuffle(tmp01, tmp23, 0, 2, 4, 6);
+	    out3  = SIMD.Float32x4.shuffle(tmp01, tmp23, 1, 3, 5, 7);
+	    SIMD.Float32x4.store(out, 8,  out2);
+	    SIMD.Float32x4.store(out, 12, out3);
+
+	    return out;
+	};
+
+	/**
+	 * Transpse a mat4 using SIMD if available and enabled
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the source matrix
+	 * @returns {mat4} out
+	 */
+	mat4.transpose = glMatrix.USE_SIMD ? mat4.SIMD.transpose : mat4.scalar.transpose;
+
 
 	/**
 	 * Inverts a mat4
@@ -1728,17 +1772,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                   SIMD.Float32x4.add(
 	                       SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 1, 1, 1, 1), a1),
 	                       SIMD.Float32x4.add(
-	                               SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 2, 2, 2, 2), a2),
-	                               SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 3, 3, 3, 3), a3))));
+	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 2, 2, 2, 2), a2),
+	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 3, 3, 3, 3), a3))));
 
 
 	    var out3 = SIMD.Float32x4.add(
 	                   SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 0, 0, 0, 0), a0),
 	                   SIMD.Float32x4.add(
-	                        SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 1, 1, 1, 1), a1),
-	                        SIMD.Float32x4.add(
-	                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 2, 2, 2, 2), a2),
-	                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 3, 3, 3, 3), a3))));
+	                       SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 1, 1, 1, 1), a1),
+	                       SIMD.Float32x4.add(
+	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 2, 2, 2, 2), a2),
+	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 3, 3, 3, 3), a3))));
 
 	    SIMD.Float32x4.store(out, 0, out0);
 	    SIMD.Float32x4.store(out, 4, out1);
@@ -1805,14 +1849,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	mat4.mul = mat4.multiply;
 
 	/**
-	 * Translate a mat4 by the given vector
+	 * Translate a mat4 by the given vector not using SIMD
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the matrix to translate
 	 * @param {vec3} v vector to translate by
 	 * @returns {mat4} out
 	 */
-	mat4.translate = function (out, a, v) {
+	mat4.scalar.translate = function (out, a, v) {
 	    var x = v[0], y = v[1], z = v[2],
 	        a00, a01, a02, a03,
 	        a10, a11, a12, a13,
@@ -1842,14 +1886,53 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Scales the mat4 by the dimensions in the given vec3
+	 * Translate a mat4 by the given vector using SIMD
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the matrix to translate
+	 * @param {vec3} v vector to translate by
+	 * @returns {mat4} out
+	 */
+	mat4.SIMD.translate = function (out, a, v) {
+	    var a0 = SIMD.Float32x4.load(a, 0),
+	        a1 = SIMD.Float32x4.load(a, 4),
+	        a2 = SIMD.Float32x4.load(a, 8);
+
+	    if (a !== out) {
+	        out[0] = a[0]; out[1] = a[1]; out[2] = a[2]; out[3] = a[3];
+	        out[4] = a[4]; out[5] = a[5]; out[6] = a[6]; out[7] = a[7];
+	        out[8] = a[8]; out[9] = a[9]; out[10] = a[10]; out[11] = a[11];
+	    }
+
+	    a0 = SIMD.Float32x4.mul(a0, SIMD.Float32x4.splat(v[0]));
+	    a1 = SIMD.Float32x4.mul(a1, SIMD.Float32x4.splat(v[1]));
+	    a2 = SIMD.Float32x4.mul(a2, SIMD.Float32x4.splat(v[2]));
+
+	    var t0 = SIMD.Float32x4.add(a0, SIMD.Float32x4.add(a1, a2));
+	    SIMD.Float32x4.store(out, 12, t0);
+
+	    return out;
+	};
+
+	/**
+	 * Translate a mat4 by the given vector using SIMD if available and enabled
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the matrix to translate
+	 * @param {vec3} v vector to translate by
+	 * @returns {mat4} out
+	 */
+	mat4.translate = glMatrix.USE_SIMD ? mat4.SIMD.translate : mat4.scalar.translate;
+
+	/**
+	 * Scales the mat4 by the dimensions in the given vec3 not using vectoization
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the matrix to scale
 	 * @param {vec3} v the vec3 to scale the matrix by
 	 * @returns {mat4} out
 	 **/
-	mat4.scale = function(out, a, v) {
+	mat4.scalar.scale = function(out, a, v) {
 	    var x = v[0], y = v[1], z = v[2];
 
 	    out[0] = a[0] * x;
@@ -1870,6 +1953,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[15] = a[15];
 	    return out;
 	};
+
+	/**
+	 * Scales the mat4 by the dimensions in the given vec3 using vectorization
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the matrix to scale
+	 * @param {vec3} v the vec3 to scale the matrix by
+	 * @returns {mat4} out
+	 **/
+	mat4.SIMD.scale = function(out, a, v) {
+	    var a0, a1, a2;
+
+	    a0 = SIMD.Float32x4.load(a, 0);
+	    SIMD.Float32x4.store(
+	        out, 0, SIMD.Float32x4.mul(
+	                    a0,
+	                    SIMD.Float32x4.splat(v[0])));
+
+	    a1 = SIMD.Float32x4.load(a, 4);
+	    SIMD.Float32x4.store(
+	        out, 4, SIMD.Float32x4.mul(
+	                    a1,
+	                    SIMD.Float32x4.splat(v[1])));
+
+	    a2 = SIMD.Float32x4.load(a, 8);
+	    SIMD.Float32x4.store(
+	        out, 8, SIMD.Float32x4.mul(
+	                    a2,
+	                    SIMD.Float32x4.splat(v[2])));
+
+	    out[12] = a[12];
+	    out[13] = a[13];
+	    out[14] = a[14];
+	    out[15] = a[15];
+	    return out;
+	};
+
+	/**
+	 * Scale the mat4 using SIMD if available and enabled
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the matrix to scale
+	 * @param {vec3} v the vec3 to scale the matrix by
+	 * @returns {mat4} out
+	 */
+	mat4.scale = glMatrix.USE_SIMD ? mat4.SIMD.scale : mat4.scalar.scale;
 
 	/**
 	 * Rotates a mat4 by the given angle around the given axis
