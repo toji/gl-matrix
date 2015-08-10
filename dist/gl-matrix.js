@@ -1594,14 +1594,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    tmp23 = SIMD.Float32x4.shuffle(a2, a3, 0, 1, 4, 5);
 	    out0  = SIMD.Float32x4.shuffle(tmp01, tmp23, 0, 2, 4, 6);
 	    out1  = SIMD.Float32x4.shuffle(tmp01, tmp23, 1, 3, 5, 7);
+	    SIMD.Float32x4.store(out, 0,  out0);
+	    SIMD.Float32x4.store(out, 4,  out1);
 
 	    tmp01 = SIMD.Float32x4.shuffle(a0, a1, 2, 3, 6, 7);
 	    tmp23 = SIMD.Float32x4.shuffle(a2, a3, 2, 3, 6, 7);
 	    out2  = SIMD.Float32x4.shuffle(tmp01, tmp23, 0, 2, 4, 6);
 	    out3  = SIMD.Float32x4.shuffle(tmp01, tmp23, 1, 3, 5, 7);
-
-	    SIMD.Float32x4.store(out, 0,  out0);
-	    SIMD.Float32x4.store(out, 4,  out1);
 	    SIMD.Float32x4.store(out, 8,  out2);
 	    SIMD.Float32x4.store(out, 12, out3);
 
@@ -1734,13 +1733,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	  * Multiplies two mat4's explicitly using SIMD
-	  *
-	  * @param {mat4} out the receiving matrix
-	  * @param {mat4} a the first operand, must be a Float32Array
-	  * @param {mat4} b the second operand, must be a Float32Array
-	  * @returns {mat4} out
-	  */
+	 * Multiplies two mat4's explicitly using SIMD
+	 *
+	 * @param {mat4} out the receiving matrix
+	 * @param {mat4} a the first operand, must be a Float32Array
+	 * @param {mat4} b the second operand, must be a Float32Array
+	 * @returns {mat4} out
+	 */
 	mat4.SIMD.multiply = function (out, a, b) {
 	    var a0 = SIMD.Float32x4.load(a, 0);
 	    var a1 = SIMD.Float32x4.load(a, 4);
@@ -1964,18 +1963,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {mat4} out
 	 **/
 	mat4.SIMD.scale = function(out, a, v) {
-	    var a0 = SIMD.Float32x4.load(a, 0),
-	        a1 = SIMD.Float32x4.load(a, 4),
-	        a2 = SIMD.Float32x4.load(a, 8);
+	    var a0, a1, a2;
 
+	    a0 = SIMD.Float32x4.load(a, 0);
 	    SIMD.Float32x4.store(
 	        out, 0, SIMD.Float32x4.mul(
 	                    a0,
 	                    SIMD.Float32x4.splat(v[0])));
+
+	    a1 = SIMD.Float32x4.load(a, 4);
 	    SIMD.Float32x4.store(
 	        out, 4, SIMD.Float32x4.mul(
 	                    a1,
 	                    SIMD.Float32x4.splat(v[1])));
+
+	    a2 = SIMD.Float32x4.load(a, 8);
 	    SIMD.Float32x4.store(
 	        out, 8, SIMD.Float32x4.mul(
 	                    a2,
@@ -1996,7 +1998,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {vec3} v the vec3 to scale the matrix by
 	 * @returns {mat4} out
 	 */
-	mat4.scale = glMatrix.USE_SIMD ? mat4.SIMD.sclae : mat4.scalar.scale;
+	mat4.scale = glMatrix.USE_SIMD ? mat4.SIMD.scale : mat4.scalar.scale;
 
 	/**
 	 * Rotates a mat4 by the given angle around the given axis
