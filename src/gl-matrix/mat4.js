@@ -606,7 +606,7 @@ mat4.SIMD.scale = function(out, a, v) {
  * @param {vec3} v the vec3 to scale the matrix by
  * @returns {mat4} out
  */
-mat4.scale = glMatrix.USE_SIMD ? mat4.SIMD.sclae : mat4.scalar.scale;
+mat4.scale = glMatrix.USE_SIMD ? mat4.SIMD.scale : mat4.scalar.scale;
 
 /**
  * Rotates a mat4 by the given angle around the given axis
