@@ -226,7 +226,6 @@ mat4.SIMD.transpose = function(out, a) {
  */
 mat4.transpose = glMatrix.USE_SIMD ? mat4.SIMD.transpose : mat4.scalar.transpose;
 
-
 /**
  * Inverts a mat4
  *
@@ -357,10 +356,6 @@ mat4.SIMD.multiply = function (out, a, b) {
     var a3 = SIMD.Float32x4.load(a, 12);
 
     var b0 = SIMD.Float32x4.load(b, 0);
-    var b1 = SIMD.Float32x4.load(b, 4);
-    var b2 = SIMD.Float32x4.load(b, 8);
-    var b3 = SIMD.Float32x4.load(b, 12);
-
     var out0 = SIMD.Float32x4.add(
                    SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 0, 0, 0, 0), a0),
                    SIMD.Float32x4.add(
@@ -368,7 +363,9 @@ mat4.SIMD.multiply = function (out, a, b) {
                        SIMD.Float32x4.add(
                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 2, 2, 2, 2), a2),
                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 3, 3, 3, 3), a3))));
+    SIMD.Float32x4.store(out, 0, out0);
 
+    var b1 = SIMD.Float32x4.load(b, 4);
     var out1 = SIMD.Float32x4.add(
                    SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 0, 0, 0, 0), a0),
                    SIMD.Float32x4.add(
@@ -376,28 +373,28 @@ mat4.SIMD.multiply = function (out, a, b) {
                        SIMD.Float32x4.add(
                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 2, 2, 2, 2), a2),
                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 3, 3, 3, 3), a3))));
+    SIMD.Float32x4.store(out, 4, out1);
 
+    var b2 = SIMD.Float32x4.load(b, 8);
     var out2 = SIMD.Float32x4.add(
                    SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 0, 0, 0, 0), a0),
                    SIMD.Float32x4.add(
                        SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 1, 1, 1, 1), a1),
                        SIMD.Float32x4.add(
-                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 2, 2, 2, 2), a2),
-                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 3, 3, 3, 3), a3))));
+                               SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 2, 2, 2, 2), a2),
+                               SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 3, 3, 3, 3), a3))));
+    SIMD.Float32x4.store(out, 8, out2);
 
-
+    var b3 = SIMD.Float32x4.load(b, 12);
     var out3 = SIMD.Float32x4.add(
                    SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 0, 0, 0, 0), a0),
                    SIMD.Float32x4.add(
-                       SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 1, 1, 1, 1), a1),
-                       SIMD.Float32x4.add(
-                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 2, 2, 2, 2), a2),
-                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 3, 3, 3, 3), a3))));
-
-    SIMD.Float32x4.store(out, 0, out0);
-    SIMD.Float32x4.store(out, 4, out1);
-    SIMD.Float32x4.store(out, 8, out2);
+                        SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 1, 1, 1, 1), a1),
+                        SIMD.Float32x4.add(
+                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 2, 2, 2, 2), a2),
+                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 3, 3, 3, 3), a3))));
     SIMD.Float32x4.store(out, 12, out3);
+
     return out;
 };
 
@@ -535,7 +532,7 @@ mat4.SIMD.translate = function (out, a, v) {
 mat4.translate = glMatrix.USE_SIMD ? mat4.SIMD.translate : mat4.scalar.translate;
 
 /**
- * Scales the mat4 by the dimensions in the given vec3 not using vectoization
+ * Scales the mat4 by the dimensions in the given vec3 not using vectorization
  *
  * @param {mat4} out the receiving matrix
  * @param {mat4} a the matrix to scale
