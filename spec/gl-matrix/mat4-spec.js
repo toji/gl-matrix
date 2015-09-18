@@ -397,7 +397,7 @@ function buildMat4Tests(useSIMD) {
             var rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.rotateX(out, matA, rad); });
+                beforeEach(function() { result = mat4.TEST_PATH.rotateX(out, matA, rad); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -419,7 +419,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.rotateX(matA, matA, rad); });
+                beforeEach(function() { result = mat4.TEST_PATH.rotateX(matA, matA, rad); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -437,7 +437,7 @@ function buildMat4Tests(useSIMD) {
             var rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.rotateY(out, matA, rad); });
+                beforeEach(function() { result = mat4.TEST_PATH.rotateY(out, matA, rad); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -459,7 +459,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.rotateY(matA, matA, rad); });
+                beforeEach(function() { result = mat4.TEST_PATH.rotateY(matA, matA, rad); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -477,7 +477,7 @@ function buildMat4Tests(useSIMD) {
             var rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.rotateZ(out, matA, rad); });
+                beforeEach(function() { result = mat4.TEST_PATH.rotateZ(out, matA, rad); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -499,7 +499,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.rotateZ(matA, matA, rad); });
+                beforeEach(function() { result = mat4.TEST_PATH.rotateZ(matA, matA, rad); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
