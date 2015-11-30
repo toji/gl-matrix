@@ -645,6 +645,72 @@ function buildMat4Tests(useSIMD) {
             it("should return the Frobenius Norm of the matrix", function() { expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) )); });
        });
     };
+
+    describe("add", function() {
+        beforeEach(function() {
+            matA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+            matB = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
+        });
+        describe("with a separate output matrix", function() {
+            beforeEach(function() {
+                result = mat3.add(out, matA, matB);
+            });
+
+            it("should place values into out", function() { expect(out).toBeEqualish([18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.add(matA, matA, matB); });
+
+            it("should place values into matA", function() { expect(matA).toBeEqualish([18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]); });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat3.add(matB, matA, matB); });
+
+            it("should place values into matB", function() { expect(matB).toBeEqualish([18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48]); });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
+        });
+    });
+
+    describe("subtract", function() {
+        beforeEach(function() {
+            matA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+            matB = [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32];
+        });
+        it("should have an alias called 'sub'", function() { expect(mat3.sub).toEqual(mat3.subtract); });
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.subtract(out, matA, matB); });
+
+            it("should place values into out", function() { expect(out).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.subtract(matA, matA, matB); });
+
+            it("should place values into matA", function() { expect(matA).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, ]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]); });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat3.subtract(matB, matA, matB); });
+
+            it("should place values into matB", function() { expect(matB).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, ]); });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
+        });
+    });
 }
 
 describe("mat4 (SISD)", buildMat4Tests(false));

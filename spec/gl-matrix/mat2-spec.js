@@ -207,4 +207,59 @@ describe("mat2", function() {
         });
    });
 
+    describe("add", function() {
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat2.add(out, matA, matB); });
+
+            it("should place values into out", function() { expect(out).toBeEqualish([6, 8, 10, 12]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat2.add(matA, matA, matB); });
+
+            it("should place values into matA", function() { expect(matA).toBeEqualish([6, 8, 10, 12]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat2.add(matB, matA, matB); });
+
+            it("should place values into matB", function() { expect(matB).toBeEqualish([6, 8, 10, 12]); });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+        });
+    });
+
+    describe("subtract", function() {
+        it("should have an alias called 'sub'", function() { expect(mat2.sub).toEqual(mat2.subtract); });
+
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat2.subtract(out, matA, matB); });
+
+            it("should place values into out", function() { expect(out).toBeEqualish([-4, -4, -4, -4]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat2.subtract(matA, matA, matB); });
+
+            it("should place values into matA", function() { expect(matA).toBeEqualish([-4, -4, -4, -4]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat2.subtract(matB, matA, matB); });
+
+            it("should place values into matB", function() { expect(matB).toBeEqualish([-4, -4, -4, -4]); });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+        });
+    });
 });
