@@ -27,7 +27,7 @@
     "webpack": "^1.9.10",
     "simd": "2.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
   "scripts": {
     "test": "jasmine-node spec"
   }
