@@ -410,4 +410,15 @@ describe("mat3", function() {
         });
     });
 
+    describe("fromValues", function() {
+        beforeEach(function() { result = mat3.fromValues(1, 2, 3, 4, 5, 6, 7, 8, 9); });
+        it("should return a 9 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
+    });
+
+    describe("set", function() {
+        beforeEach(function() { result = mat3.set(out, 1, 2, 3, 4, 5, 6, 7, 8, 9); });
+        it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
 });

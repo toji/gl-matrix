@@ -246,4 +246,15 @@ describe("mat2d", function() {
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
         });
     });
+
+    describe("fromValues", function() {
+        beforeEach(function() { result = mat2d.fromValues(1, 2, 3, 4, 5, 6); });
+        it("should return a 6 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3, 4, 5, 6]); });
+    });
+
+    describe("set", function() {
+        beforeEach(function() { result = mat2d.set(out, 1, 2, 3, 4, 5, 6); });
+        it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4, 5, 6]); });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
 });
