@@ -472,5 +472,38 @@ describe("mat3", function() {
         });
     });
 
+    describe("exactEquals", function() {
+        var matC, r0, r1;
+        beforeEach(function() {
+            matA = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            matB = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            matC = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            r0 = mat3.exactEquals(matA, matB);
+            r1 = mat3.exactEquals(matA, matC);
+        });
+
+        it("should return true for identical matrices", function() { expect(r0).toBe(true); });
+        it("should return false for different matrices", function() { expect(r1).toBe(false); });
+        it("should not modify matA", function() { expect(matA).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8]); });
+        it("should not modify matB", function() { expect(matB).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8]); });
+    });
+
+    describe("equals", function() {
+        var matC, matD, r0, r1, r2;
+        beforeEach(function() {
+            matA = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            matB = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+            matC = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            matD = [1e-16, 1, 2, 3, 4, 5, 6, 7, 8];
+            r0 = mat3.equals(matA, matB);
+            r1 = mat3.equals(matA, matC);
+            r2 = mat3.equals(matA, matD);
+        });
+        it("should return true for identical matrices", function() { expect(r0).toBe(true); });
+        it("should return false for different matrices", function() { expect(r1).toBe(false); });
+        it("should return true for close but not identical matrices", function() { expect(r2).toBe(true); });
+        it("should not modify matA", function() { expect(matA).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8]); });
+        it("should not modify matB", function() { expect(matB).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8]); });
+    });
 
 });
