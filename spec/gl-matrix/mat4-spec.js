@@ -698,7 +698,7 @@ function buildMat4Tests(useSIMD) {
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.subtract(matA, matA, matB); });
 
-            it("should place values into matA", function() { expect(matA).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, ]); });
+            it("should place values into matA", function() { expect(matA).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16]); });
             it("should return matA", function() { expect(result).toBe(matA); });
             it("should not modify matB", function() { expect(matB).toBeEqualish([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]); });
         });
@@ -706,20 +706,20 @@ function buildMat4Tests(useSIMD) {
         describe("when matB is the output matrix", function() {
             beforeEach(function() { result = mat3.subtract(matB, matA, matB); });
 
-            it("should place values into matB", function() { expect(matB).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, ]); });
+            it("should place values into matB", function() { expect(matB).toBeEqualish([-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16]); });
             it("should return matB", function() { expect(result).toBe(matB); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
         });
     });
 
     describe("fromValues", function() {
-        beforeEach(function() { result = mat4.fromValues(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15); });
-        it("should return a 16 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]); });
+        beforeEach(function() { result = mat4.fromValues(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16); });
+        it("should return a 16 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
     });
 
     describe("set", function() {
-        beforeEach(function() { result = mat4.set(out, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15); });
-        it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]); });
+        beforeEach(function() { result = mat4.set(out, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16); });
+        it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
         it("should return out", function() { expect(result).toBe(out); });
     });
 }
