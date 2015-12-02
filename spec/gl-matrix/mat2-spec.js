@@ -273,4 +273,49 @@ describe("mat2", function() {
         it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4]); });
         it("should return out", function() { expect(result).toBe(out); });
     });
+
+    describe("multiplyScalar", function() {
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat2.multiplyScalar(out, matA, 2); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([2, 4, 6, 8]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat2.multiplyScalar(matA, matA, 2); });
+            
+            it("should place values into matA", function() { expect(matA).toBeEqualish([2, 4, 6, 8]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("multiplyScalarAndAdd", function() {
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat2.multiplyScalarAndAdd(out, matA, matB, 0.5); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([3.5, 5, 6.5, 8]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat2.multiplyScalarAndAdd(matA, matA, matB, 0.5); });
+            
+            it("should place values into matA", function() { expect(matA).toBeEqualish([3.5, 5, 6.5, 8]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([5, 6, 7, 8]); });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat2.multiplyScalarAndAdd(matB, matA, matB, 0.5); });
+            
+            it("should place values into matB", function() { expect(matB).toBeEqualish([3.5, 5, 6.5, 8]); });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4]); });
+        });
+    });
+
 });

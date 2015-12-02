@@ -421,4 +421,56 @@ describe("mat3", function() {
         it("should return out", function() { expect(result).toBe(out); });
     });
 
+    describe("multiplyScalar", function() {
+        beforeEach(function() {
+            matA = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        });
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.multiplyScalar(out, matA, 2); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([2, 4, 6, 8, 10, 12, 14, 16, 18]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.multiplyScalar(matA, matA, 2); });
+            
+            it("should place values into matA", function() { expect(matA).toBeEqualish([2, 4, 6, 8, 10, 12, 14, 16, 18]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+        });
+    });
+
+    describe("multiplyScalarAndAdd", function() {
+        beforeEach(function() {
+            matA = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            matB = [10, 11, 12, 13, 14, 15, 16, 17, 18];
+        });
+        describe("with a separate output matrix", function() {
+            beforeEach(function() { result = mat3.multiplyScalarAndAdd(out, matA, matB, 0.5); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([10, 11, 12, 13, 14, 15, 16, 17, 18]); });
+        });
+
+        describe("when matA is the output matrix", function() {
+            beforeEach(function() { result = mat3.multiplyScalarAndAdd(matA, matA, matB, 0.5); });
+            
+            it("should place values into matA", function() { expect(matA).toBeEqualish([6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18]); });
+            it("should return matA", function() { expect(result).toBe(matA); });
+            it("should not modify matB", function() { expect(matB).toBeEqualish([10, 11, 12, 13, 14, 15, 16, 17, 18]); });
+        });
+
+        describe("when matB is the output matrix", function() {
+            beforeEach(function() { result = mat3.multiplyScalarAndAdd(matB, matA, matB, 0.5); });
+            
+            it("should place values into matB", function() { expect(matB).toBeEqualish([6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18]); });
+            it("should return matB", function() { expect(result).toBe(matB); });
+            it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
+        });
+    });
+
+
 });
