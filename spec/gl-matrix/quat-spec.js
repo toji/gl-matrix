@@ -556,4 +556,38 @@ describe("quat", function() {
         
         it("should return a string representation of the quaternion", function() { expect(result).toEqual("quat(1, 2, 3, 4)"); });
     });
+
+    describe("exactEquals", function() {
+        var quatC, r0, r1;
+        beforeEach(function() {
+            quatA = [0, 1, 2, 3];
+            quatB = [0, 1, 2, 3];
+            quatC = [1, 2, 3, 4];
+            r0 = quat.exactEquals(quatA, quatB);
+            r1 = quat.exactEquals(quatA, quatC);
+        });
+
+        it("should return true for identical quaternions", function() { expect(r0).toBe(true); });
+        it("should return false for different quaternions", function() { expect(r1).toBe(false); });
+        it("should not modify quatA", function() { expect(quatA).toBeEqualish([0, 1, 2, 3]); });
+        it("should not modify quatB", function() { expect(quatB).toBeEqualish([0, 1, 2, 3]); });
+    });
+
+    describe("equals", function() {
+        var quatC, quatD, r0, r1, r2;
+        beforeEach(function() {
+            quatA = [0, 1, 2, 3];
+            quatB = [0, 1, 2, 3];
+            quatC = [1, 2, 3, 4];
+            quatD = [1e-16, 1, 2, 3];
+            r0 = quat.equals(quatA, quatB);
+            r1 = quat.equals(quatA, quatC);
+            r2 = quat.equals(quatA, quatD);
+        });
+        it("should return true for identical quaternions", function() { expect(r0).toBe(true); });
+        it("should return false for different quaternions", function() { expect(r1).toBe(false); });
+        it("should return true for close but not identical quaternions", function() { expect(r2).toBe(true); });
+        it("should not modify quatA", function() { expect(quatA).toBeEqualish([0, 1, 2, 3]); });
+        it("should not modify quatB", function() { expect(quatB).toBeEqualish([0, 1, 2, 3]); });
+    });
 });

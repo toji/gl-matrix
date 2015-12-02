@@ -489,4 +489,38 @@ describe("vec4", function() {
         
         it("should return a string representation of the vector", function() { expect(result).toEqual("vec4(1, 2, 3, 4)"); });
     });
+
+    describe("exactEquals", function() {
+        var vecC, r0, r1;
+        beforeEach(function() {
+            vecA = [0, 1, 2, 3];
+            vecB = [0, 1, 2, 3];
+            vecC = [1, 2, 3, 4];
+            r0 = vec4.exactEquals(vecA, vecB);
+            r1 = vec4.exactEquals(vecA, vecC);
+        });
+
+        it("should return true for identical vectors", function() { expect(r0).toBe(true); });
+        it("should return false for different vectors", function() { expect(r1).toBe(false); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 1, 2, 3]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 2, 3]); });
+    });
+
+    describe("equals", function() {
+        var vecC, vecD, r0, r1, r2;
+        beforeEach(function() {
+            vecA = [0, 1, 2, 3];
+            vecB = [0, 1, 2, 3];
+            vecC = [1, 2, 3, 4];
+            vecD = [1e-16, 1, 2, 3];
+            r0 = vec4.equals(vecA, vecB);
+            r1 = vec4.equals(vecA, vecC);
+            r2 = vec4.equals(vecA, vecD);
+        });
+        it("should return true for identical vectors", function() { expect(r0).toBe(true); });
+        it("should return false for different vectors", function() { expect(r1).toBe(false); });
+        it("should return true for close but not identical vectors", function() { expect(r2).toBe(true); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 1, 2, 3]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 2, 3]); });
+    });
 });

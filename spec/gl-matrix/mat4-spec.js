@@ -773,6 +773,40 @@ function buildMat4Tests(useSIMD) {
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
         });
     });
+
+    describe("exactEquals", function() {
+        var matC, r0, r1;
+        beforeEach(function() {
+            matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+            matB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+            matC = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+            r0 = mat4.exactEquals(matA, matB);
+            r1 = mat4.exactEquals(matA, matC);
+        });
+
+        it("should return true for identical matrices", function() { expect(r0).toBe(true); });
+        it("should return false for different matrices", function() { expect(r1).toBe(false); });
+        it("should not modify matA", function() { expect(matA).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]); });
+        it("should not modify matB", function() { expect(matB).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]); });
+    });
+
+    describe("equals", function() {
+        var matC, matD, r0, r1, r2;
+        beforeEach(function() {
+            matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+            matB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+            matC = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+            matD = [1e-16, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+            r0 = mat4.equals(matA, matB);
+            r1 = mat4.equals(matA, matC);
+            r2 = mat4.equals(matA, matD);
+        });
+        it("should return true for identical matrices", function() { expect(r0).toBe(true); });
+        it("should return false for different matrices", function() { expect(r1).toBe(false); });
+        it("should return true for close but not identical matrices", function() { expect(r2).toBe(true); });
+        it("should not modify matA", function() { expect(matA).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]); });
+        it("should not modify matB", function() { expect(matB).toBeEqualish([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]); });
+    });
 }
 
 describe("mat4 (SISD)", buildMat4Tests(false));
