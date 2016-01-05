@@ -561,4 +561,29 @@ vec4.equals = function (a, b) {
             Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)));
 };
 
+/**
+ * Returns the cross-product of three vectors in a 4-dimensional space
+ *
+ * @param {vec4} result the receiving vector
+ * @param {vec4} U the first vector
+ * @param {vec4} V the second vector
+ * @param {vec4} W the third vector
+ * @returns {vec4} result
+ */
+vec4.cross = function (result, U, V, W) {
+    var A = (V[0] * W[1]) - (V[1] * W[0]),
+        B = (V[0] * W[2]) - (V[2] * W[0]),
+        C = (V[0] * W[3]) - (V[3] * W[0]),
+        D = (V[1] * W[2]) - (V[2] * W[1]),
+        E = (V[1] * W[3]) - (V[3] * W[1]),
+        F = (V[2] * W[3]) - (V[3] * W[2]);
+
+    result[0] = (U[1] * F) - (U[2] * E) + (U[3] * D);
+    result[1] = -(U[0] * F) + (U[2] * C) - (U[3] * B);
+    result[2] = (U[0] * E) - (U[1] * C) + (U[3] * A);
+    result[3] = -(U[0] * D) + (U[1] * B) - (U[2] * A);
+
+    return result;
+};
+
 module.exports = vec4;
