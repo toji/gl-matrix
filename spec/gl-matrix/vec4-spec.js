@@ -388,6 +388,45 @@ describe("vec4", function() {
         });
     });
 
+    describe("cross", function() {
+        beforeEach(function() { vecA = [1, 0, 0, 0]; vecB = [0, 1, 0, 0];vecC = [0, 0, 1, 0]; });
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec4.cross(out, vecA,vecB,vecC); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([0, 0, 0, -1]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 0, 0, 0]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 0, 0]); });
+            it("should not modify vecC", function() { expect(vecC).toBeEqualish([0, 0, 1, 0]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec4.cross(vecA, vecA,vecB,vecC); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([0, 0, 0,-1]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 0, 0]); });
+            it("should not modify vecC", function() { expect(vecC).toBeEqualish([0, 0, 1, 0]); });
+        });
+        describe("when vecB is the output vector", function() {
+            beforeEach(function() { result = vec4.cross(vecB, vecA,vecB,vecC); });
+            
+            it("should place values into vecB", function() { expect(vecB).toBeEqualish([0, 0, 0,-1]); });
+            it("should return vecB", function() { expect(result).toBe(vecB); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 0, 0, 0]); });
+            it("should not modify vecC", function() { expect(vecC).toBeEqualish([0, 0, 1, 0]); });
+        });
+        describe("when vecC is the output vector", function() {
+            beforeEach(function() { result = vec4.cross(vecC, vecA,vecB,vecC); });
+            
+            it("should place values into vecC", function() { expect(vecC).toBeEqualish([0, 0, 0,-1]); });
+            it("should return vecC", function() { expect(result).toBe(vecC); });
+            it("should not modify vecA", function() { expect(vecB).toBeEqualish([1, 0, 0, 0]); });
+            it("should not modify vecB", function() { expect(vecC).toBeEqualish([0, 1, 0, 0]); });
+        });
+    }); 
+    
     describe("forEach", function() {
         var vecArray;
 
