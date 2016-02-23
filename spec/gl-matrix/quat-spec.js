@@ -352,6 +352,47 @@ describe("quat", function() {
         it("should place values into out", function() { expect(result).toBeEqualish([0.707106, 0, 0, 0.707106]); });
         it("should return out", function() { expect(result).toBe(out); });
     });
+
+    describe("getAxisAngle", function() {
+        describe("for a quaternion representing no rotation", function() {
+            beforeEach(function() { result = quat.setAxisAngle(out, [0, 1, 0], 0.0); deg90 = quat.getAxisAngle(vec, out); });
+            it("should return a multiple of 2*PI as the angle component", function() { expect(deg90 % (Math.PI * 2.0)).toBeEqualish(0.0); });
+        });
+
+        describe("for a simple rotation about X axis", function() {
+            beforeEach(function() { result = quat.setAxisAngle(out, [1, 0, 0], 0.7778); deg90 = quat.getAxisAngle(vec, out); });
+            it("should return the same provided angle", function() { expect(deg90).toBeEqualish(0.7778); });
+            it("should return the X axis as the angle", function() { expect(vec).toBeEqualish([1, 0, 0]); });
+        });
+
+        describe("for a simple rotation about Y axis", function() {
+            beforeEach(function() { result = quat.setAxisAngle(out, [0, 1, 0], 0.879546); deg90 = quat.getAxisAngle(vec, out); });
+            it("should return the same provided angle", function() { expect(deg90).toBeEqualish(0.879546); });
+            it("should return the X axis as the angle", function() { expect(vec).toBeEqualish([0, 1, 0]); });
+        });
+
+        describe("for a simple rotation about Z axis", function() {
+            beforeEach(function() { result = quat.setAxisAngle(out, [0, 0, 1], 0.123456); deg90 = quat.getAxisAngle(vec, out); });
+            it("should return the same provided angle", function() { expect(deg90).toBeEqualish(0.123456); });
+            it("should return the X axis as the angle", function() { expect(vec).toBeEqualish([0, 0, 1]); });
+        });
+
+        describe("for a slightly irregular axis and right angle", function() {
+            beforeEach(function() { result = quat.setAxisAngle(out, [0.707106, 0, 0.707106], Math.PI * 0.5); deg90 = quat.getAxisAngle(vec, out); });
+            it("should place values into vec", function() { expect(vec).toBeEqualish([0.707106, 0, 0.707106]); });
+            it("should return a numeric angle", function() { expect(deg90).toBeEqualish(Math.PI * 0.5); });
+        });
+
+        describe("for a very irregular axis and negative input angle", function() {
+            beforeEach(function() {
+                quatA = quat.setAxisAngle(quatA, [0.65538555, 0.49153915, 0.57346237], 8.8888);
+                deg90 = quat.getAxisAngle(vec, quatA);
+                quatB = quat.setAxisAngle(quatB, vec, deg90);
+            });
+            it("should return an angle between 0 and 2*PI", function() { expect(deg90).toBeGreaterThan(0.0); expect(deg90).toBeLessThan(Math.PI * 2.0); });
+            it("should create the same quaternion from axis and angle extracted", function() { expect(quatA).toBeEqualish(quatB); });
+        });
+    });
     
     describe("add", function() {
         describe("with a separate output quaternion", function() {

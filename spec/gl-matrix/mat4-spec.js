@@ -21,6 +21,7 @@ THE SOFTWARE. */
 var glMatrix = require("../../src/gl-matrix/common.js");
 var mat4 = require("../../src/gl-matrix/mat4.js");
 var vec3 = require("../../src/gl-matrix/vec3.js");
+var quat = require("../../src/gl-matrix/quat.js");
 
 // Inject the polyfill for testing
 if (!glMatrix.SIMD_AVAILABLE) {
@@ -514,6 +515,92 @@ function buildMat4Tests(useSIMD) {
         });
 
         // TODO: fromRotationTranslation
+        
+        describe("getTranslation", function() {
+            describe("from the identity matrix", function() {
+                beforeEach(function() {
+                    result = vec3.fromValues(1, 2, 3);
+                    out = vec3.fromValues(1, 2, 3);
+                    result = mat4.getTranslation(out, identity);
+                });
+                it("should place result both in result and out", function() { expect(result).toBe(out); });
+                it("should return the zero vector", function() { expect(result).toBeEqualish([0, 0, 0]); });
+            });
+
+            describe("from a translation-only matrix", function() {
+                beforeEach(function() {
+                    result = vec3.fromValues(1, 2, 3);
+                    out = vec3.fromValues(1, 2, 3);
+                    result = mat4.getTranslation(out, matB);
+                });
+                it("should return translation vector", function() { expect(out).toBeEqualish([4, 5, 6]); });
+            });
+
+            describe("from a translation and rotation matrix", function() {
+                beforeEach(function() {
+                    var q = quat.create();
+                    var v = vec3.fromValues(5, 6, 7);
+                    q = quat.setAxisAngle(q, [0.26726124, 0.534522474, 0.8017837], 0.55);
+                    mat4.fromRotationTranslation(out, q, v);
+
+                    result = vec3.create();
+                    mat4.getTranslation(result, out);
+                });
+                it("should keep the same translation vector, regardless of rotation", function() {
+                    expect(result).toBeEqualish([5, 6, 7]);
+                });
+            });
+        });
+
+        describe("getRotation", function() {
+            describe("from the identity matrix", function() {
+                beforeEach(function() {
+                    result = quat.fromValues(1, 2, 3, 4);
+                    out = quat.fromValues(1, 2, 3, 4);
+                    result = mat4.getRotation(out, identity);
+                });
+                it("should place result both in result and out", function() { expect(result).toBe(out); });
+                it("should return the unit quaternion", function() {
+                    var unitQuat = quat.create();
+                    quat.identity(unitQuat);
+                    expect(result).toBeEqualish(unitQuat);
+                });
+            });
+
+            describe("from a translation-only matrix", function() {
+                beforeEach(function() {
+                    result = quat.fromValues(1, 2, 3, 4);
+                    out = quat.fromValues(1, 2, 3, 4);
+                    result = mat4.getRotation(out, matB);
+                });
+                it("should return the unit quaternion", function() {
+                    var unitQuat = quat.create();
+                    quat.identity(unitQuat);
+                    expect(result).toBeEqualish(unitQuat);
+                });
+            });
+
+            describe("from a translation and rotation matrix", function() {
+                it("should keep the same rotation as when created", function() {
+                    var q = quat.create();
+                    var outVec = vec3.fromValues(5, 6, 7);
+                    var testVec = vec3.fromValues(1, 5, 2);
+                    var ang = 0.78972;
+
+                    vec3.normalize(testVec, testVec);
+                    q = quat.setAxisAngle(q, testVec, ang);
+                    mat4.fromRotationTranslation(out, q, outVec);
+
+                    result = quat.fromValues(2, 3, 4, 6);
+                    mat4.getRotation(result, out);
+                    var outaxis = vec3.create();
+                    var outangle = quat.getAxisAngle(outaxis, result);
+
+                    expect(outaxis).toBeEqualish(testVec);
+                    expect(outangle).toBeEqualish(ang);
+                });
+            });
+        });
 
         describe("frustum", function() {
             beforeEach(function() { result = mat4.frustum(out, -1, 1, -1, 1, -1, 1); });
