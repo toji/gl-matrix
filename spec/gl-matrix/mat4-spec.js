@@ -594,7 +594,7 @@ function buildMat4Tests(useSIMD) {
                     result = quat.fromValues(2, 3, 4, 6);
                     mat4.getRotation(result, out);
                     var outaxis = vec3.create();
-                    var outangle = quat.getAxisAngle(result, outaxis);
+                    var outangle = quat.getAxisAngle(outaxis, result);
 
                     expect(outaxis).toBeEqualish(testVec);
                     expect(outangle).toBeEqualish(ang);
