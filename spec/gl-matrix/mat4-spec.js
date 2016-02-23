@@ -514,6 +514,42 @@ function buildMat4Tests(useSIMD) {
         });
 
         // TODO: fromRotationTranslation
+        
+        describe("getTranslation", function() {
+            describe("from the identity matrix", function() {
+                beforeEach(function() {
+                    result = vec3.fromValues(1, 2, 3);
+                    out = vec3.fromValues(1, 2, 3);
+                    result = mat4.getTranslation(out, identity);
+                });
+                it("should place result both in result and out", function() { expect(result).toBe(out); });
+                it("should return the zero vector", function() { expect(result).toBeEqualish([0, 0, 0]); });
+            });
+
+            describe("from a translation-only matrix", function() {
+                beforeEach(function() {
+                    result = vec3.fromValues(1, 2, 3);
+                    out = vec3.fromValues(1, 2, 3);
+                    result = mat4.getTranslation(out, matB);
+                });
+                it("should return translation vector", function() { expect(out).toBeEqualish([4, 5, 6]); });
+            });
+
+            describe("from a translation and rotation matrix", function() {
+                beforeEach(function() {
+                    var q = quat.create();
+                    var v = vec3.fromValues(5, 6, 7);
+                    q = quat.setAxisAngle(q, [0.26726124, 0.534522474, 0.8017837], 0.55);
+                    mat4.fromRotationTranslation(out, q, v);
+
+                    result = vec3.create();
+                    mat4.getTranslation(result, out);
+                });
+                it("should keep the same translation matrix, regardless of rotation", function() {
+                    expect(result).toBeEqualish([5, 6, 7]);
+                });
+            });
+        });
 
         describe("frustum", function() {
             beforeEach(function() { result = mat4.frustum(out, -1, 1, -1, 1, -1, 1); });
