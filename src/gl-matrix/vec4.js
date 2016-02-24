@@ -189,6 +189,36 @@ vec4.divide = function(out, a, b) {
 vec4.div = vec4.divide;
 
 /**
+ * Math.ceil the components of a vec4
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a vector to ceil
+ * @returns {vec4} out
+ */
+vec4.ceil = function (out, a) {
+    out[0] = Math.ceil(a[0]);
+    out[1] = Math.ceil(a[1]);
+    out[2] = Math.ceil(a[2]);
+    out[3] = Math.ceil(a[3]);
+    return out;
+};
+
+/**
+ * Math.floor the components of a vec4
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a vector to floor
+ * @returns {vec4} out
+ */
+vec4.floor = function (out, a) {
+    out[0] = Math.floor(a[0]);
+    out[1] = Math.floor(a[1]);
+    out[2] = Math.floor(a[2]);
+    out[3] = Math.floor(a[3]);
+    return out;
+};
+
+/**
  * Returns the minimum of two vec4's
  *
  * @param {vec4} out the receiving vector
@@ -217,6 +247,21 @@ vec4.max = function(out, a, b) {
     out[1] = Math.max(a[1], b[1]);
     out[2] = Math.max(a[2], b[2]);
     out[3] = Math.max(a[3], b[3]);
+    return out;
+};
+
+/**
+ * Math.round the components of a vec4
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a vector to round
+ * @returns {vec4} out
+ */
+vec4.round = function (out, a) {
+    out[0] = Math.round(a[0]);
+    out[1] = Math.round(a[1]);
+    out[2] = Math.round(a[2]);
+    out[3] = Math.round(a[3]);
     return out;
 };
 
