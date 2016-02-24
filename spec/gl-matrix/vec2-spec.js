@@ -165,6 +165,44 @@ describe("vec2", function() {
             it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 2]); });
         });
     });
+    
+    describe("ceil", function() {
+        beforeEach(function() { vecA = [Math.E, Math.PI]; });
+        
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.ceil(out, vecA); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([3, 4]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([Math.E, Math.PI]); });
+        });
+        
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.ceil(vecA, vecA); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([3, 4]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
+    
+    describe("floor", function() {
+        beforeEach(function() { vecA = [Math.E, Math.PI]; });
+        
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.floor(out, vecA); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([2, 3]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([Math.E, Math.PI]); });
+        });
+        
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.floor(vecA, vecA); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([2, 3]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
 
     describe("min", function() {
         beforeEach(function() { vecA = [1, 4]; vecB = [3, 2]; });
@@ -221,6 +259,25 @@ describe("vec2", function() {
             it("should place values into vecB", function() { expect(vecB).toBeEqualish([3, 4]); });
             it("should return vecB", function() { expect(result).toBe(vecB); });
             it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 4]); });
+        });
+    });
+    
+    describe("round", function() {
+        beforeEach(function() { vecA = [Math.E, Math.PI]; });
+        
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec2.round(out, vecA); });
+            
+            it("should place values into out", function() { expect(out).toBeEqualish([3, 3]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([Math.E, Math.PI]); });
+        });
+        
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec2.round(vecA, vecA); });
+            
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([3, 3]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
         });
     });
 

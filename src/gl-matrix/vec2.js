@@ -167,6 +167,32 @@ vec2.divide = function(out, a, b) {
 vec2.div = vec2.divide;
 
 /**
+ * Math.ceil the components of a vec2
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a vector to ceil
+ * @returns {vec2} out
+ */
+vec2.ceil = function (out, a) {
+    out[0] = Math.ceil(a[0]);
+    out[1] = Math.ceil(a[1]);
+    return out;
+};
+
+/**
+ * Math.floor the components of a vec2
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a vector to floor
+ * @returns {vec2} out
+ */
+vec2.floor = function (out, a) {
+    out[0] = Math.floor(a[0]);
+    out[1] = Math.floor(a[1]);
+    return out;
+};
+
+/**
  * Returns the minimum of two vec2's
  *
  * @param {vec2} out the receiving vector
@@ -191,6 +217,19 @@ vec2.min = function(out, a, b) {
 vec2.max = function(out, a, b) {
     out[0] = Math.max(a[0], b[0]);
     out[1] = Math.max(a[1], b[1]);
+    return out;
+};
+
+/**
+ * Math.round the components of a vec2
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a vector to round
+ * @returns {vec2} out
+ */
+vec2.round = function (out, a) {
+    out[0] = Math.round(a[0]);
+    out[1] = Math.round(a[1]);
     return out;
 };
 
