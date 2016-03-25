@@ -26,7 +26,7 @@ var glMatrix = require("./common.js");
  */
 var mat4 = {
   scalar: {},
-  SIMD: {},
+  SIMD: {}
 };
 
 /**
