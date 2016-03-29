@@ -208,7 +208,7 @@ mat3.transpose = function(out, a) {
         out[7] = a[5];
         out[8] = a[8];
     }
-    
+
     return out;
 };
 
@@ -231,8 +231,8 @@ mat3.invert = function(out, a) {
         // Calculate the determinant
         det = a00 * b01 + a01 * b11 + a02 * b21;
 
-    if (!det) { 
-        return null; 
+    if (!det) {
+        return null;
     }
     det = 1.0 / det;
 
@@ -575,8 +575,8 @@ mat3.normalFromMat4 = function (out, a) {
         // Calculate the determinant
         det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 
-    if (!det) { 
-        return null; 
+    if (!det) {
+        return null;
     }
     det = 1.0 / det;
 
@@ -602,8 +602,8 @@ mat3.normalFromMat4 = function (out, a) {
  * @returns {String} string representation of the matrix
  */
 mat3.str = function (a) {
-    return 'mat3(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + 
-                    a[3] + ', ' + a[4] + ', ' + a[5] + ', ' + 
+    return 'mat3(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' +
+                    a[3] + ', ' + a[4] + ', ' + a[5] + ', ' +
                     a[6] + ', ' + a[7] + ', ' + a[8] + ')';
 };
 
@@ -708,7 +708,7 @@ mat3.multiplyScalarAndAdd = function(out, a, b, scale) {
     return out;
 };
 
-/*
+/**
  * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
  *
  * @param {mat3} a The first matrix.
@@ -716,7 +716,7 @@ mat3.multiplyScalarAndAdd = function(out, a, b, scale) {
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 mat3.exactEquals = function (a, b) {
-    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && 
+    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] &&
            a[3] === b[3] && a[4] === b[4] && a[5] === b[5] &&
            a[6] === b[6] && a[7] === b[7] && a[8] === b[8];
 };
