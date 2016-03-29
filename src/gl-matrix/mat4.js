@@ -519,10 +519,10 @@ mat4.SIMD.adjoint = function(out, a) {
   var tmp1;
   var minor0, minor1, minor2, minor3;
 
-  var a0 = SIMD.Float32x4.load(a, 0);
-  var a1 = SIMD.Float32x4.load(a, 4);
-  var a2 = SIMD.Float32x4.load(a, 8);
-  var a3 = SIMD.Float32x4.load(a, 12);
+  a0 = SIMD.Float32x4.load(a, 0);
+  a1 = SIMD.Float32x4.load(a, 4);
+  a2 = SIMD.Float32x4.load(a, 8);
+  a3 = SIMD.Float32x4.load(a, 12);
 
   // Transpose the source matrix.  Sort of.  Not a true transpose operation
   tmp1 = SIMD.Float32x4.shuffle(a0, a1, 0, 1, 4, 5);
