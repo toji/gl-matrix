@@ -22,13 +22,19 @@
     }
   ],
   "devDependencies": {
-    "jasmine-node": "1.2.2",
-    "node-libs-browser": "^0.5.2",
-    "webpack": "^1.9.10",
-    "simd": "2.0.0"
+    "babel-core": "^6.7.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-register": "6.7.2",
+    "mocha": "2.4.5",
+    "node-libs-browser": "0.5.2",
+    "simd": "2.0.0",
+    "webpack": "^1.12.14"
   },
   "license": "MIT",
   "scripts": {
-    "test": "jasmine-node spec"
+    "test": "mocha --compilers js:babel-register --recursive spec",
+    "build": "webpack",
+    "build-min": "webpack webpack.config.min.js"
   }
 }

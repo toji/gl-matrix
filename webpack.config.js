@@ -19,6 +19,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 var fs = require('fs');
+var path = require('path');
 var webpack = require('webpack');
 
 var entryFile = './src/gl-matrix.js';
@@ -41,7 +42,13 @@ module.exports = {
     filename: 'gl-matrix.js',
     libraryTarget: 'umd'
   },
+  module: {
+    loaders: [{
+      test: path.join(__dirname, 'src'),
+      loader: 'babel-loader'
+    }]
+  },
   plugins: [
-    new webpack.BannerPlugin(header, { raw: true }),
+    new webpack.BannerPlugin(header, { raw: true })
   ]
 };
