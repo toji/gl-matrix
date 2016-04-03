@@ -35,6 +35,6 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive spec",
     "build": "webpack",
-    "build-min": "webpack webpack.config.min.js"
+    "build-min": "webpack --config webpack.config.min.js"
   }
 }

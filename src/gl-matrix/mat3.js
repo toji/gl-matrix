@@ -45,7 +45,7 @@ export function create() {
 };
 
 /**
- * Copies the upper-left 3x3 values into the given export function
+ * Copies the upper-left 3x3 values into the given mat3
  *
  * @param {mat3} out the receiving 3x3 matrix
  * @param {mat4} a   the source 4x4 matrix
@@ -317,7 +317,7 @@ export function multiply(out, a, b) {
 };
 
 /**
- * Alias for {@link export function multiply}
+ * Alias for {@link multiply}
  * @function
  */
 export const mul = multiply;
@@ -409,8 +409,8 @@ export function scale(out, a, v) {
  * Creates a matrix from a vector translation
  * This is equivalent to (but much faster than):
  *
- *     export function identity(dest);
- *     export function translate(dest, dest, vec);
+ *     identity(dest);
+ *     translate(dest, dest, vec);
  *
  * @param {mat3} out mat3 receiving operation result
  * @param {vec2} v Translation vector
@@ -433,8 +433,8 @@ export function fromTranslation(out, v) {
  * Creates a matrix from a given angle
  * This is equivalent to (but much faster than):
  *
- *     export function identity(dest);
- *     export function rotate(dest, dest, rad);
+ *     identity(dest);
+ *     rotate(dest, dest, rad);
  *
  * @param {mat3} out mat3 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
@@ -461,8 +461,8 @@ export function fromRotation(out, rad) {
  * Creates a matrix from a vector scaling
  * This is equivalent to (but much faster than):
  *
- *     export function identity(dest);
- *     export function scale(dest, dest, vec);
+ *     identity(dest);
+ *     scale(dest, dest, vec);
  *
  * @param {mat3} out mat3 receiving operation result
  * @param {vec2} v Scaling vector
@@ -659,7 +659,7 @@ export function subtract(out, a, b) {
 };
 
 /**
- * Alias for {@link export function subtract}
+ * Alias for {@link subtract}
  * @function
  */
 export const sub = subtract;

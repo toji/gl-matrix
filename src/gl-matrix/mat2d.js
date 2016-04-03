@@ -206,7 +206,7 @@ export function multiply(out, a, b) {
 };
 
 /**
- * Alias for {@link export function multiply}
+ * Alias for {@link multiply}
  * @function
  */
 export const mul = multiply;
@@ -276,8 +276,8 @@ export function translate(out, a, v) {
  * Creates a matrix from a given angle
  * This is equivalent to (but much faster than):
  *
- *     export function identity(dest);
- *     export function rotate(dest, dest, rad);
+ *     identity(dest);
+ *     rotate(dest, dest, rad);
  *
  * @param {mat2d} out mat2d receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
@@ -298,8 +298,8 @@ export function fromRotation(out, rad) {
  * Creates a matrix from a vector scaling
  * This is equivalent to (but much faster than):
  *
- *     export function identity(dest);
- *     export function scale(dest, dest, vec);
+ *     identity(dest);
+ *     scale(dest, dest, vec);
  *
  * @param {mat2d} out mat2d receiving operation result
  * @param {vec2} v Scaling vector
@@ -319,8 +319,8 @@ export function fromScaling(out, v) {
  * Creates a matrix from a vector translation
  * This is equivalent to (but much faster than):
  *
- *     export function identity(dest);
- *     export function translate(dest, dest, vec);
+ *     identity(dest);
+ *     translate(dest, dest, vec);
  *
  * @param {mat2d} out mat2d receiving operation result
  * @param {vec2} v Translation vector
@@ -394,7 +394,7 @@ export function subtract(out, a, b) {
 };
 
 /**
- * Alias for {@link export function subtract}
+ * Alias for {@link subtract}
  * @function
  */
 export const sub = subtract;
