@@ -48,7 +48,7 @@ var degree = Math.PI / 180;
 /**
 * Convert Degree To Radian
 *
-* @param {Number} Angle in Degrees
+* @param {Number} a Angle in Degrees
 */
 glMatrix.toRadian = function(a){
      return a * degree;

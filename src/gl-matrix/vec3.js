@@ -741,7 +741,7 @@ vec3.angle = function(a, b) {
 /**
  * Returns a string representation of a vector
  *
- * @param {vec3} vec vector to represent as a string
+ * @param {vec3} a vector to represent as a string
  * @returns {String} string representation of the vector
  */
 vec3.str = function (a) {

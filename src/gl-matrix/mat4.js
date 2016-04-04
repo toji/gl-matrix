@@ -1942,7 +1942,7 @@ mat4.lookAt = function (out, eye, center, up) {
 /**
  * Returns a string representation of a mat4
  *
- * @param {mat4} mat matrix to represent as a string
+ * @param {mat4} a matrix to represent as a string
  * @returns {String} string representation of the matrix
  */
 mat4.str = function (a) {

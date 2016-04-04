@@ -598,7 +598,7 @@ mat3.normalFromMat4 = function (out, a) {
 /**
  * Returns a string representation of a mat3
  *
- * @param {mat3} mat matrix to represent as a string
+ * @param {mat3} a matrix to represent as a string
  * @returns {String} string representation of the matrix
  */
 mat3.str = function (a) {

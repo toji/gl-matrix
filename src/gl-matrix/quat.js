@@ -572,7 +572,7 @@ quat.fromMat3 = function(out, m) {
 /**
  * Returns a string representation of a quatenion
  *
- * @param {quat} vec vector to represent as a string
+ * @param {quat} a vector to represent as a string
  * @returns {String} string representation of the vector
  */
 quat.str = function (a) {
