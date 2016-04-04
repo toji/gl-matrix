@@ -572,7 +572,7 @@ vec4.forEach = (function() {
 /**
  * Returns a string representation of a vector
  *
- * @param {vec4} vec vector to represent as a string
+ * @param {vec4} a vector to represent as a string
  * @returns {String} string representation of the vector
  */
 vec4.str = function (a) {

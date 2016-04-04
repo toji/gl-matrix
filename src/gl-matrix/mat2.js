@@ -302,7 +302,7 @@ mat2.fromScaling = function(out, v) {
 /**
  * Returns a string representation of a mat2
  *
- * @param {mat2} mat matrix to represent as a string
+ * @param {mat2} a matrix to represent as a string
  * @returns {String} string representation of the matrix
  */
 mat2.str = function (a) {
