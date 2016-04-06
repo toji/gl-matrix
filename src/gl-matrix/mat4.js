@@ -22,6 +22,8 @@ import { ARRAY_TYPE, EPSILON, USE_SIMD } from "./common";
 
 import * as mat4scalar from "./mat4scalar";
 import * as mat4simd from "./mat4simd";
+export { mat4scalar as scalar };
+export { mat4simd as SIMD };
 
 /**
  * 4x4 Matrix

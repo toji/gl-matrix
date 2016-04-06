@@ -31,33 +31,10 @@ import * as mat2 from "./gl-matrix/mat2.js";
 import * as mat2d from "./gl-matrix/mat2d.js";
 import * as mat3 from "./gl-matrix/mat3.js";
 import * as mat4 from "./gl-matrix/mat4.js";
-import * as mat4scalar from "./gl-matrix/mat4scalar.js";
-import * as mat4simd from "./gl-matrix/mat4simd.js";
+
 import * as quat from "./gl-matrix/quat.js";
 import * as vec2 from "./gl-matrix/vec2.js";
 import * as vec3 from "./gl-matrix/vec3.js";
 import * as vec4 from "./gl-matrix/vec4.js";
-
-mat4.scalar = {
-  transpose: mat4scalar.transpose,
-  invert: mat4scalar.invert,
-  adjoint: mat4scalar.adjoint,
-  multiply: mat4scalar.multiply,
-  translate: mat4scalar.translate,
-  rotateX: mat4scalar.rotateX,
-  rotateY: mat4scalar.rotateY,
-  rotateZ: mat4scalar.rotateZ,
-}
-
-mat4.SIMD = {
-  transpose: mat4simd.transpose,
-  invert: mat4simd.invert,
-  adjoint: mat4simd.adjoint,
-  multiply: mat4simd.multiply,
-  translate: mat4simd.translate,
-  rotateX: mat4simd.rotateX,
-  rotateY: mat4simd.rotateY,
-  rotateZ: mat4simd.rotateZ,
-}
 
 export { glMatrix, mat2, mat2d, mat3, mat4, quat, vec2, vec3, vec4 };
