@@ -2,7 +2,3 @@ language: node_js
 sudo: false
 node_js:
   - "4.2"
-script:
-  - webpack
-  - webpack --config webpack.config.min.js
-  - jasmine-node spec

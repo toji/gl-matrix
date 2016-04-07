@@ -26,12 +26,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 // END HEADER
 
-exports.glMatrix = require("./gl-matrix/common.js");
-exports.mat2 = require("./gl-matrix/mat2.js");
-exports.mat2d = require("./gl-matrix/mat2d.js");
-exports.mat3 = require("./gl-matrix/mat3.js");
-exports.mat4 = require("./gl-matrix/mat4.js");
-exports.quat = require("./gl-matrix/quat.js");
-exports.vec2 = require("./gl-matrix/vec2.js");
-exports.vec3 = require("./gl-matrix/vec3.js");
-exports.vec4 = require("./gl-matrix/vec4.js");
+import * as glMatrix from "./gl-matrix/common.js";
+import * as mat2 from "./gl-matrix/mat2.js";
+import * as mat2d from "./gl-matrix/mat2d.js";
+import * as mat3 from "./gl-matrix/mat3.js";
+import * as mat4 from "./gl-matrix/mat4.js";
+
+import * as quat from "./gl-matrix/quat.js";
+import * as vec2 from "./gl-matrix/vec2.js";
+import * as vec3 from "./gl-matrix/vec3.js";
+import * as vec4 from "./gl-matrix/vec4.js";
+
+export { glMatrix, mat2, mat2d, mat3, mat4, quat, vec2, vec3, vec4 };

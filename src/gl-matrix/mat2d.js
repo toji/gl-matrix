@@ -18,13 +18,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("./common.js");
+import { ARRAY_TYPE, EPSILON } from "./common.js";
 
 /**
- * @class 2x3 Matrix
- * @name mat2d
- * 
- * @description 
+ * 2x3 Matrix
+ * @module mat2d
+ *
+ * @description
  * A mat2d contains six elements defined as:
  * <pre>
  * [a, c, tx,
@@ -38,15 +38,14 @@ var glMatrix = require("./common.js");
  * </pre>
  * The last row is ignored so the array is shorter and operations are faster.
  */
-var mat2d = {};
 
 /**
  * Creates a new identity mat2d
  *
  * @returns {mat2d} a new 2x3 matrix
  */
-mat2d.create = function() {
-    var out = new glMatrix.ARRAY_TYPE(6);
+export function create() {
+    var out = new ARRAY_TYPE(6);
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -62,8 +61,8 @@ mat2d.create = function() {
  * @param {mat2d} a matrix to clone
  * @returns {mat2d} a new 2x3 matrix
  */
-mat2d.clone = function(a) {
-    var out = new glMatrix.ARRAY_TYPE(6);
+export function clone(a) {
+    var out = new ARRAY_TYPE(6);
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -80,7 +79,7 @@ mat2d.clone = function(a) {
  * @param {mat2d} a the source matrix
  * @returns {mat2d} out
  */
-mat2d.copy = function(out, a) {
+export function copy(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -96,7 +95,7 @@ mat2d.copy = function(out, a) {
  * @param {mat2d} out the receiving matrix
  * @returns {mat2d} out
  */
-mat2d.identity = function(out) {
+export function identity(out) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -117,8 +116,8 @@ mat2d.identity = function(out) {
  * @param {Number} ty Component TY (index 5)
  * @returns {mat2d} A new mat2d
  */
-mat2d.fromValues = function(a, b, c, d, tx, ty) {
-    var out = new glMatrix.ARRAY_TYPE(6);
+export function fromValues(a, b, c, d, tx, ty) {
+    var out = new ARRAY_TYPE(6);
     out[0] = a;
     out[1] = b;
     out[2] = c;
@@ -140,7 +139,7 @@ mat2d.fromValues = function(a, b, c, d, tx, ty) {
  * @param {Number} ty Component TY (index 5)
  * @returns {mat2d} out
  */
-mat2d.set = function(out, a, b, c, d, tx, ty) {
+export function set(out, a, b, c, d, tx, ty) {
     out[0] = a;
     out[1] = b;
     out[2] = c;
@@ -157,7 +156,7 @@ mat2d.set = function(out, a, b, c, d, tx, ty) {
  * @param {mat2d} a the source matrix
  * @returns {mat2d} out
  */
-mat2d.invert = function(out, a) {
+export function invert(out, a) {
     var aa = a[0], ab = a[1], ac = a[2], ad = a[3],
         atx = a[4], aty = a[5];
 
@@ -182,7 +181,7 @@ mat2d.invert = function(out, a) {
  * @param {mat2d} a the source matrix
  * @returns {Number} determinant of a
  */
-mat2d.determinant = function (a) {
+export function determinant(a) {
     return a[0] * a[3] - a[1] * a[2];
 };
 
@@ -194,7 +193,7 @@ mat2d.determinant = function (a) {
  * @param {mat2d} b the second operand
  * @returns {mat2d} out
  */
-mat2d.multiply = function (out, a, b) {
+export function multiply(out, a, b) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
         b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
     out[0] = a0 * b0 + a2 * b1;
@@ -207,10 +206,10 @@ mat2d.multiply = function (out, a, b) {
 };
 
 /**
- * Alias for {@link mat2d.multiply}
+ * Alias for {@link multiply}
  * @function
  */
-mat2d.mul = mat2d.multiply;
+export const mul = multiply;
 
 /**
  * Rotates a mat2d by the given angle
@@ -220,7 +219,7 @@ mat2d.mul = mat2d.multiply;
  * @param {Number} rad the angle to rotate the matrix by
  * @returns {mat2d} out
  */
-mat2d.rotate = function (out, a, rad) {
+export function rotate(out, a, rad) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
         s = Math.sin(rad),
         c = Math.cos(rad);
@@ -241,7 +240,7 @@ mat2d.rotate = function (out, a, rad) {
  * @param {vec2} v the vec2 to scale the matrix by
  * @returns {mat2d} out
  **/
-mat2d.scale = function(out, a, v) {
+export function scale(out, a, v) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
         v0 = v[0], v1 = v[1];
     out[0] = a0 * v0;
@@ -261,7 +260,7 @@ mat2d.scale = function(out, a, v) {
  * @param {vec2} v the vec2 to translate the matrix by
  * @returns {mat2d} out
  **/
-mat2d.translate = function(out, a, v) {
+export function translate(out, a, v) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5],
         v0 = v[0], v1 = v[1];
     out[0] = a0;
@@ -277,14 +276,14 @@ mat2d.translate = function(out, a, v) {
  * Creates a matrix from a given angle
  * This is equivalent to (but much faster than):
  *
- *     mat2d.identity(dest);
- *     mat2d.rotate(dest, dest, rad);
+ *     identity(dest);
+ *     rotate(dest, dest, rad);
  *
  * @param {mat2d} out mat2d receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
  * @returns {mat2d} out
  */
-mat2d.fromRotation = function(out, rad) {
+export function fromRotation(out, rad) {
     var s = Math.sin(rad), c = Math.cos(rad);
     out[0] = c;
     out[1] = s;
@@ -299,14 +298,14 @@ mat2d.fromRotation = function(out, rad) {
  * Creates a matrix from a vector scaling
  * This is equivalent to (but much faster than):
  *
- *     mat2d.identity(dest);
- *     mat2d.scale(dest, dest, vec);
+ *     identity(dest);
+ *     scale(dest, dest, vec);
  *
  * @param {mat2d} out mat2d receiving operation result
  * @param {vec2} v Scaling vector
  * @returns {mat2d} out
  */
-mat2d.fromScaling = function(out, v) {
+export function fromScaling(out, v) {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
@@ -320,14 +319,14 @@ mat2d.fromScaling = function(out, v) {
  * Creates a matrix from a vector translation
  * This is equivalent to (but much faster than):
  *
- *     mat2d.identity(dest);
- *     mat2d.translate(dest, dest, vec);
+ *     identity(dest);
+ *     translate(dest, dest, vec);
  *
  * @param {mat2d} out mat2d receiving operation result
  * @param {vec2} v Translation vector
  * @returns {mat2d} out
  */
-mat2d.fromTranslation = function(out, v) {
+export function fromTranslation(out, v) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -343,8 +342,8 @@ mat2d.fromTranslation = function(out, v) {
  * @param {mat2d} a matrix to represent as a string
  * @returns {String} string representation of the matrix
  */
-mat2d.str = function (a) {
-    return 'mat2d(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + 
+export function str(a) {
+    return 'mat2d(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' +
                     a[3] + ', ' + a[4] + ', ' + a[5] + ')';
 };
 
@@ -354,9 +353,9 @@ mat2d.str = function (a) {
  * @param {mat2d} a the matrix to calculate Frobenius norm of
  * @returns {Number} Frobenius norm
  */
-mat2d.frob = function (a) { 
+export function frob(a) {
     return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + 1))
-}; 
+};
 
 /**
  * Adds two mat2d's
@@ -366,7 +365,7 @@ mat2d.frob = function (a) {
  * @param {mat2d} b the second operand
  * @returns {mat2d} out
  */
-mat2d.add = function(out, a, b) {
+export function add(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -384,7 +383,7 @@ mat2d.add = function(out, a, b) {
  * @param {mat2d} b the second operand
  * @returns {mat2d} out
  */
-mat2d.subtract = function(out, a, b) {
+export function subtract(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -395,10 +394,10 @@ mat2d.subtract = function(out, a, b) {
 };
 
 /**
- * Alias for {@link mat2d.subtract}
+ * Alias for {@link subtract}
  * @function
  */
-mat2d.sub = mat2d.subtract;
+export const sub = subtract;
 
 /**
  * Multiply each element of the matrix by a scalar.
@@ -408,7 +407,7 @@ mat2d.sub = mat2d.subtract;
  * @param {Number} b amount to scale the matrix's elements by
  * @returns {mat2d} out
  */
-mat2d.multiplyScalar = function(out, a, b) {
+export function multiplyScalar(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -427,7 +426,7 @@ mat2d.multiplyScalar = function(out, a, b) {
  * @param {Number} scale the amount to scale b's elements by before adding
  * @returns {mat2d} out
  */
-mat2d.multiplyScalarAndAdd = function(out, a, b, scale) {
+export function multiplyScalarAndAdd(out, a, b, scale) {
     out[0] = a[0] + (b[0] * scale);
     out[1] = a[1] + (b[1] * scale);
     out[2] = a[2] + (b[2] * scale);
@@ -444,7 +443,7 @@ mat2d.multiplyScalarAndAdd = function(out, a, b, scale) {
  * @param {mat2d} b The second matrix.
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
-mat2d.exactEquals = function (a, b) {
+export function exactEquals(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5];
 };
 
@@ -455,15 +454,13 @@ mat2d.exactEquals = function (a, b) {
  * @param {mat2d} b The second matrix.
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
-mat2d.equals = function (a, b) {
+export function equals(a, b) {
     var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
     var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
-    return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-            Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-            Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
-            Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
-            Math.abs(a4 - b4) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
-            Math.abs(a5 - b5) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)));
+    return (Math.abs(a0 - b0) <= EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+            Math.abs(a1 - b1) <= EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+            Math.abs(a2 - b2) <= EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+            Math.abs(a3 - b3) <= EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+            Math.abs(a4 - b4) <= EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+            Math.abs(a5 - b5) <= EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)));
 };
-
-module.exports = mat2d;
