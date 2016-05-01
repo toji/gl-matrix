@@ -23,12 +23,17 @@
   ],
   "devDependencies": {
     "jasmine-node": "1.2.2",
+    "jsdoc": "^3.4.0",
     "node-libs-browser": "^0.5.2",
-    "webpack": "^1.9.10",
-    "simd": "2.0.0"
+    "simd": "2.0.0",
+    "webpack": "^1.9.10"
   },
   "license": "MIT",
   "scripts": {
-    "test": "jasmine-node spec"
+    "test": "jasmine-node spec",
+    "doc": "jsdoc -c jsdoc.config.json",
+    "build": "webpack",
+    "build-min": "webpack --config webpack.config.min.js",
+    "build-all": "webpack && webpack --config webpack.config.min.js && jsdoc -c jsdoc.config.json"
   }
 }
