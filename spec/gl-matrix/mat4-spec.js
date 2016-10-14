@@ -552,6 +552,56 @@ function buildMat4Tests(useSIMD) {
             });
         });
 
+        describe("getScaling", function() {
+            describe("from the identity matrix", function() {
+                beforeEach(function() {
+                    result = vec3.fromValues(1, 2, 3);
+                    out = vec3.fromValues(1, 2, 3);
+                    result = mat4.getScaling(out, identity);
+                });
+                it("should place result both in result and out", function() { expect(result).toBe(out); });
+                it("should return the identity vector", function() { expect(result).toBeEqualish([1, 1, 1]); });
+            });
+
+            describe("from a scale-only matrix", function() {
+                beforeEach(function() {
+                    var v = vec3.fromValues(4, 5, 6);
+                    result = vec3.fromValues(1, 2, 3)
+                    out = vec3.fromValues(1, 2, 3);
+                    mat4.fromScaling(matA, v);
+                    result = mat4.getScaling(out, matA);
+                });
+                it("should return translation vector", function() { expect(out).toBeEqualish([4, 5, 6]); });
+            });
+
+            describe("from a translation and rotation matrix", function() {
+                beforeEach(function() {
+                    var q = quat.create();
+                    var v = vec3.fromValues(5, 6, 7);
+                    q = quat.setAxisAngle(q, [1, 0, 0], 0.5);
+                    mat4.fromRotationTranslation(out, q, v);
+
+                    result = vec3.fromValues(1, 2, 3);
+                    mat4.getScaling(result, out);
+                })
+                it("should return the identity vector", function() { expect(result).toBeEqualish([1, 1, 1]); });
+            });
+
+            describe("from a translation, rotation and scale matrix", function() {
+                beforeEach(function() {
+                    var q = quat.create();
+                    var t = vec3.fromValues(1, 2, 3);
+                    var s = vec3.fromValues(5, 6, 7);
+                    q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+                    mat4.fromRotationTranslationScale(out, q, t, s);
+                    result = vec3.fromValues(5, 6, 7);
+                    mat4.getScaling(result, out);
+                })
+                it("should return the same scaling factor when created", function() { expect(result).toBeEqualish([5, 6, 7]); });
+            });
+            
+        });
+
         describe("getRotation", function() {
             describe("from the identity matrix", function() {
                 beforeEach(function() {
