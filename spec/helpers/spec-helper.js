@@ -20,6 +20,19 @@ var HELPER_MATCHERS = (function() {
           return false;
       }
       return true;
+    },
+    toBeEqualishArr2: function(expected) {
+      if (this.actual.length != expected.length) return false;
+      for (var i = 0; i < this.actual.length; i++) {
+        if (this.actual[i].length != expected[i].length) return false;
+        for (var j = 0; j < this.actual[i].length; j++) {
+          if (isNaN(this.actual[i][j]) !== isNaN(expected[i][j]))
+            return false;
+          if (Math.abs(this.actual[i][j] - expected[i][j]) >= EPSILON)
+            return false;
+        }
+      }
+      return true;
     }
   };
 })();

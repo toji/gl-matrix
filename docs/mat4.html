@@ -848,7 +848,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1973">line 1973</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2001">line 2001</a>
     </li></ul></dd>
     
 
@@ -1610,7 +1610,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2105">line 2105</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2133">line 2133</a>
     </li></ul></dd>
     
 
@@ -1786,7 +1786,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2091">line 2091</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2119">line 2119</a>
     </li></ul></dd>
     
 
@@ -1939,7 +1939,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1961">line 1961</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1989">line 1989</a>
     </li></ul></dd>
     
 
@@ -2115,7 +2115,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1676">line 1676</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1704">line 1704</a>
     </li></ul></dd>
     
 
@@ -2175,7 +2175,11 @@
 
 
 <div class="description">
-    Creates a matrix from a given angle around a given axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotate(dest, dest, rad, axis);
+    Creates a matrix from a given angle around a given axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotate(dest, dest, rad, axis);
 </div>
 
 
@@ -2374,7 +2378,14 @@
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation and vector translationThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    var quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);
+    Creates a matrix from a quaternion rotation and vector translation
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    var quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
 </div>
 
 
@@ -2573,7 +2584,15 @@
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation, vector translation and vector scaleThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    var quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);    mat4.scale(dest, scale)
+    Creates a matrix from a quaternion rotation, vector translation and vector scale
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    var quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
+    mat4.scale(dest, scale)
 </div>
 
 
@@ -2735,7 +2754,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1563">line 1563</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1591">line 1591</a>
     </li></ul></dd>
     
 
@@ -2795,7 +2814,17 @@
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given originThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    mat4.translate(dest, origin);    var quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);    mat4.scale(dest, scale)    mat4.translate(dest, negativeOrigin);
+    Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    mat4.translate(dest, origin);
+    var quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
+    mat4.scale(dest, scale)
+    mat4.translate(dest, negativeOrigin);
 </div>
 
 
@@ -2980,7 +3009,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1623">line 1623</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1651">line 1651</a>
     </li></ul></dd>
     
 
@@ -3040,7 +3069,11 @@
 
 
 <div class="description">
-    Creates a matrix from a vector scalingThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.scale(dest, dest, vec);
+    Creates a matrix from a vector scaling
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.scale(dest, dest, vec);
 </div>
 
 
@@ -3216,7 +3249,11 @@
 
 
 <div class="description">
-    Creates a matrix from a vector translationThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, dest, vec);
+    Creates a matrix from a vector translation
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, dest, vec);
 </div>
 
 
@@ -3890,7 +3927,11 @@
 
 
 <div class="description">
-    Creates a matrix from the given angle around the X axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateX(dest, dest, rad);
+    Creates a matrix from the given angle around the X axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotateX(dest, dest, rad);
 </div>
 
 
@@ -4066,7 +4107,11 @@
 
 
 <div class="description">
-    Creates a matrix from the given angle around the Y axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateY(dest, dest, rad);
+    Creates a matrix from the given angle around the Y axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotateY(dest, dest, rad);
 </div>
 
 
@@ -4242,7 +4287,11 @@
 
 
 <div class="description">
-    Creates a matrix from the given angle around the Z axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateZ(dest, dest, rad);
+    Creates a matrix from the given angle around the Z axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotateZ(dest, dest, rad);
 </div>
 
 
@@ -4649,7 +4698,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1727">line 1727</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1755">line 1755</a>
     </li></ul></dd>
     
 
@@ -4709,7 +4758,10 @@
 
 
 <div class="description">
-    Returns a quaternion representing the rotational component of a transformation matrix. If a matrix is built with fromRotationTranslation, the returned quaternion will be the same as the quaternion originally supplied.
+    Returns a quaternion representing the rotational component
+ of a transformation matrix. If a matrix is built with
+ fromRotationTranslation, the returned quaternion will be the
+ same as the quaternion originally supplied.
 </div>
 
 
@@ -4825,7 +4877,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1512">line 1512</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1540">line 1540</a>
     </li></ul></dd>
     
 
@@ -4878,6 +4930,186 @@
 
     
 
+    <h4 class="name" id=".getScaling"><span class="type-signature">(static) </span>getScaling<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {<a href="vec3.html">vec3</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns the scaling factor component of a transformation
+ matrix. If a matrix is built with fromRotationTranslationScale
+ with a normalized Quaternion paramter, the returned vector will be 
+ the same as the scaling vector
+ originally supplied.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Vector to receive scaling factor component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="mat4.html">mat4</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Matrix to be decomposed (input)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1513">line 1513</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
     <h4 class="name" id=".getTranslation"><span class="type-signature">(static) </span>getTranslation<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {<a href="vec3.html">vec3</a>}</span></h4>
 
     
@@ -4885,7 +5117,10 @@
 
 
 <div class="description">
-    Returns the translation vector component of a transformation matrix. If a matrix is built with fromRotationTranslation, the returned vector will be the same as the translation vector originally supplied.
+    Returns the translation vector component of a transformation
+ matrix. If a matrix is built with fromRotationTranslation,
+ the returned vector will be the same as the translation vector
+ originally supplied.
 </div>
 
 
@@ -5376,7 +5611,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1864">line 1864</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1892">line 1892</a>
     </li></ul></dd>
     
 
@@ -5657,7 +5892,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2035">line 2035</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2063">line 2063</a>
     </li></ul></dd>
     
 
@@ -5879,7 +6114,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2064">line 2064</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2092">line 2092</a>
     </li></ul></dd>
     
 
@@ -6170,7 +6405,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1832">line 1832</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1860">line 1860</a>
     </li></ul></dd>
     
 
@@ -6415,7 +6650,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1760">line 1760</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1788">line 1788</a>
     </li></ul></dd>
     
 
@@ -6475,7 +6710,9 @@
 
 
 <div class="description">
-    Generates a perspective projection matrix with the given field of view.This is primarily useful for generating projection matrices to be usedwith the still experiemental WebVR API.
+    Generates a perspective projection matrix with the given field of view.
+This is primarily useful for generating projection matrices to be used
+with the still experiemental WebVR API.
 </div>
 
 
@@ -6637,7 +6874,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1793">line 1793</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1821">line 1821</a>
     </li></ul></dd>
     
 
@@ -7533,7 +7770,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1948">line 1948</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1976">line 1976</a>
     </li></ul></dd>
     
 
@@ -7637,7 +7874,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2025">line 2025</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2053">line 2053</a>
     </li></ul></dd>
     
 
@@ -7814,7 +8051,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2001">line 2001</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2029">line 2029</a>
     </li></ul></dd>
     
 
@@ -7878,13 +8115,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="quat2.html">quat2</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun May 01 2016 12:11:58 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Oct 28 2016 15:18:21 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
