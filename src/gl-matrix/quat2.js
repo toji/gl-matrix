@@ -61,7 +61,7 @@ quat2.create = function() {
  * Creates a new quat initialized with values from an existing quaternion
  *
  * @param {quat2} a dual quaternion to clone
- * @returns {quat2} a new dual quaternion
+ * @returns {quat2} new dual quaternion
  * @function
  */
 quat2.clone = function(a) {
@@ -89,7 +89,7 @@ quat2.clone = function(a) {
  * @param {Number} y2 Y component
  * @param {Number} z2 Z component
  * @param {Number} w2 W component
- * @returns {quat2} a new dual quaternion
+ * @returns {quat2} new dual quaternion
  * @function
  */
 quat2.fromValues = function(x1, y1, z1, w1, x2, y2, z2, w2) {
@@ -117,7 +117,7 @@ quat2.fromValues = function(x1, y1, z1, w1, x2, y2, z2, w2) {
  * @param {Number} x2 X component (translation)
  * @param {Number} y2 Y component (translation)
  * @param {Number} z2 Z component (translation)
- * @returns {quat2} a new dual quaternion
+ * @returns {quat2} new dual quaternion
  * @function
  */
 quat2.fromRotationTranslationValues = function(x1, y1, z1, w1, x2, y2, z2) {
@@ -141,8 +141,8 @@ quat2.fromRotationTranslationValues = function(x1, y1, z1, w1, x2, y2, z2) {
  * Creates a dual quat from a quaternion and a translation
  *
  * @param {quat2} dual quaternion receiving operation result
- * @param {quat} the quaternion
- * @param {vec3} the tranlation
+ * @param {quat} q quaternion
+ * @param {vec3} t tranlation vector
  * @returns {quat2} dual quaternion receiving operation result
  * @function
  */
@@ -162,7 +162,7 @@ quat2.fromRotationTranslation = function(out, q, t) {
  * Creates a dual quat from a translation
  *
  * @param {quat2} dual quaternion receiving operation result
- * @param {vec3} a translation vector
+ * @param {vec3} t translation vector
  * @returns {quat2} dual quaternion receiving operation result
  * @function
  */
@@ -182,7 +182,7 @@ quat2.fromTranslation = function(out, t) {
  * Creates a dual quat from a quaternion
  *
  * @param {quat2} dual quaternion receiving operation result
- * @param {quat} the quaternion
+ * @param {quat} q the quaternion
  * @returns {quat2} dual quaternion receiving operation result
  * @function
  */
@@ -598,81 +598,6 @@ quat2.scale = function(out, a, b) {
 };
 
 /**
- * Rotates a quaternion by the given angle about the X axis
- *
- * @param {quat} out quat receiving operation result
- * @param {quat} a quat to rotate
- * @param {number} rad angle (in radians) to rotate
- * @returns {quat} out
- */
-quat.rotateX = function(out, a, rad) {
-    rad *= 0.5;
-
-    var ax = a[0],
-        ay = a[1],
-        az = a[2],
-        aw = a[3],
-        bx = Math.sin(rad),
-        bw = Math.cos(rad);
-
-    out[0] = ax * bw + aw * bx;
-    out[1] = ay * bw + az * bx;
-    out[2] = az * bw - ay * bx;
-    out[3] = aw * bw - ax * bx;
-    return out;
-};
-
-/**
- * Rotates a quaternion by the given angle about the Y axis
- *
- * @param {quat} out quat receiving operation result
- * @param {quat} a quat to rotate
- * @param {number} rad angle (in radians) to rotate
- * @returns {quat} out
- */
-quat.rotateY = function(out, a, rad) {
-    rad *= 0.5;
-
-    var ax = a[0],
-        ay = a[1],
-        az = a[2],
-        aw = a[3],
-        by = Math.sin(rad),
-        bw = Math.cos(rad);
-
-    out[0] = ax * bw - az * by;
-    out[1] = ay * bw + aw * by;
-    out[2] = az * bw + ax * by;
-    out[3] = aw * bw - ay * by;
-    return out;
-};
-
-/**
- * Rotates a quaternion by the given angle about the Z axis
- *
- * @param {quat} out quat receiving operation result
- * @param {quat} a quat to rotate
- * @param {number} rad angle (in radians) to rotate
- * @returns {quat} out
- */
-quat.rotateZ = function(out, a, rad) {
-    rad *= 0.5;
-
-    var ax = a[0],
-        ay = a[1],
-        az = a[2],
-        aw = a[3],
-        bz = Math.sin(rad),
-        bw = Math.cos(rad);
-
-    out[0] = ax * bw + ay * bz;
-    out[1] = ay * bw - ax * bz;
-    out[2] = az * bw + aw * bz;
-    out[3] = aw * bw - az * bz;
-    return out;
-};
-
-/**
  * Calculates the dot product of two dual quat's (The dot product of the real parts)
  *
  * @param {quat2} a the first operand
@@ -709,61 +634,16 @@ quat2.lerp = function(out, a, b, t) {
 };
 
 /**
- * Performs a spherical linear interpolation between two quat
+ * Performs a spherical linear interpolation between two dual quats
  *
- * @param {quat} out the receiving quaternion
- * @param {quat} a the first operand
- * @param {quat} b the second operand
+ * @param {quat2} out the receiving dual quaternion
+ * @param {quat2} a the first operand
+ * @param {quat2} b the second operand
  * @param {Number} t interpolation amount between the two inputs
- * @returns {quat} out
+ * @returns {quat2} out
  */
-quat.slerp = function(out, a, b, t) {
-    // benchmarks:
-    //    http://jsperf.com/quaternion-slerp-implementations
-
-    var ax = a[0],
-        ay = a[1],
-        az = a[2],
-        aw = a[3],
-        bx = b[0],
-        by = b[1],
-        bz = b[2],
-        bw = b[3];
-
-    var omega, cosom, sinom, scale0, scale1;
-
-    // calc cosine
-    cosom = ax * bx + ay * by + az * bz + aw * bw;
-    // adjust signs (if necessary)
-    if (cosom < 0.0) {
-        cosom = -cosom;
-        bx = -bx;
-        by = -by;
-        bz = -bz;
-        bw = -bw;
-    }
-    // calculate coefficients
-    if ((1.0 - cosom) > 0.000001) {
-        // standard case (slerp)
-        omega = Math.acos(cosom);
-        sinom = Math.sin(omega);
-        scale0 = Math.sin((1.0 - t) * omega) / sinom;
-        scale1 = Math.sin(t * omega) / sinom;
-    } else {
-        // "from" and "to" quaternions are very close 
-        //  ... so we can do a linear interpolation
-        scale0 = 1.0 - t;
-        scale1 = t;
-    }
-    // calculate final values
-    out[0] = scale0 * ax + scale1 * bx;
-    out[1] = scale0 * ay + scale1 * by;
-    out[2] = scale0 * az + scale1 * bz;
-    out[3] = scale0 * aw + scale1 * bw;
-
-    return out;
-};
-/*
+quat2.slerp = function(out, a, b, t) {
+    /*
 public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c to, float t )
 {
  // Shortest path
@@ -790,32 +670,12 @@ public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c t
  // Complete the multiplication and return the interpolated value
  return from * new DualQuaternion_c( real, dual );
 */
-/**
- * Performs a spherical linear interpolation with two control points
- *
- * @param {quat} out the receiving quaternion
- * @param {quat} a the first operand
- * @param {quat} b the second operand
- * @param {quat} c the third operand
- * @param {quat} d the fourth operand
- * @param {Number} t interpolation amount
- * @returns {quat} out
- */
-quat.sqlerp = (function() {
-    var temp1 = quat.create();
-    var temp2 = quat.create();
-
-    return function(out, a, b, c, d, t) {
-        quat.slerp(temp1, a, d, t);
-        quat.slerp(temp2, b, c, t);
-        quat.slerp(out, temp1, temp2, 2 * t * (1 - t));
-
-        return out;
-    };
-}());
+    throw new Error("Not implemented");
+    return out;
+};
 
 /**
- * Calculates the inverse of a dual quat. NOT SURE IF IT IS IMPLEMENTED CORRECTLY
+ * Calculates the inverse of a dual quat.
  *
  * @param {quat2} out the receiving dual quaternion
  * @param {quat2} a dual quat to calculate inverse of
@@ -912,7 +772,7 @@ quat2.normalize = function(out, a) {
 /**
  * Returns a string representation of a dual quatenion
  *
- * @param {quat2} a vector to represent as a string
+ * @param {quat2} a dual quaternion to represent as a string
  * @returns {String} string representation of the dual quat
  */
 quat2.str = function(a) {
@@ -923,9 +783,9 @@ quat2.str = function(a) {
 /**
  * Returns whether or not the dual quaternions have exactly the same elements in the same position (when compared with ===)
  *
- * @param {quat2} a The first dual quaternion.
- * @param {quat2} b The second dual quaternion.
- * @returns {Boolean} True if the dual quaternions are equal, false otherwise.
+ * @param {quat2} a the first dual quaternion.
+ * @param {quat2} b the second dual quaternion.
+ * @returns {Boolean} true if the dual quaternions are equal, false otherwise.
  */
 quat2.exactEquals = function(a, b) {
     return a[0][0] === b[0][0] && a[0][1] === b[0][1] && a[0][2] === b[0][2] && a[0][3] === b[0][3] &&
@@ -935,9 +795,9 @@ quat2.exactEquals = function(a, b) {
 /**
  * Returns whether or not the dual quaternions have approximately the same elements in the same position.
  *
- * @param {quat2} a The first dual quat.
- * @param {quat2} b The second dual quat.
- * @returns {Boolean} True if the dual quats are equal, false otherwise.
+ * @param {quat2} a the first dual quat.
+ * @param {quat2} b the second dual quat.
+ * @returns {Boolean} true if the dual quats are equal, false otherwise.
  */
 quat2.equals = function(a, b) {
     return quat.equals(a[0], b[0]) && quat.equals(a[1], b[1]);

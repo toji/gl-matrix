@@ -261,7 +261,10 @@
 
 
 <div class="description">
-    Sets a quaternion to represent the shortest rotation from onevector to another.Both vectors are assumed to be unit length.
+    Sets a quaternion to represent the shortest rotation from one
+vector to another.
+
+Both vectors are assumed to be unit length.
 </div>
 
 
@@ -323,7 +326,9 @@
 
 
 <div class="description">
-    Sets the specified quaternion with values corresponding to the givenaxes. Each axis is a vec3 and is expected to be unit length andperpendicular to all other specified axes.
+    Sets the specified quaternion with values corresponding to the given
+axes. Each axis is a vec3 and is expected to be unit length and
+perpendicular to all other specified axes.
 </div>
 
 
@@ -656,7 +661,9 @@
 
 
 <div class="description">
-    Calculates the W component of a quat from the X, Y, and Z components.Assumes that quaternion is 1 unit in length.Any existing W component will be ignored.
+    Calculates the W component of a quat from the X, Y, and Z components.
+Assumes that quaternion is 1 unit in length.
+Any existing W component will be ignored.
 </div>
 
 
@@ -985,7 +992,8 @@
 
 
 <div class="description">
-    Calculates the conjugate of a quatIf the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+    Calculates the conjugate of a quat
+If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
 </div>
 
 
@@ -1617,7 +1625,10 @@
 
 
 <div class="description">
-    Creates a quaternion from the given 3x3 rotation matrix.NOTE: The resultant quaternion is not normalized, so you should be sureto renormalize the quaternion yourself where necessary.
+    Creates a quaternion from the given 3x3 rotation matrix.
+
+NOTE: The resultant quaternion is not normalized, so you should be sure
+to renormalize the quaternion yourself where necessary.
 </div>
 
 
@@ -2015,7 +2026,14 @@
 
 
 <div class="description">
-    Gets the rotation axis and angle for a given quaternion. If a quaternion is created with setAxisAngle, this method will return the same values as providied in the original parameter list OR functionally equivalent values.Example: The quaternion formed by axis [0, 0, 1] and angle -90 is the same as the quaternion formed by [0, 0, 1] and 270. This method favors the latter.
+    Gets the rotation axis and angle for a given
+ quaternion. If a quaternion is created with
+ setAxisAngle, this method will return the same
+ values as providied in the original parameter list
+ OR functionally equivalent values.
+Example: The quaternion formed by axis [0, 0, 1] and
+ angle -90 is the same as the quaternion formed by
+ [0, 0, 1] and 270. This method favors the latter.
 </div>
 
 
@@ -4475,7 +4493,208 @@
 
 
 <div class="description">
-    Sets a quat from the given angle and rotation axis,then returns it.
+    Sets a quat from the given angle and rotation axis,
+then returns it.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>axis</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the axis around which to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the angle in radians</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line524">line 524</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".setAxisAngle"><span class="type-signature">(static) </span>setAxisAngle<span class="signature">(out, axis, rad)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Sets a quat from the given angle and rotation axis,
+then returns it.
 </div>
 
 
@@ -5288,13 +5507,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="quat2.html">quat2</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun May 01 2016 12:11:58 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Oct 30 2016 12:06:15 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>
