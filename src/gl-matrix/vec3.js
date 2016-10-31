@@ -731,8 +731,11 @@ vec3.angle = function(a, b) {
  
     var cosine = vec3.dot(tempA, tempB);
 
-    if(cosine > 1.0){
+    if(cosine > 1.0) {
         return 0;
+    }
+    else if(cosine < -1.0) {
+        return Math.PI;
     } else {
         return Math.acos(cosine);
     }     
