@@ -5240,28 +5240,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    var x = a[0], y = a[1], z = a[2],
 	        qx = q[0], qy = q[1], qz = q[2], qw = q[3],
-	        // var qvec = [qx, qy, qz];
-	        // var uv = vec3.cross([], qvec, a);
-	        uvx = qy * z - qz * y,
-	        uvy = qz * x - x * qz,
-	        uvz = qx * y - y * qx,
-	        // var uuv = vec3.cross([], qvec, uv);
-	        uuvx = qy * uvz - uvz * qy,
-	        uuvy = qz * uvx - uvx * qz,
-	        uuvz = qx * uvy - uvy * qz;
-	    // vec3.scale(uv, uv, 2 * w);
-	    var w2 = qw * 2;
-	    uvx *= w2;
-	    uvy *= w2;
-	    uvz *= w2;
-	    // vec3.scale(uuv, uuv, 2);
-	    uuvx *= 2;
-	    uuvy *= 2;
-	    uuvz *= 2;
-	    // return vec3.add(out, a, vec3.add(out, uv, uuv));
-	    out[0] = x + uvx + uuvx;
-	    out[1] = y + uvy + uuvy;
-	    out[2] = z + uvz + uuvz;
+
+	        // calculate quat * vec
+	        ix = qw * x + qy * z - qz * y,
+	        iy = qw * y + qz * x - qx * z,
+	        iz = qw * z + qx * y - qy * x,
+	        iw = -qx * x - qy * y - qz * z;
+
+	    // calculate result * inverse quat
+	    out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+	    out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+	    out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
 	    return out;
 	};
 
