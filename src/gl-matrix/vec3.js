@@ -70,6 +70,22 @@ vec3.fromValues = function(x, y, z) {
 };
 
 /**
+ * Creates a new vec3 from a rotation
+ *
+ * @param {vec3} out the receiving vector
+ * @param {Number} pitch
+ * @param {Number} yaw
+ * @returns {vec3} out
+ */
+vec3.fromRotation = function(out, pitch, yaw) {
+    //I have no clue if this is correct. It seems to work though.
+    out[0] = -Math.sin(yaw) * Math.cos(pitch);
+    out[1] = Math.sin(pitch);
+    out[2] = -Math.cos(yaw) * Math.cos(pitch);
+    return out;
+};
+
+/**
  * Copy the values from one vec3 to another
  *
  * @param {vec3} out the receiving vector
@@ -565,6 +581,7 @@ vec3.transformMat3 = function(out, a, m) {
 
 /**
  * Transforms the vec3 with a quat
+ * Can also be used for dual quaternions. (Multiply it with the real part)
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the vector to transform
@@ -576,17 +593,28 @@ vec3.transformQuat = function(out, a, q) {
 
     var x = a[0], y = a[1], z = a[2],
         qx = q[0], qy = q[1], qz = q[2], qw = q[3],
-
-        // calculate quat * vec
-        ix = qw * x + qy * z - qz * y,
-        iy = qw * y + qz * x - qx * z,
-        iz = qw * z + qx * y - qy * x,
-        iw = -qx * x - qy * y - qz * z;
-
-    // calculate result * inverse quat
-    out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
-    out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
-    out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+        // var qvec = [qx, qy, qz];
+        // var uv = vec3.cross([], qvec, a);
+        uvx = qy * z - qz * y,
+        uvy = qz * x - x * qz,
+        uvz = qx * y - y * qx,
+        // var uuv = vec3.cross([], qvec, uv);
+        uuvx = qy * uvz - uvz * qy,
+        uuvy = qz * uvx - uvx * qz,
+        uuvz = qx * uvy - uvy * qz;
+    // vec3.scale(uv, uv, 2 * w);
+    var w2 = qw * 2;
+    uvx *= w2;
+    uvy *= w2;
+    uvz *= w2;
+    // vec3.scale(uuv, uuv, 2);
+    uuvx *= 2;
+    uuvy *= 2;
+    uuvz *= 2;
+    // return vec3.add(out, a, vec3.add(out, uv, uuv));
+    out[0] = x + uvx + uuvx;
+    out[1] = y + uvy + uuvy;
+    out[2] = z + uvz + uuvz;
     return out;
 };
 
