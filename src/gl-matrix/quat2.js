@@ -488,6 +488,10 @@ quat2.rotateByQuat = function(out, a, q) {
  * @returns {quat2} out
  */
 quat2.rotateAroundAxis = function(out, a, axis, rad) {
+    //Special case for rad = 0
+    if(rad < glMatrix.EPSILON) {
+        return quat.copy(out, a);
+    }
     var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
     var normalizedAxis = new glMatrix.ARRAY_TYPE(3);
     normalizedAxis[0] = axis[0] / axisLength;
@@ -509,25 +513,6 @@ quat2.rotateAroundAxis = function(out, a, axis, rad) {
     out[1][2] = -out[1][2];
     out[1][3] = -out[1][3];
     
-    return out;
-};
-
-/**
- * Sets a quat from the given angle and rotation axis,
- * then returns it.
- *
- * @param {quat} out the receiving quaternion
- * @param {vec3} axis the axis around which to rotate
- * @param {Number} rad the angle in radians
- * @returns {quat} out
- **/
-quat.setAxisAngle = function(out, axis, rad) {
-    rad = rad * 0.5;
-    var s = Math.sin(rad);
-    out[0] = s * axis[0];
-    out[1] = s * axis[1];
-    out[2] = s * axis[2];
-    out[3] = Math.cos(rad);
     return out;
 };
 

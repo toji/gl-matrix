@@ -4717,7 +4717,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Creates a new vec3 from a rotation
+	 * Creates a new vec3 from a rotation.
 	 *
 	 * @param {vec3} out the receiving vector
 	 * @param {Number} pitch
@@ -4725,10 +4725,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {vec3} out
 	 */
 	vec3.fromRotation = function(out, pitch, yaw) {
-	    //I have no clue if this is correct. It seems to work though.
+	    //I have no clue if this is correct. (There seem to be a ton of ways to implement this function)
 	    out[0] = -Math.sin(yaw) * Math.cos(pitch);
 	    out[1] = Math.sin(pitch);
 	    out[2] = -Math.cos(yaw) * Math.cos(pitch);
+	    //out[0] = -Math.sin(yaw) * Math.cos(pitch);
+	    //out[1] = Math.cos(yaw) * Math.cos(pitch);
+	    //out[2] = Math.sin(pitch);
 	    return out;
 	};
 
@@ -5236,21 +5239,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {vec3} out
 	 */
 	vec3.transformQuat = function(out, a, q) {
-	    // benchmarks: http://jsperf.com/quaternion-transform-vec3-implementations
-
-	    var x = a[0], y = a[1], z = a[2],
-	        qx = q[0], qy = q[1], qz = q[2], qw = q[3],
-
-	        // calculate quat * vec
-	        ix = qw * x + qy * z - qz * y,
-	        iy = qw * y + qz * x - qx * z,
-	        iz = qw * z + qx * y - qy * x,
-	        iw = -qx * x - qy * y - qz * z;
-
-	    // calculate result * inverse quat
-	    out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
-	    out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
-	    out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+	    // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
+	    var qx = q[0], qy = q[1], qz = q[2], qw = q[3];
+	    var x = a[0], y = a[1], z = a[2];
+	    // var qvec = [qx, qy, qz];
+	    // var uv = vec3.cross([], qvec, a);
+	    var uvx = qy * z - qz * y,
+	        uvy = qz * x - qx * z,
+	        uvz = qx * y - qy * x;
+	    // var uuv = vec3.cross([], qvec, uv);
+	    var uuvx = qy * uvz - qz * uvy,
+	        uuvy = qz * uvx - qx * uvz,
+	        uuvz = qx * uvy - qy * uvx;
+	    // vec3.scale(uv, uv, 2 * w);
+	    var w2 = qw * 2;
+	    uvx *= w2;
+	    uvy *= w2;
+	    uvz *= w2;
+	    // vec3.scale(uuv, uuv, 2);
+	    uuvx *= 2;
+	    uuvy *= 2;
+	    uuvz *= 2;
+	    // return vec3.add(out, a, vec3.add(out, uv, uuv));
+	    out[0] = x + uvx + uuvx;
+	    out[1] = y + uvy + uuvy;
+	    out[2] = z + uvz + uuvz;
 	    return out;
 	};
 
@@ -7143,6 +7156,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {quat2} out
 	 */
 	quat2.rotateAroundAxis = function(out, a, axis, rad) {
+	    //Special case for rad = 0
+	    if(rad < glMatrix.EPSILON) {
+	        return quat.copy(out, a);
+	    }
 	    var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
 	    var normalizedAxis = new glMatrix.ARRAY_TYPE(3);
 	    normalizedAxis[0] = axis[0] / axisLength;
@@ -7164,25 +7181,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[1][2] = -out[1][2];
 	    out[1][3] = -out[1][3];
 	    
-	    return out;
-	};
-
-	/**
-	 * Sets a quat from the given angle and rotation axis,
-	 * then returns it.
-	 *
-	 * @param {quat} out the receiving quaternion
-	 * @param {vec3} axis the axis around which to rotate
-	 * @param {Number} rad the angle in radians
-	 * @returns {quat} out
-	 **/
-	quat.setAxisAngle = function(out, axis, rad) {
-	    rad = rad * 0.5;
-	    var s = Math.sin(rad);
-	    out[0] = s * axis[0];
-	    out[1] = s * axis[1];
-	    out[2] = s * axis[2];
-	    out[3] = Math.cos(rad);
 	    return out;
 	};
 
