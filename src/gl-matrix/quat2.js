@@ -489,7 +489,7 @@ quat2.rotateByQuat = function(out, a, q) {
  */
 quat2.rotateAroundAxis = function(out, a, axis, rad) {
     //Special case for rad = 0
-    if(rad < glMatrix.EPSILON) {
+    if(Math.abs(rad) < glMatrix.EPSILON) {
         return quat.copy(out, a);
     }
     var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
