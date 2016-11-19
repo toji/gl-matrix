@@ -192,6 +192,30 @@ describe("quat", function() {
         });
     });
 
+    describe("fromEuler", function() {
+        describe("legacy", function() {
+            beforeEach(function() {
+                result = quat.fromEuler(out, -90, 0, 0);
+            });
+
+            it("should set dest to the correct value", function() {
+                expect(result).toBeEqualish([-0.707106, 0, 0, 0.707106]);
+            });
+        });
+
+        describe("where trace > 0", function() {
+            beforeEach(function() {
+                result = quat.fromEuler(out, -90, 0, 0);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+
+            it("should produce the correct transformation", function() {
+                expect(vec3.transformQuat([], [0,1,0], out)).toBeEqualish([0,0,-1]);
+            });
+        });
+    });
+
     describe("setAxes", function() {
         var r;
         beforeEach(function() { r = vec3.create(); });
