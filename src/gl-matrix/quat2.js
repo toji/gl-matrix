@@ -464,17 +464,32 @@ quat2.rotateZ = function(out, a, rad) {
 };
 
 /**
- * Rotates a dual quat by a given quaternion
+ * Rotates a dual quat by a given quaternion (a * q)
  *
  * @param {quat2} out the receiving dual quaternion
  * @param {quat2} a the dual quaternion to rotate
  * @param {quat} q quaternion to rotate by
  * @returns {quat2} out
  */
-quat2.rotateByQuat = function(out, a, q) {
+quat2.rotateByQuatAppend = function(out, a, q) {
     //TODO: Optimize this?
     quat.multiply(out[0], a[0], q);
     quat.multiply(out[1], a[1], q);
+    return out;
+};
+
+/**
+ * Rotates a dual quat by a given quaternion (q * a)
+ *
+ * @param {quat2} out the receiving dual quaternion
+ * @param {quat} q quaternion to rotate by
+ * @param {quat2} a the dual quaternion to rotate
+ * @returns {quat2} out
+ */
+quat2.rotateByQuatPrepend = function(out, q, a) {
+    //TODO: Optimize this?
+    quat.multiply(out[0], q, a[0]);
+    quat.multiply(out[1], q, a[1]);
     return out;
 };
 

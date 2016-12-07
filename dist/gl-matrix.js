@@ -4717,25 +4717,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Creates a new vec3 from a rotation.
-	 *
-	 * @param {vec3} out the receiving vector
-	 * @param {Number} pitch
-	 * @param {Number} yaw
-	 * @returns {vec3} out
-	 */
-	vec3.fromRotation = function(out, pitch, yaw) {
-	    //I have no clue if this is correct. (There seem to be a ton of ways to implement this function)
-	    out[0] = -Math.sin(yaw) * Math.cos(pitch);
-	    out[1] = Math.sin(pitch);
-	    out[2] = -Math.cos(yaw) * Math.cos(pitch);
-	    //out[0] = -Math.sin(yaw) * Math.cos(pitch);
-	    //out[1] = Math.cos(yaw) * Math.cos(pitch);
-	    //out[2] = Math.sin(pitch);
-	    return out;
-	};
-
-	/**
 	 * Copy the values from one vec3 to another
 	 *
 	 * @param {vec3} out the receiving vector
@@ -7132,17 +7113,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Rotates a dual quat by a given quaternion
+	 * Rotates a dual quat by a given quaternion (a * q)
 	 *
 	 * @param {quat2} out the receiving dual quaternion
 	 * @param {quat2} a the dual quaternion to rotate
 	 * @param {quat} q quaternion to rotate by
 	 * @returns {quat2} out
 	 */
-	quat2.rotateByQuat = function(out, a, q) {
+	quat2.rotateByQuatAppend = function(out, a, q) {
 	    //TODO: Optimize this?
 	    quat.multiply(out[0], a[0], q);
 	    quat.multiply(out[1], a[1], q);
+	    return out;
+	};
+
+	/**
+	 * Rotates a dual quat by a given quaternion (q * a)
+	 *
+	 * @param {quat2} out the receiving dual quaternion
+	 * @param {quat} q quaternion to rotate by
+	 * @param {quat2} a the dual quaternion to rotate
+	 * @returns {quat2} out
+	 */
+	quat2.rotateByQuatPrepend = function(out, q, a) {
+	    //TODO: Optimize this?
+	    quat.multiply(out[0], q, a[0]);
+	    quat.multiply(out[1], q, a[1]);
 	    return out;
 	};
 

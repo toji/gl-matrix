@@ -112,7 +112,7 @@ slerp
         });
     });
     
-    describe("rotateByQuat", function() {
+    describe("rotateByQuatAppend", function() {
         var correctResult = quat2.create();
         var rotationQuat = quat2.create();
         beforeEach(function() {
@@ -124,7 +124,7 @@ slerp
         })
         describe("with a separate output quaternion", function() {
             beforeEach(function() {
-                result = quat2.rotateByQuat(out, quat2A, rotationQuat[0]);
+                result = quat2.rotateByQuatAppend(out, quat2A, rotationQuat[0]);
             });
             
             it("should place values into out", function() { expect(out).toBeEqualishArr2(correctResult); });
@@ -134,7 +134,37 @@ slerp
         });
 
         describe("when quat2A is the output quaternion", function() {
-            beforeEach(function() { result = quat2.rotateByQuat(quat2A, quat2A, rotationQuat[0]); });
+            beforeEach(function() { result = quat2.rotateByQuatAppend(quat2A, quat2A, rotationQuat[0]); });
+            
+            it("should place values into quat2A", function() { expect(quat2A).toBeEqualishArr2(correctResult); });
+            it("should return quat2A", function() { expect(result).toBe(quat2A); });
+            it("should not modify the rotation quaternion", function() { expect(rotationQuat).toBeEqualishArr2([[2,5,2,-10],[0,0,0,0]]); });
+        });
+    });
+    
+    describe("rotateByQuatPrepend", function() {
+        var correctResult = quat2.create();
+        var rotationQuat = quat2.create();
+        beforeEach(function() {
+            rotationQuat[0][0] = 2;
+            rotationQuat[0][1] = 5;
+            rotationQuat[0][2] = 2;
+            rotationQuat[0][3] = -10;
+            quat2.multiply(correctResult, rotationQuat, quat2A);
+        })
+        describe("with a separate output quaternion", function() {
+            beforeEach(function() {
+                result = quat2.rotateByQuatPrepend(out, rotationQuat[0], quat2A);
+            });
+            
+            it("should place values into out", function() { expect(out).toBeEqualishArr2(correctResult); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishArr2([[1, 2, 3, 4], [2, 5, 6, -2]]); });
+            it("should not modify the rotation quaternion", function() { expect(rotationQuat).toBeEqualishArr2([[2,5,2,-10],[0,0,0,0]]); });
+        });
+
+        describe("when quat2A is the output quaternion", function() {
+            beforeEach(function() { result = quat2.rotateByQuatPrepend(quat2A, rotationQuat[0], quat2A); });
             
             it("should place values into quat2A", function() { expect(quat2A).toBeEqualishArr2(correctResult); });
             it("should return quat2A", function() { expect(result).toBe(quat2A); });
