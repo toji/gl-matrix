@@ -70,25 +70,6 @@ vec3.fromValues = function(x, y, z) {
 };
 
 /**
- * Creates a new vec3 from a rotation.
- *
- * @param {vec3} out the receiving vector
- * @param {Number} pitch
- * @param {Number} yaw
- * @returns {vec3} out
- */
-vec3.fromRotation = function(out, pitch, yaw) {
-    //I have no clue if this is correct. (There seem to be a ton of ways to implement this function)
-    out[0] = -Math.sin(yaw) * Math.cos(pitch);
-    out[1] = Math.sin(pitch);
-    out[2] = -Math.cos(yaw) * Math.cos(pitch);
-    //out[0] = -Math.sin(yaw) * Math.cos(pitch);
-    //out[1] = Math.cos(yaw) * Math.cos(pitch);
-    //out[2] = Math.sin(pitch);
-    return out;
-};
-
-/**
  * Copy the values from one vec3 to another
  *
  * @param {vec3} out the receiving vector
