@@ -128,8 +128,8 @@ quat2.fromRotationTranslationValues = function(x1, y1, z1, w1, x2, y2, z2) {
     real[2] = z1;
     real[3] = w1;
     //TODO Optimize this
-    quat.multiply(dual, [x2, y2, z2, 0], real);
-    quat.scale(dual, dual, 0.5);
+    //quat.multiply(dual, [x2, y2, z2, 0], real);
+    //quat.scale(dual, dual, 0.5);
     
     quat.scale(dual, [x2, y2, z2, 0], 0.5);
     quat.multiply(dual, dual, real);
@@ -388,7 +388,7 @@ quat2.translate = function(out, a, v) {
  * Rotates a dual quat around the X axis
  *
  * @param {quat2} out the receiving dual quaternion
- * @param {quat2} a the dual quaternion to translate
+ * @param {quat2} a the dual quaternion to rotate
  * @param {number} rad how far should the rotation be
  * @returns {quat2} out
  */
@@ -417,7 +417,7 @@ quat2.rotateX = function(out, a, rad) {
  * Rotates a dual quat around the Y axis
  *
  * @param {quat2} out the receiving dual quaternion
- * @param {quat2} a the dual quaternion to translate
+ * @param {quat2} a the dual quaternion to rotate
  * @param {number} rad how far should the rotation be
  * @returns {quat2} out
  */
@@ -438,7 +438,7 @@ quat2.rotateY = function(out, a, rad) {
  * Rotates a dual quat around the Z axis
  *
  * @param {quat2} out the receiving dual quaternion
- * @param {quat2} a the dual quaternion to translate
+ * @param {quat2} a the dual quaternion to rotate
  * @param {number} rad how far should the rotation be
  * @returns {quat2} out
  */
@@ -497,7 +497,7 @@ quat2.rotateByQuatPrepend = function(out, q, a) {
  * Rotates a dual quat around a given axis. Does the normalisation automatically
  *
  * @param {quat2} out the receiving dual quaternion
- * @param {quat2} a the dual quaternion to translate
+ * @param {quat2} a the dual quaternion to rotate
  * @param {vec3} axis the axis to rotate around
  * @param {Number} rad how far the rotation should be
  * @returns {quat2} out
@@ -622,9 +622,14 @@ quat2.lerp = function(out, a, b, t) {
     /* (1-t)*q1+t*q2 
      -------------
      ||(1-t)*q1+t*q2|| -> length of it */
+     
+     //Or: q1+(q2-q1)*t 
+     //^From: https://gist.github.com/XProger/def254d40a237cc0f0b2#file-quat-pas-L159
+     
     //TODO: Optimize this!!!
-    var tempDQ = quat2.create();
     quat2.scale(out, a, 1 - t);
+    var tempDQ = quat2.create();
+    if(quat2.dot(a, b) < 0) t = -t;
     quat2.scale(tempDQ, b, t);
     quat2.add(out, out, tempDQ);
     //Now we have the top part of the equation
@@ -675,7 +680,7 @@ public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c t
 };
 
 /**
- * Calculates the inverse of a dual quat.
+ * Calculates the inverse of a dual quat. If they are normalized, conjugate is cheaper
  *
  * @param {quat2} out the receiving dual quaternion
  * @param {quat2} a dual quat to calculate inverse of
