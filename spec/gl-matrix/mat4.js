@@ -1,32 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: mat4.js</title>
-
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
-
-<body>
-
-<div id="main">
-
-    <h1 class="page-title">Source: mat4.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
+/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -943,7 +915,7 @@ mat4.rotate = function (out, a, rad, axis) {
         b10, b11, b12,
         b20, b21, b22;
 
-    if (Math.abs(len) &lt; glMatrix.EPSILON) { return null; }
+    if (Math.abs(len) < glMatrix.EPSILON) { return null; }
 
     len = 1 / len;
     x *= len;
@@ -1323,7 +1295,7 @@ mat4.fromRotation = function(out, rad, axis) {
         len = Math.sqrt(x * x + y * y + z * z),
         s, c, t;
 
-    if (Math.abs(len) &lt; glMatrix.EPSILON) { return null; }
+    if (Math.abs(len) < glMatrix.EPSILON) { return null; }
 
     len = 1 / len;
     x *= len;
@@ -1512,37 +1484,6 @@ mat4.fromRotationTranslation = function (out, q, v) {
 };
 
 /**
- * Creates a new mat4 from a dual quat.
- *
- * @param {mat4} out Matrix
- * @param {quat2} a Dual Quaternion
- * @returns {mat4} mat4 receiving operation result
- */
-mat4.fromQuat2 = function(out, a) {
-    //var normalizedA = quat2.create();
-    //quat2.normalize(normalizedA, a);
-    //quat2.getTranslation(translation, normalizedA);
-    var translation = new glMatrix.ARRAY_TYPE(3);
-    var bx = -a[0][0], by = -a[0][1], bz = -a[0][2], bw = a[0][3],
-    ax = a[1][0], ay = a[1][1], az = a[1][2], aw = a[1][3];
-    
-    var magnitude = bx * bx + by * by + bz * bz + bw * bw;
-    //Only scale if it makes sense
-    if (magnitude > 0) {
-        //We can drop the Math.sqrt because mathemagic
-        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2 / magnitude;
-        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2 / magnitude;
-        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2 / magnitude;
-    } else {
-        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
-        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
-        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
-    }
-    mat4.fromRotationTranslation(out, a[0], translation);
-    return out;
-};
-
-/**
  * Returns the translation vector component of a transformation
  *  matrix. If a matrix is built with fromRotationTranslation,
  *  the returned vector will be the same as the translation vector
@@ -1607,7 +1548,7 @@ mat4.getRotation = function (out, mat) {
     out[0] = (mat[6] - mat[9]) / S;
     out[1] = (mat[8] - mat[2]) / S; 
     out[2] = (mat[1] - mat[4]) / S; 
-  } else if ((mat[0] > mat[5])&amp;(mat[0] > mat[10])) { 
+  } else if ((mat[0] > mat[5])&(mat[0] > mat[10])) { 
     S = Math.sqrt(1.0 + mat[0] - mat[5] - mat[10]) * 2;
     out[3] = (mat[6] - mat[9]) / S;
     out[0] = 0.25 * S;
@@ -1960,9 +1901,9 @@ mat4.lookAt = function (out, eye, center, up) {
         centery = center[1],
         centerz = center[2];
 
-    if (Math.abs(eyex - centerx) &lt; glMatrix.EPSILON &amp;&amp;
-        Math.abs(eyey - centery) &lt; glMatrix.EPSILON &amp;&amp;
-        Math.abs(eyez - centerz) &lt; glMatrix.EPSILON) {
+    if (Math.abs(eyex - centerx) < glMatrix.EPSILON &&
+        Math.abs(eyey - centery) < glMatrix.EPSILON &&
+        Math.abs(eyez - centerz) < glMatrix.EPSILON) {
         return mat4.identity(out);
     }
 
@@ -2176,10 +2117,10 @@ mat4.multiplyScalarAndAdd = function(out, a, b, scale) {
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 mat4.exactEquals = function (a, b) {
-    return a[0] === b[0] &amp;&amp; a[1] === b[1] &amp;&amp; a[2] === b[2] &amp;&amp; a[3] === b[3] &amp;&amp; 
-           a[4] === b[4] &amp;&amp; a[5] === b[5] &amp;&amp; a[6] === b[6] &amp;&amp; a[7] === b[7] &amp;&amp; 
-           a[8] === b[8] &amp;&amp; a[9] === b[9] &amp;&amp; a[10] === b[10] &amp;&amp; a[11] === b[11] &amp;&amp;
-           a[12] === b[12] &amp;&amp; a[13] === b[13] &amp;&amp; a[14] === b[14] &amp;&amp; a[15] === b[15];
+    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && 
+           a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && 
+           a[8] === b[8] && a[9] === b[9] && a[10] === b[10] && a[11] === b[11] &&
+           a[12] === b[12] && a[13] === b[13] && a[14] === b[14] && a[15] === b[15];
 };
 
 /**
@@ -2200,47 +2141,24 @@ mat4.equals = function (a, b) {
         b8  = b[8],  b9  = b[9],  b10 = b[10], b11 = b[11], 
         b12 = b[12], b13 = b[13], b14 = b[14], b15 = b[15];
 
-    return (Math.abs(a0 - b0) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
-            Math.abs(a1 - b1) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &amp;&amp;
-            Math.abs(a2 - b2) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &amp;&amp;
-            Math.abs(a3 - b3) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &amp;&amp;
-            Math.abs(a4 - b4) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &amp;&amp;
-            Math.abs(a5 - b5) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)) &amp;&amp;
-            Math.abs(a6 - b6) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a6), Math.abs(b6)) &amp;&amp;
-            Math.abs(a7 - b7) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a7), Math.abs(b7)) &amp;&amp;
-            Math.abs(a8 - b8) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a8), Math.abs(b8)) &amp;&amp;
-            Math.abs(a9 - b9) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a9), Math.abs(b9)) &amp;&amp;
-            Math.abs(a10 - b10) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a10), Math.abs(b10)) &amp;&amp;
-            Math.abs(a11 - b11) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a11), Math.abs(b11)) &amp;&amp;
-            Math.abs(a12 - b12) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a12), Math.abs(b12)) &amp;&amp;
-            Math.abs(a13 - b13) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a13), Math.abs(b13)) &amp;&amp;
-            Math.abs(a14 - b14) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a14), Math.abs(b14)) &amp;&amp;
-            Math.abs(a15 - b15) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a15), Math.abs(b15)));
+    return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+            Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+            Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+            Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+            Math.abs(a4 - b4) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+            Math.abs(a5 - b5) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)) &&
+            Math.abs(a6 - b6) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a6), Math.abs(b6)) &&
+            Math.abs(a7 - b7) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a7), Math.abs(b7)) &&
+            Math.abs(a8 - b8) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a8), Math.abs(b8)) &&
+            Math.abs(a9 - b9) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a9), Math.abs(b9)) &&
+            Math.abs(a10 - b10) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a10), Math.abs(b10)) &&
+            Math.abs(a11 - b11) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a11), Math.abs(b11)) &&
+            Math.abs(a12 - b12) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a12), Math.abs(b12)) &&
+            Math.abs(a13 - b13) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a13), Math.abs(b13)) &&
+            Math.abs(a14 - b14) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a14), Math.abs(b14)) &&
+            Math.abs(a15 - b15) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a15), Math.abs(b15)));
 };
 
 
 
 module.exports = mat4;
-</code></pre>
-        </article>
-    </section>
-
-
-
-
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="quat2.html">quat2</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Fri Mar 03 2017 13:48:32 GMT+0000 (UTC)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
-</html>

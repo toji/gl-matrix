@@ -1484,6 +1484,37 @@ mat4.fromRotationTranslation = function (out, q, v) {
 };
 
 /**
+ * Creates a new mat4 from a dual quat.
+ *
+ * @param {mat4} out Matrix
+ * @param {quat2} a Dual Quaternion
+ * @returns {mat4} mat4 receiving operation result
+ */
+mat4.fromQuat2 = function(out, a) {
+    //var normalizedA = quat2.create();
+    //quat2.normalize(normalizedA, a);
+    //quat2.getTranslation(translation, normalizedA);
+    var translation = new glMatrix.ARRAY_TYPE(3);
+    var bx = -a[0][0], by = -a[0][1], bz = -a[0][2], bw = a[0][3],
+    ax = a[1][0], ay = a[1][1], az = a[1][2], aw = a[1][3];
+    
+    var magnitude = bx * bx + by * by + bz * bz + bw * bw;
+    //Only scale if it makes sense
+    if (magnitude > 0) {
+        //We can drop the Math.sqrt because mathemagic
+        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2 / magnitude;
+        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2 / magnitude;
+        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2 / magnitude;
+    } else {
+        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
+        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
+        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
+    }
+    mat4.fromRotationTranslation(out, a[0], translation);
+    return out;
+};
+
+/**
  * Returns the translation vector component of a transformation
  *  matrix. If a matrix is built with fromRotationTranslation,
  *  the returned vector will be the same as the translation vector

@@ -46,7 +46,7 @@ slerp
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
               quat2.normalize(quat2A, quat2A);
-              quat2.toMat4(matrixA, quat2A);
+              mat4.fromQuat2(matrixA, quat2A);
             });
         describe("with a separate output quaternion", function() {
             beforeEach(function() { 
@@ -81,7 +81,7 @@ slerp
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
               quat2.normalize(quat2A, quat2A);
-              quat2.toMat4(matrixA, quat2A);
+              mat4.fromQuat2(matrixA, quat2A);
             });
         describe("with a separate output quaternion", function() {
             beforeEach(function() { 
@@ -178,7 +178,7 @@ slerp
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
               quat2.normalize(quat2A, quat2A);
-              quat2.toMat4(matrixA, quat2A);
+              mat4.fromQuat2(matrixA, quat2A);
             });
         describe("with a separate output quaternion", function() {
             beforeEach(function() { 
@@ -212,7 +212,7 @@ slerp
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [5, 4, -10]);
               quat2.normalize(quat2A, quat2A);
-              quat2.toMat4(matrixA, quat2A);
+              mat4.fromQuat2(matrixA, quat2A);
             });
             
         describe("with a separate output quaternion", function() {
@@ -247,7 +247,7 @@ slerp
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,0,3,-4], [0, -4, -10]);
               quat2.normalize(quat2A, quat2A);
-              quat2.toMat4(matrixA, quat2A);
+              mat4.fromQuat2(matrixA, quat2A);
             });
         describe("with a separate output quaternion", function() {
             beforeEach(function() { 
@@ -282,7 +282,7 @@ slerp
                 //only seems to work when created with this function
                 quat2.fromRotationTranslation(quat2A, [1,2,3,4], [1,-5,3]);
 
-                matRes = quat2.toMat4(matOut, quat2A);
+                matRes = mat4.fromQuat2(matOut, quat2A);
                 
                 result = quat2.fromMat4(out, matRes);
             });
@@ -399,11 +399,11 @@ slerp
               //quat2A and quat2B only seem to work when created using this function?
               quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
               quat2.normalize(quat2A, quat2A);
-              quat2.toMat4(matrixA, quat2A);
+              mat4.fromQuat2(matrixA, quat2A);
               
               quat2.fromRotationTranslation(quat2B, [5, 6, 7, 8], [9, 8, 6]);
               quat2.normalize(quat2B, quat2B);
-              quat2.toMat4(matrixB, quat2B);
+              mat4.fromQuat2(matrixB, quat2B);
               
             });
             it("the matrices should be equal to the dual quaternions", function() {
@@ -570,38 +570,43 @@ slerp
             it("both parts should have been normalized", function() { expect(out).toBeEqualishArr2([[1, 0, 0, 0], [1/5, 2/5, 3/5, 5/5]]); });
         });
     });
-/**
+
     describe("lerp", function() {
         describe("with a separate output quaternion", function() {
-            beforeEach(function() { result = quat.lerp(out, quat2A, quat2B, 0.5); });
+            beforeEach(function() { result = quat2.lerp(out, quat2A, quat2B, 0.7); });
             
-            it("should place values into out", function() { expect(out).toBeEqualish([3, 4, 5, 6]); });
+            it("should place values into out", function() { expect(out).toBeEqualish([[3.8, 4.8, 5.8, 6.8],[3.3,3.9,6,-1.8]]); });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify quat2A", function() { expect(quat2A).toBeEqualish([1, 2, 3, 4]); });
-            it("should not modify quat2B", function() { expect(quat2B).toBeEqualish([5, 6, 7, 8]); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualish([[1, 2, 3, 4], [2, 5, 6, -2]]); });
+            it("should not modify quat2B", function() { expect(quat2B).toBeEqualish([[5, 6, 7, 8], [9, 8, 6, -4]]); });
         });
-
+        
         describe("when quat2A is the output quaternion", function() {
-            beforeEach(function() { result = quat.lerp(quat2A, quat2A, quat2B, 0.5); });
+            beforeEach(function() { result = quat2.lerp(quat2A, quat2A, quat2B, 0.5); });
             
-            it("should place values into quat2A", function() { expect(quat2A).toBeEqualish([3, 4, 5, 6]); });
+            it("should place values into quat2A", function() { expect(quat2A).toBeEqualish([[3, 4, 5, 6],[5.5, 6.5, 6, -3]]); });
             it("should return quat2A", function() { expect(result).toBe(quat2A); });
-            it("should not modify quat2B", function() { expect(quat2B).toBeEqualish([5, 6, 7, 8]); });
+            it("should not modify quat2B", function() { expect(quat2B).toBeEqualish([[5, 6, 7, 8], [9, 8, 6, -4]]); });
         });
 
         describe("when quat2B is the output quaternion", function() {
-            beforeEach(function() { result = quat.lerp(quat2B, quat2A, quat2B, 0.5); });
+            beforeEach(function() { result = quat2.lerp(quat2B, quat2A, quat2B, 0.5); });
             
-            it("should place values into quat2B", function() { expect(quat2B).toBeEqualish([3, 4, 5, 6]); });
+            it("should place values into quat2B", function() { expect(quat2B).toBeEqualish([[3, 4, 5, 6],[5.5, 6.5, 6, -3]]); });
             it("should return quat2B", function() { expect(result).toBe(quat2B); });
-            it("should not modify quat2A", function() { expect(quat2A).toBeEqualish([1, 2, 3, 4]); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualish([[1, 2, 3, 4], [2, 5, 6, -2]]); });
+        });
+        
+        describe("shortest path", function() {
+            beforeEach(function() { result = quat2.lerp(out, [[1, 2, 3, -4], [2, 5, 6, -2]], [[5, -6, 7, 8], [9, 8, 6, -4]], 0.4); });
+            it("should pick the shorter path", function() { expect(out).toBeEqualish([[-1.4, -1.2, -1, -5.6],[-2.4, -0.2, 1.2, 0.4]]); });
         });
     });
-*/
+
     /*
 describe("slerp", function() {
         describe("with a separate output quaternion", function() {
-            beforeEach(function() { result = quat.slerp(out, quat2A, quat2B, 0.5); });
+            beforeEach(function() { result = quat2.slerp(out, quat2A, quat2B, 0.5); });
             
             it("should place values into out", function() { expect(out).toBeEqualish([3, 4, 5, 6]); });
             it("should return out", function() { expect(result).toBe(out); });
@@ -610,7 +615,7 @@ describe("slerp", function() {
         });
 
         describe("when quat2A is the output quaternion", function() {
-            beforeEach(function() { result = quat.slerp(quat2A, quat2A, quat2B, 0.5); });
+            beforeEach(function() { result = quat2.slerp(quat2A, quat2A, quat2B, 0.5); });
             
             it("should place values into quat2A", function() { expect(quat2A).toBeEqualish([3, 4, 5, 6]); });
             it("should return quat2A", function() { expect(result).toBe(quat2A); });

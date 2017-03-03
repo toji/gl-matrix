@@ -3355,6 +3355,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
+	 * Creates a new mat4 from a dual quat.
+	 *
+	 * @param {mat4} out Matrix
+	 * @param {quat2} a Dual Quaternion
+	 * @returns {mat4} mat4 receiving operation result
+	 */
+	mat4.fromQuat2 = function(out, a) {
+	    //var normalizedA = quat2.create();
+	    //quat2.normalize(normalizedA, a);
+	    //quat2.getTranslation(translation, normalizedA);
+	    var translation = new glMatrix.ARRAY_TYPE(3);
+	    var bx = -a[0][0], by = -a[0][1], bz = -a[0][2], bw = a[0][3],
+	    ax = a[1][0], ay = a[1][1], az = a[1][2], aw = a[1][3];
+	    
+	    var magnitude = bx * bx + by * by + bz * bz + bw * bw;
+	    //Only scale if it makes sense
+	    if (magnitude > 0) {
+	        //We can drop the Math.sqrt because mathemagic
+	        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2 / magnitude;
+	        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2 / magnitude;
+	        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2 / magnitude;
+	    } else {
+	        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
+	        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
+	        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
+	    }
+	    mat4.fromRotationTranslation(out, a[0], translation);
+	    return out;
+	};
+
+	/**
 	 * Returns the translation vector component of a transformation
 	 *  matrix. If a matrix is built with fromRotationTranslation,
 	 *  the returned vector will be the same as the translation vector
@@ -6776,13 +6807,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	    real[1] = y1;
 	    real[2] = z1;
 	    real[3] = w1;
-	    //TODO Optimize this
 	    //quat.multiply(dual, [x2, y2, z2, 0], real);
 	    //quat.scale(dual, dual, 0.5);
 	    
-	    quat.scale(dual, [x2, y2, z2, 0], 0.5);
-	    quat.multiply(dual, dual, real);
+	    //quat.scale(dual, [x2, y2, z2, 0], 0.5);
+	    //quat.multiply(dual, dual, real);
 	    
+	    var ax = x2 * 0.5, ay = y2 * 0.5, az = z2 * 0.5;
+
+	    dual[0] =  ax * w1 + ay * z1 - az * y1;
+	    dual[1] =  ay * w1 + az * x1 - ax * z1;
+	    dual[2] =  az * w1 + ax * y1 - ay * x1;
+	    dual[3] = -ax * x1 - ay * y1 - az * z1;
+
 	    return [real, dual];
 	};
 
@@ -6796,14 +6833,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @function
 	 */
 	quat2.fromRotationTranslation = function(out, q, t) {
-	    out[0][0] = q[0];
-	    out[0][1] = q[1];
-	    out[0][2] = q[2];
-	    out[0][3] = q[3];
-	    
-	    //TODO Optimize this
-	    quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
-	    quat.multiply(out[1], out[1], out[0]);
+	    var ax = t[0] * 0.5, ay = t[1] * 0.5, az = t[2] * 0.5,
+	        bx = q[0], by = q[1], bz = q[2], bw = q[3];
+	    out[0][0] = bx;
+	    out[0][1] = by;
+	    out[0][2] = bz;
+	    out[0][3] = bw;
+	    //quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
+	    //quat.multiply(out[1], out[1], out[0]);
+
+	    out[1][0] =  ax * bw + ay * bz - az * by;
+	    out[1][1] =  ay * bw + az * bx - ax * bz;
+	    out[1][2] =  az * bw + ax * by - ay * bx;
+	    out[1][3] = -ax * bx - ay * by - az * bz;
 	    return out;
 	};
 
@@ -6864,58 +6906,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    quat2.fromRotationTranslation(out, outer, t);
 	    //quat.multiply(out[1], [t[0], t[1], t[2], 0], out[0]);
 	    //quat.scale(out[1], out[1], 0.5);
-	    return out;
-	};
-
-	/**
-	 * Creates a new mat4 from a dual quat.
-	 * Is not in mat4.js, because that would cause a circlular dependency.
-	 *
-	 * @param {mat4} out Matrix
-	 * @param {quat2} a Dual Quaternion
-	 * @returns {mat4} mat4 receiving operation result
-	 */
-	quat2.toMat4 = function(out, a) {
-	    /*var X = a[0][0],
-	        Y = a[0][1],
-	        Z = a[0][2],
-	        W = a[0][3];
-	    var xx = X * X;
-	    var yy = Y * Y;
-	    var zz = Z * Z;
-
-	    var xy = X * Y;
-	    var zw = Z * W;
-	    var zx = Z * X;
-	    var yw = Y * W;
-	    var yz = Y * Z;
-	    var xw = X * W;
-	    var translation = new glMatrix.ARRAY_TYPE(3);
-	    quat2.getTranslation(translation, a);
-	   
-	    out[0] = 1.0 - 2.0 * (yy + zz);
-	    out[1] = 2.0 * (xy + zw);
-	    out[2] = 2.0 * (zx - yw);
-	    out[3] = 0;
-	    out[4] = 2.0 * (xy - zw);
-	    out[5] = 1.0 - 2.0 * (zz + xx);
-	    out[6] = 2.0 * (yz + xw);
-	    out[7] = 0;
-	    out[8] = 2.0 * (zx + yw);
-	    out[9] = 2.0 * (yz - xw);
-	    out[10] = 1.0 - 2.0 * (yy + xx);
-	    out[11] = 0;
-	    out[12] = translation[0];
-	    out[13] = translation[1];
-	    out[14] = translation[2];
-	    out[15] = 1;*/
-	    
-	    var translation = new glMatrix.ARRAY_TYPE(3);
-	    var normalizedA = quat2.create();
-	    quat2.normalize(normalizedA, a);
-	    quat2.getTranslation(translation, normalizedA);
-
-	    mat4.fromRotationTranslation(out, a[0], translation);
 	    return out;
 	};
 
@@ -6992,13 +6982,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @return {Number} translation
 	 */
 	quat2.getTranslation = function(out, a) {
-	    var q = new glMatrix.ARRAY_TYPE(4);
-	    quat.conjugate(q, a[0]);
-	    quat.multiply(q, a[1], q);
-	    quat.scale(q, q, 2);
-	    out[0] = q[0];
-	    out[1] = q[1];
-	    out[2] = q[2];
+	    //var q = new glMatrix.ARRAY_TYPE(4);
+	    //quat.conjugate(q, a[0]);
+	    //quat.multiply(q, a[1], q);
+	    //quat.scale(q, q, 2);
+	    //out[0] = q[0];
+	    //out[1] = q[1];
+	    //out[2] = q[2];
+	    
+	    var ax = a[1][0], ay = a[1][1], az = a[1][2], aw = a[1][3],
+	        bx = -a[0][0], by = -a[0][1], bz = -a[0][2], bw = a[0][3];
+	    out[0] = (ax * bw + aw * bx + ay * bz - az * by)*2;
+	    out[1] = (ay * bw + aw * by + az * bx - ax * bz)*2;
+	    out[2] = (az * bw + aw * bz + ax * by - ay * bx)*2;
 	    return out;
 	};
 
@@ -7011,25 +7007,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {quat2} out
 	 */
 	quat2.translate = function(out, a, v) {
-	    /*
-	    //TODO What does this do:
-	    var t = new glMatrix.ARRAY_TYPE(3);
-	    quat2.getTranslation(t, a);
-	    vec3.add(t, t, v);
-	    if (a === out) {
-	        quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
-	        quat.multiply(out[1], out[1], a[0]);
-	    } else {
-	        out[0][0] = a[0][0];
-	        out[0][1] = a[0][1];
-	        out[0][2] = a[0][2];
-	        out[0][3] = a[0][3];
-	        quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
-	        quat.multiply(out[1], out[1], a[0]);
-	    }*/
-	    var trans = quat2.create();
-	    quat2.fromTranslation(trans, v);
-	    quat2.multiply(out, a, trans);
+	    //var trans = quat2.create();
+	    //quat2.fromTranslation(trans, v);
+	    //quat2.multiply(out, a, trans);
+
+	    var ax1 = a[0][0], ay1 = a[0][1], az1 = a[0][2], aw1 = a[0][3],
+	        bx1 = v[0] * 0.5, by1 = v[1] * 0.5, bz1 = v[2] * 0.5,
+	        ax2 = a[1][0], ay2 = a[1][1], az2 = a[1][2], aw2 = a[1][3];
+	    out[0][0] = ax1;
+	    out[0][1] = ay1;
+	    out[0][2] = az1;
+	    out[0][3] = aw1;
+	    out[1][0] =  aw1 * bx1 + ay1 * bz1 - az1 * by1 + ax2;
+	    out[1][1] =  aw1 * by1 + az1 * bx1 - ax1 * bz1 + ay2;
+	    out[1][2] =  aw1 * bz1 + ax1 * by1 - ay1 * bx1 + az2;
+	    out[1][3] = -ax1 * bx1 - ay1 * by1 - az1 * bz1 + aw2;
 	    return out;
 	};
 
@@ -7121,7 +7113,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {quat2} out
 	 */
 	quat2.rotateByQuatAppend = function(out, a, q) {
-	    //TODO: Optimize this?
+	    //TODO: Optimize this? q could be cached a bit better?
 	    quat.multiply(out[0], a[0], q);
 	    quat.multiply(out[1], a[1], q);
 	    return out;
@@ -7136,7 +7128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {quat2} out
 	 */
 	quat2.rotateByQuatPrepend = function(out, q, a) {
-	    //TODO: Optimize this?
+	    //TODO: Optimize this? q could be cached a bit better?
 	    quat.multiply(out[0], q, a[0]);
 	    quat.multiply(out[1], q, a[1]);
 	    return out;
@@ -7204,18 +7196,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {quat2} out
 	 */
 	quat2.multiply = function(out, a, b) {
-	    //TODO Most likely, this can be optimized a lot
 	    //e.g. Get rid of all those temp arrays
-	    var tempReal = new glMatrix.ARRAY_TYPE(4);
-	    quat.multiply(tempReal, a[0], b[0]);
-	    var temp1 = new glMatrix.ARRAY_TYPE(4),
-	        temp2 = new glMatrix.ARRAY_TYPE(4);
-	    quat.add(out[1], quat.multiply(temp1, a[0], b[1]), quat.multiply(temp2, a[1], b[0]));
-	    
-	    out[0][0] = tempReal[0];
-	    out[0][1] = tempReal[1];
-	    out[0][2] = tempReal[2];
-	    out[0][3] = tempReal[3];
+	    //var tempReal = new glMatrix.ARRAY_TYPE(4);
+	    //quat.multiply(tempReal, a[0], b[0]);
+	    //var temp1 = new glMatrix.ARRAY_TYPE(4),
+	    //    temp2 = new glMatrix.ARRAY_TYPE(4);
+	    //quat.add(out[1], quat.multiply(temp1, a[0], b[1]), quat.multiply(temp2, a[1], b[0]));
+	    var ax1 = a[0][0], ay1 = a[0][1], az1 = a[0][2], aw1 = a[0][3],
+	        bx1 = b[1][0], by1 = b[1][1], bz1 = b[1][2], bw1 = b[1][3],
+	        ax2 = a[1][0], ay2 = a[1][1], az2 = a[1][2], aw2 = a[1][3],
+	        bx2 = b[0][0], by2 = b[0][1], bz2 = b[0][2], bw2 = b[0][3];
+	        
+	    //var ax = a[0][0], ay = a[0][1], az = a[0][2], aw = a[0][3],
+	    //    bx = b[1][0], by = b[1][1], bz = b[1][2], bw = b[1][3];
+
+	    out[1][0] = ax1 * bw1 + aw1 * bx1 + ay1 * bz1 - az1 * by1 + ax2 * bw2 + aw2 * bx2 + ay2 * bz2 - az2 * by2;
+	    out[1][1] = ay1 * bw1 + aw1 * by1 + az1 * bx1 - ax1 * bz1 + ay2 * bw2 + aw2 * by2 + az2 * bx2 - ax2 * bz2;
+	    out[1][2] = az1 * bw1 + aw1 * bz1 + ax1 * by1 - ay1 * bx1 + az2 * bw2 + aw2 * bz2 + ax2 * by2 - ay2 * bx2;
+	    out[1][3] = aw1 * bw1 - ax1 * bx1 - ay1 * by1 - az1 * bz1 + aw2 * bw2 - ax2 * bx2 - ay2 * by2 - az2 * bz2;
+	    //out[0][0] = tempReal[0];
+	    //out[0][1] = tempReal[1];
+	    //out[0][2] = tempReal[2];
+	    //out[0][3] = tempReal[3];
+	    quat.multiply(out[0], a[0], b[0]);
+	    //out[1][0] = a[0] + b[0];
+	    //out[1][1] = a[1] + b[1];
+	    //out[1][2] = a[2] + b[2];
+	    //out[1][3] = a[3] + b[3];
 	    return out;
 	};
 
@@ -7260,6 +7267,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Performs a linear interpolation between two dual quats's
+	 * NOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
 	 *
 	 * @param {quat2} out the receiving dual quat
 	 * @param {quat2} a the first operand
@@ -7276,14 +7284,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	     //^From: https://gist.github.com/XProger/def254d40a237cc0f0b2#file-quat-pas-L159
 	     
 	    //TODO: Optimize this!!!
-	    quat2.scale(out, a, 1 - t);
-	    var tempDQ = quat2.create();
+	    //var tempOUT = quat2.create();
+	    //quat2.scale(tempOUT, a, 1 - t);
+	    var mt = 1 - t;
+	    //var tempDQ = quat2.create();
 	    if(quat2.dot(a, b) < 0) t = -t;
-	    quat2.scale(tempDQ, b, t);
-	    quat2.add(out, out, tempDQ);
-	    //Now we have the top part of the equation
-
-	    quat2.scale(out, out, 1 / quat2.length(out));
+	    //quat2.scale(tempDQ, b, t);
+	    //quat2.add(out, tempOUT, tempDQ);
+	    
+	    out[0][0] = a[0][0] * mt + b[0][0] * t;
+	    out[0][1] = a[0][1] * mt + b[0][1] * t;
+	    out[0][2] = a[0][2] * mt + b[0][2] * t;
+	    out[0][3] = a[0][3] * mt + b[0][3] * t;
+	    out[1][0] = a[1][0] * mt + b[1][0] * t;
+	    out[1][1] = a[1][1] * mt + b[1][1] * t;
+	    out[1][2] = a[1][2] * mt + b[1][2] * t;
+	    out[1][3] = a[1][3] * mt + b[1][3] * t;
+	    
+	    //Renormalizing the dual quat is left as an exercise to the user
+	    //quat2.scale(out, out, 1 / quat2.length(out));
 	    return out;
 	};
 
@@ -7336,8 +7355,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {quat2} out
 	 */
 	quat2.invert = function(out, a) {
-	    quat2.conjugate(out, a);
-	    quat2.scale(out, out, 1/quat2.squaredLength(a));
+	    
+	    //quat2.conjugate(out, a);
+	    //quat2.scale(out, out, 1/quat2.squaredLength(a));
+	    var sqlen = quat2.squaredLength(a);
+	    out[0][0] = -a[0][0] / sqlen;
+	    out[0][1] = -a[0][1] / sqlen;
+	    out[0][2] = -a[0][2] / sqlen;
+	    out[0][3] = a[0][3] / sqlen;
+	    out[1][0] = -a[1][0] / sqlen;
+	    out[1][1] = -a[1][1] / sqlen;
+	    out[1][2] = -a[1][2] / sqlen;
+	    out[1][3] = a[1][3] / sqlen;
 	    return out;
 	};
 
