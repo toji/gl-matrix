@@ -438,6 +438,48 @@ vec3.cross = function(out, a, b) {
 };
 
 /**
+* Rotate a Vector, relative to the origin along the x-axis
+* @param {vec3} out the receiving vector
+* @param {vec3} the vector to rotate
+* @param {Number} the angle to rotate in radian
+*/
+vec3.rotateX = function(out, a, b){
+  out[0] = a[0];
+  out[1] = a[1] * Math.cos(b) - a[2] * Math.sin(b);
+  out[2] = a[1] * Math.sin(b) + a[2] * Math.cos(b);
+  
+  return out;
+};
+
+/**
+* Rotate a Vector, relative to the origin along the y-axis
+* @param {vec3} out the receiving vector
+* @param {vec3} the vector to rotate
+* @param {Number} the angle to rotate in radian
+*/
+vec3.rotateY = function(out, a, b){
+  out[0] = a[2] * Math.sin(b) + a[0] * Math.cos(b);
+  out[1] = a[1];
+  out[2] = a[2] * Math.cos(b) - a[0] * Math.sin(b);
+  
+  return out;
+};
+
+/**
+* Rotate a Vector, relative to the origin along the z-axis
+* @param {vec3} out the receiving vector
+* @param {vec3} the vector to rotate
+* @param {Number} the angle to rotate in radian
+*/
+vec3.rotateZ = function(out, a, b){
+  out[0] = a[0] * Math.cos(b) - a[1] * Math.sin(b);
+  out[1] = a[0] * Math.sin(b) + a[1] * Math.cos(b);
+  out[2] = a[2];
+  
+  return out;
+};
+
+/**
  * Performs a linear interpolation between two vec3's
  *
  * @param {vec3} out the receiving vector
