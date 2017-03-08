@@ -356,10 +356,36 @@ vec2.negate = function(out, a) {
  * @param {vec2} a vector to invert
  * @returns {vec2} out
  */
-vec2.inverse = function(out, a) {
-  out[0] = 1.0 / a[0];
-  out[1] = 1.0 / a[1];
-  return out;
+vec2.inverse = function (out, a) {
+    out[0] = 1.0 / a[0];
+    out[1] = 1.0 / a[1];
+    return out;
+};
+
+/**
+ * Returns the inverse of the components of a vec2 safely
+ *
+ * @param {vec2} out the receiving vector
+ * @param {vec2} a vector to invert
+ * @returns {vec2} out
+ */
+vec2.inverseSafe = function (out, a) {
+    var x = a[0],
+        y = a[1];
+
+    if (Math.abs(x) < glMatrix.EPSILON) {
+        out[0] = 0;
+    } else {
+        out[0] = 1.0 / x;
+    }
+
+    if (Math.abs(y) < glMatrix.EPSILON) {
+        out[1] = 0;
+    } else {
+        out[1] = 1.0 / a[1];
+    }
+
+    return out;
 };
 
 /**
@@ -501,7 +527,7 @@ vec2.transformMat3 = function(out, a, m) {
  * @returns {vec2} out
  */
 vec2.transformMat4 = function(out, a, m) {
-    var x = a[0], 
+    var x = a[0],
         y = a[1];
     out[0] = m[0] * x + m[4] * y + m[12];
     out[1] = m[1] * x + m[5] * y + m[13];
@@ -532,7 +558,7 @@ vec2.forEach = (function() {
         if(!offset) {
             offset = 0;
         }
-        
+
         if(count) {
             l = Math.min((count * stride) + offset, a.length);
         } else {
@@ -544,7 +570,7 @@ vec2.forEach = (function() {
             fn(vec, vec, arg);
             a[i] = vec[0]; a[i+1] = vec[1];
         }
-        
+
         return a;
     };
 })();
