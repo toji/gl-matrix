@@ -21,7 +21,7 @@ THE SOFTWARE. */
 var glMatrix = require("./common.js");
 
 /**
- * @class 4x4 Matrix
+ * @class 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
  * @name mat4
  */
 var mat4 = {
@@ -1495,8 +1495,8 @@ mat4.fromQuat2 = function(out, a) {
     //quat2.normalize(normalizedA, a);
     //quat2.getTranslation(translation, normalizedA);
     var translation = new glMatrix.ARRAY_TYPE(3);
-    var bx = -a[0][0], by = -a[0][1], bz = -a[0][2], bw = a[0][3],
-    ax = a[1][0], ay = a[1][1], az = a[1][2], aw = a[1][3];
+    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
+    ax = a[4], ay = a[5], az = a[6], aw = a[7];
     
     var magnitude = bx * bx + by * by + bz * bz + bw * bw;
     //Only scale if it makes sense
@@ -1510,7 +1510,7 @@ mat4.fromQuat2 = function(out, a) {
         translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
         translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
     }
-    mat4.fromRotationTranslation(out, a[0], translation);
+    mat4.fromRotationTranslation(out, a, translation);
     return out;
 };
 
