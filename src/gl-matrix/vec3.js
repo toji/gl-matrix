@@ -552,7 +552,7 @@ vec3.transformMat4 = function(out, a, m) {
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the vector to transform
- * @param {mat4} m the 3x3 matrix to transform with
+ * @param {mat3} m the 3x3 matrix to transform with
  * @returns {vec3} out
  */
 vec3.transformMat3 = function(out, a, m) {
