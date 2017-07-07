@@ -509,7 +509,7 @@ export function transformMat4(out, a, m) {
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the vector to transform
- * @param {mat4} m the 3x3 matrix to transform with
+ * @param {mat3} m the 3x3 matrix to transform with
  * @returns {vec3} out
  */
 export function transformMat3(out, a, m) {
