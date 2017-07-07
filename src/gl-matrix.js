@@ -25,12 +25,35 @@
 * THE SOFTWARE.
 */
 
-window.glMatrix = require("./gl-matrix/common.js");
-window.mat2 = require("./gl-matrix/mat2.js");
-window.mat2d = require("./gl-matrix/mat2d.js");
-window.mat3 = require("./gl-matrix/mat3.js");
-window.mat4 = require("./gl-matrix/mat4.js");
-window.quat = require("./gl-matrix/quat.js");
-window.vec2 = require("./gl-matrix/vec2.js");
-window.vec3 = require("./gl-matrix/vec3.js");
-window.vec4 = require("./gl-matrix/vec4.js");
+import glMatrix from "./gl-matrix/common";
+import mat2 from "./gl-matrix/mat2";
+import mat2d from "./gl-matrix/mat2d";
+import mat3 from "./gl-matrix/mat3";
+import mat4 from "./gl-matrix/mat4";
+import quat from "./gl-matrix/quat";
+import vec2 from "./gl-matrix/vec2";
+import vec3 from "./gl-matrix/vec3";
+import vec4 from "./gl-matrix/vec4";
+
+window.glMatrix = glMatrix;
+window.mat2 = mat2;
+window.mat2d = mat2d;
+window.mat3 = mat3;
+window.mat4 = mat4;
+window.quat = quat;
+window.vec2 = vec2;
+window.vec3 = vec3;
+window.vec4 = vec4;
+
+// TODO: Ideally we'd do this instead.
+/*export {
+  glMatrix,
+  mat2,
+  mat2d,
+  mat3,
+  mat4,
+  quat,
+  vec2,
+  vec3,
+  vec4,
+};*/
