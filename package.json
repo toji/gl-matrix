@@ -38,6 +38,6 @@
     "doc": "jsdoc -c jsdoc.config.json",
     "build": "webpack",
     "build-min": "webpack --config webpack.config.min.js",
-    "build-all": "webpack && webpack --config webpack.config.min.js && jsdoc -c jsdoc.config.json"
+    "build-all": "webpack && webpack --config webpack.config.min.js"
   }
 }
