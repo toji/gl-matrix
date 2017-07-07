@@ -402,12 +402,53 @@ vec4.negate = function(out, a) {
  * @param {vec4} a vector to invert
  * @returns {vec4} out
  */
-vec4.inverse = function(out, a) {
-  out[0] = 1.0 / a[0];
-  out[1] = 1.0 / a[1];
-  out[2] = 1.0 / a[2];
-  out[3] = 1.0 / a[3];
-  return out;
+vec4.inverse = function (out, a) {
+    out[0] = 1.0 / a[0];
+    out[1] = 1.0 / a[1];
+    out[2] = 1.0 / a[2];
+    out[3] = 1.0 / a[3];
+    return out;
+};
+
+/**
+ * Returns the inverse of the components of a vec4 safely
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a vector to invert
+ * @returns {vec4} out
+ */
+vec4.inverseSafe = function (out, a) {
+    var x = a[0],
+        y = a[1],
+        z = a[2],
+        w = a[3]
+        ;
+
+    if (Math.abs(x) < glMatrix.EPSILON) {
+        out[0] = 0;
+    } else {
+        out[0] = 1.0 / x;
+    }
+
+    if (Math.abs(y) < glMatrix.EPSILON) {
+        out[1] = 0;
+    } else {
+        out[1] = 1.0 / y;
+    }
+
+    if (Math.abs(z) < glMatrix.EPSILON) {
+        out[2] = 0;
+    } else {
+        out[2] = 1.0 / z;
+    }
+
+    if (Math.abs(w) < glMatrix.EPSILON) {
+        out[3] = 0;
+    } else {
+        out[3] = 1.0 / w;
+    }
+
+    return out;
 };
 
 /**
@@ -552,7 +593,7 @@ vec4.forEach = (function() {
         if(!offset) {
             offset = 0;
         }
-        
+
         if(count) {
             l = Math.min((count * stride) + offset, a.length);
         } else {
@@ -564,7 +605,7 @@ vec4.forEach = (function() {
             fn(vec, vec, arg);
             a[i] = vec[0]; a[i+1] = vec[1]; a[i+2] = vec[2]; a[i+3] = vec[3];
         }
-        
+
         return a;
     };
 })();
