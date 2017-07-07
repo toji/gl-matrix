@@ -208,6 +208,7 @@ exports.fromScaling = fromScaling;
 exports.fromMat2d = fromMat2d;
 exports.fromQuat = fromQuat;
 exports.normalFromMat4 = normalFromMat4;
+exports.projection = projection;
 exports.str = str;
 exports.frob = frob;
 exports.add = add;
@@ -869,6 +870,27 @@ function normalFromMat4(out, a) {
   out[7] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
   out[8] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
 
+  return out;
+}
+
+/**
+ * Generates a 2D projection matrix with the given bounds
+ *
+ * @param {mat3} out mat3 frustum matrix will be written into
+ * @param {number} width Width of your gl context
+ * @param {number} height Height of gl context
+ * @returns {mat3} out
+ */
+function projection(out, width, height) {
+  out[0] = 2 / width;
+  out[1] = 0;
+  out[2] = 0;
+  out[3] = 0;
+  out[4] = -2 / height;
+  out[5] = 0;
+  out[6] = -1;
+  out[7] = 1;
+  out[8] = 1;
   return out;
 }
 
@@ -1601,7 +1623,7 @@ function transformMat4(out, a, m) {
  *
  * @param {vec3} out the receiving vector
  * @param {vec3} a the vector to transform
- * @param {mat4} m the 3x3 matrix to transform with
+ * @param {mat3} m the 3x3 matrix to transform with
  * @returns {vec3} out
  */
 function transformMat3(out, a, m) {
@@ -5498,6 +5520,7 @@ exports.slerp = slerp;
 exports.invert = invert;
 exports.conjugate = conjugate;
 exports.fromMat3 = fromMat3;
+exports.fromEuler = fromEuler;
 exports.str = str;
 
 var _common = __webpack_require__(0);
@@ -5879,6 +5902,37 @@ function fromMat3(out, m) {
     out[j] = (m[j * 3 + i] + m[i * 3 + j]) * fRoot;
     out[k] = (m[k * 3 + i] + m[i * 3 + k]) * fRoot;
   }
+
+  return out;
+}
+
+/**
+ * Creates a quaternion from the given euler angle x, y, z.
+ *
+ * @param {quat} out the receiving quaternion
+ * @param {x} Angle to rotate around X axis in degrees.
+ * @param {y} Angle to rotate around Y axis in degrees.
+ * @param {z} Angle to rotate around Z axis in degrees.
+ * @returns {quat} out
+ * @function
+ */
+function fromEuler(out, x, y, z) {
+  var halfToRad = 0.5 * Math.PI / 180.0;
+  x *= halfToRad;
+  y *= halfToRad;
+  z *= halfToRad;
+
+  var sx = Math.sin(x);
+  var cx = Math.cos(x);
+  var sy = Math.sin(y);
+  var cy = Math.cos(y);
+  var sz = Math.sin(z);
+  var cz = Math.cos(z);
+
+  out[0] = sx * cy * cz - cx * sy * sz;
+  out[1] = cx * sy * cz + sx * cy * sz;
+  out[2] = cx * cy * sz - sx * sy * cz;
+  out[3] = cx * cy * cz + sx * sy * sz;
 
   return out;
 }

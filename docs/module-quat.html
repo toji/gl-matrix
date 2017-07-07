@@ -176,7 +176,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line499">line 499</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line530">line 530</a>
     </li></ul></dd>
     
 
@@ -238,7 +238,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line490">line 490</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line521">line 521</a>
     </li></ul></dd>
     
 
@@ -300,7 +300,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line450">line 450</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line481">line 481</a>
     </li></ul></dd>
     
 
@@ -365,7 +365,7 @@ Both vectors are assumed to be unit length.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line512">line 512</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line543">line 543</a>
     </li></ul></dd>
     
 
@@ -429,7 +429,7 @@ perpendicular to all other specified axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line577">line 577</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line608">line 608</a>
     </li></ul></dd>
     
 
@@ -491,7 +491,7 @@ perpendicular to all other specified axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line554">line 554</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line585">line 585</a>
     </li></ul></dd>
     
 
@@ -664,7 +664,7 @@ perpendicular to all other specified axes.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line403">line 403</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line434">line 434</a>
     </li></ul></dd>
     
 
@@ -995,7 +995,7 @@ Any existing W component will be ignored.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line357">line 357</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line388">line 388</a>
     </li></ul></dd>
     
 
@@ -1348,7 +1348,7 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line379">line 379</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line410">line 410</a>
     </li></ul></dd>
     
 
@@ -1628,7 +1628,7 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line430">line 430</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line461">line 461</a>
     </li></ul></dd>
     
 
@@ -1667,6 +1667,228 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
     <dd>
         
 <span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fromEuler"><span class="type-signature">(static) </span>fromEuler<span class="signature">(out, Angle, Angle, Angle)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a quaternion from the given euler angle x, y, z.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">quat</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">x</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to rotate around X axis in degrees.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">y</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to rotate around Y axis in degrees.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">z</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to rotate around Z axis in degrees.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line350">line 350</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -2029,7 +2251,7 @@ to renormalize the quaternion yourself where necessary.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line369">line 369</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line400">line 400</a>
     </li></ul></dd>
     
 
@@ -2645,7 +2867,7 @@ Example: The quaternion formed by axis [0, 0, 1] and
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line456">line 456</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line487">line 487</a>
     </li></ul></dd>
     
 
@@ -2845,7 +3067,7 @@ Example: The quaternion formed by axis [0, 0, 1] and
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line442">line 442</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line473">line 473</a>
     </li></ul></dd>
     
 
@@ -2949,7 +3171,7 @@ Example: The quaternion formed by axis [0, 0, 1] and
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line409">line 409</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line440">line 440</a>
     </li></ul></dd>
     
 
@@ -3302,7 +3524,7 @@ Example: The quaternion formed by axis [0, 0, 1] and
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line481">line 481</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line512">line 512</a>
     </li></ul></dd>
     
 
@@ -4098,7 +4320,7 @@ Example: The quaternion formed by axis [0, 0, 1] and
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line420">line 420</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line451">line 451</a>
     </li></ul></dd>
     
 
@@ -4343,7 +4565,7 @@ Example: The quaternion formed by axis [0, 0, 1] and
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line392">line 392</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line423">line 423</a>
     </li></ul></dd>
     
 
@@ -4869,7 +5091,7 @@ then returns it.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line471">line 471</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line502">line 502</a>
     </li></ul></dd>
     
 
@@ -5000,7 +5222,7 @@ then returns it.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line465">line 465</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line496">line 496</a>
     </li></ul></dd>
     
 
@@ -5153,7 +5375,7 @@ then returns it.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line346">line 346</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line377">line 377</a>
     </li></ul></dd>
     
 
@@ -5223,7 +5445,7 @@ then returns it.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jul 07 2017 12:14:03 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jul 07 2017 13:30:08 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
