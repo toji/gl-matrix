@@ -472,6 +472,20 @@ describe("mat3", function() {
         });
     });
 
+    describe("projection", function() {
+        beforeEach(function() {
+            result = mat3.projection(out, 100.0, 200.0);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+
+        it("should give projection matrix", function() {
+            expect(result).toBeEqualish([0.02,     0, 0,
+                                            0, -0.01, 0,
+                                           -1,     1, 1]);
+        });
+    });
+
     describe("exactEquals", function() {
         let matC, r0, r1;
         beforeEach(function() {
