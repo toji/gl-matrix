@@ -1,10 +1,3 @@
-/**
- * @fileoverview gl-matrix - High performance matrix and vector operations
- * @author Brandon Jones
- * @author Colin MacKenzie IV
- * @version 2.4.0
- */
-
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -24,21 +17,38 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
-// END HEADER
 
-import * as glMatrix from "./gl-matrix/common";
-import * as mat2 from "./gl-matrix/mat2";
-import * as mat2d from "./gl-matrix/mat2d";
-import * as mat3 from "./gl-matrix/mat3";
-import * as mat4 from "./gl-matrix/mat4";
-import * as quat from "./gl-matrix/quat";
-import * as vec2 from "./gl-matrix/vec2";
-import * as vec3 from "./gl-matrix/vec3";
-import * as vec4 from "./gl-matrix/vec4";
+var fs = require('fs');
+var path = require('path');
+var webpack = require('webpack');
 
-export {
-  glMatrix,
-  mat2, mat2d, mat3, mat4,
-  quat,
-  vec2, vec3, vec4,
+var entryFile = './src/gl-matrix.js';
+
+// Read the comments from the top of the main gl-matrix file and append them to
+// the minified version.
+var header = '';
+var mainFile = fs.readFileSync(entryFile, { encoding: 'utf8' });
+if (mainFile) {
+  var headerIndex = mainFile.indexOf('\/\/ END HEADER');
+  if (headerIndex >= 0) {
+    header = mainFile.substr(0, headerIndex);
+  }
+}
+
+module.exports = {
+  entry: entryFile,
+  output: {
+    path: __dirname + '/dist',
+    filename: 'gl-matrix.js',
+    libraryTarget: 'umd',
+  },
+  module: {
+    loaders: [{
+      test: path.join(__dirname, 'src'),
+      loader: 'babel-loader',
+    }]
+  },
+  plugins: [
+    new webpack.BannerPlugin({ banner: header, raw: true }),
+  ]
 };
