@@ -28,11 +28,6 @@ var glMatrix = {};
 glMatrix.EPSILON = 0.000001;
 glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 glMatrix.RANDOM = Math.random;
-glMatrix.ENABLE_SIMD = false;
-
-// Capability detection
-glMatrix.SIMD_AVAILABLE = (glMatrix.ARRAY_TYPE === this.Float32Array) && (typeof SIMD != 'undefined');
-glMatrix.USE_SIMD = glMatrix.ENABLE_SIMD && glMatrix.SIMD_AVAILABLE;
 
 /**
  * Sets the type of array used when creating new vectors and matrices
@@ -56,9 +51,9 @@ glMatrix.toRadian = function(a){
 
 /**
  * Tests whether or not the arguments have approximately the same value, within an absolute
- * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less 
+ * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less
  * than or equal to 1.0, and a relative tolerance is used for larger values)
- * 
+ *
  * @param {Number} a The first number to test.
  * @param {Number} b The second number to test.
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.

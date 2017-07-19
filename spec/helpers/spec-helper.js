@@ -20,47 +20,6 @@ var HELPER_MATCHERS = (function() {
           return false;
       }
       return true;
-    },
-    toBeEqualishQuat2: function(expected) {
-      var allSignsFlipped = false;
-      if (this.actual.length != expected.length) return false;
-      for (var i = 0; i < this.actual.length; i++) {
-        if (this.actual[i].length != expected[i].length) return false;
-        for (var j = 0; j < this.actual[i].length; j++) {
-          if (isNaN(this.actual[i][j]) !== isNaN(expected[i][j]))
-            return false;
-          if(allSignsFlipped) {
-            if (Math.abs(this.actual[i][j] - (-expected[i][j])) >= EPSILON)
-              return false;
-          } else {
-            if (Math.abs(this.actual[i][j] - expected[i][j]) >= EPSILON) {
-              allSignsFlipped = true;
-              i = 0;
-              j = 0;
-            }
-          }
-        }
-      }
-      return true;
-    },
-    toBeEqualishQuat2New: function(expected) {
-      var allSignsFlipped = false;
-      
-      if (this.actual.length != expected.length) return false;
-      for (var i = 0; i < this.actual.length; i++) {
-        if (isNaN(this.actual[i]) !== isNaN(expected[i]))
-          return false;
-          if(allSignsFlipped) {
-            if (Math.abs(this.actual[i] - (-expected[i])) >= EPSILON)
-              return false;
-          } else {
-            if (Math.abs(this.actual[i] - expected[i]) >= EPSILON) {
-              allSignsFlipped = true;
-              i = 0;
-            }
-        }
-      }
-      return true;
     }
   };
 })();

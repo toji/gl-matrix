@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * @fileoverview gl-matrix - High performance matrix and vector operations
@@ -118,11 +118,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.vec2 = __webpack_require__(9);
 	exports.vec3 = __webpack_require__(7);
 	exports.vec4 = __webpack_require__(8);
-	exports.quat2 = __webpack_require__(10);
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -154,11 +153,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	glMatrix.EPSILON = 0.000001;
 	glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 	glMatrix.RANDOM = Math.random;
-	glMatrix.ENABLE_SIMD = false;
-
-	// Capability detection
-	glMatrix.SIMD_AVAILABLE = (glMatrix.ARRAY_TYPE === this.Float32Array) && ('SIMD' in this);
-	glMatrix.USE_SIMD = glMatrix.ENABLE_SIMD && glMatrix.SIMD_AVAILABLE;
 
 	/**
 	 * Sets the type of array used when creating new vectors and matrices
@@ -182,9 +176,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Tests whether or not the arguments have approximately the same value, within an absolute
-	 * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less 
+	 * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less
 	 * than or equal to 1.0, and a relative tolerance is used for larger values)
-	 * 
+	 *
 	 * @param {Number} a The first number to test.
 	 * @param {Number} b The second number to test.
 	 * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
@@ -196,9 +190,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = glMatrix;
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -638,9 +632,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat2;
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -1113,9 +1107,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat2d;
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -1865,9 +1859,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat3;
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -1892,13 +1886,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var glMatrix = __webpack_require__(1);
 
 	/**
-	 * @class 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
+	 * @class 4x4 Matrix
 	 * @name mat4
 	 */
-	var mat4 = {
-	  scalar: {},
-	  SIMD: {}
-	};
+	var mat4 = {};
 
 	/**
 	 * Creates a new identity mat4
@@ -2092,13 +2083,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Transpose the values of a mat4 not using SIMD
+	 * Transpose the values of a mat4
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the source matrix
 	 * @returns {mat4} out
 	 */
-	mat4.scalar.transpose = function(out, a) {
+	mat4.transpose = function(out, a) {
 	    // If we are transposing ourselves we can skip a few steps but have to cache some values
 	    if (out === a) {
 	        var a01 = a[1], a02 = a[2], a03 = a[3],
@@ -2140,56 +2131,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Transpose the values of a mat4 using SIMD
+	 * Inverts a mat4
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the source matrix
 	 * @returns {mat4} out
 	 */
-	mat4.SIMD.transpose = function(out, a) {
-	    var a0, a1, a2, a3,
-	        tmp01, tmp23,
-	        out0, out1, out2, out3;
-
-	    a0 = SIMD.Float32x4.load(a, 0);
-	    a1 = SIMD.Float32x4.load(a, 4);
-	    a2 = SIMD.Float32x4.load(a, 8);
-	    a3 = SIMD.Float32x4.load(a, 12);
-
-	    tmp01 = SIMD.Float32x4.shuffle(a0, a1, 0, 1, 4, 5);
-	    tmp23 = SIMD.Float32x4.shuffle(a2, a3, 0, 1, 4, 5);
-	    out0  = SIMD.Float32x4.shuffle(tmp01, tmp23, 0, 2, 4, 6);
-	    out1  = SIMD.Float32x4.shuffle(tmp01, tmp23, 1, 3, 5, 7);
-	    SIMD.Float32x4.store(out, 0,  out0);
-	    SIMD.Float32x4.store(out, 4,  out1);
-
-	    tmp01 = SIMD.Float32x4.shuffle(a0, a1, 2, 3, 6, 7);
-	    tmp23 = SIMD.Float32x4.shuffle(a2, a3, 2, 3, 6, 7);
-	    out2  = SIMD.Float32x4.shuffle(tmp01, tmp23, 0, 2, 4, 6);
-	    out3  = SIMD.Float32x4.shuffle(tmp01, tmp23, 1, 3, 5, 7);
-	    SIMD.Float32x4.store(out, 8,  out2);
-	    SIMD.Float32x4.store(out, 12, out3);
-
-	    return out;
-	};
-
-	/**
-	 * Transpse a mat4 using SIMD if available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the source matrix
-	 * @returns {mat4} out
-	 */
-	mat4.transpose = glMatrix.USE_SIMD ? mat4.SIMD.transpose : mat4.scalar.transpose;
-
-	/**
-	 * Inverts a mat4 not using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the source matrix
-	 * @returns {mat4} out
-	 */
-	mat4.scalar.invert = function(out, a) {
+	mat4.invert = function(out, a) {
 	    var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
 	        a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
 	        a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -2237,122 +2185,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Inverts a mat4 using SIMD
+	 * Calculates the adjugate of a mat4
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the source matrix
 	 * @returns {mat4} out
 	 */
-	mat4.SIMD.invert = function(out, a) {
-	  var row0, row1, row2, row3,
-	      tmp1,
-	      minor0, minor1, minor2, minor3,
-	      det,
-	      a0 = SIMD.Float32x4.load(a, 0),
-	      a1 = SIMD.Float32x4.load(a, 4),
-	      a2 = SIMD.Float32x4.load(a, 8),
-	      a3 = SIMD.Float32x4.load(a, 12);
-
-	  // Compute matrix adjugate
-	  tmp1 = SIMD.Float32x4.shuffle(a0, a1, 0, 1, 4, 5);
-	  row1 = SIMD.Float32x4.shuffle(a2, a3, 0, 1, 4, 5);
-	  row0 = SIMD.Float32x4.shuffle(tmp1, row1, 0, 2, 4, 6);
-	  row1 = SIMD.Float32x4.shuffle(row1, tmp1, 1, 3, 5, 7);
-	  tmp1 = SIMD.Float32x4.shuffle(a0, a1, 2, 3, 6, 7);
-	  row3 = SIMD.Float32x4.shuffle(a2, a3, 2, 3, 6, 7);
-	  row2 = SIMD.Float32x4.shuffle(tmp1, row3, 0, 2, 4, 6);
-	  row3 = SIMD.Float32x4.shuffle(row3, tmp1, 1, 3, 5, 7);
-
-	  tmp1   = SIMD.Float32x4.mul(row2, row3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor0 = SIMD.Float32x4.mul(row1, tmp1);
-	  minor1 = SIMD.Float32x4.mul(row0, tmp1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row1, tmp1), minor0);
-	  minor1 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row0, tmp1), minor1);
-	  minor1 = SIMD.Float32x4.swizzle(minor1, 2, 3, 0, 1);
-
-	  tmp1   = SIMD.Float32x4.mul(row1, row2);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor0 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row3, tmp1), minor0);
-	  minor3 = SIMD.Float32x4.mul(row0, tmp1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.sub(minor0, SIMD.Float32x4.mul(row3, tmp1));
-	  minor3 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row0, tmp1), minor3);
-	  minor3 = SIMD.Float32x4.swizzle(minor3, 2, 3, 0, 1);
-
-	  tmp1   = SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(row1, 2, 3, 0, 1), row3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  row2   = SIMD.Float32x4.swizzle(row2, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row2, tmp1), minor0);
-	  minor2 = SIMD.Float32x4.mul(row0, tmp1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.sub(minor0, SIMD.Float32x4.mul(row2, tmp1));
-	  minor2 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row0, tmp1), minor2);
-	  minor2 = SIMD.Float32x4.swizzle(minor2, 2, 3, 0, 1);
-
-	  tmp1   = SIMD.Float32x4.mul(row0, row1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row3, tmp1), minor2);
-	  minor3 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row2, tmp1), minor3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor2 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row3, tmp1), minor2);
-	  minor3 = SIMD.Float32x4.sub(minor3, SIMD.Float32x4.mul(row2, tmp1));
-
-	  tmp1   = SIMD.Float32x4.mul(row0, row3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor1 = SIMD.Float32x4.sub(minor1, SIMD.Float32x4.mul(row2, tmp1));
-	  minor2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row1, tmp1), minor2);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor1 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row2, tmp1), minor1);
-	  minor2 = SIMD.Float32x4.sub(minor2, SIMD.Float32x4.mul(row1, tmp1));
-
-	  tmp1   = SIMD.Float32x4.mul(row0, row2);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor1 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row3, tmp1), minor1);
-	  minor3 = SIMD.Float32x4.sub(minor3, SIMD.Float32x4.mul(row1, tmp1));
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor1 = SIMD.Float32x4.sub(minor1, SIMD.Float32x4.mul(row3, tmp1));
-	  minor3 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row1, tmp1), minor3);
-
-	  // Compute matrix determinant
-	  det   = SIMD.Float32x4.mul(row0, minor0);
-	  det   = SIMD.Float32x4.add(SIMD.Float32x4.swizzle(det, 2, 3, 0, 1), det);
-	  det   = SIMD.Float32x4.add(SIMD.Float32x4.swizzle(det, 1, 0, 3, 2), det);
-	  tmp1  = SIMD.Float32x4.reciprocalApproximation(det);
-	  det   = SIMD.Float32x4.sub(
-	               SIMD.Float32x4.add(tmp1, tmp1),
-	               SIMD.Float32x4.mul(det, SIMD.Float32x4.mul(tmp1, tmp1)));
-	  det   = SIMD.Float32x4.swizzle(det, 0, 0, 0, 0);
-	  if (!det) {
-	      return null;
-	  }
-
-	  // Compute matrix inverse
-	  SIMD.Float32x4.store(out, 0,  SIMD.Float32x4.mul(det, minor0));
-	  SIMD.Float32x4.store(out, 4,  SIMD.Float32x4.mul(det, minor1));
-	  SIMD.Float32x4.store(out, 8,  SIMD.Float32x4.mul(det, minor2));
-	  SIMD.Float32x4.store(out, 12, SIMD.Float32x4.mul(det, minor3));
-	  return out;
-	}
-
-	/**
-	 * Inverts a mat4 using SIMD if available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the source matrix
-	 * @returns {mat4} out
-	 */
-	mat4.invert = glMatrix.USE_SIMD ? mat4.SIMD.invert : mat4.scalar.invert;
-
-	/**
-	 * Calculates the adjugate of a mat4 not using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the source matrix
-	 * @returns {mat4} out
-	 */
-	mat4.scalar.adjoint = function(out, a) {
+	mat4.adjoint = function(out, a) {
 	    var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
 	        a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
 	        a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -2376,103 +2215,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
 	    return out;
 	};
-
-	/**
-	 * Calculates the adjugate of a mat4 using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the source matrix
-	 * @returns {mat4} out
-	 */
-	mat4.SIMD.adjoint = function(out, a) {
-	  var a0, a1, a2, a3;
-	  var row0, row1, row2, row3;
-	  var tmp1;
-	  var minor0, minor1, minor2, minor3;
-
-	  a0 = SIMD.Float32x4.load(a, 0);
-	  a1 = SIMD.Float32x4.load(a, 4);
-	  a2 = SIMD.Float32x4.load(a, 8);
-	  a3 = SIMD.Float32x4.load(a, 12);
-
-	  // Transpose the source matrix.  Sort of.  Not a true transpose operation
-	  tmp1 = SIMD.Float32x4.shuffle(a0, a1, 0, 1, 4, 5);
-	  row1 = SIMD.Float32x4.shuffle(a2, a3, 0, 1, 4, 5);
-	  row0 = SIMD.Float32x4.shuffle(tmp1, row1, 0, 2, 4, 6);
-	  row1 = SIMD.Float32x4.shuffle(row1, tmp1, 1, 3, 5, 7);
-
-	  tmp1 = SIMD.Float32x4.shuffle(a0, a1, 2, 3, 6, 7);
-	  row3 = SIMD.Float32x4.shuffle(a2, a3, 2, 3, 6, 7);
-	  row2 = SIMD.Float32x4.shuffle(tmp1, row3, 0, 2, 4, 6);
-	  row3 = SIMD.Float32x4.shuffle(row3, tmp1, 1, 3, 5, 7);
-
-	  tmp1   = SIMD.Float32x4.mul(row2, row3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor0 = SIMD.Float32x4.mul(row1, tmp1);
-	  minor1 = SIMD.Float32x4.mul(row0, tmp1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row1, tmp1), minor0);
-	  minor1 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row0, tmp1), minor1);
-	  minor1 = SIMD.Float32x4.swizzle(minor1, 2, 3, 0, 1);
-
-	  tmp1   = SIMD.Float32x4.mul(row1, row2);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor0 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row3, tmp1), minor0);
-	  minor3 = SIMD.Float32x4.mul(row0, tmp1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.sub(minor0, SIMD.Float32x4.mul(row3, tmp1));
-	  minor3 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row0, tmp1), minor3);
-	  minor3 = SIMD.Float32x4.swizzle(minor3, 2, 3, 0, 1);
-
-	  tmp1   = SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(row1, 2, 3, 0, 1), row3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  row2   = SIMD.Float32x4.swizzle(row2, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row2, tmp1), minor0);
-	  minor2 = SIMD.Float32x4.mul(row0, tmp1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor0 = SIMD.Float32x4.sub(minor0, SIMD.Float32x4.mul(row2, tmp1));
-	  minor2 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row0, tmp1), minor2);
-	  minor2 = SIMD.Float32x4.swizzle(minor2, 2, 3, 0, 1);
-
-	  tmp1   = SIMD.Float32x4.mul(row0, row1);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row3, tmp1), minor2);
-	  minor3 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row2, tmp1), minor3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor2 = SIMD.Float32x4.sub(SIMD.Float32x4.mul(row3, tmp1), minor2);
-	  minor3 = SIMD.Float32x4.sub(minor3, SIMD.Float32x4.mul(row2, tmp1));
-
-	  tmp1   = SIMD.Float32x4.mul(row0, row3);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor1 = SIMD.Float32x4.sub(minor1, SIMD.Float32x4.mul(row2, tmp1));
-	  minor2 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row1, tmp1), minor2);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor1 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row2, tmp1), minor1);
-	  minor2 = SIMD.Float32x4.sub(minor2, SIMD.Float32x4.mul(row1, tmp1));
-
-	  tmp1   = SIMD.Float32x4.mul(row0, row2);
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 1, 0, 3, 2);
-	  minor1 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row3, tmp1), minor1);
-	  minor3 = SIMD.Float32x4.sub(minor3, SIMD.Float32x4.mul(row1, tmp1));
-	  tmp1   = SIMD.Float32x4.swizzle(tmp1, 2, 3, 0, 1);
-	  minor1 = SIMD.Float32x4.sub(minor1, SIMD.Float32x4.mul(row3, tmp1));
-	  minor3 = SIMD.Float32x4.add(SIMD.Float32x4.mul(row1, tmp1), minor3);
-
-	  SIMD.Float32x4.store(out, 0,  minor0);
-	  SIMD.Float32x4.store(out, 4,  minor1);
-	  SIMD.Float32x4.store(out, 8,  minor2);
-	  SIMD.Float32x4.store(out, 12, minor3);
-	  return out;
-	};
-
-	/**
-	 * Calculates the adjugate of a mat4 using SIMD if available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the source matrix
-	 * @returns {mat4} out
-	 */
-	 mat4.adjoint = glMatrix.USE_SIMD ? mat4.SIMD.adjoint : mat4.scalar.adjoint;
 
 	/**
 	 * Calculates the determinant of a mat4
@@ -2504,71 +2246,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Multiplies two mat4's explicitly using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the first operand, must be a Float32Array
-	 * @param {mat4} b the second operand, must be a Float32Array
-	 * @returns {mat4} out
-	 */
-	mat4.SIMD.multiply = function (out, a, b) {
-	    var a0 = SIMD.Float32x4.load(a, 0);
-	    var a1 = SIMD.Float32x4.load(a, 4);
-	    var a2 = SIMD.Float32x4.load(a, 8);
-	    var a3 = SIMD.Float32x4.load(a, 12);
-
-	    var b0 = SIMD.Float32x4.load(b, 0);
-	    var out0 = SIMD.Float32x4.add(
-	                   SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 0, 0, 0, 0), a0),
-	                   SIMD.Float32x4.add(
-	                       SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 1, 1, 1, 1), a1),
-	                       SIMD.Float32x4.add(
-	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 2, 2, 2, 2), a2),
-	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b0, 3, 3, 3, 3), a3))));
-	    SIMD.Float32x4.store(out, 0, out0);
-
-	    var b1 = SIMD.Float32x4.load(b, 4);
-	    var out1 = SIMD.Float32x4.add(
-	                   SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 0, 0, 0, 0), a0),
-	                   SIMD.Float32x4.add(
-	                       SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 1, 1, 1, 1), a1),
-	                       SIMD.Float32x4.add(
-	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 2, 2, 2, 2), a2),
-	                           SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b1, 3, 3, 3, 3), a3))));
-	    SIMD.Float32x4.store(out, 4, out1);
-
-	    var b2 = SIMD.Float32x4.load(b, 8);
-	    var out2 = SIMD.Float32x4.add(
-	                   SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 0, 0, 0, 0), a0),
-	                   SIMD.Float32x4.add(
-	                       SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 1, 1, 1, 1), a1),
-	                       SIMD.Float32x4.add(
-	                               SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 2, 2, 2, 2), a2),
-	                               SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b2, 3, 3, 3, 3), a3))));
-	    SIMD.Float32x4.store(out, 8, out2);
-
-	    var b3 = SIMD.Float32x4.load(b, 12);
-	    var out3 = SIMD.Float32x4.add(
-	                   SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 0, 0, 0, 0), a0),
-	                   SIMD.Float32x4.add(
-	                        SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 1, 1, 1, 1), a1),
-	                        SIMD.Float32x4.add(
-	                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 2, 2, 2, 2), a2),
-	                            SIMD.Float32x4.mul(SIMD.Float32x4.swizzle(b3, 3, 3, 3, 3), a3))));
-	    SIMD.Float32x4.store(out, 12, out3);
-
-	    return out;
-	};
-
-	/**
-	 * Multiplies two mat4's explicitly not using SIMD
+	 * Multiplies two mat4s
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the first operand
 	 * @param {mat4} b the second operand
 	 * @returns {mat4} out
 	 */
-	mat4.scalar.multiply = function (out, a, b) {
+	mat4.multiply = function (out, a, b) {
 	    var a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3],
 	        a10 = a[4], a11 = a[5], a12 = a[6], a13 = a[7],
 	        a20 = a[8], a21 = a[9], a22 = a[10], a23 = a[11],
@@ -2602,30 +2287,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Multiplies two mat4's using SIMD if available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the first operand
-	 * @param {mat4} b the second operand
-	 * @returns {mat4} out
-	 */
-	mat4.multiply = glMatrix.USE_SIMD ? mat4.SIMD.multiply : mat4.scalar.multiply;
-
-	/**
 	 * Alias for {@link mat4.multiply}
 	 * @function
 	 */
 	mat4.mul = mat4.multiply;
 
 	/**
-	 * Translate a mat4 by the given vector not using SIMD
+	 * Translate a mat4 by the given vector
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the matrix to translate
 	 * @param {vec3} v vector to translate by
 	 * @returns {mat4} out
 	 */
-	mat4.scalar.translate = function (out, a, v) {
+	mat4.translate = function (out, a, v) {
 	    var x = v[0], y = v[1], z = v[2],
 	        a00, a01, a02, a03,
 	        a10, a11, a12, a13,
@@ -2655,47 +2330,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Translates a mat4 by the given vector using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to translate
-	 * @param {vec3} v vector to translate by
-	 * @returns {mat4} out
-	 */
-	mat4.SIMD.translate = function (out, a, v) {
-	    var a0 = SIMD.Float32x4.load(a, 0),
-	        a1 = SIMD.Float32x4.load(a, 4),
-	        a2 = SIMD.Float32x4.load(a, 8),
-	        a3 = SIMD.Float32x4.load(a, 12),
-	        vec = SIMD.Float32x4(v[0], v[1], v[2] , 0);
-
-	    if (a !== out) {
-	        out[0] = a[0]; out[1] = a[1]; out[2] = a[2]; out[3] = a[3];
-	        out[4] = a[4]; out[5] = a[5]; out[6] = a[6]; out[7] = a[7];
-	        out[8] = a[8]; out[9] = a[9]; out[10] = a[10]; out[11] = a[11];
-	    }
-
-	    a0 = SIMD.Float32x4.mul(a0, SIMD.Float32x4.swizzle(vec, 0, 0, 0, 0));
-	    a1 = SIMD.Float32x4.mul(a1, SIMD.Float32x4.swizzle(vec, 1, 1, 1, 1));
-	    a2 = SIMD.Float32x4.mul(a2, SIMD.Float32x4.swizzle(vec, 2, 2, 2, 2));
-
-	    var t0 = SIMD.Float32x4.add(a0, SIMD.Float32x4.add(a1, SIMD.Float32x4.add(a2, a3)));
-	    SIMD.Float32x4.store(out, 12, t0);
-
-	    return out;
-	};
-
-	/**
-	 * Translates a mat4 by the given vector using SIMD if available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to translate
-	 * @param {vec3} v vector to translate by
-	 * @returns {mat4} out
-	 */
-	mat4.translate = glMatrix.USE_SIMD ? mat4.SIMD.translate : mat4.scalar.translate;
-
-	/**
 	 * Scales the mat4 by the dimensions in the given vec3 not using vectorization
 	 *
 	 * @param {mat4} out the receiving matrix
@@ -2703,7 +2337,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {vec3} v the vec3 to scale the matrix by
 	 * @returns {mat4} out
 	 **/
-	mat4.scalar.scale = function(out, a, v) {
+	mat4.scale = function(out, a, v) {
 	    var x = v[0], y = v[1], z = v[2];
 
 	    out[0] = a[0] * x;
@@ -2724,47 +2358,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[15] = a[15];
 	    return out;
 	};
-
-	/**
-	 * Scales the mat4 by the dimensions in the given vec3 using vectorization
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to scale
-	 * @param {vec3} v the vec3 to scale the matrix by
-	 * @returns {mat4} out
-	 **/
-	mat4.SIMD.scale = function(out, a, v) {
-	    var a0, a1, a2;
-	    var vec = SIMD.Float32x4(v[0], v[1], v[2], 0);
-
-	    a0 = SIMD.Float32x4.load(a, 0);
-	    SIMD.Float32x4.store(
-	        out, 0, SIMD.Float32x4.mul(a0, SIMD.Float32x4.swizzle(vec, 0, 0, 0, 0)));
-
-	    a1 = SIMD.Float32x4.load(a, 4);
-	    SIMD.Float32x4.store(
-	        out, 4, SIMD.Float32x4.mul(a1, SIMD.Float32x4.swizzle(vec, 1, 1, 1, 1)));
-
-	    a2 = SIMD.Float32x4.load(a, 8);
-	    SIMD.Float32x4.store(
-	        out, 8, SIMD.Float32x4.mul(a2, SIMD.Float32x4.swizzle(vec, 2, 2, 2, 2)));
-
-	    out[12] = a[12];
-	    out[13] = a[13];
-	    out[14] = a[14];
-	    out[15] = a[15];
-	    return out;
-	};
-
-	/**
-	 * Scales the mat4 by the dimensions in the given vec3 using SIMD if available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to scale
-	 * @param {vec3} v the vec3 to scale the matrix by
-	 * @returns {mat4} out
-	 */
-	mat4.scale = glMatrix.USE_SIMD ? mat4.SIMD.scale : mat4.scalar.scale;
 
 	/**
 	 * Rotates a mat4 by the given angle around the given axis
@@ -2830,14 +2423,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Rotates a matrix by the given angle around the X axis not using SIMD
+	 * Rotates a matrix by the given angle around the X axis
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the matrix to rotate
 	 * @param {Number} rad the angle to rotate the matrix by
 	 * @returns {mat4} out
 	 */
-	mat4.scalar.rotateX = function (out, a, rad) {
+	mat4.rotateX = function (out, a, rad) {
 	    var s = Math.sin(rad),
 	        c = Math.cos(rad),
 	        a10 = a[4],
@@ -2873,57 +2466,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Rotates a matrix by the given angle around the X axis using SIMD
+	 * Rotates a matrix by the given angle around the Y axis
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the matrix to rotate
 	 * @param {Number} rad the angle to rotate the matrix by
 	 * @returns {mat4} out
 	 */
-	mat4.SIMD.rotateX = function (out, a, rad) {
-	    var s = SIMD.Float32x4.splat(Math.sin(rad)),
-	        c = SIMD.Float32x4.splat(Math.cos(rad));
-
-	    if (a !== out) { // If the source and destination differ, copy the unchanged rows
-	      out[0]  = a[0];
-	      out[1]  = a[1];
-	      out[2]  = a[2];
-	      out[3]  = a[3];
-	      out[12] = a[12];
-	      out[13] = a[13];
-	      out[14] = a[14];
-	      out[15] = a[15];
-	    }
-
-	    // Perform axis-specific matrix multiplication
-	    var a_1 = SIMD.Float32x4.load(a, 4);
-	    var a_2 = SIMD.Float32x4.load(a, 8);
-	    SIMD.Float32x4.store(out, 4,
-	                         SIMD.Float32x4.add(SIMD.Float32x4.mul(a_1, c), SIMD.Float32x4.mul(a_2, s)));
-	    SIMD.Float32x4.store(out, 8,
-	                         SIMD.Float32x4.sub(SIMD.Float32x4.mul(a_2, c), SIMD.Float32x4.mul(a_1, s)));
-	    return out;
-	};
-
-	/**
-	 * Rotates a matrix by the given angle around the X axis using SIMD if availabe and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to rotate
-	 * @param {Number} rad the angle to rotate the matrix by
-	 * @returns {mat4} out
-	 */
-	mat4.rotateX = glMatrix.USE_SIMD ? mat4.SIMD.rotateX : mat4.scalar.rotateX;
-
-	/**
-	 * Rotates a matrix by the given angle around the Y axis not using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to rotate
-	 * @param {Number} rad the angle to rotate the matrix by
-	 * @returns {mat4} out
-	 */
-	mat4.scalar.rotateY = function (out, a, rad) {
+	mat4.rotateY = function (out, a, rad) {
 	    var s = Math.sin(rad),
 	        c = Math.cos(rad),
 	        a00 = a[0],
@@ -2959,57 +2509,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Rotates a matrix by the given angle around the Y axis using SIMD
+	 * Rotates a matrix by the given angle around the Z axis
 	 *
 	 * @param {mat4} out the receiving matrix
 	 * @param {mat4} a the matrix to rotate
 	 * @param {Number} rad the angle to rotate the matrix by
 	 * @returns {mat4} out
 	 */
-	mat4.SIMD.rotateY = function (out, a, rad) {
-	    var s = SIMD.Float32x4.splat(Math.sin(rad)),
-	        c = SIMD.Float32x4.splat(Math.cos(rad));
-
-	    if (a !== out) { // If the source and destination differ, copy the unchanged rows
-	        out[4]  = a[4];
-	        out[5]  = a[5];
-	        out[6]  = a[6];
-	        out[7]  = a[7];
-	        out[12] = a[12];
-	        out[13] = a[13];
-	        out[14] = a[14];
-	        out[15] = a[15];
-	    }
-
-	    // Perform axis-specific matrix multiplication
-	    var a_0 = SIMD.Float32x4.load(a, 0);
-	    var a_2 = SIMD.Float32x4.load(a, 8);
-	    SIMD.Float32x4.store(out, 0,
-	                         SIMD.Float32x4.sub(SIMD.Float32x4.mul(a_0, c), SIMD.Float32x4.mul(a_2, s)));
-	    SIMD.Float32x4.store(out, 8,
-	                         SIMD.Float32x4.add(SIMD.Float32x4.mul(a_0, s), SIMD.Float32x4.mul(a_2, c)));
-	    return out;
-	};
-
-	/**
-	 * Rotates a matrix by the given angle around the Y axis if SIMD available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to rotate
-	 * @param {Number} rad the angle to rotate the matrix by
-	 * @returns {mat4} out
-	 */
-	 mat4.rotateY = glMatrix.USE_SIMD ? mat4.SIMD.rotateY : mat4.scalar.rotateY;
-
-	/**
-	 * Rotates a matrix by the given angle around the Z axis not using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to rotate
-	 * @param {Number} rad the angle to rotate the matrix by
-	 * @returns {mat4} out
-	 */
-	mat4.scalar.rotateZ = function (out, a, rad) {
+	mat4.rotateZ = function (out, a, rad) {
 	    var s = Math.sin(rad),
 	        c = Math.cos(rad),
 	        a00 = a[0],
@@ -3043,49 +2550,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    out[7] = a13 * c - a03 * s;
 	    return out;
 	};
-
-	/**
-	 * Rotates a matrix by the given angle around the Z axis using SIMD
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to rotate
-	 * @param {Number} rad the angle to rotate the matrix by
-	 * @returns {mat4} out
-	 */
-	mat4.SIMD.rotateZ = function (out, a, rad) {
-	    var s = SIMD.Float32x4.splat(Math.sin(rad)),
-	        c = SIMD.Float32x4.splat(Math.cos(rad));
-
-	    if (a !== out) { // If the source and destination differ, copy the unchanged last row
-	        out[8]  = a[8];
-	        out[9]  = a[9];
-	        out[10] = a[10];
-	        out[11] = a[11];
-	        out[12] = a[12];
-	        out[13] = a[13];
-	        out[14] = a[14];
-	        out[15] = a[15];
-	    }
-
-	    // Perform axis-specific matrix multiplication
-	    var a_0 = SIMD.Float32x4.load(a, 0);
-	    var a_1 = SIMD.Float32x4.load(a, 4);
-	    SIMD.Float32x4.store(out, 0,
-	                         SIMD.Float32x4.add(SIMD.Float32x4.mul(a_0, c), SIMD.Float32x4.mul(a_1, s)));
-	    SIMD.Float32x4.store(out, 4,
-	                         SIMD.Float32x4.sub(SIMD.Float32x4.mul(a_1, c), SIMD.Float32x4.mul(a_0, s)));
-	    return out;
-	};
-
-	/**
-	 * Rotates a matrix by the given angle around the Z axis if SIMD available and enabled
-	 *
-	 * @param {mat4} out the receiving matrix
-	 * @param {mat4} a the matrix to rotate
-	 * @param {Number} rad the angle to rotate the matrix by
-	 * @returns {mat4} out
-	 */
-	 mat4.rotateZ = glMatrix.USE_SIMD ? mat4.SIMD.rotateZ : mat4.scalar.rotateZ;
 
 	/**
 	 * Creates a matrix from a vector translation
@@ -3355,37 +2819,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Creates a new mat4 from a dual quat.
-	 *
-	 * @param {mat4} out Matrix
-	 * @param {quat2} a Dual Quaternion
-	 * @returns {mat4} mat4 receiving operation result
-	 */
-	mat4.fromQuat2 = function(out, a) {
-	    //var normalizedA = quat2.create();
-	    //quat2.normalize(normalizedA, a);
-	    //quat2.getTranslation(translation, normalizedA);
-	    var translation = new glMatrix.ARRAY_TYPE(3);
-	    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-	    ax = a[4], ay = a[5], az = a[6], aw = a[7];
-	    
-	    var magnitude = bx * bx + by * by + bz * bz + bw * bw;
-	    //Only scale if it makes sense
-	    if (magnitude > 0) {
-	        //We can drop the Math.sqrt because mathemagic
-	        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2 / magnitude;
-	        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2 / magnitude;
-	        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2 / magnitude;
-	    } else {
-	        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
-	        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
-	        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
-	    }
-	    mat4.fromRotationTranslation(out, a, translation);
-	    return out;
-	};
-
-	/**
 	 * Returns the translation vector component of a transformation
 	 *  matrix. If a matrix is built with fromRotationTranslation,
 	 *  the returned vector will be the same as the translation vector
@@ -3405,7 +2838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Returns the scaling factor component of a transformation
 	 *  matrix. If a matrix is built with fromRotationTranslationScale
-	 *  with a normalized Quaternion paramter, the returned vector will be 
+	 *  with a normalized Quaternion paramter, the returned vector will be
 	 *  the same as the scaling vector
 	 *  originally supplied.
 	 * @param  {vec3} out Vector to receive scaling factor component
@@ -3444,25 +2877,25 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var trace = mat[0] + mat[5] + mat[10];
 	  var S = 0;
 
-	  if (trace > 0) { 
+	  if (trace > 0) {
 	    S = Math.sqrt(trace + 1.0) * 2;
 	    out[3] = 0.25 * S;
 	    out[0] = (mat[6] - mat[9]) / S;
-	    out[1] = (mat[8] - mat[2]) / S; 
-	    out[2] = (mat[1] - mat[4]) / S; 
-	  } else if ((mat[0] > mat[5])&(mat[0] > mat[10])) { 
+	    out[1] = (mat[8] - mat[2]) / S;
+	    out[2] = (mat[1] - mat[4]) / S;
+	  } else if ((mat[0] > mat[5])&(mat[0] > mat[10])) {
 	    S = Math.sqrt(1.0 + mat[0] - mat[5] - mat[10]) * 2;
 	    out[3] = (mat[6] - mat[9]) / S;
 	    out[0] = 0.25 * S;
-	    out[1] = (mat[1] + mat[4]) / S; 
-	    out[2] = (mat[8] + mat[2]) / S; 
-	  } else if (mat[5] > mat[10]) { 
+	    out[1] = (mat[1] + mat[4]) / S;
+	    out[2] = (mat[8] + mat[2]) / S;
+	  } else if (mat[5] > mat[10]) {
 	    S = Math.sqrt(1.0 + mat[5] - mat[0] - mat[10]) * 2;
 	    out[3] = (mat[8] - mat[2]) / S;
-	    out[0] = (mat[1] + mat[4]) / S; 
+	    out[0] = (mat[1] + mat[4]) / S;
 	    out[1] = 0.25 * S;
-	    out[2] = (mat[6] + mat[9]) / S; 
-	  } else { 
+	    out[2] = (mat[6] + mat[9]) / S;
+	  } else {
 	    S = Math.sqrt(1.0 + mat[10] - mat[0] - mat[5]) * 2;
 	    out[3] = (mat[1] - mat[4]) / S;
 	    out[0] = (mat[8] + mat[2]) / S;
@@ -3869,6 +3302,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return out;
 	};
 
+
+	/**
+	 * Generates a matrix that makes something look at something else.
+	 *
+	 * @param {mat4} out mat4 frustum matrix will be written into
+	 * @param {vec3} eye Position of the viewer
+	 * @param {vec3} center Point the viewer is looking at
+	 * @param {vec3} up vec3 pointing up
+	 * @returns {mat4} out
+	 */
+
+	mat4.targetTo = function(out, eye, target, up) {
+	    var eyex = eye[0],
+	        eyey = eye[1],
+	        eyez = eye[2],
+	        upx = up[0],
+	        upy = up[1],
+	        upz = up[2];
+	        
+	    var z0 = eyex - target[0], 
+	        z1 = eyey - target[1], 
+	        z2 = eyez - target[2];
+	        
+	    var len = z0*z0 + z1*z1 + z2*z2;
+	    if (len > 0) {
+	        len = 1 / Math.sqrt(len);
+	        z0 *= len;
+	        z1 *= len;
+	        z2 *= len;
+	    }
+
+	    var x0 = upy * z2 - upz * z1,
+	        x1 = upz * z0 - upx * z2,
+	        x2 = upx * z1 - upy * z0;
+
+	    out[0] = x0;
+	    out[1] = x1;
+	    out[2] = x2;
+	    out[3] = 0;
+	    out[4] = z1 * x2 - z2 * x1;
+	    out[5] = z2 * x0 - z0 * x2;
+	    out[6] = z0 * x1 - z1 * x0;
+	    out[7] = 0;
+	    out[8] = z0;
+	    out[9] = z1;
+	    out[10] = z2;
+	    out[11] = 0;
+	    out[12] = eyex;
+	    out[13] = eyey;
+	    out[14] = eyez;
+	    out[15] = 1;
+	    return out;
+	};
+
 	/**
 	 * Returns a string representation of a mat4
 	 *
@@ -4019,8 +3506,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {Boolean} True if the matrices are equal, false otherwise.
 	 */
 	mat4.exactEquals = function (a, b) {
-	    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && 
-	           a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && 
+	    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] &&
+	           a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] &&
 	           a[8] === b[8] && a[9] === b[9] && a[10] === b[10] && a[11] === b[11] &&
 	           a[12] === b[12] && a[13] === b[13] && a[14] === b[14] && a[15] === b[15];
 	};
@@ -4034,13 +3521,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */
 	mat4.equals = function (a, b) {
 	    var a0  = a[0],  a1  = a[1],  a2  = a[2],  a3  = a[3],
-	        a4  = a[4],  a5  = a[5],  a6  = a[6],  a7  = a[7], 
-	        a8  = a[8],  a9  = a[9],  a10 = a[10], a11 = a[11], 
+	        a4  = a[4],  a5  = a[5],  a6  = a[6],  a7  = a[7],
+	        a8  = a[8],  a9  = a[9],  a10 = a[10], a11 = a[11],
 	        a12 = a[12], a13 = a[13], a14 = a[14], a15 = a[15];
 
 	    var b0  = b[0],  b1  = b[1],  b2  = b[2],  b3  = b[3],
-	        b4  = b[4],  b5  = b[5],  b6  = b[6],  b7  = b[7], 
-	        b8  = b[8],  b9  = b[9],  b10 = b[10], b11 = b[11], 
+	        b4  = b[4],  b5  = b[5],  b6  = b[6],  b7  = b[7],
+	        b8  = b[8],  b9  = b[9],  b10 = b[10], b11 = b[11],
 	        b12 = b[12], b13 = b[13], b14 = b[14], b15 = b[15];
 
 	    return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
@@ -4066,9 +3553,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat4;
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -4672,9 +4159,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = quat;
 
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -5230,7 +4717,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *
 	 * @param {vec3} out the receiving vector
 	 * @param {vec3} a the vector to transform
-	 * @param {mat3} m the 3x3 matrix to transform with
+	 * @param {mat4} m the 3x3 matrix to transform with
 	 * @returns {vec3} out
 	 */
 	vec3.transformMat3 = function(out, a, m) {
@@ -5243,7 +4730,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Transforms the vec3 with a quat
-	 * Can also be used for dual quaternions. (Multiply it with the real part)
 	 *
 	 * @param {vec3} out the receiving vector
 	 * @param {vec3} a the vector to transform
@@ -5251,31 +4737,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {vec3} out
 	 */
 	vec3.transformQuat = function(out, a, q) {
-	    // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
-	    var qx = q[0], qy = q[1], qz = q[2], qw = q[3];
-	    var x = a[0], y = a[1], z = a[2];
-	    // var qvec = [qx, qy, qz];
-	    // var uv = vec3.cross([], qvec, a);
-	    var uvx = qy * z - qz * y,
-	        uvy = qz * x - qx * z,
-	        uvz = qx * y - qy * x;
-	    // var uuv = vec3.cross([], qvec, uv);
-	    var uuvx = qy * uvz - qz * uvy,
-	        uuvy = qz * uvx - qx * uvz,
-	        uuvz = qx * uvy - qy * uvx;
-	    // vec3.scale(uv, uv, 2 * w);
-	    var w2 = qw * 2;
-	    uvx *= w2;
-	    uvy *= w2;
-	    uvz *= w2;
-	    // vec3.scale(uuv, uuv, 2);
-	    uuvx *= 2;
-	    uuvy *= 2;
-	    uuvz *= 2;
-	    // return vec3.add(out, a, vec3.add(out, uv, uuv));
-	    out[0] = x + uvx + uuvx;
-	    out[1] = y + uvy + uuvy;
-	    out[2] = z + uvz + uuvz;
+	    // benchmarks: http://jsperf.com/quaternion-transform-vec3-implementations
+
+	    var x = a[0], y = a[1], z = a[2],
+	        qx = q[0], qy = q[1], qz = q[2], qw = q[3],
+
+	        // calculate quat * vec
+	        ix = qw * x + qy * z - qz * y,
+	        iy = qw * y + qz * x - qx * z,
+	        iz = qw * z + qx * y - qy * x,
+	        iw = -qx * x - qy * y - qz * z;
+
+	    // calculate result * inverse quat
+	    out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
+	    out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
+	    out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
 	    return out;
 	};
 
@@ -5420,8 +4896,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 
 	    var cosine = vec3.dot(tempA, tempB);
 
-	    if(cosine > 1.0){
+	    if(cosine > 1.0) {
 	        return 0;
+	    }
+	    else if(cosine < -1.0) {
+	        return Math.PI;
 	    } else {
 	        return Math.acos(cosine);
 	    }     
@@ -5466,9 +4945,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = vec3;
 
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -6081,9 +5560,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = vec4;
 
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -6674,908 +6153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = vec2;
 
 
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
-
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
-
-	The above copyright notice and this permission notice shall be included in
-	all copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	THE SOFTWARE. */
-
-	var glMatrix = __webpack_require__(1);
-	var quat = __webpack_require__(6);
-	var mat4 = __webpack_require__(5);
-	//NOTE: Quaternions are in XYZW format!
-	//NOTE: [real dual]
-	//NOTE: Dual Quaternions need to be normalized, otherwise some functions won't work!
-	//TODO: slerp and co.
-	//TODO: rotate(out, a, rad, axis) 
-	//TODO: quat2.forEach
-
-	//LINKS: https://github.com/bobbens/libdq
-	//https://github.com/markaren/DualQuaternion/tree/master/src/main/java/info/laht/dualquat
-	//http://wscg.zcu.cz/wscg2012/short/A29-full.pdf
-	//http://www.xbdev.net/misc_demos/demos/dual_quaternions_beyond/paper.pdf
-	//https://github.com/mosra/magnum/blob/master/src/Magnum/Math/DualQuaternion.h#L364
-	//http://mosra.cz/blog/magnum-doc/classMagnum_1_1Math_1_1DualQuaternion.html#a6dcad20c0e9c7c9361b9c291ee42b181
-	/**
-	 * @class Dual Quaternion<br>Format: [[real],[dual]]<br>Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.
-	 * @name quat2
-	 */
-	var quat2 = {};
-
-	/**
-	 * Creates a new identity dual quat
-	 *
-	 * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
-	 */
-	quat2.create = function() {
-	    var dq = new glMatrix.ARRAY_TYPE(8);
-	    dq[0] = 0;
-	    dq[1] = 0;
-	    dq[2] = 0;
-	    dq[3] = 1;
-	    dq[4] = 0;
-	    dq[5] = 0;
-	    dq[6] = 0;
-	    dq[7] = 0;
-	    return dq;
-	};
-
-	/**
-	 * Creates a new quat initialized with values from an existing quaternion
-	 *
-	 * @param {quat2} a dual quaternion to clone
-	 * @returns {quat2} new dual quaternion
-	 * @function
-	 */
-	quat2.clone = function(a) {
-	    var dq = new glMatrix.ARRAY_TYPE(8);
-	    dq[0] = a[0];
-	    dq[1] = a[1];
-	    dq[2] = a[2];
-	    dq[3] = a[3];
-	    dq[4] = a[4];
-	    dq[5] = a[5];
-	    dq[6] = a[6];
-	    dq[7] = a[7];
-	    return dq;
-	};
-
-	/**
-	 * Creates a new dual quat initialized with the given values
-	 *
-	 * @param {Number} x1 X component
-	 * @param {Number} y1 Y component
-	 * @param {Number} z1 Z component
-	 * @param {Number} w1 W component
-	 * @param {Number} x2 X component
-	 * @param {Number} y2 Y component
-	 * @param {Number} z2 Z component
-	 * @param {Number} w2 W component
-	 * @returns {quat2} new dual quaternion
-	 * @function
-	 */
-	quat2.fromValues = function(x1, y1, z1, w1, x2, y2, z2, w2) {
-	    var dq = new glMatrix.ARRAY_TYPE(8);
-	    dq[0] = x1;
-	    dq[1] = y1;
-	    dq[2] = z1;
-	    dq[3] = w1;
-	    dq[4] = x2;
-	    dq[5] = y2;
-	    dq[6] = z2;
-	    dq[7] = w2;
-	    return dq;
-	};
-
-	/**
-	 * Creates a new dual quat from the given values (quat and translation)
-	 *
-	 * @param {Number} x1 X component
-	 * @param {Number} y1 Y component
-	 * @param {Number} z1 Z component
-	 * @param {Number} w1 W component
-	 * @param {Number} x2 X component (translation)
-	 * @param {Number} y2 Y component (translation)
-	 * @param {Number} z2 Z component (translation)
-	 * @returns {quat2} new dual quaternion
-	 * @function
-	 */
-	quat2.fromRotationTranslationValues = function(x1, y1, z1, w1, x2, y2, z2) {
-	    var dq = new glMatrix.ARRAY_TYPE(8);
-	    dq[0] = x1;
-	    dq[1] = y1;
-	    dq[2] = z1;
-	    dq[3] = w1;
-	    var ax = x2 * 0.5, ay = y2 * 0.5, az = z2 * 0.5;
-	    dq[4] =  ax * w1 + ay * z1 - az * y1;
-	    dq[5] =  ay * w1 + az * x1 - ax * z1;
-	    dq[6] =  az * w1 + ax * y1 - ay * x1;
-	    dq[7] = -ax * x1 - ay * y1 - az * z1;
-	    return dq;
-	};
-
-	/**
-	 * Creates a dual quat from a quaternion and a translation
-	 *
-	 * @param {quat2} dual quaternion receiving operation result
-	 * @param {quat} q quaternion
-	 * @param {vec3} t tranlation vector
-	 * @returns {quat2} dual quaternion receiving operation result
-	 * @function
-	 */
-	quat2.fromRotationTranslation = function(out, q, t) {
-	    var ax = t[0] * 0.5, ay = t[1] * 0.5, az = t[2] * 0.5,
-	        bx = q[0], by = q[1], bz = q[2], bw = q[3];
-	    //quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
-	    //quat.multiply(out[1], out[1], out[0]);
-	    out[0] = bx;
-	    out[1] = by;
-	    out[2] = bz;
-	    out[3] = bw;
-	    out[4] =  ax * bw + ay * bz - az * by;
-	    out[5] =  ay * bw + az * bx - ax * bz;
-	    out[6] =  az * bw + ax * by - ay * bx;
-	    out[7] = -ax * bx - ay * by - az * bz;
-	    return out;
-	};
-
-	/**
-	 * Creates a dual quat from a translation
-	 *
-	 * @param {quat2} dual quaternion receiving operation result
-	 * @param {vec3} t translation vector
-	 * @returns {quat2} dual quaternion receiving operation result
-	 * @function
-	 */
-	quat2.fromTranslation = function(out, t) {
-	    out[0] = 0;
-	    out[1] = 0;
-	    out[2] = 0;
-	    out[3] = 1;
-	    out[4] = t[0] * 0.5;
-	    out[5] = t[1] * 0.5;
-	    out[6] = t[2] * 0.5;
-	    out[7] = 0;
-	    return out;
-	};
-
-	/**
-	 * Creates a dual quat from a quaternion
-	 *
-	 * @param {quat2} dual quaternion receiving operation result
-	 * @param {quat} q the quaternion
-	 * @returns {quat2} dual quaternion receiving operation result
-	 * @function
-	 */
-	quat2.fromRotation = function(out, q) {
-	    out[0] = q[0];
-	    out[1] = q[1];
-	    out[2] = q[2];
-	    out[3] = q[3];
-	    out[4] = 0;
-	    out[5] = 0;
-	    out[6] = 0;
-	    out[7] = 0;
-	    return out;
-	};
-
-	/**
-	 * Creates a new dual quat from a matrix (4x4)
-	 * 
-	 * @param {quat2} out the dual quaternion
-	 * @param {mat4} a the matrix
-	 * @returns {quat2} dual quat receiving operation result
-	 * @function
-	 */
-	quat2.fromMat4 = function(out, a) {
-	    //TODO Optimize this 
-	    var outer = quat.create();
-	    mat4.getRotation(outer, a);
-	    var t = new glMatrix.ARRAY_TYPE(3);
-	    mat4.getTranslation(t, a);
-	    quat2.fromRotationTranslation(out, outer, t);
-	    //quat.multiply(out[1], [t[0], t[1], t[2], 0], out[0]);
-	    //quat.scale(out[1], out[1], 0.5);
-	    return out;
-	};
-
-	/**
-	 * Copy the values from one dual quat to another
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the source dual quaternion
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.copy = function(out, a) {
-	    out[0] = a[0];
-	    out[1] = a[1];
-	    out[2] = a[2];
-	    out[3] = a[3];
-	    out[4] = a[4];
-	    out[5] = a[5];
-	    out[6] = a[6];
-	    out[7] = a[7];
-	    return out;
-	};
-
-	/**
-	 * Set a dual quat to the identity dual quaternion
-	 *
-	 * @param {quat2} out the receiving quaternion
-	 * @returns {quat2} out
-	 */
-	quat2.identity = function(out) {
-	    out[0] = 0;
-	    out[1] = 0;
-	    out[2] = 0;
-	    out[3] = 1;
-	    out[4] = 0;
-	    out[5] = 0;
-	    out[6] = 0;
-	    out[7] = 0;
-	    return out;
-	};
-
-	/**
-	 * Set the components of a dual quat to the given values
-	 *
-	 * @param {quat2} out the receiving quaternion
-	 * @param {Number} x1 X component
-	 * @param {Number} y1 Y component
-	 * @param {Number} z1 Z component
-	 * @param {Number} w1 W component
-	 * @param {Number} x2 X component
-	 * @param {Number} y2 Y component
-	 * @param {Number} z2 Z component
-	 * @param {Number} w2 W component
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.set = function(out, x1, y1, z1, w1, x2, y2, z2, w2) {
-	    out[0] = x1;
-	    out[1] = y1;
-	    out[2] = z1;
-	    out[3] = w1;
-
-	    out[4] = x2;
-	    out[5] = y2;
-	    out[6] = z2;
-	    out[7] = w2;
-	    return out;
-	};
-
-	/**
-	 * Gets the real part of a dual quat
-	 * @param  {quat} out real part
-	 * @param  {quat2} a Dual Quaternion
-	 * @return {quat} real part
-	 */
-	quat2.getReal = quat.copy;
-
-	/**
-	 * Gets the dual part of a dual quat
-	 * @param  {quat} out dual part
-	 * @param  {quat2} a Dual Quaternion
-	 * @return {quat} dual part
-	 */
-	quat2.getDual = function(out, a) {
-	    out[0] = a[4];
-	    out[1] = a[5];
-	    out[2] = a[6];
-	    out[3] = a[7];
-	    return out;
-	};
-
-	/**
-	 * Set the real component of a dual quat to the given quaternion
-	 *
-	 * @param {quat2} out the receiving quaternion
-	 * @param {quat} q a quaternion representing the real part
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.setReal = quat.copy;
-
-	/**
-	 * Set the dual component of a dual quat to the given quaternion
-	 *
-	 * @param {quat2} out the receiving quaternion
-	 * @param {quat} q a quaternion representing the dual part
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.setDual = function(out, q) {
-	    out[4] = q[0];
-	    out[5] = q[1];
-	    out[6] = q[2];
-	    out[7] = q[3];
-	    return out;
-	};
-
-	/**
-	 * Gets the translation of a normalized dual quat
-	 * @param  {vec3} out translation
-	 * @param  {quat2} a Dual Quaternion to be decomposed
-	 * @return {vec3} translation
-	 */
-	quat2.getTranslation = function(out, a) {
-	    //var q = new glMatrix.ARRAY_TYPE(4);
-	    //quat.conjugate(q, a[0]);
-	    //quat.multiply(q, a[1], q);
-	    //quat.scale(q, q, 2);
-	    //out[0] = q[0];
-	    //out[1] = q[1];
-	    //out[2] = q[2];
-	    
-	    var ax = a[4], ay = a[5], az = a[6], aw = a[7],
-	        bx = -a[0], by = -a[1], bz = -a[2], bw = a[3];
-	    out[0] = (ax * bw + aw * bx + ay * bz - az * by)*2;
-	    out[1] = (ay * bw + aw * by + az * bx - ax * bz)*2;
-	    out[2] = (az * bw + aw * bz + ax * by - ay * bx)*2;
-	    return out;
-	};
-
-	/**
-	 * Translates a dual quat by the given vector
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the dual quaternion to translate
-	 * @param {vec3} v vector to translate by
-	 * @returns {quat2} out
-	 */
-	quat2.translate = function(out, a, v) {
-	    //var trans = quat2.create();
-	    //quat2.fromTranslation(trans, v);
-	    //quat2.multiply(out, a, trans);
-
-	    var ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3],
-	        bx1 = v[0] * 0.5, by1 = v[1] * 0.5, bz1 = v[2] * 0.5,
-	        ax2 = a[4], ay2 = a[5], az2 = a[6], aw2 = a[7];
-	    out[0] = ax1;
-	    out[1] = ay1;
-	    out[2] = az1;
-	    out[3] = aw1;
-	    out[4] =  aw1 * bx1 + ay1 * bz1 - az1 * by1 + ax2;
-	    out[5] =  aw1 * by1 + az1 * bx1 - ax1 * bz1 + ay2;
-	    out[6] =  aw1 * bz1 + ax1 * by1 - ay1 * bx1 + az2;
-	    out[7] = -ax1 * bx1 - ay1 * by1 - az1 * bz1 + aw2;
-	    return out;
-	};
-
-	/**
-	 * Rotates a dual quat around the X axis
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the dual quaternion to rotate
-	 * @param {number} rad how far should the rotation be
-	 * @returns {quat2} out
-	 */
-	quat2.rotateX = function(out, a, rad) {
-	    //Get the translation
-	    //var t = new glMatrix.ARRAY_TYPE(4);
-	    //quat.conjugate(t, a[0]);
-	    //quat.multiply(t, a[1], t);
-	    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-	        ax = a[4], ay = a[5], az = a[6], aw = a[7];
-	    //Trans
-	    var ax1 = ax * bw + aw * bx + ay * bz - az * by,
-	    ay1 = ay * bw + aw * by + az * bx - ax * bz,
-	    az1 = az * bw + aw * bz + ax * by - ay * bx,
-	    aw1 = aw * bw - ax * bx - ay * by - az * bz;
-	    //Rotate it 
-	    quat.rotateX(out, a, rad);
-	    //quat.multiply(out[1], t, out[0]);
-	    bx = out[0]; by = out[1]; bz = out[2]; bw = out[3];
-	    out[4] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
-	    out[5] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
-	    out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
-	    out[7] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
-	    return out;
-	};
-
-	/**
-	 * Rotates a dual quat around the Y axis
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the dual quaternion to rotate
-	 * @param {number} rad how far should the rotation be
-	 * @returns {quat2} out
-	 */
-	quat2.rotateY = function(out, a, rad) {
-	    //Get the translation
-	    //var t = new glMatrix.ARRAY_TYPE(4);
-	    //quat.conjugate(t, a[0]);
-	    //quat.multiply(t, a[1], t);
-	    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-	    ax = a[4], ay = a[5], az = a[6], aw = a[7];
-	    //Trans
-	    var ax1 = ax * bw + aw * bx + ay * bz - az * by,
-	    ay1 = ay * bw + aw * by + az * bx - ax * bz,
-	    az1 = az * bw + aw * bz + ax * by - ay * bx,
-	    aw1 = aw * bw - ax * bx - ay * by - az * bz;
-	    //Rotate it 
-	    quat.rotateY(out, a, rad);
-	    //quat.multiply(out[1], t, out[0]);
-	    bx = out[0]; by = out[1]; bz = out[2]; bw = out[3];
-	    out[4] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
-	    out[5] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
-	    out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
-	    out[7] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
-	    return out;
-	};
-
-	/**
-	 * Rotates a dual quat around the Z axis
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the dual quaternion to rotate
-	 * @param {number} rad how far should the rotation be
-	 * @returns {quat2} out
-	 */
-	quat2.rotateZ = function(out, a, rad) {
-	    //Get the translation
-	    //var t = new glMatrix.ARRAY_TYPE(4);
-	    //quat.conjugate(t, a[0]);
-	    //quat.multiply(t, a[1], t);
-	    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-	    ax = a[4], ay = a[5], az = a[6], aw = a[7];
-	    //Trans
-	    var ax1 = ax * bw + aw * bx + ay * bz - az * by,
-	    ay1 = ay * bw + aw * by + az * bx - ax * bz,
-	    az1 = az * bw + aw * bz + ax * by - ay * bx,
-	    aw1 = aw * bw - ax * bx - ay * by - az * bz;
-	    //Rotate it 
-	    quat.rotateZ(out, a, rad);
-	    //quat.multiply(out[1], t, out[0]);
-	    bx = out[0]; by = out[1]; bz = out[2]; bw = out[3];
-	    out[4] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
-	    out[5] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
-	    out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
-	    out[7] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
-	    return out;
-	};
-
-	/**
-	 * Rotates a dual quat by a given quaternion (a * q)
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the dual quaternion to rotate
-	 * @param {quat} q quaternion to rotate by
-	 * @returns {quat2} out
-	 */
-	quat2.rotateByQuatAppend = function(out, a, q) {
-	    var qx = q[0], qy = q[1], qz = q[2], qw = q[3],
-	        ax = a[0], ay = a[1], az = a[2], aw = a[3];
-
-	    out[0] = ax * qw + aw * qx + ay * qz - az * qy;
-	    out[1] = ay * qw + aw * qy + az * qx - ax * qz;
-	    out[2] = az * qw + aw * qz + ax * qy - ay * qx;
-	    out[3] = aw * qw - ax * qx - ay * qy - az * qz;
-	    ax = a[4]; ay = a[5]; az = a[6]; aw = a[7];
-	    out[4] = ax * qw + aw * qx + ay * qz - az * qy;
-	    out[5] = ay * qw + aw * qy + az * qx - ax * qz;
-	    out[6] = az * qw + aw * qz + ax * qy - ay * qx;
-	    out[7] = aw * qw - ax * qx - ay * qy - az * qz;
-	    return out;
-	};
-
-	/**
-	 * Rotates a dual quat by a given quaternion (q * a)
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat} q quaternion to rotate by
-	 * @param {quat2} a the dual quaternion to rotate
-	 * @returns {quat2} out
-	 */
-	quat2.rotateByQuatPrepend = function(out, q, a) {
-	    var qx = q[0], qy = q[1], qz = q[2], qw = q[3],
-	        bx = a[0], by = a[1], bz = a[2], bw = a[3];
-
-	    out[0] = qx * bw + qw * bx + qy * bz - qz * by;
-	    out[1] = qy * bw + qw * by + qz * bx - qx * bz;
-	    out[2] = qz * bw + qw * bz + qx * by - qy * bx;
-	    out[3] = qw * bw - qx * bx - qy * by - qz * bz;
-	    bx = a[4]; by = a[5]; bz = a[6]; bw = a[7];
-	    out[4] = qx * bw + qw * bx + qy * bz - qz * by;
-	    out[5] = qy * bw + qw * by + qz * bx - qx * bz;
-	    out[6] = qz * bw + qw * bz + qx * by - qy * bx;
-	    out[7] = qw * bw - qx * bx - qy * by - qz * bz;
-	    return out;
-	};
-
-	/**
-	 * Rotates a dual quat around a given axis. Does the normalisation automatically
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the dual quaternion to rotate
-	 * @param {vec3} axis the axis to rotate around
-	 * @param {Number} rad how far the rotation should be
-	 * @returns {quat2} out
-	 */
-	quat2.rotateAroundAxis = function(out, a, axis, rad) {
-	    //Special case for rad = 0
-	    if(Math.abs(rad) < glMatrix.EPSILON) {
-	        return quat2.copy(out, a);
-	    }
-	    var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
-	    //var normalizedAxis = new glMatrix.ARRAY_TYPE(3);
-	    //normalizedAxis[0] = axis[0] / axisLength;
-	    //normalizedAxis[1] = axis[1] / axisLength;
-	    //normalizedAxis[2] = axis[2] / axisLength;
-	    //var tempAxis = new glMatrix.ARRAY_TYPE(4);
-	    //quat.setAxisAngle(tempAxis, normalizedAxis, rad);
-	    
-	    rad = rad * 0.5;
-	    var s = Math.sin(rad);
-	    var bx = s * axis[0] / axisLength;
-	    var by = s * axis[1] / axisLength;
-	    var bz = s * axis[2] / axisLength;
-	    var bw = Math.cos(rad);
-
-	    //quat.multiply(out[0], a[0], tempAxis);
-	    //quat.multiply(out[1], a[1], tempAxis);
-	    var ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3];
-	    out[0] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
-	    out[1] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
-	    out[2] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
-	    out[3] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
-	    
-	    var ax = a[4], ay = a[5], az = a[6], aw = a[7];
-	    out[4] = ax * bw + aw * bx + ay * bz - az * by;
-	    out[5] = ay * bw + aw * by + az * bx - ax * bz;
-	    out[6] = az * bw + aw * bz + ax * by - ay * bx;
-	    out[7] = aw * bw - ax * bx - ay * by - az * bz;
-	    
-	    return out;
-	};
-
-	/**
-	 * Adds two dual quat's
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the first operand
-	 * @param {quat2} b the second operand
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.add = function(out, a, b) {
-	    out[0] = a[0] + b[0];
-	    out[1] = a[1] + b[1];
-	    out[2] = a[2] + b[2];
-	    out[3] = a[3] + b[3];
-	    out[4] = a[4] + b[4];
-	    out[5] = a[5] + b[5];
-	    out[6] = a[6] + b[6];
-	    out[7] = a[7] + b[7];
-	    return out;
-	};
-
-	/**
-	 * Multiplies two dual quat's
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the first operand
-	 * @param {quat2} b the second operand
-	 * @returns {quat2} out
-	 */
-	quat2.multiply = function(out, a, b) {
-	    //e.g. Get rid of all those temp arrays
-	    //var tempReal = new glMatrix.ARRAY_TYPE(4);
-	    //quat.multiply(tempReal, a[0], b[0]);
-	    //var temp1 = new glMatrix.ARRAY_TYPE(4),
-	    //    temp2 = new glMatrix.ARRAY_TYPE(4);
-	    //quat.add(out[1], quat.multiply(temp1, a[0], b[1]), quat.multiply(temp2, a[1], b[0]));
-	    var ax0 = a[0], ay0 = a[1], az0 = a[2], aw0 = a[3],
-	        bx1 = b[4], by1 = b[5], bz1 = b[6], bw1 = b[7],
-	        ax1 = a[4], ay1 = a[5], az1 = a[6], aw1 = a[7],
-	        bx0 = b[0], by0 = b[1], bz0 = b[2], bw0 = b[3];
-	    out[0] = ax0 * bw0 + aw0 * bx0 + ay0 * bz0 - az0 * by0;
-	    out[1] = ay0 * bw0 + aw0 * by0 + az0 * bx0 - ax0 * bz0;
-	    out[2] = az0 * bw0 + aw0 * bz0 + ax0 * by0 - ay0 * bx0;
-	    out[3] = aw0 * bw0 - ax0 * bx0 - ay0 * by0 - az0 * bz0;
-	    out[4] = ax0 * bw1 + aw0 * bx1 + ay0 * bz1 - az0 * by1 + ax1 * bw0 + aw1 * bx0 + ay1 * bz0 - az1 * by0;
-	    out[5] = ay0 * bw1 + aw0 * by1 + az0 * bx1 - ax0 * bz1 + ay1 * bw0 + aw1 * by0 + az1 * bx0 - ax1 * bz0;
-	    out[6] = az0 * bw1 + aw0 * bz1 + ax0 * by1 - ay0 * bx1 + az1 * bw0 + aw1 * bz0 + ax1 * by0 - ay1 * bx0;
-	    out[7] = aw0 * bw1 - ax0 * bx1 - ay0 * by1 - az0 * bz1 + aw1 * bw0 - ax1 * bx0 - ay1 * by0 - az1 * bz0;
-	        
-	    //var ax = a[0][0], ay = a[0][1], az = a[0][2], aw = a[0][3],
-	    //    bx = b[1][0], by = b[1][1], bz = b[1][2], bw = b[1][3];
-	    
-	    //out[0][0] = tempReal[0];
-	    //out[0][1] = tempReal[1];
-	    //out[0][2] = tempReal[2];
-	    //out[0][3] = tempReal[3];
-	    //quat.multiply(out, a, b);
-
-	    //out[1][0] = a[0] + b[0];
-	    //out[1][1] = a[1] + b[1];
-	    //out[1][2] = a[2] + b[2];
-	    //out[1][3] = a[3] + b[3];
-	    return out;
-	};
-
-	/**
-	 * Alias for {@link quat2.multiply}
-	 * @function
-	 */
-	quat2.mul = quat2.multiply;
-
-	/**
-	 * Scales a dual quat by a scalar number
-	 *
-	 * @param {quat2} out the receiving dual quat
-	 * @param {quat2} a the dual quat to scale
-	 * @param {Number} b amount to scale the dual quat by
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.scale = function(out, a, b) {
-	    out[0] = a[0] * b;
-	    out[1] = a[1] * b;
-	    out[2] = a[2] * b;
-	    out[3] = a[3] * b;
-	    out[4] = a[4] * b;
-	    out[5] = a[5] * b;
-	    out[6] = a[6] * b;
-	    out[7] = a[7] * b;
-	    return out;
-	};
-
-	/**
-	 * Calculates the dot product of two dual quat's (The dot product of the real parts)
-	 *
-	 * @param {quat2} a the first operand
-	 * @param {quat2} b the second operand
-	 * @returns {Number} dot product of a and b
-	 * @function
-	 */
-	quat2.dot = quat.dot;
-
-	/**
-	 * Performs a linear interpolation between two dual quats's
-	 * NOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
-	 *
-	 * @param {quat2} out the receiving dual quat
-	 * @param {quat2} a the first operand
-	 * @param {quat2} b the second operand
-	 * @param {Number} t interpolation amount between the two inputs
-	 * @returns {quat2} out
-	 */
-	quat2.lerp = function(out, a, b, t) {
-	    /* (1-t)*q1+t*q2 
-	     -------------
-	     ||(1-t)*q1+t*q2|| -> length of it */
-	     
-	     //Or: q1+(q2-q1)*t 
-	     //^From: https://gist.github.com/XProger/def254d40a237cc0f0b2#file-quat-pas-L159
-	     
-	    //var tempOUT = quat2.create();
-	    //quat2.scale(tempOUT, a, 1 - t);
-	    var mt = 1 - t;
-	    //var tempDQ = quat2.create();
-	    if(quat2.dot(a, b) < 0) t = -t;
-	    //quat2.scale(tempDQ, b, t);
-	    //quat2.add(out, tempOUT, tempDQ);
-	    
-	    out[0] = a[0] * mt + b[0] * t;
-	    out[1] = a[1] * mt + b[1] * t;
-	    out[2] = a[2] * mt + b[2] * t;
-	    out[3] = a[3] * mt + b[3] * t;
-	    out[4] = a[4] * mt + b[4] * t;
-	    out[5] = a[5] * mt + b[5] * t;
-	    out[6] = a[6] * mt + b[6] * t;
-	    out[7] = a[7] * mt + b[7] * t;
-	    
-	    //Renormalizing the dual quat is left as an exercise to the user
-	    //quat2.scale(out, out, 1 / quat2.length(out));
-	    return out;
-	};
-
-	/**
-	 * Performs a spherical linear interpolation between two dual quats
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a the first operand
-	 * @param {quat2} b the second operand
-	 * @param {Number} t interpolation amount between the two inputs
-	 * @returns {quat2} out
-	 */
-	quat2.slerp = function(out, a, b, t) {
-	    /*
-	public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c to, float t )
-	{
-	 // Shortest path
-	 float dot = Quaternion.Dot(from.m_real, to.m_real);
-	 if ( dot < 0 ) to = to * -1.0f;
-	 // ScLERP = qa(qa^-1 qb)^t
-	 DualQuaternion_c diff = DualQuaternion_c.Conjugate(from) * to;
-	 Vector3 vr = new Vector3(diff.m_real.X, diff.m_real.Y, diff.m_real.Z);
-	 Vector3 vd = new Vector3(diff.m_dual.X, diff.m_dual.Y, diff.m_dual.Z);
-	 float invr = 1 / (float)Math.Sqrt( Vector3.Dot(vr, vr) );
-	 // Screw parameters
-	 float angle = 2 * (float)Math.Acos( diff.m_real.W );
-	 float pitch = -2 * diff.m_dual.W * invr;
-	 Vector3 direction = vr * invr;
-	 Vector3 moment = (vd - direction*pitch*diff.m_real.W*0.5f)*invr;
-	 // Exponential power
-	 angle *= t;
-	 pitch *= t;
-	 // Convert back to dual-quaternion
-	 float sinAngle = Sin(0.5f*angle);
-	 float cosAngle = Cos(0.5f*angle);
-	 Quaternion real = new Quaternion( direction* sinAngle, cosAngle );
-	 Quaternion dual = new Quaternion( sinAngle*moment+pitch*0.5f* cosAngle *direction, -pitch*0.5f*sinAngle );
-	 // Complete the multiplication and return the interpolated value
-	 return from * new DualQuaternion_c( real, dual );
-	*/
-	    throw new Error("Not implemented");
-	    return out;
-	};
-
-	/**
-	 * Calculates the inverse of a dual quat. If they are normalized, conjugate is cheaper
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a dual quat to calculate inverse of
-	 * @returns {quat2} out
-	 */
-	quat2.invert = function(out, a) {
-	    //quat2.conjugate(out, a);
-	    //quat2.scale(out, out, 1/quat2.squaredLength(a));
-	    var sqlen = quat2.squaredLength(a);
-	    out[0] = -a[0] / sqlen;
-	    out[1] = -a[1] / sqlen;
-	    out[2] = -a[2] / sqlen;
-	    out[3] = a[3] / sqlen;
-	    out[4] = -a[4] / sqlen;
-	    out[5] = -a[5] / sqlen;
-	    out[6] = -a[6] / sqlen;
-	    out[7] = a[7] / sqlen;
-	    return out;
-	};
-
-	/**
-	 * Calculates the conjugate of a dual quat
-	 * If the dual quaternion is normalized, this function is faster than quat2.inverse and produces the same result.
-	 *
-	 * @param {quat2} out the receiving quaternion
-	 * @param {quat2} a quat to calculate conjugate of
-	 * @returns {quat2} out
-	 */
-	quat2.conjugate = function(out, a) {
-	    out[0] = -a[0];
-	    out[1] = -a[1];
-	    out[2] = -a[2];
-	    out[3] = a[3];
-	    out[4] = -a[4];
-	    out[5] = -a[5];
-	    out[6] = -a[6];
-	    out[7] = a[7];
-	    return out;
-	};
-
-	/**
-	 * Calculates the length of a dual quat
-	 *
-	 * @param {quat2} a dual quat to calculate length of
-	 * @returns {Number} length of a
-	 * @function
-	 */
-	quat2.length = quat.length;
-
-	/**
-	 * Alias for {@link quat2.length}
-	 * @function
-	 */
-	quat2.len = quat2.length;
-
-	/**
-	 * Calculates the squared length of a dual quat
-	 *
-	 * @param {quat2} a dual quat to calculate squared length of
-	 * @returns {Number} squared length of a
-	 * @function
-	 */
-	quat2.squaredLength = quat.squaredLength;
-
-	/**
-	 * Alias for {@link quat2.squaredLength}
-	 * @function
-	 */
-	quat2.sqrLen = quat2.squaredLength;
-
-	/**
-	 * Normalize a dual quat
-	 *
-	 * @param {quat2} out the receiving dual quaternion
-	 * @param {quat2} a dual quaternion to normalize
-	 * @returns {quat2} out
-	 * @function
-	 */
-	quat2.normalize = function(out, a) {
-	    var magnitude = quat2.squaredLength(a);
-	    //Only scale if it makes sense
-	    if (magnitude > 0) {
-	        magnitude = Math.sqrt(magnitude);
-	        //More precise that way:
-	        out[0] = a[0] / magnitude;
-	        out[1] = a[1] / magnitude;
-	        out[2] = a[2] / magnitude;
-	        out[3] = a[3] / magnitude;
-	        out[4] = a[4] / magnitude;
-	        out[5] = a[5] / magnitude;
-	        out[6] = a[6] / magnitude;
-	        out[7] = a[7] / magnitude;
-	    }
-	    return out;
-	};
-
-	/**
-	 * Returns a string representation of a dual quatenion
-	 *
-	 * @param {quat2} a dual quaternion to represent as a string
-	 * @returns {String} string representation of the dual quat
-	 */
-	quat2.str = function(a) {
-	    return 'quat2(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ', ' +
-	        a[4] + ', ' + a[5] + ', ' + a[6] + ', ' + a[7] + ')';
-	};
-
-	/**
-	 * Returns whether or not the dual quaternions have exactly the same elements in the same position (when compared with ===)
-	 *
-	 * @param {quat2} a the first dual quaternion.
-	 * @param {quat2} b the second dual quaternion.
-	 * @returns {Boolean} true if the dual quaternions are equal, false otherwise.
-	 */
-	quat2.exactEquals = function(a, b) {
-	    return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] &&
-	        a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7];
-	};
-
-	/**
-	 * Returns whether or not the dual quaternions have approximately the same elements in the same position.
-	 *
-	 * @param {quat2} a the first dual quat.
-	 * @param {quat2} b the second dual quat.
-	 * @returns {Boolean} true if the dual quats are equal, false otherwise.
-	 */
-	quat2.equals = function(a, b) {
-	    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5], a6 = a[6], a7 = a[7];
-	    var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5], b6 = b[6], b7 = b[7];
-	    return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-	            Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-	            Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
-	            Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
-	            Math.abs(a4 - b4) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
-	            Math.abs(a5 - b5) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)) &&
-	            Math.abs(a6 - b6) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a6), Math.abs(b6)) &&
-	            Math.abs(a7 - b7) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a7), Math.abs(b7)));
-	};
-
-	module.exports = quat2;
-
-
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
