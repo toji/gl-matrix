@@ -763,7 +763,79 @@ function buildMat4Tests() {
             });
             it("should return out", function() { expect(result).toBe(out); });
         });
+        
+        describe("targetTo", function() {
+            var eye    = new Float32Array([0, 0, 1]);
+            var center = new Float32Array([0, 0, -1]);
+            var up     = new Float32Array([0, 1, 0]);
+            var view, up, right;
 
+            describe("looking down", function() {
+                beforeEach(function() {
+                    view = new Float32Array([0, -1,  0]);
+                    up   = new Float32Array([0,  0, -1]);
+                    right= new Float32Array([1,  0,  0]);
+                    result = mat4.targetTo(out, [0, 0, 0], view, up);
+                });
+
+                it("should transform view into local Z", function() {
+                    result = vec3.transformMat4(new Float32Array(3), view, out);
+                    expect(result).toBeEqualish([0, 0, 1]);
+                });
+
+                it("should transform up into local -Y", function() {
+                    result = vec3.transformMat4(new Float32Array(3), up, out);
+                    expect(result).toBeEqualish([0, -1, 0]);
+                });
+
+                it("should transform right into local +X", function() {
+                    result = vec3.transformMat4(new Float32Array(3), right, out);
+                    expect(result).toBeEqualish([1, 0, 0]);
+                });
+
+                it("should return out", function() { expect(result).toBe(out); });
+            });
+
+            describe("#74", function() {
+                beforeEach(function() {
+                    mat4.targetTo(out,
+                        new Float32Array([0,2,0]),
+                        new Float32Array([0,0.6,0]),
+                        new Float32Array([0,0,-1]));
+                });
+
+                it("should transform a point 'above' into local +Y", function() {
+                    result = vec3.transformMat4(new Float32Array(3), [0, 2, -1], out);
+                    expect(result).toBeEqualish([0, 1, -2]);
+                });
+
+                it("should transform a point 'right of' into local +X", function() {
+                    result = vec3.transformMat4(new Float32Array(3), [1, 2, 0], out);
+                    expect(result).toBeEqualish([1, 2, -2]);
+                });
+
+                it("should transform a point 'in front of' into local -Z", function() {
+                    result = vec3.transformMat4(new Float32Array(3), [0, 1, 0], out);
+                    expect(result).toBeEqualish([0, 2, -1]);
+                });
+            });
+
+            beforeEach(function() {
+                eye    = new Float32Array([0, 0, 1]);
+                center = new Float32Array([0, 0, -1]);
+                up     = new Float32Array([0, 1, 0]);
+                result = mat4.targetTo(out, eye, center, up);
+            });
+            it("should place values into out", function() { expect(result).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 1, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+        
         describe("str", function() {
             beforeEach(function() { result = mat4.str(matA); });
 
