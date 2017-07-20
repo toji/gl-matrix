@@ -28,7 +28,7 @@
 
 <header>
     
-        <h2>mat3</h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>mat3<span class="signature">()</span><span class="type-signature"></span></h2>
         
             <div class="class-description">3x3 Matrix</div>
         
@@ -44,7 +44,9 @@
     <h2>Constructor</h2>
     
 
+    
     <h4 class="name" id="mat3"><span class="type-signature"></span>new mat3<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -117,6 +119,8 @@
 
 
 
+
+
     
     </div>
 
@@ -126,7 +130,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -140,7 +146,9 @@
 
     
 
+    
     <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -334,12 +342,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".adjoint"><span class="type-signature">(static) </span>adjoint<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -510,12 +522,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -663,12 +679,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -839,12 +859,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -943,12 +967,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".determinant"><span class="type-signature">(static) </span>determinant<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
 
     
 
@@ -1096,12 +1124,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".equals"><span class="type-signature">(static) </span>equals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
 
     
 
@@ -1272,12 +1304,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".exactEquals"><span class="type-signature">(static) </span>exactEquals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
 
     
 
@@ -1448,12 +1484,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".frob"><span class="type-signature">(static) </span>frob<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
 
     
 
@@ -1601,12 +1641,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromMat2d"><span class="type-signature">(static) </span>fromMat2d<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -1777,12 +1821,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromMat4"><span class="type-signature">(static) </span>fromMat4<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -1953,12 +2001,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromQuat"><span class="type-signature">(static) </span>fromQuat<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -2129,19 +2181,27 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromRotation"><span class="type-signature">(static) </span>fromRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a given angleThis is equivalent to (but much faster than):    mat3.identity(dest);    mat3.rotate(dest, dest, rad);
+    Creates a matrix from a given angle
+This is equivalent to (but much faster than):
+
+    mat3.identity(dest);
+    mat3.rotate(dest, dest, rad);
 </div>
 
 
@@ -2305,19 +2365,27 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromScaling"><span class="type-signature">(static) </span>fromScaling<span class="signature">(out, v)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a vector scalingThis is equivalent to (but much faster than):    mat3.identity(dest);    mat3.scale(dest, dest, vec);
+    Creates a matrix from a vector scaling
+This is equivalent to (but much faster than):
+
+    mat3.identity(dest);
+    mat3.scale(dest, dest, vec);
 </div>
 
 
@@ -2481,19 +2549,27 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromTranslation"><span class="type-signature">(static) </span>fromTranslation<span class="signature">(out, v)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a vector translationThis is equivalent to (but much faster than):    mat3.identity(dest);    mat3.translate(dest, dest, vec);
+    Creates a matrix from a vector translation
+This is equivalent to (but much faster than):
+
+    mat3.identity(dest);
+    mat3.translate(dest, dest, vec);
 </div>
 
 
@@ -2657,12 +2733,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(m00, m01, m02, m10, m11, m12, m20, m21, m22)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -2994,12 +3074,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -3147,12 +3231,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -3323,12 +3411,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".mul"><span class="type-signature">(static) </span>mul<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -3405,12 +3497,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -3604,12 +3700,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".multiplyScalar"><span class="type-signature">(static) </span>multiplyScalar<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -3803,12 +3903,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".multiplyScalarAndAdd"><span class="type-signature">(static) </span>multiplyScalarAndAdd<span class="signature">(out, a, b, scale)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -4025,12 +4129,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".normalFromMat4"><span class="type-signature">(static) </span>normalFromMat4<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -4201,12 +4309,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".rotate"><span class="type-signature">(static) </span>rotate<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -4400,12 +4512,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -4599,12 +4715,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, m00, m01, m02, m10, m11, m12, m20, m21, m22)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -4959,12 +5079,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".str"><span class="type-signature">(static) </span>str<span class="signature">(a)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
 
     
 
@@ -5112,12 +5236,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".sub"><span class="type-signature">(static) </span>sub<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -5194,12 +5322,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".subtract"><span class="type-signature">(static) </span>subtract<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -5393,12 +5525,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".translate"><span class="type-signature">(static) </span>translate<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -5592,12 +5728,16 @@
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".transpose"><span class="type-signature">(static) </span>transpose<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat3.html">mat3</a>}</span></h4>
+    
 
     
 
@@ -5768,6 +5908,8 @@
 
 
 
+
+
         
     
 
@@ -5790,7 +5932,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun May 01 2016 12:11:58 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 19 2017 18:40:09 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: vec2</title>
+    <title>JSDoc: Class: quat2</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: vec2</h1>
+    <h1 class="page-title">Class: quat2</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>vec2<span class="signature">()</span><span class="type-signature"></span></h2>
+        <h2>quat2</h2>
         
-            <div class="class-description">2 Dimensional Vector</div>
+            <div class="class-description">Dual Quaternion<br>Format: [[real],[dual]]<br>Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.</div>
         
     
 </header>
@@ -44,9 +44,7 @@
     <h2>Constructor</h2>
     
 
-    
-    <h4 class="name" id="vec2"><span class="type-signature"></span>new vec2<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id="quat2"><span class="type-signature"></span>new quat2<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -93,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line23">line 23</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -103,8 +101,6 @@
 
     
 </dl>
-
-
 
 
 
@@ -130,12 +126,76 @@
 
     
 
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".getReal"><span class="type-signature">(static) </span>getReal<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Gets the real part of a dual quat
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
     
 
     
 
     
 
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line292">line 292</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
     
 
     
@@ -146,16 +206,14 @@
 
     
 
-    
-    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Adds two vec2's
+    Adds two dual quat's
 </div>
 
 
@@ -197,7 +255,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -207,7 +265,7 @@
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -220,7 +278,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -243,7 +301,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -294,7 +352,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line103">line 103</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line580">line 580</a>
     </li></ul></dd>
     
 
@@ -332,7 +390,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -342,6 +400,157 @@
 
 
 
+        
+            
+
+    
+
+    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a new quat initialized with values from an existing quaternion
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">dual quaternion to clone</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    new dual quaternion
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
 
 
         
@@ -349,16 +558,15 @@
 
     
 
-    
-    <h4 class="name" id=".ceil"><span class="type-signature">(static) </span>ceil<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".conjugate"><span class="type-signature">(static) </span>conjugate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Math.ceil the components of a vec2
+    Calculates the conjugate of a dual quat
+If the dual quaternion is normalized, this function is faster than quat2.inverse and produces the same result.
 </div>
 
 
@@ -400,7 +608,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -410,7 +618,7 @@
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving quaternion</td>
         </tr>
 
     
@@ -423,7 +631,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -433,7 +641,7 @@
 
             
 
-            <td class="description last">vector to ceil</td>
+            <td class="description last">quat to calculate conjugate of</td>
         </tr>
 
     
@@ -474,7 +682,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line176">line 176</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line784">line 784</a>
     </li></ul></dd>
     
 
@@ -512,7 +720,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -522,180 +730,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new vec2 initialized with values from an existing vector
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">vector to clone</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line47">line 47</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    a new 2D vector
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Copy the values from one vec2 to another
+    Copy the values from one dual quat to another
 </div>
 
 
@@ -737,7 +784,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -747,7 +794,7 @@
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -760,7 +807,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -770,7 +817,7 @@
 
             
 
-            <td class="description last">the source vector</td>
+            <td class="description last">the source dual quaternion</td>
         </tr>
 
     
@@ -811,7 +858,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line75">line 75</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line228">line 228</a>
     </li></ul></dd>
     
 
@@ -849,7 +896,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -859,23 +906,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new, empty vec2
+    Creates a new identity dual quat
 </div>
 
 
@@ -919,7 +962,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line34">line 34</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line48">line 48</a>
     </li></ul></dd>
     
 
@@ -946,7 +989,7 @@
 
         
 <div class="param-desc">
-    a new 2D vector
+    a new dual quaternion [real -> rotation, dual -> translation]
 </div>
 
 
@@ -957,7 +1000,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -967,782 +1010,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".cross"><span class="type-signature">(static) </span>cross<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec3.html">vec3</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Computes the cross product of two vec2's
-Note that the cross product must by definition produce a 3D vector
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec3.html">vec3</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the first operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the second operand</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line405">line 405</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec3.html">vec3</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".dist"><span class="type-signature">(static) </span>dist<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Alias for <a href="vec2.html#.distance">vec2.distance</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line282">line 282</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".distance"><span class="type-signature">(static) </span>distance<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Calculates the euclidian distance between two vec2's
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the first operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the second operand</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line272">line 272</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    distance between a and b
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".div"><span class="type-signature">(static) </span>div<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Alias for <a href="vec2.html#.divide">vec2.divide</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line167">line 167</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".divide"><span class="type-signature">(static) </span>divide<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Divides two vec2's
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the first operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the second operand</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line157">line 157</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id=".dot"><span class="type-signature">(static) </span>dot<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the dot product of two vec2's
+    Calculates the dot product of two dual quat's (The dot product of the real parts)
 </div>
 
 
@@ -1784,7 +1064,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -1807,7 +1087,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -1858,7 +1138,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line392">line 392</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line671">line 671</a>
     </li></ul></dd>
     
 
@@ -1906,23 +1186,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".equals"><span class="type-signature">(static) </span>equals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Returns whether or not the vectors have approximately the same elements in the same position.
+    Returns whether or not the dual quaternions have approximately the same elements in the same position.
 </div>
 
 
@@ -1964,7 +1240,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -1974,7 +1250,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">The first vector.</td>
+            <td class="description last">the first dual quat.</td>
         </tr>
 
     
@@ -1987,7 +1263,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -1997,7 +1273,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">The second vector.</td>
+            <td class="description last">the second dual quat.</td>
         </tr>
 
     
@@ -2038,7 +1314,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line580">line 580</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line882">line 882</a>
     </li></ul></dd>
     
 
@@ -2065,7 +1341,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    True if the vectors are equal, false otherwise.
+    true if the dual quats are equal, false otherwise.
 </div>
 
 
@@ -2086,23 +1362,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".exactEquals"><span class="type-signature">(static) </span>exactEquals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Returns whether or not the vectors exactly have the same elements in the same position (when compared with ===)
+    Returns whether or not the dual quaternions have exactly the same elements in the same position (when compared with ===)
 </div>
 
 
@@ -2144,7 +1416,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -2154,7 +1426,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">The first vector.</td>
+            <td class="description last">the first dual quaternion.</td>
         </tr>
 
     
@@ -2167,7 +1439,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -2177,7 +1449,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">The second vector.</td>
+            <td class="description last">the second dual quaternion.</td>
         </tr>
 
     
@@ -2218,7 +1490,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line569">line 569</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line870">line 870</a>
     </li></ul></dd>
     
 
@@ -2245,7 +1517,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    True if the vectors are equal, false otherwise.
+    true if the dual quaternions are equal, false otherwise.
 </div>
 
 
@@ -2266,23 +1538,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".floor"><span class="type-signature">(static) </span>floor<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".fromMat4"><span class="type-signature">(static) </span>fromMat4<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Math.floor the components of a vec2
+    Creates a new dual quat from a matrix (4x4)
 </div>
 
 
@@ -2324,7 +1592,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -2334,7 +1602,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the dual quaternion</td>
         </tr>
 
     
@@ -2347,7 +1615,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="mat4.html">mat4</a></span>
 
 
             
@@ -2357,7 +1625,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to floor</td>
+            <td class="description last">the matrix</td>
         </tr>
 
     
@@ -2398,7 +1666,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line189">line 189</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line208">line 208</a>
     </li></ul></dd>
     
 
@@ -2425,7 +1693,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    out
+    dual quat receiving operation result
 </div>
 
 
@@ -2436,7 +1704,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -2446,23 +1714,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".forEach"><span class="type-signature">(static) </span>forEach<span class="signature">(a, stride, offset, count, fn, arg<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
-    
+    <h4 class="name" id=".fromRotation"><span class="type-signature">(static) </span>fromRotation<span class="signature">(dual, q)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Perform some operation over an array of vec2s.
+    Creates a dual quat from a quaternion
 </div>
 
 
@@ -2486,8 +1750,6 @@ Note that the cross product must by definition produce a 3D vector
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -2500,188 +1762,46 @@ Note that the cross product must by definition produce a 3D vector
 
         <tr>
             
-                <td class="name"><code>a</code></td>
+                <td class="name"><code>dual</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">the array of vectors to iterate over</td>
+            <td class="description last">quaternion receiving operation result</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>stride</code></td>
+                <td class="name"><code>q</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type"><a href="quat.html">quat</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">Number of elements between the start of each vec2. If 0 assumes tightly packed</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Number of elements to skip at the beginning of the array</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Number of vec2s to iterate over. If 0 iterates over entire array</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Function to call for each vector in the array</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>arg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">additional argument to pass to fn</td>
+            <td class="description last">the quaternion</td>
         </tr>
 
     
@@ -2722,7 +1842,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line523">line 523</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line188">line 188</a>
     </li></ul></dd>
     
 
@@ -2749,7 +1869,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    a
+    dual quaternion receiving operation result
 </div>
 
 
@@ -2760,7 +1880,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -2770,23 +1890,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x, y)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".fromRotationTranslation"><span class="type-signature">(static) </span>fromRotationTranslation<span class="signature">(dual, q, t)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new vec2 initialized with the given values
+    Creates a dual quat from a quaternion and a translation
 </div>
 
 
@@ -2822,7 +1938,206 @@ Note that the cross product must by definition produce a 3D vector
 
         <tr>
             
-                <td class="name"><code>x</code></td>
+                <td class="name"><code>dual</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">quaternion receiving operation result</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>q</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>t</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">tranlation vector</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line144">line 144</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    dual quaternion receiving operation result
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fromRotationTranslationValues"><span class="type-signature">(static) </span>fromRotationTranslationValues<span class="signature">(x1, y1, z1, w1, x2, y2, z2)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a new dual quat from the given values (quat and translation)
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x1</code></td>
             
 
             <td class="type">
@@ -2845,7 +2160,7 @@ Note that the cross product must by definition produce a 3D vector
 
         <tr>
             
-                <td class="name"><code>y</code></td>
+                <td class="name"><code>y1</code></td>
             
 
             <td class="type">
@@ -2862,6 +2177,121 @@ Note that the cross product must by definition produce a 3D vector
             
 
             <td class="description last">Y component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Z component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">W component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X component (translation)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y component (translation)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Z component (translation)</td>
         </tr>
 
     
@@ -2902,7 +2332,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line61">line 61</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line121">line 121</a>
     </li></ul></dd>
     
 
@@ -2929,7 +2359,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    a new 2D vector
+    new dual quaternion
 </div>
 
 
@@ -2940,7 +2370,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -2950,6 +2380,180 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
+        
+            
+
+    
+
+    <h4 class="name" id=".fromTranslation"><span class="type-signature">(static) </span>fromTranslation<span class="signature">(dual, t)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a dual quat from a translation
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>dual</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">quaternion receiving operation result</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>t</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">translation vector</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line168">line 168</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    dual quaternion receiving operation result
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
 
 
         
@@ -2957,16 +2561,328 @@ Note that the cross product must by definition produce a 3D vector
 
     
 
-    
-    <h4 class="name" id=".inverse"><span class="type-signature">(static) </span>inverse<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x1, y1, z1, w1, x2, y2, z2, w2)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the inverse of the components of a vec2
+    Creates a new dual quat initialized with the given values
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>x1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Z component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">W component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Z component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">W component</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line95">line 95</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    new dual quaternion
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getDual"><span class="type-signature">(static) </span>getDual<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Gets the dual part of a dual quat
 </div>
 
 
@@ -3008,7 +2924,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat.html">quat</a></span>
 
 
             
@@ -3018,7 +2934,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">dual part</td>
         </tr>
 
     
@@ -3031,7 +2947,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -3041,7 +2957,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to invert</td>
+            <td class="description last">Dual Quaternion</td>
         </tr>
 
     
@@ -3082,7 +2998,336 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line359">line 359</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line300">line 300</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    dual part
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".getTranslation"><span class="type-signature">(static) </span>getTranslation<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec3.html">vec3</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Gets the translation of a normalized dual quat
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">translation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Dual Quaternion to be decomposed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line340">line 340</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    translation
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="vec3.html">vec3</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Set a dual quat to the identity dual quaternion
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving quaternion</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line246">line 246</a>
     </li></ul></dd>
     
 
@@ -3120,7 +3365,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -3130,6 +3375,180 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
+        
+            
+
+    
+
+    <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Calculates the inverse of a dual quat. If they are normalized, conjugate is cheaper
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving dual quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">dual quat to calculate inverse of</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line761">line 761</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
 
 
         
@@ -3137,16 +3556,14 @@ Note that the cross product must by definition produce a 3D vector
 
     
 
-    
     <h4 class="name" id=".len"><span class="type-signature">(static) </span>len<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec2.html#.length">vec2.length</a>
+    Alias for <a href="quat2.html#.length">quat2.length</a>
 </div>
 
 
@@ -3190,7 +3607,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line319">line 319</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line809">line 809</a>
     </li></ul></dd>
     
 
@@ -3216,23 +3633,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".length"><span class="type-signature">(static) </span>length<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the length of a vec2
+    Calculates the length of a dual quat
 </div>
 
 
@@ -3274,7 +3687,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -3284,7 +3697,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to calculate length of</td>
+            <td class="description last">dual quat to calculate length of</td>
         </tr>
 
     
@@ -3325,7 +3738,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line309">line 309</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line803">line 803</a>
     </li></ul></dd>
     
 
@@ -3373,23 +3786,20 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Performs a linear interpolation between two vec2's
+    Performs a linear interpolation between two dual quats's
+NOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
 </div>
 
 
@@ -3431,7 +3841,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -3441,7 +3851,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quat</td>
         </tr>
 
     
@@ -3454,7 +3864,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -3477,7 +3887,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -3551,7 +3961,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line421">line 421</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line683">line 683</a>
     </li></ul></dd>
     
 
@@ -3589,7 +3999,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -3599,429 +4009,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".max"><span class="type-signature">(static) </span>max<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns the maximum of two vec2's
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the first operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the second operand</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line217">line 217</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".min"><span class="type-signature">(static) </span>min<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Returns the minimum of two vec2's
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the first operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the second operand</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line203">line 203</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
     <h4 class="name" id=".mul"><span class="type-signature">(static) </span>mul<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec2.html#.multiply">vec2.multiply</a>
+    Alias for <a href="quat2.html#.multiply">quat2.multiply</a>
 </div>
 
 
@@ -4065,7 +4065,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line147">line 147</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line640">line 640</a>
     </li></ul></dd>
     
 
@@ -4091,23 +4091,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Multiplies two vec2's
+    Multiplies two dual quat's
 </div>
 
 
@@ -4149,7 +4145,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4159,7 +4155,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -4172,7 +4168,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4195,7 +4191,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4246,7 +4242,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line137">line 137</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line600">line 600</a>
     </li></ul></dd>
     
 
@@ -4284,7 +4280,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -4294,23 +4290,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".negate"><span class="type-signature">(static) </span>negate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Negates the components of a vec2
+    Normalize a dual quat
 </div>
 
 
@@ -4352,7 +4344,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4362,7 +4354,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -4375,7 +4367,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4385,7 +4377,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to negate</td>
+            <td class="description last">dual quaternion to normalize</td>
         </tr>
 
     
@@ -4426,7 +4418,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line346">line 346</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line834">line 834</a>
     </li></ul></dd>
     
 
@@ -4464,7 +4456,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -4474,23 +4466,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".rotateAroundAxis"><span class="type-signature">(static) </span>rotateAroundAxis<span class="signature">(out, a, axis, rad)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Normalize a vec2
+    Rotates a dual quat around a given axis. Does the normalisation automatically
 </div>
 
 
@@ -4532,7 +4520,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4542,7 +4530,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -4555,7 +4543,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4565,181 +4553,37 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to normalize</td>
+            <td class="description last">the dual quaternion to rotate</td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line372">line 372</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".random"><span class="type-signature">(static) </span>random<span class="signature">(out, scale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Generates a random vector with the given scale
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>out</code></td>
+                <td class="name"><code>axis</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the axis to rotate around</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>scale</code></td>
+                <td class="name"><code>rad</code></td>
             
 
             <td class="type">
@@ -4752,20 +4596,10 @@ Note that the cross product must by definition produce a 3D vector
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">Length of the resulting vector. If ommitted, a unit vector will be returned</td>
+            <td class="description last">how far the rotation should be</td>
         </tr>
 
     
@@ -4806,7 +4640,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line436">line 436</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line534">line 534</a>
     </li></ul></dd>
     
 
@@ -4844,7 +4678,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -4854,23 +4688,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".round"><span class="type-signature">(static) </span>round<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".rotateByQuatAppend"><span class="type-signature">(static) </span>rotateByQuatAppend<span class="signature">(out, a, q)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Math.round the components of a vec2
+    Rotates a dual quat by a given quaternion (a * q)
 </div>
 
 
@@ -4912,7 +4742,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4922,7 +4752,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -4935,7 +4765,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -4945,7 +4775,30 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to round</td>
+            <td class="description last">the dual quaternion to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>q</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">quaternion to rotate by</td>
         </tr>
 
     
@@ -4986,7 +4839,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line230">line 230</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line485">line 485</a>
     </li></ul></dd>
     
 
@@ -5024,7 +4877,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -5034,23 +4887,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".rotateByQuatPrepend"><span class="type-signature">(static) </span>rotateByQuatPrepend<span class="signature">(out, q, a)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Scales a vec2 by a scalar number
+    Rotates a dual quat by a given quaternion (q * a)
 </div>
 
 
@@ -5092,7 +4941,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -5102,7 +4951,30 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>q</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">quaternion to rotate by</td>
         </tr>
 
     
@@ -5115,7 +4987,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -5125,7 +4997,780 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the vector to scale</td>
+            <td class="description last">the dual quaternion to rotate</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line509">line 509</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotates a dual quat around the X axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving dual quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the dual quaternion to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">how far should the rotation be</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line392">line 392</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotates a dual quat around the Y axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving dual quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the dual quaternion to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">how far should the rotation be</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line423">line 423</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotates a dual quat around the Z axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving dual quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the dual quaternion to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">how far should the rotation be</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line454">line 454</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Scales a dual quat by a scalar number
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving dual quat</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the dual quat to scale</td>
         </tr>
 
     
@@ -5148,7 +5793,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">amount to scale the vector by</td>
+            <td class="description last">amount to scale the dual quat by</td>
         </tr>
 
     
@@ -5189,7 +5834,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line244">line 244</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line651">line 651</a>
     </li></ul></dd>
     
 
@@ -5227,7 +5872,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -5237,23 +5882,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".scaleAndAdd"><span class="type-signature">(static) </span>scaleAndAdd<span class="signature">(out, a, b, scale)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
+    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x1, y1, z1, w1, x2, y2, z2, w2)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Adds two vec2's after scaling the second operand by a scalar value
+    Set the components of a dual quat to the given values
 </div>
 
 
@@ -5295,7 +5936,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -5305,240 +5946,14 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving quaternion</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the first operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>b</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the second operand</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>scale</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the amount to scale b by before adding</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line259">line 259</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x, y)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Set the components of a vec2 to the given values
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>x</code></td>
+                <td class="name"><code>x1</code></td>
             
 
             <td class="type">
@@ -5561,7 +5976,7 @@ Note that the cross product must by definition produce a 3D vector
 
         <tr>
             
-                <td class="name"><code>y</code></td>
+                <td class="name"><code>y1</code></td>
             
 
             <td class="type">
@@ -5578,6 +5993,144 @@ Note that the cross product must by definition produce a 3D vector
             
 
             <td class="description last">Y component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Z component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w1</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">W component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>x2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">X component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>y2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Y component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>z2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Z component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>w2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">W component</td>
         </tr>
 
     
@@ -5618,7 +6171,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line89">line 89</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line273">line 273</a>
     </li></ul></dd>
     
 
@@ -5656,7 +6209,7 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
@@ -5666,195 +6219,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".sqrDist"><span class="type-signature">(static) </span>sqrDist<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id=".setDual"><span class="type-signature">(static) </span>setDual<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec2.html#.squaredDistance">vec2.squaredDistance</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line301">line 301</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".sqrLen"><span class="type-signature">(static) </span>sqrLen<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Alias for <a href="vec2.html#.squaredLength">vec2.squaredLength</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line337">line 337</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".squaredDistance"><span class="type-signature">(static) </span>squaredDistance<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Calculates the squared euclidian distance between two vec2's
+    Set the dual component of a dual quat to the given quaternion
 </div>
 
 
@@ -5890,13 +6267,13 @@ Note that the cross product must by definition produce a 3D vector
 
         <tr>
             
-                <td class="name"><code>a</code></td>
+                <td class="name"><code>out</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -5906,20 +6283,20 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the first operand</td>
+            <td class="description last">the receiving quaternion</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>b</code></td>
+                <td class="name"><code>q</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat.html">quat</a></span>
 
 
             
@@ -5929,7 +6306,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the second operand</td>
+            <td class="description last">a quaternion representing the dual part</td>
         </tr>
 
     
@@ -5970,7 +6347,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line291">line 291</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line326">line 326</a>
     </li></ul></dd>
     
 
@@ -5997,7 +6374,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    squared distance between a and b
+    out
 </div>
 
 
@@ -6008,13 +6385,491 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type">Number</span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
 </dl>
 
     
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".setReal"><span class="type-signature">(static) </span>setReal<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Set the real component of a dual quat to the given quaternion
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>q</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat.html">quat</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a quaternion representing the real part</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line316">line 316</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".slerp"><span class="type-signature">(static) </span>slerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Performs a spherical linear interpolation between two dual quats
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving dual quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the second operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>t</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">interpolation amount between the two inputs</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line722">line 722</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="quat2.html">quat2</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".sqrLen"><span class="type-signature">(static) </span>sqrLen<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Alias for <a href="quat2.html#.squaredLength">quat2.squaredLength</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line824">line 824</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -6025,16 +6880,14 @@ Note that the cross product must by definition produce a 3D vector
 
     
 
-    
     <h4 class="name" id=".squaredLength"><span class="type-signature">(static) </span>squaredLength<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the squared length of a vec2
+    Calculates the squared length of a dual quat
 </div>
 
 
@@ -6076,7 +6929,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -6086,7 +6939,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to calculate squared length of</td>
+            <td class="description last">dual quat to calculate squared length of</td>
         </tr>
 
     
@@ -6127,7 +6980,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line327">line 327</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line818">line 818</a>
     </li></ul></dd>
     
 
@@ -6175,23 +7028,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".str"><span class="type-signature">(static) </span>str<span class="signature">(a)</span><span class="type-signature"> &rarr; {String}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Returns a string representation of a vector
+    Returns a string representation of a dual quatenion
 </div>
 
 
@@ -6233,7 +7082,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -6243,7 +7092,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">vector to represent as a string</td>
+            <td class="description last">dual quaternion to represent as a string</td>
         </tr>
 
     
@@ -6284,7 +7133,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line558">line 558</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line858">line 858</a>
     </li></ul></dd>
     
 
@@ -6311,7 +7160,7 @@ Note that the cross product must by definition produce a 3D vector
 
         
 <div class="param-desc">
-    string representation of the vector
+    string representation of the dual quat
 </div>
 
 
@@ -6332,109 +7181,19 @@ Note that the cross product must by definition produce a 3D vector
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".sub"><span class="type-signature">(static) </span>sub<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id=".translate"><span class="type-signature">(static) </span>translate<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {<a href="quat2.html">quat2</a>}</span></h4>
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec2.html#.subtract">vec2.subtract</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line127">line 127</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".subtract"><span class="type-signature">(static) </span>subtract<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Subtracts vector b from vector a
+    Translates a dual quat by the given vector
 </div>
 
 
@@ -6476,7 +7235,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -6486,7 +7245,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the receiving vector</td>
+            <td class="description last">the receiving dual quaternion</td>
         </tr>
 
     
@@ -6499,7 +7258,7 @@ Note that the cross product must by definition produce a 3D vector
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
             
@@ -6509,20 +7268,20 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the first operand</td>
+            <td class="description last">the dual quaternion to translate</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>b</code></td>
+                <td class="name"><code>v</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="vec3.html">vec3</a></span>
 
 
             
@@ -6532,7 +7291,7 @@ Note that the cross product must by definition produce a 3D vector
 
             
 
-            <td class="description last">the second operand</td>
+            <td class="description last">vector to translate by</td>
         </tr>
 
     
@@ -6573,7 +7332,7 @@ Note that the cross product must by definition produce a 3D vector
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line117">line 117</a>
+        <a href="quat2.js.html">quat2.js</a>, <a href="quat2.js.html#line365">line 365</a>
     </li></ul></dd>
     
 
@@ -6611,830 +7370,13 @@ Note that the cross product must by definition produce a 3D vector
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec2.html">vec2</a></span>
+<span class="param-type"><a href="quat2.html">quat2</a></span>
 
 
     </dd>
 </dl>
 
     
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".transformMat2"><span class="type-signature">(static) </span>transformMat2<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Transforms the vec2 with a mat2
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the vector to transform</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>m</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="mat2.html">mat2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">matrix to transform with</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line452">line 452</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".transformMat2d"><span class="type-signature">(static) </span>transformMat2d<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Transforms the vec2 with a mat2d
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the vector to transform</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>m</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="mat2d.html">mat2d</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">matrix to transform with</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line468">line 468</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".transformMat3"><span class="type-signature">(static) </span>transformMat3<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Transforms the vec2 with a mat3
-3rd vector component is implicitly '1'
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the vector to transform</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>m</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="mat3.html">mat3</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">matrix to transform with</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line485">line 485</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".transformMat4"><span class="type-signature">(static) </span>transformMat4<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {<a href="vec2.html">vec2</a>}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Transforms the vec2 with a mat4
-3rd vector component is implicitly '0'
-4th vector component is implicitly '1'
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>out</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the receiving vector</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the vector to transform</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>m</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="mat4.html">mat4</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">matrix to transform with</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec2.js.html">vec2.js</a>, <a href="vec2.js.html#line503">line 503</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    out
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="vec2.html">vec2</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
 
 
 
@@ -7454,13 +7396,13 @@ Note that the cross product must by definition produce a 3D vector
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="quat2.html">quat2</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 19 2017 18:40:09 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Mar 12 2017 15:20:27 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/**
 	 * @fileoverview gl-matrix - High performance matrix and vector operations
@@ -119,9 +119,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.vec3 = __webpack_require__(7);
 	exports.vec4 = __webpack_require__(8);
 
-/***/ },
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -190,9 +190,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = glMatrix;
 
 
-/***/ },
+/***/ }),
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -632,9 +632,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat2;
 
 
-/***/ },
+/***/ }),
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -1107,9 +1107,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat2d;
 
 
-/***/ },
+/***/ }),
 /* 4 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -1859,9 +1859,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat3;
 
 
-/***/ },
+/***/ }),
 /* 5 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -3302,6 +3302,60 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return out;
 	};
 
+
+	/**
+	 * Generates a matrix that makes something look at something else.
+	 *
+	 * @param {mat4} out mat4 frustum matrix will be written into
+	 * @param {vec3} eye Position of the viewer
+	 * @param {vec3} center Point the viewer is looking at
+	 * @param {vec3} up vec3 pointing up
+	 * @returns {mat4} out
+	 */
+
+	mat4.targetTo = function(out, eye, target, up) {
+	    var eyex = eye[0],
+	        eyey = eye[1],
+	        eyez = eye[2],
+	        upx = up[0],
+	        upy = up[1],
+	        upz = up[2];
+	        
+	    var z0 = eyex - target[0], 
+	        z1 = eyey - target[1], 
+	        z2 = eyez - target[2];
+	        
+	    var len = z0*z0 + z1*z1 + z2*z2;
+	    if (len > 0) {
+	        len = 1 / Math.sqrt(len);
+	        z0 *= len;
+	        z1 *= len;
+	        z2 *= len;
+	    }
+
+	    var x0 = upy * z2 - upz * z1,
+	        x1 = upz * z0 - upx * z2,
+	        x2 = upx * z1 - upy * z0;
+
+	    out[0] = x0;
+	    out[1] = x1;
+	    out[2] = x2;
+	    out[3] = 0;
+	    out[4] = z1 * x2 - z2 * x1;
+	    out[5] = z2 * x0 - z0 * x2;
+	    out[6] = z0 * x1 - z1 * x0;
+	    out[7] = 0;
+	    out[8] = z0;
+	    out[9] = z1;
+	    out[10] = z2;
+	    out[11] = 0;
+	    out[12] = eyex;
+	    out[13] = eyey;
+	    out[14] = eyez;
+	    out[15] = 1;
+	    return out;
+	};
+
 	/**
 	 * Returns a string representation of a mat4
 	 *
@@ -3499,9 +3553,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = mat4;
 
 
-/***/ },
+/***/ }),
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -4105,9 +4159,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = quat;
 
 
-/***/ },
+/***/ }),
 /* 7 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -4891,9 +4945,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = vec3;
 
 
-/***/ },
+/***/ }),
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -5506,9 +5560,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = vec4;
 
 
-/***/ },
+/***/ }),
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
@@ -6099,7 +6153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = vec2;
 
 
-/***/ }
+/***/ })
 /******/ ])
 });
 ;
