@@ -1447,7 +1447,6 @@ mat4.lookAt = function (out, eye, center, up) {
  * @param {vec3} up vec3 pointing up
  * @returns {mat4} out
  */
-
 mat4.targetTo = function(out, eye, target, up) {
     var eyex = eye[0],
         eyey = eye[1],
