@@ -2,7 +2,7 @@
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
  * @author Colin MacKenzie IV
- * @version 2.3.2
+ * @version 2.4.0
  */
 
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -26,12 +26,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 // END HEADER
 
-exports.glMatrix = require("./gl-matrix/common.js");
-exports.mat2 = require("./gl-matrix/mat2.js");
-exports.mat2d = require("./gl-matrix/mat2d.js");
-exports.mat3 = require("./gl-matrix/mat3.js");
-exports.mat4 = require("./gl-matrix/mat4.js");
-exports.quat = require("./gl-matrix/quat.js");
-exports.vec2 = require("./gl-matrix/vec2.js");
-exports.vec3 = require("./gl-matrix/vec3.js");
-exports.vec4 = require("./gl-matrix/vec4.js");
+import * as glMatrix from "./gl-matrix/common";
+import * as mat2 from "./gl-matrix/mat2";
+import * as mat2d from "./gl-matrix/mat2d";
+import * as mat3 from "./gl-matrix/mat3";
+import * as mat4 from "./gl-matrix/mat4";
+import * as quat from "./gl-matrix/quat";
+import * as vec2 from "./gl-matrix/vec2";
+import * as vec3 from "./gl-matrix/vec3";
+import * as vec4 from "./gl-matrix/vec4";
+
+export {
+  glMatrix,
+  mat2, mat2d, mat3, mat4,
+  quat,
+  vec2, vec3, vec4,
+};

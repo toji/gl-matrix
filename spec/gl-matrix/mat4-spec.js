@@ -18,14 +18,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("../../src/gl-matrix/common.js");
-var mat4 = require("../../src/gl-matrix/mat4.js");
-var vec3 = require("../../src/gl-matrix/vec3.js");
-var quat = require("../../src/gl-matrix/quat.js");
+import * as glMatrix from "../../src/gl-matrix/common"
+import * as mat4 from "../../src/gl-matrix/mat4"
+import * as quat from "../../src/gl-matrix/quat"
+import * as vec3 from "../../src/gl-matrix/vec3"
 
 function buildMat4Tests() {
     return function() {
-        var out, matA, matB, identity, result;
+        let out, matA, matB, identity, result;
 
         beforeEach(function() {
             // Attempting to portray a semi-realistic transform matrix
@@ -347,8 +347,8 @@ function buildMat4Tests() {
         });
 
         describe("rotate", function() {
-            var rad = Math.PI * 0.5;
-            var axis = [1, 0, 0];
+            let rad = Math.PI * 0.5;
+            let axis = [1, 0, 0];
 
             describe("with a separate output matrix", function() {
                 beforeEach(function() { result = mat4.rotate(out, matA, rad, axis); });
@@ -388,7 +388,7 @@ function buildMat4Tests() {
         });
 
         describe("rotateX", function() {
-            var rad = Math.PI * 0.5;
+            let rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
                 beforeEach(function() { result = mat4.rotateX(out, matA, rad); });
@@ -428,7 +428,7 @@ function buildMat4Tests() {
         });
 
         describe("rotateY", function() {
-            var rad = Math.PI * 0.5;
+            let rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
                 beforeEach(function() { result = mat4.rotateY(out, matA, rad); });
@@ -468,7 +468,7 @@ function buildMat4Tests() {
         });
 
         describe("rotateZ", function() {
-            var rad = Math.PI * 0.5;
+            let rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
                 beforeEach(function() { result = mat4.rotateZ(out, matA, rad); });
@@ -531,8 +531,8 @@ function buildMat4Tests() {
 
             describe("from a translation and rotation matrix", function() {
                 beforeEach(function() {
-                    var q = quat.create();
-                    var v = vec3.fromValues(5, 6, 7);
+                    let q = quat.create();
+                    let v = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [0.26726124, 0.534522474, 0.8017837], 0.55);
                     mat4.fromRotationTranslation(out, q, v);
 
@@ -558,7 +558,7 @@ function buildMat4Tests() {
 
             describe("from a scale-only matrix", function() {
                 beforeEach(function() {
-                    var v = vec3.fromValues(4, 5, 6);
+                    let v = vec3.fromValues(4, 5, 6);
                     result = vec3.fromValues(1, 2, 3)
                     out = vec3.fromValues(1, 2, 3);
                     mat4.fromScaling(matA, v);
@@ -569,8 +569,8 @@ function buildMat4Tests() {
 
             describe("from a translation and rotation matrix", function() {
                 beforeEach(function() {
-                    var q = quat.create();
-                    var v = vec3.fromValues(5, 6, 7);
+                    let q = quat.create();
+                    let v = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [1, 0, 0], 0.5);
                     mat4.fromRotationTranslation(out, q, v);
 
@@ -582,9 +582,9 @@ function buildMat4Tests() {
 
             describe("from a translation, rotation and scale matrix", function() {
                 beforeEach(function() {
-                    var q = quat.create();
-                    var t = vec3.fromValues(1, 2, 3);
-                    var s = vec3.fromValues(5, 6, 7);
+                    let q = quat.create();
+                    let t = vec3.fromValues(1, 2, 3);
+                    let s = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
                     mat4.fromRotationTranslationScale(out, q, t, s);
                     result = vec3.fromValues(5, 6, 7);
@@ -604,7 +604,7 @@ function buildMat4Tests() {
                 });
                 it("should place result both in result and out", function() { expect(result).toBe(out); });
                 it("should return the unit quaternion", function() {
-                    var unitQuat = quat.create();
+                    let unitQuat = quat.create();
                     quat.identity(unitQuat);
                     expect(result).toBeEqualish(unitQuat);
                 });
@@ -617,7 +617,7 @@ function buildMat4Tests() {
                     result = mat4.getRotation(out, matB);
                 });
                 it("should return the unit quaternion", function() {
-                    var unitQuat = quat.create();
+                    let unitQuat = quat.create();
                     quat.identity(unitQuat);
                     expect(result).toBeEqualish(unitQuat);
                 });
@@ -625,10 +625,10 @@ function buildMat4Tests() {
 
             describe("from a translation and rotation matrix", function() {
                 it("should keep the same rotation as when created", function() {
-                    var q = quat.create();
-                    var outVec = vec3.fromValues(5, 6, 7);
-                    var testVec = vec3.fromValues(1, 5, 2);
-                    var ang = 0.78972;
+                    let q = quat.create();
+                    let outVec = vec3.fromValues(5, 6, 7);
+                    let testVec = vec3.fromValues(1, 5, 2);
+                    let ang = 0.78972;
 
                     vec3.normalize(testVec, testVec);
                     q = quat.setAxisAngle(q, testVec, ang);
@@ -636,8 +636,8 @@ function buildMat4Tests() {
 
                     result = quat.fromValues(2, 3, 4, 6);
                     mat4.getRotation(result, out);
-                    var outaxis = vec3.create();
-                    var outangle = quat.getAxisAngle(outaxis, result);
+                    let outaxis = vec3.create();
+                    let outangle = quat.getAxisAngle(outaxis, result);
 
                     expect(outaxis).toBeEqualish(testVec);
                     expect(outangle).toBeEqualish(ang);
@@ -658,7 +658,7 @@ function buildMat4Tests() {
         });
 
         describe("perspective", function() {
-            var fovy = Math.PI * 0.5;
+            let fovy = Math.PI * 0.5;
             beforeEach(function() { result = mat4.perspective(out, fovy, 1, 0, 1); });
             it("should place values into out", function() { expect(result).toBeEqualish([
                     1, 0, 0, 0,
@@ -693,10 +693,10 @@ function buildMat4Tests() {
         });
 
         describe("lookAt", function() {
-            var eye    = new Float32Array([0, 0, 1]);
-            var center = new Float32Array([0, 0, -1]);
-            var up     = new Float32Array([0, 1, 0]);
-            var view, up, right;
+            let eye    = new Float32Array([0, 0, 1]);
+            let center = new Float32Array([0, 0, -1]);
+            let up     = new Float32Array([0, 1, 0]);
+            let view, right;
 
             describe("looking down", function() {
                 beforeEach(function() {
@@ -977,7 +977,7 @@ function buildMat4Tests() {
     });
 
     describe("exactEquals", function() {
-        var matC, r0, r1;
+        let matC, r0, r1;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
             matB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -993,7 +993,7 @@ function buildMat4Tests() {
     });
 
     describe("equals", function() {
-        var matC, matD, r0, r1, r2;
+        let matC, matD, r0, r1, r2;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
             matB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];

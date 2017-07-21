@@ -19,34 +19,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 /**
- * @class Common utilities
- * @name glMatrix
+ * Common utilities
+ * @module glMatrix
  */
-var glMatrix = {};
 
 // Configuration Constants
-glMatrix.EPSILON = 0.000001;
-glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
-glMatrix.RANDOM = Math.random;
+export const EPSILON = 0.000001;
+export let ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
+export const RANDOM = Math.random;
 
 /**
  * Sets the type of array used when creating new vectors and matrices
  *
  * @param {Type} type Array type, such as Float32Array or Array
  */
-glMatrix.setMatrixArrayType = function(type) {
-    glMatrix.ARRAY_TYPE = type;
+export function setMatrixArrayType(type) {
+  ARRAY_TYPE = type;
 }
 
-var degree = Math.PI / 180;
+const degree = Math.PI / 180;
 
 /**
-* Convert Degree To Radian
-*
-* @param {Number} a Angle in Degrees
-*/
-glMatrix.toRadian = function(a){
-     return a * degree;
+ * Convert Degree To Radian
+ *
+ * @param {Number} a Angle in Degrees
+ */
+export function toRadian(a) {
+  return a * degree;
 }
 
 /**
@@ -58,8 +57,6 @@ glMatrix.toRadian = function(a){
  * @param {Number} b The second number to test.
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
  */
-glMatrix.equals = function(a, b) {
-	return Math.abs(a - b) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a), Math.abs(b));
+export function equals(a, b) {
+  return Math.abs(a - b) <= EPSILON*Math.max(1.0, Math.abs(a), Math.abs(b));
 }
-
-module.exports = glMatrix;
