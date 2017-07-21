@@ -4,8 +4,8 @@
 if (typeof(Worker) !== 'undefined') {
   describe("Embedded within Web Workers", function() {
     it("should initialize successfully", function() {
-      var xhr = new XMLHttpRequest();
-      var source = null;
+      let xhr = new XMLHttpRequest();
+      let source = null;
       xhr.onreadystatechange = function() {
         if (this.readyState == this.DONE) {
           if (this.status == 200) {
@@ -16,18 +16,18 @@ if (typeof(Worker) !== 'undefined') {
       xhr.open("GET", "/dist/gl-matrix-min.js");
       xhr.send();
 
-      var result = null;
+      let result = null;
 
       waitsFor(function() {
         if (!source) return false;
-        var blob = new Blob([
+        let blob = new Blob([
             source,
             "self.postMessage(vec3.create());"
           ],
           {type: "application/javascript"}
         );
 
-        var worker = new Worker(URL.createObjectURL(blob));
+        let worker = new Worker(URL.createObjectURL(blob));
         worker.onmessage = function(e) {
           result = e.data;
         };

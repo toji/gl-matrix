@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: vec4</title>
+    <title>JSDoc: Module: vec3</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: vec4</h1>
+    <h1 class="page-title">Module: vec3</h1>
 
     
 
@@ -28,9 +28,8 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>vec4<span class="signature">()</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">4 Dimensional Vector</div>
+            
         
     
 </header>
@@ -39,16 +38,11 @@
     <div class="container-overview">
     
         
+            <div class="description">3 Dimensional Vector</div>
+        
 
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="vec4"><span class="type-signature"></span>new vec4<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
+        
+            
 
 
 
@@ -93,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line23">line 23</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -119,8 +113,7 @@
 
 
 
-
-
+        
     
     </div>
 
@@ -130,9 +123,7 @@
 
     
 
-    
-
-    
+     
 
     
 
@@ -146,192 +137,14 @@
 
     
 
-<<<<<<< HEAD
-    
-    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
-=======
-    <h4 class="name" id=".dist"><span class="type-signature">(static) </span>dist<span class="signature">()</span><span class="type-signature"></span></h4>
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
+    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Alias for vec4.distance
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line548">line 548</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".div"><span class="type-signature">(static) </span>div<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Alias for vec4.divide
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line542">line 542</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-<<<<<<< HEAD
-    
-    <h4 class="name" id=".ceil"><span class="type-signature">(static) </span>ceil<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
-=======
-    <h4 class="name" id=".forEach"><span class="type-signature">(static) </span>forEach<span class="signature">(a, stride, offset, count, fn, arg<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
-
-    
-
-
-
-<div class="description">
-    Perform some operation over an array of vec4s.
+    Adds two vec3's
 </div>
 
 
@@ -355,8 +168,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -369,195 +180,148 @@
 
         <tr>
             
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>a</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">vec3</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">the array of vectors to iterate over</td>
+            <td class="description last">the first operand</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>stride</code></td>
+                <td class="name"><code>b</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">vec3</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
 
-            <td class="description last">Number of elements between the start of each vec4. If 0 assumes tightly packed</td>
+            <td class="description last">the second operand</td>
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>offset</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
+    </tbody>
+</table>
 
 
-            
-            </td>
 
-            
-                <td class="attributes">
-                
 
-                
 
-                
-                </td>
-            
 
-            
-
-            <td class="description last">Number of elements to skip at the beginning of the array</td>
-        </tr>
+<dl class="details">
 
     
 
-        <tr>
-            
-                <td class="name"><code>count</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Number of vec4s to iterate over. If 0 iterates over entire array</td>
-        </tr>
+    
 
     
 
-        <tr>
-            
-                <td class="name"><code>fn</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last">Function to call for each vector in the array</td>
-        </tr>
+    
 
     
 
-        <tr>
-            
-                <td class="name"><code>arg</code></td>
-            
+    
 
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line122">line 122</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
-            
-            </td>
 
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
 
-                
-                </td>
-            
 
-            
 
-<<<<<<< HEAD
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
 <dl>
     <dt>
         Type
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -567,23 +331,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".angle"><span class="type-signature">(static) </span>angle<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new vec4 initialized with values from an existing vector
+    Get the angle between two 3D vectors
 </div>
 
 
@@ -625,7 +385,627 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The second operand</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line640">line 640</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    The angle in radians
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".bezier"><span class="type-signature">(static) </span>bezier<span class="signature">(out, a, b, c, d, t)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Performs a bezier interpolation with two control points
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the second operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the third operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>d</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the fourth operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>t</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">interpolation amount between the two inputs</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line452">line 452</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".ceil"><span class="type-signature">(static) </span>ceil<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Math.ceil the components of a vec3
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">vector to ceil</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line181">line 181</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a new vec3 initialized with values from an existing vector
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
 
 
             
@@ -676,7 +1056,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line49">line 49</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line47">line 47</a>
     </li></ul></dd>
     
 
@@ -703,7 +1083,7 @@
 
         
 <div class="param-desc">
-    a new 4D vector
+    a new 3D vector
 </div>
 
 
@@ -714,7 +1094,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -724,23 +1104,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Copy the values from one vec4 to another
+    Copy the values from one vec3 to another
 </div>
 
 
@@ -782,7 +1158,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -805,7 +1181,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -856,7 +1232,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line83">line 83</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line91">line 91</a>
     </li></ul></dd>
     
 
@@ -894,7 +1270,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -904,23 +1280,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new, empty vec4
+    Creates a new, empty vec3
 </div>
 
 
@@ -964,7 +1336,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line34">line 34</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -991,7 +1363,7 @@
 
         
 <div class="param-desc">
-    a new 4D vector
+    a new 3D vector
 </div>
 
 
@@ -1002,7 +1374,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -1012,109 +1384,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".dist"><span class="type-signature">(static) </span>dist<span class="signature">()</span><span class="type-signature"></span></h4>
-    
+    <h4 class="name" id=".cross"><span class="type-signature">(static) </span>cross<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.distance">vec4.distance</a>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line320">line 320</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id=".distance"><span class="type-signature">(static) </span>distance<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Calculates the euclidian distance between two vec4's
+    Computes the cross product of two vec3's
 </div>
 
 
@@ -1150,13 +1432,36 @@
 
         <tr>
             
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
                 <td class="name"><code>a</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1179,7 +1484,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1230,7 +1535,265 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line308">line 308</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line387">line 387</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".dist"><span class="type-signature">(static) </span>dist<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Alias for vec3.distance
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line717">line 717</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".distance"><span class="type-signature">(static) </span>distance<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Calculates the euclidian distance between two vec3's
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the second operand</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line284">line 284</a>
     </li></ul></dd>
     
 
@@ -1278,23 +1841,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".div"><span class="type-signature">(static) </span>div<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.divide">vec4.divide</a>
+    Alias for vec3.divide
 </div>
 
 
@@ -1338,7 +1897,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line189">line 189</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line711">line 711</a>
     </li></ul></dd>
     
 
@@ -1364,23 +1923,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".divide"><span class="type-signature">(static) </span>divide<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".divide"><span class="type-signature">(static) </span>divide<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Divides two vec4's
+    Divides two vec3's
 </div>
 
 
@@ -1422,7 +1977,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1445,7 +2000,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1468,7 +2023,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1519,7 +2074,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line177">line 177</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -1557,7 +2112,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -1567,23 +2122,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".dot"><span class="type-signature">(static) </span>dot<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the dot product of two vec4's
+    Calculates the dot product of two vec3's
 </div>
 
 
@@ -1625,7 +2176,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1648,7 +2199,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1699,7 +2250,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line443">line 443</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line375">line 375</a>
     </li></ul></dd>
     
 
@@ -1747,16 +2298,12 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".equals"><span class="type-signature">(static) </span>equals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
 
     
 
@@ -1805,7 +2352,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1828,7 +2375,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -1879,7 +2426,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line600">line 600</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line687">line 687</a>
     </li></ul></dd>
     
 
@@ -1927,16 +2474,12 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".exactEquals"><span class="type-signature">(static) </span>exactEquals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
-    
 
     
 
@@ -1985,7 +2528,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2008,7 +2551,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2059,7 +2602,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line589">line 589</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line676">line 676</a>
     </li></ul></dd>
     
 
@@ -2107,23 +2650,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".floor"><span class="type-signature">(static) </span>floor<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".floor"><span class="type-signature">(static) </span>floor<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Math.floor the components of a vec4
+    Math.floor the components of a vec3
 </div>
 
 
@@ -2165,7 +2704,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2188,7 +2727,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2239,7 +2778,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line213">line 213</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line195">line 195</a>
     </li></ul></dd>
     
 
@@ -2277,7 +2816,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -2287,23 +2826,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".forEach"><span class="type-signature">(static) </span>forEach<span class="signature">(a, stride, offset, count, fn, arg<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {Array}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Perform some operation over an array of vec4s.
+    Perform some operation over an array of vec3s.
 </div>
 
 
@@ -2396,7 +2931,7 @@
 
             
 
-            <td class="description last">Number of elements between the start of each vec4. If 0 assumes tightly packed</td>
+            <td class="description last">Number of elements between the start of each vec3. If 0 assumes tightly packed</td>
         </tr>
 
     
@@ -2458,7 +2993,7 @@
 
             
 
-            <td class="description last">Number of vec4s to iterate over. If 0 iterates over entire array</td>
+            <td class="description last">Number of vec3s to iterate over. If 0 iterates over entire array</td>
         </tr>
 
     
@@ -2563,7 +3098,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line543">line 543</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line749">line 749</a>
     </li></ul></dd>
     
 
@@ -2611,23 +3146,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x, y, z, w)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x, y, z)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new vec4 initialized with the given values
+    Creates a new vec3 initialized with the given values
 </div>
 
 
@@ -2729,29 +3260,6 @@
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">W component</td>
-        </tr>
-
-    
     </tbody>
 </table>
 
@@ -2789,7 +3297,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line67">line 67</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line76">line 76</a>
     </li></ul></dd>
     
 
@@ -2816,7 +3324,7 @@
 
         
 <div class="param-desc">
-    a new 4D vector
+    a new 3D vector
 </div>
 
 
@@ -2827,7 +3335,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -2837,23 +3345,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".inverse"><span class="type-signature">(static) </span>inverse<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".hermite"><span class="type-signature">(static) </span>hermite<span class="signature">(out, a, b, c, d, t)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the inverse of the components of a vec4
+    Performs a hermite interpolation with two control points
 </div>
 
 
@@ -2895,7 +3399,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2918,7 +3422,275 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the second operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the third operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>d</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the fourth operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>t</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">interpolation amount between the two inputs</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line427">line 427</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".inverse"><span class="type-signature">(static) </span>inverse<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns the inverse of the components of a vec3
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
 
 
             
@@ -2969,7 +3741,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line405">line 405</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line339">line 339</a>
     </li></ul></dd>
     
 
@@ -3007,7 +3779,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -3017,23 +3789,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".len"><span class="type-signature">(static) </span>len<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.length">vec4.length</a>
+    Alias for vec3.length
 </div>
 
 
@@ -3077,7 +3845,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line361">line 361</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line729">line 729</a>
     </li></ul></dd>
     
 
@@ -3103,23 +3871,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".length"><span class="type-signature">(static) </span>length<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the length of a vec4
+    Calculates the length of a vec3
 </div>
 
 
@@ -3161,7 +3925,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3212,7 +3976,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line349">line 349</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line61">line 61</a>
     </li></ul></dd>
     
 
@@ -3260,23 +4024,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Performs a linear interpolation between two vec4's
+    Performs a linear interpolation between two vec3's
 </div>
 
 
@@ -3318,7 +4078,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3341,7 +4101,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3364,7 +4124,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3438,7 +4198,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line456">line 456</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line406">line 406</a>
     </li></ul></dd>
     
 
@@ -3476,7 +4236,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -3486,23 +4246,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".max"><span class="type-signature">(static) </span>max<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".max"><span class="type-signature">(static) </span>max<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the maximum of two vec4's
+    Returns the maximum of two vec3's
 </div>
 
 
@@ -3544,7 +4300,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3567,7 +4323,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3590,7 +4346,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3641,7 +4397,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line245">line 245</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line225">line 225</a>
     </li></ul></dd>
     
 
@@ -3679,7 +4435,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -3689,23 +4445,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".min"><span class="type-signature">(static) </span>min<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".min"><span class="type-signature">(static) </span>min<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the minimum of two vec4's
+    Returns the minimum of two vec3's
 </div>
 
 
@@ -3747,7 +4499,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3770,7 +4522,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3793,7 +4545,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3844,7 +4596,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line229">line 229</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line210">line 210</a>
     </li></ul></dd>
     
 
@@ -3882,7 +4634,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -3892,23 +4644,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".mul"><span class="type-signature">(static) </span>mul<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.multiply">vec4.multiply</a>
+    Alias for vec3.multiply
 </div>
 
 
@@ -3952,7 +4700,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line167">line 167</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line705">line 705</a>
     </li></ul></dd>
     
 
@@ -3978,23 +4726,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Multiplies two vec4's
+    Multiplies two vec3's
 </div>
 
 
@@ -4036,7 +4780,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4059,7 +4803,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4082,7 +4826,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4133,7 +4877,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line155">line 155</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -4171,7 +4915,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -4181,23 +4925,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".negate"><span class="type-signature">(static) </span>negate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".negate"><span class="type-signature">(static) </span>negate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Negates the components of a vec4
+    Negates the components of a vec3
 </div>
 
 
@@ -4239,7 +4979,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4262,7 +5002,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4313,7 +5053,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line390">line 390</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line325">line 325</a>
     </li></ul></dd>
     
 
@@ -4351,7 +5091,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -4361,23 +5101,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Normalize a vec4
+    Normalize a vec3
 </div>
 
 
@@ -4419,7 +5155,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4442,7 +5178,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4493,7 +5229,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line420">line 420</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line353">line 353</a>
     </li></ul></dd>
     
 
@@ -4531,7 +5267,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -4541,16 +5277,12 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".random"><span class="type-signature">(static) </span>random<span class="signature">(out, scale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".random"><span class="type-signature">(static) </span>random<span class="signature">(out, scale<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
@@ -4601,7 +5333,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4693,7 +5425,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line475">line 475</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line475">line 475</a>
     </li></ul></dd>
     
 
@@ -4731,7 +5463,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -4741,23 +5473,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".round"><span class="type-signature">(static) </span>round<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, b, c)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Math.round the components of a vec4
+    Rotate a 3D vector around the x-axis
 </div>
 
 
@@ -4799,7 +5527,673 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The receiving vec3</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The vec3 point to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The origin of the rotation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The angle of rotation</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line558">line 558</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, b, c)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotate a 3D vector around the y-axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The receiving vec3</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The vec3 point to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The origin of the rotation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The angle of rotation</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line586">line 586</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, b, c)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotate a 3D vector around the z-axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The receiving vec3</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The vec3 point to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The origin of the rotation</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>c</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The angle of rotation</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line614">line 614</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".round"><span class="type-signature">(static) </span>round<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Math.round the components of a vec3
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
 
 
             
@@ -4822,7 +6216,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4873,7 +6267,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line260">line 260</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line239">line 239</a>
     </li></ul></dd>
     
 
@@ -4911,7 +6305,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -4921,23 +6315,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Scales a vec4 by a scalar number
+    Scales a vec3 by a scalar number
 </div>
 
 
@@ -4979,7 +6369,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5002,7 +6392,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5076,7 +6466,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line276">line 276</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line254">line 254</a>
     </li></ul></dd>
     
 
@@ -5114,7 +6504,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -5124,23 +6514,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".scaleAndAdd"><span class="type-signature">(static) </span>scaleAndAdd<span class="signature">(out, a, b, scale)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".scaleAndAdd"><span class="type-signature">(static) </span>scaleAndAdd<span class="signature">(out, a, b, scale)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Adds two vec4's after scaling the second operand by a scalar value
+    Adds two vec3's after scaling the second operand by a scalar value
 </div>
 
 
@@ -5182,7 +6568,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5205,7 +6591,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5228,7 +6614,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5302,7 +6688,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line293">line 293</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line270">line 270</a>
     </li></ul></dd>
     
 
@@ -5340,7 +6726,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -5350,23 +6736,19 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x, y, z, w)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x, y, z)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Set the components of a vec4 to the given values
+    Set the components of a vec3 to the given values
 </div>
 
 
@@ -5408,7 +6790,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5491,29 +6873,6 @@
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">W component</td>
-        </tr>
-
-    
     </tbody>
 </table>
 
@@ -5551,7 +6910,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line101">line 101</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line107">line 107</a>
     </li></ul></dd>
     
 
@@ -5589,7 +6948,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -5599,23 +6958,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".sqrDist"><span class="type-signature">(static) </span>sqrDist<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.squaredDistance">vec4.squaredDistance</a>
+    Alias for vec3.squaredDistance
 </div>
 
 
@@ -5659,7 +7014,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line341">line 341</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line723">line 723</a>
     </li></ul></dd>
     
 
@@ -5685,23 +7040,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".sqrLen"><span class="type-signature">(static) </span>sqrLen<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.squaredLength">vec4.squaredLength</a>
+    Alias for vec3.squaredLength
 </div>
 
 
@@ -5745,7 +7096,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line381">line 381</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line735">line 735</a>
     </li></ul></dd>
     
 
@@ -5771,23 +7122,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".squaredDistance"><span class="type-signature">(static) </span>squaredDistance<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the squared euclidian distance between two vec4's
+    Calculates the squared euclidian distance between two vec3's
 </div>
 
 
@@ -5829,7 +7176,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5852,7 +7199,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5903,7 +7250,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line329">line 329</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line298">line 298</a>
     </li></ul></dd>
     
 
@@ -5951,23 +7298,19 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".squaredLength"><span class="type-signature">(static) </span>squaredLength<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Calculates the squared length of a vec4
+    Calculates the squared length of a vec3
 </div>
 
 
@@ -6009,7 +7352,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -6060,7 +7403,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line369">line 369</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line311">line 311</a>
     </li></ul></dd>
     
 
@@ -6108,16 +7451,12 @@
 
 
 
-
-
         
             
 
     
 
-    
     <h4 class="name" id=".str"><span class="type-signature">(static) </span>str<span class="signature">(a)</span><span class="type-signature"> &rarr; {String}</span></h4>
-    
 
     
 
@@ -6166,7 +7505,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -6178,10 +7517,6 @@
 
             <td class="description last">vector to represent as a string</td>
         </tr>
-=======
-            <td class="description last">additional argument to pass to fn</td>
-        </tr>
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
 
     
     </tbody>
@@ -6221,7 +7556,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line580">line 580</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line665">line 665</a>
     </li></ul></dd>
     
 
@@ -6248,7 +7583,7 @@
 
         
 <div class="param-desc">
-    a
+    string representation of the vector
 </div>
 
 
@@ -6259,7 +7594,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array</span>
+<span class="param-type">String</span>
 
 
     </dd>
@@ -6269,24 +7604,19 @@
 
 
 
-
-
         
             
 
     
 
-<<<<<<< HEAD
-    
     <h4 class="name" id=".sub"><span class="type-signature">(static) </span>sub<span class="signature">()</span><span class="type-signature"></span></h4>
-    
 
     
 
 
 
 <div class="description">
-    Alias for <a href="vec4.html#.subtract">vec4.subtract</a>
+    Alias for vec3.subtract
 </div>
 
 
@@ -6330,7 +7660,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line145">line 145</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line699">line 699</a>
     </li></ul></dd>
     
 
@@ -6356,16 +7686,12 @@
 
 
 
-
-
         
             
 
     
 
-    
-    <h4 class="name" id=".subtract"><span class="type-signature">(static) </span>subtract<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
-    
+    <h4 class="name" id=".subtract"><span class="type-signature">(static) </span>subtract<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
@@ -6414,7 +7740,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec4.html">vec4</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -6426,24 +7752,56 @@
 
             <td class="description last">the receiving vector</td>
         </tr>
-=======
-    <h4 class="name" id=".length"><span class="type-signature">(static) </span>length<span class="signature">()</span><span class="type-signature"></span></h4>
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
 
     
 
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
 
 
-<div class="description">
-    Alias for vec4.len
-</div>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
 
 
+            
+            </td>
 
+            
 
+            
 
+            <td class="description last">the second operand</td>
+        </tr>
 
-
+    
+    </tbody>
+</table>
 
 
 
@@ -6479,7 +7837,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line560">line 560</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line137">line 137</a>
     </li></ul></dd>
     
 
@@ -6502,43 +7860,147 @@
 
 
 
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".mul"><span class="type-signature">(static) </span>mul<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<<<<<<< HEAD
-
+<h5>Returns:</h5>
 
         
-            
-=======
-<div class="description">
-    Alias for vec4.multiply
+<div class="param-desc">
+    out
 </div>
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
 
 
-<<<<<<< HEAD
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
     
-    <h4 class="name" id=".transformMat4"><span class="type-signature">(static) </span>transformMat4<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
+
+
+
+        
+            
+
     
-=======
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
+
+    <h4 class="name" id=".transformMat3"><span class="type-signature">(static) </span>transformMat3<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Transforms the vec3 with a mat3.
+</div>
 
 
 
 
 
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the vector to transform</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>m</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the 3x3 matrix to transform with</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -6574,7 +8036,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line536">line 536</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line515">line 515</a>
     </li></ul></dd>
     
 
@@ -6597,6 +8059,28 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
 
 
 
@@ -6605,14 +8089,15 @@
 
     
 
-    <h4 class="name" id=".sqrDist"><span class="type-signature">(static) </span>sqrDist<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".transformMat4"><span class="type-signature">(static) </span>transformMat4<span class="signature">(out, a, m)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Alias for vec4.squaredDistance
+    Transforms the vec3 with a mat4.
+4th vector component is implicitly '1'
 </div>
 
 
@@ -6621,6 +8106,101 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the vector to transform</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>m</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">matrix to transform with</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -6656,7 +8236,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line554">line 554</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line497">line 497</a>
     </li></ul></dd>
     
 
@@ -6679,43 +8259,147 @@
 
 
 
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".sqrLen"><span class="type-signature">(static) </span>sqrLen<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<<<<<<< HEAD
-
+<h5>Returns:</h5>
 
         
-            
-=======
-<div class="description">
-    Alias for vec4.squaredLength
+<div class="param-desc">
+    out
 </div>
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
 
 
-<<<<<<< HEAD
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
     
-    <h4 class="name" id=".transformQuat"><span class="type-signature">(static) </span>transformQuat<span class="signature">(out, a, q)</span><span class="type-signature"> &rarr; {<a href="vec4.html">vec4</a>}</span></h4>
+
+
+
+        
+            
+
     
-=======
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
+
+    <h4 class="name" id=".transformQuat"><span class="type-signature">(static) </span>transformQuat<span class="signature">(out, a, q)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Transforms the vec3 with a quat
+</div>
 
 
 
 
 
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving vector</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the vector to transform</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>q</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">quat</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">quaternion to transform with</td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -6751,7 +8435,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line566">line 566</a>
+        <a href="vec3.js.html">vec3.js</a>, <a href="vec3.js.html#line531">line 531</a>
     </li></ul></dd>
     
 
@@ -6774,90 +8458,28 @@
 
 
 
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    <h4 class="name" id=".sub"><span class="type-signature">(static) </span>sub<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Alias for vec4.subtract
+<div class="param-desc">
+    out
 </div>
 
 
 
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
 
 
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="vec4.js.html">vec4.js</a>, <a href="vec4.js.html#line530">line 530</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
@@ -6877,17 +8499,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#adjoint">adjoint</a></li><li><a href="global.html#angle">angle</a></li><li><a href="global.html#bezier">bezier</a></li><li><a href="global.html#calculateW">calculateW</a></li><li><a href="global.html#ceil">ceil</a></li><li><a href="global.html#clone">clone</a></li><li><a href="global.html#conjugate">conjugate</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#cross">cross</a></li><li><a href="global.html#determinant">determinant</a></li><li><a href="global.html#distance">distance</a></li><li><a href="global.html#divide">divide</a></li><li><a href="global.html#dot">dot</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#exactEquals">exactEquals</a></li><li><a href="global.html#floor">floor</a></li><li><a href="global.html#frob">frob</a></li><li><a href="global.html#fromMat2d">fromMat2d</a></li><li><a href="global.html#fromMat3">fromMat3</a></li><li><a href="global.html#fromMat4">fromMat4</a></li><li><a href="global.html#fromQuat">fromQuat</a></li><li><a href="global.html#fromRotation">fromRotation</a></li><li><a href="global.html#fromRotationTranslation">fromRotationTranslation</a></li><li><a href="global.html#fromRotationTranslationScale">fromRotationTranslationScale</a></li><li><a href="global.html#fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin</a></li><li><a href="global.html#fromScaling">fromScaling</a></li><li><a href="global.html#fromTranslation">fromTranslation</a></li><li><a href="global.html#fromValues">fromValues</a></li><li><a href="global.html#fromXRotation">fromXRotation</a></li><li><a href="global.html#fromYRotation">fromYRotation</a></li><li><a href="global.html#fromZRotation">fromZRotation</a></li><li><a href="global.html#frustum">frustum</a></li><li><a href="global.html#getAxisAngle">getAxisAngle</a></li><li><a href="global.html#getRotation">getRotation</a></li><li><a href="global.html#getScaling">getScaling</a></li><li><a href="global.html#getTranslation">getTranslation</a></li><li><a href="global.html#hermite">hermite</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#inverse">inverse</a></li><li><a href="global.html#invert">invert</a></li><li><a href="global.html#LDU">LDU</a></li><li><a href="global.html#len">len</a></li><li><a href="global.html#lerp">lerp</a></li><li><a href="global.html#lookAt">lookAt</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#multiply">multiply</a></li><li><a href="global.html#multiplyScalar">multiplyScalar</a></li><li><a href="global.html#multiplyScalarAndAdd">multiplyScalarAndAdd</a></li><li><a href="global.html#negate">negate</a></li><li><a href="global.html#normalFromMat4">normalFromMat4</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#ortho">ortho</a></li><li><a href="global.html#perspective">perspective</a></li><li><a href="global.html#perspectiveFromFieldOfView">perspectiveFromFieldOfView</a></li><li><a href="global.html#random">random</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateX">rotateX</a></li><li><a href="global.html#rotateY">rotateY</a></li><li><a href="global.html#rotateZ">rotateZ</a></li><li><a href="global.html#round">round</a></li><li><a href="global.html#scale">scale</a></li><li><a href="global.html#scaleAndAdd">scaleAndAdd</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#setAxisAngle">setAxisAngle</a></li><li><a href="global.html#setMatrixArrayType">setMatrixArrayType</a></li><li><a href="global.html#slerp">slerp</a></li><li><a href="global.html#squaredDistance">squaredDistance</a></li><li><a href="global.html#squaredLength">squaredLength</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#subtract">subtract</a></li><li><a href="global.html#toRadian">toRadian</a></li><li><a href="global.html#transformMat2">transformMat2</a></li><li><a href="global.html#transformMat2d">transformMat2d</a></li><li><a href="global.html#transformMat3">transformMat3</a></li><li><a href="global.html#transformMat4">transformMat4</a></li><li><a href="global.html#transformQuat">transformQuat</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#transpose">transpose</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-<<<<<<< HEAD
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Wed Jul 19 2017 18:40:09 GMT+0000 (UTC)
-=======
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jul 07 2017 11:09:05 GMT-0700 (PDT)
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Fri Jul 07 2017 13:30:08 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

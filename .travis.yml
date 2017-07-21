@@ -5,4 +5,4 @@ node_js:
 script:
   - webpack
   - webpack --config webpack.config.min.js
-  - jasmine-node spec
+  - mocha --compilers js:babel-register --recursive spec
