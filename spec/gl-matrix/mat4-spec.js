@@ -18,21 +18,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-var glMatrix = require("../../src/gl-matrix/common.js");
-var mat4 = require("../../src/gl-matrix/mat4.js");
-var vec3 = require("../../src/gl-matrix/vec3.js");
-var quat = require("../../src/gl-matrix/quat.js");
+import * as glMatrix from "../../src/gl-matrix/common"
+import * as mat4 from "../../src/gl-matrix/mat4"
+import * as quat from "../../src/gl-matrix/quat"
+import * as vec3 from "../../src/gl-matrix/vec3"
 
-// Inject the polyfill for testing
-if (!glMatrix.SIMD_AVAILABLE) {
-  require("simd").shim();
-}
-
-function buildMat4Tests(useSIMD) {
-    mat4.TEST_PATH = useSIMD ? mat4.SIMD : mat4.scalar;
-
+function buildMat4Tests() {
     return function() {
-        var out, matA, matB, identity, result;
+        let out, matA, matB, identity, result;
 
         beforeEach(function() {
             // Attempting to portray a semi-realistic transform matrix
@@ -81,7 +74,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("transpose", function() {
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.transpose(out, matA); });
+                beforeEach(function() { result = mat4.transpose(out, matA); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -103,7 +96,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.transpose(matA, matA); });
+                beforeEach(function() { result = mat4.transpose(matA, matA); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -119,7 +112,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("invert", function() {
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.invert(out, matA); });
+                beforeEach(function() { result = mat4.invert(out, matA); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -141,7 +134,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.invert(matA, matA); });
+                beforeEach(function() { result = mat4.invert(matA, matA); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -157,7 +150,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("adjoint", function() {
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.adjoint(out, matA); });
+                beforeEach(function() { result = mat4.adjoint(out, matA); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -179,7 +172,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.adjoint(matA, matA); });
+                beforeEach(function() { result = mat4.adjoint(matA, matA); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -203,7 +196,7 @@ function buildMat4Tests(useSIMD) {
             it("should have an alias called 'mul'", function() { expect(mat4.mul).toEqual(mat4.multiply); });
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.multiply(out, matA, matB); });
+                beforeEach(function() { result = mat4.multiply(out, matA, matB); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -233,7 +226,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.multiply(matA, matA, matB); });
+                beforeEach(function() { result = mat4.multiply(matA, matA, matB); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -255,7 +248,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matB is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.multiply(matB, matA, matB); });
+                beforeEach(function() { result = mat4.multiply(matB, matA, matB); });
 
                 it("should place values into matB", function() {
                     expect(matB).toBeEqualish([
@@ -279,7 +272,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("translate", function() {
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.translate(out, matA, [4, 5, 6]); });
+                beforeEach(function() { result = mat4.translate(out, matA, [4, 5, 6]); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -301,7 +294,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.translate(matA, matA, [4, 5, 6]); });
+                beforeEach(function() { result = mat4.translate(matA, matA, [4, 5, 6]); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -317,7 +310,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("scale", function() {
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.scale(out, matA, [4, 5, 6]); });
+                beforeEach(function() { result = mat4.scale(out, matA, [4, 5, 6]); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -339,7 +332,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.scale(matA, matA, [4, 5, 6]); });
+                beforeEach(function() { result = mat4.scale(matA, matA, [4, 5, 6]); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -354,8 +347,8 @@ function buildMat4Tests(useSIMD) {
         });
 
         describe("rotate", function() {
-            var rad = Math.PI * 0.5;
-            var axis = [1, 0, 0];
+            let rad = Math.PI * 0.5;
+            let axis = [1, 0, 0];
 
             describe("with a separate output matrix", function() {
                 beforeEach(function() { result = mat4.rotate(out, matA, rad, axis); });
@@ -395,10 +388,10 @@ function buildMat4Tests(useSIMD) {
         });
 
         describe("rotateX", function() {
-            var rad = Math.PI * 0.5;
+            let rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.rotateX(out, matA, rad); });
+                beforeEach(function() { result = mat4.rotateX(out, matA, rad); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -420,7 +413,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.rotateX(matA, matA, rad); });
+                beforeEach(function() { result = mat4.rotateX(matA, matA, rad); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -435,10 +428,10 @@ function buildMat4Tests(useSIMD) {
         });
 
         describe("rotateY", function() {
-            var rad = Math.PI * 0.5;
+            let rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.rotateY(out, matA, rad); });
+                beforeEach(function() { result = mat4.rotateY(out, matA, rad); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -460,7 +453,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.rotateY(matA, matA, rad); });
+                beforeEach(function() { result = mat4.rotateY(matA, matA, rad); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -475,10 +468,10 @@ function buildMat4Tests(useSIMD) {
         });
 
         describe("rotateZ", function() {
-            var rad = Math.PI * 0.5;
+            let rad = Math.PI * 0.5;
 
             describe("with a separate output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.rotateZ(out, matA, rad); });
+                beforeEach(function() { result = mat4.rotateZ(out, matA, rad); });
 
                 it("should place values into out", function() {
                     expect(out).toBeEqualish([
@@ -500,7 +493,7 @@ function buildMat4Tests(useSIMD) {
             });
 
             describe("when matA is the output matrix", function() {
-                beforeEach(function() { result = mat4.TEST_PATH.rotateZ(matA, matA, rad); });
+                beforeEach(function() { result = mat4.rotateZ(matA, matA, rad); });
 
                 it("should place values into matA", function() {
                     expect(matA).toBeEqualish([
@@ -515,7 +508,7 @@ function buildMat4Tests(useSIMD) {
         });
 
         // TODO: fromRotationTranslation
-        
+
         describe("getTranslation", function() {
             describe("from the identity matrix", function() {
                 beforeEach(function() {
@@ -538,8 +531,8 @@ function buildMat4Tests(useSIMD) {
 
             describe("from a translation and rotation matrix", function() {
                 beforeEach(function() {
-                    var q = quat.create();
-                    var v = vec3.fromValues(5, 6, 7);
+                    let q = quat.create();
+                    let v = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [0.26726124, 0.534522474, 0.8017837], 0.55);
                     mat4.fromRotationTranslation(out, q, v);
 
@@ -565,7 +558,7 @@ function buildMat4Tests(useSIMD) {
 
             describe("from a scale-only matrix", function() {
                 beforeEach(function() {
-                    var v = vec3.fromValues(4, 5, 6);
+                    let v = vec3.fromValues(4, 5, 6);
                     result = vec3.fromValues(1, 2, 3)
                     out = vec3.fromValues(1, 2, 3);
                     mat4.fromScaling(matA, v);
@@ -576,8 +569,8 @@ function buildMat4Tests(useSIMD) {
 
             describe("from a translation and rotation matrix", function() {
                 beforeEach(function() {
-                    var q = quat.create();
-                    var v = vec3.fromValues(5, 6, 7);
+                    let q = quat.create();
+                    let v = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [1, 0, 0], 0.5);
                     mat4.fromRotationTranslation(out, q, v);
 
@@ -589,9 +582,9 @@ function buildMat4Tests(useSIMD) {
 
             describe("from a translation, rotation and scale matrix", function() {
                 beforeEach(function() {
-                    var q = quat.create();
-                    var t = vec3.fromValues(1, 2, 3);
-                    var s = vec3.fromValues(5, 6, 7);
+                    let q = quat.create();
+                    let t = vec3.fromValues(1, 2, 3);
+                    let s = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
                     mat4.fromRotationTranslationScale(out, q, t, s);
                     result = vec3.fromValues(5, 6, 7);
@@ -599,7 +592,7 @@ function buildMat4Tests(useSIMD) {
                 })
                 it("should return the same scaling factor when created", function() { expect(result).toBeEqualish([5, 6, 7]); });
             });
-            
+
         });
 
         describe("getRotation", function() {
@@ -611,7 +604,7 @@ function buildMat4Tests(useSIMD) {
                 });
                 it("should place result both in result and out", function() { expect(result).toBe(out); });
                 it("should return the unit quaternion", function() {
-                    var unitQuat = quat.create();
+                    let unitQuat = quat.create();
                     quat.identity(unitQuat);
                     expect(result).toBeEqualish(unitQuat);
                 });
@@ -624,7 +617,7 @@ function buildMat4Tests(useSIMD) {
                     result = mat4.getRotation(out, matB);
                 });
                 it("should return the unit quaternion", function() {
-                    var unitQuat = quat.create();
+                    let unitQuat = quat.create();
                     quat.identity(unitQuat);
                     expect(result).toBeEqualish(unitQuat);
                 });
@@ -632,10 +625,10 @@ function buildMat4Tests(useSIMD) {
 
             describe("from a translation and rotation matrix", function() {
                 it("should keep the same rotation as when created", function() {
-                    var q = quat.create();
-                    var outVec = vec3.fromValues(5, 6, 7);
-                    var testVec = vec3.fromValues(1, 5, 2);
-                    var ang = 0.78972;
+                    let q = quat.create();
+                    let outVec = vec3.fromValues(5, 6, 7);
+                    let testVec = vec3.fromValues(1, 5, 2);
+                    let ang = 0.78972;
 
                     vec3.normalize(testVec, testVec);
                     q = quat.setAxisAngle(q, testVec, ang);
@@ -643,8 +636,8 @@ function buildMat4Tests(useSIMD) {
 
                     result = quat.fromValues(2, 3, 4, 6);
                     mat4.getRotation(result, out);
-                    var outaxis = vec3.create();
-                    var outangle = quat.getAxisAngle(outaxis, result);
+                    let outaxis = vec3.create();
+                    let outangle = quat.getAxisAngle(outaxis, result);
 
                     expect(outaxis).toBeEqualish(testVec);
                     expect(outangle).toBeEqualish(ang);
@@ -665,7 +658,7 @@ function buildMat4Tests(useSIMD) {
         });
 
         describe("perspective", function() {
-            var fovy = Math.PI * 0.5;
+            let fovy = Math.PI * 0.5;
             beforeEach(function() { result = mat4.perspective(out, fovy, 1, 0, 1); });
             it("should place values into out", function() { expect(result).toBeEqualish([
                     1, 0, 0, 0,
@@ -700,10 +693,10 @@ function buildMat4Tests(useSIMD) {
         });
 
         describe("lookAt", function() {
-            var eye    = new Float32Array([0, 0, 1]);
-            var center = new Float32Array([0, 0, -1]);
-            var up     = new Float32Array([0, 1, 0]);
-            var view, up, right;
+            let eye    = new Float32Array([0, 0, 1]);
+            let center = new Float32Array([0, 0, -1]);
+            let up     = new Float32Array([0, 1, 0]);
+            let view, right;
 
             describe("looking down", function() {
                 beforeEach(function() {
@@ -770,7 +763,79 @@ function buildMat4Tests(useSIMD) {
             });
             it("should return out", function() { expect(result).toBe(out); });
         });
+        
+        describe("targetTo", function() {
+            var eye    = new Float32Array([0, 0, 1]);
+            var center = new Float32Array([0, 0, -1]);
+            var up     = new Float32Array([0, 1, 0]);
+            var view, up, right;
 
+            describe("looking down", function() {
+                beforeEach(function() {
+                    view = new Float32Array([0, -1,  0]);
+                    up   = new Float32Array([0,  0, -1]);
+                    right= new Float32Array([1,  0,  0]);
+                    result = mat4.targetTo(out, [0, 0, 0], view, up);
+                });
+
+                it("should transform view into local Z", function() {
+                    result = vec3.transformMat4(new Float32Array(3), view, out);
+                    expect(result).toBeEqualish([0, 0, 1]);
+                });
+
+                it("should transform up into local -Y", function() {
+                    result = vec3.transformMat4(new Float32Array(3), up, out);
+                    expect(result).toBeEqualish([0, -1, 0]);
+                });
+
+                it("should transform right into local +X", function() {
+                    result = vec3.transformMat4(new Float32Array(3), right, out);
+                    expect(result).toBeEqualish([1, 0, 0]);
+                });
+
+                it("should return out", function() { expect(result).toBe(out); });
+            });
+
+            describe("#74", function() {
+                beforeEach(function() {
+                    mat4.targetTo(out,
+                        new Float32Array([0,2,0]),
+                        new Float32Array([0,0.6,0]),
+                        new Float32Array([0,0,-1]));
+                });
+
+                it("should transform a point 'above' into local +Y", function() {
+                    result = vec3.transformMat4(new Float32Array(3), [0, 2, -1], out);
+                    expect(result).toBeEqualish([0, 1, -2]);
+                });
+
+                it("should transform a point 'right of' into local +X", function() {
+                    result = vec3.transformMat4(new Float32Array(3), [1, 2, 0], out);
+                    expect(result).toBeEqualish([1, 2, -2]);
+                });
+
+                it("should transform a point 'in front of' into local -Z", function() {
+                    result = vec3.transformMat4(new Float32Array(3), [0, 1, 0], out);
+                    expect(result).toBeEqualish([0, 2, -1]);
+                });
+            });
+
+            beforeEach(function() {
+                eye    = new Float32Array([0, 0, 1]);
+                center = new Float32Array([0, 0, -1]);
+                up     = new Float32Array([0, 1, 0]);
+                result = mat4.targetTo(out, eye, center, up);
+            });
+            it("should place values into out", function() { expect(result).toBeEqualish([
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    0, 0, 1, 1
+                ]);
+            });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+        
         describe("str", function() {
             beforeEach(function() { result = mat4.str(matA); });
 
@@ -866,7 +931,7 @@ function buildMat4Tests(useSIMD) {
         });
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalar(out, matA, 2); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
@@ -874,7 +939,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalar(matA, matA, 2); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -887,7 +952,7 @@ function buildMat4Tests(useSIMD) {
         });
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalarAndAdd(out, matA, matB, 0.5); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
@@ -896,7 +961,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalarAndAdd(matA, matA, matB, 0.5); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32]); });
             it("should return matA", function() { expect(result).toBe(matA); });
             it("should not modify matB", function() { expect(matB).toBeEqualish([17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]); });
@@ -904,7 +969,7 @@ function buildMat4Tests(useSIMD) {
 
         describe("when matB is the output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalarAndAdd(matB, matA, matB, 0.5); });
-            
+
             it("should place values into matB", function() { expect(matB).toBeEqualish([9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32]); });
             it("should return matB", function() { expect(result).toBe(matB); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]); });
@@ -912,7 +977,7 @@ function buildMat4Tests(useSIMD) {
     });
 
     describe("exactEquals", function() {
-        var matC, r0, r1;
+        let matC, r0, r1;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
             matB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -928,7 +993,7 @@ function buildMat4Tests(useSIMD) {
     });
 
     describe("equals", function() {
-        var matC, matD, r0, r1, r2;
+        let matC, matD, r0, r1, r2;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
             matB = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -946,5 +1011,4 @@ function buildMat4Tests(useSIMD) {
     });
 }
 
-describe("mat4 (SISD)", buildMat4Tests(false));
-describe("mat4 (SIMD)", buildMat4Tests(true));
+describe("mat4", buildMat4Tests());
