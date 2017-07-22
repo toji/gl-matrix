@@ -18,6 +18,9 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
+//TODO: TOTALLY FIX ME!! (Newer function signatures, ES5 modules?)
+//Remove every var --> let
+
 var glMatrix = require("./common.js");
 var quat = require("./quat.js");
 var mat4 = require("./mat4.js");

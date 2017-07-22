@@ -47,55 +47,47 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 /**
- * @class Common utilities
- * @name glMatrix
+ * Common utilities
+ * @module glMatrix
  */
-var glMatrix = {};
 
 // Configuration Constants
-glMatrix.EPSILON = 0.000001;
-glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
-glMatrix.RANDOM = Math.random;
-glMatrix.ENABLE_SIMD = false;
-
-// Capability detection
-glMatrix.SIMD_AVAILABLE = (glMatrix.ARRAY_TYPE === this.Float32Array) &amp;&amp; ('SIMD' in this);
-glMatrix.USE_SIMD = glMatrix.ENABLE_SIMD &amp;&amp; glMatrix.SIMD_AVAILABLE;
+export const EPSILON = 0.000001;
+export let ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
+export const RANDOM = Math.random;
 
 /**
  * Sets the type of array used when creating new vectors and matrices
  *
  * @param {Type} type Array type, such as Float32Array or Array
  */
-glMatrix.setMatrixArrayType = function(type) {
-    glMatrix.ARRAY_TYPE = type;
+export function setMatrixArrayType(type) {
+  ARRAY_TYPE = type;
 }
 
-var degree = Math.PI / 180;
+const degree = Math.PI / 180;
 
 /**
-* Convert Degree To Radian
-*
-* @param {Number} a Angle in Degrees
-*/
-glMatrix.toRadian = function(a){
-     return a * degree;
+ * Convert Degree To Radian
+ *
+ * @param {Number} a Angle in Degrees
+ */
+export function toRadian(a) {
+  return a * degree;
 }
 
 /**
  * Tests whether or not the arguments have approximately the same value, within an absolute
- * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less 
+ * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less
  * than or equal to 1.0, and a relative tolerance is used for larger values)
- * 
+ *
  * @param {Number} a The first number to test.
  * @param {Number} b The second number to test.
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
  */
-glMatrix.equals = function(a, b) {
-	return Math.abs(a - b) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a), Math.abs(b));
+export function equals(a, b) {
+  return Math.abs(a - b) &lt;= EPSILON*Math.max(1.0, Math.abs(a), Math.abs(b));
 }
-
-module.exports = glMatrix;
 </code></pre>
         </article>
     </section>
@@ -106,13 +98,13 @@ module.exports = glMatrix;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="quat2.html">quat2</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul><h3>Classes</h3><ul><li><a href="mat4.html">mat4</a></li><li><a href="quat2.html">quat2</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#adjoint">adjoint</a></li><li><a href="global.html#clone">clone</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#determinant">determinant</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#exactEquals">exactEquals</a></li><li><a href="global.html#frob">frob</a></li><li><a href="global.html#fromQuat">fromQuat</a></li><li><a href="global.html#fromQuat2">fromQuat2</a></li><li><a href="global.html#fromRotation">fromRotation</a></li><li><a href="global.html#fromRotationTranslation">fromRotationTranslation</a></li><li><a href="global.html#fromRotationTranslationScale">fromRotationTranslationScale</a></li><li><a href="global.html#fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin</a></li><li><a href="global.html#fromScaling">fromScaling</a></li><li><a href="global.html#fromTranslation">fromTranslation</a></li><li><a href="global.html#fromValues">fromValues</a></li><li><a href="global.html#fromXRotation">fromXRotation</a></li><li><a href="global.html#fromYRotation">fromYRotation</a></li><li><a href="global.html#fromZRotation">fromZRotation</a></li><li><a href="global.html#frustum">frustum</a></li><li><a href="global.html#getRotation">getRotation</a></li><li><a href="global.html#getScaling">getScaling</a></li><li><a href="global.html#getTranslation">getTranslation</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#invert">invert</a></li><li><a href="global.html#lookAt">lookAt</a></li><li><a href="global.html#mul">mul</a></li><li><a href="global.html#multiply">multiply</a></li><li><a href="global.html#multiplyScalar">multiplyScalar</a></li><li><a href="global.html#multiplyScalarAndAdd">multiplyScalarAndAdd</a></li><li><a href="global.html#ortho">ortho</a></li><li><a href="global.html#perspective">perspective</a></li><li><a href="global.html#perspectiveFromFieldOfView">perspectiveFromFieldOfView</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateX">rotateX</a></li><li><a href="global.html#rotateY">rotateY</a></li><li><a href="global.html#rotateZ">rotateZ</a></li><li><a href="global.html#scale">scale</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#sub">sub</a></li><li><a href="global.html#subtract">subtract</a></li><li><a href="global.html#targetTo">targetTo</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#transpose">transpose</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.2</a> on Sun Mar 12 2017 15:20:27 GMT+0000 (UTC)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.3</a> on Sat Jul 22 2017 19:50:11 GMT+0000 (UTC)
 </footer>
 
 <script> prettyPrint(); </script>

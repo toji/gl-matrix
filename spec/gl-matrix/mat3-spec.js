@@ -18,12 +18,12 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-describe("mat3", function() {
-    var mat3 = require("../../src/gl-matrix/mat3.js");
-    var mat4 = require("../../src/gl-matrix/mat4.js");
-    var vec3 = require("../../src/gl-matrix/vec3.js");
+import * as mat3 from "../../src/gl-matrix/mat3"
+import * as mat4 from "../../src/gl-matrix/mat4"
+import * as vec3 from "../../src/gl-matrix/vec3"
 
-    var out, matA, matB, identity, result;
+describe("mat3", function() {
+    let out, matA, matB, identity, result;
 
     beforeEach(function() {
         matA = [1, 0, 0,
@@ -85,7 +85,7 @@ describe("mat3", function() {
     });
 
     describe("fromQuat", function() {
-        var q;
+        let q;
 
         beforeEach(function() {
             q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
@@ -154,33 +154,33 @@ describe("mat3", function() {
     describe("transpose", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.transpose(out, matA); });
-            
-            it("should place values into out", function() { 
+
+            it("should place values into out", function() {
                 expect(out).toBeEqualish([
                     1, 0, 1,
                     0, 1, 2,
                     0, 0, 1
-                ]); 
+                ]);
             });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify matA", function() { 
+            it("should not modify matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     1, 2, 1
-                ]); 
+                ]);
             });
         });
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.transpose(matA, matA); });
-            
-            it("should place values into matA", function() { 
+
+            it("should place values into matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 1,
                     0, 1, 2,
                     0, 0, 1
-                ]); 
+                ]);
             });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -189,8 +189,8 @@ describe("mat3", function() {
     describe("invert", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.invert(out, matA); });
-            
-            it("should place values into out", function() { 
+
+            it("should place values into out", function() {
                 expect(out).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
@@ -198,24 +198,24 @@ describe("mat3", function() {
                 ]);
             });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify matA", function() { 
+            it("should not modify matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     1, 2, 1
-                ]); 
+                ]);
             });
         });
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.invert(matA, matA); });
-            
-            it("should place values into matA", function() { 
+
+            it("should place values into matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     -1, -2, 1
-                ]); 
+                ]);
             });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -224,8 +224,8 @@ describe("mat3", function() {
     describe("adjoint", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.adjoint(out, matA); });
-            
-            it("should place values into out", function() { 
+
+            it("should place values into out", function() {
                 expect(out).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
@@ -233,24 +233,24 @@ describe("mat3", function() {
                 ]);
             });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify matA", function() { 
+            it("should not modify matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     1, 2, 1
-                ]); 
+                ]);
             });
         });
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.adjoint(matA, matA); });
-            
-            it("should place values into matA", function() { 
+
+            it("should place values into matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     -1, -2, 1
-                ]); 
+                ]);
             });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -258,7 +258,7 @@ describe("mat3", function() {
 
     describe("determinant", function() {
         beforeEach(function() { result = mat3.determinant(matA); });
-        
+
         it("should return the determinant", function() { expect(result).toEqual(1); });
     });
 
@@ -267,21 +267,21 @@ describe("mat3", function() {
 
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.multiply(out, matA, matB); });
-            
-            it("should place values into out", function() { 
+
+            it("should place values into out", function() {
                 expect(out).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     4, 6, 1
-                ]); 
+                ]);
             });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify matA", function() { 
+            it("should not modify matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     1, 2, 1
-                ]); 
+                ]);
             });
             it("should not modify matB", function() {
                 expect(matB).toBeEqualish([
@@ -294,7 +294,7 @@ describe("mat3", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.multiply(matA, matA, matB); });
-            
+
             it("should place values into matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
@@ -314,16 +314,16 @@ describe("mat3", function() {
 
         describe("when matB is the output matrix", function() {
             beforeEach(function() { result = mat3.multiply(matB, matA, matB); });
-            
-            it("should place values into matB", function() { 
+
+            it("should place values into matB", function() {
                 expect(matB).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
                     4, 6, 1
-                ]); 
+                ]);
             });
             it("should return matB", function() { expect(result).toBe(matB); });
-            it("should not modify matA", function() { 
+            it("should not modify matA", function() {
                 expect(matA).toBeEqualish([
                     1, 0, 0,
                     0, 1, 0,
@@ -335,7 +335,7 @@ describe("mat3", function() {
 
     describe("str", function() {
         beforeEach(function() { result = mat3.str(matA); });
-        
+
         it("should return a string representation of the matrix", function() { expect(result).toEqual("mat3(1, 0, 0, 0, 1, 0, 1, 2, 1)"); });
     });
 
@@ -427,7 +427,7 @@ describe("mat3", function() {
         });
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalar(out, matA, 2); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([2, 4, 6, 8, 10, 12, 14, 16, 18]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
@@ -435,7 +435,7 @@ describe("mat3", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalar(matA, matA, 2); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([2, 4, 6, 8, 10, 12, 14, 16, 18]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -448,7 +448,7 @@ describe("mat3", function() {
         });
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalarAndAdd(out, matA, matB, 0.5); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
@@ -457,7 +457,7 @@ describe("mat3", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalarAndAdd(matA, matA, matB, 0.5); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18]); });
             it("should return matA", function() { expect(result).toBe(matA); });
             it("should not modify matB", function() { expect(matB).toBeEqualish([10, 11, 12, 13, 14, 15, 16, 17, 18]); });
@@ -465,15 +465,29 @@ describe("mat3", function() {
 
         describe("when matB is the output matrix", function() {
             beforeEach(function() { result = mat3.multiplyScalarAndAdd(matB, matA, matB, 0.5); });
-            
+
             it("should place values into matB", function() { expect(matB).toBeEqualish([6, 7.5, 9, 10.5, 12, 13.5, 15, 16.5, 18]); });
             it("should return matB", function() { expect(result).toBe(matB); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6, 7, 8, 9]); });
         });
     });
 
+    describe("projection", function() {
+        beforeEach(function() {
+            result = mat3.projection(out, 100.0, 200.0);
+        });
+
+        it("should return out", function() { expect(result).toBe(out); });
+
+        it("should give projection matrix", function() {
+            expect(result).toBeEqualish([0.02,     0, 0,
+                                            0, -0.01, 0,
+                                           -1,     1, 1]);
+        });
+    });
+
     describe("exactEquals", function() {
-        var matC, r0, r1;
+        let matC, r0, r1;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5, 6, 7, 8];
             matB = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -489,7 +503,7 @@ describe("mat3", function() {
     });
 
     describe("equals", function() {
-        var matC, matD, r0, r1, r2;
+        let matC, matD, r0, r1, r2;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5, 6, 7, 8];
             matB = [0, 1, 2, 3, 4, 5, 6, 7, 8];

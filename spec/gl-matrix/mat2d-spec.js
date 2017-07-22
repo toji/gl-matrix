@@ -18,10 +18,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-describe("mat2d", function() {
-    var mat2d = require("../../src/gl-matrix/mat2d.js");
+import * as mat2d from "../../src/gl-matrix/mat2d"
 
-    var out, matA, matB, identity, result;
+describe("mat2d", function() {
+    let out, matA, matB, oldA, oldB, identity, result;
 
     beforeEach(function() {
         matA = [1, 2,
@@ -74,7 +74,7 @@ describe("mat2d", function() {
     describe("invert", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.invert(out, matA); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([ -2, 1, 1.5, -0.5, 1, -2 ]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
@@ -82,7 +82,7 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.invert(matA, matA); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([ -2, 1, 1.5, -0.5, 1, -2 ]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -90,7 +90,7 @@ describe("mat2d", function() {
 
     describe("determinant", function() {
         beforeEach(function() { result = mat2d.determinant(matA); });
-        
+
         it("should return the determinant", function() { expect(result).toEqual(-2); });
     });
 
@@ -99,7 +99,7 @@ describe("mat2d", function() {
 
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.multiply(out, matA, matB); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([31, 46, 39, 58, 52, 76]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
@@ -108,7 +108,7 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.multiply(matA, matA, matB); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([31, 46, 39, 58, 52, 76]); });
             it("should return matA", function() { expect(result).toBe(matA); });
             it("should not modify matB", function() { expect(matB).toBeEqualish(oldB); });
@@ -116,7 +116,7 @@ describe("mat2d", function() {
 
         describe("when matB is the output matrix", function() {
             beforeEach(function() { result = mat2d.multiply(matB, matA, matB); });
-            
+
             it("should place values into matB", function() { expect(matB).toBeEqualish([31, 46, 39, 58, 52, 76]); });
             it("should return matB", function() { expect(result).toBe(matB); });
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
@@ -126,7 +126,7 @@ describe("mat2d", function() {
     describe("rotate", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.rotate(out, matA, Math.PI * 0.5); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([3, 4, -1, -2, 5, 6]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
@@ -134,19 +134,19 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.rotate(matA, matA, Math.PI * 0.5); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([3, 4, -1, -2, 5, 6]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
     });
 
     describe("scale", function() {
-        var vecA;
+        let vecA;
         beforeEach(function() { vecA = [2, 3]; });
 
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.scale(out, matA, vecA); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([2, 4, 9, 12, 5, 6]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
@@ -154,19 +154,19 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.scale(matA, matA, vecA); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([2, 4, 9, 12, 5, 6]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
     });
 
     describe("translate", function() {
-        var vecA;
+        let vecA;
         beforeEach(function() { vecA = [2, 3]; });
 
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.translate(out, matA, vecA); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4, 16, 22]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish(oldA); });
@@ -174,7 +174,7 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.translate(matA, matA, vecA); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 16, 22]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -182,7 +182,7 @@ describe("mat2d", function() {
 
     describe("str", function() {
         beforeEach(function() { result = mat2d.str(matA); });
-        
+
         it("should return a string representation of the matrix", function() { expect(result).toEqual("mat2d(1, 2, 3, 4, 5, 6)"); });
     });
 
@@ -261,7 +261,7 @@ describe("mat2d", function() {
     describe("multiplyScalar", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.multiplyScalar(out, matA, 2); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([2, 4, 6, 8, 10, 12]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6]); });
@@ -269,7 +269,7 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.multiplyScalar(matA, matA, 2); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([2, 4, 6, 8, 10, 12]); });
             it("should return matA", function() { expect(result).toBe(matA); });
         });
@@ -278,7 +278,7 @@ describe("mat2d", function() {
     describe("multiplyScalarAndAdd", function() {
         describe("with a separate output matrix", function() {
             beforeEach(function() { result = mat2d.multiplyScalarAndAdd(out, matA, matB, 0.5); });
-            
+
             it("should place values into out", function() { expect(out).toBeEqualish([4.5, 6, 7.5, 9, 10.5, 12]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6]); });
@@ -287,7 +287,7 @@ describe("mat2d", function() {
 
         describe("when matA is the output matrix", function() {
             beforeEach(function() { result = mat2d.multiplyScalarAndAdd(matA, matA, matB, 0.5); });
-            
+
             it("should place values into matA", function() { expect(matA).toBeEqualish([4.5, 6, 7.5, 9, 10.5, 12]); });
             it("should return matA", function() { expect(result).toBe(matA); });
             it("should not modify matB", function() { expect(matB).toBeEqualish([7, 8, 9, 10, 11, 12]); });
@@ -295,7 +295,7 @@ describe("mat2d", function() {
 
         describe("when matB is the output matrix", function() {
             beforeEach(function() { result = mat2d.multiplyScalarAndAdd(matB, matA, matB, 0.5); });
-            
+
             it("should place values into matB", function() { expect(matB).toBeEqualish([4.5, 6, 7.5, 9, 10.5, 12]); });
             it("should return matB", function() { expect(result).toBe(matB); });
             it("should not modify matA", function() { expect(matA).toBeEqualish([1, 2, 3, 4, 5, 6]); });
@@ -303,7 +303,7 @@ describe("mat2d", function() {
     });
 
     describe("exactEquals", function() {
-        var matC, r0, r1;
+        let matC, r0, r1;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5];
             matB = [0, 1, 2, 3, 4, 5];
@@ -319,7 +319,7 @@ describe("mat2d", function() {
     });
 
     describe("equals", function() {
-        var matC, matD, r0, r1, r2;
+        let matC, matD, r0, r1, r2;
         beforeEach(function() {
             matA = [0, 1, 2, 3, 4, 5];
             matB = [0, 1, 2, 3, 4, 5];
