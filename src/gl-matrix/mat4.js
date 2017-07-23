@@ -974,7 +974,7 @@ export function fromQuat2(out, a) {
         translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
         translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
     }
-    mat4.fromRotationTranslation(out, a, translation);
+    fromRotationTranslation(out, a, translation);
     return out;
 }
 

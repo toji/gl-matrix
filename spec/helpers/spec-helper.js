@@ -27,6 +27,19 @@ global.expect = function(e) {
             toBe: function(a) {
                 return e !== a;
             },
+            toBeEqualish: function(expected) {
+              if (typeof(e) == 'number')
+                return Math.abs(e - expected) < EPSILON;
+    
+              if (e.length != expected.length) return !false;
+              for (let i = 0; i < e.length; i++) {
+                if (isNaN(e[i]) !== isNaN(expected[i]))
+                  return !false;
+                if (Math.abs(e[i] - expected[i]) >= EPSILON)
+                  return !false;
+              }
+              return !true;
+            },
         },
         toBeGreaterThan: function(a) {
             return e > a;
@@ -59,15 +72,15 @@ global.expect = function(e) {
         toBeEqualishQuat2New: function(expected) {
           var allSignsFlipped = false;
           
-          if (this.actual.length != expected.length) return false;
-          for (var i = 0; i < this.actual.length; i++) {
-            if (isNaN(this.actual[i]) !== isNaN(expected[i]))
+          if (e.length != expected.length) return false;
+          for (var i = 0; i < e.length; i++) {
+            if (isNaN(e[i]) !== isNaN(expected[i]))
               return false;
               if(allSignsFlipped) {
-                if (Math.abs(this.actual[i] - (-expected[i])) >= EPSILON)
+                if (Math.abs(e[i] - (-expected[i])) >= EPSILON)
                   return false;
               } else {
-                if (Math.abs(this.actual[i] - expected[i]) >= EPSILON) {
+                if (Math.abs(e[i] - expected[i]) >= EPSILON) {
                   allSignsFlipped = true;
                   i = 0;
                 }
@@ -75,5 +88,5 @@ global.expect = function(e) {
           }
           return true;
         }
-    }
+    };
 };

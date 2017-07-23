@@ -6311,6 +6311,100 @@ var sub = exports.sub = subtract;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.sqrLen = exports.squaredLength = exports.len = exports.length = exports.dot = exports.mul = exports.setReal = exports.getReal = undefined;
+exports.create = create;
+exports.clone = clone;
+exports.fromValues = fromValues;
+exports.fromRotationTranslationValues = fromRotationTranslationValues;
+exports.fromRotationTranslation = fromRotationTranslation;
+exports.fromTranslation = fromTranslation;
+exports.fromRotation = fromRotation;
+exports.fromMat4 = fromMat4;
+exports.copy = copy;
+exports.identity = identity;
+exports.set = set;
+exports.getDual = getDual;
+exports.setDual = setDual;
+exports.getTranslation = getTranslation;
+exports.translate = translate;
+exports.rotateX = rotateX;
+exports.rotateY = rotateY;
+exports.rotateZ = rotateZ;
+exports.rotateByQuatAppend = rotateByQuatAppend;
+exports.rotateByQuatPrepend = rotateByQuatPrepend;
+exports.rotateAroundAxis = rotateAroundAxis;
+exports.add = add;
+exports.multiply = multiply;
+exports.scale = scale;
+exports.lerp = lerp;
+exports.slerp = slerp;
+exports.invert = invert;
+exports.conjugate = conjugate;
+exports.normalize = normalize;
+exports.str = str;
+exports.exactEquals = exactEquals;
+exports.equals = equals;
+
+var _common = __webpack_require__(0);
+
+var glMatrix = _interopRequireWildcard(_common);
+
+var _quat = __webpack_require__(3);
+
+var quat = _interopRequireWildcard(_quat);
+
+var _mat = __webpack_require__(2);
+
+var mat4 = _interopRequireWildcard(_mat);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+//NOTE: Quaternions are in XYZW format!
+//NOTE: [real dual]
+//NOTE: Dual Quaternions need to be normalized, otherwise some functions won't work!
+//TODO: slerp and co.
+//TODO: rotate(out, a, rad, axis) 
+//TODO: quat2.forEach
+
+//LINKS: https://github.com/bobbens/libdq
+//https://github.com/markaren/DualQuaternion/tree/master/src/main/java/info/laht/dualquat
+//http://wscg.zcu.cz/wscg2012/short/A29-full.pdf
+//http://www.xbdev.net/misc_demos/demos/dual_quaternions_beyond/paper.pdf
+//https://github.com/mosra/magnum/blob/master/src/Magnum/Math/DualQuaternion.h#L364
+//http://mosra.cz/blog/magnum-doc/classMagnum_1_1Math_1_1DualQuaternion.html#a6dcad20c0e9c7c9361b9c291ee42b181
+/**
+ * @class Dual Quaternion<br>Format: [[real],[dual]]<br>Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.
+ * @name quat2
+ */
+
+/**
+ * Creates a new identity dual quat
+ *
+ * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
+ */
+function create() {
+  var dq = new glMatrix.ARRAY_TYPE(8);
+  dq[0] = 0;
+  dq[1] = 0;
+  dq[2] = 0;
+  dq[3] = 1;
+  dq[4] = 0;
+  dq[5] = 0;
+  dq[6] = 0;
+  dq[7] = 0;
+  return dq;
+}
+
+/**
+ * Creates a new quat initialized with values from an existing quaternion
+ *
+ * @param {quat2} a dual quaternion to clone
+ * @returns {quat2} new dual quaternion
+ * @function
+ */
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -6334,54 +6428,7 @@ THE SOFTWARE. */
 //TODO: TOTALLY FIX ME!! (Newer function signatures, ES5 modules?)
 //Remove every var --> let
 
-var glMatrix = __webpack_require__(0);
-var quat = __webpack_require__(3);
-var mat4 = __webpack_require__(2);
-//NOTE: Quaternions are in XYZW format!
-//NOTE: [real dual]
-//NOTE: Dual Quaternions need to be normalized, otherwise some functions won't work!
-//TODO: slerp and co.
-//TODO: rotate(out, a, rad, axis) 
-//TODO: quat2.forEach
-
-//LINKS: https://github.com/bobbens/libdq
-//https://github.com/markaren/DualQuaternion/tree/master/src/main/java/info/laht/dualquat
-//http://wscg.zcu.cz/wscg2012/short/A29-full.pdf
-//http://www.xbdev.net/misc_demos/demos/dual_quaternions_beyond/paper.pdf
-//https://github.com/mosra/magnum/blob/master/src/Magnum/Math/DualQuaternion.h#L364
-//http://mosra.cz/blog/magnum-doc/classMagnum_1_1Math_1_1DualQuaternion.html#a6dcad20c0e9c7c9361b9c291ee42b181
-/**
- * @class Dual Quaternion<br>Format: [[real],[dual]]<br>Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.
- * @name quat2
- */
-var quat2 = {};
-
-/**
- * Creates a new identity dual quat
- *
- * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
- */
-quat2.create = function () {
-  var dq = new glMatrix.ARRAY_TYPE(8);
-  dq[0] = 0;
-  dq[1] = 0;
-  dq[2] = 0;
-  dq[3] = 1;
-  dq[4] = 0;
-  dq[5] = 0;
-  dq[6] = 0;
-  dq[7] = 0;
-  return dq;
-};
-
-/**
- * Creates a new quat initialized with values from an existing quaternion
- *
- * @param {quat2} a dual quaternion to clone
- * @returns {quat2} new dual quaternion
- * @function
- */
-quat2.clone = function (a) {
+function clone(a) {
   var dq = new glMatrix.ARRAY_TYPE(8);
   dq[0] = a[0];
   dq[1] = a[1];
@@ -6392,7 +6439,7 @@ quat2.clone = function (a) {
   dq[6] = a[6];
   dq[7] = a[7];
   return dq;
-};
+}
 
 /**
  * Creates a new dual quat initialized with the given values
@@ -6408,7 +6455,7 @@ quat2.clone = function (a) {
  * @returns {quat2} new dual quaternion
  * @function
  */
-quat2.fromValues = function (x1, y1, z1, w1, x2, y2, z2, w2) {
+function fromValues(x1, y1, z1, w1, x2, y2, z2, w2) {
   var dq = new glMatrix.ARRAY_TYPE(8);
   dq[0] = x1;
   dq[1] = y1;
@@ -6419,7 +6466,7 @@ quat2.fromValues = function (x1, y1, z1, w1, x2, y2, z2, w2) {
   dq[6] = z2;
   dq[7] = w2;
   return dq;
-};
+}
 
 /**
  * Creates a new dual quat from the given values (quat and translation)
@@ -6434,7 +6481,7 @@ quat2.fromValues = function (x1, y1, z1, w1, x2, y2, z2, w2) {
  * @returns {quat2} new dual quaternion
  * @function
  */
-quat2.fromRotationTranslationValues = function (x1, y1, z1, w1, x2, y2, z2) {
+function fromRotationTranslationValues(x1, y1, z1, w1, x2, y2, z2) {
   var dq = new glMatrix.ARRAY_TYPE(8);
   dq[0] = x1;
   dq[1] = y1;
@@ -6448,7 +6495,7 @@ quat2.fromRotationTranslationValues = function (x1, y1, z1, w1, x2, y2, z2) {
   dq[6] = az * w1 + ax * y1 - ay * x1;
   dq[7] = -ax * x1 - ay * y1 - az * z1;
   return dq;
-};
+}
 
 /**
  * Creates a dual quat from a quaternion and a translation
@@ -6459,7 +6506,7 @@ quat2.fromRotationTranslationValues = function (x1, y1, z1, w1, x2, y2, z2) {
  * @returns {quat2} dual quaternion receiving operation result
  * @function
  */
-quat2.fromRotationTranslation = function (out, q, t) {
+function fromRotationTranslation(out, q, t) {
   var ax = t[0] * 0.5,
       ay = t[1] * 0.5,
       az = t[2] * 0.5,
@@ -6478,7 +6525,7 @@ quat2.fromRotationTranslation = function (out, q, t) {
   out[6] = az * bw + ax * by - ay * bx;
   out[7] = -ax * bx - ay * by - az * bz;
   return out;
-};
+}
 
 /**
  * Creates a dual quat from a translation
@@ -6488,7 +6535,7 @@ quat2.fromRotationTranslation = function (out, q, t) {
  * @returns {quat2} dual quaternion receiving operation result
  * @function
  */
-quat2.fromTranslation = function (out, t) {
+function fromTranslation(out, t) {
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -6498,7 +6545,7 @@ quat2.fromTranslation = function (out, t) {
   out[6] = t[2] * 0.5;
   out[7] = 0;
   return out;
-};
+}
 
 /**
  * Creates a dual quat from a quaternion
@@ -6508,7 +6555,7 @@ quat2.fromTranslation = function (out, t) {
  * @returns {quat2} dual quaternion receiving operation result
  * @function
  */
-quat2.fromRotation = function (out, q) {
+function fromRotation(out, q) {
   out[0] = q[0];
   out[1] = q[1];
   out[2] = q[2];
@@ -6518,7 +6565,7 @@ quat2.fromRotation = function (out, q) {
   out[6] = 0;
   out[7] = 0;
   return out;
-};
+}
 
 /**
  * Creates a new dual quat from a matrix (4x4)
@@ -6528,7 +6575,7 @@ quat2.fromRotation = function (out, q) {
  * @returns {quat2} dual quat receiving operation result
  * @function
  */
-quat2.fromMat4 = function (out, a) {
+function fromMat4(out, a) {
   //TODO Optimize this 
   var outer = quat.create();
   mat4.getRotation(outer, a);
@@ -6538,7 +6585,7 @@ quat2.fromMat4 = function (out, a) {
   //quat.multiply(out[1], [t[0], t[1], t[2], 0], out[0]);
   //quat.scale(out[1], out[1], 0.5);
   return out;
-};
+}
 
 /**
  * Copy the values from one dual quat to another
@@ -6548,7 +6595,7 @@ quat2.fromMat4 = function (out, a) {
  * @returns {quat2} out
  * @function
  */
-quat2.copy = function (out, a) {
+function copy(out, a) {
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -6558,7 +6605,7 @@ quat2.copy = function (out, a) {
   out[6] = a[6];
   out[7] = a[7];
   return out;
-};
+}
 
 /**
  * Set a dual quat to the identity dual quaternion
@@ -6566,7 +6613,7 @@ quat2.copy = function (out, a) {
  * @param {quat2} out the receiving quaternion
  * @returns {quat2} out
  */
-quat2.identity = function (out) {
+function identity(out) {
   out[0] = 0;
   out[1] = 0;
   out[2] = 0;
@@ -6576,7 +6623,7 @@ quat2.identity = function (out) {
   out[6] = 0;
   out[7] = 0;
   return out;
-};
+}
 
 /**
  * Set the components of a dual quat to the given values
@@ -6593,7 +6640,7 @@ quat2.identity = function (out) {
  * @returns {quat2} out
  * @function
  */
-quat2.set = function (out, x1, y1, z1, w1, x2, y2, z2, w2) {
+function set(out, x1, y1, z1, w1, x2, y2, z2, w2) {
   out[0] = x1;
   out[1] = y1;
   out[2] = z1;
@@ -6604,7 +6651,7 @@ quat2.set = function (out, x1, y1, z1, w1, x2, y2, z2, w2) {
   out[6] = z2;
   out[7] = w2;
   return out;
-};
+}
 
 /**
  * Gets the real part of a dual quat
@@ -6612,7 +6659,7 @@ quat2.set = function (out, x1, y1, z1, w1, x2, y2, z2, w2) {
  * @param  {quat2} a Dual Quaternion
  * @return {quat} real part
  */
-quat2.getReal = quat.copy;
+var getReal = exports.getReal = quat.copy;
 
 /**
  * Gets the dual part of a dual quat
@@ -6620,13 +6667,13 @@ quat2.getReal = quat.copy;
  * @param  {quat2} a Dual Quaternion
  * @return {quat} dual part
  */
-quat2.getDual = function (out, a) {
+function getDual(out, a) {
   out[0] = a[4];
   out[1] = a[5];
   out[2] = a[6];
   out[3] = a[7];
   return out;
-};
+}
 
 /**
  * Set the real component of a dual quat to the given quaternion
@@ -6636,7 +6683,7 @@ quat2.getDual = function (out, a) {
  * @returns {quat2} out
  * @function
  */
-quat2.setReal = quat.copy;
+var setReal = exports.setReal = quat.copy;
 
 /**
  * Set the dual component of a dual quat to the given quaternion
@@ -6646,13 +6693,13 @@ quat2.setReal = quat.copy;
  * @returns {quat2} out
  * @function
  */
-quat2.setDual = function (out, q) {
+function setDual(out, q) {
   out[4] = q[0];
   out[5] = q[1];
   out[6] = q[2];
   out[7] = q[3];
   return out;
-};
+}
 
 /**
  * Gets the translation of a normalized dual quat
@@ -6660,7 +6707,7 @@ quat2.setDual = function (out, q) {
  * @param  {quat2} a Dual Quaternion to be decomposed
  * @return {vec3} translation
  */
-quat2.getTranslation = function (out, a) {
+function getTranslation(out, a) {
   //var q = new glMatrix.ARRAY_TYPE(4);
   //quat.conjugate(q, a[0]);
   //quat.multiply(q, a[1], q);
@@ -6681,7 +6728,7 @@ quat2.getTranslation = function (out, a) {
   out[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
   out[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
   return out;
-};
+}
 
 /**
  * Translates a dual quat by the given vector
@@ -6691,7 +6738,7 @@ quat2.getTranslation = function (out, a) {
  * @param {vec3} v vector to translate by
  * @returns {quat2} out
  */
-quat2.translate = function (out, a, v) {
+function translate(out, a, v) {
   //var trans = quat2.create();
   //quat2.fromTranslation(trans, v);
   //quat2.multiply(out, a, trans);
@@ -6716,7 +6763,7 @@ quat2.translate = function (out, a, v) {
   out[6] = aw1 * bz1 + ax1 * by1 - ay1 * bx1 + az2;
   out[7] = -ax1 * bx1 - ay1 * by1 - az1 * bz1 + aw2;
   return out;
-};
+}
 
 /**
  * Rotates a dual quat around the X axis
@@ -6726,7 +6773,7 @@ quat2.translate = function (out, a, v) {
  * @param {number} rad how far should the rotation be
  * @returns {quat2} out
  */
-quat2.rotateX = function (out, a, rad) {
+function rotateX(out, a, rad) {
   //Get the translation
   //var t = new glMatrix.ARRAY_TYPE(4);
   //quat.conjugate(t, a[0]);
@@ -6753,7 +6800,7 @@ quat2.rotateX = function (out, a, rad) {
   out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
   out[7] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
   return out;
-};
+}
 
 /**
  * Rotates a dual quat around the Y axis
@@ -6763,7 +6810,7 @@ quat2.rotateX = function (out, a, rad) {
  * @param {number} rad how far should the rotation be
  * @returns {quat2} out
  */
-quat2.rotateY = function (out, a, rad) {
+function rotateY(out, a, rad) {
   //Get the translation
   //var t = new glMatrix.ARRAY_TYPE(4);
   //quat.conjugate(t, a[0]);
@@ -6790,7 +6837,7 @@ quat2.rotateY = function (out, a, rad) {
   out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
   out[7] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
   return out;
-};
+}
 
 /**
  * Rotates a dual quat around the Z axis
@@ -6800,7 +6847,7 @@ quat2.rotateY = function (out, a, rad) {
  * @param {number} rad how far should the rotation be
  * @returns {quat2} out
  */
-quat2.rotateZ = function (out, a, rad) {
+function rotateZ(out, a, rad) {
   //Get the translation
   //var t = new glMatrix.ARRAY_TYPE(4);
   //quat.conjugate(t, a[0]);
@@ -6827,7 +6874,7 @@ quat2.rotateZ = function (out, a, rad) {
   out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
   out[7] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
   return out;
-};
+}
 
 /**
  * Rotates a dual quat by a given quaternion (a * q)
@@ -6837,7 +6884,7 @@ quat2.rotateZ = function (out, a, rad) {
  * @param {quat} q quaternion to rotate by
  * @returns {quat2} out
  */
-quat2.rotateByQuatAppend = function (out, a, q) {
+function rotateByQuatAppend(out, a, q) {
   var qx = q[0],
       qy = q[1],
       qz = q[2],
@@ -6857,7 +6904,7 @@ quat2.rotateByQuatAppend = function (out, a, q) {
   out[6] = az * qw + aw * qz + ax * qy - ay * qx;
   out[7] = aw * qw - ax * qx - ay * qy - az * qz;
   return out;
-};
+}
 
 /**
  * Rotates a dual quat by a given quaternion (q * a)
@@ -6867,7 +6914,7 @@ quat2.rotateByQuatAppend = function (out, a, q) {
  * @param {quat2} a the dual quaternion to rotate
  * @returns {quat2} out
  */
-quat2.rotateByQuatPrepend = function (out, q, a) {
+function rotateByQuatPrepend(out, q, a) {
   var qx = q[0],
       qy = q[1],
       qz = q[2],
@@ -6887,7 +6934,7 @@ quat2.rotateByQuatPrepend = function (out, q, a) {
   out[6] = qz * bw + qw * bz + qx * by - qy * bx;
   out[7] = qw * bw - qx * bx - qy * by - qz * bz;
   return out;
-};
+}
 
 /**
  * Rotates a dual quat around a given axis. Does the normalisation automatically
@@ -6898,7 +6945,7 @@ quat2.rotateByQuatPrepend = function (out, q, a) {
  * @param {Number} rad how far the rotation should be
  * @returns {quat2} out
  */
-quat2.rotateAroundAxis = function (out, a, axis, rad) {
+function rotateAroundAxis(out, a, axis, rad) {
   //Special case for rad = 0
   if (Math.abs(rad) < glMatrix.EPSILON) {
     return quat2.copy(out, a);
@@ -6939,7 +6986,7 @@ quat2.rotateAroundAxis = function (out, a, axis, rad) {
   out[7] = aw * bw - ax * bx - ay * by - az * bz;
 
   return out;
-};
+}
 
 /**
  * Adds two dual quat's
@@ -6950,7 +6997,7 @@ quat2.rotateAroundAxis = function (out, a, axis, rad) {
  * @returns {quat2} out
  * @function
  */
-quat2.add = function (out, a, b) {
+function add(out, a, b) {
   out[0] = a[0] + b[0];
   out[1] = a[1] + b[1];
   out[2] = a[2] + b[2];
@@ -6960,7 +7007,7 @@ quat2.add = function (out, a, b) {
   out[6] = a[6] + b[6];
   out[7] = a[7] + b[7];
   return out;
-};
+}
 
 /**
  * Multiplies two dual quat's
@@ -6970,7 +7017,7 @@ quat2.add = function (out, a, b) {
  * @param {quat2} b the second operand
  * @returns {quat2} out
  */
-quat2.multiply = function (out, a, b) {
+function multiply(out, a, b) {
   //e.g. Get rid of all those temp arrays
   //var tempReal = new glMatrix.ARRAY_TYPE(4);
   //quat.multiply(tempReal, a[0], b[0]);
@@ -7016,13 +7063,13 @@ quat2.multiply = function (out, a, b) {
   //out[1][2] = a[2] + b[2];
   //out[1][3] = a[3] + b[3];
   return out;
-};
+}
 
 /**
  * Alias for {@link quat2.multiply}
  * @function
  */
-quat2.mul = quat2.multiply;
+var mul = exports.mul = multiply;
 
 /**
  * Scales a dual quat by a scalar number
@@ -7033,7 +7080,7 @@ quat2.mul = quat2.multiply;
  * @returns {quat2} out
  * @function
  */
-quat2.scale = function (out, a, b) {
+function scale(out, a, b) {
   out[0] = a[0] * b;
   out[1] = a[1] * b;
   out[2] = a[2] * b;
@@ -7043,7 +7090,7 @@ quat2.scale = function (out, a, b) {
   out[6] = a[6] * b;
   out[7] = a[7] * b;
   return out;
-};
+}
 
 /**
  * Calculates the dot product of two dual quat's (The dot product of the real parts)
@@ -7053,7 +7100,7 @@ quat2.scale = function (out, a, b) {
  * @returns {Number} dot product of a and b
  * @function
  */
-quat2.dot = quat.dot;
+var dot = exports.dot = quat.dot;
 
 /**
  * Performs a linear interpolation between two dual quats's
@@ -7065,7 +7112,7 @@ quat2.dot = quat.dot;
  * @param {Number} t interpolation amount between the two inputs
  * @returns {quat2} out
  */
-quat2.lerp = function (out, a, b, t) {
+function lerp(out, a, b, t) {
   /* (1-t)*q1+t*q2 
    -------------
    ||(1-t)*q1+t*q2|| -> length of it */
@@ -7093,7 +7140,7 @@ quat2.lerp = function (out, a, b, t) {
   //Renormalizing the dual quat is left as an exercise to the user
   //quat2.scale(out, out, 1 / quat2.length(out));
   return out;
-};
+}
 
 /**
  * Performs a spherical linear interpolation between two dual quats
@@ -7104,7 +7151,7 @@ quat2.lerp = function (out, a, b, t) {
  * @param {Number} t interpolation amount between the two inputs
  * @returns {quat2} out
  */
-quat2.slerp = function (out, a, b, t) {
+function slerp(out, a, b, t) {
   /*
   public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c to, float t )
   {
@@ -7134,7 +7181,7 @@ quat2.slerp = function (out, a, b, t) {
   */
   throw new Error("Not implemented");
   return out;
-};
+}
 
 /**
  * Calculates the inverse of a dual quat. If they are normalized, conjugate is cheaper
@@ -7143,7 +7190,7 @@ quat2.slerp = function (out, a, b, t) {
  * @param {quat2} a dual quat to calculate inverse of
  * @returns {quat2} out
  */
-quat2.invert = function (out, a) {
+function invert(out, a) {
   //quat2.conjugate(out, a);
   //quat2.scale(out, out, 1/quat2.squaredLength(a));
   var sqlen = quat2.squaredLength(a);
@@ -7156,7 +7203,7 @@ quat2.invert = function (out, a) {
   out[6] = -a[6] / sqlen;
   out[7] = a[7] / sqlen;
   return out;
-};
+}
 
 /**
  * Calculates the conjugate of a dual quat
@@ -7166,7 +7213,7 @@ quat2.invert = function (out, a) {
  * @param {quat2} a quat to calculate conjugate of
  * @returns {quat2} out
  */
-quat2.conjugate = function (out, a) {
+function conjugate(out, a) {
   out[0] = -a[0];
   out[1] = -a[1];
   out[2] = -a[2];
@@ -7176,7 +7223,7 @@ quat2.conjugate = function (out, a) {
   out[6] = -a[6];
   out[7] = a[7];
   return out;
-};
+}
 
 /**
  * Calculates the length of a dual quat
@@ -7185,13 +7232,13 @@ quat2.conjugate = function (out, a) {
  * @returns {Number} length of a
  * @function
  */
-quat2.length = quat.length;
+var length = exports.length = quat.length;
 
 /**
  * Alias for {@link quat2.length}
  * @function
  */
-quat2.len = quat2.length;
+var len = exports.len = length;
 
 /**
  * Calculates the squared length of a dual quat
@@ -7200,13 +7247,13 @@ quat2.len = quat2.length;
  * @returns {Number} squared length of a
  * @function
  */
-quat2.squaredLength = quat.squaredLength;
+var squaredLength = exports.squaredLength = quat.squaredLength;
 
 /**
  * Alias for {@link quat2.squaredLength}
  * @function
  */
-quat2.sqrLen = quat2.squaredLength;
+var sqrLen = exports.sqrLen = squaredLength;
 
 /**
  * Normalize a dual quat
@@ -7216,7 +7263,7 @@ quat2.sqrLen = quat2.squaredLength;
  * @returns {quat2} out
  * @function
  */
-quat2.normalize = function (out, a) {
+function normalize(out, a) {
   var magnitude = quat2.squaredLength(a);
   //Only scale if it makes sense
   if (magnitude > 0) {
@@ -7232,7 +7279,7 @@ quat2.normalize = function (out, a) {
     out[7] = a[7] / magnitude;
   }
   return out;
-};
+}
 
 /**
  * Returns a string representation of a dual quatenion
@@ -7240,9 +7287,9 @@ quat2.normalize = function (out, a) {
  * @param {quat2} a dual quaternion to represent as a string
  * @returns {String} string representation of the dual quat
  */
-quat2.str = function (a) {
+function str(a) {
   return 'quat2(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ', ' + a[4] + ', ' + a[5] + ', ' + a[6] + ', ' + a[7] + ')';
-};
+}
 
 /**
  * Returns whether or not the dual quaternions have exactly the same elements in the same position (when compared with ===)
@@ -7251,9 +7298,9 @@ quat2.str = function (a) {
  * @param {quat2} b the second dual quaternion.
  * @returns {Boolean} true if the dual quaternions are equal, false otherwise.
  */
-quat2.exactEquals = function (a, b) {
+function exactEquals(a, b) {
   return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7];
-};
+}
 
 /**
  * Returns whether or not the dual quaternions have approximately the same elements in the same position.
@@ -7262,7 +7309,7 @@ quat2.exactEquals = function (a, b) {
  * @param {quat2} b the second dual quat.
  * @returns {Boolean} true if the dual quats are equal, false otherwise.
  */
-quat2.equals = function (a, b) {
+function equals(a, b) {
   var a0 = a[0],
       a1 = a[1],
       a2 = a[2],
@@ -7280,9 +7327,7 @@ quat2.equals = function (a, b) {
       b6 = b[6],
       b7 = b[7];
   return Math.abs(a0 - b0) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) && Math.abs(a1 - b1) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) && Math.abs(a2 - b2) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) && Math.abs(a3 - b3) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) && Math.abs(a4 - b4) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) && Math.abs(a5 - b5) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5)) && Math.abs(a6 - b6) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a6), Math.abs(b6)) && Math.abs(a7 - b7) <= glMatrix.EPSILON * Math.max(1.0, Math.abs(a7), Math.abs(b7));
-};
-
-module.exports = quat2;
+}
 
 /***/ }),
 /* 10 */

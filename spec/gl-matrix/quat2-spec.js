@@ -17,12 +17,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
-
+import * as quat from "../../src/gl-matrix/quat";
+import * as quat2 from "../../src/gl-matrix/quat2";
+import * as mat4 from "../../src/gl-matrix/mat4";
+    
 describe("quat2", function() {
-    var quat = require("../../src/gl-matrix/quat.js");
-    var quat2 = require("../../src/gl-matrix/quat2.js");
-    var mat4 = require("../../src/gl-matrix/mat4.js");
-
     var out, outVec, quat2A, quat2B, result, resultVec, outQuat;
     var vec, id, deg90;
 
@@ -48,7 +47,8 @@ slerp
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
               quat2.normalize(quat2A, quat2A);
               mat4.fromQuat2(matrixA, quat2A);
-            });
+        });
+        
         describe("with a separate output quaternion", function() {
             beforeEach(function() { 
                     result = quat2.translate(out, quat2A, vec);
