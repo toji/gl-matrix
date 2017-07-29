@@ -5570,6 +5570,7 @@ exports.rotateY = rotateY;
 exports.rotateZ = rotateZ;
 exports.calculateW = calculateW;
 exports.slerp = slerp;
+exports.random = random;
 exports.invert = invert;
 exports.conjugate = conjugate;
 exports.fromMat3 = fromMat3;
@@ -5872,6 +5873,29 @@ function slerp(out, a, b, t) {
   out[2] = scale0 * az + scale1 * bz;
   out[3] = scale0 * aw + scale1 * bw;
 
+  return out;
+}
+
+/**
+ * Generates a random quaternion
+ *
+ * @param {quat} out the receiving quaternion
+ * @returns {quat} out
+ */
+function random(out) {
+  // Implementation of http://planning.cs.uiuc.edu/node198.html
+  // TODO: Calling random 3 times is probably not the fastest solution
+  var u1 = glMatrix.RANDOM();
+  var u2 = glMatrix.RANDOM();
+  var u3 = glMatrix.RANDOM();
+
+  var sqrt1MinusU1 = Math.sqrt(1 - u1);
+  var sqrtU1 = Math.sqrt(u1);
+
+  out[0] = sqrt1MinusU1 * Math.sin(2.0 * Math.PI * u2);
+  out[1] = sqrt1MinusU1 * Math.cos(2.0 * Math.PI * u2);
+  out[2] = sqrtU1 * Math.sin(2.0 * Math.PI * u3);
+  out[3] = sqrtU1 * Math.cos(2.0 * Math.PI * u3);
   return out;
 }
 
