@@ -1367,7 +1367,7 @@ export function lookAt(out, eye, center, up) {
   if (Math.abs(eyex - centerx) < glMatrix.EPSILON &&
       Math.abs(eyey - centery) < glMatrix.EPSILON &&
       Math.abs(eyez - centerz) < glMatrix.EPSILON) {
-    return mat4.identity(out);
+    return out;
   }
 
   z0 = eyex - centerx;
