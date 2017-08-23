@@ -1679,3 +1679,127 @@ export const mul = multiply;
  * @function
  */
 export const sub = subtract;
+
+/**
+ * Create a matrix from a vector translation and vector scale
+ * @param {mat4} out mat4 receiving operation result
+ * @param {vec3} t Translation
+ * @param {vec3} s Scale
+ */
+export function fromTranslationScale(out, t, s) {
+  out[0] = s[0];
+  out[1] = 0;
+  out[2] = 0;
+  out[3] = 0;
+  out[4] = 0;
+  out[5] = s[1];
+  out[6] = 0;
+  out[7] = 0;
+  out[8] = 0;
+  out[9] = 0;
+  out[10] = s[2];
+  out[11] = 0;
+  out[12] = t[0];
+  out[13] = t[1];
+  out[14] = t[2];
+  out[15] = 1;
+}
+
+/**
+ * @typedef {Object} MVPView Visible bound in the screen
+ * It is convenient when you need to render only part of the screen
+ * @property {number} x Coordinate X of the beginning of the bound
+ * @property {number} y Coordinate y of the beginning of the bound
+ * @property {number} width Width of the bound
+ * @property {number} height Height of the bound
+ */
+
+/**
+ * Create a MVP matrix from center, eye with perspective projection
+ * @param {mat4} out mat4 receiving operation result
+ * @param {number} fov Vertical field of view in radians
+ * @param {number} near Near bound of the frustum
+ * @param {number} far Far bound of the frustum
+ * @param {vec2} size Width and height of viewport
+ * @param {vec3} target Point the viewer is looking at
+ * @param {vec3} eye Position of the viewer
+ * @param {?MVPView} view Visible bound in the screen
+ */
+export function mvpFromTargetEyeView(out, fov, near, far, size, target, eye, view) {
+  // https://github.com/mrdoob/three.js/blob/dev/src/cameras/PerspectiveCamera.js#L171
+  // https://github.com/mrdoob/three.js/blob/dev/src/math/Matrix4.js#L817
+  const aspect = size[0] / size[1];
+  let top = near * Math.tan(degToRad(fov) / 2);
+  let height = 2 * top;
+  let width = aspect * height;
+  let left = -width / 2;
+
+  if (view) {
+      left += view.x * width / size[0];
+      top -= view.y * height / size[1];
+      width *= view.width / size[0];
+      height *= view.height / size[1];
+  }
+
+  const right = left + width;
+  const bottom = top - height;
+
+  const p00 = 2 * near / (right - left);
+  const p20 = (right + left) / (right - left);
+  const p21 = (top + bottom) / (top - bottom);
+  const p11 = 2 * near / (top - bottom);
+  const p22 = -(far + near) / (far - near);
+  const p32 = -2 * far * near / (far - near);
+
+  // Calculate view-matrix
+  let v00 = 0;
+  let v10 = 0;
+
+  // zAxis = normalize(eye - target)
+  let v02 = eye[0] - target[0];
+  let v12 = eye[1] - target[1];
+  let v22 = eye[2] - target[2];
+  let len = v02 * v02 + v12 * v12 + v22 * v22;
+  if (len > 0.0) {
+      const rLen = 1.0 / Math.sqrt(len);
+      v02 = v02 * rLen;
+      v12 = v12 * rLen;
+      v22 = v22 * rLen;
+  }
+
+  // xAxis = normalize(cross(up, zAxis))
+  len = v12 * v12 + v02 * v02;
+  if (len > 0.0) {
+      const rLen = 1.0 / Math.sqrt(len);
+      v00 = -v12 * rLen;
+      v10 = v02 * rLen;
+  }
+
+  // yAxis = cross(zAxis, xAxis);
+  const v01 = -v22 * v10;
+  const v11 = v22 * v00;
+  const v21 = v02 * v10 - v12 * v00;
+
+  // v30, v31, v32 calculated as -dot(axis, eye)
+  const v30 = -(v00 * eye0 + v10 * eye1);
+  const v31 = -(v01 * eye0 + v11 * eye1 + v21 * eye2);
+  const v32 = -(v02 * eye0 + v12 * eye1 + v22 * eye2);
+
+  // multiplication P * V
+  out[0] = p00 * v00 + p20 * v02;
+  out[1] = p11 * v01 + p21 * v02;
+  out[2] = p22 * v02;
+  out[3] = -v02;
+  out[4] = p00 * v10 + p20 * v12;
+  out[5] = p11 * v11 + p21 * v12;
+  out[6] = p22 * v12;
+  out[7] = -v12;
+  out[8] = p20 * v22;
+  out[9] = p11 * v21 + p21 * v22;
+  out[10] = p22 * v22;
+  out[11] = -v22;
+  out[12] = p00 * v30 + p20 * v32;
+  out[13] = p11 * v31 + p21 * v32;
+  out[14] = p22 * v32 + p32;
+  out[15] = -v32;
+}
