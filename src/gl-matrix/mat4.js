@@ -1729,7 +1729,7 @@ export function mvpFromTargetEyeView(out, fov, near, far, size, target, eye, vie
   // https://github.com/mrdoob/three.js/blob/dev/src/cameras/PerspectiveCamera.js#L171
   // https://github.com/mrdoob/three.js/blob/dev/src/math/Matrix4.js#L817
   const aspect = size[0] / size[1];
-  let top = near * Math.tan(degToRad(fov) / 2);
+  let top = near * Math.tan(glMatrix.toRadian(fov) / 2);
   let height = 2 * top;
   let width = aspect * height;
   let left = -width / 2;
@@ -1755,6 +1755,7 @@ export function mvpFromTargetEyeView(out, fov, near, far, size, target, eye, vie
   let v00 = 0;
   let v10 = 0;
 
+  // http://www.3dgep.com/understanding-the-view-matrix/#Look_At_Camera
   // zAxis = normalize(eye - target)
   let v02 = eye[0] - target[0];
   let v12 = eye[1] - target[1];
@@ -1781,9 +1782,9 @@ export function mvpFromTargetEyeView(out, fov, near, far, size, target, eye, vie
   const v21 = v02 * v10 - v12 * v00;
 
   // v30, v31, v32 calculated as -dot(axis, eye)
-  const v30 = -(v00 * eye0 + v10 * eye1);
-  const v31 = -(v01 * eye0 + v11 * eye1 + v21 * eye2);
-  const v32 = -(v02 * eye0 + v12 * eye1 + v22 * eye2);
+  const v30 = -(v00 * eye[0] + v10 * eye[1]);
+  const v31 = -(v01 * eye[0] + v11 * eye[1] + v21 * eye[2]);
+  const v32 = -(v02 * eye[0] + v12 * eye[1] + v22 * eye[2]);
 
   // multiplication P * V
   out[0] = p00 * v00 + p20 * v02;
