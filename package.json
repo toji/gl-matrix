@@ -33,6 +33,8 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "test": "mocha --compilers js:babel-register --recursive spec"
+    "test": "mocha --compilers js:babel-register --recursive spec",
+    "copy": "cp -r src/gl-matrix/* .",
+    "pub": "npm run build && npm run copy && npm publish && git clean -df"
   }
 }
