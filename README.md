@@ -1,6 +1,5 @@
-glMatrix
+glMatrix [![Build Status](https://travis-ci.org/2gis/gl-matrix.svg?branch=master)](https://travis-ci.org/2gis/gl-matrix)
 =======================
-[![Build Status](https://travis-ci.org/toji/gl-matrix.svg)](https://travis-ci.org/toji/gl-matrix)
 
 Javascript has evolved into a language capable of handling realtime 3D graphics, 
 via WebGL, and computationally intensive tasks such as physics simulations.
