@@ -31,6 +31,7 @@
     "webpack": "^3.5.5"
   },
   "license": "MIT",
+  "typings": "./index.d.ts",
   "scripts": {
     "build": "webpack",
     "test": "mocha --compilers js:babel-register --recursive spec",
