@@ -520,7 +520,6 @@ export function transformMat3(out, a, m) {
   return out;
 }
 
-//TODO Fix me (upgrade the function signature)
 /**
  * Transforms the vec3 with a quat
  * Can also be used for dual quaternions. (Multiply it with the real part)
@@ -532,19 +531,19 @@ export function transformMat3(out, a, m) {
  */
 export function transformQuat(out, a, q) {
     // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
-    var qx = q[0], qy = q[1], qz = q[2], qw = q[3];
-    var x = a[0], y = a[1], z = a[2];
+    let qx = q[0], qy = q[1], qz = q[2], qw = q[3];
+    let x = a[0], y = a[1], z = a[2];
     // var qvec = [qx, qy, qz];
     // var uv = vec3.cross([], qvec, a);
-    var uvx = qy * z - qz * y,
+    let uvx = qy * z - qz * y,
         uvy = qz * x - qx * z,
         uvz = qx * y - qy * x;
     // var uuv = vec3.cross([], qvec, uv);
-    var uuvx = qy * uvz - qz * uvy,
+    let uuvx = qy * uvz - qz * uvy,
         uuvy = qz * uvx - qx * uvz,
         uuvz = qx * uvy - qy * uvx;
     // vec3.scale(uv, uv, 2 * w);
-    var w2 = qw * 2;
+    let w2 = qw * 2;
     uvx *= w2;
     uvy *= w2;
     uvz *= w2;

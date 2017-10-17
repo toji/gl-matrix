@@ -69,7 +69,7 @@ global.expect = function(e) {
         },
         
         //Dual quaternions are very special & unique snowflakes
-        toBeEqualishQuat2New: function(expected) {
+        toBeEqualishQuat2: function(expected) {
           var allSignsFlipped = false;
           
           if (e.length != expected.length) return false;

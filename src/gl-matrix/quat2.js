@@ -25,9 +25,6 @@ import * as glMatrix from "./common";
 import * as quat from "./quat";
 import * as mat4 from "./mat4";
 
-//NOTE: Quaternions are in XYZW format!
-//NOTE: [real dual]
-//NOTE: Dual Quaternions need to be normalized, otherwise some functions won't work!
 //TODO: slerp and co.
 //TODO: rotate(out, a, rad, axis) 
 //TODO: quat2.forEach
@@ -39,7 +36,10 @@ import * as mat4 from "./mat4";
 //https://github.com/mosra/magnum/blob/master/src/Magnum/Math/DualQuaternion.h#L364
 //http://mosra.cz/blog/magnum-doc/classMagnum_1_1Math_1_1DualQuaternion.html#a6dcad20c0e9c7c9361b9c291ee42b181
 /**
- * @class Dual Quaternion<br>Format: [[real],[dual]]<br>Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.
+ * @class Dual Quaternion<br>
+ * Format: [real, dual]<br>
+ * Quaternion format: WXYZ<br>
+ * Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br>
  * @name quat2
  */
  
@@ -50,7 +50,7 @@ import * as mat4 from "./mat4";
  * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
  */
 export function create() {
-    var dq = new glMatrix.ARRAY_TYPE(8);
+    let dq = new glMatrix.ARRAY_TYPE(8);
     dq[0] = 0;
     dq[1] = 0;
     dq[2] = 0;
@@ -70,7 +70,7 @@ export function create() {
  * @function
  */
 export function clone(a) {
-    var dq = new glMatrix.ARRAY_TYPE(8);
+    let dq = new glMatrix.ARRAY_TYPE(8);
     dq[0] = a[0];
     dq[1] = a[1];
     dq[2] = a[2];
@@ -97,7 +97,7 @@ export function clone(a) {
  * @function
  */
 export function fromValues(x1, y1, z1, w1, x2, y2, z2, w2) {
-    var dq = new glMatrix.ARRAY_TYPE(8);
+    let dq = new glMatrix.ARRAY_TYPE(8);
     dq[0] = x1;
     dq[1] = y1;
     dq[2] = z1;
@@ -123,12 +123,12 @@ export function fromValues(x1, y1, z1, w1, x2, y2, z2, w2) {
  * @function
  */
 export function fromRotationTranslationValues(x1, y1, z1, w1, x2, y2, z2) {
-    var dq = new glMatrix.ARRAY_TYPE(8);
+    let dq = new glMatrix.ARRAY_TYPE(8);
     dq[0] = x1;
     dq[1] = y1;
     dq[2] = z1;
     dq[3] = w1;
-    var ax = x2 * 0.5, ay = y2 * 0.5, az = z2 * 0.5;
+    let ax = x2 * 0.5, ay = y2 * 0.5, az = z2 * 0.5;
     dq[4] =  ax * w1 + ay * z1 - az * y1;
     dq[5] =  ay * w1 + az * x1 - ax * z1;
     dq[6] =  az * w1 + ax * y1 - ay * x1;
@@ -146,7 +146,7 @@ export function fromRotationTranslationValues(x1, y1, z1, w1, x2, y2, z2) {
  * @function
  */
 export function fromRotationTranslation(out, q, t) {
-    var ax = t[0] * 0.5, ay = t[1] * 0.5, az = t[2] * 0.5,
+    let ax = t[0] * 0.5, ay = t[1] * 0.5, az = t[2] * 0.5,
         bx = q[0], by = q[1], bz = q[2], bw = q[3];
     //quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
     //quat.multiply(out[1], out[1], out[0]);
@@ -211,9 +211,9 @@ export function fromRotation (out, q) {
  */
 export function fromMat4(out, a) {
     //TODO Optimize this 
-    var outer = quat.create();
+    let outer = quat.create();
     mat4.getRotation(outer, a);
-    var t = new glMatrix.ARRAY_TYPE(3);
+    let t = new glMatrix.ARRAY_TYPE(3);
     mat4.getTranslation(t, a);
     fromRotationTranslation(out, outer, t);
     //quat.multiply(out[1], [t[0], t[1], t[2], 0], out[0]);
@@ -342,7 +342,7 @@ export function setDual(out, q) {
  * @return {vec3} translation
  */
 export function getTranslation(out, a) {
-    //var q = new glMatrix.ARRAY_TYPE(4);
+    //let q = new glMatrix.ARRAY_TYPE(4);
     //quat.conjugate(q, a[0]);
     //quat.multiply(q, a[1], q);
     //quat.scale(q, q, 2);
@@ -350,7 +350,7 @@ export function getTranslation(out, a) {
     //out[1] = q[1];
     //out[2] = q[2];
     
-    var ax = a[4], ay = a[5], az = a[6], aw = a[7],
+    let ax = a[4], ay = a[5], az = a[6], aw = a[7],
         bx = -a[0], by = -a[1], bz = -a[2], bw = a[3];
     out[0] = (ax * bw + aw * bx + ay * bz - az * by)*2;
     out[1] = (ay * bw + aw * by + az * bx - ax * bz)*2;
@@ -367,11 +367,11 @@ export function getTranslation(out, a) {
  * @returns {quat2} out
  */
 export function translate(out, a, v) {
-    //var trans = quat2.create();
+    //let trans = quat2.create();
     //quat2.fromTranslation(trans, v);
     //quat2.multiply(out, a, trans);
 
-    var ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3],
+    let ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3],
         bx1 = v[0] * 0.5, by1 = v[1] * 0.5, bz1 = v[2] * 0.5,
         ax2 = a[4], ay2 = a[5], az2 = a[6], aw2 = a[7];
     out[0] = ax1;
@@ -395,13 +395,13 @@ export function translate(out, a, v) {
  */
 export function rotateX(out, a, rad) {
     //Get the translation
-    //var t = new glMatrix.ARRAY_TYPE(4);
+    //let t = new glMatrix.ARRAY_TYPE(4);
     //quat.conjugate(t, a[0]);
     //quat.multiply(t, a[1], t);
-    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
+    let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
         ax = a[4], ay = a[5], az = a[6], aw = a[7];
     //Trans
-    var ax1 = ax * bw + aw * bx + ay * bz - az * by,
+    let ax1 = ax * bw + aw * bx + ay * bz - az * by,
     ay1 = ay * bw + aw * by + az * bx - ax * bz,
     az1 = az * bw + aw * bz + ax * by - ay * bx,
     aw1 = aw * bw - ax * bx - ay * by - az * bz;
@@ -426,13 +426,13 @@ export function rotateX(out, a, rad) {
  */
 export function rotateY(out, a, rad) {
     //Get the translation
-    //var t = new glMatrix.ARRAY_TYPE(4);
+    //let t = new glMatrix.ARRAY_TYPE(4);
     //quat.conjugate(t, a[0]);
     //quat.multiply(t, a[1], t);
-    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
+    let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
     ax = a[4], ay = a[5], az = a[6], aw = a[7];
     //Trans
-    var ax1 = ax * bw + aw * bx + ay * bz - az * by,
+    let ax1 = ax * bw + aw * bx + ay * bz - az * by,
     ay1 = ay * bw + aw * by + az * bx - ax * bz,
     az1 = az * bw + aw * bz + ax * by - ay * bx,
     aw1 = aw * bw - ax * bx - ay * by - az * bz;
@@ -457,13 +457,13 @@ export function rotateY(out, a, rad) {
  */
 export function rotateZ(out, a, rad) {
     //Get the translation
-    //var t = new glMatrix.ARRAY_TYPE(4);
+    //let t = new glMatrix.ARRAY_TYPE(4);
     //quat.conjugate(t, a[0]);
     //quat.multiply(t, a[1], t);
-    var bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
+    let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
     ax = a[4], ay = a[5], az = a[6], aw = a[7];
     //Trans
-    var ax1 = ax * bw + aw * bx + ay * bz - az * by,
+    let ax1 = ax * bw + aw * bx + ay * bz - az * by,
     ay1 = ay * bw + aw * by + az * bx - ax * bz,
     az1 = az * bw + aw * bz + ax * by - ay * bx,
     aw1 = aw * bw - ax * bx - ay * by - az * bz;
@@ -487,7 +487,7 @@ export function rotateZ(out, a, rad) {
  * @returns {quat2} out
  */
 export function rotateByQuatAppend(out, a, q) {
-    var qx = q[0], qy = q[1], qz = q[2], qw = q[3],
+    let qx = q[0], qy = q[1], qz = q[2], qw = q[3],
         ax = a[0], ay = a[1], az = a[2], aw = a[3];
 
     out[0] = ax * qw + aw * qx + ay * qz - az * qy;
@@ -511,7 +511,7 @@ export function rotateByQuatAppend(out, a, q) {
  * @returns {quat2} out
  */
 export function rotateByQuatPrepend(out, q, a) {
-    var qx = q[0], qy = q[1], qz = q[2], qw = q[3],
+    let qx = q[0], qy = q[1], qz = q[2], qw = q[3],
         bx = a[0], by = a[1], bz = a[2], bw = a[3];
 
     out[0] = qx * bw + qw * bx + qy * bz - qz * by;
@@ -536,34 +536,35 @@ export function rotateByQuatPrepend(out, q, a) {
  * @returns {quat2} out
  */
 export function rotateAroundAxis(out, a, axis, rad) {
+    //TODO: properly unit test this function (compare to rotateX, rotateY...)
     //Special case for rad = 0
     if(Math.abs(rad) < glMatrix.EPSILON) {
         return copy(out, a);
     }
-    var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
-    //var normalizedAxis = new glMatrix.ARRAY_TYPE(3);
+    let axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
+    //let normalizedAxis = new glMatrix.ARRAY_TYPE(3);
     //normalizedAxis[0] = axis[0] / axisLength;
     //normalizedAxis[1] = axis[1] / axisLength;
     //normalizedAxis[2] = axis[2] / axisLength;
-    //var tempAxis = new glMatrix.ARRAY_TYPE(4);
+    //let tempAxis = new glMatrix.ARRAY_TYPE(4);
     //quat.setAxisAngle(tempAxis, normalizedAxis, rad);
     
     rad = rad * 0.5;
-    var s = Math.sin(rad);
-    var bx = s * axis[0] / axisLength;
-    var by = s * axis[1] / axisLength;
-    var bz = s * axis[2] / axisLength;
-    var bw = Math.cos(rad);
+    let s = Math.sin(rad);
+    let bx = s * axis[0] / axisLength;
+    let by = s * axis[1] / axisLength;
+    let bz = s * axis[2] / axisLength;
+    let bw = Math.cos(rad);
 
     //quat.multiply(out[0], a[0], tempAxis);
     //quat.multiply(out[1], a[1], tempAxis);
-    var ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3];
+    let ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3];
     out[0] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
     out[1] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
     out[2] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
     out[3] = aw1 * bw - ax1 * bx - ay1 * by - az1 * bz;
     
-    var ax = a[4], ay = a[5], az = a[6], aw = a[7];
+    let ax = a[4], ay = a[5], az = a[6], aw = a[7];
     out[4] = ax * bw + aw * bx + ay * bz - az * by;
     out[5] = ay * bw + aw * by + az * bx - ax * bz;
     out[6] = az * bw + aw * bz + ax * by - ay * bx;
@@ -603,12 +604,12 @@ export function add(out, a, b) {
  */
 export function multiply(out, a, b) {
     //e.g. Get rid of all those temp arrays
-    //var tempReal = new glMatrix.ARRAY_TYPE(4);
+    //let tempReal = new glMatrix.ARRAY_TYPE(4);
     //quat.multiply(tempReal, a[0], b[0]);
-    //var temp1 = new glMatrix.ARRAY_TYPE(4),
+    //let temp1 = new glMatrix.ARRAY_TYPE(4),
     //    temp2 = new glMatrix.ARRAY_TYPE(4);
     //quat.add(out[1], quat.multiply(temp1, a[0], b[1]), quat.multiply(temp2, a[1], b[0]));
-    var ax0 = a[0], ay0 = a[1], az0 = a[2], aw0 = a[3],
+    let ax0 = a[0], ay0 = a[1], az0 = a[2], aw0 = a[3],
         bx1 = b[4], by1 = b[5], bz1 = b[6], bw1 = b[7],
         ax1 = a[4], ay1 = a[5], az1 = a[6], aw1 = a[7],
         bx0 = b[0], by0 = b[1], bz0 = b[2], bw0 = b[3];
@@ -621,7 +622,7 @@ export function multiply(out, a, b) {
     out[6] = az0 * bw1 + aw0 * bz1 + ax0 * by1 - ay0 * bx1 + az1 * bw0 + aw1 * bz0 + ax1 * by0 - ay1 * bx0;
     out[7] = aw0 * bw1 - ax0 * bx1 - ay0 * by1 - az0 * bz1 + aw1 * bw0 - ax1 * bx0 - ay1 * by0 - az1 * bz0;
         
-    //var ax = a[0][0], ay = a[0][1], az = a[0][2], aw = a[0][3],
+    //let ax = a[0][0], ay = a[0][1], az = a[0][2], aw = a[0][3],
     //    bx = b[1][0], by = b[1][1], bz = b[1][2], bw = b[1][3];
     
     //out[0][0] = tempReal[0];
@@ -692,10 +693,10 @@ export function lerp(out, a, b, t) {
      //Or: q1+(q2-q1)*t 
      //^From: https://gist.github.com/XProger/def254d40a237cc0f0b2#file-quat-pas-L159
      
-    //var tempOUT = quat2.create();
+    //let tempOUT = quat2.create();
     //quat2.scale(tempOUT, a, 1 - t);
-    var mt = 1 - t;
-    //var tempDQ = quat2.create();
+    let mt = 1 - t;
+    //let tempDQ = quat2.create();
     if(dot(a, b) < 0) t = -t;
     //quat2.scale(tempDQ, b, t);
     //quat2.add(out, tempOUT, tempDQ);
@@ -765,7 +766,7 @@ public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c t
 export function invert(out, a) {
     //quat2.conjugate(out, a);
     //quat2.scale(out, out, 1/quat2.squaredLength(a));
-    var sqlen = squaredLength(a);
+    let sqlen = squaredLength(a);
     out[0] = -a[0] / sqlen;
     out[1] = -a[1] / sqlen;
     out[2] = -a[2] / sqlen;
@@ -836,7 +837,7 @@ export const sqrLen = squaredLength;
  * @function
  */
 export function normalize(out, a) {
-    var magnitude = squaredLength(a);
+    let magnitude = squaredLength(a);
     //Only scale if it makes sense
     if (magnitude > 0) {
         magnitude = Math.sqrt(magnitude);
@@ -884,8 +885,8 @@ export function exactEquals(a, b) {
  * @returns {Boolean} true if the dual quats are equal, false otherwise.
  */
 export function equals(a, b) {
-    var a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5], a6 = a[6], a7 = a[7];
-    var b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5], b6 = b[6], b7 = b[7];
+    let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5], a6 = a[6], a7 = a[7];
+    let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5], b6 = b[6], b7 = b[7];
     return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
             Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
             Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
