@@ -21,8 +21,8 @@ THE SOFTWARE. */
 import * as glMatrix from "./common";
 
 /**
- * 4x4 Matrix
- * @module mat4
+ * @class 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
+ * @name mat4
  */
 
 /**
@@ -944,6 +944,38 @@ export function fromRotationTranslation(out, q, v) {
   out[15] = 1;
 
   return out;
+}
+
+//TODO FIX ME
+/**
+ * Creates a new mat4 from a dual quat.
+ *
+ * @param {mat4} out Matrix
+ * @param {quat2} a Dual Quaternion
+ * @returns {mat4} mat4 receiving operation result
+ */
+export function fromQuat2(out, a) {
+    //var normalizedA = quat2.create();
+    //quat2.normalize(normalizedA, a);
+    //quat2.getTranslation(translation, normalizedA);
+    let translation = new glMatrix.ARRAY_TYPE(3);
+    let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
+    ax = a[4], ay = a[5], az = a[6], aw = a[7];
+    
+    let magnitude = bx * bx + by * by + bz * bz + bw * bw;
+    //Only scale if it makes sense
+    if (magnitude > 0) {
+        //We can drop the Math.sqrt because mathemagic
+        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2 / magnitude;
+        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2 / magnitude;
+        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2 / magnitude;
+    } else {
+        translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
+        translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
+        translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
+    }
+    fromRotationTranslation(out, a, translation);
+    return out;
 }
 
 /**

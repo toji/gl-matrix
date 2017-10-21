@@ -29,6 +29,19 @@ global.expect = function(e) {
             toBe: function(a) {
                 assert.notStrictEqual(e, a)
             },
+            toBeEqualish: function(expected) {
+              if (typeof(e) == 'number')
+                return Math.abs(e - expected) < EPSILON;
+    
+              if (e.length != expected.length) return !false;
+              for (let i = 0; i < e.length; i++) {
+                if (isNaN(e[i]) !== isNaN(expected[i]))
+                  return !false;
+                if (Math.abs(e[i] - expected[i]) >= EPSILON)
+                  return !false;
+              }
+              return !true;
+            },
         },
         toBeGreaterThan: function(a) {
             assert(e > a);
@@ -50,6 +63,7 @@ global.expect = function(e) {
             if (e.length != expected.length)
                 return assert.fail(e.length, expected.length);
 
+
             for (let i = 0; i < e.length; i++) {
                 if (isNaN(e[i]) !== isNaN(expected[i]))
                     return assert.fail(isNaN(e[i]), isNaN(expected[i]));
@@ -57,6 +71,27 @@ global.expect = function(e) {
                     return assert.fail(Math.abs(e[i] - expected[i]))
             }
             return true;
+        },
+        
+        //Dual quaternions are very special & unique snowflakes
+        toBeEqualishQuat2: function(expected) {
+          var allSignsFlipped = false;
+          
+          if (e.length != expected.length) return false;
+          for (var i = 0; i < e.length; i++) {
+            if (isNaN(e[i]) !== isNaN(expected[i]))
+              return false;
+              if(allSignsFlipped) {
+                if (Math.abs(e[i] - (-expected[i])) >= EPSILON)
+                  return false;
+              } else {
+                if (Math.abs(e[i] - expected[i]) >= EPSILON) {
+                  allSignsFlipped = true;
+                  i = 0;
+                }
+            }
+          }
+          return true;
         }
-    }
+    };
 };
