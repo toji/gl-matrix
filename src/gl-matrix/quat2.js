@@ -18,8 +18,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-//TODO: TOTALLY FIX ME!! (Newer function signatures, ES5 modules?)
-//Remove every var --> let
 
 import * as glMatrix from "./common";
 import * as quat from "./quat";
@@ -148,8 +146,6 @@ export function fromRotationTranslationValues(x1, y1, z1, w1, x2, y2, z2) {
 export function fromRotationTranslation(out, q, t) {
     let ax = t[0] * 0.5, ay = t[1] * 0.5, az = t[2] * 0.5,
         bx = q[0], by = q[1], bz = q[2], bw = q[3];
-    //quat.scale(out[1], [t[0], t[1], t[2], 0], 0.5);
-    //quat.multiply(out[1], out[1], out[0]);
     out[0] = bx;
     out[1] = by;
     out[2] = bz;
@@ -342,14 +338,6 @@ export function setDual(out, q) {
  * @return {vec3} translation
  */
 export function getTranslation(out, a) {
-    //let q = new glMatrix.ARRAY_TYPE(4);
-    //quat.conjugate(q, a[0]);
-    //quat.multiply(q, a[1], q);
-    //quat.scale(q, q, 2);
-    //out[0] = q[0];
-    //out[1] = q[1];
-    //out[2] = q[2];
-    
     let ax = a[4], ay = a[5], az = a[6], aw = a[7],
         bx = -a[0], by = -a[1], bz = -a[2], bw = a[3];
     out[0] = (ax * bw + aw * bx + ay * bz - az * by)*2;
@@ -367,10 +355,6 @@ export function getTranslation(out, a) {
  * @returns {quat2} out
  */
 export function translate(out, a, v) {
-    //let trans = quat2.create();
-    //quat2.fromTranslation(trans, v);
-    //quat2.multiply(out, a, trans);
-
     let ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3],
         bx1 = v[0] * 0.5, by1 = v[1] * 0.5, bz1 = v[2] * 0.5,
         ax2 = a[4], ay2 = a[5], az2 = a[6], aw2 = a[7];
@@ -394,21 +378,17 @@ export function translate(out, a, v) {
  * @returns {quat2} out
  */
 export function rotateX(out, a, rad) {
-    //Get the translation
-    //let t = new glMatrix.ARRAY_TYPE(4);
-    //quat.conjugate(t, a[0]);
-    //quat.multiply(t, a[1], t);
     let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-        ax = a[4], ay = a[5], az = a[6], aw = a[7];
-    //Trans
-    let ax1 = ax * bw + aw * bx + ay * bz - az * by,
-    ay1 = ay * bw + aw * by + az * bx - ax * bz,
-    az1 = az * bw + aw * bz + ax * by - ay * bx,
-    aw1 = aw * bw - ax * bx - ay * by - az * bz;
-    //Rotate it 
+        ax = a[4], ay = a[5], az = a[6], aw = a[7],
+        ax1 = ax * bw + aw * bx + ay * bz - az * by,
+        ay1 = ay * bw + aw * by + az * bx - ax * bz,
+        az1 = az * bw + aw * bz + ax * by - ay * bx,
+        aw1 = aw * bw - ax * bx - ay * by - az * bz;
     quat.rotateX(out, a, rad);
-    //quat.multiply(out[1], t, out[0]);
-    bx = out[0]; by = out[1]; bz = out[2]; bw = out[3];
+    bx = out[0];
+    by = out[1];
+    bz = out[2];
+    bw = out[3];
     out[4] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
     out[5] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
     out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
@@ -425,21 +405,17 @@ export function rotateX(out, a, rad) {
  * @returns {quat2} out
  */
 export function rotateY(out, a, rad) {
-    //Get the translation
-    //let t = new glMatrix.ARRAY_TYPE(4);
-    //quat.conjugate(t, a[0]);
-    //quat.multiply(t, a[1], t);
     let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-    ax = a[4], ay = a[5], az = a[6], aw = a[7];
-    //Trans
-    let ax1 = ax * bw + aw * bx + ay * bz - az * by,
-    ay1 = ay * bw + aw * by + az * bx - ax * bz,
-    az1 = az * bw + aw * bz + ax * by - ay * bx,
-    aw1 = aw * bw - ax * bx - ay * by - az * bz;
-    //Rotate it 
+        ax = a[4], ay = a[5], az = a[6], aw = a[7],
+        ax1 = ax * bw + aw * bx + ay * bz - az * by,
+        ay1 = ay * bw + aw * by + az * bx - ax * bz,
+        az1 = az * bw + aw * bz + ax * by - ay * bx,
+        aw1 = aw * bw - ax * bx - ay * by - az * bz;
     quat.rotateY(out, a, rad);
-    //quat.multiply(out[1], t, out[0]);
-    bx = out[0]; by = out[1]; bz = out[2]; bw = out[3];
+    bx = out[0];
+    by = out[1];
+    bz = out[2];
+    bw = out[3];
     out[4] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
     out[5] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
     out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
@@ -456,21 +432,17 @@ export function rotateY(out, a, rad) {
  * @returns {quat2} out
  */
 export function rotateZ(out, a, rad) {
-    //Get the translation
-    //let t = new glMatrix.ARRAY_TYPE(4);
-    //quat.conjugate(t, a[0]);
-    //quat.multiply(t, a[1], t);
     let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
-    ax = a[4], ay = a[5], az = a[6], aw = a[7];
-    //Trans
-    let ax1 = ax * bw + aw * bx + ay * bz - az * by,
-    ay1 = ay * bw + aw * by + az * bx - ax * bz,
-    az1 = az * bw + aw * bz + ax * by - ay * bx,
-    aw1 = aw * bw - ax * bx - ay * by - az * bz;
-    //Rotate it 
+        ax = a[4], ay = a[5], az = a[6], aw = a[7],
+        ax1 = ax * bw + aw * bx + ay * bz - az * by,
+        ay1 = ay * bw + aw * by + az * bx - ax * bz,
+        az1 = az * bw + aw * bz + ax * by - ay * bx,
+        aw1 = aw * bw - ax * bx - ay * by - az * bz;
     quat.rotateZ(out, a, rad);
-    //quat.multiply(out[1], t, out[0]);
-    bx = out[0]; by = out[1]; bz = out[2]; bw = out[3];
+    bx = out[0];
+    by = out[1];
+    bz = out[2];
+    bw = out[3];
     out[4] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
     out[5] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
     out[6] = az1 * bw + aw1 * bz + ax1 * by - ay1 * bx;
@@ -603,12 +575,6 @@ export function add(out, a, b) {
  * @returns {quat2} out
  */
 export function multiply(out, a, b) {
-    //e.g. Get rid of all those temp arrays
-    //let tempReal = new glMatrix.ARRAY_TYPE(4);
-    //quat.multiply(tempReal, a[0], b[0]);
-    //let temp1 = new glMatrix.ARRAY_TYPE(4),
-    //    temp2 = new glMatrix.ARRAY_TYPE(4);
-    //quat.add(out[1], quat.multiply(temp1, a[0], b[1]), quat.multiply(temp2, a[1], b[0]));
     let ax0 = a[0], ay0 = a[1], az0 = a[2], aw0 = a[3],
         bx1 = b[4], by1 = b[5], bz1 = b[6], bw1 = b[7],
         ax1 = a[4], ay1 = a[5], az1 = a[6], aw1 = a[7],
@@ -621,20 +587,6 @@ export function multiply(out, a, b) {
     out[5] = ay0 * bw1 + aw0 * by1 + az0 * bx1 - ax0 * bz1 + ay1 * bw0 + aw1 * by0 + az1 * bx0 - ax1 * bz0;
     out[6] = az0 * bw1 + aw0 * bz1 + ax0 * by1 - ay0 * bx1 + az1 * bw0 + aw1 * bz0 + ax1 * by0 - ay1 * bx0;
     out[7] = aw0 * bw1 - ax0 * bx1 - ay0 * by1 - az0 * bz1 + aw1 * bw0 - ax1 * bx0 - ay1 * by0 - az1 * bz0;
-        
-    //let ax = a[0][0], ay = a[0][1], az = a[0][2], aw = a[0][3],
-    //    bx = b[1][0], by = b[1][1], bz = b[1][2], bw = b[1][3];
-    
-    //out[0][0] = tempReal[0];
-    //out[0][1] = tempReal[1];
-    //out[0][2] = tempReal[2];
-    //out[0][3] = tempReal[3];
-    //quat.multiply(out, a, b);
-
-    //out[1][0] = a[0] + b[0];
-    //out[1][1] = a[1] + b[1];
-    //out[1][2] = a[2] + b[2];
-    //out[1][3] = a[3] + b[3];
     return out;
 }
 
@@ -686,20 +638,8 @@ export const dot = quat.dot;
  * @returns {quat2} out
  */
 export function lerp(out, a, b, t) {
-    /* (1-t)*q1+t*q2 
-     -------------
-     ||(1-t)*q1+t*q2|| -> length of it */
-     
-     //Or: q1+(q2-q1)*t 
-     //^From: https://gist.github.com/XProger/def254d40a237cc0f0b2#file-quat-pas-L159
-     
-    //let tempOUT = quat2.create();
-    //quat2.scale(tempOUT, a, 1 - t);
     let mt = 1 - t;
-    //let tempDQ = quat2.create();
     if(dot(a, b) < 0) t = -t;
-    //quat2.scale(tempDQ, b, t);
-    //quat2.add(out, tempOUT, tempDQ);
     
     out[0] = a[0] * mt + b[0] * t;
     out[1] = a[1] * mt + b[1] * t;
@@ -710,8 +650,6 @@ export function lerp(out, a, b, t) {
     out[6] = a[6] * mt + b[6] * t;
     out[7] = a[7] * mt + b[7] * t;
     
-    //Renormalizing the dual quat is left as an exercise to the user
-    //quat2.scale(out, out, 1 / quat2.length(out));
     return out;
 }
 
@@ -764,8 +702,6 @@ public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c t
  * @returns {quat2} out
  */
 export function invert(out, a) {
-    //quat2.conjugate(out, a);
-    //quat2.scale(out, out, 1/quat2.squaredLength(a));
     let sqlen = squaredLength(a);
     out[0] = -a[0] / sqlen;
     out[1] = -a[1] / sqlen;
@@ -838,10 +774,8 @@ export const sqrLen = squaredLength;
  */
 export function normalize(out, a) {
     let magnitude = squaredLength(a);
-    //Only scale if it makes sense
     if (magnitude > 0) {
         magnitude = Math.sqrt(magnitude);
-        //More precise that way:
         out[0] = a[0] / magnitude;
         out[1] = a[1] / magnitude;
         out[2] = a[2] / magnitude;

@@ -75,23 +75,25 @@ global.expect = function(e) {
         
         //Dual quaternions are very special & unique snowflakes
         toBeEqualishQuat2: function(expected) {
-          var allSignsFlipped = false;
-          
-          if (e.length != expected.length) return false;
-          for (var i = 0; i < e.length; i++) {
-            if (isNaN(e[i]) !== isNaN(expected[i]))
-              return false;
-              if(allSignsFlipped) {
-                if (Math.abs(e[i] - (-expected[i])) >= EPSILON)
-                  return false;
-              } else {
-                if (Math.abs(e[i] - expected[i]) >= EPSILON) {
-                  allSignsFlipped = true;
-                  i = 0;
+            let allSignsFlipped = false;
+            if (e.length != expected.length)
+                return assert.fail(e.length, expected.length);
+            for (let i = 0; i < e.length; i++) {
+                if (isNaN(e[i]) !== isNaN(expected[i]))
+                    return assert.fail(isNaN(e[i]), isNaN(expected[i]));
+                
+                if (allSignsFlipped) {
+                    if (Math.abs(e[i] - (-expected[i])) >= EPSILON)
+                        return assert.fail(Math.abs(e[i] - (-expected[i])));
+                } else {
+                    if (Math.abs(e[i] - expected[i]) >= EPSILON) {
+                        allSignsFlipped = true;
+                        i = 0;
+                    }
                 }
             }
-          }
-          return true;
+
+            return true;
         }
     };
 };
