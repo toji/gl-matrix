@@ -1463,6 +1463,14 @@ export function targetTo(out, eye, target, up) {
       x1 = upz * z0 - upx * z2,
       x2 = upx * z1 - upy * z0;
 
+  len = x0*x0 + x1*x1 + x2*x2;
+  if (len > 0) {
+    len = 1 / Math.sqrt(len);
+    x0 *= len;
+    x1 *= len;
+    x2 *= len;
+  }
+
   out[0] = x0;
   out[1] = x1;
   out[2] = x2;

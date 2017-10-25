@@ -794,6 +794,11 @@ function buildMat4Tests() {
                 });
 
                 it("should return out", function() { expect(result).toBe(out); });
+
+                it("scaling should be [1, 1, 1]", function(){
+                    var scaling = mat4.getScaling(new Float32Array(3), out);
+                    expect(scaling).toBeEqualish([1, 1, 1]);
+                });
             });
 
             describe("#74", function() {
@@ -818,6 +823,25 @@ function buildMat4Tests() {
                     result = vec3.transformMat4(new Float32Array(3), [0, 1, 0], out);
                     expect(result).toBeEqualish([0, 2, -1]);
                 });
+
+                it("scaling should be [1, 1, 1]", function(){
+                    var scaling = mat4.getScaling(new Float32Array(3), out);
+                    expect(scaling).toBeEqualish([1, 1, 1]);
+                });
+            });
+
+            describe("scaling test", function(){
+                beforeEach(function() {
+                    mat4.targetTo(out,
+                        new Float32Array([0,1,0]),
+                        new Float32Array([0,0,1]),
+                        new Float32Array([0,0,-1]));
+                });
+
+                it("scaling should be [1, 1, 1]", function(){
+                    var scaling = mat4.getScaling(new Float32Array(3), out);
+                    expect(scaling).toBeEqualish([1, 1, 1]);
+                });
             });
 
             beforeEach(function() {
@@ -834,6 +858,10 @@ function buildMat4Tests() {
                 ]);
             });
             it("should return out", function() { expect(result).toBe(out); });
+            it("scaling should be [1, 1, 1]", function(){
+                var scaling = mat4.getScaling(new Float32Array(3), out);
+                expect(scaling).toBeEqualish([1, 1, 1]);
+            });
         });
         
         describe("str", function() {
