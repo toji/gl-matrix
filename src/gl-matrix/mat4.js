@@ -946,7 +946,6 @@ export function fromRotationTranslation(out, q, v) {
   return out;
 }
 
-//TODO FIX ME
 /**
  * Creates a new mat4 from a dual quat.
  *

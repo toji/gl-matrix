@@ -447,7 +447,7 @@ slerp
 
         beforeEach(function() { result = quat2.length(quat2A); });
         
-        it("should return the length", function() { expect(result).toBeCloseTo(5.477225); });
+        it("should return the length", function() { expect(result).toBeEqualish(5.477225); });
     });
 
     describe("squaredLength", function() {
