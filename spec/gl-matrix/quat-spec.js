@@ -553,7 +553,7 @@ describe("quat", function() {
         });
     });
 
-    /*describe("slerp", function() {
+    describe("slerp", function() {
         describe("with a separate output quaternion", function() {
             beforeEach(function() { result = quat.slerp(out, quatA, quatB, 0.5); });
 
@@ -578,9 +578,7 @@ describe("quat", function() {
             it("should return quatB", function() { expect(result).toBe(quatB); });
             it("should not modify quatA", function() { expect(quatA).toBeEqualish([1, 2, 3, 4]); });
         });
-    });*/
-
-    // TODO: slerp, calcuateW, rotateX, rotateY, rotateZ
+    });
 
     describe("invert", function() {
         describe("with a separate output quaternion", function() {

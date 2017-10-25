@@ -642,12 +642,10 @@ describe("slerp", function() {
         });
     });
     
-    //TODO: Not sure if this is correct
     describe("invert", function() {
         describe("with a separate output dual quaternion", function() {
             beforeEach(function() { result = quat2.invert(out, quat2A); });
             
-            //it("should place values into out", function() { expect(out).toBeEqualishQuat2([-0.0333333333, -0.06666666666, -0.1, 0.13333333333, 2/30, 5/30, 6/30, 2/30]); });
             it("should place values into out", function() { expect(out).toBeEqualishQuat2([-0.0333333333, -0.06666666666, -0.1, 0.13333333333, -2/30, -5/30, -6/30, -2/30]); });
             it("should return out", function() { expect(result).toBe(out); });
             it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2([1, 2, 3, 4, 2, 5, 6, -2]); });
