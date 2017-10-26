@@ -3,6 +3,11 @@ const assert = require('assert');
 
 
 global.expect = function(e) {
+    
+    function expected(e, message, a) {
+        assert.fail(e, a, `expected ${JSON.stringify(e)} ${message} ${JSON.stringify(a)}`);
+    }
+    
     return {
         toBe: function(a) {
             assert.strictEqual(e, a);
@@ -74,20 +79,21 @@ global.expect = function(e) {
         },
         
         //Dual quaternions are very special & unique snowflakes
-        toBeEqualishQuat2: function(a) {
+        toBeEqualishQuat2: function(a, epsilon) {
+            if(epsilon == undefined) epsilon = EPSILON;
             let allSignsFlipped = false;
             if (e.length != a.length)
-                assert.fail(e.length, a.length, "length mismatch");
+                expected(e, "to have the same length as", a);
                 
             for (let i = 0; i < e.length; i++) {
                 if (isNaN(e[i]) !== isNaN(a[i]))
-                    assert.fail(e, a);
+                    expected(e, "to be equalish to", a);
                 
                 if (allSignsFlipped) {
-                    if (Math.abs(e[i] - (-a[i])) >= EPSILON)
-                        assert.fail(e, a);
+                    if (Math.abs(e[i] - (-a[i])) >= epsilon)
+                        expected(e, "to be equalish to", a);
                 } else {
-                    if (Math.abs(e[i] - a[i]) >= EPSILON) {
+                    if (Math.abs(e[i] - a[i]) >= epsilon) {
                         allSignsFlipped = true;
                         i = 0;
                     }
