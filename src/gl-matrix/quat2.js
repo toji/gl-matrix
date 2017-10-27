@@ -496,7 +496,6 @@ export function rotateByQuatPrepend(out, q, a) {
  * @returns {quat2} out
  */
 export function rotateAroundAxis(out, a, axis, rad) {
-    //TODO: properly unit test this function (compare to rotateX, rotateY...)
     //Special case for rad = 0
     if(Math.abs(rad) < glMatrix.EPSILON) {
         return copy(out, a);
