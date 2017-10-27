@@ -634,19 +634,6 @@ export function lerp(out, a, b, t) {
 }
 
 /**
- * Performs a spherical linear interpolation between two normalized dual quats
- *
- * @param {quat2} out the receiving dual quaternion
- * @param {quat2} a the first operand
- * @param {quat2} b the second operand
- * @param {Number} t interpolation amount between the two inputs
- * @returns {quat2} out
- */
-export function slerp(out, a, b, t) {
-    throw new Error("Not implemented");
-}
-
-/**
  * Calculates the inverse of a dual quat. If they are normalized, conjugate is cheaper
  *
  * @param {quat2} out the receiving dual quaternion
