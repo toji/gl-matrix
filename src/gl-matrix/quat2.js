@@ -23,20 +23,10 @@ import * as glMatrix from "./common";
 import * as quat from "./quat";
 import * as mat4 from "./mat4";
 
-//TODO: slerp and co.
-//TODO: rotate(out, a, rad, axis) 
-//TODO: quat2.forEach
-
-//LINKS: https://github.com/bobbens/libdq
-//https://github.com/markaren/DualQuaternion/tree/master/src/main/java/info/laht/dualquat
-//http://wscg.zcu.cz/wscg2012/short/A29-full.pdf
-//http://www.xbdev.net/misc_demos/demos/dual_quaternions_beyond/paper.pdf
-//https://github.com/mosra/magnum/blob/master/src/Magnum/Math/DualQuaternion.h#L364
-//http://mosra.cz/blog/magnum-doc/classMagnum_1_1Math_1_1DualQuaternion.html#a6dcad20c0e9c7c9361b9c291ee42b181
 /**
  * @class Dual Quaternion<br>
  * Format: [real, dual]<br>
- * Quaternion format: WXYZ<br>
+ * Quaternion format: XYZW<br>
  * Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br>
  * @name quat2
  */
@@ -212,8 +202,6 @@ export function fromMat4(out, a) {
     let t = new glMatrix.ARRAY_TYPE(3);
     mat4.getTranslation(t, a);
     fromRotationTranslation(out, outer, t);
-    //quat.multiply(out[1], [t[0], t[1], t[2], 0], out[0]);
-    //quat.scale(out[1], out[1], 0.5);
     return out;
 }
 
@@ -514,12 +502,6 @@ export function rotateAroundAxis(out, a, axis, rad) {
         return copy(out, a);
     }
     let axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
-    //let normalizedAxis = new glMatrix.ARRAY_TYPE(3);
-    //normalizedAxis[0] = axis[0] / axisLength;
-    //normalizedAxis[1] = axis[1] / axisLength;
-    //normalizedAxis[2] = axis[2] / axisLength;
-    //let tempAxis = new glMatrix.ARRAY_TYPE(4);
-    //quat.setAxisAngle(tempAxis, normalizedAxis, rad);
     
     rad = rad * 0.5;
     let s = Math.sin(rad);
@@ -528,8 +510,6 @@ export function rotateAroundAxis(out, a, axis, rad) {
     let bz = s * axis[2] / axisLength;
     let bw = Math.cos(rad);
 
-    //quat.multiply(out[0], a[0], tempAxis);
-    //quat.multiply(out[1], a[1], tempAxis);
     let ax1 = a[0], ay1 = a[1], az1 = a[2], aw1 = a[3];
     out[0] = ax1 * bw + aw1 * bx + ay1 * bz - az1 * by;
     out[1] = ay1 * bw + aw1 * by + az1 * bx - ax1 * bz;
@@ -654,7 +634,7 @@ export function lerp(out, a, b, t) {
 }
 
 /**
- * Performs a spherical linear interpolation between two dual quats
+ * Performs a spherical linear interpolation between two normalized dual quats
  *
  * @param {quat2} out the receiving dual quaternion
  * @param {quat2} a the first operand
@@ -663,35 +643,7 @@ export function lerp(out, a, b, t) {
  * @returns {quat2} out
  */
 export function slerp(out, a, b, t) {
-    /*
-public static DualQuaternion_c ScLERP( DualQuaternion_c from, DualQuaternion_c to, float t )
-{
- // Shortest path
- float dot = Quaternion.Dot(from.m_real, to.m_real);
- if ( dot < 0 ) to = to * -1.0f;
- // ScLERP = qa(qa^-1 qb)^t
- DualQuaternion_c diff = DualQuaternion_c.Conjugate(from) * to;
- Vector3 vr = new Vector3(diff.m_real.X, diff.m_real.Y, diff.m_real.Z);
- Vector3 vd = new Vector3(diff.m_dual.X, diff.m_dual.Y, diff.m_dual.Z);
- float invr = 1 / (float)Math.Sqrt( Vector3.Dot(vr, vr) );
- // Screw parameters
- float angle = 2 * (float)Math.Acos( diff.m_real.W );
- float pitch = -2 * diff.m_dual.W * invr;
- Vector3 direction = vr * invr;
- Vector3 moment = (vd - direction*pitch*diff.m_real.W*0.5f)*invr;
- // Exponential power
- angle *= t;
- pitch *= t;
- // Convert back to dual-quaternion
- float sinAngle = Sin(0.5f*angle);
- float cosAngle = Cos(0.5f*angle);
- Quaternion real = new Quaternion( direction* sinAngle, cosAngle );
- Quaternion dual = new Quaternion( sinAngle*moment+pitch*0.5f* cosAngle *direction, -pitch*0.5f*sinAngle );
- // Complete the multiplication and return the interpolated value
- return from * new DualQuaternion_c( real, dual );
-*/
     throw new Error("Not implemented");
-    return out;
 }
 
 /**

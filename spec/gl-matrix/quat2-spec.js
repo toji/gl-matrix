@@ -35,11 +35,7 @@ describe("quat2", function() {
         id = [0, 0, 0, 1, 0, 0, 0, 0];
         deg90 = Math.PI / 2;
     });
-    /**
-rotate
-lerp
-slerp
- */
+
     describe("translate", function() {
         var matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
         beforeEach(function() {
@@ -604,35 +600,66 @@ slerp
         });
     });
 
-    /*
-describe("slerp", function() {
+    
+    describe.only("slerp", function() {
+        beforeEach(function() {
+            quat2.normalize(quat2A, quat2A);
+            quat2.normalize(quat2B, quat2B);
+        });
         describe("with a separate output quaternion", function() {
             beforeEach(function() { result = quat2.slerp(out, quat2A, quat2B, 0.5); });
-            
-            it("should place values into out", function() { expect(out).toBeEqualish([3, 4, 5, 6]); });
-            it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify quat2A", function() { expect(quat2A).toBeEqualish([1, 2, 3, 4]); });
-            it("should not modify quat2B", function() { expect(quat2B).toBeEqualish([5, 6, 7, 8]); });
-        });
 
+            it("should place values into out", function() { expect(out).toBeEqualishQuat2([0.3302262569255715,0.223922377914467,0.8936720767912182,0.20532804745023958,0.7651467978674242,0.10680579344116817,1.4048841960260445,-1.2480343367364237]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2([0.18257418583505536,0.3651483716701107,0.5477225575051661,0.7302967433402214,0.3651483716701107,0.9128709291752769,1.0954451150103321,-0.3651483716701107]); });
+            it("should not modify quat2B", function() { expect(quat2B).toBeEqualishQuat2([0.3790490217894517,0.454858826147342,0.5306686305052324,0.6064784348631227,0.682288239221013,0.6064784348631227,0.454858826147342,-0.30323921743156135]); });
+        });
+    
         describe("when quat2A is the output quaternion", function() {
             beforeEach(function() { result = quat2.slerp(quat2A, quat2A, quat2B, 0.5); });
             
-            it("should place values into quat2A", function() { expect(quat2A).toBeEqualish([3, 4, 5, 6]); });
+            it("should place values into quat2A", function() { expect(quat2A).toBeEqualishQuat2([0.3302262569255715,0.223922377914467,0.8936720767912182,0.20532804745023958,0.7651467978674242,0.10680579344116817,1.4048841960260445,-1.2480343367364237]); });
             it("should return quat2A", function() { expect(result).toBe(quat2A); });
-            it("should not modify quat2B", function() { expect(quat2B).toBeEqualish([5, 6, 7, 8]); });
+            it("should not modify quat2B", function() { expect(quat2B).toBeEqualishQuat2([0.3790490217894517,0.454858826147342,0.5306686305052324,0.6064784348631227,0.682288239221013,0.6064784348631227,0.454858826147342,-0.30323921743156135]); });
         });
-
+    
         describe("when quat2B is the output quaternion", function() {
-            beforeEach(function() { result = quat.slerp(quat2B, quat2A, quat2B, 0.5); });
+            beforeEach(function() { result = quat2.slerp(quat2B, quat2A, quat2B, 0.5); });
             
-            it("should place values into quat2B", function() { expect(quat2B).toBeEqualish([3, 4, 5, 6]); });
+            it("should place values into quat2B", function() { expect(quat2B).toBeEqualishQuat2([0.3302262569255715,0.223922377914467,0.8936720767912182,0.20532804745023958,0.7651467978674242,0.10680579344116817,1.4048841960260445,-1.2480343367364237]); });
             it("should return quat2B", function() { expect(result).toBe(quat2B); });
-            it("should not modify quat2A", function() { expect(quat2A).toBeEqualish([1, 2, 3, 4]); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2([0.18257418583505536,0.3651483716701107,0.5477225575051661,0.7302967433402214,0.3651483716701107,0.9128709291752769,1.0954451150103321,-0.3651483716701107]); });
         });
-    });*/
+        
+        describe("when lerping to itself", function() {
+            beforeEach(function() { result = quat2.slerp(out, quat2A, quat2A, 0.5); });
+            it("should return quat2A", function() { expect(result).toBeEqualishQuat2(quat2A); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+        
+        describe("when using 0 as the lerp parameter", function() {
+            beforeEach(function() { result = quat2.slerp(out, quat2A, quat2B, 0); });
+            it("should return quat2A", function() { expect(result).toBeEqualishQuat2(quat2A); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+        
+        describe("when using 1 as the lerp parameter", function() {
+            beforeEach(function() { result = quat2.slerp(out, quat2A, quat2B, 1); });
+            it("should return quat2B", function() { expect(result).toBeEqualishQuat2(quat2B); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+        
+        describe("when compared to lerp", function() {
+            beforeEach(function() { 
+                quat2.slerp(result, quat2A, quat2B, 0.01);
+                quat2.lerp(out, quat2A, quat2B, 0.01);
+            });
+            it("should be similar to lerp for small t values", function() { expect(result).toBeEqualishQuat2(out, 0.05); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2([0.18257418583505536,0.3651483716701107,0.5477225575051661,0.7302967433402214,0.3651483716701107,0.9128709291752769,1.0954451150103321,-0.3651483716701107]); });
+            it("should not modify quat2B", function() { expect(quat2B).toBeEqualishQuat2([0.3790490217894517,0.454858826147342,0.5306686305052324,0.6064784348631227,0.682288239221013,0.6064784348631227,0.454858826147342,-0.30323921743156135]); });
+        });
+    });
 
-    // TODO: slerp, calcuateW
     describe("dot", function() {
         describe("with a separate output dual quaternion", function() {
             beforeEach(function() { result = quat2.dot(quat2A, quat2B); });
