@@ -5233,7 +5233,7 @@ function lookAt(out, eye, center, up) {
   var centerz = center[2];
 
   if (Math.abs(eyex - centerx) < glMatrix.EPSILON && Math.abs(eyey - centery) < glMatrix.EPSILON && Math.abs(eyez - centerz) < glMatrix.EPSILON) {
-    return mat4.identity(out);
+    return identity(out);
   }
 
   z0 = eyex - centerx;
