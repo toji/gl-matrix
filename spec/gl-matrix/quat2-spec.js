@@ -22,8 +22,8 @@ import * as quat2 from "../../src/gl-matrix/quat2";
 import * as mat4 from "../../src/gl-matrix/mat4";
     
 describe("quat2", function() {
-    var out, outVec, quat2A, quat2B, result, resultVec, outQuat;
-    var vec, id, deg90;
+    let out, outVec, quat2A, quat2B, result, resultVec, outQuat;
+    let vec;
 
     beforeEach(function() {
         quat2A = [1, 2, 3, 4, 2, 5, 6, -2]; 
@@ -32,12 +32,10 @@ describe("quat2", function() {
         outVec = [0, 0, 0];
         outQuat = [0, 0, 0, 0];
         vec = [1, 1, -1];
-        id = [0, 0, 0, 1, 0, 0, 0, 0];
-        deg90 = Math.PI / 2;
     });
 
     describe("translate", function() {
-        var matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
+        let matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
         beforeEach(function() {
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
@@ -73,25 +71,30 @@ describe("quat2", function() {
     });
     
     describe("rotateAroundAxis", function() {
-        var matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create(), ax = [1,4,2];
+        let matrixA = mat4.create(), matOut = mat4.create(), ax = [1,4,2];
         beforeEach(function() {
               //quat2A only seems to work when created using this function?
-              quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
+              quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
               quat2.normalize(quat2A, quat2A);
               mat4.fromQuat2(matrixA, quat2A);
             });
+            
+            
         describe("with a separate output quaternion", function() {
-            beforeEach(function() { 
+            beforeEach(function() {
                     result = quat2.rotateAroundAxis(out, quat2A, ax, 5);
+                    
                     //Same thing with a matrix
                     mat4.rotate(matOut, matrixA, 5, ax);
-
-                    quat2.fromMat4(quatOut, matOut);
+                    quat2.fromMat4(quat2B, matOut);
                 });
             
-            it("should place values into out", function() { expect(out).toBeEqualishQuat2(quatOut); });
+            it("should place values into out", function() { expect(out).toBeEqualishQuat2(quat2B); });
             it("should return out", function() { expect(result).toBe(out); });
-            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2(quat2B); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2(
+                [0.18257418583505536, 0.3651483716701107, 0.5477225575051661, 0.7302967433402214, 
+                -2.556038601690775, 3.742770809618635, 2.37346441585572, -3.0124740662784135]
+            ); });
             it("should not modify ax", function() { expect(ax).toBeEqualish([1, 4, 2]); });
         });
 
@@ -101,17 +104,18 @@ describe("quat2", function() {
                     //Same thing with a matrix
 
                     mat4.rotate(matOut, matrixA, 5, ax);
-                    quat2.fromMat4(quatOut, matOut);
+                    quat2.fromMat4(quat2B, matOut);
                 });
             
-            it("should place values into quat2A", function() { expect(quat2A).toBeEqualishQuat2(quatOut); });
+            it("should place values into quat2A", function() { expect(quat2A).toBeEqualishQuat2(quat2B); });
             it("should return quat2A", function() { expect(result).toBe(quat2A); });
+            it("should not modify ax", function() { expect(ax).toBeEqualish([1, 4, 2]); });
         });
     });
     
     describe("rotateByQuatAppend", function() {
-        var correctResult = quat2.create();
-        var rotationQuat = quat2.create();
+        let correctResult = quat2.create();
+        let rotationQuat = quat2.create();
         beforeEach(function() {
             rotationQuat[0] = 2;
             rotationQuat[1] = 5;
@@ -140,8 +144,8 @@ describe("quat2", function() {
     });
     
     describe("rotateByQuatPrepend", function() {
-        var correctResult = quat2.create();
-        var rotationQuat = quat2.create();
+        let correctResult = quat2.create();
+        let rotationQuat = quat2.create();
         beforeEach(function() {
             rotationQuat[0] = 2;
             rotationQuat[1] = 5;
@@ -170,7 +174,7 @@ describe("quat2", function() {
     });
     
     describe("rotateX", function() {
-        var matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
+        let matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
         beforeEach(function() {
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
@@ -204,7 +208,7 @@ describe("quat2", function() {
     });
     
     describe("rotateY", function() {
-        var matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
+        let matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
         beforeEach(function() {
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,2,3,4], [5, 4, -10]);
@@ -239,7 +243,7 @@ describe("quat2", function() {
     });
     
     describe("rotateZ", function() {
-        var matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
+        let matrixA = mat4.create(), matOut = mat4.create(), quatOut = quat2.create();
         beforeEach(function() {
               //quat2A only seems to work when created using this function?
               quat2B = quat2.fromRotationTranslation(quat2A, [1,0,3,-4], [0, -4, -10]);
@@ -273,7 +277,7 @@ describe("quat2", function() {
     });
     
     describe("from/toMat4", function() {
-        var matRes = mat4.create(), matOut = mat4.create();
+        let matRes = mat4.create(), matOut = mat4.create();
         describe("quat to matrix and back", function() {
             beforeEach(function() {
                 //only seems to work when created with this function
@@ -390,8 +394,8 @@ describe("quat2", function() {
         });
         
         describe("same as matrix multiplication", function() {
-            var matrixA = mat4.create(), matrixB = mat4.create();
-            var matOut = mat4.create(), quatOut = quat2.create();
+            let matrixA = mat4.create(), matrixB = mat4.create();
+            let matOut = mat4.create(), quatOut = quat2.create();
            beforeEach(function() {
               //quat2A and quat2B only seem to work when created using this function?
               quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
@@ -404,7 +408,7 @@ describe("quat2", function() {
               
             });
             it("the matrices should be equal to the dual quaternions", function() {
-                var testQuat = quat2.create();
+                let testQuat = quat2.create();
                 quat2.fromMat4(testQuat, matrixA);
                 expect(testQuat).toBeEqualishQuat2(quat2A);
                 
@@ -478,7 +482,7 @@ describe("quat2", function() {
         it("should not modify the quaternion", function() { expect(quat2.getReal(outQuat, quat2A)).toBeEqualish([1, 2, 3, 4]); });
         it("should not modify the vector", function() { expect(vec).toBeEqualish([1, 2, 3]); });
         it("should have a translation that can be retrieved with getTranslation", function() {
-            var t = [0, 0, 0];
+            let t = [0, 0, 0];
             quat2.normalize(out, out);
             quat2.getTranslation(t, out);
 
@@ -490,7 +494,7 @@ describe("quat2", function() {
         beforeEach(function() { result = quat2.fromRotationTranslationValues(1,2,3,4, 1,2,3); });
         it("should return the correct result", function() { expect(result).toBeEqualishQuat2([1, 2, 3, 4,  2, 4, 6, -7]); });
         it("should have a translation that can be retrieved with getTranslation", function() {
-            var t = [0, 0, 0];
+            let t = [0, 0, 0];
             quat2.normalize(result, result);
             quat2.getTranslation(t, result);
             expect(t).toBeEqualish([1, 2, 3]); 
@@ -698,7 +702,7 @@ describe("quat2", function() {
     });
     
     describe("exactEquals", function() {
-        var quat2C, r0, r1;
+        let quat2C, r0, r1;
         beforeEach(function() {
             quat2A = [0, 1, 2, 3, 4, 5, 6, 7];
             quat2B = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -714,7 +718,7 @@ describe("quat2", function() {
     });
 
     describe("equals", function() {
-        var quat2C, quat2D, r0, r1, r2;
+        let quat2C, quat2D, r0, r1, r2;
         beforeEach(function() {
             quat2A = [0, 1, 2, 3, 4, 5, 6, 7];
             quat2B = [0, 1, 2, 3, 4, 5, 6, 7];
