@@ -954,9 +954,6 @@ export function fromRotationTranslation(out, q, v) {
  * @returns {mat4} mat4 receiving operation result
  */
 export function fromQuat2(out, a) {
-    //var normalizedA = quat2.create();
-    //quat2.normalize(normalizedA, a);
-    //quat2.getTranslation(translation, normalizedA);
     let translation = new glMatrix.ARRAY_TYPE(3);
     let bx = -a[0], by = -a[1], bz = -a[2], bw = a[3],
     ax = a[4], ay = a[5], az = a[6], aw = a[7];
