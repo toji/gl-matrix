@@ -593,6 +593,14 @@ function buildMat4Tests() {
                 it("should return the same scaling factor when created", function() { expect(result).toBeEqualish([5, 6, 7]); });
             });
 
+            describe("fromOuterProduct", function() {
+                beforeEach(function() { result = mat4.fromOuterProduct(out,[1,2,3,4],[5,6,7,8]); });
+                it("should compute the correct values", function() {
+                  expect(out).toBeEqualish([5,10,15,20,6,12,18,24,7,14,21,28,8,16,24,32]);
+                });
+                it("should return out", function() { expect(result).toBe(out); });
+            });
+
         });
 
         describe("getRotation", function() {

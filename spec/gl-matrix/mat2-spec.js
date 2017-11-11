@@ -273,6 +273,12 @@ describe("mat2", function() {
         it("should return a 4 element array initialized to the values passed", function() { expect(result).toBeEqualish([1, 2, 3, 4]); });
     });
 
+    describe("fromOuterProduct", function() {
+        beforeEach(function() { result = mat2.fromOuterProduct(out,[1,2],[3,4]); });
+        it("should output the correct values", function() { expect(out).toBeEqualish([3, 6, 4, 8]); });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
     describe("set", function() {
         beforeEach(function() { result = mat2.set(out, 1, 2, 3, 4); });
         it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4]); });

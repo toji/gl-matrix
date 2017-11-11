@@ -293,6 +293,21 @@ export function fromScaling(out, v) {
 }
 
 /**
+ * Creates a matrix from the outer product of two vetors.
+ * @param {mat2} out mat2 receiving operation result
+ * @param {vec2} v0 first vector
+ * @param {vec2} v1 second vector
+ * @returns {mat2} out
+ */
+export function fromOuterProduct(out, v0, v1) {
+  out[0] = v0[0]*v1[0];
+  out[1] = v0[1]*v1[0];
+  out[2] = v0[0]*v1[1];
+  out[3] = v0[1]*v1[1];
+  return out;
+}
+
+/**
  * Returns a string representation of a mat2
  *
  * @param {mat2} a matrix to represent as a string
