@@ -1685,6 +1685,7 @@ export const sub = subtract;
  * @param {mat4} out mat4 receiving operation result
  * @param {vec3} t Translation
  * @param {vec3} s Scale
+ * @returns {mat4} out
  */
 export function fromTranslationScale(out, t, s) {
   out[0] = s[0];
@@ -1703,6 +1704,7 @@ export function fromTranslationScale(out, t, s) {
   out[13] = t[1];
   out[14] = t[2];
   out[15] = 1;
+  return out;
 }
 
 /**
@@ -1724,6 +1726,7 @@ export function fromTranslationScale(out, t, s) {
  * @param {vec3} target Point the viewer is looking at
  * @param {vec3} eye Position of the viewer
  * @param {?MVPView} view Visible bound in the screen
+ * @returns {mat4} out
  */
 export function mvpFromTargetEyeView(out, fov, near, far, size, target, eye, view) {
   // https://github.com/mrdoob/three.js/blob/dev/src/cameras/PerspectiveCamera.js#L171
@@ -1803,4 +1806,6 @@ export function mvpFromTargetEyeView(out, fov, near, far, size, target, eye, vie
   out[13] = p11 * v31 + p21 * v32;
   out[14] = p22 * v32 + p32;
   out[15] = -v32;
+
+  return out;
 }
