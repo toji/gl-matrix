@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: mat4</title>
+    <title>JSDoc: Module: mat4</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: mat4</h1>
+    <h1 class="page-title">Module: mat4</h1>
 
     
 
@@ -28,9 +28,8 @@
 
 <header>
     
-        <h2>mat4</h2>
         
-            <div class="class-description">4x4 Matrix</div>
+            
         
     
 </header>
@@ -39,14 +38,11 @@
     <div class="container-overview">
     
         
+            <div class="description">4x4 Matrix</div>
+        
 
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="mat4"><span class="type-signature"></span>new mat4<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
+        
+            
 
 
 
@@ -117,6 +113,7 @@
 
 
 
+        
     
     </div>
 
@@ -131,568 +128,6 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id=".adjoint"><span class="type-signature">(static) </span>adjoint<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Calculates the adjugate of a mat4 using SIMD if available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line604">line 604</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Inverts a mat4 using SIMD if available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line475">line 475</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Multiplies two mat4's using SIMD if available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line741">line 741</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Rotates a matrix by the given angle around the X axis using SIMD if availabe and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1045">line 1045</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Rotates a matrix by the given angle around the Y axis if SIMD available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1131">line 1131</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Rotates a matrix by the given angle around the Z axis if SIMD available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1217">line 1217</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Scales the mat4 by the dimensions in the given vec3 using SIMD if available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line896">line 896</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".translate"><span class="type-signature">(static) </span>translate<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Translates a mat4 by the given vector using SIMD if available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line825">line 825</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id=".transpose"><span class="type-signature">(static) </span>transpose<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Transpse a mat4 using SIMD if available and enabled
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line312">line 312</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-    
 
     
         <h3 class="subsection-title">Methods</h3>
@@ -702,7 +137,7 @@
 
     
 
-    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -751,7 +186,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -774,7 +209,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -797,7 +232,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -848,7 +283,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1973">line 1973</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1516">line 1516</a>
     </li></ul></dd>
     
 
@@ -886,7 +321,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -901,167 +336,14 @@
 
     
 
-    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".adjoint"><span class="type-signature">(static) </span>adjoint<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new mat4 initialized with values from an existing matrix
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="mat4.html">mat4</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">matrix to clone</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line64">line 64</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    a new 4x4 matrix
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type"><a href="mat4.html">mat4</a></span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Copy the values from one mat4 to another
+    Calculates the adjugate of a mat4
 </div>
 
 
@@ -1103,7 +385,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1126,7 +408,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1177,7 +459,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line92">line 92</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line328">line 328</a>
     </li></ul></dd>
     
 
@@ -1215,7 +497,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -1230,7 +512,336 @@
 
     
 
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a new mat4 initialized with values from an existing matrix
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">matrix to clone</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line60">line 60</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    a new 4x4 matrix
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Copy the values from one mat4 to another
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the source matrix</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line88">line 88</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -1281,7 +892,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line37">line 37</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line33">line 33</a>
     </li></ul></dd>
     
 
@@ -1319,7 +930,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -1383,7 +994,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1434,7 +1045,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line612">line 612</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line359">line 359</a>
     </li></ul></dd>
     
 
@@ -1536,7 +1147,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1559,7 +1170,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1610,7 +1221,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2105">line 2105</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1642">line 1642</a>
     </li></ul></dd>
     
 
@@ -1712,7 +1323,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1735,7 +1346,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1786,7 +1397,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2091">line 2091</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1628">line 1628</a>
     </li></ul></dd>
     
 
@@ -1888,7 +1499,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -1939,7 +1550,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1961">line 1961</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1504">line 1504</a>
     </li></ul></dd>
     
 
@@ -1992,7 +1603,7 @@
 
     
 
-    <h4 class="name" id=".fromQuat"><span class="type-signature">(static) </span>fromQuat<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromQuat"><span class="type-signature">(static) </span>fromQuat<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -2041,7 +1652,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -2064,7 +1675,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2115,7 +1726,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1676">line 1676</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1167">line 1167</a>
     </li></ul></dd>
     
 
@@ -2153,7 +1764,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -2168,14 +1779,18 @@
 
     
 
-    <h4 class="name" id=".fromRotation"><span class="type-signature">(static) </span>fromRotation<span class="signature">(out, rad, axis)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromRotation"><span class="type-signature">(static) </span>fromRotation<span class="signature">(out, rad, axis)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a given angle around a given axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotate(dest, dest, rad, axis);
+    Creates a matrix from a given angle around a given axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotate(dest, dest, rad, axis);
 </div>
 
 
@@ -2217,7 +1832,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -2263,7 +1878,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2314,7 +1929,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1293">line 1293</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line756">line 756</a>
     </li></ul></dd>
     
 
@@ -2352,7 +1967,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -2367,14 +1982,21 @@
 
     
 
-    <h4 class="name" id=".fromRotationTranslation"><span class="type-signature">(static) </span>fromRotationTranslation<span class="signature">(out, q, v)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromRotationTranslation"><span class="type-signature">(static) </span>fromRotationTranslation<span class="signature">(out, q, v)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation and vector translationThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    var quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);
+    Creates a matrix from a quaternion rotation and vector translation
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    let quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
 </div>
 
 
@@ -2416,7 +2038,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -2462,7 +2084,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2513,7 +2135,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1449">line 1449</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line912">line 912</a>
     </li></ul></dd>
     
 
@@ -2551,7 +2173,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -2566,14 +2188,22 @@
 
     
 
-    <h4 class="name" id=".fromRotationTranslationScale"><span class="type-signature">(static) </span>fromRotationTranslationScale<span class="signature">(out, q, v, s)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromRotationTranslationScale"><span class="type-signature">(static) </span>fromRotationTranslationScale<span class="signature">(out, q, v, s)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation, vector translation and vector scaleThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    var quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);    mat4.scale(dest, scale)
+    Creates a matrix from a quaternion rotation, vector translation and vector scale
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    let quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
+    mat4.scale(dest, scale)
 </div>
 
 
@@ -2615,7 +2245,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -2661,7 +2291,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2684,7 +2314,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2735,7 +2365,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1563">line 1563</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1054">line 1054</a>
     </li></ul></dd>
     
 
@@ -2773,7 +2403,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -2788,14 +2418,24 @@
 
     
 
-    <h4 class="name" id=".fromRotationTranslationScaleOrigin"><span class="type-signature">(static) </span>fromRotationTranslationScaleOrigin<span class="signature">(out, q, v, s, o)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromRotationTranslationScaleOrigin"><span class="type-signature">(static) </span>fromRotationTranslationScaleOrigin<span class="signature">(out, q, v, s, o)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given originThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    mat4.translate(dest, origin);    var quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);    mat4.scale(dest, scale)    mat4.translate(dest, negativeOrigin);
+    Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, vec);
+    mat4.translate(dest, origin);
+    let quatMat = mat4.create();
+    quat4.toMat4(quat, quatMat);
+    mat4.multiply(dest, quatMat);
+    mat4.scale(dest, scale)
+    mat4.translate(dest, negativeOrigin);
 </div>
 
 
@@ -2837,7 +2477,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -2883,7 +2523,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2906,7 +2546,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2929,7 +2569,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2980,7 +2620,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1623">line 1623</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1114">line 1114</a>
     </li></ul></dd>
     
 
@@ -3018,7 +2658,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -3033,14 +2673,18 @@
 
     
 
-    <h4 class="name" id=".fromScaling"><span class="type-signature">(static) </span>fromScaling<span class="signature">(out, v)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromScaling"><span class="type-signature">(static) </span>fromScaling<span class="signature">(out, v)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a vector scalingThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.scale(dest, dest, vec);
+    Creates a matrix from a vector scaling
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.scale(dest, dest, vec);
 </div>
 
 
@@ -3082,7 +2726,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -3105,7 +2749,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3156,7 +2800,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1261">line 1261</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line724">line 724</a>
     </li></ul></dd>
     
 
@@ -3194,7 +2838,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -3209,14 +2853,18 @@
 
     
 
-    <h4 class="name" id=".fromTranslation"><span class="type-signature">(static) </span>fromTranslation<span class="signature">(out, v)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromTranslation"><span class="type-signature">(static) </span>fromTranslation<span class="signature">(out, v)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from a vector translationThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, dest, vec);
+    Creates a matrix from a vector translation
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.translate(dest, dest, vec);
 </div>
 
 
@@ -3258,7 +2906,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -3281,7 +2929,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -3332,7 +2980,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1230">line 1230</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line693">line 693</a>
     </li></ul></dd>
     
 
@@ -3370,7 +3018,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -3385,7 +3033,7 @@
 
     
 
-    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -3830,7 +3478,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line133">line 133</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line129">line 129</a>
     </li></ul></dd>
     
 
@@ -3868,7 +3516,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -3883,14 +3531,18 @@
 
     
 
-    <h4 class="name" id=".fromXRotation"><span class="type-signature">(static) </span>fromXRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromXRotation"><span class="type-signature">(static) </span>fromXRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from the given angle around the X axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateX(dest, dest, rad);
+    Creates a matrix from the given angle around the X axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotateX(dest, dest, rad);
 </div>
 
 
@@ -3932,7 +3584,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -4006,7 +3658,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1340">line 1340</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line803">line 803</a>
     </li></ul></dd>
     
 
@@ -4044,7 +3696,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -4059,14 +3711,18 @@
 
     
 
-    <h4 class="name" id=".fromYRotation"><span class="type-signature">(static) </span>fromYRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromYRotation"><span class="type-signature">(static) </span>fromYRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from the given angle around the Y axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateY(dest, dest, rad);
+    Creates a matrix from the given angle around the Y axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotateY(dest, dest, rad);
 </div>
 
 
@@ -4108,7 +3764,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -4182,7 +3838,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1375">line 1375</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line838">line 838</a>
     </li></ul></dd>
     
 
@@ -4220,7 +3876,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -4235,14 +3891,18 @@
 
     
 
-    <h4 class="name" id=".fromZRotation"><span class="type-signature">(static) </span>fromZRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".fromZRotation"><span class="type-signature">(static) </span>fromZRotation<span class="signature">(out, rad)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a matrix from the given angle around the Z axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateZ(dest, dest, rad);
+    Creates a matrix from the given angle around the Z axis
+This is equivalent to (but much faster than):
+
+    mat4.identity(dest);
+    mat4.rotateZ(dest, dest, rad);
 </div>
 
 
@@ -4284,7 +3944,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -4358,7 +4018,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1410">line 1410</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line873">line 873</a>
     </li></ul></dd>
     
 
@@ -4396,7 +4056,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -4411,7 +4071,7 @@
 
     
 
-    <h4 class="name" id=".frustum"><span class="type-signature">(static) </span>frustum<span class="signature">(out, left, right, bottom, top, near, far)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".frustum"><span class="type-signature">(static) </span>frustum<span class="signature">(out, left, right, bottom, top, near, far)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -4460,7 +4120,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -4649,7 +4309,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1727">line 1727</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1218">line 1218</a>
     </li></ul></dd>
     
 
@@ -4687,7 +4347,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -4702,14 +4362,17 @@
 
     
 
-    <h4 class="name" id=".getRotation"><span class="type-signature">(static) </span>getRotation<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".getRotation"><span class="type-signature">(static) </span>getRotation<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns a quaternion representing the rotational component of a transformation matrix. If a matrix is built with fromRotationTranslation, the returned quaternion will be the same as the quaternion originally supplied.
+    Returns a quaternion representing the rotational component
+ of a transformation matrix. If a matrix is built with
+ fromRotationTranslation, the returned quaternion will be the
+ same as the quaternion originally supplied.
 </div>
 
 
@@ -4751,7 +4414,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4774,7 +4437,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -4825,7 +4488,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1512">line 1512</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1003">line 1003</a>
     </li></ul></dd>
     
 
@@ -4863,7 +4526,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -4878,14 +4541,18 @@
 
     
 
-    <h4 class="name" id=".getTranslation"><span class="type-signature">(static) </span>getTranslation<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {<a href="vec3.html">vec3</a>}</span></h4>
+    <h4 class="name" id=".getScaling"><span class="type-signature">(static) </span>getScaling<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
 
     
 
 
 
 <div class="description">
-    Returns the translation vector component of a transformation matrix. If a matrix is built with fromRotationTranslation, the returned vector will be the same as the translation vector originally supplied.
+    Returns the scaling factor component of a transformation
+ matrix. If a matrix is built with fromRotationTranslationScale
+ with a normalized Quaternion paramter, the returned vector will be
+ the same as the scaling vector
+ originally supplied.
 </div>
 
 
@@ -4927,7 +4594,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4937,7 +4604,7 @@
 
             
 
-            <td class="description last">Vector to receive translation component</td>
+            <td class="description last">Vector to receive scaling factor component</td>
         </tr>
 
     
@@ -4950,7 +4617,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5001,7 +4668,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1495">line 1495</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line976">line 976</a>
     </li></ul></dd>
     
 
@@ -5039,7 +4706,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
     </dd>
@@ -5054,7 +4721,186 @@
 
     
 
-    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".getTranslation"><span class="type-signature">(static) </span>getTranslation<span class="signature">(out, mat)</span><span class="type-signature"> &rarr; {vec3}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Returns the translation vector component of a transformation
+ matrix. If a matrix is built with fromRotationTranslation,
+ the returned vector will be the same as the translation vector
+ originally supplied.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Vector to receive translation component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>mat</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Matrix to be decomposed (input)</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line958">line 958</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">vec3</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -5103,7 +4949,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5154,7 +5000,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line203">line 203</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line199">line 199</a>
     </li></ul></dd>
     
 
@@ -5192,7 +5038,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -5207,7 +5053,183 @@
 
     
 
-    <h4 class="name" id=".lookAt"><span class="type-signature">(static) </span>lookAt<span class="signature">(out, eye, center, up)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Inverts a mat4
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the source matrix</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line274">line 274</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".lookAt"><span class="type-signature">(static) </span>lookAt<span class="signature">(out, eye, center, up)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -5256,7 +5278,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5279,7 +5301,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5302,7 +5324,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5325,7 +5347,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -5376,7 +5398,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1864">line 1864</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1355">line 1355</a>
     </li></ul></dd>
     
 
@@ -5414,7 +5436,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -5436,7 +5458,7 @@
 
 
 <div class="description">
-    Alias for <a href="mat4.html#.multiply">mat4.multiply</a>
+    Alias for mat4.multiply
 </div>
 
 
@@ -5480,7 +5502,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line747">line 747</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1675">line 1675</a>
     </li></ul></dd>
     
 
@@ -5511,7 +5533,206 @@
 
     
 
-    <h4 class="name" id=".multiplyScalar"><span class="type-signature">(static) </span>multiplyScalar<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Multiplies two mat4s
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the first operand</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the second operand</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line390">line 390</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".multiplyScalar"><span class="type-signature">(static) </span>multiplyScalar<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -5560,7 +5781,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5583,7 +5804,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5657,7 +5878,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2035">line 2035</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1572">line 1572</a>
     </li></ul></dd>
     
 
@@ -5695,7 +5916,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -5710,7 +5931,7 @@
 
     
 
-    <h4 class="name" id=".multiplyScalarAndAdd"><span class="type-signature">(static) </span>multiplyScalarAndAdd<span class="signature">(out, a, b, scale)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".multiplyScalarAndAdd"><span class="type-signature">(static) </span>multiplyScalarAndAdd<span class="signature">(out, a, b, scale)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -5759,7 +5980,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5782,7 +6003,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5805,7 +6026,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -5879,7 +6100,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2064">line 2064</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1601">line 1601</a>
     </li></ul></dd>
     
 
@@ -5917,7 +6138,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -5932,7 +6153,7 @@
 
     
 
-    <h4 class="name" id=".ortho"><span class="type-signature">(static) </span>ortho<span class="signature">(out, left, right, bottom, top, near, far)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".ortho"><span class="type-signature">(static) </span>ortho<span class="signature">(out, left, right, bottom, top, near, far)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -5981,7 +6202,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -6170,7 +6391,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1832">line 1832</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1323">line 1323</a>
     </li></ul></dd>
     
 
@@ -6208,7 +6429,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -6223,7 +6444,7 @@
 
     
 
-    <h4 class="name" id=".perspective"><span class="type-signature">(static) </span>perspective<span class="signature">(out, fovy, aspect, near, far)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".perspective"><span class="type-signature">(static) </span>perspective<span class="signature">(out, fovy, aspect, near, far)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -6272,7 +6493,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -6415,7 +6636,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1760">line 1760</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1251">line 1251</a>
     </li></ul></dd>
     
 
@@ -6453,7 +6674,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -6468,14 +6689,16 @@
 
     
 
-    <h4 class="name" id=".perspectiveFromFieldOfView"><span class="type-signature">(static) </span>perspectiveFromFieldOfView<span class="signature">(out, fov, near, far)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".perspectiveFromFieldOfView"><span class="type-signature">(static) </span>perspectiveFromFieldOfView<span class="signature">(out, fov, near, far)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
 
 
 <div class="description">
-    Generates a perspective projection matrix with the given field of view.This is primarily useful for generating projection matrices to be usedwith the still experiemental WebVR API.
+    Generates a perspective projection matrix with the given field of view.
+This is primarily useful for generating projection matrices to be used
+with the still experiemental WebVR API.
 </div>
 
 
@@ -6517,7 +6740,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -6637,7 +6860,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1793">line 1793</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1284">line 1284</a>
     </li></ul></dd>
     
 
@@ -6675,7 +6898,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -6690,7 +6913,7 @@
 
     
 
-    <h4 class="name" id=".rotate"><span class="type-signature">(static) </span>rotate<span class="signature">(out, a, rad, axis)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".rotate"><span class="type-signature">(static) </span>rotate<span class="signature">(out, a, rad, axis)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -6739,7 +6962,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -6762,7 +6985,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -6808,7 +7031,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -6859,7 +7082,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line907">line 907</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line499">line 499</a>
     </li></ul></dd>
     
 
@@ -6897,7 +7120,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -6912,7 +7135,803 @@
 
     
 
-    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotates a matrix by the given angle around the X axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the matrix to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the angle to rotate the matrix by</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line561">line 561</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotates a matrix by the given angle around the Y axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the matrix to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the angle to rotate the matrix by</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line604">line 604</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Rotates a matrix by the given angle around the Z axis
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the matrix to rotate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>rad</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the angle to rotate the matrix by</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line647">line 647</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Scales the mat4 by the dimensions in the given vec3 not using vectorization
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the matrix to scale</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the vec3 to scale the matrix by</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line468">line 468</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -6961,7 +7980,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -7380,7 +8399,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line176">line 176</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line172">line 172</a>
     </li></ul></dd>
     
 
@@ -7418,7 +8437,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -7482,7 +8501,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -7533,7 +8552,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1948">line 1948</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1491">line 1491</a>
     </li></ul></dd>
     
 
@@ -7593,7 +8612,7 @@
 
 
 <div class="description">
-    Alias for <a href="mat4.html#.subtract">mat4.subtract</a>
+    Alias for mat4.subtract
 </div>
 
 
@@ -7637,7 +8656,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2025">line 2025</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1681">line 1681</a>
     </li></ul></dd>
     
 
@@ -7668,7 +8687,7 @@
 
     
 
-    <h4 class="name" id=".subtract"><span class="type-signature">(static) </span>subtract<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="mat4.html">mat4</a>}</span></h4>
+    <h4 class="name" id=".subtract"><span class="type-signature">(static) </span>subtract<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
 
     
 
@@ -7717,7 +8736,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -7740,7 +8759,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -7763,7 +8782,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
 
 
             
@@ -7814,7 +8833,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line2001">line 2001</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1544">line 1544</a>
     </li></ul></dd>
     
 
@@ -7852,7 +8871,604 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="mat4.html">mat4</a></span>
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".targetTo"><span class="type-signature">(static) </span>targetTo<span class="signature">(out, eye, center, up)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Generates a matrix that makes something look at something else.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">mat4 frustum matrix will be written into</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>eye</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Position of the viewer</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>center</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Point the viewer is looking at</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>up</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">vec3 pointing up</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1442">line 1442</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".translate"><span class="type-signature">(static) </span>translate<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Translate a mat4 by the given vector
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the matrix to translate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>v</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">vec3</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">vector to translate by</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line431">line 431</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".transpose"><span class="type-signature">(static) </span>transpose<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Transpose the values of a mat4
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the source matrix</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line226">line 226</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
 
 
     </dd>
@@ -7878,13 +9494,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun May 01 2016 12:11:58 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jul 22 2017 12:09:30 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>

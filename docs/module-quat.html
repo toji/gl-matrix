@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: quat</title>
+    <title>JSDoc: Module: quat</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: quat</h1>
+    <h1 class="page-title">Module: quat</h1>
 
     
 
@@ -28,7 +28,8 @@
 
 <header>
     
-        <h2>quat</h2>
+        
+            
         
     
 </header>
@@ -37,12 +38,11 @@
     <div class="container-overview">
     
         
+            <div class="description">Quaternion</div>
+        
 
-    
-
-    <h4 class="name" id="quat"><span class="type-signature"></span>new quat<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
+        
+            
 
 
 
@@ -113,6 +113,7 @@
 
 
 
+        
     
     </div>
 
@@ -131,7 +132,7 @@
 
         
             
-<h4 class="name" id=".equals"><span class="type-signature">(static) </span>equals<span class="type-signature"></span></h4>
+<h4 class="name" id=".equals"><span class="type-signature">(static, constant) </span>equals<span class="type-signature"></span></h4>
 
 
 
@@ -175,7 +176,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line598">line 598</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line530">line 530</a>
     </li></ul></dd>
     
 
@@ -193,7 +194,7 @@
 
         
             
-<h4 class="name" id=".exactEquals"><span class="type-signature">(static) </span>exactEquals<span class="type-signature"></span></h4>
+<h4 class="name" id=".exactEquals"><span class="type-signature">(static, constant) </span>exactEquals<span class="type-signature"></span></h4>
 
 
 
@@ -237,7 +238,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line589">line 589</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line521">line 521</a>
     </li></ul></dd>
     
 
@@ -255,13 +256,13 @@
 
         
             
-<h4 class="name" id=".rotationTo"><span class="type-signature">(static) </span>rotationTo<span class="type-signature"></span></h4>
+<h4 class="name" id=".length"><span class="type-signature">(static, constant) </span>length<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Sets a quaternion to represent the shortest rotation from onevector to another.Both vectors are assumed to be unit length.
+    Calculates the length of a quat
 </div>
 
 
@@ -299,7 +300,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line57">line 57</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line481">line 481</a>
     </li></ul></dd>
     
 
@@ -317,13 +318,16 @@
 
         
             
-<h4 class="name" id=".setAxes"><span class="type-signature">(static) </span>setAxes<span class="type-signature"></span></h4>
+<h4 class="name" id=".rotationTo"><span class="type-signature">(static, constant) </span>rotationTo<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    Sets the specified quaternion with values corresponding to the givenaxes. Each axis is a vec3 and is expected to be unit length andperpendicular to all other specified axes.
+    Sets a quaternion to represent the shortest rotation from one
+vector to another.
+
+Both vectors are assumed to be unit length.
 </div>
 
 
@@ -361,7 +365,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line98">line 98</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line543">line 543</a>
     </li></ul></dd>
     
 
@@ -379,7 +383,71 @@
 
         
             
-<h4 class="name" id=".sqlerp"><span class="type-signature">(static) </span>sqlerp<span class="type-signature"></span></h4>
+<h4 class="name" id=".setAxes"><span class="type-signature">(static, constant) </span>setAxes<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    Sets the specified quaternion with values corresponding to the given
+axes. Each axis is a vec3 and is expected to be unit length and
+perpendicular to all other specified axes.
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line608">line 608</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id=".sqlerp"><span class="type-signature">(static, constant) </span>sqlerp<span class="type-signature"></span></h4>
 
 
 
@@ -423,7 +491,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line436">line 436</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line585">line 585</a>
     </li></ul></dd>
     
 
@@ -450,7 +518,7 @@
 
     
 
-    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -499,7 +567,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -522,7 +590,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -545,7 +613,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -596,7 +664,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line233">line 233</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line434">line 434</a>
     </li></ul></dd>
     
 
@@ -634,7 +702,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -649,14 +717,16 @@
 
     
 
-    <h4 class="name" id=".calculateW"><span class="type-signature">(static) </span>calculateW<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".calculateW"><span class="type-signature">(static) </span>calculateW<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
 
 
 <div class="description">
-    Calculates the W component of a quat from the X, Y, and Z components.Assumes that quaternion is 1 unit in length.Any existing W component will be ignored.
+    Calculates the W component of a quat from the X, Y, and Z components.
+Assumes that quaternion is 1 unit in length.
+Any existing W component will be ignored.
 </div>
 
 
@@ -698,7 +768,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -721,7 +791,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -772,7 +842,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line343">line 343</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line198">line 198</a>
     </li></ul></dd>
     
 
@@ -810,7 +880,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -825,7 +895,7 @@
 
     
 
-    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -874,7 +944,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -925,7 +995,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line125">line 125</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line388">line 388</a>
     </li></ul></dd>
     
 
@@ -963,7 +1033,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -978,14 +1048,15 @@
 
     
 
-    <h4 class="name" id=".conjugate"><span class="type-signature">(static) </span>conjugate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".conjugate"><span class="type-signature">(static) </span>conjugate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
 
 
 <div class="description">
-    Calculates the conjugate of a quatIf the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+    Calculates the conjugate of a quat
+If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
 </div>
 
 
@@ -1027,7 +1098,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -1050,7 +1121,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -1101,7 +1172,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line478">line 478</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line286">line 286</a>
     </li></ul></dd>
     
 
@@ -1139,7 +1210,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -1154,7 +1225,7 @@
 
     
 
-    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -1203,7 +1274,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -1226,7 +1297,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -1277,7 +1348,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line147">line 147</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line410">line 410</a>
     </li></ul></dd>
     
 
@@ -1315,7 +1386,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -1330,7 +1401,7 @@
 
     
 
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -1381,7 +1452,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line37">line 37</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line36">line 36</a>
     </li></ul></dd>
     
 
@@ -1419,7 +1490,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -1483,7 +1554,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -1506,7 +1577,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -1557,7 +1628,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line361">line 361</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line461">line 461</a>
     </li></ul></dd>
     
 
@@ -1610,14 +1681,14 @@
 
     
 
-    <h4 class="name" id=".fromMat3"><span class="type-signature">(static) </span>fromMat3<span class="signature">(out, m)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".fromEuler"><span class="type-signature">(static) </span>fromEuler<span class="signature">(out, Angle, Angle, Angle)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a quaternion from the given 3x3 rotation matrix.NOTE: The resultant quaternion is not normalized, so you should be sureto renormalize the quaternion yourself where necessary.
+    Creates a quaternion from the given euler angle x, y, z.
 </div>
 
 
@@ -1659,7 +1730,232 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the receiving quaternion</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">x</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to rotate around X axis in degrees.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">y</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to rotate around Y axis in degrees.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>Angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">z</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">to rotate around Z axis in degrees.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line350">line 350</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">quat</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id=".fromMat3"><span class="type-signature">(static) </span>fromMat3<span class="signature">(out, m)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Creates a quaternion from the given 3x3 rotation matrix.
+
+NOTE: The resultant quaternion is not normalized, so you should be sure
+to renormalize the quaternion yourself where necessary.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">quat</span>
 
 
             
@@ -1682,7 +1978,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="mat3.html">mat3</a></span>
+<span class="param-type">mat3</span>
 
 
             
@@ -1733,7 +2029,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line537">line 537</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line305">line 305</a>
     </li></ul></dd>
     
 
@@ -1771,7 +2067,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -1786,7 +2082,7 @@
 
     
 
-    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x, y, z, w)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x, y, z, w)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -1955,7 +2251,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line137">line 137</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line400">line 400</a>
     </li></ul></dd>
     
 
@@ -1993,7 +2289,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -2015,7 +2311,14 @@
 
 
 <div class="description">
-    Gets the rotation axis and angle for a given quaternion. If a quaternion is created with setAxisAngle, this method will return the same values as providied in the original parameter list OR functionally equivalent values.Example: The quaternion formed by axis [0, 0, 1] and angle -90 is the same as the quaternion formed by [0, 0, 1] and 270. This method favors the latter.
+    Gets the rotation axis and angle for a given
+ quaternion. If a quaternion is created with
+ setAxisAngle, this method will return the same
+ values as providied in the original parameter list
+ OR functionally equivalent values.
+Example: The quaternion formed by axis [0, 0, 1] and
+ angle -90 is the same as the quaternion formed by
+ [0, 0, 1] and 270. This method favors the latter.
 </div>
 
 
@@ -2057,7 +2360,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -2080,7 +2383,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2131,7 +2434,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line208">line 208</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line91">line 91</a>
     </li></ul></dd>
     
 
@@ -2184,7 +2487,7 @@
 
     
 
-    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -2233,7 +2536,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2284,7 +2587,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line168">line 168</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line51">line 51</a>
     </li></ul></dd>
     
 
@@ -2322,7 +2625,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -2337,7 +2640,7 @@
 
     
 
-    <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -2386,7 +2689,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2409,7 +2712,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2460,7 +2763,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line456">line 456</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line264">line 264</a>
     </li></ul></dd>
     
 
@@ -2498,7 +2801,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -2520,7 +2823,7 @@
 
 
 <div class="description">
-    Alias for <a href="quat.html#.length">quat.length</a>
+    Alias for quat.length
 </div>
 
 
@@ -2564,7 +2867,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line499">line 499</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line487">line 487</a>
     </li></ul></dd>
     
 
@@ -2595,160 +2898,7 @@
 
     
 
-    <h4 class="name" id=".length"><span class="type-signature">(static) </span>length<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Calculates the length of a quat
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>a</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="quat.html">quat</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">vector to calculate length of</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line493">line 493</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    length of a
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -2797,7 +2947,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2820,7 +2970,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2843,7 +2993,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -2917,7 +3067,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line373">line 373</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line473">line 473</a>
     </li></ul></dd>
     
 
@@ -2955,7 +3105,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -2977,7 +3127,7 @@
 
 
 <div class="description">
-    Alias for <a href="quat.html#.multiply">quat.multiply</a>
+    Alias for quat.multiply
 </div>
 
 
@@ -3021,7 +3171,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line258">line 258</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line440">line 440</a>
     </li></ul></dd>
     
 
@@ -3052,7 +3202,7 @@
 
     
 
-    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -3101,7 +3251,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3124,7 +3274,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3147,7 +3297,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3198,7 +3348,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line243">line 243</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line115">line 115</a>
     </li></ul></dd>
     
 
@@ -3236,7 +3386,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -3251,7 +3401,7 @@
 
     
 
-    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -3300,7 +3450,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3323,7 +3473,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3374,7 +3524,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line524">line 524</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line512">line 512</a>
     </li></ul></dd>
     
 
@@ -3412,7 +3562,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -3427,7 +3577,7 @@
 
     
 
-    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -3476,7 +3626,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3499,7 +3649,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3573,7 +3723,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line279">line 279</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line134">line 134</a>
     </li></ul></dd>
     
 
@@ -3611,7 +3761,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -3626,7 +3776,7 @@
 
     
 
-    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -3675,7 +3825,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3698,7 +3848,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3772,7 +3922,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line300">line 300</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line155">line 155</a>
     </li></ul></dd>
     
 
@@ -3810,7 +3960,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -3825,7 +3975,7 @@
 
     
 
-    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -3874,7 +4024,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3897,7 +4047,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -3971,7 +4121,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line321">line 321</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line176">line 176</a>
     </li></ul></dd>
     
 
@@ -4009,7 +4159,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -4024,7 +4174,7 @@
 
     
 
-    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -4073,7 +4223,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4096,7 +4246,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4170,7 +4320,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line269">line 269</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line451">line 451</a>
     </li></ul></dd>
     
 
@@ -4208,7 +4358,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -4223,7 +4373,7 @@
 
     
 
-    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x, y, z, w)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x, y, z, w)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -4272,7 +4422,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4415,7 +4565,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line160">line 160</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line423">line 423</a>
     </li></ul></dd>
     
 
@@ -4453,7 +4603,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -4468,14 +4618,15 @@
 
     
 
-    <h4 class="name" id=".setAxisAngle"><span class="type-signature">(static) </span>setAxisAngle<span class="signature">(out, axis, rad)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".setAxisAngle"><span class="type-signature">(static) </span>setAxisAngle<span class="signature">(out, axis, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
 
 
 <div class="description">
-    Sets a quat from the given angle and rotation axis,then returns it.
+    Sets a quat from the given angle and rotation axis,
+then returns it.
 </div>
 
 
@@ -4517,7 +4668,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4540,7 +4691,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="vec3.html">vec3</a></span>
+<span class="param-type">vec3</span>
 
 
             
@@ -4614,7 +4765,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line185">line 185</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -4652,7 +4803,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -4667,7 +4818,7 @@
 
     
 
-    <h4 class="name" id=".slerp"><span class="type-signature">(static) </span>slerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {<a href="quat.html">quat</a>}</span></h4>
+    <h4 class="name" id=".slerp"><span class="type-signature">(static) </span>slerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {quat}</span></h4>
 
     
 
@@ -4716,7 +4867,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4739,7 +4890,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4762,7 +4913,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -4836,7 +4987,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line384">line 384</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line217">line 217</a>
     </li></ul></dd>
     
 
@@ -4874,7 +5025,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
     </dd>
@@ -4896,7 +5047,7 @@
 
 
 <div class="description">
-    Alias for <a href="quat.html#.squaredLength">quat.squaredLength</a>
+    Alias for quat.squaredLength
 </div>
 
 
@@ -4940,7 +5091,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line514">line 514</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line502">line 502</a>
     </li></ul></dd>
     
 
@@ -5020,7 +5171,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -5071,7 +5222,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line508">line 508</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line496">line 496</a>
     </li></ul></dd>
     
 
@@ -5173,7 +5324,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="quat.html">quat</a></span>
+<span class="param-type">quat</span>
 
 
             
@@ -5224,7 +5375,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line578">line 578</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line377">line 377</a>
     </li></ul></dd>
     
 
@@ -5288,13 +5439,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="glMatrix.html">glMatrix</a></li><li><a href="mat2.html">mat2</a></li><li><a href="mat2d.html">mat2d</a></li><li><a href="mat3.html">mat3</a></li><li><a href="mat4.html">mat4</a></li><li><a href="quat.html">quat</a></li><li><a href="vec2.html">vec2</a></li><li><a href="vec3.html">vec3</a></li><li><a href="vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun May 01 2016 12:11:58 GMT-0700 (Pacific Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jul 22 2017 12:09:30 GMT-0700 (PDT)
 </footer>
 
 <script> prettyPrint(); </script>
