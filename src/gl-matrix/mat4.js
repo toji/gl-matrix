@@ -1136,21 +1136,31 @@ export function fromRotationTranslationScaleOrigin(out, q, v, s, o) {
   let oy = o[1];
   let oz = o[2];
 
-  out[0] = (1 - (yy + zz)) * sx;
-  out[1] = (xy + wz) * sx;
-  out[2] = (xz - wy) * sx;
+  let out0 = (1 - (yy + zz)) * sx;
+  let out1 = (xy + wz) * sx;
+  let out2 = (xz - wy) * sx;
+  let out4 = (xy - wz) * sy;
+  let out5 = (1 - (xx + zz)) * sy;
+  let out6 = (yz + wx) * sy;
+  let out8 = (xz + wy) * sz;
+  let out9 = (yz - wx) * sz;
+  let out10 = (1 - (xx + yy)) * sz;
+
+  out[0] = out0;
+  out[1] = out1;
+  out[2] = out2;
   out[3] = 0;
-  out[4] = (xy - wz) * sy;
-  out[5] = (1 - (xx + zz)) * sy;
-  out[6] = (yz + wx) * sy;
+  out[4] = out4;
+  out[5] = out5;
+  out[6] = out6;
   out[7] = 0;
-  out[8] = (xz + wy) * sz;
-  out[9] = (yz - wx) * sz;
-  out[10] = (1 - (xx + yy)) * sz;
+  out[8] = out8;
+  out[9] = out9;
+  out[10] = out10;
   out[11] = 0;
-  out[12] = v[0] + ox - (out[0] * ox + out[4] * oy + out[8] * oz);
-  out[13] = v[1] + oy - (out[1] * ox + out[5] * oy + out[9] * oz);
-  out[14] = v[2] + oz - (out[2] * ox + out[6] * oy + out[10] * oz);
+  out[12] = v[0] + ox - (out0 * ox + out4 * oy + out8 * oz);
+  out[13] = v[1] + oy - (out1 * ox + out5 * oy + out9 * oz);
+  out[14] = v[2] + oz - (out2 * ox + out6 * oy + out10 * oz);
   out[15] = 1;
 
   return out;
