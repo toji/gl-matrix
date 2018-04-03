@@ -10,4 +10,8 @@ from the this directory, then run the following command:
 
     npm run build-all
 
-This will build the full and minified versions of glMatrix as well as the docs.
+This will build the full and minified versions of glMatrix.
+
+To build the docs, run:
+
+    npm run doc

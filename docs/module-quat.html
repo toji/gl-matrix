@@ -113,6 +113,8 @@
 
 
 
+
+
         
     
     </div>
@@ -123,7 +125,9 @@
 
     
 
-     
+    
+
+    
 
     
 
@@ -324,10 +328,7 @@
 
 
 <div class="description">
-    Sets a quaternion to represent the shortest rotation from one
-vector to another.
-
-Both vectors are assumed to be unit length.
+    Sets a quaternion to represent the shortest rotation from onevector to another.Both vectors are assumed to be unit length.
 </div>
 
 
@@ -389,9 +390,7 @@ Both vectors are assumed to be unit length.
 
 
 <div class="description">
-    Sets the specified quaternion with values corresponding to the given
-axes. Each axis is a vec3 and is expected to be unit length and
-perpendicular to all other specified axes.
+    Sets the specified quaternion with values corresponding to the givenaxes. Each axis is a vec3 and is expected to be unit length andperpendicular to all other specified axes.
 </div>
 
 
@@ -518,7 +517,9 @@ perpendicular to all other specified axes.
 
     
 
+    
     <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -712,21 +713,23 @@ perpendicular to all other specified axes.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".calculateW"><span class="type-signature">(static) </span>calculateW<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Calculates the W component of a quat from the X, Y, and Z components.
-Assumes that quaternion is 1 unit in length.
-Any existing W component will be ignored.
+    Calculates the W component of a quat from the X, Y, and Z components.Assumes that quaternion is 1 unit in length.Any existing W component will be ignored.
 </div>
 
 
@@ -890,12 +893,16 @@ Any existing W component will be ignored.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -1043,20 +1050,23 @@ Any existing W component will be ignored.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".conjugate"><span class="type-signature">(static) </span>conjugate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Calculates the conjugate of a quat
-If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+    Calculates the conjugate of a quatIf the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
 </div>
 
 
@@ -1220,12 +1230,16 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -1396,12 +1410,16 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -1500,12 +1518,16 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".dot"><span class="type-signature">(static) </span>dot<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
 
     
 
@@ -1676,12 +1698,16 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromEuler"><span class="type-signature">(static) </span>fromEuler<span class="signature">(out, Angle, Angle, Angle)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -1898,22 +1924,23 @@ If the quaternion is normalized, this function is faster than quat.inverse and p
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromMat3"><span class="type-signature">(static) </span>fromMat3<span class="signature">(out, m)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Creates a quaternion from the given 3x3 rotation matrix.
-
-NOTE: The resultant quaternion is not normalized, so you should be sure
-to renormalize the quaternion yourself where necessary.
+    Creates a quaternion from the given 3x3 rotation matrix.NOTE: The resultant quaternion is not normalized, so you should be sureto renormalize the quaternion yourself where necessary.
 </div>
 
 
@@ -2077,12 +2104,16 @@ to renormalize the quaternion yourself where necessary.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x, y, z, w)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -2299,26 +2330,23 @@ to renormalize the quaternion yourself where necessary.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".getAxisAngle"><span class="type-signature">(static) </span>getAxisAngle<span class="signature">(out_axis, q)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Gets the rotation axis and angle for a given
- quaternion. If a quaternion is created with
- setAxisAngle, this method will return the same
- values as providied in the original parameter list
- OR functionally equivalent values.
-Example: The quaternion formed by axis [0, 0, 1] and
- angle -90 is the same as the quaternion formed by
- [0, 0, 1] and 270. This method favors the latter.
+    Gets the rotation axis and angle for a given quaternion. If a quaternion is created with setAxisAngle, this method will return the same values as providied in the original parameter list OR functionally equivalent values.Example: The quaternion formed by axis [0, 0, 1] and angle -90 is the same as the quaternion formed by [0, 0, 1] and 270. This method favors the latter.
 </div>
 
 
@@ -2482,12 +2510,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -2635,12 +2667,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -2811,12 +2847,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".len"><span class="type-signature">(static) </span>len<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -2893,12 +2933,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -3115,12 +3159,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".mul"><span class="type-signature">(static) </span>mul<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -3197,12 +3245,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -3396,12 +3448,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -3572,12 +3628,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -3771,12 +3831,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -3970,12 +4034,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -4169,12 +4237,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -4368,12 +4440,16 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x, y, z, w)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -4613,20 +4689,23 @@ Example: The quaternion formed by axis [0, 0, 1] and
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".setAxisAngle"><span class="type-signature">(static) </span>setAxisAngle<span class="signature">(out, axis, rad)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
 
 
 <div class="description">
-    Sets a quat from the given angle and rotation axis,
-then returns it.
+    Sets a quat from the given angle and rotation axis,then returns it.
 </div>
 
 
@@ -4813,12 +4892,16 @@ then returns it.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".slerp"><span class="type-signature">(static) </span>slerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    
 
     
 
@@ -5035,12 +5118,16 @@ then returns it.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".sqrLen"><span class="type-signature">(static) </span>sqrLen<span class="signature">()</span><span class="type-signature"></span></h4>
+    
 
     
 
@@ -5117,12 +5204,16 @@ then returns it.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".squaredLength"><span class="type-signature">(static) </span>squaredLength<span class="signature">(a)</span><span class="type-signature"> &rarr; {Number}</span></h4>
+    
 
     
 
@@ -5270,12 +5361,16 @@ then returns it.
 
 
 
+
+
         
             
 
     
 
+    
     <h4 class="name" id=".str"><span class="type-signature">(static) </span>str<span class="signature">(a)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
 
     
 
@@ -5423,6 +5518,8 @@ then returns it.
 
 
 
+
+
         
     
 
@@ -5445,7 +5542,7 @@ then returns it.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Sat Jul 22 2017 12:09:30 GMT-0700 (PDT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Apr 03 2018 18:18:22 GMT+0200 (W. Europe Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>
