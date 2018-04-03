@@ -947,6 +947,36 @@ export function fromRotationTranslation(out, q, v) {
 }
 
 /**
+ * Creates a matrix from the outer product of two vetors.
+ * @param {mat4} out mat3 receiving operation result
+ * @param {vec4} v0 first vector
+ * @param {vec4} v1 second vector
+ * @returns {mat4} out
+ */
+export function fromOuterProduct(out, v0, v1) {
+  out[0] = v0[0]*v1[0];
+  out[1] = v0[1]*v1[0];
+  out[2] = v0[2]*v1[0];
+  out[3] = v0[3]*v1[0];
+
+  out[4] = v0[0]*v1[1];
+  out[5] = v0[1]*v1[1];
+  out[6] = v0[2]*v1[1];
+  out[7] = v0[3]*v1[1];
+
+  out[8] = v0[0]*v1[2];
+  out[9] = v0[1]*v1[2];
+  out[10] = v0[2]*v1[2];
+  out[11] = v0[3]*v1[2];
+
+  out[12] = v0[0]*v1[3];
+  out[13] = v0[1]*v1[3];
+  out[14] = v0[2]*v1[3];
+  out[15] = v0[3]*v1[3];
+  return out;
+}
+
+/**
  * Returns the translation vector component of a transformation
  *  matrix. If a matrix is built with fromRotationTranslation,
  *  the returned vector will be the same as the translation vector

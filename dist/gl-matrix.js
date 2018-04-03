@@ -205,6 +205,7 @@ exports.scale = scale;
 exports.fromTranslation = fromTranslation;
 exports.fromRotation = fromRotation;
 exports.fromScaling = fromScaling;
+exports.fromOuterProduct = fromOuterProduct;
 exports.fromMat2d = fromMat2d;
 exports.fromQuat = fromQuat;
 exports.normalFromMat4 = normalFromMat4;
@@ -744,6 +745,28 @@ function fromScaling(out, v) {
   out[6] = 0;
   out[7] = 0;
   out[8] = 1;
+  return out;
+}
+
+/**
+ * Creates a matrix from the outer product of two vetors.
+ * @param {mat3} out mat3 receiving operation result
+ * @param {vec3} v0 first vector
+ * @param {vec3} v1 second vector
+ * @returns {mat3} out
+ */
+function fromOuterProduct(out, v0, v1) {
+  out[0] = v0[0] * v1[0];
+  out[1] = v0[1] * v1[0];
+  out[2] = v0[2] * v1[0];
+
+  out[3] = v0[0] * v1[1];
+  out[4] = v0[1] * v1[1];
+  out[5] = v0[2] * v1[1];
+
+  out[6] = v0[0] * v1[2];
+  out[7] = v0[1] * v1[2];
+  out[8] = v0[2] * v1[2];
   return out;
 }
 
@@ -2679,6 +2702,7 @@ exports.rotate = rotate;
 exports.scale = scale;
 exports.fromRotation = fromRotation;
 exports.fromScaling = fromScaling;
+exports.fromOuterProduct = fromOuterProduct;
 exports.str = str;
 exports.frob = frob;
 exports.LDU = LDU;
@@ -3000,6 +3024,21 @@ function fromScaling(out, v) {
   out[1] = 0;
   out[2] = 0;
   out[3] = v[1];
+  return out;
+}
+
+/**
+ * Creates a matrix from the outer product of two vetors.
+ * @param {mat2} out mat2 receiving operation result
+ * @param {vec2} v0 first vector
+ * @param {vec2} v1 second vector
+ * @returns {mat2} out
+ */
+function fromOuterProduct(out, v0, v1) {
+  out[0] = v0[0] * v1[0];
+  out[1] = v0[1] * v1[0];
+  out[2] = v0[0] * v1[1];
+  out[3] = v0[1] * v1[1];
   return out;
 }
 
@@ -3723,6 +3762,7 @@ exports.fromXRotation = fromXRotation;
 exports.fromYRotation = fromYRotation;
 exports.fromZRotation = fromZRotation;
 exports.fromRotationTranslation = fromRotationTranslation;
+exports.fromOuterProduct = fromOuterProduct;
 exports.getTranslation = getTranslation;
 exports.getScaling = getScaling;
 exports.getRotation = getRotation;
@@ -4797,6 +4837,36 @@ function fromRotationTranslation(out, q, v) {
 }
 
 /**
+ * Creates a matrix from the outer product of two vetors.
+ * @param {mat4} out mat3 receiving operation result
+ * @param {vec4} v0 first vector
+ * @param {vec4} v1 second vector
+ * @returns {mat4} out
+ */
+function fromOuterProduct(out, v0, v1) {
+  out[0] = v0[0] * v1[0];
+  out[1] = v0[1] * v1[0];
+  out[2] = v0[2] * v1[0];
+  out[3] = v0[3] * v1[0];
+
+  out[4] = v0[0] * v1[1];
+  out[5] = v0[1] * v1[1];
+  out[6] = v0[2] * v1[1];
+  out[7] = v0[3] * v1[1];
+
+  out[8] = v0[0] * v1[2];
+  out[9] = v0[1] * v1[2];
+  out[10] = v0[2] * v1[2];
+  out[11] = v0[3] * v1[2];
+
+  out[12] = v0[0] * v1[3];
+  out[13] = v0[1] * v1[3];
+  out[14] = v0[2] * v1[3];
+  out[15] = v0[3] * v1[3];
+  return out;
+}
+
+/**
  * Returns the translation vector component of a transformation
  *  matrix. If a matrix is built with fromRotationTranslation,
  *  the returned vector will be the same as the translation vector
@@ -5233,7 +5303,7 @@ function lookAt(out, eye, center, up) {
   var centerz = center[2];
 
   if (Math.abs(eyex - centerx) < glMatrix.EPSILON && Math.abs(eyey - centery) < glMatrix.EPSILON && Math.abs(eyez - centerz) < glMatrix.EPSILON) {
-    return mat4.identity(out);
+    return identity(out);
   }
 
   z0 = eyex - centerx;

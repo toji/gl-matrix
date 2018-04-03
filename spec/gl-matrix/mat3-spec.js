@@ -84,6 +84,12 @@ describe("mat3", function() {
         });
     });
 
+    describe("fromOuterProduct", function() {
+        beforeEach(function() { result = mat3.fromOuterProduct(out,[1,2,3],[4,5,6]); });
+        it("should output the correct values", function() { expect(out).toBeEqualish([4, 8, 12, 5, 10, 15, 6, 12, 18]); });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
     describe("fromQuat", function() {
         let q;
 
