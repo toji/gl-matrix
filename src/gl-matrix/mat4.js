@@ -1344,7 +1344,8 @@ export function ortho(out, left, right, bottom, top, near, far) {
 }
 
 /**
- * Generates a look-at matrix with the given eye position, focal point, and up axis
+ * Generates a look-at matrix with the given eye position, focal point, and up axis. 
+ * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
  *
  * @param {mat4} out mat4 frustum matrix will be written into
  * @param {vec3} eye Position of the viewer
