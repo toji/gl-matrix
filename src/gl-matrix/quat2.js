@@ -19,9 +19,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
 
-import * as glMatrix from "./common";
-import * as quat from "./quat";
-import * as mat4 from "./mat4";
+import * as glMatrix from "./common.js";
+import * as quat from "./quat.js";
+import * as mat4 from "./mat4.js";
 
 /**
  * @class Dual Quaternion<br>
