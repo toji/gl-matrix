@@ -222,18 +222,8 @@ thead tr
 th { border-right: 1px solid #aaa; }
 tr > th:last-child { border-right: 1px solid #ddd; }
 
-<<<<<<< HEAD
 .ancestors, .attribs { color: #999; }
 .ancestors a, .attribs a
-=======
-<<<<<<< HEAD
-.ancestors, .attribs { color: #999; }
-.ancestors a, .attribs a
-=======
-.ancestors { color: #999; }
-.ancestors a
->>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
->>>>>>> origin/toji-master
 {
     color: #999 !important;
     text-decoration: none;
