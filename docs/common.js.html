@@ -52,9 +52,15 @@ THE SOFTWARE. */
  */
 
 // Configuration Constants
+<<<<<<< HEAD
+glMatrix.EPSILON = 0.000001;
+glMatrix.ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
+glMatrix.RANDOM = Math.random;
+=======
 export const EPSILON = 0.000001;
 export let ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
 export const RANDOM = Math.random;
+>>>>>>> 7850f1f1e09be244f3bf84aa7208e45259b4d9b1
 
 /**
  * Sets the type of array used when creating new vectors and matrices
