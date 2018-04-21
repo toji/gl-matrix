@@ -28,13 +28,13 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.24.1",
     "jsdoc": "^3.4.3",
-    "mocha": "^3.4.2",
+    "mocha": "^4.0.1",
     "node-libs-browser": "^2.0.0",
     "webpack": "^3.11.0"
   },
   "license": "MIT",
   "scripts": {
-    "test": "mocha --compilers js:babel-register --recursive spec",
+    "test": "mocha --require babel-register --recursive spec",
     "old_test": "jasmine-node spec",
     "doc": "jsdoc -c jsdoc.config.json",
     "build": "webpack",

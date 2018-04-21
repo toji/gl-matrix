@@ -3,6 +3,11 @@ const assert = require('assert');
 
 
 global.expect = function(e) {
+    
+    function expected(e, message, a) {
+        assert.fail(e, a, `expected ${JSON.stringify(e)} ${message} ${JSON.stringify(a)}`);
+    }
+    
     return {
         toBe: function(a) {
             assert.strictEqual(e, a);
@@ -11,7 +16,7 @@ global.expect = function(e) {
             assert.strictEqual(e,a);
         },
         toBeDefined: function() {
-            assert.notStrictEqual(w, undefined);
+            assert.notStrictEqual(e, undefined);
         },
         toBeTruthy: function() {
             assert(e);
@@ -22,13 +27,27 @@ global.expect = function(e) {
         toBeNull: function() {
             assert.strictEqual(e, null);
         },
-        toBeCloseTo: function(a, p) {
-            return Math.abs(e - a) < (Math.pow(10, -p) / 2);
-        },
         not: {
             toBe: function(a) {
-                assert.notStrictEqual(e, a)
+                assert.notStrictEqual(e, a);
             },
+            
+            toBeEqualish: function(a) {
+                if (typeof(e) == 'number')
+                    assert(Math.abs(e - a) >= EPSILON);
+
+                if (e.length != a.length)
+                    return;
+                for (let i = 0; i < e.length; i++) {
+                    if (isNaN(e[i]) !== isNaN(a[i]))
+                        return;
+                    if (Math.abs(e[i] - a[i]) >= EPSILON)
+                        return;
+                }
+                
+                assert.fail(e, a);
+            }
+            
         },
         toBeGreaterThan: function(a) {
             assert(e > a);
@@ -45,18 +64,41 @@ global.expect = function(e) {
         toBeEqualish: function(expected) {
 
             if (typeof(e) == 'number')
-                return assert(Math.abs(e - expected) < EPSILON);
+                assert(Math.abs(e - expected) < EPSILON);
 
             if (e.length != expected.length)
-                return assert.fail(e.length, expected.length);
+                assert.fail(e.length, expected.length, "length mismatch");
+
 
             for (let i = 0; i < e.length; i++) {
                 if (isNaN(e[i]) !== isNaN(expected[i]))
-                    return assert.fail(isNaN(e[i]), isNaN(expected[i]));
+                    assert.fail(isNaN(e[i]), isNaN(expected[i]));
                 if (Math.abs(e[i] - expected[i]) >= EPSILON)
-                    return assert.fail(Math.abs(e[i] - expected[i]))
+                    assert.fail(Math.abs(e[i] - expected[i]));
             }
-            return true;
+        },
+        
+        //Dual quaternions are very special & unique snowflakes
+        toBeEqualishQuat2: function(a, epsilon) {
+            if(epsilon == undefined) epsilon = EPSILON;
+            let allSignsFlipped = false;
+            if (e.length != a.length)
+                expected(e, "to have the same length as", a);
+                
+            for (let i = 0; i < e.length; i++) {
+                if (isNaN(e[i]) !== isNaN(a[i]))
+                    expected(e, "to be equalish to", a);
+                
+                if (allSignsFlipped) {
+                    if (Math.abs(e[i] - (-a[i])) >= epsilon)
+                        expected(e, "to be equalish to", a);
+                } else {
+                    if (Math.abs(e[i] - a[i]) >= epsilon) {
+                        allSignsFlipped = true;
+                        i = 0;
+                    }
+                }
+            }
         }
-    }
+    };
 };
