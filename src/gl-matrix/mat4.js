@@ -21,8 +21,8 @@ THE SOFTWARE. */
 import * as glMatrix from "./common.js";
 
 /**
- * @class 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
- * @name mat4
+ * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
+ * @module mat4
  */
 
 /**

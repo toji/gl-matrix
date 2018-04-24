@@ -40,5 +40,8 @@
     "build": "webpack",
     "build-min": "webpack --config webpack.config.min.js",
     "build-all": "webpack && webpack --config webpack.config.min.js"
+  },
+  "dependencies": {
+    "npm": "^5.8.0"
   }
 }
