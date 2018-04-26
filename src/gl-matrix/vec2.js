@@ -466,6 +466,23 @@ export function transformMat4(out, a, m) {
 }
 
 /**
+ * Set the rotateion of a 2D vector from an angle
+ * @param {vec2} out The receiving vec2
+ * @param {vec2} a the vector to rotate
+ * @param {Number} angle The angle of rotation
+ * @returns {vec3} out
+ */
+export function rotate(out, a, angle) {
+  const len = length(a);
+
+  //perform rotation
+  out[0] = Math.cos(angle) * len;
+  out[1] = Math.sin(angle) * len;
+
+  return out;
+}
+
+/**
  * Get the angle between two 2D vectors
  * @param {vec2} a The first operand
  * @param {vec2} b The second operand
