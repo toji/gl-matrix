@@ -466,7 +466,7 @@ export function transformMat4(out, a, m) {
 }
 
 /**
- * Set the rotateion of a 2D vector from an angle
+ * Set the rotation of a 2D vector from an angle
  * @param {vec2} out The receiving vec2
  * @param {vec2} a the vector to rotate
  * @param {Number} angle The angle of rotation
