@@ -598,6 +598,35 @@ describe("vec2", function() {
         });
     });
 
+    describe("rotate", function() {
+        let out = [0, 0];
+        let result = vec2.rotate(out, [7, 0], Math.PI/2);
+
+        it("should modify output argument", function() { expect(out).toBeEqualish([0, 7]); });
+        it("should return modified vector", function() { expect(result).toBeEqualish(out); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([7, 0]); });
+
+        vec2.rotate(out, [7, 0], Math.PI);
+        it("should modify output argument", function() { expect(out).toBeEqualish([-7, 0]); });
+
+        vec2.rotate(out, [7, 0], Math.PI * 1.5);
+        it("should modify output argument", function() { expect(out).toBeEqualish([0, -7]); });
+
+        vec2.rotate(out, [7, 0], Math.PI * 2.0);
+        it("should modify output argument", function() { expect(out).toBeEqualish([7, 0]); });
+
+    });
+
+    describe("angle", function() {
+        let vecA = [0, 0];
+        let vecB = [1, 2];
+        let result = vec2.angle(vecA, vecB);
+
+        it("should return the angle", function() { expect(result).toBeEqualish(1.570796); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 0]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([1, 2]); });
+    });
+
     describe("str", function() {
         beforeEach(function() { result = vec2.str(vecA); });
 
