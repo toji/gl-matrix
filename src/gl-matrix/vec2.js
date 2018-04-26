@@ -466,6 +466,31 @@ export function transformMat4(out, a, m) {
 }
 
 /**
+ * Get the angle between two 2D vectors
+ * @param {vec2} a The first operand
+ * @param {vec2} b The second operand
+ * @returns {Number} The angle in radians
+ */
+export function angle(a, b) {
+  let tempA = fromValues(a[0], a[1]);
+  let tempB = fromValues(b[0], b[1]);
+
+  normalize(tempA, tempA);
+  normalize(tempB, tempB);
+
+  let cosine = dot(tempA, tempB);
+
+  if(cosine > 1.0) {
+    return 0;
+  }
+  else if(cosine < -1.0) {
+    return Math.PI;
+  } else {
+    return Math.acos(cosine);
+  }
+}
+
+/**
  * Returns a string representation of a vector
  *
  * @param {vec2} a vector to represent as a string

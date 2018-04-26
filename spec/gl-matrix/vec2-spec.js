@@ -598,6 +598,16 @@ describe("vec2", function() {
         });
     });
 
+    describe("angle", function() {
+        let vecA = [0,0];
+        let vecB = [1,2];
+        let result = vec2.angle(vecA, vecB);
+
+        it("should return the angle", function() { expect(result).toBeEqualish(1.570796); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 0]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([1, 2]); });
+    });
+
     describe("str", function() {
         beforeEach(function() { result = vec2.str(vecA); });
 
