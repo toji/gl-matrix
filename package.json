@@ -29,6 +29,7 @@
     "babel-register": "^6.24.1",
     "jsdoc": "^3.4.3",
     "mocha": "^4.0.1",
+    "npm": "^5.8.0",
     "node-libs-browser": "^2.0.0",
     "webpack": "^3.11.0"
   },
@@ -42,6 +43,5 @@
     "build-all": "webpack && webpack --config webpack.config.min.js"
   },
   "dependencies": {
-    "npm": "^5.8.0"
   }
 }
