@@ -507,7 +507,7 @@ export function rotate(out, a, rad, axis) {
   let b10, b11, b12;
   let b20, b21, b22;
 
-  if (Math.abs(len) < glMatrix.EPSILON) { return null; }
+  if (len < glMatrix.EPSILON) { return null; }
 
   len = 1 / len;
   x *= len;
@@ -758,7 +758,7 @@ export function fromRotation(out, rad, axis) {
   let len = Math.sqrt(x * x + y * y + z * z);
   let s, c, t;
 
-  if (Math.abs(len) < glMatrix.EPSILON) { return null; }
+  if (len < glMatrix.EPSILON) { return null; }
 
   len = 1 / len;
   x *= len;
