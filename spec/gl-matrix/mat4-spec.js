@@ -645,6 +645,50 @@ function buildMat4Tests() {
             });
         });
 
+        describe("removeTranslation", function() {
+          beforeEach(function() {
+              let q = quat.create();
+              q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+              let t = vec3.fromValues(1, 2, 3);
+              let s = vec3.fromValues(5, 6, 7);
+              mat4.fromRotationTranslationScale(matA, q, t, s);
+              mat4.removeTranslation(matB, matA);
+              result = vec3.fromValues(1, 2, 3);
+              mat4.getTranslation(result, matB);
+          })
+          it("should return the null translation", function() { expect(result).toBeEqualish([0, 0, 0]); });
+        });
+
+        describe("removeScaling", function() {
+          beforeEach(function() {
+              let q = quat.create();
+              q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+              let t = vec3.fromValues(1, 2, 3);
+              let s = vec3.fromValues(5, 6, 7);
+              mat4.fromRotationTranslationScale(matA, q, t, s);
+              mat4.removeScaling(matB, matA);
+              result = vec3.fromValues(5, 6, 7);
+              mat4.getScaling(result, matB);
+          })
+          it("should return the null scaling", function() { expect(result).toBeEqualish([1, 1, 1]); });
+        });
+
+        describe("removeRotation", function() {
+          beforeEach(function() {
+              let q = quat.create();
+              q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+              let t = vec3.fromValues(1, 2, 3);
+              let s = vec3.fromValues(5, 6, 7);
+              mat4.fromRotationTranslationScale(matA, q, t, s);
+              mat4.removeRotation(matB, matA);
+              result = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+              console.log( result );
+              quat.normalize(result, mat4.getRotation(result, matB) );
+              console.log( result );
+          })
+          it("should return the null rotation", function() { expect(result).toBeEqualish([0, 0, 0, 1]); });
+        });
+
         describe("frustum", function() {
             beforeEach(function() { result = mat4.frustum(out, -1, 1, -1, 1, -1, 1); });
             it("should place values into out", function() { expect(result).toBeEqualish([
