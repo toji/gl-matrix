@@ -1,24 +1,3 @@
-/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. */
-
-
 import * as glMatrix from "./common.js";
 import * as quat from "./quat.js";
 import * as mat4 from "./mat4.js";
@@ -196,14 +175,14 @@ export function fromRotation(out, q) {
 
 /**
  * Creates a new dual quat from a matrix (4x4)
- * 
+ *
  * @param {quat2} out the dual quaternion
  * @param {mat4} a the matrix
  * @returns {quat2} dual quat receiving operation result
  * @function
  */
 export function fromMat4(out, a) {
-  //TODO Optimize this 
+  //TODO Optimize this
   let outer = quat.create();
   mat4.getRotation(outer, a);
   let t = new glMatrix.ARRAY_TYPE(3);
