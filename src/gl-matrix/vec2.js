@@ -111,7 +111,7 @@ export function multiply(out, a, b) {
   out[0] = a[0] * b[0];
   out[1] = a[1] * b[1];
   return out;
-};
+}
 
 /**
  * Divides two vec2's
@@ -125,7 +125,7 @@ export function divide(out, a, b) {
   out[0] = a[0] / b[0];
   out[1] = a[1] / b[1];
   return out;
-};
+}
 
 /**
  * Math.ceil the components of a vec2
@@ -138,7 +138,7 @@ export function ceil(out, a) {
   out[0] = Math.ceil(a[0]);
   out[1] = Math.ceil(a[1]);
   return out;
-};
+}
 
 /**
  * Math.floor the components of a vec2
@@ -151,7 +151,7 @@ export function floor(out, a) {
   out[0] = Math.floor(a[0]);
   out[1] = Math.floor(a[1]);
   return out;
-};
+}
 
 /**
  * Returns the minimum of two vec2's
@@ -165,7 +165,7 @@ export function min(out, a, b) {
   out[0] = Math.min(a[0], b[0]);
   out[1] = Math.min(a[1], b[1]);
   return out;
-};
+}
 
 /**
  * Returns the maximum of two vec2's
@@ -179,7 +179,7 @@ export function max(out, a, b) {
   out[0] = Math.max(a[0], b[0]);
   out[1] = Math.max(a[1], b[1]);
   return out;
-};
+}
 
 /**
  * Math.round the components of a vec2
@@ -192,7 +192,7 @@ export function round (out, a) {
   out[0] = Math.round(a[0]);
   out[1] = Math.round(a[1]);
   return out;
-};
+}
 
 /**
  * Scales a vec2 by a scalar number
@@ -206,7 +206,7 @@ export function scale(out, a, b) {
   out[0] = a[0] * b;
   out[1] = a[1] * b;
   return out;
-};
+}
 
 /**
  * Adds two vec2's after scaling the second operand by a scalar value
@@ -221,7 +221,7 @@ export function scaleAndAdd(out, a, b, scale) {
   out[0] = a[0] + (b[0] * scale);
   out[1] = a[1] + (b[1] * scale);
   return out;
-};
+}
 
 /**
  * Calculates the euclidian distance between two vec2's
@@ -234,7 +234,7 @@ export function distance(a, b) {
   var x = b[0] - a[0],
     y = b[1] - a[1];
   return Math.sqrt(x*x + y*y);
-};
+}
 
 /**
  * Calculates the squared euclidian distance between two vec2's
@@ -247,7 +247,7 @@ export function squaredDistance(a, b) {
   var x = b[0] - a[0],
     y = b[1] - a[1];
   return x*x + y*y;
-};
+}
 
 /**
  * Calculates the length of a vec2
@@ -259,7 +259,7 @@ export function length(a) {
   var x = a[0],
     y = a[1];
   return Math.sqrt(x*x + y*y);
-};
+}
 
 /**
  * Calculates the squared length of a vec2
@@ -271,7 +271,7 @@ export function squaredLength (a) {
   var x = a[0],
     y = a[1];
   return x*x + y*y;
-};
+}
 
 /**
  * Negates the components of a vec2
@@ -284,7 +284,7 @@ export function negate(out, a) {
   out[0] = -a[0];
   out[1] = -a[1];
   return out;
-};
+}
 
 /**
  * Returns the inverse of the components of a vec2
@@ -297,7 +297,7 @@ export function inverse(out, a) {
   out[0] = 1.0 / a[0];
   out[1] = 1.0 / a[1];
   return out;
-};
+}
 
 /**
  * Normalize a vec2
@@ -317,7 +317,7 @@ export function normalize(out, a) {
     out[1] = a[1] * len;
   }
   return out;
-};
+}
 
 /**
  * Calculates the dot product of two vec2's
@@ -328,7 +328,7 @@ export function normalize(out, a) {
  */
 export function dot(a, b) {
   return a[0] * b[0] + a[1] * b[1];
-};
+}
 
 /**
  * Computes the cross product of two vec2's
@@ -344,7 +344,7 @@ export function cross(out, a, b) {
   out[0] = out[1] = 0;
   out[2] = z;
   return out;
-};
+}
 
 /**
  * Performs a linear interpolation between two vec2's
@@ -352,7 +352,7 @@ export function cross(out, a, b) {
  * @param {vec2} out the receiving vector
  * @param {vec2} a the first operand
  * @param {vec2} b the second operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {vec2} out
  */
 export function lerp(out, a, b, t) {
@@ -361,7 +361,7 @@ export function lerp(out, a, b, t) {
   out[0] = ax + t * (b[0] - ax);
   out[1] = ay + t * (b[1] - ay);
   return out;
-};
+}
 
 /**
  * Generates a random vector with the given scale
@@ -376,7 +376,7 @@ export function random(out, scale) {
   out[0] = Math.cos(r) * scale;
   out[1] = Math.sin(r) * scale;
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat2
@@ -392,7 +392,7 @@ export function transformMat2(out, a, m) {
   out[0] = m[0] * x + m[2] * y;
   out[1] = m[1] * x + m[3] * y;
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat2d
@@ -408,7 +408,7 @@ export function transformMat2d(out, a, m) {
   out[0] = m[0] * x + m[2] * y + m[4];
   out[1] = m[1] * x + m[3] * y + m[5];
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat3
@@ -425,7 +425,7 @@ export function transformMat3(out, a, m) {
   out[0] = m[0] * x + m[3] * y + m[6];
   out[1] = m[1] * x + m[4] * y + m[7];
   return out;
-};
+}
 
 /**
  * Transforms the vec2 with a mat4
@@ -443,6 +443,65 @@ export function transformMat4(out, a, m) {
   out[0] = m[0] * x + m[4] * y + m[12];
   out[1] = m[1] * x + m[5] * y + m[13];
   return out;
+}
+
+/**
+ * Rotate a 2D vector
+ * @param {vec2} out The receiving vec2
+ * @param {vec2} a The vec2 point to rotate
+ * @param {vec2} b The origin of the rotation
+ * @param {Number} c The angle of rotation
+ * @returns {vec2} out
+ */
+export function rotate(out, a, b, c) {
+  //Translate point to the origin
+  let p0 = a[0] - b[0],
+  p1 = a[1] - b[1],
+  sinC = Math.sin(c),
+  cosC = Math.cos(c);
+  
+  //perform rotation and translate to correct position
+  out[0] = p0*cosC - p1*sinC + b[0];
+  out[1] = p0*sinC + p1*cosC + b[1];
+
+  return out;
+}
+
+/**
+ * Get the angle between two 2D vectors
+ * @param {vec2} a The first operand
+ * @param {vec2} b The second operand
+ * @returns {Number} The angle in radians
+ */
+export function angle(a, b) {
+  let x1 = a[0],
+    y1 = a[1],
+    x2 = b[0],
+    y2 = b[1];
+  
+  let len1 = x1*x1 + y1*y1;
+  if (len1 > 0) {
+    //TODO: evaluate use of glm_invsqrt here?
+    len1 = 1 / Math.sqrt(len1);
+  }
+  
+  let len2 = x2*x2 + y2*y2;
+  if (len2 > 0) {
+    //TODO: evaluate use of glm_invsqrt here?
+    len2 = 1 / Math.sqrt(len2);
+  }
+  
+  let cosine = (x1 * x2 + y1 * y2) * len1 * len2;
+  
+  
+  if(cosine > 1.0) {
+    return 0;
+  }
+  else if(cosine < -1.0) {
+    return Math.PI;
+  } else {
+    return Math.acos(cosine);
+  }
 }
 
 /**

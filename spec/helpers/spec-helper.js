@@ -61,20 +61,21 @@ global.expect = function(e) {
            This is a way to check for "equal enough" conditions, as a way
            of working around floating point imprecision.
          */
-        toBeEqualish: function(expected) {
+        toBeEqualish: function(a) {
 
             if (typeof(e) == 'number')
-                assert(Math.abs(e - expected) < EPSILON);
+                if(Math.abs(e - a) >= EPSILON)
+                    expected(e, "to be equalish to", a);
 
-            if (e.length != expected.length)
-                assert.fail(e.length, expected.length, "length mismatch");
+            if (e.length != a.length)
+                assert.fail(e.length, a.length, "length mismatch");
 
 
             for (let i = 0; i < e.length; i++) {
-                if (isNaN(e[i]) !== isNaN(expected[i]))
-                    assert.fail(isNaN(e[i]), isNaN(expected[i]));
-                if (Math.abs(e[i] - expected[i]) >= EPSILON)
-                    assert.fail(Math.abs(e[i] - expected[i]));
+                if (isNaN(e[i]) !== isNaN(a[i]))
+                    assert.fail(isNaN(e[i]), isNaN(a[i]));
+                if (Math.abs(e[i] - a[i]) >= EPSILON)
+                    assert.fail(Math.abs(e[i] - a[i]));
             }
         },
         

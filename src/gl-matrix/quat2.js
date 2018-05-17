@@ -667,7 +667,7 @@ export const dot = quat.dot;
  * @param {quat2} out the receiving dual quat
  * @param {quat2} a the first operand
  * @param {quat2} b the second operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat2} out
  */
 export function lerp(out, a, b, t) {
