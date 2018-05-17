@@ -45,7 +45,7 @@
     "webpack": "^4.8.3"
   },
   "peerDependencies": {
-    "npm": "^5.8.0"
+    "npm": "^5.6.0"
   },
   "dependencies": {}
 }
