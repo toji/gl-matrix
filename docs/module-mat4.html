@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">4x4 Matrix</div>
+            <div class="description">4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.</div>
         
 
         
@@ -87,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line23">line 23</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -289,7 +289,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1516">line 1516</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1542">line 1542</a>
     </li></ul></dd>
     
 
@@ -469,7 +469,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line328">line 328</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line308">line 308</a>
     </li></ul></dd>
     
 
@@ -626,7 +626,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line60">line 60</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line40">line 40</a>
     </li></ul></dd>
     
 
@@ -806,7 +806,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line88">line 88</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line68">line 68</a>
     </li></ul></dd>
     
 
@@ -914,7 +914,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line33">line 33</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -1071,7 +1071,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line359">line 359</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line339">line 339</a>
     </li></ul></dd>
     
 
@@ -1251,7 +1251,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1642">line 1642</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1668">line 1668</a>
     </li></ul></dd>
     
 
@@ -1431,7 +1431,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1628">line 1628</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1654">line 1654</a>
     </li></ul></dd>
     
 
@@ -1588,7 +1588,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1504">line 1504</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1530">line 1530</a>
     </li></ul></dd>
     
 
@@ -1768,7 +1768,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1167">line 1167</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1184">line 1184</a>
     </li></ul></dd>
     
 
@@ -1796,6 +1796,186 @@
         
 <div class="param-desc">
     out
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">mat4</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".fromQuat2"><span class="type-signature">(static) </span>fromQuat2<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {mat4}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Creates a new mat4 from a dual quat.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>out</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">mat4</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Matrix</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">quat2</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Dual Quaternion</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line936">line 936</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    mat4 receiving operation result
 </div>
 
 
@@ -1975,7 +2155,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line756">line 756</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line736">line 736</a>
     </li></ul></dd>
     
 
@@ -2185,7 +2365,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line912">line 912</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line892">line 892</a>
     </li></ul></dd>
     
 
@@ -2419,7 +2599,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1054">line 1054</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1061">line 1061</a>
     </li></ul></dd>
     
 
@@ -2678,7 +2858,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1114">line 1114</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1121">line 1121</a>
     </li></ul></dd>
     
 
@@ -2862,7 +3042,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line724">line 724</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line704">line 704</a>
     </li></ul></dd>
     
 
@@ -3046,7 +3226,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line693">line 693</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line673">line 673</a>
     </li></ul></dd>
     
 
@@ -3548,7 +3728,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line129">line 129</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line109">line 109</a>
     </li></ul></dd>
     
 
@@ -3732,7 +3912,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line803">line 803</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line783">line 783</a>
     </li></ul></dd>
     
 
@@ -3916,7 +4096,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line838">line 838</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line818">line 818</a>
     </li></ul></dd>
     
 
@@ -4100,7 +4280,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line873">line 873</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line853">line 853</a>
     </li></ul></dd>
     
 
@@ -4395,7 +4575,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1218">line 1218</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1235">line 1235</a>
     </li></ul></dd>
     
 
@@ -4578,7 +4758,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1003">line 1003</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1010">line 1010</a>
     </li></ul></dd>
     
 
@@ -4762,7 +4942,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line976">line 976</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line983">line 983</a>
     </li></ul></dd>
     
 
@@ -4945,7 +5125,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line958">line 958</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line965">line 965</a>
     </li></ul></dd>
     
 
@@ -5102,7 +5282,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line199">line 199</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line179">line 179</a>
     </li></ul></dd>
     
 
@@ -5282,7 +5462,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line274">line 274</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line254">line 254</a>
     </li></ul></dd>
     
 
@@ -5346,7 +5526,8 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Generates a look-at matrix with the given eye position, focal point, and up axis
+    Generates a look-at matrix with the given eye position, focal point, and up axis.
+If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
 </div>
 
 
@@ -5508,7 +5689,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1355">line 1355</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1373">line 1373</a>
     </li></ul></dd>
     
 
@@ -5616,7 +5797,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1675">line 1675</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1701">line 1701</a>
     </li></ul></dd>
     
 
@@ -5797,7 +5978,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line390">line 390</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line370">line 370</a>
     </li></ul></dd>
     
 
@@ -6000,7 +6181,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1572">line 1572</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1598">line 1598</a>
     </li></ul></dd>
     
 
@@ -6226,7 +6407,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1601">line 1601</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1627">line 1627</a>
     </li></ul></dd>
     
 
@@ -6521,7 +6702,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1323">line 1323</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1340">line 1340</a>
     </li></ul></dd>
     
 
@@ -6770,7 +6951,7 @@ This is equivalent to (but much faster than):
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1251">line 1251</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1268">line 1268</a>
     </li></ul></dd>
     
 
@@ -6998,7 +7179,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1284">line 1284</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1301">line 1301</a>
     </li></ul></dd>
     
 
@@ -7224,7 +7405,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line499">line 499</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line479">line 479</a>
     </li></ul></dd>
     
 
@@ -7427,7 +7608,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line561">line 561</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line541">line 541</a>
     </li></ul></dd>
     
 
@@ -7630,7 +7811,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line604">line 604</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line584">line 584</a>
     </li></ul></dd>
     
 
@@ -7833,7 +8014,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line647">line 647</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line627">line 627</a>
     </li></ul></dd>
     
 
@@ -8036,7 +8217,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line468">line 468</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line448">line 448</a>
     </li></ul></dd>
     
 
@@ -8561,7 +8742,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line172">line 172</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line152">line 152</a>
     </li></ul></dd>
     
 
@@ -8718,7 +8899,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1491">line 1491</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1517">line 1517</a>
     </li></ul></dd>
     
 
@@ -8826,7 +9007,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1681">line 1681</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1707">line 1707</a>
     </li></ul></dd>
     
 
@@ -9007,7 +9188,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1544">line 1544</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1570">line 1570</a>
     </li></ul></dd>
     
 
@@ -9233,7 +9414,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1442">line 1442</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line1460">line 1460</a>
     </li></ul></dd>
     
 
@@ -9436,7 +9617,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line431">line 431</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line411">line 411</a>
     </li></ul></dd>
     
 
@@ -9616,7 +9797,7 @@ with the still experiemental WebVR API.
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line226">line 226</a>
+        <a href="mat4.js.html">mat4.js</a>, <a href="mat4.js.html#line206">line 206</a>
     </li></ul></dd>
     
 
@@ -9682,13 +9863,13 @@ with the still experiemental WebVR API.
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-quat2.html">quat2</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Tue Oct 31 2017 13:07:41 GMT+0000 (GMT)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Thu May 17 2018 15:56:19 GMT+0100 (BST)
 </footer>
 
 <script> prettyPrint(); </script>
