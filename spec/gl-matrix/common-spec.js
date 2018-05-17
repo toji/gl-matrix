@@ -1,7 +1,3 @@
-/*
-* common.js unit test
-*/
-
 import * as glMatrix from "../../src/gl-matrix/common"
 
 describe("common", function(){

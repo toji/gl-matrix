@@ -1,23 +1,3 @@
-/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. */
-
 import * as glMatrix from "../../src/gl-matrix/common"
 import * as mat4 from "../../src/gl-matrix/mat4"
 import * as quat from "../../src/gl-matrix/quat"
@@ -763,7 +743,7 @@ function buildMat4Tests() {
             });
             it("should return out", function() { expect(result).toBe(out); });
         });
-        
+
         describe("targetTo", function() {
             var eye    = new Float32Array([0, 0, 1]);
             var center = new Float32Array([0, 0, -1]);
@@ -863,7 +843,7 @@ function buildMat4Tests() {
                 expect(scaling).toBeEqualish([1, 1, 1]);
             });
         });
-        
+
         describe("str", function() {
             beforeEach(function() { result = mat4.str(matA); });
 
