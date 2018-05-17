@@ -43,8 +43,8 @@
     "old_test": "jasmine-node spec",
     "doc": "jsdoc -c jsdoc.config.json",
     "update-license-version": "node utils/update-license-version.js",
-    "build": "webpack",
-    "build-min": "webpack --config webpack.config.min.js",
+    "build": "webpack --config utils/webpack.config.js",
+    "build-min": "webpack --config utils/webpack.config.min.js",
     "build-all": "npm run update-license-version&&npm run build&&npm run build-min"
   },
   "dependencies": {}

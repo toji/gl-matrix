@@ -1,10 +1,10 @@
-var fs = require('fs');
-var path = require('path');
-var webpack = require('webpack');
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
 
-var version = require('./package.json').version;
-var license = require('./utils/license-template');
-var header = `
+const version = require('../package.json').version;
+const license = require('./license-template');
+const header = `
 /*!
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
@@ -19,13 +19,13 @@ module.exports = {
   entry: './src/gl-matrix.js',
   mode: 'development',
   output: {
-    path: __dirname + '/dist',
+    path: path.join(process.cwd(), 'dist'),
     filename: 'gl-matrix.js',
     libraryTarget: 'umd',
   },
   module: {
     rules: [{
-      test: path.join(__dirname, 'src'),
+      test: path.join(process.cwd(), 'src'),
       loader: 'babel-loader',
     }]
   },
