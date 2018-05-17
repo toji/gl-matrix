@@ -3,6 +3,6 @@ sudo: false
 node_js:
   - "8.11.2"
 script:
-  - webpack
+  - webpack --config utils/webpack.config.js
   - webpack --config utils/webpack.config.min.js
   - mocha --compilers js:babel-register --recursive spec
