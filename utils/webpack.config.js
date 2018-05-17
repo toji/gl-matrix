@@ -28,6 +28,7 @@ module.exports = {
   module: {
     rules: [{
       test: path.join(process.cwd(), 'src'),
+      exclude: /node_modules/,
       loader: 'babel-loader',
     }]
   },
