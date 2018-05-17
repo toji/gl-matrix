@@ -1,23 +1,3 @@
-/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. */
-
 import * as mat3 from "../../src/gl-matrix/mat3"
 import * as mat4 from "../../src/gl-matrix/mat4"
 import * as vec3 from "../../src/gl-matrix/vec3"
@@ -159,13 +139,13 @@ describe("vec3", function() {
             it("should return out", function() { expect(result).toBe(out); });
         });
     });
-    
-    describe("transformQuat", function() { 
-       beforeEach(function() { result = vec3.transformQuat(out, vecA, [0.18257418567011074, 0.3651483713402215, 0.5477225570103322, 0.730296742680443]); }); 
-       it("should rotate the input vector", function() {  expect(out).toBeEqualish([1, 2, 3]); }); 
-       it("should return out", function() { expect(result).not.toBe([1,2,3,4]); }); 
-    }); 
-    
+
+    describe("transformQuat", function() {
+       beforeEach(function() { result = vec3.transformQuat(out, vecA, [0.18257418567011074, 0.3651483713402215, 0.5477225570103322, 0.730296742680443]); });
+       it("should rotate the input vector", function() {  expect(out).toBeEqualish([1, 2, 3]); });
+       it("should return out", function() { expect(result).not.toBe([1,2,3,4]); });
+    });
+
     describe("create", function() {
         beforeEach(function() { result = vec3.create(); });
         it("should return a 3 element array initialized to 0s", function() { expect(result).toBeEqualish([0, 0, 0]); });
