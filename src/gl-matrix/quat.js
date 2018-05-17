@@ -18,10 +18,10 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE. */
 
-import * as glMatrix from "./common"
-import * as mat3 from "./mat3"
-import * as vec3 from "./vec3"
-import * as vec4 from "./vec4"
+import * as glMatrix from "./common.js"
+import * as mat3 from "./mat3.js"
+import * as vec3 from "./vec3.js"
+import * as vec4 from "./vec4.js"
 
 /**
  * Quaternion

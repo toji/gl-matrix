@@ -331,7 +331,7 @@ describe("vec4", function() {
 
         beforeEach(function() { result = vec4.distance(vecA, vecB); });
 
-        it("should return the distance", function() { expect(result).toBeCloseTo(8); });
+        it("should return the distance", function() { expect(result).toBeEqualish(8); });
     });
 
     describe("squaredDistance", function() {
@@ -347,7 +347,7 @@ describe("vec4", function() {
 
         beforeEach(function() { result = vec4.len(vecA); });
 
-        it("should return the length", function() { expect(result).toBeCloseTo(5.477225); });
+        it("should return the length", function() { expect(result).toBeEqualish(5.477225); });
     });
 
     describe("squaredLength", function() {
@@ -433,14 +433,14 @@ describe("vec4", function() {
         describe("with no scale", function() {
             beforeEach(function() { result = vec4.random(out); });
 
-            it("should result in a unit length vector", function() { expect(vec4.len(out)).toBeCloseTo(1.0); });
+            it("should result in a unit length vector", function() { expect(vec4.len(out)).toBeEqualish(1.0); });
             it("should return out", function() { expect(result).toBe(out); });
         });
 
         describe("with a scale", function() {
             beforeEach(function() { result = vec4.random(out, 5.0); });
 
-            it("should result in a unit length vector", function() { expect(vec4.len(out)).toBeCloseTo(5.0); });
+            it("should result in a unit length vector", function() { expect(vec4.len(out)).toBeEqualish(5.0); });
             it("should return out", function() { expect(result).toBe(out); });
         });
     });

@@ -159,7 +159,13 @@ describe("vec3", function() {
             it("should return out", function() { expect(result).toBe(out); });
         });
     });
-
+    
+    describe("transformQuat", function() { 
+       beforeEach(function() { result = vec3.transformQuat(out, vecA, [0.18257418567011074, 0.3651483713402215, 0.5477225570103322, 0.730296742680443]); }); 
+       it("should rotate the input vector", function() {  expect(out).toBeEqualish([1, 2, 3]); }); 
+       it("should return out", function() { expect(result).not.toBe([1,2,3,4]); }); 
+    }); 
+    
     describe("create", function() {
         beforeEach(function() { result = vec3.create(); });
         it("should return a 3 element array initialized to 0s", function() { expect(result).toBeEqualish([0, 0, 0]); });
@@ -465,7 +471,7 @@ describe("vec3", function() {
 
         beforeEach(function() { result = vec3.distance(vecA, vecB); });
 
-        it("should return the distance", function() { expect(result).toBeCloseTo(5.196152); });
+        it("should return the distance", function() { expect(result).toBeEqualish(5.196152); });
     });
 
     describe("squaredDistance", function() {
@@ -481,7 +487,7 @@ describe("vec3", function() {
 
         beforeEach(function() { result = vec3.len(vecA); });
 
-        it("should return the length", function() { expect(result).toBeCloseTo(3.741657); });
+        it("should return the length", function() { expect(result).toBeEqualish(3.741657); });
     });
 
     describe("squaredLength", function() {
@@ -594,14 +600,14 @@ describe("vec3", function() {
         describe("with no scale", function() {
             beforeEach(function() { result = vec3.random(out); });
 
-            it("should result in a unit length vector", function() { expect(vec3.len(out)).toBeCloseTo(1.0); });
+            it("should result in a unit length vector", function() { expect(vec3.len(out)).toBeEqualish(1.0); });
             it("should return out", function() { expect(result).toBe(out); });
         });
 
         describe("with a scale", function() {
             beforeEach(function() { result = vec3.random(out, 5.0); });
 
-            it("should result in a unit length vector", function() { expect(vec3.len(out)).toBeCloseTo(5.0); });
+            it("should result in a unit length vector", function() { expect(vec3.len(out)).toBeEqualish(5.0); });
             it("should return out", function() { expect(result).toBe(out); });
         });
     });
