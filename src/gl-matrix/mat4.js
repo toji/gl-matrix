@@ -1279,7 +1279,7 @@ export function removeTranslation(out, mat) {
  * Removes the scaling component from the transformation matrix.
  * This is equivalent to (but much faster than):
  *
- *     mat4.getTransation(t, mat);
+ *     mat4.getTranslation(t, mat);
  *     mat4.getRotation(q, mat);
  *     mat4.fromRotationTranslation(dest, q, v);
  *
@@ -1327,7 +1327,7 @@ export function removeScaling(out, mat) {
  * Removes the rotation component from the transformation matrix.
  * This is equivalent to (but much faster than):
  *
- *     mat4.getTransation(t, mat);
+ *     mat4.getTranslation(t, mat);
  *     mat4.getScaling(s, mat);
  *     q = [0, 0, 0, 1];
  *     mat4.fromRotationTranslationScale(dest, q, t, s);
