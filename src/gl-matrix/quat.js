@@ -191,7 +191,7 @@ export function calculateW(out, a) {
  * @param {quat} out the receiving quaternion
  * @param {quat} a the first operand
  * @param {quat} b the second operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  */
 export function slerp(out, a, b, t) {
@@ -446,7 +446,7 @@ export const dot = vec4.dot;
  * @param {quat} out the receiving quaternion
  * @param {quat} a the first operand
  * @param {quat} b the second operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  * @function
  */
@@ -559,7 +559,7 @@ export const rotationTo = (function() {
  * @param {quat} b the second operand
  * @param {quat} c the third operand
  * @param {quat} d the fourth operand
- * @param {Number} t interpolation amount
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  */
 export const sqlerp = (function () {

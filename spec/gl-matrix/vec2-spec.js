@@ -577,6 +577,29 @@ describe("vec2", function() {
             it("should return vecArray", function() { expect(result).toBe(vecArray); });
         });
     });
+    
+    describe('rotate', function(){
+		describe('rotation around world origin [0, 0, 0]', function(){
+			  beforeEach(function(){ vecA = [0, 1]; vecB = [0, 0]; result = vec2.rotate(out, vecA, vecB, Math.PI); });
+			  it("should return the rotated vector", function(){ expect(result).toBeEqualish([0, -1]); });
+		});
+		describe('rotation around an arbitrary origin', function(){
+			  beforeEach(function(){ vecA = [6, -5]; vecB = [0, -5]; result = vec2.rotate(out, vecA, vecB, Math.PI); });
+			  it("should return the rotated vector", function(){ expect(result).toBeEqualish([-6, -5]); });
+		});
+	});
+    
+    describe("angle", function() {
+        beforeEach(function() {
+            vecA = [1,0];
+            vecB = [1,2];
+            result = vec2.angle(vecA, vecB);
+        });
+
+        it("should return the angle", function() { expect(result).toBeEqualish(1.10714); });
+        it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 0]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([1, 2]); });
+    });
 
     describe("str", function() {
         beforeEach(function() { result = vec2.str(vecA); });

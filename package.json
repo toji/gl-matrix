@@ -1,7 +1,7 @@
 {
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
-  "version": "2.5.2",
+  "version": "2.6.0",
   "main": "dist/gl-matrix.js",
   "module": "src/gl-matrix.js",
   "homepage": "http://glmatrix.net",
@@ -45,7 +45,7 @@
     "webpack": "^4.8.3"
   },
   "peerDependencies": {
-    "npm": "^5.6.0"
+    "npm": "^6.0.1"
   },
   "dependencies": {}
 }

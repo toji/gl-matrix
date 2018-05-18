@@ -380,7 +380,7 @@ export function cross(out, a, b) {
  * @param {vec3} out the receiving vector
  * @param {vec3} a the first operand
  * @param {vec3} b the second operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {vec3} out
  */
 export function lerp(out, a, b, t) {
@@ -401,7 +401,7 @@ export function lerp(out, a, b, t) {
  * @param {vec3} b the second operand
  * @param {vec3} c the third operand
  * @param {vec3} d the fourth operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {vec3} out
  */
 export function hermite(out, a, b, c, d, t) {
@@ -426,7 +426,7 @@ export function hermite(out, a, b, c, d, t) {
  * @param {vec3} b the second operand
  * @param {vec3} c the third operand
  * @param {vec3} d the fourth operand
- * @param {Number} t interpolation amount between the two inputs
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {vec3} out
  */
 export function bezier(out, a, b, c, d, t) {
