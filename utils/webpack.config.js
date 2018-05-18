@@ -24,6 +24,7 @@ module.exports = {
     path: path.join(process.cwd(), 'dist'),
     filename: 'gl-matrix.js',
     libraryTarget: 'umd',
+    globalObject: 'typeof self !== \'undefined\' ? self : this'
   },
   module: {
     rules: [{
