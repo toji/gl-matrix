@@ -1241,7 +1241,7 @@ export function fromQuat(out, q) {
 }
 
 /**
- * Removes the transation component from the transformation matrix.
+ * Removes the tranlation component from the transformation matrix.
  * This is equivalent to (but much faster than):
  *
  *     mat4.getScaling(s, mat);
