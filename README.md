@@ -26,4 +26,4 @@ Please provide unit tests for new functionality. (See [TESTING.md](./TESTING.md)
 
 Building
 ----------------------
-See [Building.md](./Building.md)
+See [BUILDING.md](./BUILDING.md)
