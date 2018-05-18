@@ -682,9 +682,7 @@ function buildMat4Tests() {
               mat4.fromRotationTranslationScale(matA, q, t, s);
               mat4.removeRotation(matB, matA);
               result = quat.setAxisAngle(q, [0, 1, 0], 0.7);
-              console.log( result );
               quat.normalize(result, mat4.getRotation(result, matB) );
-              console.log( result );
           })
           it("should return the null rotation", function() { expect(result).toBeEqualish([0, 0, 0, 1]); });
         });
