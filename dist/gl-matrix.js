@@ -3,7 +3,7 @@
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
 @author Colin MacKenzie IV
-@version 2.6.0
+@version 2.6.1
 
 Copyright (c) 2015-2018, Brandon Jones, Colin MacKenzie IV.
 
@@ -35,7 +35,7 @@ THE SOFTWARE.
 		var a = factory();
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function() {
+})(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};

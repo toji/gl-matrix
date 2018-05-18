@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const version = require('../package.json').version;
 const license = require('./license-template');
@@ -24,6 +25,7 @@ module.exports = {
     path: path.join(process.cwd(), 'dist'),
     filename: 'gl-matrix.js',
     libraryTarget: 'umd',
+    globalObject: 'typeof self !== \'undefined\' ? self : this'
   },
   module: {
     rules: [{
