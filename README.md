@@ -23,6 +23,7 @@ Contributing Guidelines
 ----------------------
 Contributions are welcome! 
 Please provide unit tests for new functionality. (See [TESTING.md](./TESTING.md) for details)
+When adding new functionality, please add some reasons that explain why and when the functionality is useful.
 
 Building
 ----------------------
