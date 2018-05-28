@@ -409,8 +409,8 @@ export function lerp(out, a, b, t) {
  * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
  * @returns {vec4} out
  */
-export function random(out, vectorScale) {
-  vectorScale = vectorScale || 1.0;
+export function random(out, scale) {
+  scale = scale || 1.0;
 
   // Marsaglia, George. Choosing a Point from the Surface of a
   // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.

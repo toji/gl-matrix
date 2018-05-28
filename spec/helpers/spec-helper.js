@@ -63,9 +63,12 @@ global.expect = function(e) {
          */
         toBeEqualish: function(a) {
 
-            if (typeof(e) == 'number')
+            if (typeof(e) == 'number') {
+                if(isNaN(e) !== isNaN(a))
+                    expected(e, "to be equalish to", a);
                 if(Math.abs(e - a) >= EPSILON)
                     expected(e, "to be equalish to", a);
+            }
 
             if (e.length != a.length)
                 assert.fail(e.length, a.length, "length mismatch");
