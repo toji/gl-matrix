@@ -658,6 +658,26 @@ function buildMat4Tests() {
                     0, 0, -0.2001, 0
                 ]); });
             });
+
+            describe("with no far plane, 45deg fovy, and realistic aspect ratio", function() {
+                beforeEach(function() { result = mat4.perspective(out, 45 * Math.PI / 180.0, 640/480, 0.1); });
+                it("should calculate correct matrix", function() { expect(result).toBeEqualish([
+                    1.81066, 0, 0, 0,
+                    0, 2.414213, 0, 0,
+                    0, 0, -1, -1,
+                    0, 0, -0.2, 0
+                ]); });
+            });
+
+            describe("with infinite far plane, 45deg fovy, and realistic aspect ratio", function() {
+                beforeEach(function() { result = mat4.perspective(out, 45 * Math.PI / 180.0, 640/480, 0.1, Infinity); });
+                it("should calculate correct matrix", function() { expect(result).toBeEqualish([
+                    1.81066, 0, 0, 0,
+                    0, 2.414213, 0, 0,
+                    0, 0, -1, -1,
+                    0, 0, -0.2, 0
+                ]); });
+            });
         });
 
         describe("ortho", function() {
