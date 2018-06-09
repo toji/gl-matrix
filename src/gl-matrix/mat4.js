@@ -1263,7 +1263,7 @@ export function frustum(out, left, right, bottom, top, near, far) {
  * @param {number} fovy Vertical field of view in radians
  * @param {number} aspect Aspect ratio. typically viewport width/height
  * @param {number} near Near bound of the frustum
- * @param {number} far Far bound of the frustum
+ * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
 export function perspective(out, fovy, aspect, near, far) {
