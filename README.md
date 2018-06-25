@@ -21,9 +21,12 @@ For a tutorial, see [the "introducing glMatrix" section of _Introduction to Comp
 
 Contributing Guidelines
 ----------------------
-Contributions are welcome! 
+Contributions are welcome!
+
 Please provide unit tests for new functionality. (See [TESTING.md](./TESTING.md) for details)
 When adding new functionality, please add some reasons that explain why and when the functionality is useful.
+
+Also, avoid commiting [rebuilt docs](https://github.com/toji/gl-matrix/tree/master/dist) and [files in the dist folder.](https://github.com/toji/gl-matrix/tree/master/dist), to prevent merge conflicts.
 
 Building
 ----------------------
