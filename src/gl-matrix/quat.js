@@ -237,6 +237,29 @@ export function slerp(out, a, b, t) {
 }
 
 /**
+ * Generates a random quaternion
+ *
+ * @param {quat} out the receiving quaternion
+ * @returns {quat} out
+ */
+export function random(out) {
+  // Implementation of http://planning.cs.uiuc.edu/node198.html
+  // TODO: Calling random 3 times is probably not the fastest solution
+  let u1 = glMatrix.RANDOM();
+  let u2 = glMatrix.RANDOM();
+  let u3 = glMatrix.RANDOM();
+
+  let sqrt1MinusU1 = Math.sqrt(1 - u1);
+  let sqrtU1 = Math.sqrt(u1);
+
+  out[0] = sqrt1MinusU1 * Math.sin(2.0 * Math.PI * u2);
+  out[1] = sqrt1MinusU1 * Math.cos(2.0 * Math.PI * u2);
+  out[2] = sqrtU1 * Math.sin(2.0 * Math.PI * u3);
+  out[3] = sqrtU1 * Math.cos(2.0 * Math.PI * u3);
+  return out;
+}
+
+/**
  * Calculates the inverse of a quat
  *
  * @param {quat} out the receiving quaternion

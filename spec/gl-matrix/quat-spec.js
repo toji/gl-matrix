@@ -560,6 +560,16 @@ describe("quat", function() {
         });
     });
 
+    describe("random", function() {
+        beforeEach(function() { result = quat.random(out); });
+
+        it("should result in a normalized quaternion", function() {
+            let copy = quat.clone(out);
+            expect(quat.normalize(out, out)).toBeEqualish(copy);
+        });
+        it("should return out", function() { expect(result).toBe(out); });
+    });
+
     describe("invert", function() {
         describe("with a separate output quaternion", function() {
             beforeEach(function() { result = quat.invert(out, quatA); });
