@@ -73,7 +73,7 @@ export function setAxisAngle(out, axis, rad) {
 export function getAxisAngle(out_axis, q) {
   let rad = Math.acos(q[3]) * 2.0;
   let s = Math.sin(rad / 2.0);
-  if (s != 0.0) {
+  if (s > glMatrix.EPSILON) {
     out_axis[0] = q[0] / s;
     out_axis[1] = q[1] / s;
     out_axis[2] = q[2] / s;
@@ -215,7 +215,7 @@ export function slerp(out, a, b, t) {
     bw = - bw;
   }
   // calculate coefficients
-  if ( (1.0 - cosom) > 0.000001 ) {
+  if ( (1.0 - cosom) > glMatrix.EPSILON ) {
     // standard case (slerp)
     omega  = Math.acos(cosom);
     sinom  = Math.sin(omega);
