@@ -524,7 +524,7 @@ describe("quat2", function() {
                 quat2A = [1, 2, 3, 4, 2, 5, 6, -2];
                 quat2.normalize(out, quat2A);
             });
-            it("both parts should have been normalized", function() { expect(out).toBeEqualishQuat2([1/5.47722558, 2/5.47722558, 3/5.47722558, 4/5.47722558, 2/5.47722558, 5/5.47722558, 6/5.47722558, -2/5.47722558]); });
+            it("both parts should have been normalized", function() { expect(out).toBeEqualishQuat2([1/5.4772255, 2/5.4772255, 3/5.4772255, 4/5.4772255, 0.231260, 0.6450954, 0.693781,-0.9006993]); });
         });
 
         beforeEach(function() { quat2A = [5, 0, 0, 0, 0, 0, 0, 0]; });
@@ -549,7 +549,7 @@ describe("quat2", function() {
                 quat2.set(out, 5, 0, 0, 0, 1, 2, 3, 5);
                 quat2.normalize(out, out);
             });
-            it("both parts should have been normalized", function() { expect(out).toBeEqualishQuat2([1, 0, 0, 0, 1/5, 2/5, 3/5, 5/5]); });
+            it("both parts should have been normalized", function() { expect(out).toBeEqualishQuat2([1, 0, 0, 0, 0, 0.4, 0.6, 1]); });
         });
     });
 
