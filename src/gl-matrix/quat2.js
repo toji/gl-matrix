@@ -770,14 +770,28 @@ export function normalize(out, a) {
   let magnitude = squaredLength(a);
   if (magnitude > 0) {
     magnitude = Math.sqrt(magnitude);
-    out[0] = a[0] / magnitude;
-    out[1] = a[1] / magnitude;
-    out[2] = a[2] / magnitude;
-    out[3] = a[3] / magnitude;
-    out[4] = a[4] / magnitude;
-    out[5] = a[5] / magnitude;
-    out[6] = a[6] / magnitude;
-    out[7] = a[7] / magnitude;
+
+    let a0 = a[0] / magnitude;
+    let a1 = a[1] / magnitude;
+    let a2 = a[2] / magnitude;
+    let a3 = a[3] / magnitude;
+
+    let b0 = a[4];
+    let b1 = a[5];
+    let b2 = a[6];
+    let b3 = a[7];
+
+    let a_dot_b = (a0 * b0) + (a1 * b1) + (a2 * b2) + (a3 * b3);
+
+    out[0] = a0;
+    out[1] = a1;
+    out[2] = a2;
+    out[3] = a3;
+
+    out[4] = (b0 - (a0 * a_dot_b)) / magnitude;
+    out[5] = (b1 - (a1 * a_dot_b)) / magnitude;
+    out[6] = (b2 - (a2 * a_dot_b)) / magnitude;
+    out[7] = (b3 - (a3 * a_dot_b)) / magnitude;
   }
   return out;
 }
