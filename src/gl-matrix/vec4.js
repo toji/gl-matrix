@@ -364,11 +364,12 @@ export function normalize(out, a) {
   let len = x*x + y*y + z*z + w*w;
   if (len > 0) {
     len = 1 / Math.sqrt(len);
-    out[0] = x * len;
-    out[1] = y * len;
-    out[2] = z * len;
-    out[3] = w * len;
   }
+  out[0] = x * len;
+  out[1] = y * len;
+  out[2] = z * len;
+  out[3] = w * len;
+  
   return out;
 }
 

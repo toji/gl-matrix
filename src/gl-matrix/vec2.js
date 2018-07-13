@@ -315,9 +315,9 @@ export function normalize(out, a) {
   if (len > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len = 1 / Math.sqrt(len);
-    out[0] = a[0] * len;
-    out[1] = a[1] * len;
   }
+  out[0] = a[0] * len;
+  out[1] = a[1] * len;
   return out;
 }
 
