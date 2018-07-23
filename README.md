@@ -19,14 +19,9 @@ For documentation and news, visit the [glMatrix Homepage](http://glmatrix.net/)
 
 For a tutorial, see [the "introducing glMatrix" section of _Introduction to Computer Graphics_ by David J. Eck](http://math.hws.edu/graphicsbook/c7/s1.html#webgl3d.1.2)
 
-Contributing Guidelines
+[Contributing Guidelines](./CONTRIBUTING.md)
 ----------------------
-Contributions are welcome!
-
-Please provide unit tests for new functionality. (See [TESTING.md](./TESTING.md) for details)
-When adding new functionality, please add some reasons that explain why and when the functionality is useful.
-
-Also, avoid commiting [rebuilt docs](https://github.com/toji/gl-matrix/tree/master/dist) and [files in the dist folder.](https://github.com/toji/gl-matrix/tree/master/dist), to prevent merge conflicts.
+See [CONTRIBUTING.md](./CONTRIBUTING.md)
 
 Building
 ----------------------
