@@ -3,6 +3,7 @@ sudo: false
 node_js:
   - "7.0.0"
 script:
-  - webpack --config utils/webpack.config.js
-  - webpack --config utils/webpack.config.min.js
+  - npm run build
+  - npm run build-min
+  - npm run build-esm
   - mocha --compilers js:babel-register --recursive spec
