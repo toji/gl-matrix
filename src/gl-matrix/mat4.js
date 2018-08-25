@@ -1223,6 +1223,138 @@ export function fromQuat(out, q) {
 }
 
 /**
+ * Removes the translation component from the transformation matrix.
+ * This is equivalent to (but much faster than):
+ *
+ *     mat4.getScaling(s, mat);
+ *     mat4.getRotation(q, mat);
+ *     t = [0, 0, 0];
+ *     mat4.fromRotationTranslationScale(dest, q, t, s);
+ *
+ * @param {mat4} out mat4 receiving operation result
+ * @param  {mat4} mat Matrix to be decomposed (input)
+ * @returns {mat4} out
+ */
+export function removeTranslation(out, mat) {
+
+  out[0] = mat[0];
+  out[1] = mat[1];
+  out[2] = mat[2];
+  out[3] = 0;
+  out[4] = mat[4];
+  out[5] = mat[5];
+  out[6] = mat[6];
+  out[7] = 0;
+  out[8] = mat[8];
+  out[9] = mat[9];
+  out[10] = mat[10];
+  out[11] = 0;
+  out[12] = 0;
+  out[13] = 0;
+  out[14] = 0;
+  out[15] = 1;
+
+  return out;
+}
+
+/**
+ * Removes the scaling component from the transformation matrix.
+ * This is equivalent to (but much faster than):
+ *
+ *     mat4.getTranslation(t, mat);
+ *     mat4.getRotation(q, mat);
+ *     mat4.fromRotationTranslation(dest, q, v);
+ *
+ * @param {mat4} out mat4 receiving operation result
+ * @param  {mat4} mat Matrix to be decomposed (input)
+ * @returns {mat4} out
+ */
+export function removeScaling(out, mat) {
+
+  let m11 = mat[0];
+  let m12 = mat[1];
+  let m13 = mat[2];
+  let m21 = mat[4];
+  let m22 = mat[5];
+  let m23 = mat[6];
+  let m31 = mat[8];
+  let m32 = mat[9];
+  let m33 = mat[10];
+
+  let sx = Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13);
+  let sy = Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23);
+  let sz = Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33);
+
+  out[0] = mat[0] / sx;
+  out[1] = mat[1] / sx;
+  out[2] = mat[2] / sx;
+  out[3] = 0;
+  out[4] = mat[4] / sy;
+  out[5] = mat[5] / sy;
+  out[6] = mat[6] / sy;
+  out[7] = 0;
+  out[8] = mat[8] / sz;
+  out[9] = mat[9] / sz;
+  out[10] = mat[10] / sz;
+  out[11] = 0;
+  out[12] = mat[12];
+  out[13] = mat[13];
+  out[14] = mat[14];
+  out[15] = 1;
+
+  return out;
+}
+
+/**
+ * Removes the rotation component from the transformation matrix.
+ * This is equivalent to (but much faster than):
+ *
+ *     mat4.getTranslation(t, mat);
+ *     mat4.getScaling(s, mat);
+ *     q = [0, 0, 0, 1];
+ *     mat4.fromRotationTranslationScale(dest, q, t, s);
+ *
+ * @param {mat4} out mat4 receiving operation result
+ * @param  {mat4} mat Matrix to be decomposed (input)
+ * @returns {mat4} out
+ */
+export function removeRotation(out, mat) {
+
+  let m11 = mat[0];
+  let m12 = mat[1];
+  let m13 = mat[2];
+  let m21 = mat[4];
+  let m22 = mat[5];
+  let m23 = mat[6];
+  let m31 = mat[8];
+  let m32 = mat[9];
+  let m33 = mat[10];
+
+  let sx = Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13);
+  let sy = Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23);
+  let sz = Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33);
+
+  out[0] = sx;
+  out[1] = 0;
+  out[2] = 0;
+  out[3] = 0;
+  out[4] = 0;
+  out[5] = sy;
+  out[6] = 0;
+  out[7] = 0;
+  out[8] = 0;
+  out[9] = 0;
+  out[10] = sz;
+  out[11] = 0;
+  out[12] = mat[12];
+  out[13] = mat[13];
+  out[14] = mat[14];
+  out[15] = 1;
+
+  return out;
+}
+
+/**
  * Generates a frustum matrix with the given bounds
  *
  * @param {mat4} out mat4 frustum matrix will be written into
