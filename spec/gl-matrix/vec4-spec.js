@@ -243,6 +243,25 @@ describe("vec4", function() {
         });
     });
 
+    describe("abs", function() {
+        beforeEach(function() { vecA = [-1, -2, -3, -4]; });
+
+        describe("with a separate output vector", function() {
+            beforeEach(function() { result = vec4.abs(out, vecA); });
+
+            it("should place values into out", function() { expect(out).toBeEqualish([1, 2, 3, 4]); });
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([-1, -2, -3, -4]); });
+        });
+
+        describe("when vecA is the output vector", function() {
+            beforeEach(function() { result = vec4.abs(vecA, vecA); });
+
+            it("should place values into vecA", function() { expect(vecA).toBeEqualish([1, 2, 3, 4]); });
+            it("should return vecA", function() { expect(result).toBe(vecA); });
+        });
+    });
+
     describe("round", function() {
         beforeEach(function() { vecA = [Math.E, Math.PI, Math.SQRT2, Math.SQRT1_2]; });
 

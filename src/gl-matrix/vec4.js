@@ -214,6 +214,21 @@ export function max(out, a, b) {
 }
 
 /**
+ * Math.abs the components of a vec4
+ *
+ * @param {vec4} out the receiving vector
+ * @param {vec4} a vector to abs
+ * @returns {vec4} out
+ */
+export function abs(out, a) {
+  out[0] = Math.abs(a[0]);
+  out[1] = Math.abs(a[1]);
+  out[2] = Math.abs(a[2]);
+  out[3] = Math.abs(a[3]);
+  return out;
+}
+
+/**
  * Math.round the components of a vec4
  *
  * @param {vec4} out the receiving vector
