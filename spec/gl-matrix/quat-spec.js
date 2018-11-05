@@ -1,7 +1,7 @@
-import * as mat3 from "../../src/gl-matrix/mat3"
-import * as mat4 from "../../src/gl-matrix/mat4"
-import * as quat from "../../src/gl-matrix/quat"
-import * as vec3 from "../../src/gl-matrix/vec3"
+import * as mat3 from "../../src/mat3"
+import * as mat4 from "../../src/mat4"
+import * as quat from "../../src/quat"
+import * as vec3 from "../../src/vec3"
 
 describe("quat", function() {
     let out, quatA, quatB, result;

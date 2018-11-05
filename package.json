@@ -2,8 +2,8 @@
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
   "version": "2.7.1",
-  "main": "cjs/gl-matrix.js",
-  "module": "esm/gl-matrix.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
   "homepage": "http://glmatrix.net",
   "license": "MIT",
   "bugs": {
