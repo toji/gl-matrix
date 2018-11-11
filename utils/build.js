@@ -2,10 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const pkg = require('../package.json');
 
+const copyFileSync = (source, dest) => {
+  const content = fs.readFileSync(source, 'utf-8');
+  fs.writeFileSync(dest, content);
+};
+
 delete pkg.private;
 fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
-fs.copyFileSync('README.md', 'dist/README.md');
-fs.copyFileSync('LICENSE.md', 'dist/LICENSE.md');
+copyFileSync('README.md', 'dist/README.md');
+copyFileSync('LICENSE.md', 'dist/LICENSE.md');
 
 const files = fs.readdirSync('src')
   .filter(file => !file.includes('common') && !file.includes('index'))
