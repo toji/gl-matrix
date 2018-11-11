@@ -2,8 +2,8 @@
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
   "version": "2.7.1",
-  "main": "dist/gl-matrix.js",
-  "module": "lib/gl-matrix.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
   "homepage": "http://glmatrix.net",
   "license": "MIT",
   "bugs": {
@@ -30,8 +30,9 @@
     "update-license-version": "node utils/update-license-version.js",
     "build": "webpack --config utils/webpack.config.js",
     "build-min": "webpack --config utils/webpack.config.min.js",
-    "build-esm": "BABEL_ENV=esm babel src -d lib",
-    "build-all": "npm run update-license-version&&npm run build&&npm run build-min&&npm run build-esm"
+    "build-esm": "BABEL_ENV=esm babel src -d esm",
+    "build-cjs": "BABEL_ENV=production babel src -d cjs",
+    "build-all": "npm run update-license-version && npm run build && npm run build-min && npm run build-esm && npm run build-cjs"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

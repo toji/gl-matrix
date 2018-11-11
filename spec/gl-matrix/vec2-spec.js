@@ -1,4 +1,4 @@
-import * as vec2 from "../../src/gl-matrix/vec2"
+import * as vec2 from "../../src/vec2"
 
 describe("vec2", function() {
     let out, vecA, vecB, result;

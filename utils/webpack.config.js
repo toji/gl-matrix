@@ -19,7 +19,7 @@ ${license}
 */`;
 
 module.exports = {
-  entry: path.join(process.cwd(), 'src/gl-matrix.js'),
+  entry: path.join(process.cwd(), 'src/index.js'),
   mode: 'production',
   output: {
     path: path.join(process.cwd(), 'dist'),

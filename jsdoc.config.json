@@ -1,6 +1,6 @@
 {
     "source": {
-        "include": [ "src/gl-matrix" ]
+        "include": [ "src/index" ]
     },
     "opts": {
         "recurse": true,
