@@ -3,7 +3,7 @@
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
 @author Colin MacKenzie IV
-@version 2.7.1
+@version 3.0.0-0
 
 Copyright (c) 2015-2018, Brandon Jones, Colin MacKenzie IV.
 
@@ -4065,11 +4065,11 @@ THE SOFTWARE.
     if (len > 0) {
       //TODO: evaluate use of glm_invsqrt here?
       len = 1 / Math.sqrt(len);
-      out[0] = a[0] * len;
-      out[1] = a[1] * len;
-      out[2] = a[2] * len;
     }
 
+    out[0] = a[0] * len;
+    out[1] = a[1] * len;
+    out[2] = a[2] * len;
     return out;
   }
   /**
@@ -4915,12 +4915,12 @@ THE SOFTWARE.
 
     if (len > 0) {
       len = 1 / Math.sqrt(len);
-      out[0] = x * len;
-      out[1] = y * len;
-      out[2] = z * len;
-      out[3] = w * len;
     }
 
+    out[0] = x * len;
+    out[1] = y * len;
+    out[2] = z * len;
+    out[3] = w * len;
     return out;
   }
   /**
@@ -7080,10 +7080,10 @@ THE SOFTWARE.
     if (len > 0) {
       //TODO: evaluate use of glm_invsqrt here?
       len = 1 / Math.sqrt(len);
-      out[0] = a[0] * len;
-      out[1] = a[1] * len;
     }
 
+    out[0] = a[0] * len;
+    out[1] = a[1] * len;
     return out;
   }
   /**
