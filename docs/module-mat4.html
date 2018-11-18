@@ -2012,11 +2012,7 @@
 
 
 <div class="description">
-    Creates a matrix from a given angle around a given axis
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.rotate(dest, dest, rad, axis);
+    Creates a matrix from a given angle around a given axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotate(dest, dest, rad, axis);
 </div>
 
 
@@ -2219,14 +2215,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation and vector translation
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.translate(dest, vec);
-    let quatMat = mat4.create();
-    quat4.toMat4(quat, quatMat);
-    mat4.multiply(dest, quatMat);
+    Creates a matrix from a quaternion rotation and vector translationThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    let quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);
 </div>
 
 
@@ -2429,15 +2418,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation, vector translation and vector scale
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.translate(dest, vec);
-    let quatMat = mat4.create();
-    quat4.toMat4(quat, quatMat);
-    mat4.multiply(dest, quatMat);
-    mat4.scale(dest, scale)
+    Creates a matrix from a quaternion rotation, vector translation and vector scaleThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    let quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);    mat4.scale(dest, scale)
 </div>
 
 
@@ -2663,17 +2644,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.translate(dest, vec);
-    mat4.translate(dest, origin);
-    let quatMat = mat4.create();
-    quat4.toMat4(quat, quatMat);
-    mat4.multiply(dest, quatMat);
-    mat4.scale(dest, scale)
-    mat4.translate(dest, negativeOrigin);
+    Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given originThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, vec);    mat4.translate(dest, origin);    let quatMat = mat4.create();    quat4.toMat4(quat, quatMat);    mat4.multiply(dest, quatMat);    mat4.scale(dest, scale)    mat4.translate(dest, negativeOrigin);
 </div>
 
 
@@ -2922,11 +2893,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from a vector scaling
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.scale(dest, dest, vec);
+    Creates a matrix from a vector scalingThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.scale(dest, dest, vec);
 </div>
 
 
@@ -3106,11 +3073,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from a vector translation
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.translate(dest, dest, vec);
+    Creates a matrix from a vector translationThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.translate(dest, dest, vec);
 </div>
 
 
@@ -3792,11 +3755,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from the given angle around the X axis
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.rotateX(dest, dest, rad);
+    Creates a matrix from the given angle around the X axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateX(dest, dest, rad);
 </div>
 
 
@@ -3976,11 +3935,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from the given angle around the Y axis
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.rotateY(dest, dest, rad);
+    Creates a matrix from the given angle around the Y axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateY(dest, dest, rad);
 </div>
 
 
@@ -4160,11 +4115,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Creates a matrix from the given angle around the Z axis
-This is equivalent to (but much faster than):
-
-    mat4.identity(dest);
-    mat4.rotateZ(dest, dest, rad);
+    Creates a matrix from the given angle around the Z axisThis is equivalent to (but much faster than):    mat4.identity(dest);    mat4.rotateZ(dest, dest, rad);
 </div>
 
 
@@ -4639,10 +4590,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Returns a quaternion representing the rotational component
- of a transformation matrix. If a matrix is built with
- fromRotationTranslation, the returned quaternion will be the
- same as the quaternion originally supplied.
+    Returns a quaternion representing the rotational component of a transformation matrix. If a matrix is built with fromRotationTranslation, the returned quaternion will be the same as the quaternion originally supplied.
 </div>
 
 
@@ -4822,11 +4770,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Returns the scaling factor component of a transformation
- matrix. If a matrix is built with fromRotationTranslationScale
- with a normalized Quaternion paramter, the returned vector will be
- the same as the scaling vector
- originally supplied.
+    Returns the scaling factor component of a transformation matrix. If a matrix is built with fromRotationTranslationScale with a normalized Quaternion paramter, the returned vector will be the same as the scaling vector originally supplied.
 </div>
 
 
@@ -5006,10 +4950,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Returns the translation vector component of a transformation
- matrix. If a matrix is built with fromRotationTranslation,
- the returned vector will be the same as the translation vector
- originally supplied.
+    Returns the translation vector component of a transformation matrix. If a matrix is built with fromRotationTranslation, the returned vector will be the same as the translation vector originally supplied.
 </div>
 
 
@@ -5526,8 +5467,7 @@ This is equivalent to (but much faster than):
 
 
 <div class="description">
-    Generates a look-at matrix with the given eye position, focal point, and up axis.
-If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
+    Generates a look-at matrix with the given eye position, focal point, and up axis.If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
 </div>
 
 
@@ -6766,8 +6706,7 @@ If you want a matrix that actually makes an object look at another object, you s
 
 
 <div class="description">
-    Generates a perspective projection matrix with the given bounds.
-Passing null/undefined/no value for far will generate infinite projection matrix.
+    Generates a perspective projection matrix with the given bounds.Passing null/undefined/no value for far will generate infinite projection matrix.
 </div>
 
 
@@ -7016,9 +6955,7 @@ Passing null/undefined/no value for far will generate infinite projection matrix
 
 
 <div class="description">
-    Generates a perspective projection matrix with the given field of view.
-This is primarily useful for generating projection matrices to be used
-with the still experiemental WebVR API.
+    Generates a perspective projection matrix with the given field of view.This is primarily useful for generating projection matrices to be usedwith the still experiemental WebVR API.
 </div>
 
 
@@ -9870,7 +9807,7 @@ with the still experiemental WebVR API.
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Fri Jul 13 2018 11:51:34 GMT+0200 (W. Europe Daylight Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sun Nov 18 2018 16:13:31 GMT+0100 (W. Europe Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
