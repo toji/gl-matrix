@@ -14,3 +14,5 @@ This will build the full and minified versions of glMatrix.
 To build the docs, run:
 
     npm run doc
+
+<!--And to publish it, you first have to go into the dist folder-->
