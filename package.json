@@ -26,29 +26,28 @@
     }
   ],
   "scripts": {
-    "test": "mocha --require babel-register --recursive spec",
+    "test": "mocha --require @babel/register --recursive spec",
     "old_test": "jasmine-node spec",
     "doc": "jsdoc -c jsdoc.config.json",
     "update-license-version": "node utils/update-license-version.js",
-    "build-umd": "webpack --config utils/webpack.config.js",
-    "build-min": "webpack --config utils/webpack.config.min.js",
+    "build-umd": "rollup -c",
     "build-esm": "BABEL_ENV=esm babel src -d dist/esm",
-    "build-cjs": "BABEL_ENV=production babel src -d dist/cjs",
-    "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-min && npm run build-esm && npm run build-cjs && node ./utils/build.js"
+    "build-cjs": "babel src -d dist/cjs",
+    "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-cjs && node ./utils/build.js"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
     "del-cli": "^1.1.0",
     "jsdoc": "^3.5.5",
     "mocha": "^5.1.1",
     "node-libs-browser": "^2.1.0",
-    "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.1"
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-size-snapshot": "^0.7.0",
+    "rollup-plugin-terser": "^3.0.0"
   },
   "dependencies": {}
 }
