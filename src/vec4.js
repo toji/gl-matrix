@@ -482,6 +482,20 @@ export function transformQuat(out, a, q) {
 }
 
 /**
+ * Set the components of a vec4 to zero
+ *
+ * @param {vec4} out the receiving vector
+ * @returns {vec4} out
+ */
+export function zero(out) {
+  out[0] = 0.0;
+  out[1] = 0.0;
+  out[2] = 0.0;
+  out[3] = 0.0;
+  return out;
+}
+
+/**
  * Returns a string representation of a vector
  *
  * @param {vec4} a vector to represent as a string

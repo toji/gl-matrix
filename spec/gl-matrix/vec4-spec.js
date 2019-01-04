@@ -560,4 +560,12 @@ describe("vec4", function() {
         it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 1, 2, 3]); });
         it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 2, 3]); });
     });
+
+    describe("zero", function() {
+        beforeEach(function() {
+            vecA = [1, 2, 3, 4];
+            result = vec4.zero(vecA);
+        });
+        it("should result in a 4 element vector with zeros", function() { expect(result).toBeEqualish([0, 0, 0, 0]); });
+    });
 });

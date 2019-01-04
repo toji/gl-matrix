@@ -735,4 +735,12 @@ describe("vec3", function() {
         it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 1, 2]); });
         it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 2]); });
     });
+
+    describe("zero", function() {
+        beforeEach(function() {
+            vecA = [1, 2, 3];
+            result = vec3.zero(vecA);
+        });
+        it("should result in a 3 element vector with zeros", function() { expect(result).toBeEqualish([0, 0, 0]); });
+    });
 });

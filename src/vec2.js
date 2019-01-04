@@ -507,6 +507,18 @@ export function angle(a, b) {
 }
 
 /**
+ * Set the components of a vec2 to zero
+ *
+ * @param {vec2} out the receiving vector
+ * @returns {vec2} out
+ */
+export function zero(out) {
+  out[0] = 0.0;
+  out[1] = 0.0;
+  return out;
+}
+
+/**
  * Returns a string representation of a vector
  *
  * @param {vec2} a vector to represent as a string
