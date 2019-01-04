@@ -640,4 +640,12 @@ describe("vec2", function() {
         it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 1]); });
         it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1]); });
     });
+
+    describe("zero", function() {
+        beforeEach(function() {
+            vecA = [1, 2];
+            result = vec2.zero(vecA);
+        });
+        it("should result in a 2 element vector with zeros", function() { expect(result).toBeEqualish([0, 0]); });
+    });
 });
