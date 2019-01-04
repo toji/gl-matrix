@@ -384,6 +384,35 @@ export function dot(a, b) {
 }
 
 /**
+ * Returns the cross-product of three vectors in a 4-dimensional space
+ *
+ * @param {vec4} result the receiving vector
+ * @param {vec4} U the first vector
+ * @param {vec4} V the second vector
+ * @param {vec4} W the third vector
+ * @returns {vec4} result
+ */
+export function cross (out, u, v, w) {
+    let A = (v[0] * w[1]) - (v[1] * w[0]),
+        B = (v[0] * w[2]) - (v[2] * w[0]),
+        C = (v[0] * w[3]) - (v[3] * w[0]),
+        D = (v[1] * w[2]) - (v[2] * w[1]),
+        E = (v[1] * w[3]) - (v[3] * w[1]),
+        F = (v[2] * w[3]) - (v[3] * w[2]);
+        G = u[0];
+        H = u[1];
+        I = u[2];
+        J = u[3];
+
+    out[0] = (H * F) - (I * E) + (J * D);
+    out[1] = -(G * F) + (I * C) - (J * B);
+    out[2] = (G * E) - (H * C) + (J * A);
+    out[3] = -(G * D) + (H * B) - (I * A);
+
+    return out;
+};
+
+/**
  * Performs a linear interpolation between two vec4's
  *
  * @param {vec4} out the receiving vector
