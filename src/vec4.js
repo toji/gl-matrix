@@ -399,10 +399,10 @@ export function cross (out, u, v, w) {
         D = (v[1] * w[2]) - (v[2] * w[1]),
         E = (v[1] * w[3]) - (v[3] * w[1]),
         F = (v[2] * w[3]) - (v[3] * w[2]);
-        G = u[0];
-        H = u[1];
-        I = u[2];
-        J = u[3];
+    let G = u[0];
+    let H = u[1];
+    let I = u[2];
+    let J = u[3];
 
     out[0] = (H * F) - (I * E) + (J * D);
     out[1] = -(G * F) + (I * C) - (J * B);

@@ -426,7 +426,8 @@ describe("vec4", function() {
     });
 
     describe("cross", function() {
-        beforeEach(function() { vecA = [1, 0, 0, 0]; vecB = [0, 1, 0, 0];vecC = [0, 0, 1, 0]; });
+		let vecC = [0,0,0,0];
+        beforeEach(function() { vecA = [1, 0, 0, 0]; vecB = [0, 1, 0, 0]; vecC = [0, 0, 1, 0]; });
 
         describe("with a separate output vector", function() {
             beforeEach(function() { result = vec4.cross(out, vecA,vecB,vecC); });
@@ -459,8 +460,8 @@ describe("vec4", function() {
             
             it("should place values into vecC", function() { expect(vecC).toBeEqualish([0, 0, 0,-1]); });
             it("should return vecC", function() { expect(result).toBe(vecC); });
-            it("should not modify vecA", function() { expect(vecB).toBeEqualish([1, 0, 0, 0]); });
-            it("should not modify vecB", function() { expect(vecC).toBeEqualish([0, 1, 0, 0]); });
+            it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 0, 0, 0]); });
+            it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1, 0, 0]); });
         });
     }); 
     
