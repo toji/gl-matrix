@@ -6,6 +6,10 @@ import * as glMatrix from "./common.js";
  */
 
 /**
+ * @typedef {[number, number, number, number] | Float32Array} Vec4
+ */
+
+/**
  * Creates a new, empty vec4
  *
  * @returns {Vec4} a new 4D vector

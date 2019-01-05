@@ -6,6 +6,10 @@ import * as glMatrix from "./common.js";
  */
 
 /**
+ * @typedef {[number, number] | Float32Array} Vec2
+ */
+
+/**
  * Creates a new, empty vec2
  *
  * @returns {Vec2} a new 2D vector

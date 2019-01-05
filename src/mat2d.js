@@ -20,6 +20,12 @@ import * as glMatrix from "./common.js";
  */
 
 /**
+ * @typedef {[
+  number, number, number,
+  number, number, number] | Float32Array} Mat2d
+ */
+
+/**
  * Creates a new identity mat2d
  *
  * @returns {Mat2d} a new 2x3 matrix

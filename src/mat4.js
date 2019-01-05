@@ -6,6 +6,14 @@ import * as glMatrix from "./common.js";
  */
 
 /**
+ * @typedef {[
+  number, number, number, number,
+  number, number, number, number,
+  number, number, number, number,
+  number, number, number, number] | Float32Array} Mat4
+ */
+
+/**
  * Creates a new identity mat4
  *
  * @returns {Mat4} a new 4x4 matrix

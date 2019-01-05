@@ -10,6 +10,12 @@ import * as mat4 from "./mat4.js";
  * @module quat2
  */
 
+ 
+/**
+ * @typedef {[
+  number, number, number, number,
+  number, number, number, number] | Float32Array} Quat2
+ */
 
 /**
  * Creates a new identity dual quat

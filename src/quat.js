@@ -9,6 +9,10 @@ import * as vec4 from "./vec4.js"
  */
 
 /**
+ * @typedef {[number, number, number, number] | Float32Array} Quat
+ */
+
+/**
  * Creates a new identity quat
  *
  * @returns {Quat} a new quaternion
