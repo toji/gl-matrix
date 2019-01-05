@@ -38,7 +38,10 @@
     <div class="container-overview">
     
         
-            <div class="description">Dual Quaternion<br>Format: [real, dual]<br>Quaternion format: XYZW<br>Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br></div>
+            <div class="description">Dual Quaternion<br>
+Format: [real, dual]<br>
+Quaternion format: XYZW<br>
+Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br></div>
         
 
         
@@ -208,7 +211,7 @@
     
 
     
-    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".add"><span class="type-signature">(static) </span>add<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -411,7 +414,7 @@
     
 
     
-    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".clone"><span class="type-signature">(static) </span>clone<span class="signature">(a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -568,7 +571,7 @@
     
 
     
-    <h4 class="name" id=".conjugate"><span class="type-signature">(static) </span>conjugate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".conjugate"><span class="type-signature">(static) </span>conjugate<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -576,7 +579,8 @@
 
 
 <div class="description">
-    Calculates the conjugate of a dual quatIf the dual quaternion is normalized, this function is faster than quat2.inverse and produces the same result.
+    Calculates the conjugate of a dual quat
+If the dual quaternion is normalized, this function is faster than quat2.inverse and produces the same result.
 </div>
 
 
@@ -748,7 +752,7 @@
     
 
     
-    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".copy"><span class="type-signature">(static) </span>copy<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -928,7 +932,7 @@
     
 
     
-    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".create"><span class="type-signature">(static) </span>create<span class="signature">()</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -1576,7 +1580,7 @@
     
 
     
-    <h4 class="name" id=".fromMat4"><span class="type-signature">(static) </span>fromMat4<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".fromMat4"><span class="type-signature">(static) </span>fromMat4<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -1756,7 +1760,7 @@
     
 
     
-    <h4 class="name" id=".fromRotation"><span class="type-signature">(static) </span>fromRotation<span class="signature">(dual, q)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".fromRotation"><span class="type-signature">(static) </span>fromRotation<span class="signature">(dual, q)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -1936,7 +1940,7 @@
     
 
     
-    <h4 class="name" id=".fromRotationTranslation"><span class="type-signature">(static) </span>fromRotationTranslation<span class="signature">(dual, q, t)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".fromRotationTranslation"><span class="type-signature">(static) </span>fromRotationTranslation<span class="signature">(dual, q, t)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -2139,7 +2143,7 @@
     
 
     
-    <h4 class="name" id=".fromRotationTranslationValues"><span class="type-signature">(static) </span>fromRotationTranslationValues<span class="signature">(x1, y1, z1, w1, x2, y2, z2)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".fromRotationTranslationValues"><span class="type-signature">(static) </span>fromRotationTranslationValues<span class="signature">(x1, y1, z1, w1, x2, y2, z2)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -2434,7 +2438,7 @@
     
 
     
-    <h4 class="name" id=".fromTranslation"><span class="type-signature">(static) </span>fromTranslation<span class="signature">(dual, t)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".fromTranslation"><span class="type-signature">(static) </span>fromTranslation<span class="signature">(dual, t)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -2614,7 +2618,7 @@
     
 
     
-    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x1, y1, z1, w1, x2, y2, z2, w2)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".fromValues"><span class="type-signature">(static) </span>fromValues<span class="signature">(x1, y1, z1, w1, x2, y2, z2, w2)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -2932,7 +2936,7 @@
     
 
     
-    <h4 class="name" id=".getDual"><span class="type-signature">(static) </span>getDual<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    <h4 class="name" id=".getDual"><span class="type-signature">(static) </span>getDual<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {Quat}</span></h4>
     
 
     
@@ -3108,7 +3112,7 @@
 
         
             
-
+{Vec3}
     
 
     
@@ -3292,7 +3296,7 @@
     
 
     
-    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".identity"><span class="type-signature">(static) </span>identity<span class="signature">(out)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -3449,7 +3453,7 @@
     
 
     
-    <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".invert"><span class="type-signature">(static) </span>invert<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -3872,7 +3876,7 @@
     
 
     
-    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".lerp"><span class="type-signature">(static) </span>lerp<span class="signature">(out, a, b, t)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -3880,7 +3884,8 @@
 
 
 <div class="description">
-    Performs a linear interpolation between two dual quats'sNOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
+    Performs a linear interpolation between two dual quats's
+NOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
 </div>
 
 
@@ -4184,7 +4189,7 @@
     
 
     
-    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".multiply"><span class="type-signature">(static) </span>multiply<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -4387,7 +4392,7 @@
     
 
     
-    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".normalize"><span class="type-signature">(static) </span>normalize<span class="signature">(out, a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -4567,7 +4572,7 @@
     
 
     
-    <h4 class="name" id=".rotateAroundAxis"><span class="type-signature">(static) </span>rotateAroundAxis<span class="signature">(out, a, axis, rad)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".rotateAroundAxis"><span class="type-signature">(static) </span>rotateAroundAxis<span class="signature">(out, a, axis, rad)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -4793,7 +4798,7 @@
     
 
     
-    <h4 class="name" id=".rotateByQuatAppend"><span class="type-signature">(static) </span>rotateByQuatAppend<span class="signature">(out, a, q)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".rotateByQuatAppend"><span class="type-signature">(static) </span>rotateByQuatAppend<span class="signature">(out, a, q)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -4996,7 +5001,7 @@
     
 
     
-    <h4 class="name" id=".rotateByQuatPrepend"><span class="type-signature">(static) </span>rotateByQuatPrepend<span class="signature">(out, q, a)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".rotateByQuatPrepend"><span class="type-signature">(static) </span>rotateByQuatPrepend<span class="signature">(out, q, a)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -5199,7 +5204,7 @@
     
 
     
-    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".rotateX"><span class="type-signature">(static) </span>rotateX<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -5402,7 +5407,7 @@
     
 
     
-    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".rotateY"><span class="type-signature">(static) </span>rotateY<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -5605,7 +5610,7 @@
     
 
     
-    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".rotateZ"><span class="type-signature">(static) </span>rotateZ<span class="signature">(out, a, rad)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -5808,7 +5813,7 @@
     
 
     
-    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".scale"><span class="type-signature">(static) </span>scale<span class="signature">(out, a, b)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -6011,7 +6016,7 @@
     
 
     
-    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x1, y1, z1, w1, x2, y2, z2, w2)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".set"><span class="type-signature">(static) </span>set<span class="signature">(out, x1, y1, z1, w1, x2, y2, z2, w2)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -6352,7 +6357,7 @@
     
 
     
-    <h4 class="name" id=".setDual"><span class="type-signature">(static) </span>setDual<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".setDual"><span class="type-signature">(static) </span>setDual<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -6532,7 +6537,7 @@
     
 
     
-    <h4 class="name" id=".setReal"><span class="type-signature">(static) </span>setReal<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".setReal"><span class="type-signature">(static) </span>setReal<span class="signature">(out, q)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     
@@ -7112,7 +7117,7 @@
     
 
     
-    <h4 class="name" id=".translate"><span class="type-signature">(static) </span>translate<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {quat2}</span></h4>
+    <h4 class="name" id=".translate"><span class="type-signature">(static) </span>translate<span class="signature">(out, a, v)</span><span class="type-signature"> &rarr; {Quat2}</span></h4>
     
 
     

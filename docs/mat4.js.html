@@ -36,7 +36,7 @@
 /**
  * Creates a new identity mat4
  *
- * @returns {mat4} a new 4x4 matrix
+ * @returns {Mat4} a new 4x4 matrix
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(16);
@@ -64,8 +64,8 @@ export function create() {
 /**
  * Creates a new mat4 initialized with values from an existing matrix
  *
- * @param {mat4} a matrix to clone
- * @returns {mat4} a new 4x4 matrix
+ * @param {Mat4} a matrix to clone
+ * @returns {Mat4} a new 4x4 matrix
  */
 export function clone(a) {
   let out = new glMatrix.ARRAY_TYPE(16);
@@ -91,9 +91,9 @@ export function clone(a) {
 /**
  * Copy the values from one mat4 to another
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the source matrix
+ * @returns {Mat4} out
  */
 export function copy(out, a) {
   out[0] = a[0];
@@ -134,7 +134,7 @@ export function copy(out, a) {
  * @param {Number} m31 Component in column 3, row 1 position (index 13)
  * @param {Number} m32 Component in column 3, row 2 position (index 14)
  * @param {Number} m33 Component in column 3, row 3 position (index 15)
- * @returns {mat4} A new mat4
+ * @returns {Mat4} A new mat4
  */
 export function fromValues(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
   let out = new glMatrix.ARRAY_TYPE(16);
@@ -160,7 +160,7 @@ export function fromValues(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22
 /**
  * Set the components of a mat4 to the given values
  *
- * @param {mat4} out the receiving matrix
+ * @param {Mat4} out the receiving matrix
  * @param {Number} m00 Component in column 0, row 0 position (index 0)
  * @param {Number} m01 Component in column 0, row 1 position (index 1)
  * @param {Number} m02 Component in column 0, row 2 position (index 2)
@@ -177,7 +177,7 @@ export function fromValues(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22
  * @param {Number} m31 Component in column 3, row 1 position (index 13)
  * @param {Number} m32 Component in column 3, row 2 position (index 14)
  * @param {Number} m33 Component in column 3, row 3 position (index 15)
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function set(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
   out[0] = m00;
@@ -203,8 +203,8 @@ export function set(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, 
 /**
  * Set a mat4 to the identity matrix
  *
- * @param {mat4} out the receiving matrix
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @returns {Mat4} out
  */
 export function identity(out) {
   out[0] = 1;
@@ -229,9 +229,9 @@ export function identity(out) {
 /**
  * Transpose the values of a mat4
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the source matrix
+ * @returns {Mat4} out
  */
 export function transpose(out, a) {
   // If we are transposing ourselves we can skip a few steps but have to cache some values
@@ -277,9 +277,9 @@ export function transpose(out, a) {
 /**
  * Inverts a mat4
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the source matrix
+ * @returns {Mat4} out
  */
 export function invert(out, a) {
   let a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
@@ -331,9 +331,9 @@ export function invert(out, a) {
 /**
  * Calculates the adjugate of a mat4
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the source matrix
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the source matrix
+ * @returns {Mat4} out
  */
 export function adjoint(out, a) {
   let a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
@@ -363,7 +363,7 @@ export function adjoint(out, a) {
 /**
  * Calculates the determinant of a mat4
  *
- * @param {mat4} a the source matrix
+ * @param {Mat4} a the source matrix
  * @returns {Number} determinant of a
  */
 export function determinant(a) {
@@ -392,10 +392,10 @@ export function determinant(a) {
 /**
  * Multiplies two mat4s
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the first operand
- * @param {mat4} b the second operand
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the first operand
+ * @param {Mat4} b the second operand
+ * @returns {Mat4} out
  */
 export function multiply(out, a, b) {
   let a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
@@ -433,10 +433,10 @@ export function multiply(out, a, b) {
 /**
  * Translate a mat4 by the given vector
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to translate
- * @param {vec3} v vector to translate by
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to translate
+ * @param {Vec3} v vector to translate by
+ * @returns {Mat4} out
  */
 export function translate(out, a, v) {
   let x = v[0], y = v[1], z = v[2];
@@ -470,10 +470,10 @@ export function translate(out, a, v) {
 /**
  * Scales the mat4 by the dimensions in the given vec3 not using vectorization
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to scale
- * @param {vec3} v the vec3 to scale the matrix by
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to scale
+ * @param {Vec3} v the vec3 to scale the matrix by
+ * @returns {Mat4} out
  **/
 export function scale(out, a, v) {
   let x = v[0], y = v[1], z = v[2];
@@ -500,11 +500,11 @@ export function scale(out, a, v) {
 /**
  * Rotates a mat4 by the given angle around the given axis
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to rotate
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
- * @param {vec3} axis the axis to rotate around
- * @returns {mat4} out
+ * @param {Vec3} axis the axis to rotate around
+ * @returns {Mat4} out
  */
 export function rotate(out, a, rad, axis) {
   let x = axis[0], y = axis[1], z = axis[2];
@@ -563,10 +563,10 @@ export function rotate(out, a, rad, axis) {
 /**
  * Rotates a matrix by the given angle around the X axis
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to rotate
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function rotateX(out, a, rad) {
   let s = Math.sin(rad);
@@ -606,10 +606,10 @@ export function rotateX(out, a, rad) {
 /**
  * Rotates a matrix by the given angle around the Y axis
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to rotate
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function rotateY(out, a, rad) {
   let s = Math.sin(rad);
@@ -649,10 +649,10 @@ export function rotateY(out, a, rad) {
 /**
  * Rotates a matrix by the given angle around the Z axis
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to rotate
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to rotate
  * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function rotateZ(out, a, rad) {
   let s = Math.sin(rad);
@@ -696,9 +696,9 @@ export function rotateZ(out, a, rad) {
  *     mat4.identity(dest);
  *     mat4.translate(dest, dest, vec);
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {vec3} v Translation vector
- * @returns {mat4} out
+ * @param {Mat4} out mat4 receiving operation result
+ * @param {Vec3} v Translation vector
+ * @returns {Mat4} out
  */
 export function fromTranslation(out, v) {
   out[0] = 1;
@@ -727,9 +727,9 @@ export function fromTranslation(out, v) {
  *     mat4.identity(dest);
  *     mat4.scale(dest, dest, vec);
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {vec3} v Scaling vector
- * @returns {mat4} out
+ * @param {Mat4} out mat4 receiving operation result
+ * @param {Vec3} v Scaling vector
+ * @returns {Mat4} out
  */
 export function fromScaling(out, v) {
   out[0] = v[0];
@@ -758,10 +758,10 @@ export function fromScaling(out, v) {
  *     mat4.identity(dest);
  *     mat4.rotate(dest, dest, rad, axis);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
- * @param {vec3} axis the axis to rotate around
- * @returns {mat4} out
+ * @param {Vec3} axis the axis to rotate around
+ * @returns {Mat4} out
  */
 export function fromRotation(out, rad, axis) {
   let x = axis[0], y = axis[1], z = axis[2];
@@ -806,9 +806,9 @@ export function fromRotation(out, rad, axis) {
  *     mat4.identity(dest);
  *     mat4.rotateX(dest, dest, rad);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function fromXRotation(out, rad) {
   let s = Math.sin(rad);
@@ -841,9 +841,9 @@ export function fromXRotation(out, rad) {
  *     mat4.identity(dest);
  *     mat4.rotateY(dest, dest, rad);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function fromYRotation(out, rad) {
   let s = Math.sin(rad);
@@ -876,9 +876,9 @@ export function fromYRotation(out, rad) {
  *     mat4.identity(dest);
  *     mat4.rotateZ(dest, dest, rad);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {Number} rad the angle to rotate the matrix by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function fromZRotation(out, rad) {
   let s = Math.sin(rad);
@@ -914,10 +914,10 @@ export function fromZRotation(out, rad) {
  *     quat4.toMat4(quat, quatMat);
  *     mat4.multiply(dest, quatMat);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {quat4} q Rotation quaternion
- * @param {vec3} v Translation vector
- * @returns {mat4} out
+ * @param {Vec3} v Translation vector
+ * @returns {Mat4} out
  */
 export function fromRotationTranslation(out, q, v) {
   // Quaternion math
@@ -959,9 +959,9 @@ export function fromRotationTranslation(out, q, v) {
 /**
  * Creates a new mat4 from a dual quat.
  *
- * @param {mat4} out Matrix
- * @param {quat2} a Dual Quaternion
- * @returns {mat4} mat4 receiving operation result
+ * @param {Mat4} out Matrix
+ * @param {Quat2} a Dual Quaternion
+ * @returns {Mat4} mat4 receiving operation result
  */
 export function fromQuat2(out, a) {
   let translation = new glMatrix.ARRAY_TYPE(3);
@@ -988,9 +988,9 @@ export function fromQuat2(out, a) {
  *  matrix. If a matrix is built with fromRotationTranslation,
  *  the returned vector will be the same as the translation vector
  *  originally supplied.
- * @param  {vec3} out Vector to receive translation component
- * @param  {mat4} mat Matrix to be decomposed (input)
- * @return {vec3} out
+ * @param  {Vec3} out Vector to receive translation component
+ * @param  {Mat4} mat Matrix to be decomposed (input)
+ * @return {Vec3} out
  */
 export function getTranslation(out, mat) {
   out[0] = mat[12];
@@ -1006,9 +1006,9 @@ export function getTranslation(out, mat) {
  *  with a normalized Quaternion paramter, the returned vector will be
  *  the same as the scaling vector
  *  originally supplied.
- * @param  {vec3} out Vector to receive scaling factor component
- * @param  {mat4} mat Matrix to be decomposed (input)
- * @return {vec3} out
+ * @param  {Vec3} out Vector to receive scaling factor component
+ * @param  {Mat4} mat Matrix to be decomposed (input)
+ * @return {Vec3} out
  */
 export function getScaling(out, mat) {
   let m11 = mat[0];
@@ -1033,9 +1033,9 @@ export function getScaling(out, mat) {
  *  of a transformation matrix. If a matrix is built with
  *  fromRotationTranslation, the returned quaternion will be the
  *  same as the quaternion originally supplied.
- * @param {quat} out Quaternion to receive the rotation component
- * @param {mat4} mat Matrix to be decomposed (input)
- * @return {quat} out
+ * @param {Quat} out Quaternion to receive the rotation component
+ * @param {Mat4} mat Matrix to be decomposed (input)
+ * @return {Quat} out
  */
 export function getRotation(out, mat) {
   // Algorithm taken from http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
@@ -1082,11 +1082,11 @@ export function getRotation(out, mat) {
  *     mat4.multiply(dest, quatMat);
  *     mat4.scale(dest, scale)
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {quat4} q Rotation quaternion
- * @param {vec3} v Translation vector
- * @param {vec3} s Scaling vector
- * @returns {mat4} out
+ * @param {Vec3} v Translation vector
+ * @param {Vec3} s Scaling vector
+ * @returns {Mat4} out
  */
 export function fromRotationTranslationScale(out, q, v, s) {
   // Quaternion math
@@ -1141,12 +1141,12 @@ export function fromRotationTranslationScale(out, q, v, s) {
  *     mat4.scale(dest, scale)
  *     mat4.translate(dest, negativeOrigin);
  *
- * @param {mat4} out mat4 receiving operation result
+ * @param {Mat4} out mat4 receiving operation result
  * @param {quat4} q Rotation quaternion
- * @param {vec3} v Translation vector
- * @param {vec3} s Scaling vector
- * @param {vec3} o The origin vector around which to scale and rotate
- * @returns {mat4} out
+ * @param {Vec3} v Translation vector
+ * @param {Vec3} s Scaling vector
+ * @param {Vec3} o The origin vector around which to scale and rotate
+ * @returns {Mat4} out
  */
 export function fromRotationTranslationScaleOrigin(out, q, v, s, o) {
   // Quaternion math
@@ -1206,10 +1206,10 @@ export function fromRotationTranslationScaleOrigin(out, q, v, s, o) {
 /**
  * Calculates a 4x4 matrix from the given quaternion
  *
- * @param {mat4} out mat4 receiving operation result
- * @param {quat} q Quaternion to create matrix from
+ * @param {Mat4} out mat4 receiving operation result
+ * @param {Quat} q Quaternion to create matrix from
  *
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function fromQuat(out, q) {
   let x = q[0], y = q[1], z = q[2], w = q[3];
@@ -1253,14 +1253,14 @@ export function fromQuat(out, q) {
 /**
  * Generates a frustum matrix with the given bounds
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {Mat4} out mat4 frustum matrix will be written into
  * @param {Number} left Left bound of the frustum
  * @param {Number} right Right bound of the frustum
  * @param {Number} bottom Bottom bound of the frustum
  * @param {Number} top Top bound of the frustum
  * @param {Number} near Near bound of the frustum
  * @param {Number} far Far bound of the frustum
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function frustum(out, left, right, bottom, top, near, far) {
   let rl = 1 / (right - left);
@@ -1289,12 +1289,12 @@ export function frustum(out, left, right, bottom, top, near, far) {
  * Generates a perspective projection matrix with the given bounds.
  * Passing null/undefined/no value for far will generate infinite projection matrix.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {Mat4} out mat4 frustum matrix will be written into
  * @param {number} fovy Vertical field of view in radians
  * @param {number} aspect Aspect ratio. typically viewport width/height
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum, can be null or Infinity
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function perspective(out, fovy, aspect, near, far) {
   let f = 1.0 / Math.tan(fovy / 2), nf;
@@ -1328,11 +1328,11 @@ export function perspective(out, fovy, aspect, near, far) {
  * This is primarily useful for generating projection matrices to be used
  * with the still experiemental WebVR API.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {Mat4} out mat4 frustum matrix will be written into
  * @param {Object} fov Object containing the following values: upDegrees, downDegrees, leftDegrees, rightDegrees
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function perspectiveFromFieldOfView(out, fov, near, far) {
   let upTan = Math.tan(fov.upDegrees * Math.PI/180.0);
@@ -1364,14 +1364,14 @@ export function perspectiveFromFieldOfView(out, fov, near, far) {
 /**
  * Generates a orthogonal projection matrix with the given bounds
  *
- * @param {mat4} out mat4 frustum matrix will be written into
+ * @param {Mat4} out mat4 frustum matrix will be written into
  * @param {number} left Left bound of the frustum
  * @param {number} right Right bound of the frustum
  * @param {number} bottom Bottom bound of the frustum
  * @param {number} top Top bound of the frustum
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function ortho(out, left, right, bottom, top, near, far) {
   let lr = 1 / (left - right);
@@ -1400,11 +1400,11 @@ export function ortho(out, left, right, bottom, top, near, far) {
  * Generates a look-at matrix with the given eye position, focal point, and up axis.
  * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
- * @param {vec3} eye Position of the viewer
- * @param {vec3} center Point the viewer is looking at
- * @param {vec3} up vec3 pointing up
- * @returns {mat4} out
+ * @param {Mat4} out mat4 frustum matrix will be written into
+ * @param {Vec3} eye Position of the viewer
+ * @param {Vec3} center Point the viewer is looking at
+ * @param {Vec3} up vec3 pointing up
+ * @returns {Mat4} out
  */
 export function lookAt(out, eye, center, up) {
   let x0, x1, x2, y0, y1, y2, z0, z1, z2, len;
@@ -1487,11 +1487,11 @@ export function lookAt(out, eye, center, up) {
 /**
  * Generates a matrix that makes something look at something else.
  *
- * @param {mat4} out mat4 frustum matrix will be written into
- * @param {vec3} eye Position of the viewer
- * @param {vec3} center Point the viewer is looking at
- * @param {vec3} up vec3 pointing up
- * @returns {mat4} out
+ * @param {Mat4} out mat4 frustum matrix will be written into
+ * @param {Vec3} eye Position of the viewer
+ * @param {Vec3} center Point the viewer is looking at
+ * @param {Vec3} up vec3 pointing up
+ * @returns {Mat4} out
  */
 export function targetTo(out, eye, target, up) {
   let eyex = eye[0],
@@ -1547,7 +1547,7 @@ export function targetTo(out, eye, target, up) {
 /**
  * Returns a string representation of a mat4
  *
- * @param {mat4} a matrix to represent as a string
+ * @param {Mat4} a matrix to represent as a string
  * @returns {String} string representation of the matrix
  */
 export function str(a) {
@@ -1560,7 +1560,7 @@ export function str(a) {
 /**
  * Returns Frobenius norm of a mat4
  *
- * @param {mat4} a the matrix to calculate Frobenius norm of
+ * @param {Mat4} a the matrix to calculate Frobenius norm of
  * @returns {Number} Frobenius norm
  */
 export function frob(a) {
@@ -1570,10 +1570,10 @@ export function frob(a) {
 /**
  * Adds two mat4's
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the first operand
- * @param {mat4} b the second operand
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the first operand
+ * @param {Mat4} b the second operand
+ * @returns {Mat4} out
  */
 export function add(out, a, b) {
   out[0] = a[0] + b[0];
@@ -1598,10 +1598,10 @@ export function add(out, a, b) {
 /**
  * Subtracts matrix b from matrix a
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the first operand
- * @param {mat4} b the second operand
- * @returns {mat4} out
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the first operand
+ * @param {Mat4} b the second operand
+ * @returns {Mat4} out
  */
 export function subtract(out, a, b) {
   out[0] = a[0] - b[0];
@@ -1626,10 +1626,10 @@ export function subtract(out, a, b) {
 /**
  * Multiply each element of the matrix by a scalar.
  *
- * @param {mat4} out the receiving matrix
- * @param {mat4} a the matrix to scale
+ * @param {Mat4} out the receiving matrix
+ * @param {Mat4} a the matrix to scale
  * @param {Number} b amount to scale the matrix's elements by
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function multiplyScalar(out, a, b) {
   out[0] = a[0] * b;
@@ -1654,11 +1654,11 @@ export function multiplyScalar(out, a, b) {
 /**
  * Adds two mat4's after multiplying each element of the second operand by a scalar value.
  *
- * @param {mat4} out the receiving vector
- * @param {mat4} a the first operand
- * @param {mat4} b the second operand
+ * @param {Mat4} out the receiving vector
+ * @param {Mat4} a the first operand
+ * @param {Mat4} b the second operand
  * @param {Number} scale the amount to scale b's elements by before adding
- * @returns {mat4} out
+ * @returns {Mat4} out
  */
 export function multiplyScalarAndAdd(out, a, b, scale) {
   out[0] = a[0] + (b[0] * scale);
@@ -1683,8 +1683,8 @@ export function multiplyScalarAndAdd(out, a, b, scale) {
 /**
  * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
  *
- * @param {mat4} a The first matrix.
- * @param {mat4} b The second matrix.
+ * @param {Mat4} a The first matrix.
+ * @param {Mat4} b The second matrix.
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 export function exactEquals(a, b) {
@@ -1697,8 +1697,8 @@ export function exactEquals(a, b) {
 /**
  * Returns whether or not the matrices have approximately the same elements in the same position.
  *
- * @param {mat4} a The first matrix.
- * @param {mat4} b The second matrix.
+ * @param {Mat4} a The first matrix.
+ * @param {Mat4} b The second matrix.
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 export function equals(a, b) {
