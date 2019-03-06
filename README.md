@@ -19,6 +19,8 @@ For documentation and news, visit the [glMatrix Homepage](http://glmatrix.net/)
 
 For a tutorial, see [the "introducing glMatrix" section of _Introduction to Computer Graphics_ by David J. Eck](http://math.hws.edu/graphicsbook/c7/s1.html#webgl3d.1.2)
 
+For a babel plugin to make writing the API nicer, see [babel-plugin-transfrom-gl-matrix](https://github.com/akira-cn/babel-plugin-transform-gl-matrix)
+
 Contributing Guidelines
 ----------------------
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
