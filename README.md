@@ -1,5 +1,6 @@
 glMatrix
 =======================
+[![NPM Version](https://img.shields.io/npm/v/gl-matrix.svg)](https://www.npmjs.com/package/gl-matrix)
 [![Build Status](https://travis-ci.org/toji/gl-matrix.svg)](https://travis-ci.org/toji/gl-matrix)
 
 Javascript has evolved into a language capable of handling realtime 3D graphics, 
