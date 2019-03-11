@@ -1030,7 +1030,7 @@ export function getRotation(out, mat) {
   let trace = sm11 + sm22 + sm33;
   let S = 0;
 
-  if (trace > 0) { 
+  if (trace > 0) {
     S = Math.sqrt(trace + 1.0) * 2;
     out[3] = 0.25 * S;
     out[0] = (sm23 - sm32) / S;
@@ -1049,7 +1049,7 @@ export function getRotation(out, mat) {
     out[1] = 0.25 * S;
     out[2] = (sm23 + sm32) / S;
   } else {
-    S = Math.sqrt(1.0 + sm33 - sm11- sm22) * 2;
+    S = Math.sqrt(1.0 + sm33 - sm11 - sm22) * 2;
     out[3] = (sm12 - sm21) / S;
     out[0] = (sm31 + sm13) / S;
     out[1] = (sm23 + sm32) / S;
