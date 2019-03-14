@@ -29,8 +29,8 @@ THE SOFTWARE.
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.glMatrix = {})));
-}(this, (function (exports) { 'use strict';
+  (global = global || self, factory(global.glMatrix = {}));
+}(this, function (exports) { 'use strict';
 
   /**
    * Common utilities
@@ -2975,33 +2975,46 @@ THE SOFTWARE.
    */
 
   function getRotation(out, mat) {
-    // Algorithm taken from http://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/index.htm
-    var trace = mat[0] + mat[5] + mat[10];
+    var scaling = new ARRAY_TYPE(3);
+    getScaling(scaling, mat);
+    var is1 = 1 / scaling[0];
+    var is2 = 1 / scaling[1];
+    var is3 = 1 / scaling[2];
+    var sm11 = mat[0] * is1;
+    var sm12 = mat[1] * is2;
+    var sm13 = mat[2] * is3;
+    var sm21 = mat[4] * is1;
+    var sm22 = mat[5] * is2;
+    var sm23 = mat[6] * is3;
+    var sm31 = mat[8] * is1;
+    var sm32 = mat[9] * is2;
+    var sm33 = mat[10] * is3;
+    var trace = sm11 + sm22 + sm33;
     var S = 0;
 
     if (trace > 0) {
       S = Math.sqrt(trace + 1.0) * 2;
       out[3] = 0.25 * S;
-      out[0] = (mat[6] - mat[9]) / S;
-      out[1] = (mat[8] - mat[2]) / S;
-      out[2] = (mat[1] - mat[4]) / S;
-    } else if (mat[0] > mat[5] && mat[0] > mat[10]) {
-      S = Math.sqrt(1.0 + mat[0] - mat[5] - mat[10]) * 2;
-      out[3] = (mat[6] - mat[9]) / S;
+      out[0] = (sm23 - sm32) / S;
+      out[1] = (sm31 - sm13) / S;
+      out[2] = (sm12 - sm21) / S;
+    } else if (sm11 > sm22 && sm11 > sm33) {
+      S = Math.sqrt(1.0 + sm11 - sm22 - sm33) * 2;
+      out[3] = (sm23 - sm32) / S;
       out[0] = 0.25 * S;
-      out[1] = (mat[1] + mat[4]) / S;
-      out[2] = (mat[8] + mat[2]) / S;
-    } else if (mat[5] > mat[10]) {
-      S = Math.sqrt(1.0 + mat[5] - mat[0] - mat[10]) * 2;
-      out[3] = (mat[8] - mat[2]) / S;
-      out[0] = (mat[1] + mat[4]) / S;
+      out[1] = (sm12 + sm21) / S;
+      out[2] = (sm31 + sm13) / S;
+    } else if (sm22 > sm33) {
+      S = Math.sqrt(1.0 + sm22 - sm11 - sm33) * 2;
+      out[3] = (sm31 - sm13) / S;
+      out[0] = (sm12 + sm21) / S;
       out[1] = 0.25 * S;
-      out[2] = (mat[6] + mat[9]) / S;
+      out[2] = (sm23 + sm32) / S;
     } else {
-      S = Math.sqrt(1.0 + mat[10] - mat[0] - mat[5]) * 2;
-      out[3] = (mat[1] - mat[4]) / S;
-      out[0] = (mat[8] + mat[2]) / S;
-      out[1] = (mat[6] + mat[9]) / S;
+      S = Math.sqrt(1.0 + sm33 - sm11 - sm22) * 2;
+      out[3] = (sm12 - sm21) / S;
+      out[0] = (sm31 + sm13) / S;
+      out[1] = (sm23 + sm32) / S;
       out[2] = 0.25 * S;
     }
 
@@ -5556,8 +5569,8 @@ THE SOFTWARE.
         a1 = a[1],
         a2 = a[2],
         a3 = a[3];
-    var dot$$1 = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
-    var invDot = dot$$1 ? 1.0 / dot$$1 : 0; // TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
+    var dot = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
+    var invDot = dot ? 1.0 / dot : 0; // TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
 
     out[0] = -a0 * invDot;
     out[1] = -a1 * invDot;
@@ -5832,15 +5845,15 @@ THE SOFTWARE.
     var xUnitVec3 = fromValues$4(1, 0, 0);
     var yUnitVec3 = fromValues$4(0, 1, 0);
     return function (out, a, b) {
-      var dot$$1 = dot(a, b);
+      var dot$1 = dot(a, b);
 
-      if (dot$$1 < -0.999999) {
+      if (dot$1 < -0.999999) {
         cross(tmpvec3, xUnitVec3, a);
         if (len(tmpvec3) < 0.000001) cross(tmpvec3, yUnitVec3, a);
         normalize(tmpvec3, tmpvec3);
         setAxisAngle(out, tmpvec3, Math.PI);
         return out;
-      } else if (dot$$1 > 0.999999) {
+      } else if (dot$1 > 0.999999) {
         out[0] = 0;
         out[1] = 0;
         out[2] = 0;
@@ -5851,7 +5864,7 @@ THE SOFTWARE.
         out[0] = tmpvec3[0];
         out[1] = tmpvec3[1];
         out[2] = tmpvec3[2];
-        out[3] = 1 + dot$$1;
+        out[3] = 1 + dot$1;
         return normalize$2(out, out);
       }
     };
@@ -6053,7 +6066,7 @@ THE SOFTWARE.
    * Creates a dual quat from a quaternion and a translation
    *
    * @param {quat2} dual quaternion receiving operation result
-   * @param {quat} q quaternion
+   * @param {quat} q a normalized quaternion
    * @param {vec3} t tranlation vector
    * @returns {quat2} dual quaternion receiving operation result
    * @function
@@ -7520,4 +7533,4 @@ THE SOFTWARE.
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
