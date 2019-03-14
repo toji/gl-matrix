@@ -36,19 +36,19 @@
     "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-cjs && node ./utils/build.js"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.6",
-    "@babel/preset-env": "^7.1.6",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/register": "^7.0.0",
     "cross-env": "^5.2.0",
     "del-cli": "^1.1.0",
     "jsdoc": "^3.5.5",
-    "mocha": "^5.1.1",
-    "node-libs-browser": "^2.1.0",
-    "rollup": "^0.67.3",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-size-snapshot": "^0.7.0",
-    "rollup-plugin-terser": "^3.0.0"
+    "mocha": "^6.0.2",
+    "node-libs-browser": "^2.2.0",
+    "rollup": "^1.6.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-size-snapshot": "^0.8.0",
+    "rollup-plugin-terser": "^4.0.4"
   },
   "dependencies": {}
 }
