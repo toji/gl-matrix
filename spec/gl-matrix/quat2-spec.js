@@ -259,11 +259,12 @@ describe("quat2", function() {
 
     describe("from/toMat4", function() {
         let matRes = mat4.create(), matOut = mat4.create();
+        let rotationQuat = quat.create();
         describe("quat to matrix and back", function() {
             beforeEach(function() {
-                //only seems to work when created with this function
-                quat2.fromRotationTranslation(quat2A, [1,2,3,4], [1,-5,3]);
+                quat.normalize(rotationQuat, [1,2,3,4]);
 
+                quat2.fromRotationTranslation(quat2A, rotationQuat, [1,-5,3]);
                 matRes = mat4.fromQuat2(matOut, quat2A);
 
                 result = quat2.fromMat4(out, matRes);
@@ -271,14 +272,10 @@ describe("quat2", function() {
 
             it("should return out", function() { expect(result).toBe(out); });
             it("should return matOut", function() { expect(matRes).toBe(matOut); });
-            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2([1, 2, 3, 4,  -8.5, -10, 9.5, 0 ]); });
+            it("should not modify quat2A", function() { expect(quat2A).toBeEqualishQuat2([0.18257418, 0.36514836, 0.54772257, 0.73029673,  -1.5518806, -1.82574184, 1.73445473, 0 ]); });
 
             it("should be equal to the starting dual quat", function() {
-                expect(quat2A[0]).toBeEqualish(result[0]);
-            });
-
-            it("should be equal to the starting dual quat", function() {
-                expect(quat2A[1]).toBeEqualish(result[1]);
+                expect(quat2A).toBeEqualishQuat2(result);
             });
 
         });

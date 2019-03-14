@@ -111,7 +111,7 @@ export function fromRotationTranslationValues(x1, y1, z1, w1, x2, y2, z2) {
  * Creates a dual quat from a quaternion and a translation
  *
  * @param {quat2} dual quaternion receiving operation result
- * @param {quat} q quaternion
+ * @param {quat} q a normalized quaternion
  * @param {vec3} t tranlation vector
  * @returns {quat2} dual quaternion receiving operation result
  * @function
