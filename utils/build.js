@@ -21,7 +21,9 @@ const files = fs.readdirSync('src')
       main: `../cjs/${file}`,
       module: `../esm/${file}`,
     };
-    fs.mkdirSync(`dist/${name}`);
+    if(!fs.existsSync(`dist/${name}`)) {
+      fs.mkdirSync(`dist/${name}`);
+    }
     fs.writeFileSync(
       `dist/${name}/package.json`,
       JSON.stringify(filePkg, null, 2)
