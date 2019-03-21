@@ -1513,7 +1513,7 @@ export function targetTo(out, eye, target, up) {
   out[13] = eyey;
   out[14] = eyez;
   out[15] = 1;
-  return invert(out, out);
+  return out;
 };
 
 /**
