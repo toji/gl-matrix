@@ -538,7 +538,7 @@ export function rotateAroundAxis(out, a, axis, rad) {
   if (Math.abs(rad) < glMatrix.EPSILON) {
     return copy(out, a);
   }
-  let axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
+  let axisLength = Math.hypot(...axis);
 
   rad = rad * 0.5;
   let s = Math.sin(rad);
