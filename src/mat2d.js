@@ -330,7 +330,7 @@ export function str(a) {
  * @returns {Number} Frobenius norm
  */
 export function frob(a) {
-  return(Math.hypot(...a))
+  return(Math.hypot(...a,1))
 }
 
 /**

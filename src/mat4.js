@@ -1477,8 +1477,9 @@ export function targetTo(out, eye, target, up) {
       z1 = eyey - target[1],
       z2 = eyez - target[2];
 
+  let len = z0*z0 + z1*z1 + z2*z2;
   if (len > 0) {
-    len = 1 / Math.hypot(z0, z1, z2);
+    len = 1 / Math.sqrt(len);
     z0 *= len;
     z1 *= len;
     z2 *= len;
@@ -1490,7 +1491,7 @@ export function targetTo(out, eye, target, up) {
 
   len = x0*x0 + x1*x1 + x2*x2;
   if (len > 0) {
-    len = 1 / Math.hypot(x0, x1, x2);
+    len = 1 / Math.sqrt(len);
     x0 *= len;
     x1 *= len;
     x2 *= len;
