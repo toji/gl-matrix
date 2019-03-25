@@ -872,7 +872,7 @@ function buildMat4Tests() {
 
        describe("frob", function() {
             beforeEach(function() { result = mat4.frob(matA); });
-            it("should return the Frobenius Norm of the matrix", function() { expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) )); });
+            it("should return the Frobenius Norm of the matrix", function() { expect(result).toBeEqualish( Math.sqrt(Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) )); });
        });
     };
 
