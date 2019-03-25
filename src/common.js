@@ -46,5 +46,3 @@ if (!Math.hypot) Math.hypot = function() {
   while (i--) y += arguments[i] * arguments[i];
   return Math.sqrt(y);
 };
-
-
