@@ -72,6 +72,16 @@ THE SOFTWARE.
   function equals(a, b) {
     return Math.abs(a - b) <= EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b));
   }
+  if (!Math.hypot) Math.hypot = function () {
+    var y = 0,
+        i = arguments.length;
+
+    while (i--) {
+      y += arguments[i] * arguments[i];
+    }
+
+    return Math.sqrt(y);
+  };
 
   var common = /*#__PURE__*/Object.freeze({
     EPSILON: EPSILON,
@@ -389,7 +399,7 @@ THE SOFTWARE.
    */
 
   function frob(a) {
-    return Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2));
+    return Math.hypot(a[0], a[1], a[2], a[3]);
   }
   /**
    * Returns L, D and U matrices (Lower triangular, Diagonal and Upper triangular) by factorizing the input matrix
@@ -907,7 +917,7 @@ THE SOFTWARE.
    */
 
   function frob$1(a) {
-    return Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + 1);
+    return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], 1);
   }
   /**
    * Adds two mat2d's
@@ -1695,7 +1705,7 @@ THE SOFTWARE.
    */
 
   function frob$2(a) {
-    return Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + Math.pow(a[6], 2) + Math.pow(a[7], 2) + Math.pow(a[8], 2));
+    return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8]);
   }
   /**
    * Adds two mat3's
@@ -2425,7 +2435,7 @@ THE SOFTWARE.
     var x = axis[0],
         y = axis[1],
         z = axis[2];
-    var len = Math.sqrt(x * x + y * y + z * z);
+    var len = Math.hypot(x, y, z);
     var s, c, t;
     var a00, a01, a02, a03;
     var a10, a11, a12, a13;
@@ -2702,7 +2712,7 @@ THE SOFTWARE.
     var x = axis[0],
         y = axis[1],
         z = axis[2];
-    var len = Math.sqrt(x * x + y * y + z * z);
+    var len = Math.hypot(x, y, z);
     var s, c, t;
 
     if (len < EPSILON) {
@@ -2959,9 +2969,9 @@ THE SOFTWARE.
     var m31 = mat[8];
     var m32 = mat[9];
     var m33 = mat[10];
-    out[0] = Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13);
-    out[1] = Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23);
-    out[2] = Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33);
+    out[0] = Math.hypot(m11, m12, m13);
+    out[1] = Math.hypot(m21, m22, m23);
+    out[2] = Math.hypot(m31, m32, m33);
     return out;
   }
   /**
@@ -3371,14 +3381,14 @@ THE SOFTWARE.
     z0 = eyex - centerx;
     z1 = eyey - centery;
     z2 = eyez - centerz;
-    len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+    len = 1 / Math.hypot(z0, z1, z2);
     z0 *= len;
     z1 *= len;
     z2 *= len;
     x0 = upy * z2 - upz * z1;
     x1 = upz * z0 - upx * z2;
     x2 = upx * z1 - upy * z0;
-    len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+    len = Math.hypot(x0, x1, x2);
 
     if (!len) {
       x0 = 0;
@@ -3394,7 +3404,7 @@ THE SOFTWARE.
     y0 = z1 * x2 - z2 * x1;
     y1 = z2 * x0 - z0 * x2;
     y2 = z0 * x1 - z1 * x0;
-    len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
+    len = Math.hypot(y0, y1, y2);
 
     if (!len) {
       y0 = 0;
@@ -3502,7 +3512,7 @@ THE SOFTWARE.
    */
 
   function frob$3(a) {
-    return Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + Math.pow(a[6], 2) + Math.pow(a[7], 2) + Math.pow(a[8], 2) + Math.pow(a[9], 2) + Math.pow(a[10], 2) + Math.pow(a[11], 2) + Math.pow(a[12], 2) + Math.pow(a[13], 2) + Math.pow(a[14], 2) + Math.pow(a[15], 2));
+    return Math.hypot(a[0], a[1], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15]);
   }
   /**
    * Adds two mat4's
@@ -3781,7 +3791,7 @@ THE SOFTWARE.
     var x = a[0];
     var y = a[1];
     var z = a[2];
-    return Math.sqrt(x * x + y * y + z * z);
+    return Math.hypot(x, y, z);
   }
   /**
    * Creates a new vec3 initialized with the given values
@@ -4004,7 +4014,7 @@ THE SOFTWARE.
     var x = b[0] - a[0];
     var y = b[1] - a[1];
     var z = b[2] - a[2];
-    return Math.sqrt(x * x + y * y + z * z);
+    return Math.hypot(x, y, z);
   }
   /**
    * Calculates the squared euclidian distance between two vec3's
@@ -4850,7 +4860,7 @@ THE SOFTWARE.
     var y = b[1] - a[1];
     var z = b[2] - a[2];
     var w = b[3] - a[3];
-    return Math.sqrt(x * x + y * y + z * z + w * w);
+    return Math.hypot(x, y, z, w);
   }
   /**
    * Calculates the squared euclidian distance between two vec4's
@@ -4879,7 +4889,7 @@ THE SOFTWARE.
     var y = a[1];
     var z = a[2];
     var w = a[3];
-    return Math.sqrt(x * x + y * y + z * z + w * w);
+    return Math.hypot(x, y, z, w);
   }
   /**
    * Calculates the squared length of a vec4
@@ -6492,7 +6502,7 @@ THE SOFTWARE.
       return copy$7(out, a);
     }
 
-    var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
+    var axisLength = Math.hypot(axis[0], axis[1], axis[2]);
     rad = rad * 0.5;
     var s = Math.sin(rad);
     var bx = s * axis[0] / axisLength;
@@ -7069,7 +7079,7 @@ THE SOFTWARE.
   function distance$2(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
-    return Math.sqrt(x * x + y * y);
+    return Math.hypot(x, y);
   }
   /**
    * Calculates the squared euclidian distance between two vec2's
@@ -7094,7 +7104,7 @@ THE SOFTWARE.
   function length$4(a) {
     var x = a[0],
         y = a[1];
-    return Math.sqrt(x * x + y * y);
+    return Math.hypot(x, y);
   }
   /**
    * Calculates the squared length of a vec2
