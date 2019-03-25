@@ -480,7 +480,7 @@ export function scale(out, a, v) {
  */
 export function rotate(out, a, rad, axis) {
   let x = axis[0], y = axis[1], z = axis[2];
-  let len = Math.sqrt(x * x + y * y + z * z);
+  let len = Math.hypot(x,y,z);
   let s, c, t;
   let a00, a01, a02, a03;
   let a10, a11, a12, a13;
@@ -737,7 +737,7 @@ export function fromScaling(out, v) {
  */
 export function fromRotation(out, rad, axis) {
   let x = axis[0], y = axis[1], z = axis[2];
-  let len = Math.sqrt(x * x + y * y + z * z);
+  let len = Math.hypot(x, y, z);
   let s, c, t;
 
   if (len < glMatrix.EPSILON) { return null; }
@@ -993,9 +993,9 @@ export function getScaling(out, mat) {
   let m32 = mat[9];
   let m33 = mat[10];
 
-  out[0] = Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13);
-  out[1] = Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23);
-  out[2] = Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33);
+  out[0] = Math.hypot(m11, m12, m13);
+  out[1] = Math.hypot(m21, m22, m23);
+  out[2] = Math.hypot(m31, m32, m33);
 
   return out;
 }
@@ -1416,7 +1416,7 @@ export function lookAt(out, eye, center, up) {
   z1 = eyey - centery;
   z2 = eyez - centerz;
 
-  len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+  len = 1 / Math.hypot(z0, z1, z2);
   z0 *= len;
   z1 *= len;
   z2 *= len;
@@ -1424,7 +1424,7 @@ export function lookAt(out, eye, center, up) {
   x0 = upy * z2 - upz * z1;
   x1 = upz * z0 - upx * z2;
   x2 = upx * z1 - upy * z0;
-  len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+  len = Math.hypot(x0, x1, x2);
   if (!len) {
     x0 = 0;
     x1 = 0;
@@ -1440,7 +1440,7 @@ export function lookAt(out, eye, center, up) {
   y1 = z2 * x0 - z0 * x2;
   y2 = z0 * x1 - z1 * x0;
 
-  len = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
+  len = Math.hypot(y0, y1, y2);
   if (!len) {
     y0 = 0;
     y1 = 0;
@@ -1552,7 +1552,7 @@ export function str(a) {
  * @returns {Number} Frobenius norm
  */
 export function frob(a) {
-  return(Math.sqrt(Math.pow(a[0], 2) + Math.pow(a[1], 2) + Math.pow(a[2], 2) + Math.pow(a[3], 2) + Math.pow(a[4], 2) + Math.pow(a[5], 2) + Math.pow(a[6], 2) + Math.pow(a[7], 2) + Math.pow(a[8], 2) + Math.pow(a[9], 2) + Math.pow(a[10], 2) + Math.pow(a[11], 2) + Math.pow(a[12], 2) + Math.pow(a[13], 2) + Math.pow(a[14], 2) + Math.pow(a[15], 2) ))
+  return(Math.hypot(a[0],a[1],a[3],a[4],a[5],a[6],a[7],a[8],a[9],a[10],a[11],a[12],a[13],a[14],a[15]))
 }
 
 /**

@@ -44,7 +44,7 @@ export function length(a) {
   let x = a[0];
   let y = a[1];
   let z = a[2];
-  return Math.sqrt(x*x + y*y + z*z);
+  return Math.hypot(x, y, z);
 }
 
 /**
@@ -267,7 +267,7 @@ export function distance(a, b) {
   let x = b[0] - a[0];
   let y = b[1] - a[1];
   let z = b[2] - a[2];
-  return Math.sqrt(x*x + y*y + z*z);
+  return Math.hypot(x, y, z);
 }
 
 /**
