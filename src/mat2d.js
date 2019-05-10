@@ -7,16 +7,16 @@ import * as glMatrix from "./common.js";
  * @description
  * A mat2d contains six elements defined as:
  * <pre>
- * [a, c, tx,
- *  b, d, ty]
+ * [a, b, c,
+ *  d, tx, ty]
  * </pre>
  * This is a short form for the 3x3 matrix:
  * <pre>
- * [a, c, tx,
- *  b, d, ty,
- *  0, 0, 1]
+ * [a, b, 0,
+ *  c, d, 0,
+ *  tx, ty, 1]
  * </pre>
- * The last row is ignored so the array is shorter and operations are faster.
+ * The last column is ignored so the array is shorter and operations are faster.
  */
 
 /**
