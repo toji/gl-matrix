@@ -22,6 +22,8 @@ For a tutorial, see [the "introducing glMatrix" section of _Introduction to Comp
 
 For a babel plugin to make writing the API nicer, see [babel-plugin-transfrom-gl-matrix](https://github.com/akira-cn/babel-plugin-transform-gl-matrix)
 
+Regarding the current performance in modern web browsers, calling `glMatrix.setMatrixArrayType(Array)` to use normal arrays instead of Float32Arrays can greatly increase the performance.
+
 Contributing Guidelines
 ----------------------
 See [CONTRIBUTING.md](./CONTRIBUTING.md)
