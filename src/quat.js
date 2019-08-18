@@ -188,6 +188,64 @@ export function calculateW(out, a) {
 }
 
 /**
+ * Calculate the exponential of a unit quaternion.
+ *
+ * @param {quat} out the receiving quaternion
+ * @param {quat} a quat to calculate the exponential of
+ * @returns {quat} out
+ */
+export function exp(out, a) {
+  let x = a[0], y = a[1], z = a[2], w = a[3];
+
+  let r = Math.sqrt(x*x + y*y + z*z);
+  let et = Math.exp(w);
+  let s = r > 0 ? et * Math.sin(r) / r : 0;
+
+  out[0] = x * s;
+  out[1] = y * s;
+  out[2] = z * s;
+  out[3] = et * Math.cos(r);
+
+  return out;
+}
+
+/**
+ * Calculate the natural logarithm of a unit quaternion.
+ *
+ * @param {quat} out the receiving quaternion
+ * @param {quat} a quat to calculate the exponential of
+ * @returns {quat} out
+ */
+export function ln(out, a) {
+  let x = a[0], y = a[1], z = a[2], w = a[3];
+
+  let r = Math.sqrt(x*x + y*y + z*z);
+  let t = r > 0 ? Math.atan2(r, w) / r : 0;
+
+  out[0] = x * t;
+  out[1] = y * t;
+  out[2] = z * t;
+  out[3] = 0.5 * Math.log(x*x + y*y + z*z + w*w);
+
+  return out;
+}
+
+/**
+ * Calculate the scalar power of a unit quaternion.
+ *
+ * @param {quat} out the receiving quaternion
+ * @param {quat} a quat to calculate the exponential of
+ * @param {Number} b amount to scale the quaternion by
+ * @returns {quat} out
+ */
+export function pow(out, a, b) {
+  ln(out, a);
+  scale(out, out, b);
+  exp(out, out);
+  return out;
+}
+
+/**
  * Performs a spherical linear interpolation between two quat
  *
  * @param {quat} out the receiving quaternion
@@ -237,8 +295,8 @@ export function slerp(out, a, b, t) {
 }
 
 /**
- * Generates a random quaternion
- *
+ * Generates a random unit quaternion
+ * 
  * @param {quat} out the receiving quaternion
  * @returns {quat} out
  */

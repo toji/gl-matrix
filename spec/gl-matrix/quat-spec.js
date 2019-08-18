@@ -62,6 +62,83 @@ describe("quat", function() {
         });
     });
 
+    describe("pow", function() {
+        describe("identity quat", function() {
+          beforeEach(function() {
+              result = quat.pow(out, id, 2.1 /* random number */);
+          });
+
+          it("should return out", function() { expect(result).toBe(out); });
+          it("should be the identity", function() {
+              expect(result).toBeEqualish(id);
+          });
+        });
+
+        describe("power of one", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+
+              result = quat.pow(out, quatA, 1);
+          });
+
+          it("should be the identity", function() {
+            expect(result).toBeEqualish(quatA);
+          });
+          it("should be normalized", function() {
+            expect(quat.length(result)).toBeEqualish(1);
+          });
+        });
+
+        describe("squared", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+
+              result = quat.pow(out, quatA, 2);
+          });
+
+          it("should be the square", function() {
+              let reference = quat.multiply(quat.create(), quatA, quatA);
+              expect(result).toBeEqualish(reference);
+          });
+          it("should be normalized", function() {
+            expect(quat.length(result)).toBeEqualish(1);
+          });
+        });
+
+        describe("conjugate", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+
+              result = quat.pow(out, quatA, -1);
+          });
+
+          it("should be the conjugate", function() {
+              let reference = quat.conjugate(quat.create(), quatA);
+              expect(result).toBeEqualish(reference);
+          });
+          it("should be normalized", function() {
+            expect(quat.length(result)).toBeEqualish(1);
+          });
+        });
+
+        describe("reversible", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+
+              let b = 2.1; // random number
+              result = quat.pow(out, quatA, b);
+              result = quat.pow(out, result, 1/b);
+          });
+
+          it("should be reverted", function() {
+              expect(result).toBeEqualish(quatA);
+          });
+          it("should be normalized", function() {
+            expect(quat.length(result)).toBeEqualish(1);
+          });
+        });
+    });
+
     describe("rotateX", function() {
         beforeEach(function() {
             result = quat.rotateX(out, id, deg90);
