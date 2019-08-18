@@ -87,6 +87,19 @@ export function getAxisAngle(out_axis, q) {
 }
 
 /**
+ * Gets the angular distance between two unit quaternions
+ *
+ * @param  {quat} a     Origin unit quaternion 
+ * @param  {quat} b     Destination unit quaternion
+ * @return {Number}     Angle, in radians, between the two quaternions
+ */
+export function getAngle(a, b) {
+  let dotproduct = dot(a, b);
+  
+  return Math.acos(2 * dotproduct*dotproduct - 1);
+}
+
+/**
  * Multiplies two quat's
  *
  * @param {quat} out the receiving quaternion

@@ -475,6 +475,46 @@ describe("quat", function() {
         });
     });
 
+    describe("getAngle", function() {
+        describe("from itself", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+          });
+
+          it("should be zero", function() {
+              expect(quat.getAngle(quatA, quatA)).toBeEqualish(0);
+          });
+        });
+
+        describe("from rotated", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+              quat.rotateX(quatB, quatA, Math.PI / 4);
+          });
+
+          it("should be 45 degrees", function() {
+              expect(quat.getAngle(quatA, quatB)).toBeEqualish(Math.PI / 4);
+          });
+        });
+
+        describe("compare with axisAngle", function() {
+          beforeEach(function() {
+              quat.normalize(quatA, quatA);
+              quat.normalize(quatB, quatB);
+          });
+
+          it("should be equalish", function() {
+              // compute reference value as axisAngle of quatA^{-1} * quatB
+              let quatAInv = quat.conjugate(quat.create(), quatA);
+              let quatAB = quat.multiply(quatAInv, quatAInv, quatB);
+              let dummy = vec3.create();
+              let reference = quat.getAxisAngle(dummy, quatAB);
+
+              expect(quat.getAngle(quatA, quatB)).toBeEqualish(reference);
+          });
+        });
+    });
+
     describe("add", function() {
         describe("with a separate output quaternion", function() {
             beforeEach(function() { result = quat.add(out, quatA, quatB); });
