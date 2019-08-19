@@ -3,7 +3,7 @@
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
 @author Colin MacKenzie IV
-@version 3.0.0
+@version 3.1.0
 
 Copyright (c) 2015-2019, Brandon Jones, Colin MacKenzie IV.
 
@@ -560,16 +560,16 @@ THE SOFTWARE.
    * @description
    * A mat2d contains six elements defined as:
    * <pre>
-   * [a, c, tx,
-   *  b, d, ty]
+   * [a, b, c,
+   *  d, tx, ty]
    * </pre>
    * This is a short form for the 3x3 matrix:
    * <pre>
-   * [a, c, tx,
-   *  b, d, ty,
-   *  0, 0, 1]
+   * [a, b, 0,
+   *  c, d, 0,
+   *  tx, ty, 1]
    * </pre>
-   * The last row is ignored so the array is shorter and operations are faster.
+   * The last column is ignored so the array is shorter and operations are faster.
    */
 
   /**
@@ -5379,6 +5379,18 @@ THE SOFTWARE.
     return rad;
   }
   /**
+   * Gets the angular distance between two unit quaternions
+   *
+   * @param  {quat} a     Origin unit quaternion 
+   * @param  {quat} b     Destination unit quaternion
+   * @return {Number}     Angle, in radians, between the two quaternions
+   */
+
+  function getAngle(a, b) {
+    var dotproduct = dot$2(a, b);
+    return Math.acos(2 * dotproduct * dotproduct - 1);
+  }
+  /**
    * Multiplies two quat's
    *
    * @param {quat} out the receiving quaternion
@@ -5492,6 +5504,64 @@ THE SOFTWARE.
     return out;
   }
   /**
+   * Calculate the exponential of a unit quaternion.
+   *
+   * @param {quat} out the receiving quaternion
+   * @param {quat} a quat to calculate the exponential of
+   * @returns {quat} out
+   */
+
+  function exp(out, a) {
+    var x = a[0],
+        y = a[1],
+        z = a[2],
+        w = a[3];
+    var r = Math.sqrt(x * x + y * y + z * z);
+    var et = Math.exp(w);
+    var s = r > 0 ? et * Math.sin(r) / r : 0;
+    out[0] = x * s;
+    out[1] = y * s;
+    out[2] = z * s;
+    out[3] = et * Math.cos(r);
+    return out;
+  }
+  /**
+   * Calculate the natural logarithm of a unit quaternion.
+   *
+   * @param {quat} out the receiving quaternion
+   * @param {quat} a quat to calculate the exponential of
+   * @returns {quat} out
+   */
+
+  function ln(out, a) {
+    var x = a[0],
+        y = a[1],
+        z = a[2],
+        w = a[3];
+    var r = Math.sqrt(x * x + y * y + z * z);
+    var t = r > 0 ? Math.atan2(r, w) / r : 0;
+    out[0] = x * t;
+    out[1] = y * t;
+    out[2] = z * t;
+    out[3] = 0.5 * Math.log(x * x + y * y + z * z + w * w);
+    return out;
+  }
+  /**
+   * Calculate the scalar power of a unit quaternion.
+   *
+   * @param {quat} out the receiving quaternion
+   * @param {quat} a quat to calculate the exponential of
+   * @param {Number} b amount to scale the quaternion by
+   * @returns {quat} out
+   */
+
+  function pow(out, a, b) {
+    ln(out, a);
+    scale$6(out, out, b);
+    exp(out, out);
+    return out;
+  }
+  /**
    * Performs a spherical linear interpolation between two quat
    *
    * @param {quat} out the receiving quaternion
@@ -5546,8 +5616,8 @@ THE SOFTWARE.
     return out;
   }
   /**
-   * Generates a random quaternion
-   *
+   * Generates a random unit quaternion
+   * 
    * @param {quat} out the receiving quaternion
    * @returns {quat} out
    */
@@ -5933,11 +6003,15 @@ THE SOFTWARE.
     identity: identity$4,
     setAxisAngle: setAxisAngle,
     getAxisAngle: getAxisAngle,
+    getAngle: getAngle,
     multiply: multiply$6,
     rotateX: rotateX$2,
     rotateY: rotateY$2,
     rotateZ: rotateZ$2,
     calculateW: calculateW,
+    exp: exp,
+    ln: ln,
+    pow: pow,
     slerp: slerp,
     random: random$2,
     invert: invert$4,
