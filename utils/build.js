@@ -8,7 +8,12 @@ const copyFileSync = (source, dest) => {
 };
 
 delete pkg.private;
+delete pkg.scripts;
+delete pkg.devDependencies;
+pkg.main = 'cjs/index.js'
+pkg.module = 'esm/index.js'
 fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
+
 copyFileSync('README.md', 'dist/README.md');
 copyFileSync('LICENSE.md', 'dist/LICENSE.md');
 
