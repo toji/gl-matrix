@@ -452,7 +452,7 @@ export function transformMat4(out, a, m) {
  * @param {vec2} out The receiving vec2
  * @param {vec2} a The vec2 point to rotate
  * @param {vec2} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {Number} c The angle of rotation in radians
  * @returns {vec2} out
  */
 export function rotate(out, a, b, c) {
