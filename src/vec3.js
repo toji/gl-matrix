@@ -545,10 +545,10 @@ export function transformQuat(out, a, q) {
  * @param {vec3} out The receiving vec3
  * @param {vec3} a The vec3 point to rotate
  * @param {vec3} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {Number} rad The angle of rotation in radians
  * @returns {vec3} out
  */
-export function rotateX(out, a, b, c){
+export function rotateX(out, a, b, rad){
   let p = [], r=[];
   //Translate point to the origin
   p[0] = a[0] - b[0];
@@ -557,8 +557,8 @@ export function rotateX(out, a, b, c){
 
   //perform rotation
   r[0] = p[0];
-  r[1] = p[1]*Math.cos(c) - p[2]*Math.sin(c);
-  r[2] = p[1]*Math.sin(c) + p[2]*Math.cos(c);
+  r[1] = p[1]*Math.cos(rad) - p[2]*Math.sin(rad);
+  r[2] = p[1]*Math.sin(rad) + p[2]*Math.cos(rad);
 
   //translate to correct position
   out[0] = r[0] + b[0];
@@ -573,10 +573,10 @@ export function rotateX(out, a, b, c){
  * @param {vec3} out The receiving vec3
  * @param {vec3} a The vec3 point to rotate
  * @param {vec3} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {Number} rad The angle of rotation in radians
  * @returns {vec3} out
  */
-export function rotateY(out, a, b, c){
+export function rotateY(out, a, b, rad){
   let p = [], r=[];
   //Translate point to the origin
   p[0] = a[0] - b[0];
@@ -584,9 +584,9 @@ export function rotateY(out, a, b, c){
   p[2] = a[2] - b[2];
 
   //perform rotation
-  r[0] = p[2]*Math.sin(c) + p[0]*Math.cos(c);
+  r[0] = p[2]*Math.sin(rad) + p[0]*Math.cos(rad);
   r[1] = p[1];
-  r[2] = p[2]*Math.cos(c) - p[0]*Math.sin(c);
+  r[2] = p[2]*Math.cos(rad) - p[0]*Math.sin(rad);
 
   //translate to correct position
   out[0] = r[0] + b[0];
@@ -601,10 +601,10 @@ export function rotateY(out, a, b, c){
  * @param {vec3} out The receiving vec3
  * @param {vec3} a The vec3 point to rotate
  * @param {vec3} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {Number} rad The angle of rotation in radians
  * @returns {vec3} out
  */
-export function rotateZ(out, a, b, c){
+export function rotateZ(out, a, b, rad){
   let p = [], r=[];
   //Translate point to the origin
   p[0] = a[0] - b[0];
@@ -612,8 +612,8 @@ export function rotateZ(out, a, b, c){
   p[2] = a[2] - b[2];
 
   //perform rotation
-  r[0] = p[0]*Math.cos(c) - p[1]*Math.sin(c);
-  r[1] = p[0]*Math.sin(c) + p[1]*Math.cos(c);
+  r[0] = p[0]*Math.cos(rad) - p[1]*Math.sin(rad);
+  r[1] = p[0]*Math.sin(rad) + p[1]*Math.cos(rad);
   r[2] = p[2];
 
   //translate to correct position

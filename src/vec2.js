@@ -315,7 +315,7 @@ export function normalize(out, a) {
   if (len > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len = 1 / Math.sqrt(len);
-  }    
+  }
   out[0] = a[0] * len;
   out[1] = a[1] * len;
   return out;
@@ -452,16 +452,16 @@ export function transformMat4(out, a, m) {
  * @param {vec2} out The receiving vec2
  * @param {vec2} a The vec2 point to rotate
  * @param {vec2} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {Number} rad The angle of rotation in radians
  * @returns {vec2} out
  */
-export function rotate(out, a, b, c) {
+export function rotate(out, a, b, rad) {
   //Translate point to the origin
   let p0 = a[0] - b[0],
   p1 = a[1] - b[1],
-  sinC = Math.sin(c),
-  cosC = Math.cos(c);
-  
+  sinC = Math.sin(rad),
+  cosC = Math.cos(rad);
+
   //perform rotation and translate to correct position
   out[0] = p0*cosC - p1*sinC + b[0];
   out[1] = p0*sinC + p1*cosC + b[1];
@@ -480,22 +480,21 @@ export function angle(a, b) {
     y1 = a[1],
     x2 = b[0],
     y2 = b[1];
-  
+
   let len1 = x1*x1 + y1*y1;
   if (len1 > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len1 = 1 / Math.sqrt(len1);
   }
-  
+
   let len2 = x2*x2 + y2*y2;
   if (len2 > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len2 = 1 / Math.sqrt(len2);
   }
-  
+
   let cosine = (x1 * x2 + y1 * y2) * len1 * len2;
-  
-  
+
   if(cosine > 1.0) {
     return 0;
   }
