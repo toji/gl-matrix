@@ -7,8 +7,9 @@ import * as glMatrix from "./common.js";
  * @description
  * A mat2d contains six elements defined as:
  * <pre>
- * [a, b, c,
- *  d, tx, ty]
+ * [a, b,
+ *  c, d,
+ *  tx, ty]
  * </pre>
  * This is a short form for the 3x3 matrix:
  * <pre>
