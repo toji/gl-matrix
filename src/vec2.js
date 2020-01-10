@@ -494,15 +494,7 @@ export function angle(a, b) {
   }
 
   let cosine = (x1 * x2 + y1 * y2) * len1 * len2;
-
-  if(cosine > 1.0) {
-    return 0;
-  }
-  else if(cosine < -1.0) {
-    return Math.PI;
-  } else {
-    return Math.acos(cosine);
-  }
+  return Math.acos(cosine);
 }
 
 /**
