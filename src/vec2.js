@@ -476,24 +476,12 @@ export function rotate(out, a, b, rad) {
  * @returns {Number} The angle in radians
  */
 export function angle(a, b) {
-  let x1 = a[0],
-    y1 = a[1],
-    x2 = b[0],
-    y2 = b[1];
-
-  let len1 = x1*x1 + y1*y1;
-  if (len1 > 0) {
-    //TODO: evaluate use of glm_invsqrt here?
-    len1 = 1 / Math.sqrt(len1);
-  }
-
-  let len2 = x2*x2 + y2*y2;
-  if (len2 > 0) {
-    //TODO: evaluate use of glm_invsqrt here?
-    len2 = 1 / Math.sqrt(len2);
-  }
-
-  let cosine = (x1 * x2 + y1 * y2) * len1 * len2;
+  let x1 = a[0], y1 = a[1], x2 = b[0], y2 = b[1],
+  // mag is the product of the magnitudes of a and b
+  mag = Math.sqrt(x1*x1 + y1*y1) * Math.sqrt(x2*x2 + y2*y2),
+  // mag &&.. short circuits if mag == 0
+  cosine = mag && ((x1 * x2 + y1 * y2) / mag);
+  // Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
   return Math.acos(Math.min(Math.max(cosine, -1), 1));
 }
 
