@@ -494,7 +494,7 @@ export function angle(a, b) {
   }
 
   let cosine = (x1 * x2 + y1 * y2) * len1 * len2;
-  return Math.acos(cosine);
+  return Math.acos(Math.min(Math.max(cosine, -1), 1));
 }
 
 /**
