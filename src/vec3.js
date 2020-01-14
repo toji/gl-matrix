@@ -631,22 +631,11 @@ export function rotateZ(out, a, b, rad){
  * @returns {Number} The angle in radians
  */
 export function angle(a, b) {
-  let tempA = fromValues(a[0], a[1], a[2]);
-  let tempB = fromValues(b[0], b[1], b[2]);
-
-  normalize(tempA, tempA);
-  normalize(tempB, tempB);
-
-  let cosine = dot(tempA, tempB);
-
-  if(cosine > 1.0) {
-    return 0;
-  }
-  else if(cosine < -1.0) {
-    return Math.PI;
-  } else {
-    return Math.acos(cosine);
-  }
+  let mag1 = Math.sqrt(a[0]*a[0] + a[1]*a[1] + a[2]*a[2]),
+  mag2 = Math.sqrt(b[0]*b[0] + b[1]*b[1] + b[2]*b[2]),
+  mag = mag1 * mag2,
+  cosine = mag && (dot(a, b) / mag);
+  return Math.acos(Math.min(Math.max(cosine, -1), 1));
 }
 
 /**
