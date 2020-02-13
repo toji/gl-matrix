@@ -30,13 +30,14 @@
 
 /**
  * 2x3 Matrix
- * @module mat2d
+ * @typedef {number[] | Float32Array} mat2d
  *
  * @description
  * A mat2d contains six elements defined as:
  * &lt;pre>
- * [a, b, c,
- *  d, tx, ty]
+ * [a, b,
+ *  c, d,
+ *  tx, ty]
  * &lt;/pre>
  * This is a short form for the 3x3 matrix:
  * &lt;pre>
@@ -54,7 +55,7 @@
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(6);
-  if(glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
     out[4] = 0;
@@ -167,11 +168,15 @@ export function set(out, a, b, c, d, tx, ty) {
  * @returns {mat2d} out
  */
 export function invert(out, a) {
-  let aa = a[0], ab = a[1], ac = a[2], ad = a[3];
-  let atx = a[4], aty = a[5];
+  let aa = a[0],
+    ab = a[1],
+    ac = a[2],
+    ad = a[3];
+  let atx = a[4],
+    aty = a[5];
 
   let det = aa * ad - ab * ac;
-  if(!det){
+  if (!det) {
     return null;
   }
   det = 1.0 / det;
@@ -204,8 +209,18 @@ export function determinant(a) {
  * @returns {mat2d} out
  */
 export function multiply(out, a, b) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3],
+    b4 = b[4],
+    b5 = b[5];
   out[0] = a0 * b0 + a2 * b1;
   out[1] = a1 * b0 + a3 * b1;
   out[2] = a0 * b2 + a2 * b3;
@@ -224,11 +239,16 @@ export function multiply(out, a, b) {
  * @returns {mat2d} out
  */
 export function rotate(out, a, rad) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
   let s = Math.sin(rad);
   let c = Math.cos(rad);
-  out[0] = a0 *  c + a2 * s;
-  out[1] = a1 *  c + a3 * s;
+  out[0] = a0 * c + a2 * s;
+  out[1] = a1 * c + a3 * s;
   out[2] = a0 * -s + a2 * c;
   out[3] = a1 * -s + a3 * c;
   out[4] = a4;
@@ -245,8 +265,14 @@ export function rotate(out, a, rad) {
  * @returns {mat2d} out
  **/
 export function scale(out, a, v) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let v0 = v[0], v1 = v[1];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let v0 = v[0],
+    v1 = v[1];
   out[0] = a0 * v0;
   out[1] = a1 * v0;
   out[2] = a2 * v1;
@@ -265,8 +291,14 @@ export function scale(out, a, v) {
  * @returns {mat2d} out
  **/
 export function translate(out, a, v) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let v0 = v[0], v1 = v[1];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let v0 = v[0],
+    v1 = v[1];
   out[0] = a0;
   out[1] = a1;
   out[2] = a2;
@@ -288,7 +320,8 @@ export function translate(out, a, v) {
  * @returns {mat2d} out
  */
 export function fromRotation(out, rad) {
-  let s = Math.sin(rad), c = Math.cos(rad);
+  let s = Math.sin(rad),
+    c = Math.cos(rad);
   out[0] = c;
   out[1] = s;
   out[2] = -s;
@@ -347,8 +380,21 @@ export function fromTranslation(out, v) {
  * @returns {String} string representation of the matrix
  */
 export function str(a) {
-  return 'mat2d(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' +
-          a[3] + ', ' + a[4] + ', ' + a[5] + ')';
+  return (
+    "mat2d(" +
+    a[0] +
+    ", " +
+    a[1] +
+    ", " +
+    a[2] +
+    ", " +
+    a[3] +
+    ", " +
+    a[4] +
+    ", " +
+    a[5] +
+    ")"
+  );
 }
 
 /**
@@ -358,7 +404,7 @@ export function str(a) {
  * @returns {Number} Frobenius norm
  */
 export function frob(a) {
-  return(Math.hypot(a[0],a[1],a[2],a[3],a[4],a[5],1))
+  return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], 1);
 }
 
 /**
@@ -425,12 +471,12 @@ export function multiplyScalar(out, a, b) {
  * @returns {mat2d} out
  */
 export function multiplyScalarAndAdd(out, a, b, scale) {
-  out[0] = a[0] + (b[0] * scale);
-  out[1] = a[1] + (b[1] * scale);
-  out[2] = a[2] + (b[2] * scale);
-  out[3] = a[3] + (b[3] * scale);
-  out[4] = a[4] + (b[4] * scale);
-  out[5] = a[5] + (b[5] * scale);
+  out[0] = a[0] + b[0] * scale;
+  out[1] = a[1] + b[1] * scale;
+  out[2] = a[2] + b[2] * scale;
+  out[3] = a[3] + b[3] * scale;
+  out[4] = a[4] + b[4] * scale;
+  out[5] = a[5] + b[5] * scale;
   return out;
 }
 
@@ -442,7 +488,14 @@ export function multiplyScalarAndAdd(out, a, b, scale) {
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 export function exactEquals(a, b) {
-  return a[0] === b[0] &amp;&amp; a[1] === b[1] &amp;&amp; a[2] === b[2] &amp;&amp; a[3] === b[3] &amp;&amp; a[4] === b[4] &amp;&amp; a[5] === b[5];
+  return (
+    a[0] === b[0] &amp;&amp;
+    a[1] === b[1] &amp;&amp;
+    a[2] === b[2] &amp;&amp;
+    a[3] === b[3] &amp;&amp;
+    a[4] === b[4] &amp;&amp;
+    a[5] === b[5]
+  );
 }
 
 /**
@@ -453,14 +506,32 @@ export function exactEquals(a, b) {
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 export function equals(a, b) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
-  return (Math.abs(a0 - b0) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
-          Math.abs(a1 - b1) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &amp;&amp;
-          Math.abs(a2 - b2) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &amp;&amp;
-          Math.abs(a3 - b3) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &amp;&amp;
-          Math.abs(a4 - b4) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &amp;&amp;
-          Math.abs(a5 - b5) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)));
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3],
+    b4 = b[4],
+    b5 = b[5];
+  return (
+    Math.abs(a0 - b0) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
+    Math.abs(a1 - b1) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &amp;&amp;
+    Math.abs(a2 - b2) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &amp;&amp;
+    Math.abs(a3 - b3) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) &amp;&amp;
+    Math.abs(a4 - b4) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) &amp;&amp;
+    Math.abs(a5 - b5) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5))
+  );
 }
 
 /**
@@ -484,13 +555,13 @@ export const sub = subtract;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-quat2.html">quat2</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#adjoint">adjoint</a></li><li><a href="global.html#angle">angle</a></li><li><a href="global.html#bezier">bezier</a></li><li><a href="global.html#calculateW">calculateW</a></li><li><a href="global.html#ceil">ceil</a></li><li><a href="global.html#clone">clone</a></li><li><a href="global.html#conjugate">conjugate</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#cross">cross</a></li><li><a href="global.html#determinant">determinant</a></li><li><a href="global.html#dist">dist</a></li><li><a href="global.html#distance">distance</a></li><li><a href="global.html#div">div</a></li><li><a href="global.html#divide">divide</a></li><li><a href="global.html#dot">dot</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#exactEquals">exactEquals</a></li><li><a href="global.html#exp">exp</a></li><li><a href="global.html#floor">floor</a></li><li><a href="global.html#forEach">forEach</a></li><li><a href="global.html#frob">frob</a></li><li><a href="global.html#fromEuler">fromEuler</a></li><li><a href="global.html#fromMat2d">fromMat2d</a></li><li><a href="global.html#fromMat3">fromMat3</a></li><li><a href="global.html#fromMat4">fromMat4</a></li><li><a href="global.html#fromQuat">fromQuat</a></li><li><a href="global.html#fromQuat2">fromQuat2</a></li><li><a href="global.html#fromRotation">fromRotation</a></li><li><a href="global.html#fromRotationTranslation">fromRotationTranslation</a></li><li><a href="global.html#fromRotationTranslationScale">fromRotationTranslationScale</a></li><li><a href="global.html#fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin</a></li><li><a href="global.html#fromRotationTranslationValues">fromRotationTranslationValues</a></li><li><a href="global.html#fromScaling">fromScaling</a></li><li><a href="global.html#fromTranslation">fromTranslation</a></li><li><a href="global.html#fromValues">fromValues</a></li><li><a href="global.html#fromXRotation">fromXRotation</a></li><li><a href="global.html#fromYRotation">fromYRotation</a></li><li><a href="global.html#fromZRotation">fromZRotation</a></li><li><a href="global.html#frustum">frustum</a></li><li><a href="global.html#getAngle">getAngle</a></li><li><a href="global.html#getAxisAngle">getAxisAngle</a></li><li><a href="global.html#getDual">getDual</a></li><li><a href="global.html#getReal">getReal</a></li><li><a href="global.html#getRotation">getRotation</a></li><li><a href="global.html#getScaling">getScaling</a></li><li><a href="global.html#getTranslation">getTranslation</a></li><li><a href="global.html#hermite">hermite</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#inverse">inverse</a></li><li><a href="global.html#invert">invert</a></li><li><a href="global.html#LDU">LDU</a></li><li><a href="global.html#len">len</a></li><li><a href="global.html#length">length</a></li><li><a href="global.html#lerp">lerp</a></li><li><a href="global.html#ln">ln</a></li><li><a href="global.html#lookAt">lookAt</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#mul">mul</a></li><li><a href="global.html#multiply">multiply</a></li><li><a href="global.html#multiplyScalar">multiplyScalar</a></li><li><a href="global.html#multiplyScalarAndAdd">multiplyScalarAndAdd</a></li><li><a href="global.html#negate">negate</a></li><li><a href="global.html#normalFromMat4">normalFromMat4</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#ortho">ortho</a></li><li><a href="global.html#perspective">perspective</a></li><li><a href="global.html#perspectiveFromFieldOfView">perspectiveFromFieldOfView</a></li><li><a href="global.html#pow">pow</a></li><li><a href="global.html#projection">projection</a></li><li><a href="global.html#random">random</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateAroundAxis">rotateAroundAxis</a></li><li><a href="global.html#rotateByQuatAppend">rotateByQuatAppend</a></li><li><a href="global.html#rotateByQuatPrepend">rotateByQuatPrepend</a></li><li><a href="global.html#rotateX">rotateX</a></li><li><a href="global.html#rotateY">rotateY</a></li><li><a href="global.html#rotateZ">rotateZ</a></li><li><a href="global.html#rotationTo">rotationTo</a></li><li><a href="global.html#round">round</a></li><li><a href="global.html#scale">scale</a></li><li><a href="global.html#scaleAndAdd">scaleAndAdd</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#setAxes">setAxes</a></li><li><a href="global.html#setAxisAngle">setAxisAngle</a></li><li><a href="global.html#setDual">setDual</a></li><li><a href="global.html#setReal">setReal</a></li><li><a href="global.html#slerp">slerp</a></li><li><a href="global.html#sqlerp">sqlerp</a></li><li><a href="global.html#sqrDist">sqrDist</a></li><li><a href="global.html#sqrLen">sqrLen</a></li><li><a href="global.html#squaredDistance">squaredDistance</a></li><li><a href="global.html#squaredLength">squaredLength</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#sub">sub</a></li><li><a href="global.html#subtract">subtract</a></li><li><a href="global.html#targetTo">targetTo</a></li><li><a href="global.html#transformMat2">transformMat2</a></li><li><a href="global.html#transformMat2d">transformMat2d</a></li><li><a href="global.html#transformMat3">transformMat3</a></li><li><a href="global.html#transformMat4">transformMat4</a></li><li><a href="global.html#transformQuat">transformQuat</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#transpose">transpose</a></li><li><a href="global.html#zero">zero</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Aug 19 2019 08:25:53 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 22:06:20 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

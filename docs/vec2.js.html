@@ -30,7 +30,7 @@
 
 /**
  * 2 Dimensional Vector
- * @module vec2
+ * @typedef {number[] | Float32Array} vec2
  */
 
 /**
@@ -40,7 +40,7 @@
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(2);
-  if(glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
   }
@@ -218,7 +218,7 @@ export function max(out, a, b) {
  * @param {vec2} a vector to round
  * @returns {vec2} out
  */
-export function round (out, a) {
+export function round(out, a) {
   out[0] = Math.round(a[0]);
   out[1] = Math.round(a[1]);
   return out;
@@ -248,8 +248,8 @@ export function scale(out, a, b) {
  * @returns {vec2} out
  */
 export function scaleAndAdd(out, a, b, scale) {
-  out[0] = a[0] + (b[0] * scale);
-  out[1] = a[1] + (b[1] * scale);
+  out[0] = a[0] + b[0] * scale;
+  out[1] = a[1] + b[1] * scale;
   return out;
 }
 
@@ -276,7 +276,7 @@ export function distance(a, b) {
 export function squaredDistance(a, b) {
   var x = b[0] - a[0],
     y = b[1] - a[1];
-  return x*x + y*y;
+  return x * x + y * y;
 }
 
 /**
@@ -297,10 +297,10 @@ export function length(a) {
  * @param {vec2} a vector to calculate squared length of
  * @returns {Number} squared length of a
  */
-export function squaredLength (a) {
+export function squaredLength(a) {
   var x = a[0],
     y = a[1];
-  return x*x + y*y;
+  return x * x + y * y;
 }
 
 /**
@@ -339,11 +339,11 @@ export function inverse(out, a) {
 export function normalize(out, a) {
   var x = a[0],
     y = a[1];
-  var len = x*x + y*y;
+  var len = x * x + y * y;
   if (len > 0) {
     //TODO: evaluate use of glm_invsqrt here?
     len = 1 / Math.sqrt(len);
-  }    
+  }
   out[0] = a[0] * len;
   out[1] = a[1] * len;
   return out;
@@ -480,19 +480,19 @@ export function transformMat4(out, a, m) {
  * @param {vec2} out The receiving vec2
  * @param {vec2} a The vec2 point to rotate
  * @param {vec2} b The origin of the rotation
- * @param {Number} c The angle of rotation
+ * @param {Number} rad The angle of rotation in radians
  * @returns {vec2} out
  */
-export function rotate(out, a, b, c) {
+export function rotate(out, a, b, rad) {
   //Translate point to the origin
   let p0 = a[0] - b[0],
-  p1 = a[1] - b[1],
-  sinC = Math.sin(c),
-  cosC = Math.cos(c);
-  
+    p1 = a[1] - b[1],
+    sinC = Math.sin(rad),
+    cosC = Math.cos(rad);
+
   //perform rotation and translate to correct position
-  out[0] = p0*cosC - p1*sinC + b[0];
-  out[1] = p0*sinC + p1*cosC + b[1];
+  out[0] = p0 * cosC - p1 * sinC + b[0];
+  out[1] = p0 * sinC + p1 * cosC + b[1];
 
   return out;
 }
@@ -507,31 +507,13 @@ export function angle(a, b) {
   let x1 = a[0],
     y1 = a[1],
     x2 = b[0],
-    y2 = b[1];
-  
-  let len1 = x1*x1 + y1*y1;
-  if (len1 > 0) {
-    //TODO: evaluate use of glm_invsqrt here?
-    len1 = 1 / Math.sqrt(len1);
-  }
-  
-  let len2 = x2*x2 + y2*y2;
-  if (len2 > 0) {
-    //TODO: evaluate use of glm_invsqrt here?
-    len2 = 1 / Math.sqrt(len2);
-  }
-  
-  let cosine = (x1 * x2 + y1 * y2) * len1 * len2;
-  
-  
-  if(cosine > 1.0) {
-    return 0;
-  }
-  else if(cosine &lt; -1.0) {
-    return Math.PI;
-  } else {
-    return Math.acos(cosine);
-  }
+    y2 = b[1],
+    // mag is the product of the magnitudes of a and b
+    mag = Math.sqrt(x1 * x1 + y1 * y1) * Math.sqrt(x2 * x2 + y2 * y2),
+    // mag &amp;&amp;.. short circuits if mag == 0
+    cosine = mag &amp;&amp; (x1 * x2 + y1 * y2) / mag;
+  // Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
+  return Math.acos(Math.min(Math.max(cosine, -1), 1));
 }
 
 /**
@@ -553,7 +535,7 @@ export function zero(out) {
  * @returns {String} string representation of the vector
  */
 export function str(a) {
-  return 'vec2(' + a[0] + ', ' + a[1] + ')';
+  return "vec2(" + a[0] + ", " + a[1] + ")";
 }
 
 /**
@@ -575,10 +557,16 @@ export function exactEquals(a, b) {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function equals(a, b) {
-  let a0 = a[0], a1 = a[1];
-  let b0 = b[0], b1 = b[1];
-  return (Math.abs(a0 - b0) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
-          Math.abs(a1 - b1) &lt;= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)));
+  let a0 = a[0],
+    a1 = a[1];
+  let b0 = b[0],
+    b1 = b[1];
+  return (
+    Math.abs(a0 - b0) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
+    Math.abs(a1 - b1) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1))
+  );
 }
 
 /**
@@ -640,24 +628,26 @@ export const forEach = (function() {
 
   return function(a, stride, offset, count, fn, arg) {
     let i, l;
-    if(!stride) {
+    if (!stride) {
       stride = 2;
     }
 
-    if(!offset) {
+    if (!offset) {
       offset = 0;
     }
 
-    if(count) {
-      l = Math.min((count * stride) + offset, a.length);
+    if (count) {
+      l = Math.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }
 
-    for(i = offset; i &lt; l; i += stride) {
-      vec[0] = a[i]; vec[1] = a[i+1];
+    for (i = offset; i &lt; l; i += stride) {
+      vec[0] = a[i];
+      vec[1] = a[i + 1];
       fn(vec, vec, arg);
-      a[i] = vec[0]; a[i+1] = vec[1];
+      a[i] = vec[0];
+      a[i + 1] = vec[1];
     }
 
     return a;
@@ -673,13 +663,13 @@ export const forEach = (function() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-quat2.html">quat2</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#adjoint">adjoint</a></li><li><a href="global.html#angle">angle</a></li><li><a href="global.html#bezier">bezier</a></li><li><a href="global.html#calculateW">calculateW</a></li><li><a href="global.html#ceil">ceil</a></li><li><a href="global.html#clone">clone</a></li><li><a href="global.html#conjugate">conjugate</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#cross">cross</a></li><li><a href="global.html#determinant">determinant</a></li><li><a href="global.html#dist">dist</a></li><li><a href="global.html#distance">distance</a></li><li><a href="global.html#div">div</a></li><li><a href="global.html#divide">divide</a></li><li><a href="global.html#dot">dot</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#exactEquals">exactEquals</a></li><li><a href="global.html#exp">exp</a></li><li><a href="global.html#floor">floor</a></li><li><a href="global.html#forEach">forEach</a></li><li><a href="global.html#frob">frob</a></li><li><a href="global.html#fromEuler">fromEuler</a></li><li><a href="global.html#fromMat2d">fromMat2d</a></li><li><a href="global.html#fromMat3">fromMat3</a></li><li><a href="global.html#fromMat4">fromMat4</a></li><li><a href="global.html#fromQuat">fromQuat</a></li><li><a href="global.html#fromQuat2">fromQuat2</a></li><li><a href="global.html#fromRotation">fromRotation</a></li><li><a href="global.html#fromRotationTranslation">fromRotationTranslation</a></li><li><a href="global.html#fromRotationTranslationScale">fromRotationTranslationScale</a></li><li><a href="global.html#fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin</a></li><li><a href="global.html#fromRotationTranslationValues">fromRotationTranslationValues</a></li><li><a href="global.html#fromScaling">fromScaling</a></li><li><a href="global.html#fromTranslation">fromTranslation</a></li><li><a href="global.html#fromValues">fromValues</a></li><li><a href="global.html#fromXRotation">fromXRotation</a></li><li><a href="global.html#fromYRotation">fromYRotation</a></li><li><a href="global.html#fromZRotation">fromZRotation</a></li><li><a href="global.html#frustum">frustum</a></li><li><a href="global.html#getAngle">getAngle</a></li><li><a href="global.html#getAxisAngle">getAxisAngle</a></li><li><a href="global.html#getDual">getDual</a></li><li><a href="global.html#getReal">getReal</a></li><li><a href="global.html#getRotation">getRotation</a></li><li><a href="global.html#getScaling">getScaling</a></li><li><a href="global.html#getTranslation">getTranslation</a></li><li><a href="global.html#hermite">hermite</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#inverse">inverse</a></li><li><a href="global.html#invert">invert</a></li><li><a href="global.html#LDU">LDU</a></li><li><a href="global.html#len">len</a></li><li><a href="global.html#length">length</a></li><li><a href="global.html#lerp">lerp</a></li><li><a href="global.html#ln">ln</a></li><li><a href="global.html#lookAt">lookAt</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#mul">mul</a></li><li><a href="global.html#multiply">multiply</a></li><li><a href="global.html#multiplyScalar">multiplyScalar</a></li><li><a href="global.html#multiplyScalarAndAdd">multiplyScalarAndAdd</a></li><li><a href="global.html#negate">negate</a></li><li><a href="global.html#normalFromMat4">normalFromMat4</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#ortho">ortho</a></li><li><a href="global.html#perspective">perspective</a></li><li><a href="global.html#perspectiveFromFieldOfView">perspectiveFromFieldOfView</a></li><li><a href="global.html#pow">pow</a></li><li><a href="global.html#projection">projection</a></li><li><a href="global.html#random">random</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateAroundAxis">rotateAroundAxis</a></li><li><a href="global.html#rotateByQuatAppend">rotateByQuatAppend</a></li><li><a href="global.html#rotateByQuatPrepend">rotateByQuatPrepend</a></li><li><a href="global.html#rotateX">rotateX</a></li><li><a href="global.html#rotateY">rotateY</a></li><li><a href="global.html#rotateZ">rotateZ</a></li><li><a href="global.html#rotationTo">rotationTo</a></li><li><a href="global.html#round">round</a></li><li><a href="global.html#scale">scale</a></li><li><a href="global.html#scaleAndAdd">scaleAndAdd</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#setAxes">setAxes</a></li><li><a href="global.html#setAxisAngle">setAxisAngle</a></li><li><a href="global.html#setDual">setDual</a></li><li><a href="global.html#setReal">setReal</a></li><li><a href="global.html#slerp">slerp</a></li><li><a href="global.html#sqlerp">sqlerp</a></li><li><a href="global.html#sqrDist">sqrDist</a></li><li><a href="global.html#sqrLen">sqrLen</a></li><li><a href="global.html#squaredDistance">squaredDistance</a></li><li><a href="global.html#squaredLength">squaredLength</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#sub">sub</a></li><li><a href="global.html#subtract">subtract</a></li><li><a href="global.html#targetTo">targetTo</a></li><li><a href="global.html#transformMat2">transformMat2</a></li><li><a href="global.html#transformMat2d">transformMat2d</a></li><li><a href="global.html#transformMat3">transformMat3</a></li><li><a href="global.html#transformMat4">transformMat4</a></li><li><a href="global.html#transformQuat">transformQuat</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#transpose">transpose</a></li><li><a href="global.html#zero">zero</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Aug 19 2019 08:25:53 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 22:06:20 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

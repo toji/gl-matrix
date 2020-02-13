@@ -26,14 +26,14 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import * as glMatrix from "./common.js"
-import * as mat3 from "./mat3.js"
-import * as vec3 from "./vec3.js"
-import * as vec4 from "./vec4.js"
+            <pre class="prettyprint source linenums"><code>import * as glMatrix from "./common.js";
+import * as mat3 from "./mat3.js";
+import * as vec3 from "./vec3.js";
+import * as vec4 from "./vec4.js";
 
 /**
  * Quaternion
- * @module quat
+ * @typedef {number[] | Float32Array} quat
  */
 
 /**
@@ -43,7 +43,7 @@ import * as vec4 from "./vec4.js"
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(4);
-  if(glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -117,14 +117,14 @@ export function getAxisAngle(out_axis, q) {
 /**
  * Gets the angular distance between two unit quaternions
  *
- * @param  {quat} a     Origin unit quaternion 
+ * @param  {quat} a     Origin unit quaternion
  * @param  {quat} b     Destination unit quaternion
  * @return {Number}     Angle, in radians, between the two quaternions
  */
 export function getAngle(a, b) {
   let dotproduct = dot(a, b);
-  
-  return Math.acos(2 * dotproduct*dotproduct - 1);
+
+  return Math.acos(2 * dotproduct * dotproduct - 1);
 }
 
 /**
@@ -136,8 +136,14 @@ export function getAngle(a, b) {
  * @returns {quat} out
  */
 export function multiply(out, a, b) {
-  let ax = a[0], ay = a[1], az = a[2], aw = a[3];
-  let bx = b[0], by = b[1], bz = b[2], bw = b[3];
+  let ax = a[0],
+    ay = a[1],
+    az = a[2],
+    aw = a[3];
+  let bx = b[0],
+    by = b[1],
+    bz = b[2],
+    bw = b[3];
 
   out[0] = ax * bw + aw * bx + ay * bz - az * by;
   out[1] = ay * bw + aw * by + az * bx - ax * bz;
@@ -157,8 +163,12 @@ export function multiply(out, a, b) {
 export function rotateX(out, a, rad) {
   rad *= 0.5;
 
-  let ax = a[0], ay = a[1], az = a[2], aw = a[3];
-  let bx = Math.sin(rad), bw = Math.cos(rad);
+  let ax = a[0],
+    ay = a[1],
+    az = a[2],
+    aw = a[3];
+  let bx = Math.sin(rad),
+    bw = Math.cos(rad);
 
   out[0] = ax * bw + aw * bx;
   out[1] = ay * bw + az * bx;
@@ -178,8 +188,12 @@ export function rotateX(out, a, rad) {
 export function rotateY(out, a, rad) {
   rad *= 0.5;
 
-  let ax = a[0], ay = a[1], az = a[2], aw = a[3];
-  let by = Math.sin(rad), bw = Math.cos(rad);
+  let ax = a[0],
+    ay = a[1],
+    az = a[2],
+    aw = a[3];
+  let by = Math.sin(rad),
+    bw = Math.cos(rad);
 
   out[0] = ax * bw - az * by;
   out[1] = ay * bw + aw * by;
@@ -199,8 +213,12 @@ export function rotateY(out, a, rad) {
 export function rotateZ(out, a, rad) {
   rad *= 0.5;
 
-  let ax = a[0], ay = a[1], az = a[2], aw = a[3];
-  let bz = Math.sin(rad), bw = Math.cos(rad);
+  let ax = a[0],
+    ay = a[1],
+    az = a[2],
+    aw = a[3];
+  let bz = Math.sin(rad),
+    bw = Math.cos(rad);
 
   out[0] = ax * bw + ay * bz;
   out[1] = ay * bw - ax * bz;
@@ -219,7 +237,9 @@ export function rotateZ(out, a, rad) {
  * @returns {quat} out
  */
 export function calculateW(out, a) {
-  let x = a[0], y = a[1], z = a[2];
+  let x = a[0],
+    y = a[1],
+    z = a[2];
 
   out[0] = x;
   out[1] = y;
@@ -236,11 +256,14 @@ export function calculateW(out, a) {
  * @returns {quat} out
  */
 export function exp(out, a) {
-  let x = a[0], y = a[1], z = a[2], w = a[3];
+  let x = a[0],
+    y = a[1],
+    z = a[2],
+    w = a[3];
 
-  let r = Math.sqrt(x*x + y*y + z*z);
+  let r = Math.sqrt(x * x + y * y + z * z);
   let et = Math.exp(w);
-  let s = r > 0 ? et * Math.sin(r) / r : 0;
+  let s = r > 0 ? (et * Math.sin(r)) / r : 0;
 
   out[0] = x * s;
   out[1] = y * s;
@@ -258,15 +281,18 @@ export function exp(out, a) {
  * @returns {quat} out
  */
 export function ln(out, a) {
-  let x = a[0], y = a[1], z = a[2], w = a[3];
+  let x = a[0],
+    y = a[1],
+    z = a[2],
+    w = a[3];
 
-  let r = Math.sqrt(x*x + y*y + z*z);
+  let r = Math.sqrt(x * x + y * y + z * z);
   let t = r > 0 ? Math.atan2(r, w) / r : 0;
 
   out[0] = x * t;
   out[1] = y * t;
   out[2] = z * t;
-  out[3] = 0.5 * Math.log(x*x + y*y + z*z + w*w);
+  out[3] = 0.5 * Math.log(x * x + y * y + z * z + w * w);
 
   return out;
 }
@@ -298,26 +324,32 @@ export function pow(out, a, b) {
 export function slerp(out, a, b, t) {
   // benchmarks:
   //    http://jsperf.com/quaternion-slerp-implementations
-  let ax = a[0], ay = a[1], az = a[2], aw = a[3];
-  let bx = b[0], by = b[1], bz = b[2], bw = b[3];
+  let ax = a[0],
+    ay = a[1],
+    az = a[2],
+    aw = a[3];
+  let bx = b[0],
+    by = b[1],
+    bz = b[2],
+    bw = b[3];
 
   let omega, cosom, sinom, scale0, scale1;
 
   // calc cosine
   cosom = ax * bx + ay * by + az * bz + aw * bw;
   // adjust signs (if necessary)
-  if ( cosom &lt; 0.0 ) {
+  if (cosom &lt; 0.0) {
     cosom = -cosom;
-    bx = - bx;
-    by = - by;
-    bz = - bz;
-    bw = - bw;
+    bx = -bx;
+    by = -by;
+    bz = -bz;
+    bw = -bw;
   }
   // calculate coefficients
-  if ( (1.0 - cosom) > glMatrix.EPSILON ) {
+  if (1.0 - cosom > glMatrix.EPSILON) {
     // standard case (slerp)
-    omega  = Math.acos(cosom);
-    sinom  = Math.sin(omega);
+    omega = Math.acos(cosom);
+    sinom = Math.sin(omega);
     scale0 = Math.sin((1.0 - t) * omega) / sinom;
     scale1 = Math.sin(t * omega) / sinom;
   } else {
@@ -337,7 +369,7 @@ export function slerp(out, a, b, t) {
 
 /**
  * Generates a random unit quaternion
- * 
+ *
  * @param {quat} out the receiving quaternion
  * @returns {quat} out
  */
@@ -366,16 +398,19 @@ export function random(out) {
  * @returns {quat} out
  */
 export function invert(out, a) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
-  let dot = a0*a0 + a1*a1 + a2*a2 + a3*a3;
-  let invDot = dot ? 1.0/dot : 0;
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3];
+  let dot = a0 * a0 + a1 * a1 + a2 * a2 + a3 * a3;
+  let invDot = dot ? 1.0 / dot : 0;
 
   // TODO: Would be faster to return [0,0,0,0] immediately if dot == 0
 
-  out[0] = -a0*invDot;
-  out[1] = -a1*invDot;
-  out[2] = -a2*invDot;
-  out[3] = a3*invDot;
+  out[0] = -a0 * invDot;
+  out[1] = -a1 * invDot;
+  out[2] = -a2 * invDot;
+  out[3] = a3 * invDot;
   return out;
 }
 
@@ -412,30 +447,28 @@ export function fromMat3(out, m) {
   let fTrace = m[0] + m[4] + m[8];
   let fRoot;
 
-  if ( fTrace > 0.0 ) {
+  if (fTrace > 0.0) {
     // |w| > 1/2, may as well choose w > 1/2
-    fRoot = Math.sqrt(fTrace + 1.0);  // 2w
+    fRoot = Math.sqrt(fTrace + 1.0); // 2w
     out[3] = 0.5 * fRoot;
-    fRoot = 0.5/fRoot;  // 1/(4w)
-    out[0] = (m[5]-m[7])*fRoot;
-    out[1] = (m[6]-m[2])*fRoot;
-    out[2] = (m[1]-m[3])*fRoot;
+    fRoot = 0.5 / fRoot; // 1/(4w)
+    out[0] = (m[5] - m[7]) * fRoot;
+    out[1] = (m[6] - m[2]) * fRoot;
+    out[2] = (m[1] - m[3]) * fRoot;
   } else {
     // |w| &lt;= 1/2
     let i = 0;
-    if ( m[4] > m[0] )
-      i = 1;
-    if ( m[8] > m[i*3+i] )
-      i = 2;
-    let j = (i+1)%3;
-    let k = (i+2)%3;
+    if (m[4] > m[0]) i = 1;
+    if (m[8] > m[i * 3 + i]) i = 2;
+    let j = (i + 1) % 3;
+    let k = (i + 2) % 3;
 
-    fRoot = Math.sqrt(m[i*3+i]-m[j*3+j]-m[k*3+k] + 1.0);
+    fRoot = Math.sqrt(m[i * 3 + i] - m[j * 3 + j] - m[k * 3 + k] + 1.0);
     out[i] = 0.5 * fRoot;
     fRoot = 0.5 / fRoot;
-    out[3] = (m[j*3+k] - m[k*3+j]) * fRoot;
-    out[j] = (m[j*3+i] + m[i*3+j]) * fRoot;
-    out[k] = (m[k*3+i] + m[i*3+k]) * fRoot;
+    out[3] = (m[j * 3 + k] - m[k * 3 + j]) * fRoot;
+    out[j] = (m[j * 3 + i] + m[i * 3 + j]) * fRoot;
+    out[k] = (m[k * 3 + i] + m[i * 3 + k]) * fRoot;
   }
 
   return out;
@@ -452,24 +485,24 @@ export function fromMat3(out, m) {
  * @function
  */
 export function fromEuler(out, x, y, z) {
-    let halfToRad = 0.5 * Math.PI / 180.0;
-    x *= halfToRad;
-    y *= halfToRad;
-    z *= halfToRad;
+  let halfToRad = (0.5 * Math.PI) / 180.0;
+  x *= halfToRad;
+  y *= halfToRad;
+  z *= halfToRad;
 
-    let sx = Math.sin(x);
-    let cx = Math.cos(x);
-    let sy = Math.sin(y);
-    let cy = Math.cos(y);
-    let sz = Math.sin(z);
-    let cz = Math.cos(z);
+  let sx = Math.sin(x);
+  let cx = Math.cos(x);
+  let sy = Math.sin(y);
+  let cy = Math.cos(y);
+  let sz = Math.sin(z);
+  let cz = Math.cos(z);
 
-    out[0] = sx * cy * cz - cx * sy * sz;
-    out[1] = cx * sy * cz + sx * cy * sz;
-    out[2] = cx * cy * sz - sx * sy * cz;
-    out[3] = cx * cy * cz + sx * sy * sz;
+  out[0] = sx * cy * cz - cx * sy * sz;
+  out[1] = cx * sy * cz + sx * cy * sz;
+  out[2] = cx * cy * sz - sx * sy * cz;
+  out[3] = cx * cy * cz + sx * sy * sz;
 
-    return out;
+  return out;
 }
 
 /**
@@ -479,7 +512,7 @@ export function fromEuler(out, x, y, z) {
  * @returns {String} string representation of the vector
  */
 export function str(a) {
-  return 'quat(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
+  return "quat(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
 }
 
 /**
@@ -646,15 +679,14 @@ export const equals = vec4.equals;
  */
 export const rotationTo = (function() {
   let tmpvec3 = vec3.create();
-  let xUnitVec3 = vec3.fromValues(1,0,0);
-  let yUnitVec3 = vec3.fromValues(0,1,0);
+  let xUnitVec3 = vec3.fromValues(1, 0, 0);
+  let yUnitVec3 = vec3.fromValues(0, 1, 0);
 
   return function(out, a, b) {
     let dot = vec3.dot(a, b);
     if (dot &lt; -0.999999) {
       vec3.cross(tmpvec3, xUnitVec3, a);
-      if (vec3.len(tmpvec3) &lt; 0.000001)
-        vec3.cross(tmpvec3, yUnitVec3, a);
+      if (vec3.len(tmpvec3) &lt; 0.000001) vec3.cross(tmpvec3, yUnitVec3, a);
       vec3.normalize(tmpvec3, tmpvec3);
       setAxisAngle(out, tmpvec3, Math.PI);
       return out;
@@ -686,18 +718,18 @@ export const rotationTo = (function() {
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  */
-export const sqlerp = (function () {
+export const sqlerp = (function() {
   let temp1 = create();
   let temp2 = create();
 
-  return function (out, a, b, c, d, t) {
+  return function(out, a, b, c, d, t) {
     slerp(temp1, a, d, t);
     slerp(temp2, b, c, t);
     slerp(out, temp1, temp2, 2 * t * (1 - t));
 
     return out;
   };
-}());
+})();
 
 /**
  * Sets the specified quaternion with values corresponding to the given
@@ -738,13 +770,13 @@ export const setAxes = (function() {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-quat2.html">quat2</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#adjoint">adjoint</a></li><li><a href="global.html#angle">angle</a></li><li><a href="global.html#bezier">bezier</a></li><li><a href="global.html#calculateW">calculateW</a></li><li><a href="global.html#ceil">ceil</a></li><li><a href="global.html#clone">clone</a></li><li><a href="global.html#conjugate">conjugate</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#cross">cross</a></li><li><a href="global.html#determinant">determinant</a></li><li><a href="global.html#dist">dist</a></li><li><a href="global.html#distance">distance</a></li><li><a href="global.html#div">div</a></li><li><a href="global.html#divide">divide</a></li><li><a href="global.html#dot">dot</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#exactEquals">exactEquals</a></li><li><a href="global.html#exp">exp</a></li><li><a href="global.html#floor">floor</a></li><li><a href="global.html#forEach">forEach</a></li><li><a href="global.html#frob">frob</a></li><li><a href="global.html#fromEuler">fromEuler</a></li><li><a href="global.html#fromMat2d">fromMat2d</a></li><li><a href="global.html#fromMat3">fromMat3</a></li><li><a href="global.html#fromMat4">fromMat4</a></li><li><a href="global.html#fromQuat">fromQuat</a></li><li><a href="global.html#fromQuat2">fromQuat2</a></li><li><a href="global.html#fromRotation">fromRotation</a></li><li><a href="global.html#fromRotationTranslation">fromRotationTranslation</a></li><li><a href="global.html#fromRotationTranslationScale">fromRotationTranslationScale</a></li><li><a href="global.html#fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin</a></li><li><a href="global.html#fromRotationTranslationValues">fromRotationTranslationValues</a></li><li><a href="global.html#fromScaling">fromScaling</a></li><li><a href="global.html#fromTranslation">fromTranslation</a></li><li><a href="global.html#fromValues">fromValues</a></li><li><a href="global.html#fromXRotation">fromXRotation</a></li><li><a href="global.html#fromYRotation">fromYRotation</a></li><li><a href="global.html#fromZRotation">fromZRotation</a></li><li><a href="global.html#frustum">frustum</a></li><li><a href="global.html#getAngle">getAngle</a></li><li><a href="global.html#getAxisAngle">getAxisAngle</a></li><li><a href="global.html#getDual">getDual</a></li><li><a href="global.html#getReal">getReal</a></li><li><a href="global.html#getRotation">getRotation</a></li><li><a href="global.html#getScaling">getScaling</a></li><li><a href="global.html#getTranslation">getTranslation</a></li><li><a href="global.html#hermite">hermite</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#inverse">inverse</a></li><li><a href="global.html#invert">invert</a></li><li><a href="global.html#LDU">LDU</a></li><li><a href="global.html#len">len</a></li><li><a href="global.html#length">length</a></li><li><a href="global.html#lerp">lerp</a></li><li><a href="global.html#ln">ln</a></li><li><a href="global.html#lookAt">lookAt</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#mul">mul</a></li><li><a href="global.html#multiply">multiply</a></li><li><a href="global.html#multiplyScalar">multiplyScalar</a></li><li><a href="global.html#multiplyScalarAndAdd">multiplyScalarAndAdd</a></li><li><a href="global.html#negate">negate</a></li><li><a href="global.html#normalFromMat4">normalFromMat4</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#ortho">ortho</a></li><li><a href="global.html#perspective">perspective</a></li><li><a href="global.html#perspectiveFromFieldOfView">perspectiveFromFieldOfView</a></li><li><a href="global.html#pow">pow</a></li><li><a href="global.html#projection">projection</a></li><li><a href="global.html#random">random</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateAroundAxis">rotateAroundAxis</a></li><li><a href="global.html#rotateByQuatAppend">rotateByQuatAppend</a></li><li><a href="global.html#rotateByQuatPrepend">rotateByQuatPrepend</a></li><li><a href="global.html#rotateX">rotateX</a></li><li><a href="global.html#rotateY">rotateY</a></li><li><a href="global.html#rotateZ">rotateZ</a></li><li><a href="global.html#rotationTo">rotationTo</a></li><li><a href="global.html#round">round</a></li><li><a href="global.html#scale">scale</a></li><li><a href="global.html#scaleAndAdd">scaleAndAdd</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#setAxes">setAxes</a></li><li><a href="global.html#setAxisAngle">setAxisAngle</a></li><li><a href="global.html#setDual">setDual</a></li><li><a href="global.html#setReal">setReal</a></li><li><a href="global.html#slerp">slerp</a></li><li><a href="global.html#sqlerp">sqlerp</a></li><li><a href="global.html#sqrDist">sqrDist</a></li><li><a href="global.html#sqrLen">sqrLen</a></li><li><a href="global.html#squaredDistance">squaredDistance</a></li><li><a href="global.html#squaredLength">squaredLength</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#sub">sub</a></li><li><a href="global.html#subtract">subtract</a></li><li><a href="global.html#targetTo">targetTo</a></li><li><a href="global.html#transformMat2">transformMat2</a></li><li><a href="global.html#transformMat2d">transformMat2d</a></li><li><a href="global.html#transformMat3">transformMat3</a></li><li><a href="global.html#transformMat4">transformMat4</a></li><li><a href="global.html#transformQuat">transformQuat</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#transpose">transpose</a></li><li><a href="global.html#zero">zero</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Aug 19 2019 08:25:53 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 22:06:20 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

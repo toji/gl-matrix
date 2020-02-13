@@ -35,9 +35,8 @@ import * as mat4 from "./mat4.js";
  * Format: [real, dual]&lt;br>
  * Quaternion format: XYZW&lt;br>
  * Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.&lt;br>
- * @module quat2
+ * @typedef {number[] | Float32Array} quat2
  */
-
 
 /**
  * Creates a new identity dual quat
@@ -46,7 +45,7 @@ import * as mat4 from "./mat4.js";
  */
 export function create() {
   let dq = new glMatrix.ARRAY_TYPE(8);
-  if(glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != Float32Array) {
     dq[0] = 0;
     dq[1] = 0;
     dq[2] = 0;
@@ -566,13 +565,13 @@ export function rotateAroundAxis(out, a, axis, rad) {
   if (Math.abs(rad) &lt; glMatrix.EPSILON) {
     return copy(out, a);
   }
-  let axisLength = Math.hypot(axis[0],axis[1],axis[2]);
+  let axisLength = Math.hypot(axis[0], axis[1], axis[2]);
 
   rad = rad * 0.5;
   let s = Math.sin(rad);
-  let bx = s * axis[0] / axisLength;
-  let by = s * axis[1] / axisLength;
-  let bz = s * axis[2] / axisLength;
+  let bx = (s * axis[0]) / axisLength;
+  let by = (s * axis[1]) / axisLength;
+  let bz = (s * axis[2]) / axisLength;
   let bw = Math.cos(rad);
 
   let ax1 = a[0],
@@ -646,10 +645,42 @@ export function multiply(out, a, b) {
   out[1] = ay0 * bw0 + aw0 * by0 + az0 * bx0 - ax0 * bz0;
   out[2] = az0 * bw0 + aw0 * bz0 + ax0 * by0 - ay0 * bx0;
   out[3] = aw0 * bw0 - ax0 * bx0 - ay0 * by0 - az0 * bz0;
-  out[4] = ax0 * bw1 + aw0 * bx1 + ay0 * bz1 - az0 * by1 + ax1 * bw0 + aw1 * bx0 + ay1 * bz0 - az1 * by0;
-  out[5] = ay0 * bw1 + aw0 * by1 + az0 * bx1 - ax0 * bz1 + ay1 * bw0 + aw1 * by0 + az1 * bx0 - ax1 * bz0;
-  out[6] = az0 * bw1 + aw0 * bz1 + ax0 * by1 - ay0 * bx1 + az1 * bw0 + aw1 * bz0 + ax1 * by0 - ay1 * bx0;
-  out[7] = aw0 * bw1 - ax0 * bx1 - ay0 * by1 - az0 * bz1 + aw1 * bw0 - ax1 * bx0 - ay1 * by0 - az1 * bz0;
+  out[4] =
+    ax0 * bw1 +
+    aw0 * bx1 +
+    ay0 * bz1 -
+    az0 * by1 +
+    ax1 * bw0 +
+    aw1 * bx0 +
+    ay1 * bz0 -
+    az1 * by0;
+  out[5] =
+    ay0 * bw1 +
+    aw0 * by1 +
+    az0 * bx1 -
+    ax0 * bz1 +
+    ay1 * bw0 +
+    aw1 * by0 +
+    az1 * bx0 -
+    ax1 * bz0;
+  out[6] =
+    az0 * bw1 +
+    aw0 * bz1 +
+    ax0 * by1 -
+    ay0 * bx1 +
+    az1 * bw0 +
+    aw1 * bz0 +
+    ax1 * by0 -
+    ay1 * bx0;
+  out[7] =
+    aw0 * bw1 -
+    ax0 * bx1 -
+    ay0 * by1 -
+    az0 * bz1 +
+    aw1 * bw0 -
+    ax1 * bx0 -
+    ay1 * by0 -
+    az1 * bz0;
   return out;
 }
 
@@ -809,17 +840,17 @@ export function normalize(out, a) {
     let b2 = a[6];
     let b3 = a[7];
 
-    let a_dot_b = (a0 * b0) + (a1 * b1) + (a2 * b2) + (a3 * b3);
+    let a_dot_b = a0 * b0 + a1 * b1 + a2 * b2 + a3 * b3;
 
     out[0] = a0;
     out[1] = a1;
     out[2] = a2;
     out[3] = a3;
 
-    out[4] = (b0 - (a0 * a_dot_b)) / magnitude;
-    out[5] = (b1 - (a1 * a_dot_b)) / magnitude;
-    out[6] = (b2 - (a2 * a_dot_b)) / magnitude;
-    out[7] = (b3 - (a3 * a_dot_b)) / magnitude;
+    out[4] = (b0 - a0 * a_dot_b) / magnitude;
+    out[5] = (b1 - a1 * a_dot_b) / magnitude;
+    out[6] = (b2 - a2 * a_dot_b) / magnitude;
+    out[7] = (b3 - a3 * a_dot_b) / magnitude;
   }
   return out;
 }
@@ -831,8 +862,25 @@ export function normalize(out, a) {
  * @returns {String} string representation of the dual quat
  */
 export function str(a) {
-  return 'quat2(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ', ' +
-    a[4] + ', ' + a[5] + ', ' + a[6] + ', ' + a[7] + ')';
+  return (
+    "quat2(" +
+    a[0] +
+    ", " +
+    a[1] +
+    ", " +
+    a[2] +
+    ", " +
+    a[3] +
+    ", " +
+    a[4] +
+    ", " +
+    a[5] +
+    ", " +
+    a[6] +
+    ", " +
+    a[7] +
+    ")"
+  );
 }
 
 /**
@@ -843,8 +891,16 @@ export function str(a) {
  * @returns {Boolean} true if the dual quaternions are equal, false otherwise.
  */
 export function exactEquals(a, b) {
-  return a[0] === b[0] &amp;&amp; a[1] === b[1] &amp;&amp; a[2] === b[2] &amp;&amp; a[3] === b[3] &amp;&amp;
-    a[4] === b[4] &amp;&amp; a[5] === b[5] &amp;&amp; a[6] === b[6] &amp;&amp; a[7] === b[7];
+  return (
+    a[0] === b[0] &amp;&amp;
+    a[1] === b[1] &amp;&amp;
+    a[2] === b[2] &amp;&amp;
+    a[3] === b[3] &amp;&amp;
+    a[4] === b[4] &amp;&amp;
+    a[5] === b[5] &amp;&amp;
+    a[6] === b[6] &amp;&amp;
+    a[7] === b[7]
+  );
 }
 
 /**
@@ -871,14 +927,24 @@ export function equals(a, b) {
     b5 = b[5],
     b6 = b[6],
     b7 = b[7];
-  return (Math.abs(a0 - b0) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
-    Math.abs(a1 - b1) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &amp;&amp;
-    Math.abs(a2 - b2) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &amp;&amp;
-    Math.abs(a3 - b3) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) &amp;&amp;
-    Math.abs(a4 - b4) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) &amp;&amp;
-    Math.abs(a5 - b5) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5)) &amp;&amp;
-    Math.abs(a6 - b6) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a6), Math.abs(b6)) &amp;&amp;
-    Math.abs(a7 - b7) &lt;= glMatrix.EPSILON * Math.max(1.0, Math.abs(a7), Math.abs(b7)));
+  return (
+    Math.abs(a0 - b0) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &amp;&amp;
+    Math.abs(a1 - b1) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &amp;&amp;
+    Math.abs(a2 - b2) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &amp;&amp;
+    Math.abs(a3 - b3) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) &amp;&amp;
+    Math.abs(a4 - b4) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) &amp;&amp;
+    Math.abs(a5 - b5) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5)) &amp;&amp;
+    Math.abs(a6 - b6) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a6), Math.abs(b6)) &amp;&amp;
+    Math.abs(a7 - b7) &lt;=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a7), Math.abs(b7))
+  );
 }
 </code></pre>
         </article>
@@ -890,13 +956,13 @@ export function equals(a, b) {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li><li><a href="module-mat2.html">mat2</a></li><li><a href="module-mat2d.html">mat2d</a></li><li><a href="module-mat3.html">mat3</a></li><li><a href="module-mat4.html">mat4</a></li><li><a href="module-quat.html">quat</a></li><li><a href="module-quat2.html">quat2</a></li><li><a href="module-vec2.html">vec2</a></li><li><a href="module-vec3.html">vec3</a></li><li><a href="module-vec4.html">vec4</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-glMatrix.html">glMatrix</a></li></ul><h3>Global</h3><ul><li><a href="global.html#add">add</a></li><li><a href="global.html#adjoint">adjoint</a></li><li><a href="global.html#angle">angle</a></li><li><a href="global.html#bezier">bezier</a></li><li><a href="global.html#calculateW">calculateW</a></li><li><a href="global.html#ceil">ceil</a></li><li><a href="global.html#clone">clone</a></li><li><a href="global.html#conjugate">conjugate</a></li><li><a href="global.html#copy">copy</a></li><li><a href="global.html#create">create</a></li><li><a href="global.html#cross">cross</a></li><li><a href="global.html#determinant">determinant</a></li><li><a href="global.html#dist">dist</a></li><li><a href="global.html#distance">distance</a></li><li><a href="global.html#div">div</a></li><li><a href="global.html#divide">divide</a></li><li><a href="global.html#dot">dot</a></li><li><a href="global.html#equals">equals</a></li><li><a href="global.html#exactEquals">exactEquals</a></li><li><a href="global.html#exp">exp</a></li><li><a href="global.html#floor">floor</a></li><li><a href="global.html#forEach">forEach</a></li><li><a href="global.html#frob">frob</a></li><li><a href="global.html#fromEuler">fromEuler</a></li><li><a href="global.html#fromMat2d">fromMat2d</a></li><li><a href="global.html#fromMat3">fromMat3</a></li><li><a href="global.html#fromMat4">fromMat4</a></li><li><a href="global.html#fromQuat">fromQuat</a></li><li><a href="global.html#fromQuat2">fromQuat2</a></li><li><a href="global.html#fromRotation">fromRotation</a></li><li><a href="global.html#fromRotationTranslation">fromRotationTranslation</a></li><li><a href="global.html#fromRotationTranslationScale">fromRotationTranslationScale</a></li><li><a href="global.html#fromRotationTranslationScaleOrigin">fromRotationTranslationScaleOrigin</a></li><li><a href="global.html#fromRotationTranslationValues">fromRotationTranslationValues</a></li><li><a href="global.html#fromScaling">fromScaling</a></li><li><a href="global.html#fromTranslation">fromTranslation</a></li><li><a href="global.html#fromValues">fromValues</a></li><li><a href="global.html#fromXRotation">fromXRotation</a></li><li><a href="global.html#fromYRotation">fromYRotation</a></li><li><a href="global.html#fromZRotation">fromZRotation</a></li><li><a href="global.html#frustum">frustum</a></li><li><a href="global.html#getAngle">getAngle</a></li><li><a href="global.html#getAxisAngle">getAxisAngle</a></li><li><a href="global.html#getDual">getDual</a></li><li><a href="global.html#getReal">getReal</a></li><li><a href="global.html#getRotation">getRotation</a></li><li><a href="global.html#getScaling">getScaling</a></li><li><a href="global.html#getTranslation">getTranslation</a></li><li><a href="global.html#hermite">hermite</a></li><li><a href="global.html#identity">identity</a></li><li><a href="global.html#inverse">inverse</a></li><li><a href="global.html#invert">invert</a></li><li><a href="global.html#LDU">LDU</a></li><li><a href="global.html#len">len</a></li><li><a href="global.html#length">length</a></li><li><a href="global.html#lerp">lerp</a></li><li><a href="global.html#ln">ln</a></li><li><a href="global.html#lookAt">lookAt</a></li><li><a href="global.html#max">max</a></li><li><a href="global.html#min">min</a></li><li><a href="global.html#mul">mul</a></li><li><a href="global.html#multiply">multiply</a></li><li><a href="global.html#multiplyScalar">multiplyScalar</a></li><li><a href="global.html#multiplyScalarAndAdd">multiplyScalarAndAdd</a></li><li><a href="global.html#negate">negate</a></li><li><a href="global.html#normalFromMat4">normalFromMat4</a></li><li><a href="global.html#normalize">normalize</a></li><li><a href="global.html#ortho">ortho</a></li><li><a href="global.html#perspective">perspective</a></li><li><a href="global.html#perspectiveFromFieldOfView">perspectiveFromFieldOfView</a></li><li><a href="global.html#pow">pow</a></li><li><a href="global.html#projection">projection</a></li><li><a href="global.html#random">random</a></li><li><a href="global.html#rotate">rotate</a></li><li><a href="global.html#rotateAroundAxis">rotateAroundAxis</a></li><li><a href="global.html#rotateByQuatAppend">rotateByQuatAppend</a></li><li><a href="global.html#rotateByQuatPrepend">rotateByQuatPrepend</a></li><li><a href="global.html#rotateX">rotateX</a></li><li><a href="global.html#rotateY">rotateY</a></li><li><a href="global.html#rotateZ">rotateZ</a></li><li><a href="global.html#rotationTo">rotationTo</a></li><li><a href="global.html#round">round</a></li><li><a href="global.html#scale">scale</a></li><li><a href="global.html#scaleAndAdd">scaleAndAdd</a></li><li><a href="global.html#set">set</a></li><li><a href="global.html#setAxes">setAxes</a></li><li><a href="global.html#setAxisAngle">setAxisAngle</a></li><li><a href="global.html#setDual">setDual</a></li><li><a href="global.html#setReal">setReal</a></li><li><a href="global.html#slerp">slerp</a></li><li><a href="global.html#sqlerp">sqlerp</a></li><li><a href="global.html#sqrDist">sqrDist</a></li><li><a href="global.html#sqrLen">sqrLen</a></li><li><a href="global.html#squaredDistance">squaredDistance</a></li><li><a href="global.html#squaredLength">squaredLength</a></li><li><a href="global.html#str">str</a></li><li><a href="global.html#sub">sub</a></li><li><a href="global.html#subtract">subtract</a></li><li><a href="global.html#targetTo">targetTo</a></li><li><a href="global.html#transformMat2">transformMat2</a></li><li><a href="global.html#transformMat2d">transformMat2d</a></li><li><a href="global.html#transformMat3">transformMat3</a></li><li><a href="global.html#transformMat4">transformMat4</a></li><li><a href="global.html#transformQuat">transformQuat</a></li><li><a href="global.html#translate">translate</a></li><li><a href="global.html#transpose">transpose</a></li><li><a href="global.html#zero">zero</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Mon Aug 19 2019 08:25:53 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Thu Feb 13 2020 22:06:20 GMT+0100 (Central European Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
