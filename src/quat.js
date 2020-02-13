@@ -5,7 +5,7 @@ import * as vec4 from "./vec4.js";
 
 /**
  * Quaternion
- * @typedef {[number, number, number, number] | Float32Array} quat
+ * @typedef {number[] | Float32Array} quat
  */
 
 /**

@@ -2,10 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 3x3 Matrix
- * @typedef {[
- number, number, number, 
- number, number, number, 
- number, number, number] | Float32Array} mat3
+ * @typedef {number[] | Float32Array} mat3
  */
 
 /**

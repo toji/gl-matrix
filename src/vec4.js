@@ -2,7 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 4 Dimensional Vector
- * @typedef {[number, number, number, number] | Float32Array} vec4
+ * @typedef {number[] | Float32Array} vec4
  */
 
 /**

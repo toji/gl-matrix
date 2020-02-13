@@ -2,11 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
- * @typedef {[
- number, number, number, number,
- number, number, number, number,
- number, number, number, number,
- number, number, number, number] | Float32Array} mat4
+ * @typedef {number[] | Float32Array} mat4
  */
 
 /**
