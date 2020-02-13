@@ -32,7 +32,7 @@ typings = typings.replace(/ *import.+from.*;/g, "");
 typings = typings.replace(/declare module "([^"]+?)" {/g, "export module $1 {");
 
 // Add types
-typings = "\n" + sourceTypings.replace(/declare/, "export") + "\n" + typings;
+typings = "\n" + sourceTypings.replace(/declare/g, "export") + "\n" + typings;
 
 // Wrap them in a "gl-matrix module"
 typings = 'declare module "gl-matrix" {\n' + typings + "\n}";
