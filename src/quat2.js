@@ -7,7 +7,6 @@ import * as mat4 from "./mat4.js";
  * Format: [real, dual]<br>
  * Quaternion format: XYZW<br>
  * Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br>
- * @typedef {number[] | Float32Array} quat2
  */
 
 /**

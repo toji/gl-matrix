@@ -33,7 +33,7 @@
     "build-umd": "rollup -c",
     "build-esm": "cross-env BABEL_ENV=esm babel src -d dist/esm",
     "build-cjs": "babel src -d dist/cjs",
-    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --outFile ./dist/index.d.ts ./src/index.js && node ./utils/bundle-dts.js",
+    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --outFile ./dist/index.d.ts ./src/index.js ./src/types.d.ts && node ./utils/bundle-dts.js",
     "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-cjs && npm run build-dts && node ./utils/build.js",
     "prepare": "npm run build"
   },

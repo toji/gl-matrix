@@ -2,7 +2,6 @@ import * as glMatrix from "./common.js";
 
 /**
  * 2x3 Matrix
- * @typedef {number[] | Float32Array} mat2d
  *
  * @description
  * A mat2d contains six elements defined as:

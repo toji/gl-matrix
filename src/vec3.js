@@ -2,7 +2,6 @@ import * as glMatrix from "./common.js";
 
 /**
  * 3 Dimensional Vector
- * @typedef {number[] | Float32Array} vec3
  */
 
 /**

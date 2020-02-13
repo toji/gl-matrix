@@ -2,7 +2,6 @@ import * as glMatrix from "./common.js";
 
 /**
  * 2 Dimensional Vector
- * @typedef {number[] | Float32Array} vec2
  */
 
 /**
