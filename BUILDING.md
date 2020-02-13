@@ -15,4 +15,4 @@ To build the docs, run:
 
     npm run doc
 
-<!--And to publish it (`npm publish`), you first have to go into the dist folder-->
+<!--Go into the `dist` folder before `npm publish`ing it!-->
