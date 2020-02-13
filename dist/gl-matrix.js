@@ -38,7 +38,7 @@ THE SOFTWARE.
    */
   // Configuration Constants
   var EPSILON = 0.000001;
-  var ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
+  var ARRAY_TYPE = typeof Float32Array !== "undefined" ? Float32Array : Array;
   var RANDOM = Math.random;
   /**
    * Sets the type of array used when creating new vectors and matrices
@@ -95,7 +95,6 @@ THE SOFTWARE.
 
   /**
    * 2x2 Matrix
-   * @typedef {number[] | Float32Array} mat2
    */
 
   /**
@@ -557,7 +556,6 @@ THE SOFTWARE.
 
   /**
    * 2x3 Matrix
-   * @typedef {number[] | Float32Array} mat2d
    *
    * @description
    * A mat2d contains six elements defined as:
@@ -1073,7 +1071,6 @@ THE SOFTWARE.
 
   /**
    * 3x3 Matrix
-   * @typedef {number[] | Float32Array} mat3
    */
 
   /**
@@ -1887,7 +1884,6 @@ THE SOFTWARE.
 
   /**
    * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
-   * @typedef {number[] | Float32Array} mat4
    */
 
   /**
@@ -3752,7 +3748,6 @@ THE SOFTWARE.
 
   /**
    * 3 Dimensional Vector
-   * @typedef {number[] | Float32Array} vec3
    */
 
   /**
@@ -4591,7 +4586,6 @@ THE SOFTWARE.
 
   /**
    * 4 Dimensional Vector
-   * @typedef {number[] | Float32Array} vec4
    */
 
   /**
@@ -5299,7 +5293,6 @@ THE SOFTWARE.
 
   /**
    * Quaternion
-   * @typedef {number[] | Float32Array} quat
    */
 
   /**
@@ -6052,7 +6045,6 @@ THE SOFTWARE.
    * Format: [real, dual]<br>
    * Quaternion format: XYZW<br>
    * Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br>
-   * @typedef {number[] | Float32Array} quat2
    */
 
   /**
@@ -6925,7 +6917,6 @@ THE SOFTWARE.
 
   /**
    * 2 Dimensional Vector
-   * @typedef {number[] | Float32Array} vec2
    */
 
   /**
