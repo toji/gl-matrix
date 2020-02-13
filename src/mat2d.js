@@ -2,7 +2,10 @@ import * as glMatrix from "./common.js";
 
 /**
  * 2x3 Matrix
- * @module mat2d
+ * @typedef {[
+ number, number,
+ number, number,
+ number, number] | Float32Array} mat2d
  *
  * @description
  * A mat2d contains six elements defined as:
@@ -27,7 +30,7 @@ import * as glMatrix from "./common.js";
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(6);
-  if(glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
     out[4] = 0;
@@ -140,11 +143,15 @@ export function set(out, a, b, c, d, tx, ty) {
  * @returns {mat2d} out
  */
 export function invert(out, a) {
-  let aa = a[0], ab = a[1], ac = a[2], ad = a[3];
-  let atx = a[4], aty = a[5];
+  let aa = a[0],
+    ab = a[1],
+    ac = a[2],
+    ad = a[3];
+  let atx = a[4],
+    aty = a[5];
 
   let det = aa * ad - ab * ac;
-  if(!det){
+  if (!det) {
     return null;
   }
   det = 1.0 / det;
@@ -177,8 +184,18 @@ export function determinant(a) {
  * @returns {mat2d} out
  */
 export function multiply(out, a, b) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3],
+    b4 = b[4],
+    b5 = b[5];
   out[0] = a0 * b0 + a2 * b1;
   out[1] = a1 * b0 + a3 * b1;
   out[2] = a0 * b2 + a2 * b3;
@@ -197,11 +214,16 @@ export function multiply(out, a, b) {
  * @returns {mat2d} out
  */
 export function rotate(out, a, rad) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
   let s = Math.sin(rad);
   let c = Math.cos(rad);
-  out[0] = a0 *  c + a2 * s;
-  out[1] = a1 *  c + a3 * s;
+  out[0] = a0 * c + a2 * s;
+  out[1] = a1 * c + a3 * s;
   out[2] = a0 * -s + a2 * c;
   out[3] = a1 * -s + a3 * c;
   out[4] = a4;
@@ -218,8 +240,14 @@ export function rotate(out, a, rad) {
  * @returns {mat2d} out
  **/
 export function scale(out, a, v) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let v0 = v[0], v1 = v[1];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let v0 = v[0],
+    v1 = v[1];
   out[0] = a0 * v0;
   out[1] = a1 * v0;
   out[2] = a2 * v1;
@@ -238,8 +266,14 @@ export function scale(out, a, v) {
  * @returns {mat2d} out
  **/
 export function translate(out, a, v) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let v0 = v[0], v1 = v[1];
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let v0 = v[0],
+    v1 = v[1];
   out[0] = a0;
   out[1] = a1;
   out[2] = a2;
@@ -261,7 +295,8 @@ export function translate(out, a, v) {
  * @returns {mat2d} out
  */
 export function fromRotation(out, rad) {
-  let s = Math.sin(rad), c = Math.cos(rad);
+  let s = Math.sin(rad),
+    c = Math.cos(rad);
   out[0] = c;
   out[1] = s;
   out[2] = -s;
@@ -320,8 +355,21 @@ export function fromTranslation(out, v) {
  * @returns {String} string representation of the matrix
  */
 export function str(a) {
-  return 'mat2d(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' +
-          a[3] + ', ' + a[4] + ', ' + a[5] + ')';
+  return (
+    "mat2d(" +
+    a[0] +
+    ", " +
+    a[1] +
+    ", " +
+    a[2] +
+    ", " +
+    a[3] +
+    ", " +
+    a[4] +
+    ", " +
+    a[5] +
+    ")"
+  );
 }
 
 /**
@@ -331,7 +379,7 @@ export function str(a) {
  * @returns {Number} Frobenius norm
  */
 export function frob(a) {
-  return(Math.hypot(a[0],a[1],a[2],a[3],a[4],a[5],1))
+  return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], 1);
 }
 
 /**
@@ -398,12 +446,12 @@ export function multiplyScalar(out, a, b) {
  * @returns {mat2d} out
  */
 export function multiplyScalarAndAdd(out, a, b, scale) {
-  out[0] = a[0] + (b[0] * scale);
-  out[1] = a[1] + (b[1] * scale);
-  out[2] = a[2] + (b[2] * scale);
-  out[3] = a[3] + (b[3] * scale);
-  out[4] = a[4] + (b[4] * scale);
-  out[5] = a[5] + (b[5] * scale);
+  out[0] = a[0] + b[0] * scale;
+  out[1] = a[1] + b[1] * scale;
+  out[2] = a[2] + b[2] * scale;
+  out[3] = a[3] + b[3] * scale;
+  out[4] = a[4] + b[4] * scale;
+  out[5] = a[5] + b[5] * scale;
   return out;
 }
 
@@ -415,7 +463,14 @@ export function multiplyScalarAndAdd(out, a, b, scale) {
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 export function exactEquals(a, b) {
-  return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5];
+  return (
+    a[0] === b[0] &&
+    a[1] === b[1] &&
+    a[2] === b[2] &&
+    a[3] === b[3] &&
+    a[4] === b[4] &&
+    a[5] === b[5]
+  );
 }
 
 /**
@@ -426,14 +481,32 @@ export function exactEquals(a, b) {
  * @returns {Boolean} True if the matrices are equal, false otherwise.
  */
 export function equals(a, b) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3], a4 = a[4], a5 = a[5];
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3], b4 = b[4], b5 = b[5];
-  return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-          Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-          Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
-          Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
-          Math.abs(a4 - b4) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
-          Math.abs(a5 - b5) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a5), Math.abs(b5)));
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3],
+    a4 = a[4],
+    a5 = a[5];
+  let b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3],
+    b4 = b[4],
+    b5 = b[5];
+  return (
+    Math.abs(a0 - b0) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+    Math.abs(a1 - b1) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+    Math.abs(a2 - b2) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+    Math.abs(a3 - b3) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+    Math.abs(a4 - b4) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+    Math.abs(a5 - b5) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a5), Math.abs(b5))
+  );
 }
 
 /**

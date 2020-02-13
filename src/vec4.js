@@ -2,7 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 4 Dimensional Vector
- * @module vec4
+ * @typedef {[number, number, number, number] | Float32Array} vec4
  */
 
 /**
@@ -12,7 +12,7 @@ import * as glMatrix from "./common.js";
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(4);
-  if(glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -254,10 +254,10 @@ export function scale(out, a, b) {
  * @returns {vec4} out
  */
 export function scaleAndAdd(out, a, b, scale) {
-  out[0] = a[0] + (b[0] * scale);
-  out[1] = a[1] + (b[1] * scale);
-  out[2] = a[2] + (b[2] * scale);
-  out[3] = a[3] + (b[3] * scale);
+  out[0] = a[0] + b[0] * scale;
+  out[1] = a[1] + b[1] * scale;
+  out[2] = a[2] + b[2] * scale;
+  out[3] = a[3] + b[3] * scale;
   return out;
 }
 
@@ -288,7 +288,7 @@ export function squaredDistance(a, b) {
   let y = b[1] - a[1];
   let z = b[2] - a[2];
   let w = b[3] - a[3];
-  return x*x + y*y + z*z + w*w;
+  return x * x + y * y + z * z + w * w;
 }
 
 /**
@@ -316,7 +316,7 @@ export function squaredLength(a) {
   let y = a[1];
   let z = a[2];
   let w = a[3];
-  return x*x + y*y + z*z + w*w;
+  return x * x + y * y + z * z + w * w;
 }
 
 /**
@@ -361,7 +361,7 @@ export function normalize(out, a) {
   let y = a[1];
   let z = a[2];
   let w = a[3];
-  let len = x*x + y*y + z*z + w*w;
+  let len = x * x + y * y + z * z + w * w;
   if (len > 0) {
     len = 1 / Math.sqrt(len);
   }
@@ -392,25 +392,25 @@ export function dot(a, b) {
  * @param {vec4} W the third vector
  * @returns {vec4} result
  */
-export function cross (out, u, v, w) {
-    let A = (v[0] * w[1]) - (v[1] * w[0]),
-        B = (v[0] * w[2]) - (v[2] * w[0]),
-        C = (v[0] * w[3]) - (v[3] * w[0]),
-        D = (v[1] * w[2]) - (v[2] * w[1]),
-        E = (v[1] * w[3]) - (v[3] * w[1]),
-        F = (v[2] * w[3]) - (v[3] * w[2]);
-    let G = u[0];
-    let H = u[1];
-    let I = u[2];
-    let J = u[3];
+export function cross(out, u, v, w) {
+  let A = v[0] * w[1] - v[1] * w[0],
+    B = v[0] * w[2] - v[2] * w[0],
+    C = v[0] * w[3] - v[3] * w[0],
+    D = v[1] * w[2] - v[2] * w[1],
+    E = v[1] * w[3] - v[3] * w[1],
+    F = v[2] * w[3] - v[3] * w[2];
+  let G = u[0];
+  let H = u[1];
+  let I = u[2];
+  let J = u[3];
 
-    out[0] = (H * F) - (I * E) + (J * D);
-    out[1] = -(G * F) + (I * C) - (J * B);
-    out[2] = (G * E) - (H * C) + (J * A);
-    out[3] = -(G * D) + (H * B) - (I * A);
+  out[0] = H * F - I * E + J * D;
+  out[1] = -(G * F) + I * C - J * B;
+  out[2] = G * E - H * C + J * A;
+  out[3] = -(G * D) + H * B - I * A;
 
-    return out;
-};
+  return out;
+}
 
 /**
  * Performs a linear interpolation between two vec4's
@@ -476,7 +476,10 @@ export function random(out, scale) {
  * @returns {vec4} out
  */
 export function transformMat4(out, a, m) {
-  let x = a[0], y = a[1], z = a[2], w = a[3];
+  let x = a[0],
+    y = a[1],
+    z = a[2],
+    w = a[3];
   out[0] = m[0] * x + m[4] * y + m[8] * z + m[12] * w;
   out[1] = m[1] * x + m[5] * y + m[9] * z + m[13] * w;
   out[2] = m[2] * x + m[6] * y + m[10] * z + m[14] * w;
@@ -493,8 +496,13 @@ export function transformMat4(out, a, m) {
  * @returns {vec4} out
  */
 export function transformQuat(out, a, q) {
-  let x = a[0], y = a[1], z = a[2];
-  let qx = q[0], qy = q[1], qz = q[2], qw = q[3];
+  let x = a[0],
+    y = a[1],
+    z = a[2];
+  let qx = q[0],
+    qy = q[1],
+    qz = q[2],
+    qw = q[3];
 
   // calculate quat * vec
   let ix = qw * x + qy * z - qz * y;
@@ -531,7 +539,7 @@ export function zero(out) {
  * @returns {String} string representation of the vector
  */
 export function str(a) {
-  return 'vec4(' + a[0] + ', ' + a[1] + ', ' + a[2] + ', ' + a[3] + ')';
+  return "vec4(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
 }
 
 /**
@@ -553,12 +561,24 @@ export function exactEquals(a, b) {
  * @returns {Boolean} True if the vectors are equal, false otherwise.
  */
 export function equals(a, b) {
-  let a0 = a[0], a1 = a[1], a2 = a[2], a3 = a[3];
-  let b0 = b[0], b1 = b[1], b2 = b[2], b3 = b[3];
-  return (Math.abs(a0 - b0) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-          Math.abs(a1 - b1) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-          Math.abs(a2 - b2) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
-          Math.abs(a3 - b3) <= glMatrix.EPSILON*Math.max(1.0, Math.abs(a3), Math.abs(b3)));
+  let a0 = a[0],
+    a1 = a[1],
+    a2 = a[2],
+    a3 = a[3];
+  let b0 = b[0],
+    b1 = b[1],
+    b2 = b[2],
+    b3 = b[3];
+  return (
+    Math.abs(a0 - b0) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+    Math.abs(a1 - b1) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+    Math.abs(a2 - b2) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+    Math.abs(a3 - b3) <=
+      glMatrix.EPSILON * Math.max(1.0, Math.abs(a3), Math.abs(b3))
+  );
 }
 
 /**
@@ -620,24 +640,30 @@ export const forEach = (function() {
 
   return function(a, stride, offset, count, fn, arg) {
     let i, l;
-    if(!stride) {
+    if (!stride) {
       stride = 4;
     }
 
-    if(!offset) {
+    if (!offset) {
       offset = 0;
     }
 
-    if(count) {
-      l = Math.min((count * stride) + offset, a.length);
+    if (count) {
+      l = Math.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }
 
-    for(i = offset; i < l; i += stride) {
-      vec[0] = a[i]; vec[1] = a[i+1]; vec[2] = a[i+2]; vec[3] = a[i+3];
+    for (i = offset; i < l; i += stride) {
+      vec[0] = a[i];
+      vec[1] = a[i + 1];
+      vec[2] = a[i + 2];
+      vec[3] = a[i + 3];
       fn(vec, vec, arg);
-      a[i] = vec[0]; a[i+1] = vec[1]; a[i+2] = vec[2]; a[i+3] = vec[3];
+      a[i] = vec[0];
+      a[i + 1] = vec[1];
+      a[i + 2] = vec[2];
+      a[i + 3] = vec[3];
     }
 
     return a;
