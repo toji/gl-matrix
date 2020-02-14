@@ -2,6 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 2x2 Matrix
+ * @module mat2
  */
 
 /**

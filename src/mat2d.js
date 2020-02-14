@@ -2,7 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 2x3 Matrix
- *
+ * @module mat2d
  * @description
  * A mat2d contains six elements defined as:
  * <pre>

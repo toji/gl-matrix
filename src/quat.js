@@ -5,6 +5,7 @@ import * as vec4 from "./vec4.js";
 
 /**
  * Quaternion
+ * @module quat
  */
 
 /**

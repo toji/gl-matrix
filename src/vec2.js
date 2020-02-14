@@ -2,6 +2,7 @@ import * as glMatrix from "./common.js";
 
 /**
  * 2 Dimensional Vector
+ * @module vec2
  */
 
 /**
