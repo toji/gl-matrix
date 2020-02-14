@@ -1,5 +1,5 @@
 {
-  "version": "3.2.0",
+  "version": "3.2.1",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
   "private": true,
