@@ -23,7 +23,7 @@ typings = typings.replace(
 );
 
 // Replace imports from other modules with direct references
-typings = typings.replace(/import\("([^)]+)"\)/g, "$1");
+typings = typings.replace(/import\("([^"]+?)(\.js)?"\)/g, "$1");
 
 // Replace imports with nothing
 typings = typings.replace(/ *import.+from.*;/g, "");
