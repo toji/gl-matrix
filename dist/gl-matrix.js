@@ -3,7 +3,7 @@
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
 @author Colin MacKenzie IV
-@version 3.2.0
+@version 3.2.1
 
 Copyright (c) 2015-2020, Brandon Jones, Colin MacKenzie IV.
 
@@ -38,7 +38,7 @@ THE SOFTWARE.
    */
   // Configuration Constants
   var EPSILON = 0.000001;
-  var ARRAY_TYPE = typeof Float32Array !== "undefined" ? Float32Array : Array;
+  var ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
   var RANDOM = Math.random;
   /**
    * Sets the type of array used when creating new vectors and matrices
@@ -95,6 +95,7 @@ THE SOFTWARE.
 
   /**
    * 2x2 Matrix
+   * @module mat2
    */
 
   /**
@@ -556,7 +557,7 @@ THE SOFTWARE.
 
   /**
    * 2x3 Matrix
-   *
+   * @module mat2d
    * @description
    * A mat2d contains six elements defined as:
    * <pre>
@@ -1071,6 +1072,7 @@ THE SOFTWARE.
 
   /**
    * 3x3 Matrix
+   * @module mat3
    */
 
   /**
@@ -1884,6 +1886,7 @@ THE SOFTWARE.
 
   /**
    * 4x4 Matrix<br>Format: column-major, when typed out it looks like row-major<br>The matrices are being post multiplied.
+   * @module mat4
    */
 
   /**
@@ -3748,6 +3751,7 @@ THE SOFTWARE.
 
   /**
    * 3 Dimensional Vector
+   * @module vec3
    */
 
   /**
@@ -4586,6 +4590,7 @@ THE SOFTWARE.
 
   /**
    * 4 Dimensional Vector
+   * @module vec4
    */
 
   /**
@@ -5293,6 +5298,7 @@ THE SOFTWARE.
 
   /**
    * Quaternion
+   * @module quat
    */
 
   /**
@@ -6045,6 +6051,7 @@ THE SOFTWARE.
    * Format: [real, dual]<br>
    * Quaternion format: XYZW<br>
    * Make sure to have normalized dual quaternions, otherwise the functions may not work as intended.<br>
+   * @module quat2
    */
 
   /**
@@ -6917,6 +6924,7 @@ THE SOFTWARE.
 
   /**
    * 2 Dimensional Vector
+   * @module vec2
    */
 
   /**
