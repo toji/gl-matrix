@@ -39,19 +39,19 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/register": "^7.8.3",
-    "cross-env": "^7.0.0",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "@babel/register": "^7.9.0",
+    "cross-env": "^7.0.2",
     "del-cli": "^3.0.0",
     "jsdoc": "^3.6.3",
-    "mocha": "^7.0.1",
+    "mocha": "^7.1.1",
     "node-libs-browser": "^2.2.1",
-    "rollup": "^1.31.0",
-    "rollup-plugin-babel": "^4.3.3",
+    "rollup": "^2.3.2",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-size-snapshot": "^0.11.0",
-    "rollup-plugin-terser": "^5.2.0",
-    "typescript": "^3.7.5"
+    "rollup-plugin-terser": "^5.3.0",
+    "typescript": "^3.8.3"
   },
   "dependencies": {}
 }
