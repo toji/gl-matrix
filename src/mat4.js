@@ -474,21 +474,19 @@ export function determinant(a) {
     a32 = a[14],
     a33 = a[15];
 
-  let b00 = a00 * a11 - a01 * a10;
-  let b01 = a00 * a12 - a02 * a10;
-  let b02 = a00 * a13 - a03 * a10;
-  let b03 = a01 * a12 - a02 * a11;
-  let b04 = a01 * a13 - a03 * a11;
-  let b05 = a02 * a13 - a03 * a12;
-  let b06 = a20 * a31 - a21 * a30;
-  let b07 = a20 * a32 - a22 * a30;
-  let b08 = a20 * a33 - a23 * a30;
-  let b09 = a21 * a32 - a22 * a31;
-  let b10 = a21 * a33 - a23 * a31;
-  let b11 = a22 * a33 - a23 * a32;
+  let b0 = a00 * a11 - a01 * a10;
+  let b1 = a00 * a12 - a02 * a10;
+  let b2 = a01 * a12 - a02 * a11;
+  let b3 = a20 * a31 - a21 * a30;
+  let b4 = a20 * a32 - a22 * a30;
+  let b5 = a21 * a32 - a22 * a31;
+  let b6 = a00 * b5 - a01 * b4 + a02 * b3;
+  let b7 = a10 * b5 - a11 * b4 + a12 * b3;
+  let b8 = a20 * b2 - a21 * b1 + a22 * b0;
+  let b9 = a30 * b2 - a31 * b1 + a32 * b0;
 
   // Calculate the determinant
-  return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
+  return a13 * b6 - a03 * b7 + a33 * b8 - a23 * b9;
 }
 
 /**
