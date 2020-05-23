@@ -276,6 +276,20 @@ export function squaredLength(a) {
 }
 
 /**
+ * Set the length of a 2D vector
+ * @param {vec2} out The receiving vec2
+ * @param {vec2} a the vector to lengthen
+ * @param {Number} length of the resulting vector
+ * @returns {vec3} out
+ */
+export function setLength(out, a, length) {
+  const angle = Math.atan2(a[1], a[0]);
+  out[0] = Math.cos(angle) * length;
+  out[1] = Math.sin(angle) * length;
+  return out;
+}
+
+/**
  * Negates the components of a vec2
  *
  * @param {vec2} out the receiving vector

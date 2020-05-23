@@ -337,6 +337,16 @@ describe("vec2", function() {
         it("should return the squared length", function() { expect(result).toEqual(5); });
     });
 
+    describe("setLength", function() {
+        const vecA = [0, 0];
+        const vecB = [0.5, 0];
+        const result = vec2.setLength(vecA, vecB, 10);
+
+        it("should return the updated vector", function() { expect(result).toBeEqualish([10, 0]); });
+        it("should modify vecA", function() { expect(vecA).toBeEqualish([10, 0]); });
+        it("should not modify vecB", function() { expect(vecB).toBeEqualish([0.5, 0]); });
+    });
+
     describe("negate", function() {
         describe("with a separate output vector", function() {
             beforeEach(function() { result = vec2.negate(out, vecA); });
