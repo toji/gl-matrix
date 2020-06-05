@@ -576,6 +576,21 @@ describe("vec3", function() {
         });
     });
 
+    describe('slerp', function() {
+        it('should compute the correct value at 0', () => {
+          let result = vec3.slerp([], [1,0,0], [0,1,0], 0);
+          expect(result).toBeEqualish([1,0,0]);
+        });
+        it('should compute the correct value at 1', () => {
+          let result = vec3.slerp([], [1,0,0], [0,1,0], 1);
+          expect(result).toBeEqualish([0,1,0]);
+        });
+        it('should compute the correct value at 0.5', () => {
+          let result = vec3.slerp([], [1,0,0], [0,1,0], 0.5);
+          expect(result).toBeEqualish([0.7071067811865475,0.7071067811865475,0]);
+        });
+      });
+
     describe("random", function() {
         describe("with no scale", function() {
             beforeEach(function() { result = vec3.random(out); });

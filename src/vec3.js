@@ -400,6 +400,28 @@ export function lerp(out, a, b, t) {
 }
 
 /**
+ * Performs a spherical linear interpolation between two vec3's
+ *
+ * @param {vec3} out the receiving vector
+ * @param {ReadonlyVec3} a the first operand
+ * @param {ReadonlyVec3} b the second operand
+ * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
+ * @returns {vec3} out
+ */
+export function slerp(out, a, b, t) {
+  let angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1));
+  let sinTotal = Math.sin(angle);
+
+  let ratioA = Math.sin((1 - t) * angle) / sinTotal;
+  let ratioB = Math.sin(t * angle) / sinTotal;
+  out[0] = ratioA * a[0] + ratioB * b[0];
+  out[1] = ratioA * a[1] + ratioB * b[1];
+  out[2] = ratioA * a[2] + ratioB * b[2];
+
+  return out;
+}
+
+/**
  * Performs a hermite interpolation with two control points
  *
  * @param {vec3} out the receiving vector
@@ -772,10 +794,10 @@ export const sqrLen = squaredLength;
  * @returns {Array} a
  * @function
  */
-export const forEach = (function() {
+export const forEach = (function () {
   let vec = create();
 
-  return function(a, stride, offset, count, fn, arg) {
+  return function (a, stride, offset, count, fn, arg) {
     let i, l;
     if (!stride) {
       stride = 3;
