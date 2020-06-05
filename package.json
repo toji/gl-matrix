@@ -28,7 +28,6 @@
   ],
   "scripts": {
     "test": "mocha --require @babel/register --recursive spec",
-    "old_test": "jasmine-node spec",
     "doc": "jsdoc -c jsdoc.config.json",
     "update-license-version": "node utils/update-license-version.js",
     "build-umd": "rollup -c",
