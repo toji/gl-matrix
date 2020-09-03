@@ -625,6 +625,98 @@ function buildMat4Tests() {
             });
         });
 
+        let out_t, out_s;
+        describe("decompose", function() {
+            describe("from the identity matrix", function() {
+                beforeEach(function() {
+                    result = quat.fromValues(1, 2, 3, 4);
+                    out_t = vec3.fromValues(7, 8, 9);
+                    out_s = vec3.fromValues(4, 5, 6);
+                    out = quat.fromValues(1, 2, 3, 4);
+                    result = mat4.decompose(out, out_t, out_s, identity);
+                });
+                it("should place result both in result and out", function() { expect(result).toBe(out); });
+                it("should return the unit quaternion", function() {
+                    let unitQuat = quat.create();
+                    quat.identity(unitQuat);
+                    expect(result).toBeEqualish(unitQuat);
+                });
+                it("out_s should be the identity vector", function() { expect(out_s).toBeEqualish([1, 1, 1]); });
+                it("out_t should be the zero vector", function() { expect(out_t).toBeEqualish([0, 0, 0]); });
+            });
+
+            describe("from a translation-only matrix", function() {
+                beforeEach(function() {
+                    result = quat.fromValues(1, 2, 3, 4);
+                    out_t = vec3.fromValues(7, 8, 9);
+                    out_s = vec3.fromValues(4, 5, 6);
+                    out = quat.fromValues(1, 2, 3, 4);
+                    result = mat4.decompose(out, out_t, out_s, matB);
+                });
+                it("should return the unit quaternion", function() {
+                    let unitQuat = quat.create();
+                    quat.identity(unitQuat);
+                    expect(result).toBeEqualish(unitQuat);
+                });
+                it("out_s should be the identity vector", function() { expect(out_s).toBeEqualish([1, 1, 1]); });
+                it("out_t should be translation vector", function() { expect(out_t).toBeEqualish([4, 5, 6]); });
+            });
+
+            describe("from a scale-only matrix", function() {
+                beforeEach(function() {
+                    let v = vec3.fromValues(4, 5, 6);
+                    result = vec3.fromValues(1, 2, 3)
+                    out_t = vec3.fromValues(7, 8, 9);
+                    out_s = vec3.fromValues(1, 2, 3);
+                    out = quat.fromValues(1, 2, 3, 4);
+                    mat4.fromScaling(matA, v);
+                    result = mat4.decompose(out, out_t, out_s, matA);
+                });
+                it("out_s should be translation vector", function() { expect(out_s).toBeEqualish([4, 5, 6]); });
+            });
+
+            describe("from a translation and rotation matrix", function() {
+                it("should keep the same rotation and translation as when created", function() {
+                    let q = quat.create();
+                    let outVec = vec3.fromValues(5, 6, 7);
+                    let testVec = vec3.fromValues(1, 5, 2);
+                    let ang = 0.78972;
+
+                    vec3.normalize(testVec, testVec);
+                    q = quat.setAxisAngle(q, testVec, ang);
+                    mat4.fromRotationTranslation(out, q, outVec);
+
+                    result = quat.fromValues(2, 3, 4, 6);
+                    out_t = vec3.fromValues(7, 8, 9);
+                    out_s = vec3.fromValues(4, 5, 6);
+                    mat4.decompose(result, out_t, out_s, out);
+                    let outaxis = vec3.create();
+                    let outangle = quat.getAxisAngle(outaxis, result);
+
+                    expect(outaxis).toBeEqualish(testVec);
+                    expect(outangle).toBeEqualish(ang);
+                    expect(out_t).toBeEqualish(outVec);
+                });
+            });
+
+            describe("from a translation, rotation and scale matrix", function() {
+                beforeEach(function() {
+                    let q = quat.create();
+                    let t = vec3.fromValues(1, 2, 3);
+                    let s = vec3.fromValues(5, 6, 7);
+                    q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+                    mat4.fromRotationTranslationScale(out, q, t, s);
+                    out_t = vec3.fromValues(7, 8, 9);
+                    out_s = vec3.fromValues(4, 5, 6);
+                    result = quat.fromValues(2, 3, 4, 6);
+                    mat4.decompose(result, out_t, out_s, out);
+                })
+                it("should return the same scaling factor when created", function() { expect(out_s).toBeEqualish([5, 6, 7]); });
+                it("should return the same translation when created", function() { expect(out_t).toBeEqualish([1, 2, 3]); });
+            });
+
+        });
+
         describe("frustum", function() {
             beforeEach(function() { result = mat4.frustum(out, -1, 1, -1, 1, -1, 1); });
             it("should place values into out", function() { expect(result).toBeEqualish([
