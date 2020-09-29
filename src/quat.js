@@ -4,8 +4,7 @@ import * as vec3 from "./vec3.js";
 import * as vec4 from "./vec4.js";
 
 /**
- * Quaternion<br>
- * Format: XYZW
+ * Quaternion in the format XYZW
  * @module quat
  */
 
