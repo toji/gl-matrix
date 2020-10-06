@@ -273,6 +273,13 @@ describe("quat", function() {
         });
     });
 
+    describe("fromEulerXYZ", function () {
+        it("should set dest to the correct value", function () {
+            result = quat.fromEulerXYZ(out, 0, 0, -90);
+            expect(result).toBeEqualish([-0.707106, 0, 0, 0.707106]);
+        });
+    });
+
     describe("setAxes", function() {
         let r;
         beforeEach(function() { r = vec3.create(); });
