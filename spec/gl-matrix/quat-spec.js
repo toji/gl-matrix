@@ -252,11 +252,11 @@ describe("quat", function() {
     describe("fromEuler", function() {
         describe("legacy", function() {
             beforeEach(function() {
-                result = quat.fromEuler(out, -90, 0, 0);
+                result = quat.fromEuler(out, -30, 30, 30);
             });
 
             it("should set dest to the correct value", function() {
-                expect(result).toBeEqualish([-0.707106, 0, 0, 0.707106]);
+                expect(result).toBeEqualish([-0.3061862, 0.1767767, 0.3061862, 0.8838835]);
             });
         });
 
@@ -273,10 +273,14 @@ describe("quat", function() {
         });
     });
 
-    describe("fromEulerXYZ", function () {
-        it("should set dest to the correct value", function () {
-            result = quat.fromEulerXYZ(out, 0, 0, -90);
-            expect(result).toBeEqualish([-0.707106, 0, 0, 0.707106]);
+    describe("fromEulerIntrinsicXYZ", function() {
+        beforeEach(function () {
+            result = quat.fromEulerIntrinsicXYZ(out, -30, 30, 30);
+            console.log(result);
+        });
+
+        it("should set dest to the correct value", function() {
+            expect(result).toBeEqualish([-0.1767767, 0.3061862, 0.1767767, 0.9185587]);
         });
     });
 

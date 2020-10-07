@@ -1,8 +1,8 @@
 {
   "dist/gl-matrix-min.js": {
-    "bundled": 202435,
-    "minified": 51361,
-    "gzipped": 13127
+    "bundled": 203618,
+    "minified": 51572,
+    "gzipped": 13229
   },
   "dist\\gl-matrix-min.js": {
     "bundled": 199625,

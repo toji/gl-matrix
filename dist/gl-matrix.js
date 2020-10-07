@@ -5826,35 +5826,69 @@ THE SOFTWARE.
     return out;
   }
   /**
-   * Creates a quaternion from the given euler angle z, y, x.
+   * Creates a quaternion from the given euler angle x, y, z using the provided extrinsic order for the conversion.
    *
    * @param {quat} out the receiving quaternion
+   * @param {x} Angle to rotate around X axis in degrees.
    * @param {z} Angle to rotate around Z axis in degrees.
    * @param {y} Angle to rotate around Y axis in degrees.
-   * @param {x} Angle to rotate around X axis in degrees.
+   * @param {extrinsicOrder} Intrinsic order for conversion, so far only 'xyz' and 'zyx' is supported.
    * @returns {quat} out
    * @function
    */
 
-  function fromEuler(out, z, y, x) {
+  function fromEulerInternal(out, x, y, z, intrinsicOrder) {
     var halfToRad = 0.5 * Math.PI / 180.0;
+    x *= halfToRad;
     z *= halfToRad;
     y *= halfToRad;
-    x *= halfToRad;
+    var sx = Math.sin(x);
+    var cx = Math.cos(x);
     var sz = Math.sin(z);
     var cz = Math.cos(z);
     var sy = Math.sin(y);
     var cy = Math.cos(y);
-    var sx = Math.sin(x);
-    var cx = Math.cos(x);
-    out[0] = sz * cy * cx - cz * sy * sx;
-    out[1] = cz * sy * cx + sz * cy * sx;
-    out[2] = cz * cy * sx - sz * sy * cx;
-    out[3] = cz * cy * cx + sz * sy * sx;
+
+    switch (intrinsicOrder) {
+      case 'xyz':
+        out[0] = sx * cy * cz + cx * sy * sz;
+        out[1] = cx * sy * cz - sx * cy * sz;
+        out[2] = cx * cy * sz + sx * sy * cz;
+        out[3] = cx * cy * cz - sx * sy * sz;
+        break;
+
+      case 'zyx':
+        out[0] = sx * cy * cz - cx * sy * sz;
+        out[1] = cx * sy * cz + sx * cy * sz;
+        out[2] = cx * cy * sz - sx * sy * cz;
+        out[3] = cx * cy * cz + sx * sy * sz;
+        break;
+
+      default:
+        throw new Error('Not implemented');
+    }
+
     return out;
   }
   /**
    * Creates a quaternion from the given euler angle x, y, z.
+   * The conversion is done using ZYX intrinsic order i.e. XYZ extrinsic order.
+   *
+   * @param {quat} out the receiving quaternion
+   * @param {x} Angle to rotate around X axis in degrees.
+   * @param {z} Angle to rotate around Z axis in degrees.
+   * @param {y} Angle to rotate around Y axis in degrees.
+   * @returns {quat} out
+   * @function
+   */
+
+
+  function fromEuler(out, x, y, z) {
+    return fromEulerInternal(out, x, y, z, 'zyx');
+  }
+  /**
+   * Creates a quaternion from the given euler angle x, y, z.
+   * The conversion is done using XYZ intrinsic order i.e. ZYX extrinsic order.
    *
    * @param {quat} out the receiving quaternion
    * @param {x} Angle to rotate around X axis in degrees.
@@ -5864,8 +5898,8 @@ THE SOFTWARE.
    * @function
    */
 
-  function fromEulerXYZ(out, x, y, z) {
-    return fromEuler(out, z, y, x);
+  function fromEulerIntrinsicXYZ(out, x, y, z) {
+    return fromEulerInternal(out, x, y, z, 'xyz');
   }
   /**
    * Returns a string representation of a quatenion
@@ -6139,7 +6173,7 @@ THE SOFTWARE.
     conjugate: conjugate,
     fromMat3: fromMat3,
     fromEuler: fromEuler,
-    fromEulerXYZ: fromEulerXYZ,
+    fromEulerIntrinsicXYZ: fromEulerIntrinsicXYZ,
     str: str$6,
     clone: clone$6,
     fromValues: fromValues$6,
