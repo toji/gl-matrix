@@ -453,11 +453,11 @@ export function fromMat3(out, m) {
  * @param {x} Angle to rotate around X axis in degrees.
  * @param {z} Angle to rotate around Z axis in degrees.
  * @param {y} Angle to rotate around Y axis in degrees.
- * @param {extrinsicOrder} Intrinsic order for conversion, so far only 'xyz' and 'zyx' is supported.
+ * @param {order} Intrinsic order for conversion, so far only 'xyz' and 'zyx' is supported.
  * @returns {quat} out
  * @function
  */
-function fromEulerInternal(out, x, y, z, intrinsicOrder) {
+export function fromEuler(out, x, y, z, order='zyx') {
   let halfToRad = (0.5 * Math.PI) / 180.0;
   x *= halfToRad;
   z *= halfToRad;
@@ -470,54 +470,55 @@ function fromEulerInternal(out, x, y, z, intrinsicOrder) {
   let sy = Math.sin(y);
   let cy = Math.cos(y);
 
-  switch (intrinsicOrder) {
+  if (typeof order != 'string') {
+    order = 'zyx';
+  }
+  switch (order.toLowerCase()) {
     case 'xyz':
       out[0] = sx * cy * cz + cx * sy * sz;
       out[1] = cx * sy * cz - sx * cy * sz;
       out[2] = cx * cy * sz + sx * sy * cz;
       out[3] = cx * cy * cz - sx * sy * sz;
       break;
+
+    case 'xzy':
+      out[0] = sx * cy * cz - cx * sy * sz;
+      out[1] = cx * sy * cz - sx * cy * sz;
+      out[2] = cx * cy * sz + sx * sy * cz;
+      out[3] = cx * cy * cz + sx * sy * sz;
+      break;
+
+    case 'yxz':
+      out[0] = sx * cy * cz + cx * sy * sz;
+      out[1] = cx * sy * cz - sx * cy * sz;
+      out[2] = cx * cy * sz - sx * sy * cz;
+      out[3] = cx * cy * cz + sx * sy * sz;
+      break;
+
+    case 'yzx':
+      out[0] = sx * cy * cz + cx * sy * sz;
+      out[1] = cx * sy * cz + sx * cy * sz;
+      out[2] = cx * cy * sz - sx * sy * cz;
+      out[3] = cx * cy * cz - sx * sy * sz;
+      break;
+
+    case 'zxy':
+      out[0] = sx * cy * cz - cx * sy * sz;
+      out[1] = cx * sy * cz + sx * cy * sz;
+      out[2] = cx * cy * sz + sx * sy * cz;
+      out[3] = cx * cy * cz - sx * sy * sz;
+      break;
+
     case 'zyx':
+    default:
       out[0] = sx * cy * cz - cx * sy * sz;
       out[1] = cx * sy * cz + sx * cy * sz;
       out[2] = cx * cy * sz - sx * sy * cz;
       out[3] = cx * cy * cz + sx * sy * sz;
       break;
-    default:
-      throw new Error('Not implemented');
   }
 
   return out;
-}
-
-/**
- * Creates a quaternion from the given euler angle x, y, z.
- * The conversion is done using ZYX intrinsic order i.e. XYZ extrinsic order.
- *
- * @param {quat} out the receiving quaternion
- * @param {x} Angle to rotate around X axis in degrees.
- * @param {z} Angle to rotate around Z axis in degrees.
- * @param {y} Angle to rotate around Y axis in degrees.
- * @returns {quat} out
- * @function
- */
-export function fromEuler(out, x, y, z) {
-  return fromEulerInternal(out, x, y, z, 'zyx');
-}
-
-/**
- * Creates a quaternion from the given euler angle x, y, z.
- * The conversion is done using XYZ intrinsic order i.e. ZYX extrinsic order.
- *
- * @param {quat} out the receiving quaternion
- * @param {x} Angle to rotate around X axis in degrees.
- * @param {y} Angle to rotate around Y axis in degrees.
- * @param {z} Angle to rotate around Z axis in degrees.
- * @returns {quat} out
- * @function
- */
-export function fromEulerIntrinsicXYZ(out, x, y, z) {
-  return fromEulerInternal(out, x, y, z, 'xyz');
 }
 
 /**
