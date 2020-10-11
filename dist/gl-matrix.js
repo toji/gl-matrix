@@ -5896,7 +5896,6 @@ THE SOFTWARE.
         out[1] = cx * sy * cz + sx * cy * sz;
         out[2] = cx * cy * sz - sx * sy * cz;
         out[3] = cx * cy * cz + sx * sy * sz;
-        break;
     }
 
     return out;
