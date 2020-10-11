@@ -5845,10 +5845,10 @@ THE SOFTWARE.
     y *= halfToRad;
     var sx = Math.sin(x);
     var cx = Math.cos(x);
-    var sz = Math.sin(z);
-    var cz = Math.cos(z);
     var sy = Math.sin(y);
     var cy = Math.cos(y);
+    var sz = Math.sin(z);
+    var cz = Math.cos(z);
 
     if (typeof order != 'string') {
       order = 'zyx';

@@ -465,10 +465,10 @@ export function fromEuler(out, x, y, z, order='zyx') {
 
   let sx = Math.sin(x);
   let cx = Math.cos(x);
-  let sz = Math.sin(z);
-  let cz = Math.cos(z);
   let sy = Math.sin(y);
   let cy = Math.cos(y);
+  let sz = Math.sin(z);
+  let cz = Math.cos(z);
 
   if (typeof order != 'string') {
     order = 'zyx';
