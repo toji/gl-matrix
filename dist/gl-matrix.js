@@ -5826,12 +5826,12 @@ THE SOFTWARE.
     return out;
   }
   /**
-   * Creates a quaternion from the given euler angle x, y, z using the provided extrinsic order for the conversion.
+   * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
    *
    * @param {quat} out the receiving quaternion
    * @param {x} Angle to rotate around X axis in degrees.
-   * @param {z} Angle to rotate around Z axis in degrees.
    * @param {y} Angle to rotate around Y axis in degrees.
+   * @param {z} Angle to rotate around Z axis in degrees.
    * @param {order} Intrinsic order for conversion, so far only 'xyz' and 'zyx' is supported.
    * @returns {quat} out
    * @function
