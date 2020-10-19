@@ -450,15 +450,15 @@ export function fromMat3(out, m) {
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
  * @param {quat} out the receiving quaternion
- * @param {x} Angle to rotate around X axis in degrees.
- * @param {y} Angle to rotate around Y axis in degrees.
- * @param {z} Angle to rotate around Z axis in degrees.
- * @param {order} Intrinsic order for conversion, default is ZYX.
+ * @param {x} x Angle to rotate around X axis in degrees.
+ * @param {y} y Angle to rotate around Y axis in degrees.
+ * @param {z} z Angle to rotate around Z axis in degrees.
+ * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is ZYX.
  * @returns {quat} out
  * @function
  */
-export function fromEuler(out, x, y, z, order='zyx') {
-  let halfToRad = (0.5 * Math.PI) / 180.0;
+export function fromEuler(out, x, y, z, order = "zyx") {
+  let halfToRad = Math.PI / 360;
   x *= halfToRad;
   z *= halfToRad;
   y *= halfToRad;
@@ -470,46 +470,43 @@ export function fromEuler(out, x, y, z, order='zyx') {
   let sz = Math.sin(z);
   let cz = Math.cos(z);
 
-  if (typeof order != 'string') {
-    order = 'zyx';
-  }
-  switch (order.toLowerCase()) {
-    case 'xyz':
+  switch (order) {
+    case "xyz":
       out[0] = sx * cy * cz + cx * sy * sz;
       out[1] = cx * sy * cz - sx * cy * sz;
       out[2] = cx * cy * sz + sx * sy * cz;
       out[3] = cx * cy * cz - sx * sy * sz;
       break;
 
-    case 'xzy':
+    case "xzy":
       out[0] = sx * cy * cz - cx * sy * sz;
       out[1] = cx * sy * cz - sx * cy * sz;
       out[2] = cx * cy * sz + sx * sy * cz;
       out[3] = cx * cy * cz + sx * sy * sz;
       break;
 
-    case 'yxz':
+    case "yxz":
       out[0] = sx * cy * cz + cx * sy * sz;
       out[1] = cx * sy * cz - sx * cy * sz;
       out[2] = cx * cy * sz - sx * sy * cz;
       out[3] = cx * cy * cz + sx * sy * sz;
       break;
 
-    case 'yzx':
+    case "yzx":
       out[0] = sx * cy * cz + cx * sy * sz;
       out[1] = cx * sy * cz + sx * cy * sz;
       out[2] = cx * cy * sz - sx * sy * cz;
       out[3] = cx * cy * cz - sx * sy * sz;
       break;
 
-    case 'zxy':
+    case "zxy":
       out[0] = sx * cy * cz - cx * sy * sz;
       out[1] = cx * sy * cz + sx * cy * sz;
       out[2] = cx * cy * sz + sx * sy * cz;
       out[3] = cx * cy * cz - sx * sy * sz;
       break;
 
-    case 'zyx':
+    case "zyx":
     default:
       out[0] = sx * cy * cz - cx * sy * sz;
       out[1] = cx * sy * cz + sx * cy * sz;
@@ -692,12 +689,12 @@ export const equals = vec4.equals;
  * @param {ReadonlyVec3} b the destination vector
  * @returns {quat} out
  */
-export const rotationTo = (function() {
+export const rotationTo = (function () {
   let tmpvec3 = vec3.create();
   let xUnitVec3 = vec3.fromValues(1, 0, 0);
   let yUnitVec3 = vec3.fromValues(0, 1, 0);
 
-  return function(out, a, b) {
+  return function (out, a, b) {
     let dot = vec3.dot(a, b);
     if (dot < -0.999999) {
       vec3.cross(tmpvec3, xUnitVec3, a);
@@ -733,11 +730,11 @@ export const rotationTo = (function() {
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  */
-export const sqlerp = (function() {
+export const sqlerp = (function () {
   let temp1 = create();
   let temp2 = create();
 
-  return function(out, a, b, c, d, t) {
+  return function (out, a, b, c, d, t) {
     slerp(temp1, a, d, t);
     slerp(temp2, b, c, t);
     slerp(out, temp1, temp2, 2 * t * (1 - t));
@@ -756,10 +753,10 @@ export const sqlerp = (function() {
  * @param {ReadonlyVec3} up    the vector representing the local "up" direction
  * @returns {quat} out
  */
-export const setAxes = (function() {
+export const setAxes = (function () {
   let matr = mat3.create();
 
-  return function(out, view, right, up) {
+  return function (out, view, right, up) {
     matr[0] = right[0];
     matr[3] = right[1];
     matr[6] = right[2];
