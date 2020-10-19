@@ -252,11 +252,11 @@ describe("quat", function() {
     describe("fromEuler", function() {
         describe("legacy", function() {
             beforeEach(function() {
-                result = quat.fromEuler(out, -90, 0, 0);
+                result = quat.fromEuler(out, -30, 30, 30);
             });
 
             it("should set dest to the correct value", function() {
-                expect(result).toBeEqualish([-0.707106, 0, 0, 0.707106]);
+                expect(result).toBeEqualish([-0.3061862, 0.1767767, 0.3061862, 0.8838835]);
             });
         });
 
@@ -269,6 +269,43 @@ describe("quat", function() {
 
             it("should produce the correct transformation", function() {
                 expect(vec3.transformQuat([], [0,1,0], out)).toBeEqualish([0,0,-1]);
+            });
+        });
+
+        describe("order argument", function () {
+            it("should use ZYX order as the default", function () {
+                result = quat.fromEuler(out, -30, 30, 30);
+                expect(result).toBeEqualish(quat.fromEuler(quat.create(), -30, 30, 30, 'zyx'));
+            });
+
+            it("should use ZYX order if the argument is not a string", function () {
+                result = quat.fromEuler(out, -30, 30, 30, null);
+                expect(result).toBeEqualish(quat.fromEuler(quat.create(), -30, 30, 30, 'zyx'));
+            });
+
+            it("should apply in XYZ order properly", function () {
+                result = quat.fromEuler(out, -30, 30, 30, 'xyz');
+                expect(result).toBeEqualish([-0.1767767, 0.3061862, 0.1767767, 0.9185587]);
+            });
+
+            it("should apply in XZY order properly", function () {
+                result = quat.fromEuler(out, -30, 30, 30, 'xzy');
+                expect(result).toBeEqualish([-0.3061862, 0.3061862, 0.1767767, 0.8838835]);
+            });
+
+            it("should apply in YXZ order properly", function () {
+                result = quat.fromEuler(out, -30, 30, 30, 'YXZ');
+                expect(result).toBeEqualish([-0.1767767, 0.3061862, 0.3061862, 0.8838835]);
+            });
+
+            it("should apply in YZX order properly", function () {
+                result = quat.fromEuler(out, -30, 30, 30, 'YZX');
+                expect(result).toBeEqualish([-0.1767767, 0.1767767, 0.3061862, 0.9185587]);
+            });
+
+            it("should apply in ZXY order properly", function () {
+                result = quat.fromEuler(out, -30, 30, 30, 'ZXY');
+                expect(result).toBeEqualish([-0.3061862, 0.1767767, 0.1767767, 0.9185587]);
             });
         });
     });
