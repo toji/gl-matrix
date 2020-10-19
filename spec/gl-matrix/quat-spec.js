@@ -278,11 +278,6 @@ describe("quat", function() {
                 expect(result).toBeEqualish(quat.fromEuler(quat.create(), -30, 30, 30, 'zyx'));
             });
 
-            it("should use ZYX order if the argument is not a string", function () {
-                result = quat.fromEuler(out, -30, 30, 30, null);
-                expect(result).toBeEqualish(quat.fromEuler(quat.create(), -30, 30, 30, 'zyx'));
-            });
-
             it("should apply in XYZ order properly", function () {
                 result = quat.fromEuler(out, -30, 30, 30, 'xyz');
                 expect(result).toBeEqualish([-0.1767767, 0.3061862, 0.1767767, 0.9185587]);
@@ -294,17 +289,17 @@ describe("quat", function() {
             });
 
             it("should apply in YXZ order properly", function () {
-                result = quat.fromEuler(out, -30, 30, 30, 'YXZ');
+                result = quat.fromEuler(out, -30, 30, 30, 'yxz');
                 expect(result).toBeEqualish([-0.1767767, 0.3061862, 0.3061862, 0.8838835]);
             });
 
             it("should apply in YZX order properly", function () {
-                result = quat.fromEuler(out, -30, 30, 30, 'YZX');
+                result = quat.fromEuler(out, -30, 30, 30, 'yzx');
                 expect(result).toBeEqualish([-0.1767767, 0.1767767, 0.3061862, 0.9185587]);
             });
 
             it("should apply in ZXY order properly", function () {
-                result = quat.fromEuler(out, -30, 30, 30, 'ZXY');
+                result = quat.fromEuler(out, -30, 30, 30, 'zxy');
                 expect(result).toBeEqualish([-0.3061862, 0.1767767, 0.1767767, 0.9185587]);
             });
         });

@@ -453,11 +453,11 @@ export function fromMat3(out, m) {
  * @param {x} x Angle to rotate around X axis in degrees.
  * @param {y} y Angle to rotate around Y axis in degrees.
  * @param {z} z Angle to rotate around Z axis in degrees.
- * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is ZYX.
+ * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
  * @returns {quat} out
  * @function
  */
-export function fromEuler(out, x, y, z, order = "zyx") {
+export function fromEuler(out, x, y, z, order = glMatrix.ANGLE_ORDER) {
   let halfToRad = Math.PI / 360;
   x *= halfToRad;
   z *= halfToRad;
@@ -507,11 +507,14 @@ export function fromEuler(out, x, y, z, order = "zyx") {
       break;
 
     case "zyx":
-    default:
       out[0] = sx * cy * cz - cx * sy * sz;
       out[1] = cx * sy * cz + sx * cy * sz;
       out[2] = cx * cy * sz - sx * sy * cz;
       out[3] = cx * cy * cz + sx * sy * sz;
+      break;
+
+    default: 
+      throw new Error('Unknown angle order ' + order);
   }
 
   return out;

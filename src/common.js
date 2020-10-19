@@ -5,8 +5,10 @@
 
 // Configuration Constants
 export const EPSILON = 0.000001;
-export let ARRAY_TYPE = (typeof Float32Array !== 'undefined') ? Float32Array : Array;
-export const RANDOM = Math.random;
+export let ARRAY_TYPE =
+  typeof Float32Array !== "undefined" ? Float32Array : Array;
+export let RANDOM = Math.random;
+export let ANGLE_ORDER = "zyx";
 
 /**
  * Sets the type of array used when creating new vectors and matrices
@@ -38,11 +40,13 @@ export function toRadian(a) {
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
  */
 export function equals(a, b) {
-  return Math.abs(a - b) <= EPSILON*Math.max(1.0, Math.abs(a), Math.abs(b));
+  return Math.abs(a - b) <= EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b));
 }
 
-if (!Math.hypot) Math.hypot = function() {
-  var y = 0, i = arguments.length;
-  while (i--) y += arguments[i] * arguments[i];
-  return Math.sqrt(y);
-};
+if (!Math.hypot)
+  Math.hypot = function () {
+    var y = 0,
+      i = arguments.length;
+    while (i--) y += arguments[i] * arguments[i];
+    return Math.sqrt(y);
+  };
