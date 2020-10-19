@@ -5832,7 +5832,7 @@ THE SOFTWARE.
    * @param {x} Angle to rotate around X axis in degrees.
    * @param {y} Angle to rotate around Y axis in degrees.
    * @param {z} Angle to rotate around Z axis in degrees.
-   * @param {order} Intrinsic order for conversion, so far only 'xyz' and 'zyx' is supported.
+   * @param {order} Intrinsic order for conversion, default is ZYX.
    * @returns {quat} out
    * @function
    */
