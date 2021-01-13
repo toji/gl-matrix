@@ -1537,8 +1537,7 @@ export function frustum(out, left, right, bottom, top, near, far) {
  * @returns {mat4} out
  */
 export function perspectiveNO(out, fovy, aspect, near, far) {
-  let f = 1.0 / Math.tan(fovy / 2),
-    nf;
+  const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
   out[2] = 0;
@@ -1554,7 +1553,7 @@ export function perspectiveNO(out, fovy, aspect, near, far) {
   out[13] = 0;
   out[15] = 0;
   if (far != null && far !== Infinity) {
-    nf = 1 / (near - far);
+    const nf = 1 / (near - far);
     out[10] = (far + near) * nf;
     out[14] = 2 * far * near * nf;
   } else {
@@ -1584,8 +1583,7 @@ export const perspective = perspectiveNO;
  * @returns {mat4} out
  */
 export function perspectiveZO(out, fovy, aspect, near, far) {
-  let f = 1.0 / Math.tan(fovy / 2),
-    nf;
+  const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
   out[2] = 0;
@@ -1601,7 +1599,7 @@ export function perspectiveZO(out, fovy, aspect, near, far) {
   out[13] = 0;
   out[15] = 0;
   if (far != null && far !== Infinity) {
-    nf = 1 / (near - far);
+    const nf = 1 / (near - far);
     out[10] = far * nf;
     out[14] = far * near * nf;
   } else {
@@ -1664,9 +1662,9 @@ export function perspectiveFromFieldOfView(out, fov, near, far) {
  * @returns {mat4} out
  */
 export function orthoNO(out, left, right, bottom, top, near, far) {
-  let lr = 1 / (left - right);
-  let bt = 1 / (bottom - top);
-  let nf = 1 / (near - far);
+  const lr = 1 / (left - right);
+  const bt = 1 / (bottom - top);
+  const nf = 1 / (near - far);
   out[0] = -2 * lr;
   out[1] = 0;
   out[2] = 0;
@@ -1707,9 +1705,9 @@ export const ortho = orthoNO;
  * @returns {mat4} out
  */
 export function orthoZO(out, left, right, bottom, top, near, far) {
-  let lr = 1 / (left - right);
-  let bt = 1 / (bottom - top);
-  let nf = 1 / (near - far);
+  const lr = 1 / (left - right);
+  const bt = 1 / (bottom - top);
+  const nf = 1 / (near - far);
   out[0] = -2 * lr;
   out[1] = 0;
   out[2] = 0;
