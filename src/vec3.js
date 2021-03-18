@@ -477,7 +477,7 @@ export function bezier(out, a, b, c, d, t) {
  * Generates a random vector with the given scale
  *
  * @param {vec3} out the receiving vector
- * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
+ * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
  * @returns {vec3} out
  */
 export function random(out, scale) {

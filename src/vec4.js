@@ -437,7 +437,7 @@ export function lerp(out, a, b, t) {
  * Generates a random vector with the given scale
  *
  * @param {vec4} out the receiving vector
- * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
+ * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
  * @returns {vec4} out
  */
 export function random(out, scale) {
