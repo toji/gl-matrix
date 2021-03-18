@@ -828,7 +828,7 @@ export function normalize(out, a) {
 }
 
 /**
- * Returns a string representation of a dual quatenion
+ * Returns a string representation of a dual quaternion
  *
  * @param {ReadonlyQuat2} a dual quaternion to represent as a string
  * @returns {String} string representation of the dual quat

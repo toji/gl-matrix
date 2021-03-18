@@ -521,7 +521,7 @@ export function fromEuler(out, x, y, z, order = glMatrix.ANGLE_ORDER) {
 }
 
 /**
- * Returns a string representation of a quatenion
+ * Returns a string representation of a quaternion
  *
  * @param {ReadonlyQuat} a vector to represent as a string
  * @returns {String} string representation of the vector
