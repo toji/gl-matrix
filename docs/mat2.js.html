@@ -190,7 +190,7 @@ export function invert(out, a) {
  * @returns {mat2} out
  */
 export function adjoint(out, a) {
-  // Caching this value is nessecary if out == a
+  // Caching this value is necessary if out == a
   let a0 = a[0];
   out[0] = a[3];
   out[1] = -a[1];
