@@ -330,7 +330,10 @@
 
 
 <div class="description">
-    Sets a quaternion to represent the shortest rotation from onevector to another.Both vectors are assumed to be unit length.
+    Sets a quaternion to represent the shortest rotation from one
+vector to another.
+
+Both vectors are assumed to be unit length.
 </div>
 
 
@@ -392,7 +395,9 @@
 
 
 <div class="description">
-    Sets the specified quaternion with values corresponding to the givenaxes. Each axis is a vec3 and is expected to be unit length andperpendicular to all other specified axes.
+    Sets the specified quaternion with values corresponding to the given
+axes. Each axis is a vec3 and is expected to be unit length and
+perpendicular to all other specified axes.
 </div>
 
 
@@ -733,7 +738,9 @@
 
 
 <div class="description">
-    Calculates the W component of a quat from the X, Y, and Z components.Assumes that quaternion is 1 unit in length.Any existing W component will be ignored.
+    Calculates the W component of a quat from the X, Y, and Z components.
+Assumes that quaternion is 1 unit in length.
+Any existing W component will be ignored.
 </div>
 
 
@@ -1074,7 +1081,8 @@
 
 
 <div class="description">
-    Calculates the conjugate of a quatIf the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+    Calculates the conjugate of a quat
+If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
 </div>
 
 
@@ -2140,7 +2148,10 @@
 
 
 <div class="description">
-    Creates a quaternion from the given 3x3 rotation matrix.NOTE: The resultant quaternion is not normalized, so you should be sureto renormalize the quaternion yourself where necessary.
+    Creates a quaternion from the given 3x3 rotation matrix.
+
+NOTE: The resultant quaternion is not normalized, so you should be sure
+to renormalize the quaternion yourself where necessary.
 </div>
 
 
@@ -2732,7 +2743,14 @@
 
 
 <div class="description">
-    Gets the rotation axis and angle for a given quaternion. If a quaternion is created with setAxisAngle, this method will return the same values as providied in the original parameter list OR functionally equivalent values.Example: The quaternion formed by axis [0, 0, 1] and angle -90 is the same as the quaternion formed by [0, 0, 1] and 270. This method favors the latter.
+    Gets the rotation axis and angle for a given
+ quaternion. If a quaternion is created with
+ setAxisAngle, this method will return the same
+ values as providied in the original parameter list
+ OR functionally equivalent values.
+Example: The quaternion formed by axis [0, 0, 1] and
+ angle -90 is the same as the quaternion formed by
+ [0, 0, 1] and 270. This method favors the latter.
 </div>
 
 
@@ -5663,7 +5681,8 @@
 
 
 <div class="description">
-    Sets a quat from the given angle and rotation axis,then returns it.
+    Sets a quat from the given angle and rotation axis,
+then returns it.
 </div>
 
 
@@ -6343,7 +6362,7 @@
 
 
 <div class="description">
-    Returns a string representation of a quatenion
+    Returns a string representation of a quaternion
 </div>
 
 
