@@ -776,20 +776,23 @@ describe("quat", function() {
     });
 
     describe("equals", function() {
-        let quatC, quatD, r0, r1, r2;
+        let quatC, quatD, quatE, r0, r1, r2, r3;
         beforeEach(function() {
-            quatA = [0, 1, 2, 3];
-            quatB = [0, 1, 2, 3];
-            quatC = [1, 2, 3, 4];
+            quatA = [0, 0, 0, 1];
+            quatB = [0, 0, 0, 1];
+            quatC = [0, 1, 0, 0];
             quatD = [1e-16, 1, 2, 3];
+            quatE = [0, -1, 0, 0];
             r0 = quat.equals(quatA, quatB);
             r1 = quat.equals(quatA, quatC);
             r2 = quat.equals(quatA, quatD);
+            r3 = quat.equals(quatC, quatE);
         });
         it("should return true for identical quaternions", function() { expect(r0).toBe(true); });
         it("should return false for different quaternions", function() { expect(r1).toBe(false); });
         it("should return true for close but not identical quaternions", function() { expect(r2).toBe(true); });
-        it("should not modify quatA", function() { expect(quatA).toBeEqualish([0, 1, 2, 3]); });
-        it("should not modify quatB", function() { expect(quatB).toBeEqualish([0, 1, 2, 3]); });
+        it("should return true for identical quaternions with flipped orientation", function() { expect(r3).toBe(true); });
+        it("should not modify quatA", function() { expect(quatA).toBeEqualish([0, 0, 0, 1]); });
+        it("should not modify quatB", function() { expect(quatB).toBeEqualish([0, 0, 0, 1]); });
     });
 });
