@@ -513,7 +513,7 @@ export function fromEuler(out, x, y, z, order = glMatrix.ANGLE_ORDER) {
       out[3] = cx * cy * cz + sx * sy * sz;
       break;
 
-    default: 
+    default:
       throw new Error('Unknown angle order ' + order);
   }
 
@@ -673,13 +673,17 @@ export const normalize = vec4.normalize;
 export const exactEquals = vec4.exactEquals;
 
 /**
- * Returns whether or not the quaternions have approximately the same elements in the same position.
+ * Returns whether or not the quaternions point approximately to the same direction.
  *
- * @param {ReadonlyQuat} a The first vector.
- * @param {ReadonlyQuat} b The second vector.
- * @returns {Boolean} True if the vectors are equal, false otherwise.
+ * Both quaternions are assumed to be unit length.
+ *
+ * @param {ReadonlyQuat} a The first unit quaternion.
+ * @param {ReadonlyQuat} b The second unit quaternion.
+ * @returns {Boolean} True if the quaternions are equal, false otherwise.
  */
-export const equals = vec4.equals;
+export function equals(a, b) {
+    return Math.abs(vec4.dot(a, b)) >= 1 - glMatrix.EPSILON;
+}
 
 /**
  * Sets a quaternion to represent the shortest rotation from one
