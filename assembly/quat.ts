@@ -704,8 +704,7 @@ export function equals(a: ReadonlyQuat, b: ReadonlyQuat): bool {
  * @param {ReadonlyVec3} b the destination vector
  * @returns {quat} out
  */
-// @ts-ignore
-export const rotationTo: () => (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => quat = (() => {
+export function rotationTo(): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => quat {
   let tmpvec3 = vec3.create();
   let xUnitVec3 = vec3.fromValues(1, 0, 0);
   let yUnitVec3 = vec3.fromValues(0, 1, 0);
@@ -733,7 +732,8 @@ export const rotationTo: () => (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => 
       return normalize(out, out);
     }
   };
-})();
+}
+rotationTo();
 
 /**
  * Performs a spherical linear interpolation with two control points
@@ -746,8 +746,7 @@ export const rotationTo: () => (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => 
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  */
-// @ts-ignore
-export const sqlerp: () => (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: ReadonlyQuat, d: ReadonlyQuat, t: f64) => quat = (() => {
+export function sqlerp(): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: ReadonlyQuat, d: ReadonlyQuat, t: f64) => quat {
   let temp1 = create();
   let temp2 = create();
 
@@ -758,7 +757,8 @@ export const sqlerp: () => (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: Read
 
     return out;
   };
-})();
+}
+sqlerp();
 
 /**
  * Sets the specified quaternion with values corresponding to the given
@@ -771,8 +771,7 @@ export const sqlerp: () => (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: Read
  * @param {ReadonlyVec3} up    the vector representing the local "up" direction
  * @returns {quat} out
  */
-// @ts-ignore
-export const setAxes: () => (out: quat, view: vec3.ReadonlyVec3, right: vec3.ReadonlyVec3, up: vec3.ReadonlyVec3) => quat = (() => {
+export function setAxes(): (out: quat, view: vec3.ReadonlyVec3, right: vec3.ReadonlyVec3, up: vec3.ReadonlyVec3) => quat {
   let matr = mat3.create();
 
   return function (out: quat, view: vec3.ReadonlyVec3, right: vec3.ReadonlyVec3, up: vec3.ReadonlyVec3) {
@@ -790,4 +789,5 @@ export const setAxes: () => (out: quat, view: vec3.ReadonlyVec3, right: vec3.Rea
 
     return normalize(out, fromMat3(out, matr));
   };
-})();
+}
+setAxes();

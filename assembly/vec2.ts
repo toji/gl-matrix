@@ -604,33 +604,33 @@ export const sqrLen = squaredLength;
  * @returns {Array} a
  * @function
  */
-// @ts-ignore
-export const forEach: () => (a: vec2, stride: u16, offset: u16, count: u16, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) => vec2 = (() => {
-    let vec = create();
-    return function(a: vec2, stride: u16, offset: u16, count: u16, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) {
-      let i: u16, l: u16;
-      if (!stride) {
-        stride = 2;
-      }
-
-      if (!offset) {
-        offset = 0;
-      }
-
-      if (count) {
-        l = Math.min(count * stride + offset, a.length);
-      } else {
-        l = a.length;
-      }
-
-      for (i = offset; i < l; i += stride) {
-        vec[0] = a[i];
-        vec[1] = a[i + 1];
-        fn(vec, vec, arg);
-        a[i] = vec[0];
-        a[i + 1] = vec[1];
-      }
-
-      return a;
+export function forEach(): (a: vec2, stride: u16, offset: u16, count: u16, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) => vec2 {
+  let vec = create();
+  return function (a: vec2, stride: u16, offset: u16, count: u16, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) {
+    let i: u16, l: u16;
+    if (!stride) {
+      stride = 2;
     }
-  })();
+
+    if (!offset) {
+      offset = 0;
+    }
+
+    if (count) {
+      l = Math.min(count * stride + offset, a.length);
+    } else {
+      l = a.length;
+    }
+
+    for (i = offset; i < l; i += stride) {
+      vec[0] = a[i];
+      vec[1] = a[i + 1];
+      fn(vec, vec, arg);
+      a[i] = vec[0];
+      a[i + 1] = vec[1];
+    }
+
+    return a;
+  };
+}
+forEach();
