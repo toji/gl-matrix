@@ -802,6 +802,7 @@ export const sqrLen = squaredLength;
  * @returns {Array} a
  * @function
  */
+// @ts-ignore
 export const forEach: () => (a: vec3, stride: u16, offset: u16, count: u16, fn: (a: vec3, b: vec3, arg: IArguments) => void, arg: IArguments) => vec3 = (() => {
   let vec = create();
 

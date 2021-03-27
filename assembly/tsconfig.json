@@ -1,5 +1,5 @@
 {
-  "extends": "assemblyscript/std/assembly.json",
+  "extends": "assemblyscript/std/portable.json",
   "compilerOptions": {
     "types": ["./assembly/types.d.ts"]
   },
