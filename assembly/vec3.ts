@@ -710,7 +710,7 @@ export function zero(out: vec3): vec3 {
  * @returns {String} string representation of the vector
  */
 export function str(a: ReadonlyVec3): string {
-  return "vec3(" + a[0] + ", " + a[1] + ", " + a[2] + ")";
+  return "vec3(" + a[0].toString() + ", " + a[1].toString() + ", " + a[2].toString() + ")";
 }
 
 /**
