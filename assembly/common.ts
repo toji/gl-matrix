@@ -7,7 +7,7 @@ import { MathUtil } from "./imports"
 
 // Configuration Constants
 export const EPSILON = 0.000001;
-export type ARRAY_TYPE = Float64Array
+export type ARRAY_TYPE = Float64Array;
 export let RANDOM = Math.random;
 export let ANGLE_ORDER = "zyx";
 

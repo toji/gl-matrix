@@ -34,7 +34,7 @@
     "build-umd": "rollup -c",
     "build-esm": "cross-env BABEL_ENV=esm babel js -d dist/esm",
     "build-cjs": "babel js -d dist/cjs",
-    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --outFile ./dist/index.d.ts ./js/index.js ./js/types.d.ts && node ./utils/bundle-dts.js && tsc --noEmit ./dist/index.d.ts",
+    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --outFile ./dist/index.d.ts ./assembly/index.ts ./js/types.d.ts && tsc --noEmit ./dist/index.d.ts",
     "build": "del dist && npm run update-license-version && npm run build-js && npm run build-umd && npm run build-esm && npm run build-cjs && npm run build-dts && node ./utils/build.js",
     "prepare": "npm run build",
     "asbuild:untouched": "asc assembly/index.as.ts --target debug",

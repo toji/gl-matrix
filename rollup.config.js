@@ -5,7 +5,7 @@ import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 const version = require('./package.json').version;
 const license = require('./utils/license-template');
 
-const input = './src/index.js';
+const input = './js/index.js';
 const name = 'glMatrix';
 
 const bannerPlugin = {
