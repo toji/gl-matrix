@@ -1,11 +1,12 @@
 import * as glMatrix from "./common";
+import { IndexedCollection } from "./imports";
 import * as mat3 from "./mat3";
 import * as vec3 from "./vec3";
 import * as vec4 from "./vec4";
 
-export class quat extends Float64Array {}
+export type quat = IndexedCollection;
 
-export class ReadonlyQuat extends quat {}
+export type ReadonlyQuat = IndexedCollection;
 
 /**
  * Quaternion in the format XYZW
@@ -18,7 +19,7 @@ export class ReadonlyQuat extends quat {}
  * @returns {quat} a new quaternion
  */
 export function create(): quat {
-  let out = new quat(4);
+  let out = changetype<IndexedCollection>(new Float64Array(4));
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
@@ -478,52 +479,37 @@ export function fromEuler(out: quat, x: x, y: y, z: z, order: string = glMatrix.
   let sz = Math.sin(z);
   let cz = Math.cos(z);
 
-  switch (order) {
-    case "xyz":
-      out[0] = sx * cy * cz + cx * sy * sz;
-      out[1] = cx * sy * cz - sx * cy * sz;
-      out[2] = cx * cy * sz + sx * sy * cz;
-      out[3] = cx * cy * cz - sx * sy * sz;
-      break;
-
-    case "xzy":
-      out[0] = sx * cy * cz - cx * sy * sz;
-      out[1] = cx * sy * cz - sx * cy * sz;
-      out[2] = cx * cy * sz + sx * sy * cz;
-      out[3] = cx * cy * cz + sx * sy * sz;
-      break;
-
-    case "yxz":
-      out[0] = sx * cy * cz + cx * sy * sz;
-      out[1] = cx * sy * cz - sx * cy * sz;
-      out[2] = cx * cy * sz - sx * sy * cz;
-      out[3] = cx * cy * cz + sx * sy * sz;
-      break;
-
-    case "yzx":
-      out[0] = sx * cy * cz + cx * sy * sz;
-      out[1] = cx * sy * cz + sx * cy * sz;
-      out[2] = cx * cy * sz - sx * sy * cz;
-      out[3] = cx * cy * cz - sx * sy * sz;
-      break;
-
-    case "zxy":
-      out[0] = sx * cy * cz - cx * sy * sz;
-      out[1] = cx * sy * cz + sx * cy * sz;
-      out[2] = cx * cy * sz + sx * sy * cz;
-      out[3] = cx * cy * cz - sx * sy * sz;
-      break;
-
-    case "zyx":
-      out[0] = sx * cy * cz - cx * sy * sz;
-      out[1] = cx * sy * cz + sx * cy * sz;
-      out[2] = cx * cy * sz - sx * sy * cz;
-      out[3] = cx * cy * cz + sx * sy * sz;
-      break;
-
-    default:
-      throw new Error('Unknown angle order ' + order);
-  }
+  if (order === "xyz") {
+    out[0] = sx * cy * cz + cx * sy * sz;
+    out[1] = cx * sy * cz - sx * cy * sz;
+    out[2] = cx * cy * sz + sx * sy * cz;
+    out[3] = cx * cy * cz - sx * sy * sz;
+  } else if (order === "xzy") {
+    out[0] = sx * cy * cz - cx * sy * sz;
+    out[1] = cx * sy * cz - sx * cy * sz;
+    out[2] = cx * cy * sz + sx * sy * cz;
+    out[3] = cx * cy * cz + sx * sy * sz;
+  } else if (order === "yxz") {
+    out[0] = sx * cy * cz + cx * sy * sz;
+    out[1] = cx * sy * cz - sx * cy * sz;
+    out[2] = cx * cy * sz - sx * sy * cz;
+    out[3] = cx * cy * cz + sx * sy * sz;
+  } else if (order === "yzx") {
+    out[0] = sx * cy * cz + cx * sy * sz;
+    out[1] = cx * sy * cz + sx * cy * sz;
+    out[2] = cx * cy * sz - sx * sy * cz;
+    out[3] = cx * cy * cz - sx * sy * sz;
+  } else if (order === "zxy") {
+    out[0] = sx * cy * cz - cx * sy * sz;
+    out[1] = cx * sy * cz + sx * cy * sz;
+    out[2] = cx * cy * sz + sx * sy * cz;
+    out[3] = cx * cy * cz - sx * sy * sz;
+  } else if (order === "zyx") {
+    out[0] = sx * cy * cz - cx * sy * sz;
+    out[1] = cx * sy * cz + sx * cy * sz;
+    out[2] = cx * cy * sz - sx * sy * cz;
+    out[3] = cx * cy * cz + sx * sy * sz;
+  } else throw new Error('Unknown angle order ' + order);
 
   return out;
 }

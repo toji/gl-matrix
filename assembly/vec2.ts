@@ -1,13 +1,13 @@
 import * as glMatrix from "./common";
-import { MathUtil } from "./imports";
+import { IArguments, IndexedCollection, MathUtil } from "./imports";
 import { ReadonlyMat2 } from "./mat2";
 import { ReadonlyMat2d } from "./mat2d";
 import { ReadonlyMat3 } from "./mat3";
 import { ReadonlyMat4 } from "./mat4";
 
-export class vec2 extends Float64Array {}
+export type vec2 = IndexedCollection;
 
-export class ReadonlyVec2 extends vec2 {}
+export type ReadonlyVec2 = IndexedCollection;
 
 /**
  * 2 Dimensional Vector
@@ -20,7 +20,7 @@ export class ReadonlyVec2 extends vec2 {}
  * @returns {vec2} a new 2D vector
  */
 export function create(): vec2 {
-  let out = new vec2(2);
+  let out = changetype<IndexedCollection>(new Float64Array(2));
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
@@ -35,7 +35,7 @@ export function create(): vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function clone(a: ReadonlyVec2): vec2 {
-  let out = new vec2(2);
+  let out = changetype<IndexedCollection>(new Float64Array(2));
   out[0] = a[0];
   out[1] = a[1];
   return out;
@@ -49,7 +49,7 @@ export function clone(a: ReadonlyVec2): vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function fromValues(x: f64, y: f64): vec2 {
-  let out = new vec2(2);
+  let out = changetype<IndexedCollection>(new Float64Array(2));
   out[0] = x;
   out[1] = y;
   return out;
@@ -604,10 +604,10 @@ export const sqrLen = squaredLength;
  * @returns {Array} a
  * @function
  */
-export function forEach(): (a: vec2, stride: u16, offset: u16, count: u16, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) => vec2 {
+export function forEach(): (a: vec2, stride: i32, offset: i32, count: i32, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) => vec2 {
   let vec = create();
-  return function (a: vec2, stride: u16, offset: u16, count: u16, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) {
-    let i: u16, l: u16;
+  return function (a: vec2, stride: i32, offset: i32, count: i32, fn: (a: vec2, b: vec2, arg: IArguments) => void, arg: IArguments) {
+    let i: i32, l: i32;
     if (!stride) {
       stride = 2;
     }
@@ -617,7 +617,7 @@ export function forEach(): (a: vec2, stride: u16, offset: u16, count: u16, fn: (
     }
 
     if (count) {
-      l = Math.min(count * stride + offset, a.length);
+      l = MathUtil.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }

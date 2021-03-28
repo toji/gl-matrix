@@ -1,14 +1,14 @@
 import * as glMatrix from "./common";
-import { MathUtil } from "./imports";
+import { IndexedCollection, MathUtil } from "./imports";
 import * as quat from "./quat";
 import { ReadonlyQuat2 } from "./quat2";
 import * as vec3 from "./vec3";
 
-export class quat4 extends quat.quat {}
+export type quat4 = IndexedCollection;
 
-export class mat4 extends Float64Array {}
+export type mat4 = IndexedCollection;
 
-export class ReadonlyMat4 extends mat4 {}
+export type ReadonlyMat4 = IndexedCollection;
 
 /**
  * Object containing the following values: upDegrees, downDegrees, leftDegrees, rightDegrees
@@ -32,7 +32,7 @@ export class Fov {
  * @returns {mat4} a new 4x4 matrix
  */
 export function create(): mat4 {
-  let out = new mat4(16);
+  let out = changetype<IndexedCollection>(new Float64Array(16));
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
@@ -61,7 +61,7 @@ export function create(): mat4 {
  * @returns {mat4} a new 4x4 matrix
  */
 export function clone(a: ReadonlyMat4): mat4 {
-  let out = new mat4(16);
+  let out = changetype<IndexedCollection>(new Float64Array(16));
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -147,7 +147,7 @@ export function fromValues(
   m32: f64,
   m33: f64
 ): mat4 {
-  let out = new mat4(16);
+  let out = changetype<IndexedCollection>(new Float64Array(16));
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;
@@ -1118,7 +1118,7 @@ export function fromRotationTranslation(out: mat4, q: quat4, v: vec3.ReadonlyVec
  * @returns {mat4} mat4 receiving operation result
  */
 export function fromQuat2(out: mat4, a: ReadonlyQuat2): mat4 {
-  let translation = new vec3.ReadonlyVec3(3);
+  let translation = new Float64Array(3);
   let bx = -a[0],
     by = -a[1],
     bz = -a[2],
@@ -1198,7 +1198,7 @@ export function getScaling(out: mat4, mat: ReadonlyMat4): mat4 {
  * @return {quat} out
  */
 export function getRotation(out: mat4, mat: ReadonlyMat4): mat4 {
-  let scaling = new mat4(3);
+  let scaling = changetype<IndexedCollection>(new Float64Array(3));
   getScaling(scaling, mat);
 
   let is1 = 1 / scaling[0];
@@ -1557,7 +1557,7 @@ export function frustum(out: mat4, left: f64, right: f64, bottom: f64, top: f64,
  * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
-export function perspectiveNO(out: mat4, fovy: f64, aspect: f64, near: f64, far: f64): mat4 {
+export function perspectiveNO(out: mat4, fovy: f64, aspect: f64, near: f64, far: usize): mat4 {
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
@@ -1603,7 +1603,7 @@ export const perspective = perspectiveNO;
  * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
-export function perspectiveZO(out: mat4, fovy: f64, aspect: f64, near: f64, far: f64): mat4 {
+export function perspectiveZO(out: mat4, fovy: f64, aspect: f64, near: f64, far: usize): mat4 {
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;

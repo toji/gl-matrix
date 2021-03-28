@@ -1,12 +1,12 @@
 import * as glMatrix from "./common";
-import { MathUtil } from "./imports";
+import { IndexedCollection, MathUtil } from "./imports";
 import * as mat4 from "./mat4";
 import * as quat from "./quat";
 import * as vec3 from "./vec3";
 
-export default class quat2 extends Float64Array {}
+export type quat2 = IndexedCollection;
 
-export class ReadonlyQuat2 extends quat2 {}
+export type ReadonlyQuat2 = IndexedCollection;
 
 /**
  * Dual Quaternion<br>
@@ -22,7 +22,7 @@ export class ReadonlyQuat2 extends quat2 {}
  * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
  */
 export function create(): quat2 {
-  let dq = new quat2(8);
+  let dq = changetype<IndexedCollection>(new Float64Array(8));
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     dq[0] = 0;
     dq[1] = 0;
@@ -44,7 +44,7 @@ export function create(): quat2 {
  * @function
  */
 export function clone(a: ReadonlyQuat2): quat2 {
-  let dq = new quat2(8);
+  let dq = changetype<IndexedCollection>(new Float64Array(8));
   dq[0] = a[0];
   dq[1] = a[1];
   dq[2] = a[2];
@@ -71,7 +71,7 @@ export function clone(a: ReadonlyQuat2): quat2 {
  * @function
  */
 export function fromValues(x1: f64, y1: f64, z1: f64, w1: f64, x2: f64, y2: f64, z2: f64, w2: f64): quat2 {
-  let dq = new quat2(8);
+  let dq = changetype<IndexedCollection>(new Float64Array(8));
   dq[0] = x1;
   dq[1] = y1;
   dq[2] = z1;
@@ -97,7 +97,7 @@ export function fromValues(x1: f64, y1: f64, z1: f64, w1: f64, x2: f64, y2: f64,
  * @function
  */
 export function fromRotationTranslationValues(x1: f64, y1: f64, z1: f64, w1: f64, x2: f64, y2: f64, z2: f64): quat2 {
-  let dq = new quat2(8);
+  let dq = changetype<IndexedCollection>(new Float64Array(8));
   dq[0] = x1;
   dq[1] = y1;
   dq[2] = z1;
@@ -192,7 +192,7 @@ export function fromMat4(out: quat2, a: mat4.ReadonlyMat4): quat2 {
   //TODO Optimize this
   let outer = quat.create();
   mat4.getRotation(outer, a);
-  let t = new vec3.vec3(3);
+  let t = new Float64Array(3);
   mat4.getTranslation(t, a);
   fromRotationTranslation(out, outer, t);
   return out;

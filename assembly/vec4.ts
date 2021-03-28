@@ -1,10 +1,10 @@
 import * as glMatrix from "./common";
-import { MathUtil } from "./imports";
+import { IArguments, IndexedCollection, MathUtil } from "./imports";
 import { ReadonlyQuat } from "./quat";
 
-export class vec4 extends Float64Array {}
+export type vec4 = IndexedCollection;
 
-export class ReadonlyVec4 extends vec4 {}
+export type ReadonlyVec4 = IndexedCollection;
 
 /**
  * 4 Dimensional Vector
@@ -17,7 +17,7 @@ export class ReadonlyVec4 extends vec4 {}
  * @returns {vec4} a new 4D vector
  */
 export function create(): vec4 {
-  let out = new vec4(4);
+  let out = changetype<IndexedCollection>(new Float64Array(4));
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
@@ -34,7 +34,7 @@ export function create(): vec4 {
  * @returns {vec4} a new 4D vector
  */
 export function clone(a: ReadonlyVec4): vec4 {
-  let out = new vec4(4);
+  let out = changetype<IndexedCollection>(new Float64Array(4));
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -52,7 +52,7 @@ export function clone(a: ReadonlyVec4): vec4 {
  * @returns {vec4} a new 4D vector
  */
 export function fromValues(x: f64, y: f64, z: f64, w: f64): vec4 {
-  let out = new vec4(4);
+  let out = changetype<IndexedCollection>(new Float64Array(4));
   out[0] = x;
   out[1] = y;
   out[2] = z;
@@ -641,11 +641,11 @@ export const sqrLen = squaredLength;
  * @returns {Array} a
  * @function
  */
-export function forEach(): (a: vec4, stride: u16, offset: u16, count: u16, fn: (a: vec4, b: vec4, arg: IArguments) => void, arg: IArguments) => vec4 {
+export function forEach(): (a: vec4, stride: i32, offset: i32, count: i32, fn: (a: vec4, b: vec4, arg: IArguments) => void, arg: IArguments) => vec4 {
   let vec = create();
 
-  return function(a: vec4, stride: u16, offset: u16, count: u16, fn: (a: vec4, b: vec4, arg: IArguments) => void, arg: IArguments) {
-    let i: u16, l: u16;
+  return function(a: vec4, stride: i32, offset: i32, count: i32, fn: (a: vec4, b: vec4, arg: IArguments) => void, arg: IArguments) {
+    let i: i32, l: i32;
     if (!stride) {
       stride = 4;
     }
@@ -655,7 +655,7 @@ export function forEach(): (a: vec4, stride: u16, offset: u16, count: u16, fn: (
     }
 
     if (count) {
-      l = Math.min(count * stride + offset, a.length);
+      l = MathUtil.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }
