@@ -4,6 +4,10 @@
 // @ts-ignore
 // prettier-ignore
 
+/**
+ * JS Importations
+ * @module glMatrix
+ */
 export declare namespace MathUtil {
   function min(a: i32, b: i32): i32;
 

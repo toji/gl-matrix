@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 let sourcePath = "./dist/index.d.ts";
-let sourceTypingsPath = "./src/types.d.ts";
+let sourceTypingsPath = "./assembly/index.d.ts";
 let sourceTypings = fs.readFileSync(sourceTypingsPath, "utf-8");
 let typings = fs.readFileSync(sourcePath, "utf-8");
 let typingsLength = typings.length;
@@ -36,5 +36,13 @@ typings = "\n" + sourceTypings.replace(/declare/g, "export") + "\n" + typings;
 
 // Wrap them in a "gl-matrix module"
 typings = 'declare module "gl-matrix" {\n' + typings + "\n}";
+
+// Place assemblyscript reference path to the top
+typings = typings.replace(/\n\n\/\/\/ <reference path=\"[^\"]+?\" \/>/g, "");
+
+typings = `
+/// <reference path="../node_modules/assemblyscript/std/portable/index.d.ts" />\n
+${typings}
+`;
 
 fs.writeFileSync(sourcePath, typings, "utf-8");
