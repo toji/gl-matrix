@@ -1,9 +1,9 @@
+import { MathUtil } from "./imports"
+
 /**
  * Common utilities
  * @module glMatrix
  */
-
-import { MathUtil } from "./imports"
 
 // Configuration Constants
 export const EPSILON = 0.000001;
@@ -14,10 +14,10 @@ export let ANGLE_ORDER = "zyx";
 /**
  * Sets the type of array used when creating new vectors and matrices
  *
- * @param {Array<T>} type Array type, such as Float32Array or Array
+ * @param {Object} type Array type, such as Float32Array or Array
  */
-export function setMatrixArrayType<T, R>(v: Array<T>): Array<R> {
-  return changetype<Array<R>>(v);
+export function setMatrixArrayType(type: Object): void {
+  throw new Error("Not implemented yet");
 }
 
 const degree: f64 = Math.PI / 180;

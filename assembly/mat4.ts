@@ -1549,6 +1549,8 @@ export function frustum(out: mat4, left: f64, right: f64, bottom: f64, top: f64,
  * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
  * which matches WebGL/OpenGL's clip volume.
  * Passing null/undefined/no value for far will generate infinite projection matrix.
+ * 
+ * Read https://www.assemblyscript.org/types.html#type-rules
  *
  * @param {mat4} out mat4 frustum matrix will be written into
  * @param {number} fovy Vertical field of view in radians
@@ -1557,7 +1559,7 @@ export function frustum(out: mat4, left: f64, right: f64, bottom: f64, top: f64,
  * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
-export function perspectiveNO(out: mat4, fovy: f64, aspect: f64, near: f64, far: usize): mat4 {
+export function perspectiveNO(out: mat4, fovy: f64, aspect: f64, near: f64, far: f64): mat4 {
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
@@ -1573,7 +1575,7 @@ export function perspectiveNO(out: mat4, fovy: f64, aspect: f64, near: f64, far:
   out[12] = 0;
   out[13] = 0;
   out[15] = 0;
-  if (far != null && far !== Infinity) {
+  if (typeof far === "number" && far !== Infinity) {
     const nf = 1 / (near - far);
     out[10] = (far + near) * nf;
     out[14] = 2 * far * near * nf;
@@ -1595,6 +1597,8 @@ export const perspective = perspectiveNO;
  * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
  * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
  * Passing null/undefined/no value for far will generate infinite projection matrix.
+ * 
+ * Read https://www.assemblyscript.org/types.html#type-rules
  *
  * @param {mat4} out mat4 frustum matrix will be written into
  * @param {number} fovy Vertical field of view in radians
@@ -1603,7 +1607,7 @@ export const perspective = perspectiveNO;
  * @param {number} far Far bound of the frustum, can be null or Infinity
  * @returns {mat4} out
  */
-export function perspectiveZO(out: mat4, fovy: f64, aspect: f64, near: f64, far: usize): mat4 {
+export function perspectiveZO(out: mat4, fovy: f64, aspect: f64, near: f64, far: f64): mat4 {
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
@@ -1619,7 +1623,7 @@ export function perspectiveZO(out: mat4, fovy: f64, aspect: f64, near: f64, far:
   out[12] = 0;
   out[13] = 0;
   out[15] = 0;
-  if (far != null && far !== Infinity) {
+  if (typeof far === "number" && far !== Infinity) {
     const nf = 1 / (near - far);
     out[10] = far * nf;
     out[14] = far * near * nf;
