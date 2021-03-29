@@ -693,7 +693,7 @@ export function equals(a: ReadonlyQuat, b: ReadonlyQuat): bool {
   let tmpvec3 = vec3.create();
   let xUnitVec3 = vec3.fromValues(1, 0, 0);
   let yUnitVec3 = vec3.fromValues(0, 1, 0);
-export function rotationTo(): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => quat {
+export const rotationTo = ((): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => quat => {
 
   return function (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) {
     let dot = vec3.dot(a, b);
@@ -718,8 +718,7 @@ export function rotationTo(): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat) => q
       return normalize(out, out);
     }
   };
-}
-rotationTo();
+})();
 
 /**
  * Performs a spherical linear interpolation with two control points
@@ -734,7 +733,7 @@ rotationTo();
  */
   let temp1 = create();
   let temp2 = create();
-export function sqlerp(): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: ReadonlyQuat, d: ReadonlyQuat, t: f64) => quat {
+export const sqlerp = ((): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: ReadonlyQuat, d: ReadonlyQuat, t: f64) => quat => {
 
   return function (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: ReadonlyQuat, d: ReadonlyQuat, t: f64) {
     slerp(temp1, a, d, t);
@@ -743,8 +742,7 @@ export function sqlerp(): (out: quat, a: ReadonlyQuat, b: ReadonlyQuat, c: Reado
 
     return out;
   };
-}
-sqlerp();
+})();
 
 /**
  * Sets the specified quaternion with values corresponding to the given
@@ -758,7 +756,7 @@ sqlerp();
  * @returns {quat} out
  */
   let matr = mat3.create();
-export function setAxes(): (out: quat, view: vec3.ReadonlyVec3, right: vec3.ReadonlyVec3, up: vec3.ReadonlyVec3) => quat {
+export const setAxes = ((): (out: quat, view: vec3.ReadonlyVec3, right: vec3.ReadonlyVec3, up: vec3.ReadonlyVec3) => quat => {
 
   return function (out: quat, view: vec3.ReadonlyVec3, right: vec3.ReadonlyVec3, up: vec3.ReadonlyVec3) {
     matr[0] = right[0];
@@ -775,5 +773,4 @@ export function setAxes(): (out: quat, view: vec3.ReadonlyVec3, right: vec3.Read
 
     return normalize(out, fromMat3(out, matr));
   };
-}
-setAxes();
+})();
