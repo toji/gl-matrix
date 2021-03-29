@@ -5,13 +5,9 @@
 // prettier-ignore
 
 export declare namespace MathUtil {
-  // @ts-ignore decorator
-  @external("Math", "min")
-  function min(a: i32, b: i32, c?: i32): i32;
+  function min(a: i32, b: i32): i32;
 
-  // @ts-ignore decorator
-  @external("Math", "max")
-  function max(a: f64, b: f64, c?: f64): f64;
+  function max(a: f64, b: f64, c: f64): f64;
 
   // @ts-ignore decorator
   @external("Math", "hypot")

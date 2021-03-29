@@ -51,8 +51,8 @@
  (import "env" "seed" (func $~lib/builtins/seed (result f64)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (import "Math" "hypot" (func $assembly/imports/MathUtil.hypot (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
- (import "Math" "min" (func $assembly/imports/MathUtil.min (param i32 i32 i32) (result i32)))
- (import "Math" "max" (func $assembly/imports/MathUtil.max (param f64 f64 f64) (result f64)))
+ (import "imports" "MathUtil.min" (func $assembly/imports/MathUtil.min (param i32 i32) (result i32)))
+ (import "imports" "MathUtil.max" (func $assembly/imports/MathUtil.max (param f64 f64 f64) (result f64)))
  (memory $0 1)
  (data (i32.const 1036) ",")
  (data (i32.const 1048) "\01\00\00\00\18\00\00\00~\00l\00i\00b\00/\00m\00a\00t\00h\00.\00t\00s")
@@ -22268,7 +22268,6 @@
    i32.load offset=8
    i32.const 3
    i32.shr_u
-   i32.const 0
    call $assembly/imports/MathUtil.min
   else
    local.get $0
@@ -22412,7 +22411,6 @@
    i32.load offset=8
    i32.const 3
    i32.shr_u
-   i32.const 0
    call $assembly/imports/MathUtil.min
   else
    local.get $0
@@ -22929,7 +22927,6 @@
    i32.load offset=8
    i32.const 3
    i32.shr_u
-   i32.const 0
    call $assembly/imports/MathUtil.min
   else
    local.get $0

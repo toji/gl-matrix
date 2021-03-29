@@ -53,8 +53,8 @@
  (import "env" "seed" (func $~lib/builtins/seed (result f64)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
  (import "Math" "hypot" (func $assembly/imports/MathUtil.hypot (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
- (import "Math" "min" (func $assembly/imports/MathUtil.min (param i32 i32 i32) (result i32)))
- (import "Math" "max" (func $assembly/imports/MathUtil.max (param f64 f64 f64) (result f64)))
+ (import "imports" "MathUtil.min" (func $assembly/imports/MathUtil.min (param i32 i32) (result i32)))
+ (import "imports" "MathUtil.max" (func $assembly/imports/MathUtil.max (param f64 f64 f64) (result f64)))
  (memory $0 1)
  (data (i32.const 12) ",\00\00\00\00\00\00\00\00\00\00\00\01\00\00\00\18\00\00\00~\00l\00i\00b\00/\00m\00a\00t\00h\00.\00t\00s\00\00\00\00\00")
  (data (i32.const 60) "\1c\00\00\00\00\00\00\00\00\00\00\00\03\00\00\00\08\00\00\00\01\00\00\00\00\00\00\00\00\00\00\00")
@@ -32678,7 +32678,6 @@
    i32.add
    local.get $0
    call $~lib/typedarray/Float64Array#get:length
-   i32.const 0
    call $assembly/imports/MathUtil.min
    local.set $7
   else
@@ -32836,7 +32835,6 @@
    i32.add
    local.get $0
    call $~lib/typedarray/Float64Array#get:length
-   i32.const 0
    call $assembly/imports/MathUtil.min
    local.set $7
   else
@@ -33420,7 +33418,6 @@
    i32.add
    local.get $0
    call $~lib/typedarray/Float64Array#get:length
-   i32.const 0
    call $assembly/imports/MathUtil.min
    local.set $7
   else
