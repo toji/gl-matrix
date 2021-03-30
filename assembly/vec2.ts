@@ -20,7 +20,7 @@ export type ReadonlyVec2 = IndexedCollection;
  * @returns {vec2} a new 2D vector
  */
 export function create(): vec2 {
-  let out = changetype<IndexedCollection>(new Float64Array(2));
+  let out = new Float64Array(2);
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;
@@ -35,7 +35,7 @@ export function create(): vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function clone(a: ReadonlyVec2): vec2 {
-  let out = changetype<IndexedCollection>(new Float64Array(2));
+  let out = new Float64Array(2);
   out[0] = a[0];
   out[1] = a[1];
   return out;
@@ -49,7 +49,7 @@ export function clone(a: ReadonlyVec2): vec2 {
  * @returns {vec2} a new 2D vector
  */
 export function fromValues(x: f64, y: f64): vec2 {
-  let out = changetype<IndexedCollection>(new Float64Array(2));
+  let out = new Float64Array(2);
   out[0] = x;
   out[1] = y;
   return out;

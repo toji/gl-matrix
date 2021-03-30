@@ -19,7 +19,7 @@ export type ReadonlyQuat = IndexedCollection;
  * @returns {quat} a new quaternion
  */
 export function create(): quat {
-  let out = changetype<IndexedCollection>(new Float64Array(4));
+  let out = new Float64Array(4);
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[0] = 0;
     out[1] = 0;

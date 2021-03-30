@@ -32,7 +32,7 @@ export class Fov {
  * @returns {mat4} a new 4x4 matrix
  */
 export function create(): mat4 {
-  let out = changetype<IndexedCollection>(new Float64Array(16));
+  let out = new Float64Array(16);
   //if (glMatrix.ARRAY_TYPE != Float32Array) {
     out[1] = 0;
     out[2] = 0;
@@ -61,7 +61,7 @@ export function create(): mat4 {
  * @returns {mat4} a new 4x4 matrix
  */
 export function clone(a: ReadonlyMat4): mat4 {
-  let out = changetype<IndexedCollection>(new Float64Array(16));
+  let out = new Float64Array(16);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -147,7 +147,7 @@ export function fromValues(
   m32: f64,
   m33: f64
 ): mat4 {
-  let out = changetype<IndexedCollection>(new Float64Array(16));
+  let out = new Float64Array(16);
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;

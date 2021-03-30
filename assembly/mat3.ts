@@ -21,7 +21,7 @@ export type ReadonlyMat3 = IndexedCollection;
  * @returns {mat3} a new 3x3 matrix
  */
 export function create(): mat3 {
-  let out = changetype<IndexedCollection>(new Float64Array(9));
+  let out = new Float64Array(9);
   //if (glMatrix.ARRAY_TYPE != Float32Array): mat3 {
     out[1] = 0;
     out[2] = 0;
@@ -63,7 +63,7 @@ export function fromMat4(out: mat3, a: ReadonlyMat4): mat3 {
  * @returns {mat3} a new 3x3 matrix
  */
 export function clone(a: ReadonlyMat3): mat3 {
-  let out = changetype<IndexedCollection>(new Float64Array(9));
+  let out = new Float64Array(9);
   out[0] = a[0];
   out[1] = a[1];
   out[2] = a[2];
@@ -111,7 +111,7 @@ export function copy(out: mat3, a: ReadonlyMat3): mat3 {
  * @returns {mat3} A new mat3
  */
 export function fromValues(m00: f64, m01: f64, m02: f64, m10: f64, m11: f64, m12: f64, m20: f64, m21: f64, m22: f64): mat3 {
-  let out = changetype<IndexedCollection>(new Float64Array(9));
+  let out = new Float64Array(9);
   out[0] = m00;
   out[1] = m01;
   out[2] = m02;
