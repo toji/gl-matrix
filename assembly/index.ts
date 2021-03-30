@@ -1,4 +1,4 @@
-import "assemblyscript/std/portable";
+/// <reference path="index.d.ts" />
 import * as glMatrix from "./common";
 import * as mat2 from "./mat2";
 import * as mat2d from "./mat2d";

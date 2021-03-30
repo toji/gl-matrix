@@ -32,9 +32,7 @@ THE SOFTWARE.
 }((function () { 'use strict';
 
 	exports.__esModule = true;
-	exports.vec4 = exports.vec3 = exports.vec2 = exports.quat2 = exports.quat = exports.mat4 = exports.mat3 = exports.mat2d = exports.mat2 = exports.glMatrix = void 0;
-
-	require("assemblyscript/std/portable");
+	exports.vec4 = exports.vec3 = exports.vec2 = exports.quat2 = exports.quat = exports.mat4 = exports.mat3 = exports.mat2d = exports.mat2 = exports.glMatrix = void 0; /// <reference path="index.d.ts" />
 
 	var glMatrix = require("./common");
 

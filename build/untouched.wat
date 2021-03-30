@@ -9275,7 +9275,7 @@
  (func $start:assembly/mat2
   call $start:assembly/vec2
  )
- (func $start:assembly/index.as
+ (func $start:assembly/index
   call $start:assembly/mat2
  )
  (func $assembly/common/setMatrixArrayType (param $0 i32)
@@ -32629,7 +32629,7 @@
   global.set $~argumentsLength
  )
  (func $~start
-  call $start:assembly/index.as
+  call $start:assembly/index
  )
  (func $~stack_check
   global.get $~lib/memory/__stack_pointer

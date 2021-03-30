@@ -24,6 +24,10 @@ declare type quat = IndexedCollection;
 declare type quat2 =
   IndexedCollection;
 
+// prettier-ignore
+declare type quat4 =
+  IndexedCollection;
+
 declare type vec2 = IndexedCollection;
 declare type vec3 = IndexedCollection;
 declare type vec4 = IndexedCollection;
@@ -63,7 +67,4 @@ declare class Fov {
   leftDegrees: f64;
   rightDegrees: f64;
   [key: string]: f64;
-}
-
-declare interface IArguments {
 }
