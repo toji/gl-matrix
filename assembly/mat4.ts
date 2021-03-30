@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IndexedCollection, MathUtil } from "./imports";
+import { IndexedCollection, JSMath, Maths } from "./imports";
 import * as quat from "./quat";
 import { ReadonlyQuat2 } from "./quat2";
 import * as vec3 from "./vec3";
@@ -634,7 +634,7 @@ export function rotate(out: mat4, a: ReadonlyMat4, rad: f64, axis: vec3.Readonly
   let x = axis[0],
     y = axis[1],
     z = axis[2];
-  let len = MathUtil.hypot(x, y, z);
+  let len = JSMath.hypot(x, y, z);
   let s: f64, c: f64, t: f64;
   let a00: f64, a01: f64, a02: f64, a03: f64;
   let a10: f64, a11: f64, a12: f64, a13: f64;
@@ -914,7 +914,7 @@ export function fromRotation(out: mat4, rad: f64, axis: vec3.ReadonlyVec3): mat4
   let x = axis[0],
     y = axis[1],
     z = axis[2];
-  let len = MathUtil.hypot(x, y, z);
+  let len = JSMath.hypot(x, y, z);
   let s: f64, c: f64, t: f64;
 
   if (len < glMatrix.EPSILON) {
@@ -1181,9 +1181,9 @@ export function getScaling(out: mat4, mat: ReadonlyMat4): mat4 {
   let m32 = mat[9];
   let m33 = mat[10];
 
-  out[0] = MathUtil.hypot(m11, m12, m13);
-  out[1] = MathUtil.hypot(m21, m22, m23);
-  out[2] = MathUtil.hypot(m31, m32, m33);
+  out[0] = JSMath.hypot(m11, m12, m13);
+  out[1] = JSMath.hypot(m21, m22, m23);
+  out[2] = JSMath.hypot(m31, m32, m33);
 
   return out;
 }
@@ -1271,9 +1271,9 @@ export function decompose(out_r: quat.quat, out_t: vec3.vec3, out_s: vec3.vec3, 
   let m32 = mat[9];
   let m33 = mat[10];
 
-  out_s[0] = MathUtil.hypot(m11, m12, m13);
-  out_s[1] = MathUtil.hypot(m21, m22, m23);
-  out_s[2] = MathUtil.hypot(m31, m32, m33);
+  out_s[0] = JSMath.hypot(m11, m12, m13);
+  out_s[1] = JSMath.hypot(m21, m22, m23);
+  out_s[2] = JSMath.hypot(m31, m32, m33);
 
   let is1 = 1 / out_s[0];
   let is2 = 1 / out_s[1];
@@ -1786,7 +1786,7 @@ export function lookAt(out: mat4, eye: vec3.ReadonlyVec3, center: vec3.ReadonlyV
   z1 = eyey - centery;
   z2 = eyez - centerz;
 
-  len = 1 / MathUtil.hypot(z0, z1, z2);
+  len = 1 / JSMath.hypot(z0, z1, z2);
   z0 *= len;
   z1 *= len;
   z2 *= len;
@@ -1794,7 +1794,7 @@ export function lookAt(out: mat4, eye: vec3.ReadonlyVec3, center: vec3.ReadonlyV
   x0 = upy * z2 - upz * z1;
   x1 = upz * z0 - upx * z2;
   x2 = upx * z1 - upy * z0;
-  len = MathUtil.hypot(x0, x1, x2);
+  len = JSMath.hypot(x0, x1, x2);
   if (!len) {
     x0 = 0;
     x1 = 0;
@@ -1810,7 +1810,7 @@ export function lookAt(out: mat4, eye: vec3.ReadonlyVec3, center: vec3.ReadonlyV
   y1 = z2 * x0 - z0 * x2;
   y2 = z0 * x1 - z1 * x0;
 
-  len = MathUtil.hypot(y0, y1, y2);
+  len = JSMath.hypot(y0, y1, y2);
   if (!len) {
     y0 = 0;
     y1 = 0;
@@ -1953,7 +1953,7 @@ export function str(a: ReadonlyMat4): string {
  * @returns {Number} Frobenius norm
  */
 export function frob(a: ReadonlyMat4): f64 {
-  return MathUtil.hypot(
+  return JSMath.hypot(
     a[0],
     a[1],
     a[2],
@@ -2158,37 +2158,37 @@ export function equals(a: ReadonlyMat4, b: ReadonlyMat4): bool {
 
   return (
     Math.abs(a0 - b0) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a0), Math.abs(b0)) &&
     Math.abs(a1 - b1) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a1), Math.abs(b1)) &&
     Math.abs(a2 - b2) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a2), Math.abs(b2)) &&
     Math.abs(a3 - b3) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a3), Math.abs(b3)) &&
     Math.abs(a4 - b4) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a4), Math.abs(b4)) &&
     Math.abs(a5 - b5) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a5), Math.abs(b5)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a5), Math.abs(b5)) &&
     Math.abs(a6 - b6) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a6), Math.abs(b6)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a6), Math.abs(b6)) &&
     Math.abs(a7 - b7) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a7), Math.abs(b7)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a7), Math.abs(b7)) &&
     Math.abs(a8 - b8) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a8), Math.abs(b8)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a8), Math.abs(b8)) &&
     Math.abs(a9 - b9) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a9), Math.abs(b9)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a9), Math.abs(b9)) &&
     Math.abs(a10 - b10) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a10), Math.abs(b10)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a10), Math.abs(b10)) &&
     Math.abs(a11 - b11) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a11), Math.abs(b11)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a11), Math.abs(b11)) &&
     Math.abs(a12 - b12) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a12), Math.abs(b12)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a12), Math.abs(b12)) &&
     Math.abs(a13 - b13) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a13), Math.abs(b13)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a13), Math.abs(b13)) &&
     Math.abs(a14 - b14) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a14), Math.abs(b14)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a14), Math.abs(b14)) &&
     Math.abs(a15 - b15) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a15), Math.abs(b15))
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a15), Math.abs(b15))
   );
 }
 

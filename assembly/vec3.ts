@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IArguments, IndexedCollection, MathUtil } from "./imports";
+import { IArguments, IndexedCollection, JSMath, Maths } from "./imports";
 import { ReadonlyMat3 } from "./mat3";
 import { ReadonlyMat4 } from "./mat4";
 import { ReadonlyQuat } from "./quat";
@@ -52,7 +52,7 @@ export function length(a: ReadonlyVec3): f64 {
   let x = a[0];
   let y = a[1];
   let z = a[2];
-  return MathUtil.hypot(x, y, z);
+  return JSMath.hypot(x, y, z);
 }
 
 /**
@@ -275,7 +275,7 @@ export function distance(a: ReadonlyVec3, b: ReadonlyVec3): f64 {
   let x = b[0] - a[0];
   let y = b[1] - a[1];
   let z = b[2] - a[2];
-  return MathUtil.hypot(x, y, z);
+  return JSMath.hypot(x, y, z);
 }
 
 /**
@@ -740,11 +740,11 @@ export function equals(a: ReadonlyVec3, b: ReadonlyVec3): bool {
     b2 = b[2];
   return (
     Math.abs(a0 - b0) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a0), Math.abs(b0)) &&
     Math.abs(a1 - b1) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a1), Math.abs(b1)) &&
     Math.abs(a2 - b2) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a2), Math.abs(b2))
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a2), Math.abs(b2))
   );
 }
 
@@ -816,7 +816,7 @@ export const forEach = ((): (a: vec3, stride: i32, offset: i32, count: i32, fn: 
     }
 
     if (count) {
-      l = MathUtil.min(count * stride + offset, a.length);
+      l = Maths.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }

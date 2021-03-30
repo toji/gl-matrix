@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IArguments, IndexedCollection, MathUtil } from "./imports";
+import { IArguments, IndexedCollection, JSMath, Maths } from "./imports";
 import { ReadonlyMat2 } from "./mat2";
 import { ReadonlyMat2d } from "./mat2d";
 import { ReadonlyMat3 } from "./mat3";
@@ -244,7 +244,7 @@ export function scaleAndAdd(out: vec2, a: ReadonlyVec2, b: ReadonlyVec2, scale: 
 export function distance(a: ReadonlyVec2, b: ReadonlyVec2): f64 {
   var x = b[0] - a[0],
     y = b[1] - a[1];
-  return MathUtil.hypot(x, y);
+  return JSMath.hypot(x, y);
 }
 
 /**
@@ -544,9 +544,9 @@ export function equals(a: ReadonlyVec2, b: ReadonlyVec2): bool {
     b1 = b[1];
   return (
     Math.abs(a0 - b0) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a0), Math.abs(b0)) &&
     Math.abs(a1 - b1) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a1), Math.abs(b1))
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a1), Math.abs(b1))
   );
 }
 
@@ -618,7 +618,7 @@ export const forEach = ((): (a: vec2, stride: i32, offset: i32, count: i32, fn: 
     }
 
     if (count) {
-      l = MathUtil.min(count * stride + offset, a.length);
+      l = Maths.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }

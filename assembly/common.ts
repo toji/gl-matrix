@@ -1,4 +1,4 @@
-import { MathUtil } from "./imports"
+import { Maths } from "./imports";
 
 /**
  * Common utilities
@@ -41,5 +41,5 @@ export function toRadian(a: f64): f64 {
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
  */
 export function equals(a: f64, b: f64): bool {
-  return Math.abs(a - b) <= EPSILON * MathUtil.max(1.0, Math.abs(a), Math.abs(b));
+  return Math.abs(a - b) <= EPSILON * Maths.max(1.0, Math.abs(a), Math.abs(b));
 }

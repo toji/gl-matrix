@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IndexedCollection, MathUtil } from "./imports";
+import { IndexedCollection, JSMath, Maths } from "./imports";
 import { ReadonlyVec2 } from "./vec2";
 
 export type mat2 = IndexedCollection;
@@ -313,7 +313,7 @@ export function str(a: ReadonlyMat2): string {
  * @returns {Number} Frobenius norm
  */
 export function frob(a: ReadonlyMat2): f64 {
-  return MathUtil.hypot(a[0], a[1], a[2], a[3]);
+  return JSMath.hypot(a[0], a[1], a[2], a[3]);
 }
 
 /**
@@ -394,13 +394,13 @@ export function equals(a: ReadonlyMat2, b: ReadonlyMat2): bool {
     b3 = b[3];
   return (
     Math.abs(a0 - b0) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a0), Math.abs(b0)) &&
     Math.abs(a1 - b1) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a1), Math.abs(b1)) &&
     Math.abs(a2 - b2) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a2), Math.abs(b2)) &&
     Math.abs(a3 - b3) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a3), Math.abs(b3))
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a3), Math.abs(b3))
   );
 }
 

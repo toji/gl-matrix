@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IndexedCollection, MathUtil } from "./imports";
+import { IndexedCollection, JSMath, Maths } from "./imports";
 import * as mat4 from "./mat4";
 import * as quat from "./quat";
 import * as vec3 from "./vec3";
@@ -543,7 +543,7 @@ export function rotateAroundAxis(out: quat2, a: ReadonlyQuat2, axis: vec3.Readon
   if (Math.abs(rad) < glMatrix.EPSILON) {
     return copy(out, a);
   }
-  let axisLength = MathUtil.hypot(axis[0], axis[1], axis[2]);
+  let axisLength = JSMath.hypot(axis[0], axis[1], axis[2]);
 
   rad = rad * 0.5;
   let s = Math.sin(rad);
@@ -907,20 +907,20 @@ export function equals(a: ReadonlyQuat2, b: ReadonlyQuat2): bool {
     b7 = b[7];
   return (
     Math.abs(a0 - b0) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a0), Math.abs(b0)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a0), Math.abs(b0)) &&
     Math.abs(a1 - b1) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a1), Math.abs(b1)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a1), Math.abs(b1)) &&
     Math.abs(a2 - b2) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a2), Math.abs(b2)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a2), Math.abs(b2)) &&
     Math.abs(a3 - b3) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a3), Math.abs(b3)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a3), Math.abs(b3)) &&
     Math.abs(a4 - b4) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a4), Math.abs(b4)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a4), Math.abs(b4)) &&
     Math.abs(a5 - b5) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a5), Math.abs(b5)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a5), Math.abs(b5)) &&
     Math.abs(a6 - b6) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a6), Math.abs(b6)) &&
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a6), Math.abs(b6)) &&
     Math.abs(a7 - b7) <=
-      glMatrix.EPSILON * MathUtil.max(1.0, Math.abs(a7), Math.abs(b7))
+      glMatrix.EPSILON * Maths.max(1.0, Math.abs(a7), Math.abs(b7))
   );
 }

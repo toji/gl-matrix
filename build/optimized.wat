@@ -44,13 +44,10 @@
  (type $f64_f64_f64_f64_f64_f64_f64_f64_f64_=>_i32 (func (param f64 f64 f64 f64 f64 f64 f64 f64 f64) (result i32)))
  (type $f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_=>_i32 (func (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result i32)))
  (type $f64_f64_i32_=>_f64 (func (param f64 f64 i32) (result f64)))
- (type $f64_f64_f64_=>_f64 (func (param f64 f64 f64) (result f64)))
  (type $f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_=>_f64 (func (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
  (import "env" "seed" (func $~lib/builtins/seed (result f64)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
- (import "Math" "hypot" (func $assembly/imports/MathUtil.hypot (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
- (import "imports" "MathUtil.min" (func $assembly/imports/MathUtil.min (param i32 i32) (result i32)))
- (import "imports" "MathUtil.max" (func $assembly/imports/MathUtil.max (param f64 f64 f64) (result f64)))
+ (import "Math" "hypot" (func $assembly/imports/JSMath.hypot (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
  (memory $0 1)
  (data (i32.const 1036) "\1c")
  (data (i32.const 1048) "\03\00\00\00\08\00\00\00\01")
@@ -1178,7 +1175,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
  )
  (func $assembly/vec3/squaredDistance (param $0 i32) (param $1 i32) (result f64)
   (local $2 f64)
@@ -1238,7 +1235,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
  )
  (func $assembly/vec3/squaredLength (param $0 i32) (result f64)
   (local $1 f64)
@@ -1495,29 +1492,34 @@
   local.tee $2
   i32.const 256
   i32.lt_u
-  if
+  if (result i32)
    local.get $2
    i32.const 4
    i32.shr_u
-   local.set $3
   else
-   local.get $2
    i32.const 31
    local.get $2
+   i32.const 1073741820
+   local.get $2
+   i32.const 1073741820
+   i32.lt_u
+   select
+   local.tee $3
    i32.clz
    i32.sub
    local.tee $2
+   i32.const 7
+   i32.sub
+   local.set $4
+   local.get $3
+   local.get $2
    i32.const 4
    i32.sub
    i32.shr_u
    i32.const 16
    i32.xor
-   local.set $3
-   local.get $2
-   i32.const 7
-   i32.sub
-   local.set $4
   end
+  local.set $3
   local.get $1
   i32.load offset=8
   local.set $2
@@ -1598,11 +1600,9 @@
   (local $4 i32)
   (local $5 i32)
   (local $6 i32)
-  (local $7 i32)
-  (local $8 i32)
   local.get $1
   i32.load
-  local.set $4
+  local.set $3
   local.get $1
   i32.const 4
   i32.add
@@ -1611,15 +1611,17 @@
   i32.const -4
   i32.and
   i32.add
-  local.tee $5
+  local.tee $4
   i32.load
   local.tee $2
   i32.const 1
   i32.and
   if
+   local.get $0
    local.get $4
-   i32.const -4
-   i32.and
+   call $~lib/rt/tlsf/removeBlock
+   local.get $1
+   local.get $3
    i32.const 4
    i32.add
    local.get $2
@@ -1627,34 +1629,20 @@
    i32.and
    i32.add
    local.tee $3
-   i32.const 1073741820
-   i32.lt_u
-   if
-    local.get $0
-    local.get $5
-    call $~lib/rt/tlsf/removeBlock
-    local.get $1
-    local.get $3
-    local.get $4
-    i32.const 3
-    i32.and
-    i32.or
-    local.tee $4
-    i32.store
-    local.get $1
-    i32.const 4
-    i32.add
-    local.get $1
-    i32.load
-    i32.const -4
-    i32.and
-    i32.add
-    local.tee $5
-    i32.load
-    local.set $2
-   end
+   i32.store
+   local.get $1
+   i32.const 4
+   i32.add
+   local.get $1
+   i32.load
+   i32.const -4
+   i32.and
+   i32.add
+   local.tee $4
+   i32.load
+   local.set $2
   end
-  local.get $4
+  local.get $3
   i32.const 2
   i32.and
   if
@@ -1662,78 +1650,69 @@
    i32.const 4
    i32.sub
    i32.load
-   local.tee $3
+   local.tee $1
    i32.load
-   local.tee $7
-   i32.const -4
-   i32.and
+   local.set $6
+   local.get $0
+   local.get $1
+   call $~lib/rt/tlsf/removeBlock
+   local.get $1
+   local.get $6
    i32.const 4
    i32.add
-   local.get $4
+   local.get $3
    i32.const -4
    i32.and
    i32.add
-   local.tee $8
-   i32.const 1073741820
-   i32.lt_u
-   if
-    local.get $0
-    local.get $3
-    call $~lib/rt/tlsf/removeBlock
-    local.get $3
-    local.get $8
-    local.get $7
-    i32.const 3
-    i32.and
-    i32.or
-    local.tee $4
-    i32.store
-    local.get $3
-    local.set $1
-   end
+   local.tee $3
+   i32.store
   end
-  local.get $5
+  local.get $4
   local.get $2
   i32.const 2
   i32.or
   i32.store
-  local.get $5
+  local.get $4
   i32.const 4
   i32.sub
   local.get $1
   i32.store
-  local.get $4
+  local.get $0
+  local.get $3
   i32.const -4
   i32.and
   local.tee $3
   i32.const 256
   i32.lt_u
-  if
+  if (result i32)
    local.get $3
    i32.const 4
    i32.shr_u
-   local.set $3
   else
-   local.get $3
    i32.const 31
    local.get $3
+   i32.const 1073741820
+   local.get $3
+   i32.const 1073741820
+   i32.lt_u
+   select
+   local.tee $3
    i32.clz
    i32.sub
    local.tee $4
+   i32.const 7
+   i32.sub
+   local.set $5
+   local.get $3
+   local.get $4
    i32.const 4
    i32.sub
    i32.shr_u
    i32.const 16
    i32.xor
-   local.set $3
-   local.get $4
-   i32.const 7
-   i32.sub
-   local.set $6
   end
-  local.get $0
-  local.get $3
-  local.get $6
+  local.tee $3
+  local.get $5
   i32.const 4
   i32.shl
   i32.add
@@ -1756,7 +1735,7 @@
   end
   local.get $0
   local.get $3
-  local.get $6
+  local.get $5
   i32.const 4
   i32.shl
   i32.add
@@ -1769,12 +1748,12 @@
   local.get $0
   i32.load
   i32.const 1
-  local.get $6
+  local.get $5
   i32.shl
   i32.or
   i32.store
   local.get $0
-  local.get $6
+  local.get $5
   i32.const 2
   i32.shl
   i32.add
@@ -2520,7 +2499,7 @@
   if
    i32.const 1648
    i32.const 1920
-   i32.const 462
+   i32.const 458
    i32.const 30
    call $~lib/builtins/abort
    unreachable
@@ -2950,7 +2929,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
  )
  (func $assembly/vec4/squaredDistance (param $0 i32) (param $1 i32) (result f64)
   (local $2 f64)
@@ -3023,7 +3002,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
  )
  (func $assembly/vec4/squaredLength (param $0 i32) (result f64)
   (local $1 f64)
@@ -7489,7 +7468,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
  )
  (func $assembly/vec2/squaredDistance (param $0 i32) (param $1 i32) (result f64)
   (local $2 f64)
@@ -7632,7 +7611,8 @@
   f64.abs
   local.get $1
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -10376,7 +10356,8 @@
   f64.abs
   local.get $11
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -10390,7 +10371,8 @@
    f64.abs
    local.get $12
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10407,7 +10389,8 @@
    f64.abs
    local.get $13
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10424,7 +10407,8 @@
    f64.abs
    local.get $14
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10441,7 +10425,8 @@
    f64.abs
    local.get $15
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10458,7 +10443,8 @@
    f64.abs
    local.get $16
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10475,7 +10461,8 @@
    f64.abs
    local.get $17
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10492,7 +10479,8 @@
    f64.abs
    local.get $18
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -10509,7 +10497,8 @@
    f64.abs
    local.get $19
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -11804,7 +11793,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   local.tee $5
   f64.const 1e-06
   f64.lt
@@ -12396,7 +12385,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $0
   i32.const 1
@@ -12416,7 +12405,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $0
   i32.const 2
@@ -12436,7 +12425,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $0
  )
@@ -12525,7 +12514,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $2
   i32.const 1
@@ -12545,7 +12534,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $2
   i32.const 2
@@ -12565,7 +12554,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   call $~lib/typedarray/Float64Array#__set
   f64.const 1
   local.get $2
@@ -13168,7 +13157,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   f64.div
   local.set $4
   local.get $11
@@ -13217,7 +13206,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   local.tee $5
   i64.reinterpret_f64
   i64.const 1
@@ -13286,7 +13275,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   local.tee $10
   i64.reinterpret_f64
   i64.const 1
@@ -13806,7 +13795,8 @@
   f64.abs
   local.get $18
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -13820,7 +13810,8 @@
    f64.abs
    local.get $19
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13837,7 +13828,8 @@
    f64.abs
    local.get $20
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13854,7 +13846,8 @@
    f64.abs
    local.get $21
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13871,7 +13864,8 @@
    f64.abs
    local.get $22
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13888,7 +13882,8 @@
    f64.abs
    local.get $23
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13905,7 +13900,8 @@
    f64.abs
    local.get $24
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13922,7 +13918,8 @@
    f64.abs
    local.get $25
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13939,7 +13936,8 @@
    f64.abs
    local.get $26
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13956,7 +13954,8 @@
    f64.abs
    local.get $27
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13973,7 +13972,8 @@
    f64.abs
    local.get $28
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -13990,7 +13990,8 @@
    f64.abs
    local.get $29
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -14007,7 +14008,8 @@
    f64.abs
    local.get $30
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -14024,7 +14026,8 @@
    f64.abs
    local.get $31
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -14041,7 +14044,8 @@
    f64.abs
    local.get $32
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -14058,7 +14062,8 @@
    f64.abs
    local.get $33
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -15528,7 +15533,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   local.set $4
   local.get $3
   f64.const 0.5
@@ -16110,11 +16115,16 @@
    local.get $6
    i32.mul
    i32.add
+   local.tee $1
    local.get $0
    i32.load offset=8
    i32.const 3
    i32.shr_u
-   call $assembly/imports/MathUtil.min
+   local.tee $3
+   local.get $1
+   local.get $3
+   i32.lt_s
+   select
   else
    local.get $0
    i32.load offset=8
@@ -16263,11 +16273,16 @@
    local.get $6
    i32.mul
    i32.add
+   local.tee $1
    local.get $0
    i32.load offset=8
    i32.const 3
    i32.shr_u
-   call $assembly/imports/MathUtil.min
+   local.tee $3
+   local.get $1
+   local.get $3
+   i32.lt_s
+   select
   else
    local.get $0
    i32.load offset=8
@@ -16822,11 +16837,16 @@
    local.get $6
    i32.mul
    i32.add
+   local.tee $1
    local.get $0
    i32.load offset=8
    i32.const 3
    i32.shr_u
-   call $assembly/imports/MathUtil.min
+   local.tee $3
+   local.get $1
+   local.get $3
+   i32.lt_s
+   select
   else
    local.get $0
    i32.load offset=8
@@ -21447,7 +21467,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -21734,6 +21754,10 @@
   i32.const 3
   call $~lib/typedarray/Float64Array#__get
   local.set $9
+  global.get $~lib/memory/__stack_pointer
+  i32.const 8
+  i32.add
+  global.set $~lib/memory/__stack_pointer
   local.get $2
   local.get $6
   f64.sub
@@ -21743,7 +21767,8 @@
   f64.abs
   local.get $6
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -21757,7 +21782,8 @@
    f64.abs
    local.get $7
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -21774,7 +21800,8 @@
    f64.abs
    local.get $8
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -21791,17 +21818,14 @@
    f64.abs
    local.get $9
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
   else
    i32.const 0
   end
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.add
-  global.set $~lib/memory/__stack_pointer
  )
  (func $export:assembly/mat2/multiplyScalar (param $0 i32) (param $1 i32) (param $2 f64) (result i32)
   (local $3 i32)
@@ -22959,7 +22983,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -23452,6 +23476,10 @@
   i32.const 5
   call $~lib/typedarray/Float64Array#__get
   local.set $13
+  global.get $~lib/memory/__stack_pointer
+  i32.const 8
+  i32.add
+  global.set $~lib/memory/__stack_pointer
   local.get $2
   local.get $8
   f64.sub
@@ -23461,7 +23489,8 @@
   f64.abs
   local.get $8
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -23475,7 +23504,8 @@
    f64.abs
    local.get $9
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -23492,7 +23522,8 @@
    f64.abs
    local.get $10
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -23509,7 +23540,8 @@
    f64.abs
    local.get $11
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -23526,7 +23558,8 @@
    f64.abs
    local.get $12
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -23543,17 +23576,14 @@
    f64.abs
    local.get $13
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
   else
    i32.const 0
   end
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.add
-  global.set $~lib/memory/__stack_pointer
  )
  (func $export:assembly/mat3/fromMat4 (param $0 i32) (param $1 i32) (result i32)
   (local $2 i32)
@@ -25627,7 +25657,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -28523,7 +28553,7 @@
    f64.const 0
    f64.const 0
    f64.const 0
-   call $assembly/imports/MathUtil.hypot
+   call $assembly/imports/JSMath.hypot
    local.tee $3
    f64.const 1e-06
    f64.lt
@@ -30400,7 +30430,7 @@
   local.get $0
   i32.const 15
   call $~lib/typedarray/Float64Array#__get
-  call $assembly/imports/MathUtil.hypot
+  call $assembly/imports/JSMath.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -35471,6 +35501,10 @@
   i32.const 7
   call $~lib/typedarray/Float64Array#__get
   local.set $17
+  global.get $~lib/memory/__stack_pointer
+  i32.const 8
+  i32.add
+  global.set $~lib/memory/__stack_pointer
   local.get $2
   local.get $10
   f64.sub
@@ -35480,7 +35514,8 @@
   f64.abs
   local.get $10
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -35494,7 +35529,8 @@
    f64.abs
    local.get $11
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -35511,7 +35547,8 @@
    f64.abs
    local.get $12
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -35528,7 +35565,8 @@
    f64.abs
    local.get $13
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -35545,7 +35583,8 @@
    f64.abs
    local.get $14
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -35562,7 +35601,8 @@
    f64.abs
    local.get $15
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -35579,7 +35619,8 @@
    f64.abs
    local.get $16
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -35596,17 +35637,14 @@
    f64.abs
    local.get $17
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
   else
    i32.const 0
   end
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.add
-  global.set $~lib/memory/__stack_pointer
  )
  (func $export:assembly/vec2/clone (param $0 i32) (result i32)
   (local $1 i32)
@@ -37486,6 +37524,10 @@
   i32.const 1
   call $~lib/typedarray/Float64Array#__get
   local.set $5
+  global.get $~lib/memory/__stack_pointer
+  i32.const 8
+  i32.add
+  global.set $~lib/memory/__stack_pointer
   local.get $2
   local.get $4
   f64.sub
@@ -37495,7 +37537,8 @@
   f64.abs
   local.get $4
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -37509,17 +37552,14 @@
    f64.abs
    local.get $5
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
   else
    i32.const 0
   end
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.add
-  global.set $~lib/memory/__stack_pointer
  )
  (func $export:assembly/vec3/clone (param $0 i32) (result i32)
   (local $1 i32)
@@ -40462,6 +40502,10 @@
   i32.const 2
   call $~lib/typedarray/Float64Array#__get
   local.set $7
+  global.get $~lib/memory/__stack_pointer
+  i32.const 8
+  i32.add
+  global.set $~lib/memory/__stack_pointer
   local.get $2
   local.get $5
   f64.sub
@@ -40471,7 +40515,8 @@
   f64.abs
   local.get $5
   f64.abs
-  call $assembly/imports/MathUtil.max
+  f64.max
+  f64.max
   f64.const 1e-06
   f64.mul
   f64.le
@@ -40485,7 +40530,8 @@
    f64.abs
    local.get $6
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
@@ -40502,17 +40548,14 @@
    f64.abs
    local.get $7
    f64.abs
-   call $assembly/imports/MathUtil.max
+   f64.max
+   f64.max
    f64.const 1e-06
    f64.mul
    f64.le
   else
    i32.const 0
   end
-  global.get $~lib/memory/__stack_pointer
-  i32.const 8
-  i32.add
-  global.set $~lib/memory/__stack_pointer
  )
  (func $export:assembly/vec4/multiply (param $0 i32) (param $1 i32) (param $2 i32) (result i32)
   (local $3 i32)
