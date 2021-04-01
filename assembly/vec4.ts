@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IArguments, IndexedCollection, JSMath, Maths } from "./imports";
+import { IArguments, IndexedCollection,  Maths } from "./imports";
 import { ReadonlyQuat } from "./quat";
 
 export type vec4 = IndexedCollection;
@@ -279,7 +279,7 @@ export function distance(a: ReadonlyVec4, b: ReadonlyVec4): f64 {
   let y = b[1] - a[1];
   let z = b[2] - a[2];
   let w = b[3] - a[3];
-  return JSMath.hypot(x, y, z, w);
+  return Maths.hypot(x, y, z, w);
 }
 
 /**
@@ -308,7 +308,7 @@ export function length(a: ReadonlyVec4): f64 {
   let y = a[1];
   let z = a[2];
   let w = a[3];
-  return JSMath.hypot(x, y, z, w);
+  return Maths.hypot(x, y, z, w);
 }
 
 /**

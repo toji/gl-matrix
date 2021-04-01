@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IndexedCollection, JSMath, Maths } from "./imports";
+import { IndexedCollection,  Maths } from "./imports";
 import { ReadonlyMat2 } from "./mat2";
 import { ReadonlyMat4 } from "./mat4";
 import { ReadonlyVec2 } from "./vec2";
@@ -704,7 +704,7 @@ export function str(a: ReadonlyMat3): string {
  * @returns {Number} Frobenius norm
  */
 export function frob(a: ReadonlyMat3): f64 {
-  return JSMath.hypot(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8]);
+  return Maths.hypot(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8]);
 }
 
 /**

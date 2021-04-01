@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IndexedCollection, JSMath, Maths } from "./imports";
+import { IndexedCollection,  Maths } from "./imports";
 import * as quat from "./quat";
 import { ReadonlyQuat2 } from "./quat2";
 import * as vec3 from "./vec3";
@@ -634,7 +634,7 @@ export function rotate(out: mat4, a: ReadonlyMat4, rad: f64, axis: vec3.Readonly
   let x = axis[0],
     y = axis[1],
     z = axis[2];
-  let len = JSMath.hypot(x, y, z);
+  let len = Maths.hypot(x, y, z);
   let s: f64, c: f64, t: f64;
   let a00: f64, a01: f64, a02: f64, a03: f64;
   let a10: f64, a11: f64, a12: f64, a13: f64;
@@ -914,7 +914,7 @@ export function fromRotation(out: mat4, rad: f64, axis: vec3.ReadonlyVec3): mat4
   let x = axis[0],
     y = axis[1],
     z = axis[2];
-  let len = JSMath.hypot(x, y, z);
+  let len = Maths.hypot(x, y, z);
   let s: f64, c: f64, t: f64;
 
   if (len < glMatrix.EPSILON) {
@@ -1181,9 +1181,9 @@ export function getScaling(out: mat4, mat: ReadonlyMat4): mat4 {
   let m32 = mat[9];
   let m33 = mat[10];
 
-  out[0] = JSMath.hypot(m11, m12, m13);
-  out[1] = JSMath.hypot(m21, m22, m23);
-  out[2] = JSMath.hypot(m31, m32, m33);
+  out[0] = Maths.hypot(m11, m12, m13);
+  out[1] = Maths.hypot(m21, m22, m23);
+  out[2] = Maths.hypot(m31, m32, m33);
 
   return out;
 }
@@ -1271,9 +1271,9 @@ export function decompose(out_r: quat.quat, out_t: vec3.vec3, out_s: vec3.vec3, 
   let m32 = mat[9];
   let m33 = mat[10];
 
-  out_s[0] = JSMath.hypot(m11, m12, m13);
-  out_s[1] = JSMath.hypot(m21, m22, m23);
-  out_s[2] = JSMath.hypot(m31, m32, m33);
+  out_s[0] = Maths.hypot(m11, m12, m13);
+  out_s[1] = Maths.hypot(m21, m22, m23);
+  out_s[2] = Maths.hypot(m31, m32, m33);
 
   let is1 = 1 / out_s[0];
   let is2 = 1 / out_s[1];
@@ -1786,7 +1786,7 @@ export function lookAt(out: mat4, eye: vec3.ReadonlyVec3, center: vec3.ReadonlyV
   z1 = eyey - centery;
   z2 = eyez - centerz;
 
-  len = 1 / JSMath.hypot(z0, z1, z2);
+  len = 1 / Maths.hypot(z0, z1, z2);
   z0 *= len;
   z1 *= len;
   z2 *= len;
@@ -1794,7 +1794,7 @@ export function lookAt(out: mat4, eye: vec3.ReadonlyVec3, center: vec3.ReadonlyV
   x0 = upy * z2 - upz * z1;
   x1 = upz * z0 - upx * z2;
   x2 = upx * z1 - upy * z0;
-  len = JSMath.hypot(x0, x1, x2);
+  len = Maths.hypot(x0, x1, x2);
   if (!len) {
     x0 = 0;
     x1 = 0;
@@ -1810,7 +1810,7 @@ export function lookAt(out: mat4, eye: vec3.ReadonlyVec3, center: vec3.ReadonlyV
   y1 = z2 * x0 - z0 * x2;
   y2 = z0 * x1 - z1 * x0;
 
-  len = JSMath.hypot(y0, y1, y2);
+  len = Maths.hypot(y0, y1, y2);
   if (!len) {
     y0 = 0;
     y1 = 0;
@@ -1953,7 +1953,7 @@ export function str(a: ReadonlyMat4): string {
  * @returns {Number} Frobenius norm
  */
 export function frob(a: ReadonlyMat4): f64 {
-  return JSMath.hypot(
+  return Maths.hypot(
     a[0],
     a[1],
     a[2],

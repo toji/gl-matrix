@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IArguments, IndexedCollection, JSMath, Maths } from "./imports";
+import { IArguments, IndexedCollection,  Maths } from "./imports";
 import { ReadonlyMat3 } from "./mat3";
 import { ReadonlyMat4 } from "./mat4";
 import { ReadonlyQuat } from "./quat";
@@ -52,7 +52,7 @@ export function length(a: ReadonlyVec3): f64 {
   let x = a[0];
   let y = a[1];
   let z = a[2];
-  return JSMath.hypot(x, y, z);
+  return Maths.hypot(x, y, z);
 }
 
 /**
@@ -275,7 +275,7 @@ export function distance(a: ReadonlyVec3, b: ReadonlyVec3): f64 {
   let x = b[0] - a[0];
   let y = b[1] - a[1];
   let z = b[2] - a[2];
-  return JSMath.hypot(x, y, z);
+  return Maths.hypot(x, y, z);
 }
 
 /**

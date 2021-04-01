@@ -47,7 +47,7 @@
  (type $f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_f64_=>_f64 (func (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
  (import "env" "seed" (func $~lib/builtins/seed (result f64)))
  (import "env" "abort" (func $~lib/builtins/abort (param i32 i32 i32 i32)))
- (import "Math" "hypot" (func $assembly/imports/JSMath.hypot (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
+ (import "Math" "hypot" (func $assembly/imports/Maths.hypot (param f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64 f64) (result f64)))
  (memory $0 1)
  (data (i32.const 1036) "\1c")
  (data (i32.const 1048) "\03\00\00\00\08\00\00\00\01")
@@ -1175,7 +1175,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
  )
  (func $assembly/vec3/squaredDistance (param $0 i32) (param $1 i32) (result f64)
   (local $2 f64)
@@ -1235,7 +1235,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
  )
  (func $assembly/vec3/squaredLength (param $0 i32) (result f64)
   (local $1 f64)
@@ -2929,7 +2929,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
  )
  (func $assembly/vec4/squaredDistance (param $0 i32) (param $1 i32) (result f64)
   (local $2 f64)
@@ -3002,7 +3002,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
  )
  (func $assembly/vec4/squaredLength (param $0 i32) (result f64)
   (local $1 f64)
@@ -7468,7 +7468,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
  )
  (func $assembly/vec2/squaredDistance (param $0 i32) (param $1 i32) (result f64)
   (local $2 f64)
@@ -11793,7 +11793,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   local.tee $5
   f64.const 1e-06
   f64.lt
@@ -12385,7 +12385,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $0
   i32.const 1
@@ -12405,7 +12405,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $0
   i32.const 2
@@ -12425,7 +12425,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $0
  )
@@ -12514,7 +12514,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $2
   i32.const 1
@@ -12534,7 +12534,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   call $~lib/typedarray/Float64Array#__set
   local.get $2
   i32.const 2
@@ -12554,7 +12554,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   call $~lib/typedarray/Float64Array#__set
   f64.const 1
   local.get $2
@@ -13157,7 +13157,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   f64.div
   local.set $4
   local.get $11
@@ -13206,7 +13206,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   local.tee $5
   i64.reinterpret_f64
   i64.const 1
@@ -13275,7 +13275,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   local.tee $10
   i64.reinterpret_f64
   i64.const 1
@@ -15533,7 +15533,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   local.set $4
   local.get $3
   f64.const 0.5
@@ -21467,7 +21467,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -22983,7 +22983,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -25657,7 +25657,7 @@
   f64.const 0
   f64.const 0
   f64.const 0
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add
@@ -28553,7 +28553,7 @@
    f64.const 0
    f64.const 0
    f64.const 0
-   call $assembly/imports/JSMath.hypot
+   call $assembly/imports/Maths.hypot
    local.tee $3
    f64.const 1e-06
    f64.lt
@@ -30430,7 +30430,7 @@
   local.get $0
   i32.const 15
   call $~lib/typedarray/Float64Array#__get
-  call $assembly/imports/JSMath.hypot
+  call $assembly/imports/Maths.hypot
   global.get $~lib/memory/__stack_pointer
   i32.const 4
   i32.add

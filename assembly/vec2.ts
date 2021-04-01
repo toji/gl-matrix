@@ -1,5 +1,5 @@
 import * as glMatrix from "./common";
-import { IArguments, IndexedCollection, JSMath, Maths } from "./imports";
+import { IArguments, IndexedCollection,  Maths } from "./imports";
 import { ReadonlyMat2 } from "./mat2";
 import { ReadonlyMat2d } from "./mat2d";
 import { ReadonlyMat3 } from "./mat3";
@@ -244,7 +244,7 @@ export function scaleAndAdd(out: vec2, a: ReadonlyVec2, b: ReadonlyVec2, scale: 
 export function distance(a: ReadonlyVec2, b: ReadonlyVec2): f64 {
   var x = b[0] - a[0],
     y = b[1] - a[1];
-  return JSMath.hypot(x, y);
+  return Maths.hypot(x, y);
 }
 
 /**
