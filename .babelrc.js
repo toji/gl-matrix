@@ -1,8 +1,8 @@
 module.exports = {
-  "presets": ["@babel/env"],
+  "presets": ["@babel/preset-typescript"],
   "env": {
     "esm": {
-      "presets": [["@babel/env", { "modules": false }]]
+      "presets": [["@babel/preset-typescript", { "modules": false }]],
     }
   }
 };

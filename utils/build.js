@@ -17,7 +17,7 @@ fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
 copyFileSync('README.md', 'dist/README.md');
 copyFileSync('LICENSE.md', 'dist/LICENSE.md');
 
-const files = fs.readdirSync('js')
+const files = fs.readdirSync('assembly')
   .filter(file => !file.includes('common') && !file.includes('index'))
   .forEach(file => {
     const name = file.endsWith('.js') ? file.slice(0, -3) : file;
