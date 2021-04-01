@@ -1,7 +1,8 @@
-import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
+import { terser } from 'rollup-plugin-terser';
+import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
+import wasm from '@rollup/plugin-wasm';
 
 const version = require('./package.json').version;
 const license = require('./utils/license-template');
@@ -23,25 +24,43 @@ ${license}
 
 export default [
   {
+    input: './build/loader-debug.js',
+    output: { file: 'dist/wasm/gl-matrix-loader-debug.js', format: 'umd', name },
+    plugins: [
+      replace({ preventAssignment: true }),
+      wasm(),
+      bannerPlugin
+    ]
+  },
+  {
+    input: './build/loader-release.js',
+    output: { file: 'dist/wasm/gl-matrix-loader-release.js', format: 'umd', name },
+    plugins: [
+      replace({ preventAssignment: true }),
+      wasm(),
+      bannerPlugin
+    ]
+  },
+  {
     input,
     output: { file: 'dist/gl-matrix.js', format: 'umd', name },
     plugins: [
+      replace({ preventAssignment: true }),
       typescript(),
-      bannerPlugin,
-      babel()
+      bannerPlugin
     ]
   },
   {
     input,
     output: { file: 'dist/gl-matrix-min.js', format: 'umd', name },
     plugins: [
+      replace({ preventAssignment: true }),
       typescript(),
-      bannerPlugin,
-      babel(),
-      sizeSnapshot(),
       terser({
         output: { comments: /^!/ }
-      })
+      }),
+      sizeSnapshot(),
+      bannerPlugin
     ]
   }
 ];
