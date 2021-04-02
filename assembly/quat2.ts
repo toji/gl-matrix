@@ -1,5 +1,6 @@
 import * as glMatrix from "./common";
-import { IndexedCollection,  Maths } from "./imports";
+import { IndexedCollection } from "./imports";
+import { Maths } from "./maths";
 import * as mat4 from "./mat4";
 import * as quat from "./quat";
 import * as vec3 from "./vec3";
@@ -543,7 +544,7 @@ export function rotateAroundAxis(out: quat2, a: ReadonlyQuat2, axis: vec3.Readon
   if (Math.abs(rad) < glMatrix.EPSILON) {
     return copy(out, a);
   }
-  let axisLength = Maths.hypot(axis[0], axis[1], axis[2]);
+  let axisLength = Maths.hypot3(axis[0], axis[1], axis[2]);
 
   rad = rad * 0.5;
   let s = Math.sin(rad);

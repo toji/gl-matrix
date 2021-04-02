@@ -1,4 +1,4 @@
-import { Maths } from "./imports";
+import { Maths } from "./maths";
 
 /**
  * Common utilities

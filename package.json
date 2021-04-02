@@ -28,6 +28,8 @@
   ],
   "scripts": {
     "test": "mocha --require @babel/register --recursive spec",
+    "test:as": "asp --verbose",
+    "test:ci": "asp --summary",
     "doc": "jsdoc -c jsdoc.config.json",
     "update-license-version": "node utils/update-license-version.js",
     "build-umd": "rollup -c",
@@ -41,6 +43,7 @@
     "asbuild": "npm run asbuild:untouched && npm run asbuild:optimized"
   },
   "devDependencies": {
+    "@as-pect/cli": "^6.0.0",
     "@assemblyscript/loader": "^0.18.17",
     "@babel/core": "7.9.0",
     "@babel/preset-env": "^7.13.12",

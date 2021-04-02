@@ -1,5 +1,6 @@
 import * as glMatrix from "./common";
-import { IndexedCollection,  Maths } from "./imports";
+import { IndexedCollection } from "./imports"
+import { Maths } from "./maths";
 import { ReadonlyVec2 } from "./vec2";
 
 export type mat2d = IndexedCollection;
@@ -381,7 +382,7 @@ export function str(a: ReadonlyMat2d): string {
  * @returns {Number} Frobenius norm
  */
 export function frob(a: ReadonlyMat2d): f64 {
-  return Maths.hypot(a[0], a[1], a[2], a[3], a[4], a[5], 1);
+  return Maths.hypot7(a[0], a[1], a[2], a[3], a[4], a[5], 1);
 }
 
 /**

@@ -28,7 +28,7 @@ export default [
     output: { file: 'dist/wasm/gl-matrix-loader-debug.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      wasm(),
+      wasm({ sourceMap: true }),
       bannerPlugin
     ]
   },
@@ -37,7 +37,7 @@ export default [
     output: { file: 'dist/wasm/gl-matrix-loader-release.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      wasm(),
+      wasm({ sourceMap: true }),
       bannerPlugin
     ]
   },
