@@ -2,9 +2,9 @@ import wasm from './untouched.wasm';
 
 let modules;
 
-wasm({ ...imports }).then(({ instance }) => {
-  modules = instance.exports
-})
+wasm({ ...imports }).then(instance => {
+  modules = instance.exports;
+});
 
 export const {
   glMatrix,

@@ -1,4 +1,4 @@
-import wasm from './optimized.wasm';
+import wasm from '../build/optimized.wasm';
 
 let modules;
 

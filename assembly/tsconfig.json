@@ -1,5 +1,8 @@
 {
   "extends": "assemblyscript/std/portable.json",
+  "exclude": [
+    "./**/*.spec.ts"
+  ],
   "include": [
     "./**/*.ts"
   ]

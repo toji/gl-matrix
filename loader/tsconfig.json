@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "umd",
+    "outDir": "../dist/wasm",
+    "allowJs": true,                       
+    "checkJs": false
+  },
+  "exclude": ["index.js"]
+}

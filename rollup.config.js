@@ -24,8 +24,16 @@ ${license}
 
 export default [
   {
+    input: './loader/index.js',
+    output: { file: 'dist/wasm/index.js', format: 'umd', name },
+    plugins: [
+      replace({ preventAssignment: true }),
+      wasm({ sourceMap: true }),
+    ]
+  },
+  {
     input: './build/loader-debug.js',
-    output: { file: 'dist/wasm/gl-matrix-loader-debug.js', format: 'umd', name },
+    output: { file: 'dist/gl-matrix-loader-debug.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
       wasm({ sourceMap: true }),
@@ -34,7 +42,7 @@ export default [
   },
   {
     input: './build/loader-release.js',
-    output: { file: 'dist/wasm/gl-matrix-loader-release.js', format: 'umd', name },
+    output: { file: 'dist/gl-matrix-loader-release.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
       wasm({ sourceMap: true }),
@@ -46,7 +54,7 @@ export default [
     output: { file: 'dist/gl-matrix.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      typescript(),
+      typescript({ tsconfig: 'assembly/tsconfig.json'}),
       bannerPlugin
     ]
   },
@@ -55,7 +63,7 @@ export default [
     output: { file: 'dist/gl-matrix-min.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      typescript(),
+      typescript({ tsconfig: 'assembly/tsconfig.json'}),
       terser({
         output: { comments: /^!/ }
       }),
