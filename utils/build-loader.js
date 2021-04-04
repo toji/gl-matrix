@@ -25,8 +25,8 @@ fs.readdirSync(inputDir)
     content = `import { ${moduleName} } from './index.js'\n\nexport const {\n`;
     console.log(`Searching for exported functions and objects in file ${path.join(inputDir, file)}...`);
     fs.readFileSync(path.join(inputDir, file)).toString().split('\n').forEach(line => {
-      if (line.match(/export.+(function|var).[a-z]+.+[;\{]/g) !== null) {
-        declarations.add(line.replace(/export.+(function|var).([a-z]+).+[;\{\r]/g, "$2"));
+      if (line.match(/export.+(function|var).[a-zA-Z]+.+[;\{]/g) !== null) {
+        declarations.add(line.replace(/export.+(function|var).([a-zA-Z]+).+[;\{\r]/g, "$2"));
       }
     });
 
