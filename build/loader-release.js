@@ -1,10 +1,12 @@
 import wasm from './optimized.wasm';
 
-let modules;
+var modules;
 
-wasm({ ...imports }).then(instance => {
-  modules = instance.exports;
-});
+(async (...imports) => {
+  wasm(imports).then(instance => {
+    modules = instance.exports;
+  });
+})();
 
 export const {
   glMatrix,
