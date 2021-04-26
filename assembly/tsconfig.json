@@ -1,9 +1,16 @@
 {
   "extends": "assemblyscript/std/portable.json",
+  "compilerOptions": {
+    "module": "esnext",
+    "outDir": "../dist",
+    "declarationDir": "../dist/loader",
+    "declaration": true
+  },
   "exclude": [
+    "index.js",
     "./**/*.spec.ts"
   ],
   "include": [
-    "./**/*.ts"
+    "./*.ts"
   ]
 }

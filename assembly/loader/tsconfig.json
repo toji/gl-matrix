@@ -1,0 +1,13 @@
+{
+  "extends": "assemblyscript/std/portable.json",
+  "compilerOptions": {
+    "module": "umd",
+    "outDir": "../dist/loader",
+    "allowJs": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "checkJs": false
+  },
+  "exclude": [
+  ]
+}
