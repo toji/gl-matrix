@@ -24,7 +24,7 @@ export type ReadonlyQuat2 = IndexedCollection;
  */
 export function create(): quat2 {
   let dq = changetype<IndexedCollection>(new Float64Array(8));
-  //if (glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != glMatrix.ArrayTypeEnum.Float64ArrayT) {
     dq[0] = 0;
     dq[1] = 0;
     dq[2] = 0;
@@ -32,7 +32,7 @@ export function create(): quat2 {
     dq[5] = 0;
     dq[6] = 0;
     dq[7] = 0;
-  //}
+  }
   dq[3] = 1;
   return dq;
 }

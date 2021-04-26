@@ -3,12 +3,17 @@
     "debug": {
       "binaryFile": "build/untouched.wasm",
       "textFile": "build/untouched.wat",
+      "tdsFile": "build/untouched.wasm.d.ts",
+      "exportRuntime": true,
       "sourceMap": true,
       "debug": true
     },
     "release": {
       "binaryFile": "build/optimized.wasm",
       "textFile": "build/optimized.wat",
+      "tdsFile": "build/optimized.wasm.d.ts",
+      "exportRuntime": true,
+      "runtime": "incremental",
       "sourceMap": true,
       "optimizeLevel": 3,
       "shrinkLevel": 0,

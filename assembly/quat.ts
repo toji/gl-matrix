@@ -20,11 +20,11 @@ export type ReadonlyQuat = IndexedCollection;
  */
 export function create(): quat {
   let out = new Float64Array(4);
-  //if (glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != glMatrix.ArrayTypeEnum.Float64ArrayT) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
-  //}
+  }
   out[3] = 1;
   return out;
 }

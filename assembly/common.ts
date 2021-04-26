@@ -7,17 +7,21 @@ import { Maths } from "./maths";
 
 // Configuration Constants
 export const EPSILON = 0.000001;
-export type ARRAY_TYPE = Float64Array;
+export enum ArrayTypeEnum {
+  Float64ArrayT = idof<Float64Array>(),
+  ArrayF64T = idof<Array<f64>>(),
+};
+export let ARRAY_TYPE = ArrayTypeEnum.Float64ArrayT;
 export let RANDOM = Math.random;
 export let ANGLE_ORDER = "zyx";
 
 /**
  * Sets the type of array used when creating new vectors and matrices
  *
- * @param {Object} type Array type, such as Float32Array or Array
+ * @param {Number} id Array type, such as Float32Array or Array
  */
-export function setMatrixArrayType(type: Object): void {
-  throw new Error("Not implemented yet");
+export function setMatrixArrayType(id: i32): void {
+  ARRAY_TYPE = id;
 }
 
 const degree: f64 = Math.PI / 180;

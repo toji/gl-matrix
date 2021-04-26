@@ -19,12 +19,12 @@ export type ReadonlyVec4 = IndexedCollection;
  */
 export function create(): vec4 {
   let out = new Float64Array(4);
-  //if (glMatrix.ARRAY_TYPE != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != glMatrix.ArrayTypeEnum.Float64ArrayT) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
     out[3] = 0;
-  //}
+  }
   return out;
 }
 
@@ -656,7 +656,7 @@ export const forEach = ((): (a: vec4, stride: i32, offset: i32, count: i32, fn: 
     }
 
     if (count) {
-      l = Maths.min(count * stride + offset, a.length);
+      l = <i32>Math.min(count * stride + offset, a.length);
     } else {
       l = a.length;
     }

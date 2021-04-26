@@ -176,15 +176,6 @@ export namespace Maths {
   }
 
   /**
-   * Returns the smaller of a set of supplied numeric expressions.
-   * @param a a
-   * @param b b
-   */
-  export function min(a: i32, b: i32): i32 {
-    return a < b ? a : b;
-  }
-
-  /**
    * Returns the larger of a set of supplied numeric expressions.
    * @param a a
    * @param b b

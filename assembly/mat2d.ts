@@ -33,12 +33,12 @@ export type ReadonlyMat2d = IndexedCollection;
  */
 export function create(): mat2d {
   let out = new Float64Array(6);
-  //if (mat2d != Float32Array) {
+  if (glMatrix.ARRAY_TYPE != glMatrix.ArrayTypeEnum.Float64ArrayT) {
     out[1] = 0;
     out[2] = 0;
     out[4] = 0;
     out[5] = 0;
-  //}
+  }
   out[0] = 1;
   out[3] = 1;
   return out;
