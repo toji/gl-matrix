@@ -27,7 +27,7 @@ export default [
     output: { file: 'dist/gl-matrix-wasm.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      typescript()
+      typescript({ exclude: "**/*.spec.ts" })
     ]
   },
   {
@@ -35,7 +35,7 @@ export default [
     output: { file: 'dist/gl-matrix.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      typescript({ tsconfig: 'assembly/tsconfig.json' }),
+      typescript({ exclude: "**/*.spec.ts" }),
       bannerPlugin
     ]
   },
@@ -44,7 +44,7 @@ export default [
     output: { file: 'dist/gl-matrix-min.js', format: 'umd', name },
     plugins: [
       replace({ preventAssignment: true }),
-      typescript({ tsconfig: 'assembly/tsconfig.json' }),
+      typescript({ exclude: "**/*.spec.ts" }),
       terser({
         output: { comments: /^!/ }
       }),

@@ -36,7 +36,7 @@
     "build-esm": "tsc --module es6 assembly/index.ts --outDir dist/esm",
     "build-cjs": "tsc --module commonjs assembly/index.ts -outDir dist/cjs",
     "build-dts": "tsc --declaration --emitDeclarationOnly --module amd --outFile ./dist/index.d.ts ./assembly/index.ts && node ./utils/bundle-dts.js && tsc --noEmit ./dist/index.d.ts",
-    "build-loader": "tsc -p assembly/loader/tsconfig.json  && tsc -noEmit dist/loader/index.d.ts",
+    "build-loader": "tsc -p assembly/tsconfig.json && tsc -p assembly/loader/tsconfig.json && tsc -noEmit dist/loader/index.d.ts",
     "build": "del dist && npm run update-license-version && npm run build-loader && npm run asbuild && npm run build-umd && npm run build-esm && npm run build-cjs && npm run build-dts && node ./utils/build.js",
     "prepare": "npm run build",
     "asbuild:untouched": "asc ./node_modules/as-bind/lib/assembly/as-bind.ts assembly/index.ts --target debug",
