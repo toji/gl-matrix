@@ -481,7 +481,7 @@ export function angle(a, b) {
     x2 = b[0],
     y2 = b[1],
     // mag is the product of the magnitudes of a and b
-    mag = Math.sqrt(x1 * x1 + y1 * y1) * Math.sqrt(x2 * x2 + y2 * y2),
+    mag = Math.sqrt((x1 * x1 + y1 * y1) * (x2 * x2 + y2 * y2)),
     // mag &&.. short circuits if mag == 0
     cosine = mag && (x1 * x2 + y1 * y2) / mag;
   // Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
