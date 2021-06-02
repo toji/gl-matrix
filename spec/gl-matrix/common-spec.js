@@ -1,4 +1,4 @@
-import * as glMatrix from "../../src/common"
+import * as glMatrix from "../../src/common.js"
 
 describe("common", function(){
   let result;
