@@ -675,9 +675,7 @@ export function angle(a, b) {
     bx = b[0],
     by = b[1],
     bz = b[2],
-    mag1 = Math.sqrt(ax * ax + ay * ay + az * az),
-    mag2 = Math.sqrt(bx * bx + by * by + bz * bz),
-    mag = mag1 * mag2,
+    mag = Math.sqrt((ax * ax + ay * ay + az * az) * (bx * bx + by * by + bz * bz)),
     cosine = mag && dot(a, b) / mag;
   return Math.acos(Math.min(Math.max(cosine, -1), 1));
 }
