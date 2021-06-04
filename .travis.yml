@@ -1,7 +1,7 @@
 language: node_js
 sudo: false
 node_js:
-  - "12.16.1"
+  - "lts/*"
 script:
   - npm run build
   - npm run test

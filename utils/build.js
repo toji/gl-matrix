@@ -17,10 +17,16 @@ fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
 copyFileSync('README.md', 'dist/README.md');
 copyFileSync('LICENSE.md', 'dist/LICENSE.md');
 
-const files = fs.readdirSync('src')
-  .filter(file => !file.includes('common') && !file.includes('index'))
+const files = fs.readdirSync('assembly')
+  .filter(file =>
+    !file.includes('_tests_') &&
+    !file.includes('.json') &&
+    !file.includes('import') &&
+    !file.includes('math') &&
+    !file.includes('common') && !file.includes('index'))
   .forEach(file => {
-    const name = file.endsWith('.js') ? file.slice(0, -3) : file;
+    const name = file.endsWith('.ts') ? file.slice(0, -3) : file;
+    file = file.slice(0, -3) + '.js';
     const filePkg = {
       name: `gl-matrix/${name}`,
       main: `../cjs/${file}`,

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/loader",
+    "allowJs": true,
+    "declaration": true,
+    "checkJs": false
+  },
+  "include": [
+    "**/*.js",
+    "**/*.ts"
+  ]
+}
