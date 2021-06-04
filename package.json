@@ -6,7 +6,7 @@
   "sideEffects": false,
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "homepage": "http://glmatrix.net",
   "license": "MIT",
   "bugs": {
@@ -33,8 +33,9 @@
     "build-umd": "rollup -c",
     "build-esm": "cross-env BABEL_ENV=esm babel src -d dist/esm",
     "build-cjs": "babel src -d dist/cjs",
-    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --outFile ./dist/index.d.ts ./src/index.js ./src/types.d.ts && node ./utils/bundle-dts.js && tsc --noEmit ./dist/index.d.ts",
-    "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-cjs && npm run build-dts && node ./utils/build.js",
+    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --outDir dist/types ./src/index.js ./src/types.d.ts && node ./utils/bundle-dts.js",
+    "build-pick": "cherry-pick --cwd dist --input-dir ../src --esm-dir esm --cjs-dir cjs --types-dir types",
+    "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-cjs && npm run build-dts && npm run build-pick && node ./utils/build.js",
     "prepare": "npm run build"
   },
   "devDependencies": {
@@ -42,6 +43,7 @@
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
+    "cherry-pick": "^0.5.0",
     "cross-env": "^7.0.2",
     "del-cli": "^3.0.0",
     "jsdoc": "^3.6.3",
