@@ -1,10 +1,7 @@
-'use strict'
+import fs from 'fs';
+import template from './license-template.js';
 
-const fs = require('fs');
-const path = require('path');
+const { version } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url)));
 
-const version = require(path.join(process.cwd(), 'package.json')).version;
-const template = require('./license-template');
-
-fs.writeFileSync(path.join(process.cwd(), 'LICENSE.md'), template, 'utf8');
-fs.writeFileSync(path.join(process.cwd(), 'VERSION'), version, 'utf8');
+fs.writeFileSync(new URL('../LICENSE.md', import.meta.url), template, 'utf8');
+fs.writeFileSync(new URL('../VERSION', import.meta.url), version, 'utf8');

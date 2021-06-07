@@ -1,4 +1,4 @@
-import * as mat2d from "../../src/mat2d"
+import * as mat2d from "../../src/mat2d.js"
 
 describe("mat2d", function() {
     let out, matA, matB, oldA, oldB, identity, result;

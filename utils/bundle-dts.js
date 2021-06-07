@@ -1,5 +1,4 @@
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
 
 let sourcePath = "./dist/index.d.ts";
 let sourceTypingsPath = "./src/types.d.ts";

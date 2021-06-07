@@ -1,6 +1,6 @@
-import * as mat3 from "../../src/mat3"
-import * as mat4 from "../../src/mat4"
-import * as vec3 from "../../src/vec3"
+import * as mat3 from "../../src/mat3.js"
+import * as mat4 from "../../src/mat4.js"
+import * as vec3 from "../../src/vec3.js"
 
 describe("mat3", function() {
     let out, matA, matB, identity, result;
