@@ -5,7 +5,7 @@
 @author Colin MacKenzie IV
 @version 3.3.0
 
-Copyright (c) 2015-2020, Brandon Jones, Colin MacKenzie IV.
+Copyright (c) 2015-2021, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,9 @@ THE SOFTWARE.
    */
   // Configuration Constants
   var EPSILON = 0.000001;
-  var ARRAY_TYPE = typeof Float32Array !== 'undefined' ? Float32Array : Array;
+  var ARRAY_TYPE = typeof Float32Array !== "undefined" ? Float32Array : Array;
   var RANDOM = Math.random;
+  var ANGLE_ORDER = "zyx";
   /**
    * Sets the type of array used when creating new vectors and matrices
    *
@@ -69,7 +70,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
    */
 
-  function equals(a, b) {
+  function equals$9(a, b) {
     return Math.abs(a - b) <= EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b));
   }
   if (!Math.hypot) Math.hypot = function () {
@@ -88,9 +89,10 @@ THE SOFTWARE.
     EPSILON: EPSILON,
     get ARRAY_TYPE () { return ARRAY_TYPE; },
     RANDOM: RANDOM,
+    ANGLE_ORDER: ANGLE_ORDER,
     setMatrixArrayType: setMatrixArrayType,
     toRadian: toRadian,
-    equals: equals
+    equals: equals$9
   });
 
   /**
@@ -104,7 +106,7 @@ THE SOFTWARE.
    * @returns {mat2} a new 2x2 matrix
    */
 
-  function create() {
+  function create$8() {
     var out = new ARRAY_TYPE(4);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -123,7 +125,7 @@ THE SOFTWARE.
    * @returns {mat2} a new 2x2 matrix
    */
 
-  function clone(a) {
+  function clone$8(a) {
     var out = new ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
@@ -139,7 +141,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function copy(out, a) {
+  function copy$8(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -153,7 +155,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function identity(out) {
+  function identity$5(out) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -170,7 +172,7 @@ THE SOFTWARE.
    * @returns {mat2} out A new 2x2 matrix
    */
 
-  function fromValues(m00, m01, m10, m11) {
+  function fromValues$8(m00, m01, m10, m11) {
     var out = new ARRAY_TYPE(4);
     out[0] = m00;
     out[1] = m01;
@@ -189,7 +191,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function set(out, m00, m01, m10, m11) {
+  function set$8(out, m00, m01, m10, m11) {
     out[0] = m00;
     out[1] = m01;
     out[2] = m10;
@@ -204,7 +206,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function transpose(out, a) {
+  function transpose$2(out, a) {
     // If we are transposing ourselves we can skip a few steps but have to cache
     // some values
     if (out === a) {
@@ -228,7 +230,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function invert(out, a) {
+  function invert$5(out, a) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -255,8 +257,8 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function adjoint(out, a) {
-    // Caching this value is nessecary if out == a
+  function adjoint$2(out, a) {
+    // Caching this value is necessary if out == a
     var a0 = a[0];
     out[0] = a[3];
     out[1] = -a[1];
@@ -271,7 +273,7 @@ THE SOFTWARE.
    * @returns {Number} determinant of a
    */
 
-  function determinant(a) {
+  function determinant$3(a) {
     return a[0] * a[3] - a[2] * a[1];
   }
   /**
@@ -283,7 +285,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function multiply(out, a, b) {
+  function multiply$8(out, a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -307,7 +309,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function rotate(out, a, rad) {
+  function rotate$4(out, a, rad) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -329,7 +331,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    **/
 
-  function scale(out, a, v) {
+  function scale$8(out, a, v) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -354,7 +356,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function fromRotation(out, rad) {
+  function fromRotation$4(out, rad) {
     var s = Math.sin(rad);
     var c = Math.cos(rad);
     out[0] = c;
@@ -375,7 +377,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function fromScaling(out, v) {
+  function fromScaling$3(out, v) {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
@@ -389,7 +391,7 @@ THE SOFTWARE.
    * @returns {String} string representation of the matrix
    */
 
-  function str(a) {
+  function str$8(a) {
     return "mat2(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
   }
   /**
@@ -399,7 +401,7 @@ THE SOFTWARE.
    * @returns {Number} Frobenius norm
    */
 
-  function frob(a) {
+  function frob$3(a) {
     return Math.hypot(a[0], a[1], a[2], a[3]);
   }
   /**
@@ -426,7 +428,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function add(out, a, b) {
+  function add$8(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -442,7 +444,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function subtract(out, a, b) {
+  function subtract$6(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -457,7 +459,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function exactEquals(a, b) {
+  function exactEquals$8(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
   }
   /**
@@ -468,7 +470,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function equals$1(a, b) {
+  function equals$8(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -488,7 +490,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function multiplyScalar(out, a, b) {
+  function multiplyScalar$3(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -505,7 +507,7 @@ THE SOFTWARE.
    * @returns {mat2} out
    */
 
-  function multiplyScalarAndAdd(out, a, b, scale) {
+  function multiplyScalarAndAdd$3(out, a, b, scale) {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -517,42 +519,42 @@ THE SOFTWARE.
    * @function
    */
 
-  var mul = multiply;
+  var mul$8 = multiply$8;
   /**
    * Alias for {@link mat2.subtract}
    * @function
    */
 
-  var sub = subtract;
+  var sub$6 = subtract$6;
 
   var mat2 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create,
-    clone: clone,
-    copy: copy,
-    identity: identity,
-    fromValues: fromValues,
-    set: set,
-    transpose: transpose,
-    invert: invert,
-    adjoint: adjoint,
-    determinant: determinant,
-    multiply: multiply,
-    rotate: rotate,
-    scale: scale,
-    fromRotation: fromRotation,
-    fromScaling: fromScaling,
-    str: str,
-    frob: frob,
+    create: create$8,
+    clone: clone$8,
+    copy: copy$8,
+    identity: identity$5,
+    fromValues: fromValues$8,
+    set: set$8,
+    transpose: transpose$2,
+    invert: invert$5,
+    adjoint: adjoint$2,
+    determinant: determinant$3,
+    multiply: multiply$8,
+    rotate: rotate$4,
+    scale: scale$8,
+    fromRotation: fromRotation$4,
+    fromScaling: fromScaling$3,
+    str: str$8,
+    frob: frob$3,
     LDU: LDU,
-    add: add,
-    subtract: subtract,
-    exactEquals: exactEquals,
-    equals: equals$1,
-    multiplyScalar: multiplyScalar,
-    multiplyScalarAndAdd: multiplyScalarAndAdd,
-    mul: mul,
-    sub: sub
+    add: add$8,
+    subtract: subtract$6,
+    exactEquals: exactEquals$8,
+    equals: equals$8,
+    multiplyScalar: multiplyScalar$3,
+    multiplyScalarAndAdd: multiplyScalarAndAdd$3,
+    mul: mul$8,
+    sub: sub$6
   });
 
   /**
@@ -580,7 +582,7 @@ THE SOFTWARE.
    * @returns {mat2d} a new 2x3 matrix
    */
 
-  function create$1() {
+  function create$7() {
     var out = new ARRAY_TYPE(6);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -601,7 +603,7 @@ THE SOFTWARE.
    * @returns {mat2d} a new 2x3 matrix
    */
 
-  function clone$1(a) {
+  function clone$7(a) {
     var out = new ARRAY_TYPE(6);
     out[0] = a[0];
     out[1] = a[1];
@@ -619,7 +621,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function copy$1(out, a) {
+  function copy$7(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -635,7 +637,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function identity$1(out) {
+  function identity$4(out) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -656,7 +658,7 @@ THE SOFTWARE.
    * @returns {mat2d} A new mat2d
    */
 
-  function fromValues$1(a, b, c, d, tx, ty) {
+  function fromValues$7(a, b, c, d, tx, ty) {
     var out = new ARRAY_TYPE(6);
     out[0] = a;
     out[1] = b;
@@ -679,7 +681,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function set$1(out, a, b, c, d, tx, ty) {
+  function set$7(out, a, b, c, d, tx, ty) {
     out[0] = a;
     out[1] = b;
     out[2] = c;
@@ -696,7 +698,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function invert$1(out, a) {
+  function invert$4(out, a) {
     var aa = a[0],
         ab = a[1],
         ac = a[2],
@@ -725,7 +727,7 @@ THE SOFTWARE.
    * @returns {Number} determinant of a
    */
 
-  function determinant$1(a) {
+  function determinant$2(a) {
     return a[0] * a[3] - a[1] * a[2];
   }
   /**
@@ -737,7 +739,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function multiply$1(out, a, b) {
+  function multiply$7(out, a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -767,7 +769,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function rotate$1(out, a, rad) {
+  function rotate$3(out, a, rad) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -793,7 +795,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    **/
 
-  function scale$1(out, a, v) {
+  function scale$7(out, a, v) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -819,7 +821,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    **/
 
-  function translate(out, a, v) {
+  function translate$3(out, a, v) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -848,7 +850,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function fromRotation$1(out, rad) {
+  function fromRotation$3(out, rad) {
     var s = Math.sin(rad),
         c = Math.cos(rad);
     out[0] = c;
@@ -871,7 +873,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function fromScaling$1(out, v) {
+  function fromScaling$2(out, v) {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
@@ -892,7 +894,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function fromTranslation(out, v) {
+  function fromTranslation$3(out, v) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -908,7 +910,7 @@ THE SOFTWARE.
    * @returns {String} string representation of the matrix
    */
 
-  function str$1(a) {
+  function str$7(a) {
     return "mat2d(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ", " + a[4] + ", " + a[5] + ")";
   }
   /**
@@ -918,7 +920,7 @@ THE SOFTWARE.
    * @returns {Number} Frobenius norm
    */
 
-  function frob$1(a) {
+  function frob$2(a) {
     return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], 1);
   }
   /**
@@ -930,7 +932,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function add$1(out, a, b) {
+  function add$7(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -948,7 +950,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function subtract$1(out, a, b) {
+  function subtract$5(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -966,7 +968,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function multiplyScalar$1(out, a, b) {
+  function multiplyScalar$2(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -985,7 +987,7 @@ THE SOFTWARE.
    * @returns {mat2d} out
    */
 
-  function multiplyScalarAndAdd$1(out, a, b, scale) {
+  function multiplyScalarAndAdd$2(out, a, b, scale) {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -1002,7 +1004,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function exactEquals$1(a, b) {
+  function exactEquals$7(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5];
   }
   /**
@@ -1013,7 +1015,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function equals$2(a, b) {
+  function equals$7(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -1033,41 +1035,41 @@ THE SOFTWARE.
    * @function
    */
 
-  var mul$1 = multiply$1;
+  var mul$7 = multiply$7;
   /**
    * Alias for {@link mat2d.subtract}
    * @function
    */
 
-  var sub$1 = subtract$1;
+  var sub$5 = subtract$5;
 
   var mat2d = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$1,
-    clone: clone$1,
-    copy: copy$1,
-    identity: identity$1,
-    fromValues: fromValues$1,
-    set: set$1,
-    invert: invert$1,
-    determinant: determinant$1,
-    multiply: multiply$1,
-    rotate: rotate$1,
-    scale: scale$1,
-    translate: translate,
-    fromRotation: fromRotation$1,
-    fromScaling: fromScaling$1,
-    fromTranslation: fromTranslation,
-    str: str$1,
-    frob: frob$1,
-    add: add$1,
-    subtract: subtract$1,
-    multiplyScalar: multiplyScalar$1,
-    multiplyScalarAndAdd: multiplyScalarAndAdd$1,
-    exactEquals: exactEquals$1,
-    equals: equals$2,
-    mul: mul$1,
-    sub: sub$1
+    create: create$7,
+    clone: clone$7,
+    copy: copy$7,
+    identity: identity$4,
+    fromValues: fromValues$7,
+    set: set$7,
+    invert: invert$4,
+    determinant: determinant$2,
+    multiply: multiply$7,
+    rotate: rotate$3,
+    scale: scale$7,
+    translate: translate$3,
+    fromRotation: fromRotation$3,
+    fromScaling: fromScaling$2,
+    fromTranslation: fromTranslation$3,
+    str: str$7,
+    frob: frob$2,
+    add: add$7,
+    subtract: subtract$5,
+    multiplyScalar: multiplyScalar$2,
+    multiplyScalarAndAdd: multiplyScalarAndAdd$2,
+    exactEquals: exactEquals$7,
+    equals: equals$7,
+    mul: mul$7,
+    sub: sub$5
   });
 
   /**
@@ -1081,7 +1083,7 @@ THE SOFTWARE.
    * @returns {mat3} a new 3x3 matrix
    */
 
-  function create$2() {
+  function create$6() {
     var out = new ARRAY_TYPE(9);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -1106,7 +1108,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function fromMat4(out, a) {
+  function fromMat4$1(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -1125,7 +1127,7 @@ THE SOFTWARE.
    * @returns {mat3} a new 3x3 matrix
    */
 
-  function clone$2(a) {
+  function clone$6(a) {
     var out = new ARRAY_TYPE(9);
     out[0] = a[0];
     out[1] = a[1];
@@ -1146,7 +1148,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function copy$2(out, a) {
+  function copy$6(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -1173,7 +1175,7 @@ THE SOFTWARE.
    * @returns {mat3} A new mat3
    */
 
-  function fromValues$2(m00, m01, m02, m10, m11, m12, m20, m21, m22) {
+  function fromValues$6(m00, m01, m02, m10, m11, m12, m20, m21, m22) {
     var out = new ARRAY_TYPE(9);
     out[0] = m00;
     out[1] = m01;
@@ -1202,7 +1204,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function set$2(out, m00, m01, m02, m10, m11, m12, m20, m21, m22) {
+  function set$6(out, m00, m01, m02, m10, m11, m12, m20, m21, m22) {
     out[0] = m00;
     out[1] = m01;
     out[2] = m02;
@@ -1221,7 +1223,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function identity$2(out) {
+  function identity$3(out) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -1275,7 +1277,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function invert$2(out, a) {
+  function invert$3(out, a) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2];
@@ -1343,7 +1345,7 @@ THE SOFTWARE.
    * @returns {Number} determinant of a
    */
 
-  function determinant$2(a) {
+  function determinant$1(a) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2];
@@ -1364,7 +1366,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function multiply$2(out, a, b) {
+  function multiply$6(out, a, b) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2];
@@ -1403,7 +1405,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function translate$1(out, a, v) {
+  function translate$2(out, a, v) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2],
@@ -1467,7 +1469,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    **/
 
-  function scale$2(out, a, v) {
+  function scale$6(out, a, v) {
     var x = v[0],
         y = v[1];
     out[0] = x * a[0];
@@ -1493,7 +1495,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function fromTranslation$1(out, v) {
+  function fromTranslation$2(out, v) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -1543,7 +1545,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function fromScaling$2(out, v) {
+  function fromScaling$1(out, v) {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
@@ -1584,7 +1586,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function fromQuat(out, q) {
+  function fromQuat$1(out, q) {
     var x = q[0],
         y = q[1],
         z = q[2],
@@ -1697,7 +1699,7 @@ THE SOFTWARE.
    * @returns {String} string representation of the matrix
    */
 
-  function str$2(a) {
+  function str$6(a) {
     return "mat3(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ", " + a[4] + ", " + a[5] + ", " + a[6] + ", " + a[7] + ", " + a[8] + ")";
   }
   /**
@@ -1707,7 +1709,7 @@ THE SOFTWARE.
    * @returns {Number} Frobenius norm
    */
 
-  function frob$2(a) {
+  function frob$1(a) {
     return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8]);
   }
   /**
@@ -1719,7 +1721,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function add$2(out, a, b) {
+  function add$6(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -1740,7 +1742,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function subtract$2(out, a, b) {
+  function subtract$4(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -1761,7 +1763,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function multiplyScalar$2(out, a, b) {
+  function multiplyScalar$1(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -1783,7 +1785,7 @@ THE SOFTWARE.
    * @returns {mat3} out
    */
 
-  function multiplyScalarAndAdd$2(out, a, b, scale) {
+  function multiplyScalarAndAdd$1(out, a, b, scale) {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -1803,7 +1805,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function exactEquals$2(a, b) {
+  function exactEquals$6(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && a[8] === b[8];
   }
   /**
@@ -1814,7 +1816,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function equals$3(a, b) {
+  function equals$6(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -1840,48 +1842,48 @@ THE SOFTWARE.
    * @function
    */
 
-  var mul$2 = multiply$2;
+  var mul$6 = multiply$6;
   /**
    * Alias for {@link mat3.subtract}
    * @function
    */
 
-  var sub$2 = subtract$2;
+  var sub$4 = subtract$4;
 
   var mat3 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$2,
-    fromMat4: fromMat4,
-    clone: clone$2,
-    copy: copy$2,
-    fromValues: fromValues$2,
-    set: set$2,
-    identity: identity$2,
+    create: create$6,
+    fromMat4: fromMat4$1,
+    clone: clone$6,
+    copy: copy$6,
+    fromValues: fromValues$6,
+    set: set$6,
+    identity: identity$3,
     transpose: transpose$1,
-    invert: invert$2,
+    invert: invert$3,
     adjoint: adjoint$1,
-    determinant: determinant$2,
-    multiply: multiply$2,
-    translate: translate$1,
+    determinant: determinant$1,
+    multiply: multiply$6,
+    translate: translate$2,
     rotate: rotate$2,
-    scale: scale$2,
-    fromTranslation: fromTranslation$1,
+    scale: scale$6,
+    fromTranslation: fromTranslation$2,
     fromRotation: fromRotation$2,
-    fromScaling: fromScaling$2,
+    fromScaling: fromScaling$1,
     fromMat2d: fromMat2d,
-    fromQuat: fromQuat,
+    fromQuat: fromQuat$1,
     normalFromMat4: normalFromMat4,
     projection: projection,
-    str: str$2,
-    frob: frob$2,
-    add: add$2,
-    subtract: subtract$2,
-    multiplyScalar: multiplyScalar$2,
-    multiplyScalarAndAdd: multiplyScalarAndAdd$2,
-    exactEquals: exactEquals$2,
-    equals: equals$3,
-    mul: mul$2,
-    sub: sub$2
+    str: str$6,
+    frob: frob$1,
+    add: add$6,
+    subtract: subtract$4,
+    multiplyScalar: multiplyScalar$1,
+    multiplyScalarAndAdd: multiplyScalarAndAdd$1,
+    exactEquals: exactEquals$6,
+    equals: equals$6,
+    mul: mul$6,
+    sub: sub$4
   });
 
   /**
@@ -1895,7 +1897,7 @@ THE SOFTWARE.
    * @returns {mat4} a new 4x4 matrix
    */
 
-  function create$3() {
+  function create$5() {
     var out = new ARRAY_TYPE(16);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -1926,7 +1928,7 @@ THE SOFTWARE.
    * @returns {mat4} a new 4x4 matrix
    */
 
-  function clone$3(a) {
+  function clone$5(a) {
     var out = new ARRAY_TYPE(16);
     out[0] = a[0];
     out[1] = a[1];
@@ -1954,7 +1956,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function copy$3(out, a) {
+  function copy$5(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -1995,7 +1997,7 @@ THE SOFTWARE.
    * @returns {mat4} A new mat4
    */
 
-  function fromValues$3(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
+  function fromValues$5(m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
     var out = new ARRAY_TYPE(16);
     out[0] = m00;
     out[1] = m01;
@@ -2038,7 +2040,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function set$3(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
+  function set$5(out, m00, m01, m02, m03, m10, m11, m12, m13, m20, m21, m22, m23, m30, m31, m32, m33) {
     out[0] = m00;
     out[1] = m01;
     out[2] = m02;
@@ -2064,7 +2066,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function identity$3(out) {
+  function identity$2(out) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -2091,7 +2093,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function transpose$2(out, a) {
+  function transpose(out, a) {
     // If we are transposing ourselves we can skip a few steps but have to cache some values
     if (out === a) {
       var a01 = a[1],
@@ -2141,7 +2143,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function invert$3(out, a) {
+  function invert$2(out, a) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2],
@@ -2204,7 +2206,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function adjoint$2(out, a) {
+  function adjoint(out, a) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2],
@@ -2258,7 +2260,7 @@ THE SOFTWARE.
    * @returns {Number} determinant of a
    */
 
-  function determinant$3(a) {
+  function determinant(a) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2],
@@ -2297,7 +2299,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function multiply$3(out, a, b) {
+  function multiply$5(out, a, b) {
     var a00 = a[0],
         a01 = a[1],
         a02 = a[2],
@@ -2358,7 +2360,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function translate$2(out, a, v) {
+  function translate$1(out, a, v) {
     var x = v[0],
         y = v[1],
         z = v[2];
@@ -2413,7 +2415,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    **/
 
-  function scale$3(out, a, v) {
+  function scale$5(out, a, v) {
     var x = v[0],
         y = v[1],
         z = v[2];
@@ -2445,7 +2447,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function rotate$3(out, a, rad, axis) {
+  function rotate$1(out, a, rad, axis) {
     var x = axis[0],
         y = axis[1],
         z = axis[2];
@@ -2524,7 +2526,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function rotateX(out, a, rad) {
+  function rotateX$3(out, a, rad) {
     var s = Math.sin(rad);
     var c = Math.cos(rad);
     var a10 = a[4];
@@ -2568,7 +2570,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function rotateY(out, a, rad) {
+  function rotateY$3(out, a, rad) {
     var s = Math.sin(rad);
     var c = Math.cos(rad);
     var a00 = a[0];
@@ -2612,7 +2614,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function rotateZ(out, a, rad) {
+  function rotateZ$3(out, a, rad) {
     var s = Math.sin(rad);
     var c = Math.cos(rad);
     var a00 = a[0];
@@ -2659,7 +2661,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function fromTranslation$2(out, v) {
+  function fromTranslation$1(out, v) {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -2690,7 +2692,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function fromScaling$3(out, v) {
+  function fromScaling(out, v) {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
@@ -2722,7 +2724,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function fromRotation$3(out, rad, axis) {
+  function fromRotation$1(out, rad, axis) {
     var x = axis[0],
         y = axis[1],
         z = axis[2];
@@ -2877,7 +2879,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function fromRotationTranslation(out, q, v) {
+  function fromRotationTranslation$1(out, q, v) {
     // Quaternion math
     var x = q[0],
         y = q[1],
@@ -2943,7 +2945,7 @@ THE SOFTWARE.
       translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
     }
 
-    fromRotationTranslation(out, a, translation);
+    fromRotationTranslation$1(out, a, translation);
     return out;
   }
   /**
@@ -2956,7 +2958,7 @@ THE SOFTWARE.
    * @return {vec3} out
    */
 
-  function getTranslation(out, mat) {
+  function getTranslation$1(out, mat) {
     out[0] = mat[12];
     out[1] = mat[13];
     out[2] = mat[14];
@@ -3251,7 +3253,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function fromQuat$1(out, q) {
+  function fromQuat(out, q) {
     var x = q[0],
         y = q[1],
         z = q[2],
@@ -3323,6 +3325,8 @@ THE SOFTWARE.
   }
   /**
    * Generates a perspective projection matrix with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
+   * which matches WebGL/OpenGL's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
    *
    * @param {mat4} out mat4 frustum matrix will be written into
@@ -3333,9 +3337,8 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function perspective(out, fovy, aspect, near, far) {
-    var f = 1.0 / Math.tan(fovy / 2),
-        nf;
+  function perspectiveNO(out, fovy, aspect, near, far) {
+    var f = 1.0 / Math.tan(fovy / 2);
     out[0] = f / aspect;
     out[1] = 0;
     out[2] = 0;
@@ -3352,12 +3355,60 @@ THE SOFTWARE.
     out[15] = 0;
 
     if (far != null && far !== Infinity) {
-      nf = 1 / (near - far);
+      var nf = 1 / (near - far);
       out[10] = (far + near) * nf;
       out[14] = 2 * far * near * nf;
     } else {
       out[10] = -1;
       out[14] = -2 * near;
+    }
+
+    return out;
+  }
+  /**
+   * Alias for {@link mat4.perspectiveNO}
+   * @function
+   */
+
+  var perspective = perspectiveNO;
+  /**
+   * Generates a perspective projection matrix suitable for WebGPU with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
+   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   * Passing null/undefined/no value for far will generate infinite projection matrix.
+   *
+   * @param {mat4} out mat4 frustum matrix will be written into
+   * @param {number} fovy Vertical field of view in radians
+   * @param {number} aspect Aspect ratio. typically viewport width/height
+   * @param {number} near Near bound of the frustum
+   * @param {number} far Far bound of the frustum, can be null or Infinity
+   * @returns {mat4} out
+   */
+
+  function perspectiveZO(out, fovy, aspect, near, far) {
+    var f = 1.0 / Math.tan(fovy / 2);
+    out[0] = f / aspect;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = f;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[11] = -1;
+    out[12] = 0;
+    out[13] = 0;
+    out[15] = 0;
+
+    if (far != null && far !== Infinity) {
+      var nf = 1 / (near - far);
+      out[10] = far * nf;
+      out[14] = far * near * nf;
+    } else {
+      out[10] = -1;
+      out[14] = -near;
     }
 
     return out;
@@ -3400,7 +3451,9 @@ THE SOFTWARE.
     return out;
   }
   /**
-   * Generates a orthogonal projection matrix with the given bounds
+   * Generates a orthogonal projection matrix with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
+   * which matches WebGL/OpenGL's clip volume.
    *
    * @param {mat4} out mat4 frustum matrix will be written into
    * @param {number} left Left bound of the frustum
@@ -3412,7 +3465,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function ortho(out, left, right, bottom, top, near, far) {
+  function orthoNO(out, left, right, bottom, top, near, far) {
     var lr = 1 / (left - right);
     var bt = 1 / (bottom - top);
     var nf = 1 / (near - far);
@@ -3431,6 +3484,49 @@ THE SOFTWARE.
     out[12] = (left + right) * lr;
     out[13] = (top + bottom) * bt;
     out[14] = (far + near) * nf;
+    out[15] = 1;
+    return out;
+  }
+  /**
+   * Alias for {@link mat4.orthoNO}
+   * @function
+   */
+
+  var ortho = orthoNO;
+  /**
+   * Generates a orthogonal projection matrix with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
+   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   *
+   * @param {mat4} out mat4 frustum matrix will be written into
+   * @param {number} left Left bound of the frustum
+   * @param {number} right Right bound of the frustum
+   * @param {number} bottom Bottom bound of the frustum
+   * @param {number} top Top bound of the frustum
+   * @param {number} near Near bound of the frustum
+   * @param {number} far Far bound of the frustum
+   * @returns {mat4} out
+   */
+
+  function orthoZO(out, left, right, bottom, top, near, far) {
+    var lr = 1 / (left - right);
+    var bt = 1 / (bottom - top);
+    var nf = 1 / (near - far);
+    out[0] = -2 * lr;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = -2 * bt;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[10] = nf;
+    out[11] = 0;
+    out[12] = (left + right) * lr;
+    out[13] = (top + bottom) * bt;
+    out[14] = near * nf;
     out[15] = 1;
     return out;
   }
@@ -3458,7 +3554,7 @@ THE SOFTWARE.
     var centerz = center[2];
 
     if (Math.abs(eyex - centerx) < EPSILON && Math.abs(eyey - centery) < EPSILON && Math.abs(eyez - centerz) < EPSILON) {
-      return identity$3(out);
+      return identity$2(out);
     }
 
     z0 = eyex - centerx;
@@ -3584,7 +3680,7 @@ THE SOFTWARE.
    * @returns {String} string representation of the matrix
    */
 
-  function str$3(a) {
+  function str$5(a) {
     return "mat4(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ", " + a[4] + ", " + a[5] + ", " + a[6] + ", " + a[7] + ", " + a[8] + ", " + a[9] + ", " + a[10] + ", " + a[11] + ", " + a[12] + ", " + a[13] + ", " + a[14] + ", " + a[15] + ")";
   }
   /**
@@ -3594,7 +3690,7 @@ THE SOFTWARE.
    * @returns {Number} Frobenius norm
    */
 
-  function frob$3(a) {
+  function frob(a) {
     return Math.hypot(a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10], a[11], a[12], a[13], a[14], a[15]);
   }
   /**
@@ -3606,7 +3702,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function add$3(out, a, b) {
+  function add$5(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -3662,7 +3758,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function multiplyScalar$3(out, a, b) {
+  function multiplyScalar(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -3691,7 +3787,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function multiplyScalarAndAdd$3(out, a, b, scale) {
+  function multiplyScalarAndAdd(out, a, b, scale) {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -3718,7 +3814,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function exactEquals$3(a, b) {
+  function exactEquals$5(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && a[8] === b[8] && a[9] === b[9] && a[10] === b[10] && a[11] === b[11] && a[12] === b[12] && a[13] === b[13] && a[14] === b[14] && a[15] === b[15];
   }
   /**
@@ -3729,7 +3825,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the matrices are equal, false otherwise.
    */
 
-  function equals$4(a, b) {
+  function equals$5(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -3769,7 +3865,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var mul$3 = multiply$3;
+  var mul$5 = multiply$5;
   /**
    * Alias for {@link mat4.subtract}
    * @function
@@ -3779,53 +3875,57 @@ THE SOFTWARE.
 
   var mat4 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$3,
-    clone: clone$3,
-    copy: copy$3,
-    fromValues: fromValues$3,
-    set: set$3,
-    identity: identity$3,
-    transpose: transpose$2,
-    invert: invert$3,
-    adjoint: adjoint$2,
-    determinant: determinant$3,
-    multiply: multiply$3,
-    translate: translate$2,
-    scale: scale$3,
-    rotate: rotate$3,
-    rotateX: rotateX,
-    rotateY: rotateY,
-    rotateZ: rotateZ,
-    fromTranslation: fromTranslation$2,
-    fromScaling: fromScaling$3,
-    fromRotation: fromRotation$3,
+    create: create$5,
+    clone: clone$5,
+    copy: copy$5,
+    fromValues: fromValues$5,
+    set: set$5,
+    identity: identity$2,
+    transpose: transpose,
+    invert: invert$2,
+    adjoint: adjoint,
+    determinant: determinant,
+    multiply: multiply$5,
+    translate: translate$1,
+    scale: scale$5,
+    rotate: rotate$1,
+    rotateX: rotateX$3,
+    rotateY: rotateY$3,
+    rotateZ: rotateZ$3,
+    fromTranslation: fromTranslation$1,
+    fromScaling: fromScaling,
+    fromRotation: fromRotation$1,
     fromXRotation: fromXRotation,
     fromYRotation: fromYRotation,
     fromZRotation: fromZRotation,
-    fromRotationTranslation: fromRotationTranslation,
+    fromRotationTranslation: fromRotationTranslation$1,
     fromQuat2: fromQuat2,
-    getTranslation: getTranslation,
+    getTranslation: getTranslation$1,
     getScaling: getScaling,
     getRotation: getRotation,
     decompose: decompose,
     fromRotationTranslationScale: fromRotationTranslationScale,
     fromRotationTranslationScaleOrigin: fromRotationTranslationScaleOrigin,
-    fromQuat: fromQuat$1,
+    fromQuat: fromQuat,
     frustum: frustum,
+    perspectiveNO: perspectiveNO,
     perspective: perspective,
+    perspectiveZO: perspectiveZO,
     perspectiveFromFieldOfView: perspectiveFromFieldOfView,
+    orthoNO: orthoNO,
     ortho: ortho,
+    orthoZO: orthoZO,
     lookAt: lookAt,
     targetTo: targetTo,
-    str: str$3,
-    frob: frob$3,
-    add: add$3,
+    str: str$5,
+    frob: frob,
+    add: add$5,
     subtract: subtract$3,
-    multiplyScalar: multiplyScalar$3,
-    multiplyScalarAndAdd: multiplyScalarAndAdd$3,
-    exactEquals: exactEquals$3,
-    equals: equals$4,
-    mul: mul$3,
+    multiplyScalar: multiplyScalar,
+    multiplyScalarAndAdd: multiplyScalarAndAdd,
+    exactEquals: exactEquals$5,
+    equals: equals$5,
+    mul: mul$5,
     sub: sub$3
   });
 
@@ -3872,7 +3972,7 @@ THE SOFTWARE.
    * @returns {Number} length of a
    */
 
-  function length(a) {
+  function length$4(a) {
     var x = a[0];
     var y = a[1];
     var z = a[2];
@@ -3948,7 +4048,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function subtract$4(out, a, b) {
+  function subtract$2(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -3978,7 +4078,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function divide(out, a, b) {
+  function divide$2(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     out[2] = a[2] / b[2];
@@ -3992,7 +4092,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function ceil(out, a) {
+  function ceil$2(out, a) {
     out[0] = Math.ceil(a[0]);
     out[1] = Math.ceil(a[1]);
     out[2] = Math.ceil(a[2]);
@@ -4006,7 +4106,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function floor(out, a) {
+  function floor$2(out, a) {
     out[0] = Math.floor(a[0]);
     out[1] = Math.floor(a[1]);
     out[2] = Math.floor(a[2]);
@@ -4021,7 +4121,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function min(out, a, b) {
+  function min$2(out, a, b) {
     out[0] = Math.min(a[0], b[0]);
     out[1] = Math.min(a[1], b[1]);
     out[2] = Math.min(a[2], b[2]);
@@ -4036,7 +4136,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function max(out, a, b) {
+  function max$2(out, a, b) {
     out[0] = Math.max(a[0], b[0]);
     out[1] = Math.max(a[1], b[1]);
     out[2] = Math.max(a[2], b[2]);
@@ -4050,7 +4150,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function round(out, a) {
+  function round$2(out, a) {
     out[0] = Math.round(a[0]);
     out[1] = Math.round(a[1]);
     out[2] = Math.round(a[2]);
@@ -4081,7 +4181,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function scaleAndAdd(out, a, b, scale) {
+  function scaleAndAdd$2(out, a, b, scale) {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -4095,7 +4195,7 @@ THE SOFTWARE.
    * @returns {Number} distance between a and b
    */
 
-  function distance(a, b) {
+  function distance$2(a, b) {
     var x = b[0] - a[0];
     var y = b[1] - a[1];
     var z = b[2] - a[2];
@@ -4109,7 +4209,7 @@ THE SOFTWARE.
    * @returns {Number} squared distance between a and b
    */
 
-  function squaredDistance(a, b) {
+  function squaredDistance$2(a, b) {
     var x = b[0] - a[0];
     var y = b[1] - a[1];
     var z = b[2] - a[2];
@@ -4122,7 +4222,7 @@ THE SOFTWARE.
    * @returns {Number} squared length of a
    */
 
-  function squaredLength(a) {
+  function squaredLength$4(a) {
     var x = a[0];
     var y = a[1];
     var z = a[2];
@@ -4136,7 +4236,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function negate(out, a) {
+  function negate$2(out, a) {
     out[0] = -a[0];
     out[1] = -a[1];
     out[2] = -a[2];
@@ -4150,7 +4250,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function inverse(out, a) {
+  function inverse$2(out, a) {
     out[0] = 1.0 / a[0];
     out[1] = 1.0 / a[1];
     out[2] = 1.0 / a[2];
@@ -4164,7 +4264,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function normalize(out, a) {
+  function normalize$4(out, a) {
     var x = a[0];
     var y = a[1];
     var z = a[2];
@@ -4188,7 +4288,7 @@ THE SOFTWARE.
    * @returns {Number} dot product of a and b
    */
 
-  function dot(a, b) {
+  function dot$4(a, b) {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
   }
   /**
@@ -4200,7 +4300,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function cross(out, a, b) {
+  function cross$2(out, a, b) {
     var ax = a[0],
         ay = a[1],
         az = a[2];
@@ -4222,7 +4322,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function lerp(out, a, b, t) {
+  function lerp$4(out, a, b, t) {
     var ax = a[0];
     var ay = a[1];
     var az = a[2];
@@ -4241,8 +4341,8 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function slerp(out, a, b, t) {
-    var angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1));
+  function slerp$1(out, a, b, t) {
+    var angle = Math.acos(Math.min(Math.max(dot$4(a, b), -1), 1));
     var sinTotal = Math.sin(angle);
     var ratioA = Math.sin((1 - t) * angle) / sinTotal;
     var ratioB = Math.sin(t * angle) / sinTotal;
@@ -4303,11 +4403,11 @@ THE SOFTWARE.
    * Generates a random vector with the given scale
    *
    * @param {vec3} out the receiving vector
-   * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
+   * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
    * @returns {vec3} out
    */
 
-  function random(out, scale) {
+  function random$3(out, scale) {
     scale = scale || 1.0;
     var r = RANDOM() * 2.0 * Math.PI;
     var z = RANDOM() * 2.0 - 1.0;
@@ -4327,7 +4427,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function transformMat4(out, a, m) {
+  function transformMat4$2(out, a, m) {
     var x = a[0],
         y = a[1],
         z = a[2];
@@ -4347,7 +4447,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function transformMat3(out, a, m) {
+  function transformMat3$1(out, a, m) {
     var x = a[0],
         y = a[1],
         z = a[2];
@@ -4366,7 +4466,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function transformQuat(out, a, q) {
+  function transformQuat$1(out, a, q) {
     // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
     var qx = q[0],
         qy = q[1],
@@ -4408,7 +4508,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function rotateX$1(out, a, b, rad) {
+  function rotateX$2(out, a, b, rad) {
     var p = [],
         r = []; //Translate point to the origin
 
@@ -4434,7 +4534,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function rotateY$1(out, a, b, rad) {
+  function rotateY$2(out, a, b, rad) {
     var p = [],
         r = []; //Translate point to the origin
 
@@ -4460,7 +4560,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function rotateZ$1(out, a, b, rad) {
+  function rotateZ$2(out, a, b, rad) {
     var p = [],
         r = []; //Translate point to the origin
 
@@ -4484,17 +4584,15 @@ THE SOFTWARE.
    * @returns {Number} The angle in radians
    */
 
-  function angle(a, b) {
+  function angle$1(a, b) {
     var ax = a[0],
         ay = a[1],
         az = a[2],
         bx = b[0],
         by = b[1],
         bz = b[2],
-        mag1 = Math.sqrt(ax * ax + ay * ay + az * az),
-        mag2 = Math.sqrt(bx * bx + by * by + bz * bz),
-        mag = mag1 * mag2,
-        cosine = mag && dot(a, b) / mag;
+        mag = Math.sqrt((ax * ax + ay * ay + az * az) * (bx * bx + by * by + bz * bz)),
+        cosine = mag && dot$4(a, b) / mag;
     return Math.acos(Math.min(Math.max(cosine, -1), 1));
   }
   /**
@@ -4504,7 +4602,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function zero(out) {
+  function zero$2(out) {
     out[0] = 0.0;
     out[1] = 0.0;
     out[2] = 0.0;
@@ -4539,7 +4637,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the vectors are equal, false otherwise.
    */
 
-  function equals$5(a, b) {
+  function equals$4(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2];
@@ -4553,7 +4651,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var sub$4 = subtract$4;
+  var sub$2 = subtract$2;
   /**
    * Alias for {@link vec3.multiply}
    * @function
@@ -4565,31 +4663,31 @@ THE SOFTWARE.
    * @function
    */
 
-  var div = divide;
+  var div$2 = divide$2;
   /**
    * Alias for {@link vec3.distance}
    * @function
    */
 
-  var dist = distance;
+  var dist$2 = distance$2;
   /**
    * Alias for {@link vec3.squaredDistance}
    * @function
    */
 
-  var sqrDist = squaredDistance;
+  var sqrDist$2 = squaredDistance$2;
   /**
    * Alias for {@link vec3.length}
    * @function
    */
 
-  var len = length;
+  var len$4 = length$4;
   /**
    * Alias for {@link vec3.squaredLength}
    * @function
    */
 
-  var sqrLen = squaredLength;
+  var sqrLen$4 = squaredLength$4;
   /**
    * Perform some operation over an array of vec3s.
    *
@@ -4603,7 +4701,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var forEach = function () {
+  var forEach$2 = function () {
     var vec = create$4();
     return function (a, stride, offset, count, fn, arg) {
       var i, l;
@@ -4640,53 +4738,53 @@ THE SOFTWARE.
     __proto__: null,
     create: create$4,
     clone: clone$4,
-    length: length,
+    length: length$4,
     fromValues: fromValues$4,
     copy: copy$4,
     set: set$4,
     add: add$4,
-    subtract: subtract$4,
+    subtract: subtract$2,
     multiply: multiply$4,
-    divide: divide,
-    ceil: ceil,
-    floor: floor,
-    min: min,
-    max: max,
-    round: round,
+    divide: divide$2,
+    ceil: ceil$2,
+    floor: floor$2,
+    min: min$2,
+    max: max$2,
+    round: round$2,
     scale: scale$4,
-    scaleAndAdd: scaleAndAdd,
-    distance: distance,
-    squaredDistance: squaredDistance,
-    squaredLength: squaredLength,
-    negate: negate,
-    inverse: inverse,
-    normalize: normalize,
-    dot: dot,
-    cross: cross,
-    lerp: lerp,
-    slerp: slerp,
+    scaleAndAdd: scaleAndAdd$2,
+    distance: distance$2,
+    squaredDistance: squaredDistance$2,
+    squaredLength: squaredLength$4,
+    negate: negate$2,
+    inverse: inverse$2,
+    normalize: normalize$4,
+    dot: dot$4,
+    cross: cross$2,
+    lerp: lerp$4,
+    slerp: slerp$1,
     hermite: hermite,
     bezier: bezier,
-    random: random,
-    transformMat4: transformMat4,
-    transformMat3: transformMat3,
-    transformQuat: transformQuat,
-    rotateX: rotateX$1,
-    rotateY: rotateY$1,
-    rotateZ: rotateZ$1,
-    angle: angle,
-    zero: zero,
+    random: random$3,
+    transformMat4: transformMat4$2,
+    transformMat3: transformMat3$1,
+    transformQuat: transformQuat$1,
+    rotateX: rotateX$2,
+    rotateY: rotateY$2,
+    rotateZ: rotateZ$2,
+    angle: angle$1,
+    zero: zero$2,
     str: str$4,
     exactEquals: exactEquals$4,
-    equals: equals$5,
-    sub: sub$4,
+    equals: equals$4,
+    sub: sub$2,
     mul: mul$4,
-    div: div,
-    dist: dist,
-    sqrDist: sqrDist,
-    len: len,
-    sqrLen: sqrLen,
-    forEach: forEach
+    div: div$2,
+    dist: dist$2,
+    sqrDist: sqrDist$2,
+    len: len$4,
+    sqrLen: sqrLen$4,
+    forEach: forEach$2
   });
 
   /**
@@ -4700,7 +4798,7 @@ THE SOFTWARE.
    * @returns {vec4} a new 4D vector
    */
 
-  function create$5() {
+  function create$3() {
     var out = new ARRAY_TYPE(4);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -4719,7 +4817,7 @@ THE SOFTWARE.
    * @returns {vec4} a new 4D vector
    */
 
-  function clone$5(a) {
+  function clone$3(a) {
     var out = new ARRAY_TYPE(4);
     out[0] = a[0];
     out[1] = a[1];
@@ -4737,7 +4835,7 @@ THE SOFTWARE.
    * @returns {vec4} a new 4D vector
    */
 
-  function fromValues$5(x, y, z, w) {
+  function fromValues$3(x, y, z, w) {
     var out = new ARRAY_TYPE(4);
     out[0] = x;
     out[1] = y;
@@ -4753,7 +4851,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function copy$5(out, a) {
+  function copy$3(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -4771,7 +4869,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function set$5(out, x, y, z, w) {
+  function set$3(out, x, y, z, w) {
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -4787,7 +4885,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function add$5(out, a, b) {
+  function add$3(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -4803,7 +4901,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function subtract$5(out, a, b) {
+  function subtract$1(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -4819,7 +4917,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function multiply$5(out, a, b) {
+  function multiply$3(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     out[2] = a[2] * b[2];
@@ -4928,7 +5026,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function scale$5(out, a, b) {
+  function scale$3(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -4989,7 +5087,7 @@ THE SOFTWARE.
    * @returns {Number} length of a
    */
 
-  function length$1(a) {
+  function length$3(a) {
     var x = a[0];
     var y = a[1];
     var z = a[2];
@@ -5003,7 +5101,7 @@ THE SOFTWARE.
    * @returns {Number} squared length of a
    */
 
-  function squaredLength$1(a) {
+  function squaredLength$3(a) {
     var x = a[0];
     var y = a[1];
     var z = a[2];
@@ -5048,7 +5146,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function normalize$1(out, a) {
+  function normalize$3(out, a) {
     var x = a[0];
     var y = a[1];
     var z = a[2];
@@ -5073,7 +5171,7 @@ THE SOFTWARE.
    * @returns {Number} dot product of a and b
    */
 
-  function dot$1(a, b) {
+  function dot$3(a, b) {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
   }
   /**
@@ -5113,7 +5211,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function lerp$1(out, a, b, t) {
+  function lerp$3(out, a, b, t) {
     var ax = a[0];
     var ay = a[1];
     var az = a[2];
@@ -5128,11 +5226,11 @@ THE SOFTWARE.
    * Generates a random vector with the given scale
    *
    * @param {vec4} out the receiving vector
-   * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
+   * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
    * @returns {vec4} out
    */
 
-  function random$1(out, scale) {
+  function random$2(out, scale) {
     scale = scale || 1.0; // Marsaglia, George. Choosing a Point from the Surface of a
     // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.
     // http://projecteuclid.org/euclid.aoms/1177692644;
@@ -5188,7 +5286,7 @@ THE SOFTWARE.
    * @returns {vec4} out
    */
 
-  function transformQuat$1(out, a, q) {
+  function transformQuat(out, a, q) {
     var x = a[0],
         y = a[1],
         z = a[2];
@@ -5229,7 +5327,7 @@ THE SOFTWARE.
    * @returns {String} string representation of the vector
    */
 
-  function str$5(a) {
+  function str$3(a) {
     return "vec4(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
   }
   /**
@@ -5240,7 +5338,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the vectors are equal, false otherwise.
    */
 
-  function exactEquals$5(a, b) {
+  function exactEquals$3(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
   }
   /**
@@ -5251,7 +5349,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the vectors are equal, false otherwise.
    */
 
-  function equals$6(a, b) {
+  function equals$3(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -5267,13 +5365,13 @@ THE SOFTWARE.
    * @function
    */
 
-  var sub$5 = subtract$5;
+  var sub$1 = subtract$1;
   /**
    * Alias for {@link vec4.multiply}
    * @function
    */
 
-  var mul$5 = multiply$5;
+  var mul$3 = multiply$3;
   /**
    * Alias for {@link vec4.divide}
    * @function
@@ -5297,13 +5395,13 @@ THE SOFTWARE.
    * @function
    */
 
-  var len$1 = length$1;
+  var len$3 = length$3;
   /**
    * Alias for {@link vec4.squaredLength}
    * @function
    */
 
-  var sqrLen$1 = squaredLength$1;
+  var sqrLen$3 = squaredLength$3;
   /**
    * Perform some operation over an array of vec4s.
    *
@@ -5318,7 +5416,7 @@ THE SOFTWARE.
    */
 
   var forEach$1 = function () {
-    var vec = create$5();
+    var vec = create$3();
     return function (a, stride, offset, count, fn, arg) {
       var i, l;
 
@@ -5354,46 +5452,46 @@ THE SOFTWARE.
 
   var vec4 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$5,
-    clone: clone$5,
-    fromValues: fromValues$5,
-    copy: copy$5,
-    set: set$5,
-    add: add$5,
-    subtract: subtract$5,
-    multiply: multiply$5,
+    create: create$3,
+    clone: clone$3,
+    fromValues: fromValues$3,
+    copy: copy$3,
+    set: set$3,
+    add: add$3,
+    subtract: subtract$1,
+    multiply: multiply$3,
     divide: divide$1,
     ceil: ceil$1,
     floor: floor$1,
     min: min$1,
     max: max$1,
     round: round$1,
-    scale: scale$5,
+    scale: scale$3,
     scaleAndAdd: scaleAndAdd$1,
     distance: distance$1,
     squaredDistance: squaredDistance$1,
-    length: length$1,
-    squaredLength: squaredLength$1,
+    length: length$3,
+    squaredLength: squaredLength$3,
     negate: negate$1,
     inverse: inverse$1,
-    normalize: normalize$1,
-    dot: dot$1,
+    normalize: normalize$3,
+    dot: dot$3,
     cross: cross$1,
-    lerp: lerp$1,
-    random: random$1,
+    lerp: lerp$3,
+    random: random$2,
     transformMat4: transformMat4$1,
-    transformQuat: transformQuat$1,
+    transformQuat: transformQuat,
     zero: zero$1,
-    str: str$5,
-    exactEquals: exactEquals$5,
-    equals: equals$6,
-    sub: sub$5,
-    mul: mul$5,
+    str: str$3,
+    exactEquals: exactEquals$3,
+    equals: equals$3,
+    sub: sub$1,
+    mul: mul$3,
     div: div$1,
     dist: dist$1,
     sqrDist: sqrDist$1,
-    len: len$1,
-    sqrLen: sqrLen$1,
+    len: len$3,
+    sqrLen: sqrLen$3,
     forEach: forEach$1
   });
 
@@ -5408,7 +5506,7 @@ THE SOFTWARE.
    * @returns {quat} a new quaternion
    */
 
-  function create$6() {
+  function create$2() {
     var out = new ARRAY_TYPE(4);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -5427,7 +5525,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function identity$4(out) {
+  function identity$1(out) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -5505,7 +5603,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function multiply$6(out, a, b) {
+  function multiply$2(out, a, b) {
     var ax = a[0],
         ay = a[1],
         az = a[2],
@@ -5529,7 +5627,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function rotateX$2(out, a, rad) {
+  function rotateX$1(out, a, rad) {
     rad *= 0.5;
     var ax = a[0],
         ay = a[1],
@@ -5552,7 +5650,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function rotateY$2(out, a, rad) {
+  function rotateY$1(out, a, rad) {
     rad *= 0.5;
     var ax = a[0],
         ay = a[1],
@@ -5575,7 +5673,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function rotateZ$2(out, a, rad) {
+  function rotateZ$1(out, a, rad) {
     rad *= 0.5;
     var ax = a[0],
         ay = a[1],
@@ -5663,7 +5761,7 @@ THE SOFTWARE.
 
   function pow(out, a, b) {
     ln(out, a);
-    scale$6(out, out, b);
+    scale$2(out, out, b);
     exp(out, out);
     return out;
   }
@@ -5677,7 +5775,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function slerp$1(out, a, b, t) {
+  function slerp(out, a, b, t) {
     // benchmarks:
     //    http://jsperf.com/quaternion-slerp-implementations
     var ax = a[0],
@@ -5728,7 +5826,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function random$2(out) {
+  function random$1(out) {
     // Implementation of http://planning.cs.uiuc.edu/node198.html
     // TODO: Calling random 3 times is probably not the fastest solution
     var u1 = RANDOM();
@@ -5750,7 +5848,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function invert$4(out, a) {
+  function invert$1(out, a) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -5773,7 +5871,7 @@ THE SOFTWARE.
    * @returns {quat} out
    */
 
-  function conjugate(out, a) {
+  function conjugate$1(out, a) {
     out[0] = -a[0];
     out[1] = -a[1];
     out[2] = -a[2];
@@ -5829,17 +5927,17 @@ THE SOFTWARE.
    * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
    *
    * @param {quat} out the receiving quaternion
-   * @param {x} Angle to rotate around X axis in degrees.
-   * @param {y} Angle to rotate around Y axis in degrees.
-   * @param {z} Angle to rotate around Z axis in degrees.
-   * @param {order} Intrinsic order for conversion, default is ZYX.
+   * @param {x} x Angle to rotate around X axis in degrees.
+   * @param {y} y Angle to rotate around Y axis in degrees.
+   * @param {z} z Angle to rotate around Z axis in degrees.
+   * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
    * @returns {quat} out
    * @function
    */
 
   function fromEuler(out, x, y, z) {
-    var order = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'zyx';
-    var halfToRad = 0.5 * Math.PI / 180.0;
+    var order = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : ANGLE_ORDER;
+    var halfToRad = Math.PI / 360;
     x *= halfToRad;
     z *= halfToRad;
     y *= halfToRad;
@@ -5850,64 +5948,63 @@ THE SOFTWARE.
     var sz = Math.sin(z);
     var cz = Math.cos(z);
 
-    if (typeof order != 'string') {
-      order = 'zyx';
-    }
-
-    switch (order.toLowerCase()) {
-      case 'xyz':
+    switch (order) {
+      case "xyz":
         out[0] = sx * cy * cz + cx * sy * sz;
         out[1] = cx * sy * cz - sx * cy * sz;
         out[2] = cx * cy * sz + sx * sy * cz;
         out[3] = cx * cy * cz - sx * sy * sz;
         break;
 
-      case 'xzy':
+      case "xzy":
         out[0] = sx * cy * cz - cx * sy * sz;
         out[1] = cx * sy * cz - sx * cy * sz;
         out[2] = cx * cy * sz + sx * sy * cz;
         out[3] = cx * cy * cz + sx * sy * sz;
         break;
 
-      case 'yxz':
+      case "yxz":
         out[0] = sx * cy * cz + cx * sy * sz;
         out[1] = cx * sy * cz - sx * cy * sz;
         out[2] = cx * cy * sz - sx * sy * cz;
         out[3] = cx * cy * cz + sx * sy * sz;
         break;
 
-      case 'yzx':
+      case "yzx":
         out[0] = sx * cy * cz + cx * sy * sz;
         out[1] = cx * sy * cz + sx * cy * sz;
         out[2] = cx * cy * sz - sx * sy * cz;
         out[3] = cx * cy * cz - sx * sy * sz;
         break;
 
-      case 'zxy':
+      case "zxy":
         out[0] = sx * cy * cz - cx * sy * sz;
         out[1] = cx * sy * cz + sx * cy * sz;
         out[2] = cx * cy * sz + sx * sy * cz;
         out[3] = cx * cy * cz - sx * sy * sz;
         break;
 
-      case 'zyx':
+      case "zyx":
+        out[0] = sx * cy * cz - cx * sy * sz;
+        out[1] = cx * sy * cz + sx * cy * sz;
+        out[2] = cx * cy * sz - sx * sy * cz;
+        out[3] = cx * cy * cz + sx * sy * sz;
+        break;
+
       default:
-        out[0] = sx * cy * cz - cx * sy * sz;
-        out[1] = cx * sy * cz + sx * cy * sz;
-        out[2] = cx * cy * sz - sx * sy * cz;
-        out[3] = cx * cy * cz + sx * sy * sz;
+        throw new Error('Unknown angle order ' + order);
     }
 
     return out;
   }
   /**
-   * Returns a string representation of a quatenion
+   * Returns a string representation of a quaternion
    *
    * @param {ReadonlyQuat} a vector to represent as a string
    * @returns {String} string representation of the vector
    */
 
-  function str$6(a) {
+  function str$2(a) {
     return "quat(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ")";
   }
   /**
@@ -5918,7 +6015,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var clone$6 = clone$5;
+  var clone$2 = clone$3;
   /**
    * Creates a new quat initialized with the given values
    *
@@ -5930,7 +6027,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var fromValues$6 = fromValues$5;
+  var fromValues$2 = fromValues$3;
   /**
    * Copy the values from one quat to another
    *
@@ -5940,7 +6037,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var copy$6 = copy$5;
+  var copy$2 = copy$3;
   /**
    * Set the components of a quat to the given values
    *
@@ -5953,7 +6050,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var set$6 = set$5;
+  var set$2 = set$3;
   /**
    * Adds two quat's
    *
@@ -5964,13 +6061,13 @@ THE SOFTWARE.
    * @function
    */
 
-  var add$6 = add$5;
+  var add$2 = add$3;
   /**
    * Alias for {@link quat.multiply}
    * @function
    */
 
-  var mul$6 = multiply$6;
+  var mul$2 = multiply$2;
   /**
    * Scales a quat by a scalar number
    *
@@ -5981,7 +6078,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var scale$6 = scale$5;
+  var scale$2 = scale$3;
   /**
    * Calculates the dot product of two quat's
    *
@@ -5991,7 +6088,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var dot$2 = dot$1;
+  var dot$2 = dot$3;
   /**
    * Performs a linear interpolation between two quat's
    *
@@ -6003,7 +6100,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var lerp$2 = lerp$1;
+  var lerp$2 = lerp$3;
   /**
    * Calculates the length of a quat
    *
@@ -6011,7 +6108,7 @@ THE SOFTWARE.
    * @returns {Number} length of a
    */
 
-  var length$2 = length$1;
+  var length$2 = length$3;
   /**
    * Alias for {@link quat.length}
    * @function
@@ -6026,7 +6123,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var squaredLength$2 = squaredLength$1;
+  var squaredLength$2 = squaredLength$3;
   /**
    * Alias for {@link quat.squaredLength}
    * @function
@@ -6042,7 +6139,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var normalize$2 = normalize$1;
+  var normalize$2 = normalize$3;
   /**
    * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with ===)
    *
@@ -6051,16 +6148,20 @@ THE SOFTWARE.
    * @returns {Boolean} True if the vectors are equal, false otherwise.
    */
 
-  var exactEquals$6 = exactEquals$5;
+  var exactEquals$2 = exactEquals$3;
   /**
-   * Returns whether or not the quaternions have approximately the same elements in the same position.
+   * Returns whether or not the quaternions point approximately to the same direction.
    *
-   * @param {ReadonlyQuat} a The first vector.
-   * @param {ReadonlyQuat} b The second vector.
-   * @returns {Boolean} True if the vectors are equal, false otherwise.
+   * Both quaternions are assumed to be unit length.
+   *
+   * @param {ReadonlyQuat} a The first unit quaternion.
+   * @param {ReadonlyQuat} b The second unit quaternion.
+   * @returns {Boolean} True if the quaternions are equal, false otherwise.
    */
 
-  var equals$7 = equals$6;
+  function equals$2(a, b) {
+    return Math.abs(dot$3(a, b)) >= 1 - EPSILON;
+  }
   /**
    * Sets a quaternion to represent the shortest rotation from one
    * vector to another.
@@ -6078,26 +6179,26 @@ THE SOFTWARE.
     var xUnitVec3 = fromValues$4(1, 0, 0);
     var yUnitVec3 = fromValues$4(0, 1, 0);
     return function (out, a, b) {
-      var dot$1 = dot(a, b);
+      var dot = dot$4(a, b);
 
-      if (dot$1 < -0.999999) {
-        cross(tmpvec3, xUnitVec3, a);
-        if (len(tmpvec3) < 0.000001) cross(tmpvec3, yUnitVec3, a);
-        normalize(tmpvec3, tmpvec3);
+      if (dot < -0.999999) {
+        cross$2(tmpvec3, xUnitVec3, a);
+        if (len$4(tmpvec3) < 0.000001) cross$2(tmpvec3, yUnitVec3, a);
+        normalize$4(tmpvec3, tmpvec3);
         setAxisAngle(out, tmpvec3, Math.PI);
         return out;
-      } else if (dot$1 > 0.999999) {
+      } else if (dot > 0.999999) {
         out[0] = 0;
         out[1] = 0;
         out[2] = 0;
         out[3] = 1;
         return out;
       } else {
-        cross(tmpvec3, a, b);
+        cross$2(tmpvec3, a, b);
         out[0] = tmpvec3[0];
         out[1] = tmpvec3[1];
         out[2] = tmpvec3[2];
-        out[3] = 1 + dot$1;
+        out[3] = 1 + dot;
         return normalize$2(out, out);
       }
     };
@@ -6115,12 +6216,12 @@ THE SOFTWARE.
    */
 
   var sqlerp = function () {
-    var temp1 = create$6();
-    var temp2 = create$6();
+    var temp1 = create$2();
+    var temp2 = create$2();
     return function (out, a, b, c, d, t) {
-      slerp$1(temp1, a, d, t);
-      slerp$1(temp2, b, c, t);
-      slerp$1(out, temp1, temp2, 2 * t * (1 - t));
+      slerp(temp1, a, d, t);
+      slerp(temp2, b, c, t);
+      slerp(out, temp1, temp2, 2 * t * (1 - t));
       return out;
     };
   }();
@@ -6136,7 +6237,7 @@ THE SOFTWARE.
    */
 
   var setAxes = function () {
-    var matr = create$2();
+    var matr = create$6();
     return function (out, view, right, up) {
       matr[0] = right[0];
       matr[3] = right[1];
@@ -6153,33 +6254,33 @@ THE SOFTWARE.
 
   var quat = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$6,
-    identity: identity$4,
+    create: create$2,
+    identity: identity$1,
     setAxisAngle: setAxisAngle,
     getAxisAngle: getAxisAngle,
     getAngle: getAngle,
-    multiply: multiply$6,
-    rotateX: rotateX$2,
-    rotateY: rotateY$2,
-    rotateZ: rotateZ$2,
+    multiply: multiply$2,
+    rotateX: rotateX$1,
+    rotateY: rotateY$1,
+    rotateZ: rotateZ$1,
     calculateW: calculateW,
     exp: exp,
     ln: ln,
     pow: pow,
-    slerp: slerp$1,
-    random: random$2,
-    invert: invert$4,
-    conjugate: conjugate,
+    slerp: slerp,
+    random: random$1,
+    invert: invert$1,
+    conjugate: conjugate$1,
     fromMat3: fromMat3,
     fromEuler: fromEuler,
-    str: str$6,
-    clone: clone$6,
-    fromValues: fromValues$6,
-    copy: copy$6,
-    set: set$6,
-    add: add$6,
-    mul: mul$6,
-    scale: scale$6,
+    str: str$2,
+    clone: clone$2,
+    fromValues: fromValues$2,
+    copy: copy$2,
+    set: set$2,
+    add: add$2,
+    mul: mul$2,
+    scale: scale$2,
     dot: dot$2,
     lerp: lerp$2,
     length: length$2,
@@ -6187,8 +6288,8 @@ THE SOFTWARE.
     squaredLength: squaredLength$2,
     sqrLen: sqrLen$2,
     normalize: normalize$2,
-    exactEquals: exactEquals$6,
-    equals: equals$7,
+    exactEquals: exactEquals$2,
+    equals: equals$2,
     rotationTo: rotationTo,
     sqlerp: sqlerp,
     setAxes: setAxes
@@ -6208,7 +6309,7 @@ THE SOFTWARE.
    * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
    */
 
-  function create$7() {
+  function create$1() {
     var dq = new ARRAY_TYPE(8);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -6232,7 +6333,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function clone$7(a) {
+  function clone$1(a) {
     var dq = new ARRAY_TYPE(8);
     dq[0] = a[0];
     dq[1] = a[1];
@@ -6259,7 +6360,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function fromValues$7(x1, y1, z1, w1, x2, y2, z2, w2) {
+  function fromValues$1(x1, y1, z1, w1, x2, y2, z2, w2) {
     var dq = new ARRAY_TYPE(8);
     dq[0] = x1;
     dq[1] = y1;
@@ -6305,12 +6406,12 @@ THE SOFTWARE.
    *
    * @param {ReadonlyQuat2} dual quaternion receiving operation result
    * @param {ReadonlyQuat} q a normalized quaternion
-   * @param {ReadonlyVec3} t tranlation vector
+   * @param {ReadonlyVec3} t translation vector
    * @returns {quat2} dual quaternion receiving operation result
    * @function
    */
 
-  function fromRotationTranslation$1(out, q, t) {
+  function fromRotationTranslation(out, q, t) {
     var ax = t[0] * 0.5,
         ay = t[1] * 0.5,
         az = t[2] * 0.5,
@@ -6337,7 +6438,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function fromTranslation$3(out, t) {
+  function fromTranslation(out, t) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -6357,7 +6458,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function fromRotation$4(out, q) {
+  function fromRotation(out, q) {
     out[0] = q[0];
     out[1] = q[1];
     out[2] = q[2];
@@ -6377,13 +6478,13 @@ THE SOFTWARE.
    * @function
    */
 
-  function fromMat4$1(out, a) {
+  function fromMat4(out, a) {
     //TODO Optimize this
-    var outer = create$6();
+    var outer = create$2();
     getRotation(outer, a);
     var t = new ARRAY_TYPE(3);
-    getTranslation(t, a);
-    fromRotationTranslation$1(out, outer, t);
+    getTranslation$1(t, a);
+    fromRotationTranslation(out, outer, t);
     return out;
   }
   /**
@@ -6395,7 +6496,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function copy$7(out, a) {
+  function copy$1(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -6413,7 +6514,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function identity$5(out) {
+  function identity(out) {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -6440,7 +6541,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function set$7(out, x1, y1, z1, w1, x2, y2, z2, w2) {
+  function set$1(out, x1, y1, z1, w1, x2, y2, z2, w2) {
     out[0] = x1;
     out[1] = y1;
     out[2] = z1;
@@ -6458,7 +6559,7 @@ THE SOFTWARE.
    * @return {quat} real part
    */
 
-  var getReal = copy$6;
+  var getReal = copy$2;
   /**
    * Gets the dual part of a dual quat
    * @param  {quat} out dual part
@@ -6482,7 +6583,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var setReal = copy$6;
+  var setReal = copy$2;
   /**
    * Set the dual component of a dual quat to the given quaternion
    *
@@ -6506,7 +6607,7 @@ THE SOFTWARE.
    * @return {vec3} translation
    */
 
-  function getTranslation$1(out, a) {
+  function getTranslation(out, a) {
     var ax = a[4],
         ay = a[5],
         az = a[6],
@@ -6529,7 +6630,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function translate$3(out, a, v) {
+  function translate(out, a, v) {
     var ax1 = a[0],
         ay1 = a[1],
         az1 = a[2],
@@ -6560,7 +6661,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function rotateX$3(out, a, rad) {
+  function rotateX(out, a, rad) {
     var bx = -a[0],
         by = -a[1],
         bz = -a[2],
@@ -6573,7 +6674,7 @@ THE SOFTWARE.
         ay1 = ay * bw + aw * by + az * bx - ax * bz,
         az1 = az * bw + aw * bz + ax * by - ay * bx,
         aw1 = aw * bw - ax * bx - ay * by - az * bz;
-    rotateX$2(out, a, rad);
+    rotateX$1(out, a, rad);
     bx = out[0];
     by = out[1];
     bz = out[2];
@@ -6593,7 +6694,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function rotateY$3(out, a, rad) {
+  function rotateY(out, a, rad) {
     var bx = -a[0],
         by = -a[1],
         bz = -a[2],
@@ -6606,7 +6707,7 @@ THE SOFTWARE.
         ay1 = ay * bw + aw * by + az * bx - ax * bz,
         az1 = az * bw + aw * bz + ax * by - ay * bx,
         aw1 = aw * bw - ax * bx - ay * by - az * bz;
-    rotateY$2(out, a, rad);
+    rotateY$1(out, a, rad);
     bx = out[0];
     by = out[1];
     bz = out[2];
@@ -6626,7 +6727,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function rotateZ$3(out, a, rad) {
+  function rotateZ(out, a, rad) {
     var bx = -a[0],
         by = -a[1],
         bz = -a[2],
@@ -6639,7 +6740,7 @@ THE SOFTWARE.
         ay1 = ay * bw + aw * by + az * bx - ax * bz,
         az1 = az * bw + aw * bz + ax * by - ay * bx,
         aw1 = aw * bw - ax * bx - ay * by - az * bz;
-    rotateZ$2(out, a, rad);
+    rotateZ$1(out, a, rad);
     bx = out[0];
     by = out[1];
     bz = out[2];
@@ -6727,7 +6828,7 @@ THE SOFTWARE.
   function rotateAroundAxis(out, a, axis, rad) {
     //Special case for rad = 0
     if (Math.abs(rad) < EPSILON) {
-      return copy$7(out, a);
+      return copy$1(out, a);
     }
 
     var axisLength = Math.hypot(axis[0], axis[1], axis[2]);
@@ -6765,7 +6866,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function add$7(out, a, b) {
+  function add$1(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -6785,7 +6886,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function multiply$7(out, a, b) {
+  function multiply$1(out, a, b) {
     var ax0 = a[0],
         ay0 = a[1],
         az0 = a[2],
@@ -6817,7 +6918,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var mul$7 = multiply$7;
+  var mul$1 = multiply$1;
   /**
    * Scales a dual quat by a scalar number
    *
@@ -6828,7 +6929,7 @@ THE SOFTWARE.
    * @function
    */
 
-  function scale$7(out, a, b) {
+  function scale$1(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -6848,7 +6949,7 @@ THE SOFTWARE.
    * @function
    */
 
-  var dot$3 = dot$2;
+  var dot$1 = dot$2;
   /**
    * Performs a linear interpolation between two dual quats's
    * NOTE: The resulting dual quaternions won't always be normalized (The error is most noticeable when t = 0.5)
@@ -6860,9 +6961,9 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function lerp$3(out, a, b, t) {
+  function lerp$1(out, a, b, t) {
     var mt = 1 - t;
-    if (dot$3(a, b) < 0) t = -t;
+    if (dot$1(a, b) < 0) t = -t;
     out[0] = a[0] * mt + b[0] * t;
     out[1] = a[1] * mt + b[1] * t;
     out[2] = a[2] * mt + b[2] * t;
@@ -6881,8 +6982,8 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function invert$5(out, a) {
-    var sqlen = squaredLength$3(a);
+  function invert(out, a) {
+    var sqlen = squaredLength$1(a);
     out[0] = -a[0] / sqlen;
     out[1] = -a[1] / sqlen;
     out[2] = -a[2] / sqlen;
@@ -6902,7 +7003,7 @@ THE SOFTWARE.
    * @returns {quat2} out
    */
 
-  function conjugate$1(out, a) {
+  function conjugate(out, a) {
     out[0] = -a[0];
     out[1] = -a[1];
     out[2] = -a[2];
@@ -6921,13 +7022,13 @@ THE SOFTWARE.
    * @function
    */
 
-  var length$3 = length$2;
+  var length$1 = length$2;
   /**
    * Alias for {@link quat2.length}
    * @function
    */
 
-  var len$3 = length$3;
+  var len$1 = length$1;
   /**
    * Calculates the squared length of a dual quat
    *
@@ -6936,13 +7037,13 @@ THE SOFTWARE.
    * @function
    */
 
-  var squaredLength$3 = squaredLength$2;
+  var squaredLength$1 = squaredLength$2;
   /**
    * Alias for {@link quat2.squaredLength}
    * @function
    */
 
-  var sqrLen$3 = squaredLength$3;
+  var sqrLen$1 = squaredLength$1;
   /**
    * Normalize a dual quat
    *
@@ -6952,8 +7053,8 @@ THE SOFTWARE.
    * @function
    */
 
-  function normalize$3(out, a) {
-    var magnitude = squaredLength$3(a);
+  function normalize$1(out, a) {
+    var magnitude = squaredLength$1(a);
 
     if (magnitude > 0) {
       magnitude = Math.sqrt(magnitude);
@@ -6979,13 +7080,13 @@ THE SOFTWARE.
     return out;
   }
   /**
-   * Returns a string representation of a dual quatenion
+   * Returns a string representation of a dual quaternion
    *
    * @param {ReadonlyQuat2} a dual quaternion to represent as a string
    * @returns {String} string representation of the dual quat
    */
 
-  function str$7(a) {
+  function str$1(a) {
     return "quat2(" + a[0] + ", " + a[1] + ", " + a[2] + ", " + a[3] + ", " + a[4] + ", " + a[5] + ", " + a[6] + ", " + a[7] + ")";
   }
   /**
@@ -6996,7 +7097,7 @@ THE SOFTWARE.
    * @returns {Boolean} true if the dual quaternions are equal, false otherwise.
    */
 
-  function exactEquals$7(a, b) {
+  function exactEquals$1(a, b) {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7];
   }
   /**
@@ -7007,7 +7108,7 @@ THE SOFTWARE.
    * @returns {Boolean} true if the dual quats are equal, false otherwise.
    */
 
-  function equals$8(a, b) {
+  function equals$1(a, b) {
     var a0 = a[0],
         a1 = a[1],
         a2 = a[2],
@@ -7029,45 +7130,45 @@ THE SOFTWARE.
 
   var quat2 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$7,
-    clone: clone$7,
-    fromValues: fromValues$7,
+    create: create$1,
+    clone: clone$1,
+    fromValues: fromValues$1,
     fromRotationTranslationValues: fromRotationTranslationValues,
-    fromRotationTranslation: fromRotationTranslation$1,
-    fromTranslation: fromTranslation$3,
-    fromRotation: fromRotation$4,
-    fromMat4: fromMat4$1,
-    copy: copy$7,
-    identity: identity$5,
-    set: set$7,
+    fromRotationTranslation: fromRotationTranslation,
+    fromTranslation: fromTranslation,
+    fromRotation: fromRotation,
+    fromMat4: fromMat4,
+    copy: copy$1,
+    identity: identity,
+    set: set$1,
     getReal: getReal,
     getDual: getDual,
     setReal: setReal,
     setDual: setDual,
-    getTranslation: getTranslation$1,
-    translate: translate$3,
-    rotateX: rotateX$3,
-    rotateY: rotateY$3,
-    rotateZ: rotateZ$3,
+    getTranslation: getTranslation,
+    translate: translate,
+    rotateX: rotateX,
+    rotateY: rotateY,
+    rotateZ: rotateZ,
     rotateByQuatAppend: rotateByQuatAppend,
     rotateByQuatPrepend: rotateByQuatPrepend,
     rotateAroundAxis: rotateAroundAxis,
-    add: add$7,
-    multiply: multiply$7,
-    mul: mul$7,
-    scale: scale$7,
-    dot: dot$3,
-    lerp: lerp$3,
-    invert: invert$5,
-    conjugate: conjugate$1,
-    length: length$3,
-    len: len$3,
-    squaredLength: squaredLength$3,
-    sqrLen: sqrLen$3,
-    normalize: normalize$3,
-    str: str$7,
-    exactEquals: exactEquals$7,
-    equals: equals$8
+    add: add$1,
+    multiply: multiply$1,
+    mul: mul$1,
+    scale: scale$1,
+    dot: dot$1,
+    lerp: lerp$1,
+    invert: invert,
+    conjugate: conjugate,
+    length: length$1,
+    len: len$1,
+    squaredLength: squaredLength$1,
+    sqrLen: sqrLen$1,
+    normalize: normalize$1,
+    str: str$1,
+    exactEquals: exactEquals$1,
+    equals: equals$1
   });
 
   /**
@@ -7081,7 +7182,7 @@ THE SOFTWARE.
    * @returns {vec2} a new 2D vector
    */
 
-  function create$8() {
+  function create() {
     var out = new ARRAY_TYPE(2);
 
     if (ARRAY_TYPE != Float32Array) {
@@ -7098,7 +7199,7 @@ THE SOFTWARE.
    * @returns {vec2} a new 2D vector
    */
 
-  function clone$8(a) {
+  function clone(a) {
     var out = new ARRAY_TYPE(2);
     out[0] = a[0];
     out[1] = a[1];
@@ -7112,7 +7213,7 @@ THE SOFTWARE.
    * @returns {vec2} a new 2D vector
    */
 
-  function fromValues$8(x, y) {
+  function fromValues(x, y) {
     var out = new ARRAY_TYPE(2);
     out[0] = x;
     out[1] = y;
@@ -7126,7 +7227,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function copy$8(out, a) {
+  function copy(out, a) {
     out[0] = a[0];
     out[1] = a[1];
     return out;
@@ -7140,7 +7241,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function set$8(out, x, y) {
+  function set(out, x, y) {
     out[0] = x;
     out[1] = y;
     return out;
@@ -7154,7 +7255,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function add$8(out, a, b) {
+  function add(out, a, b) {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     return out;
@@ -7168,7 +7269,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function subtract$6(out, a, b) {
+  function subtract(out, a, b) {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     return out;
@@ -7182,7 +7283,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function multiply$8(out, a, b) {
+  function multiply(out, a, b) {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     return out;
@@ -7196,7 +7297,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function divide$2(out, a, b) {
+  function divide(out, a, b) {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     return out;
@@ -7209,7 +7310,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function ceil$2(out, a) {
+  function ceil(out, a) {
     out[0] = Math.ceil(a[0]);
     out[1] = Math.ceil(a[1]);
     return out;
@@ -7222,7 +7323,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function floor$2(out, a) {
+  function floor(out, a) {
     out[0] = Math.floor(a[0]);
     out[1] = Math.floor(a[1]);
     return out;
@@ -7236,7 +7337,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function min$2(out, a, b) {
+  function min(out, a, b) {
     out[0] = Math.min(a[0], b[0]);
     out[1] = Math.min(a[1], b[1]);
     return out;
@@ -7250,7 +7351,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function max$2(out, a, b) {
+  function max(out, a, b) {
     out[0] = Math.max(a[0], b[0]);
     out[1] = Math.max(a[1], b[1]);
     return out;
@@ -7263,7 +7364,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function round$2(out, a) {
+  function round(out, a) {
     out[0] = Math.round(a[0]);
     out[1] = Math.round(a[1]);
     return out;
@@ -7277,7 +7378,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function scale$8(out, a, b) {
+  function scale(out, a, b) {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     return out;
@@ -7292,7 +7393,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function scaleAndAdd$2(out, a, b, scale) {
+  function scaleAndAdd(out, a, b, scale) {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     return out;
@@ -7305,7 +7406,7 @@ THE SOFTWARE.
    * @returns {Number} distance between a and b
    */
 
-  function distance$2(a, b) {
+  function distance(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
     return Math.hypot(x, y);
@@ -7318,7 +7419,7 @@ THE SOFTWARE.
    * @returns {Number} squared distance between a and b
    */
 
-  function squaredDistance$2(a, b) {
+  function squaredDistance(a, b) {
     var x = b[0] - a[0],
         y = b[1] - a[1];
     return x * x + y * y;
@@ -7330,7 +7431,7 @@ THE SOFTWARE.
    * @returns {Number} length of a
    */
 
-  function length$4(a) {
+  function length(a) {
     var x = a[0],
         y = a[1];
     return Math.hypot(x, y);
@@ -7342,7 +7443,7 @@ THE SOFTWARE.
    * @returns {Number} squared length of a
    */
 
-  function squaredLength$4(a) {
+  function squaredLength(a) {
     var x = a[0],
         y = a[1];
     return x * x + y * y;
@@ -7355,7 +7456,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function negate$2(out, a) {
+  function negate(out, a) {
     out[0] = -a[0];
     out[1] = -a[1];
     return out;
@@ -7368,7 +7469,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function inverse$2(out, a) {
+  function inverse(out, a) {
     out[0] = 1.0 / a[0];
     out[1] = 1.0 / a[1];
     return out;
@@ -7381,7 +7482,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function normalize$4(out, a) {
+  function normalize(out, a) {
     var x = a[0],
         y = a[1];
     var len = x * x + y * y;
@@ -7403,7 +7504,7 @@ THE SOFTWARE.
    * @returns {Number} dot product of a and b
    */
 
-  function dot$4(a, b) {
+  function dot(a, b) {
     return a[0] * b[0] + a[1] * b[1];
   }
   /**
@@ -7416,7 +7517,7 @@ THE SOFTWARE.
    * @returns {vec3} out
    */
 
-  function cross$2(out, a, b) {
+  function cross(out, a, b) {
     var z = a[0] * b[1] - a[1] * b[0];
     out[0] = out[1] = 0;
     out[2] = z;
@@ -7432,7 +7533,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function lerp$4(out, a, b, t) {
+  function lerp(out, a, b, t) {
     var ax = a[0],
         ay = a[1];
     out[0] = ax + t * (b[0] - ax);
@@ -7443,11 +7544,11 @@ THE SOFTWARE.
    * Generates a random vector with the given scale
    *
    * @param {vec2} out the receiving vector
-   * @param {Number} [scale] Length of the resulting vector. If ommitted, a unit vector will be returned
+   * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
    * @returns {vec2} out
    */
 
-  function random$3(out, scale) {
+  function random(out, scale) {
     scale = scale || 1.0;
     var r = RANDOM() * 2.0 * Math.PI;
     out[0] = Math.cos(r) * scale;
@@ -7496,7 +7597,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function transformMat3$1(out, a, m) {
+  function transformMat3(out, a, m) {
     var x = a[0],
         y = a[1];
     out[0] = m[0] * x + m[3] * y + m[6];
@@ -7514,7 +7615,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function transformMat4$2(out, a, m) {
+  function transformMat4(out, a, m) {
     var x = a[0];
     var y = a[1];
     out[0] = m[0] * x + m[4] * y + m[12];
@@ -7530,7 +7631,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function rotate$4(out, a, b, rad) {
+  function rotate(out, a, b, rad) {
     //Translate point to the origin
     var p0 = a[0] - b[0],
         p1 = a[1] - b[1],
@@ -7548,13 +7649,13 @@ THE SOFTWARE.
    * @returns {Number} The angle in radians
    */
 
-  function angle$1(a, b) {
+  function angle(a, b) {
     var x1 = a[0],
         y1 = a[1],
         x2 = b[0],
         y2 = b[1],
         // mag is the product of the magnitudes of a and b
-    mag = Math.sqrt(x1 * x1 + y1 * y1) * Math.sqrt(x2 * x2 + y2 * y2),
+    mag = Math.sqrt((x1 * x1 + y1 * y1) * (x2 * x2 + y2 * y2)),
         // mag &&.. short circuits if mag == 0
     cosine = mag && (x1 * x2 + y1 * y2) / mag; // Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
 
@@ -7567,7 +7668,7 @@ THE SOFTWARE.
    * @returns {vec2} out
    */
 
-  function zero$2(out) {
+  function zero(out) {
     out[0] = 0.0;
     out[1] = 0.0;
     return out;
@@ -7579,7 +7680,7 @@ THE SOFTWARE.
    * @returns {String} string representation of the vector
    */
 
-  function str$8(a) {
+  function str(a) {
     return "vec2(" + a[0] + ", " + a[1] + ")";
   }
   /**
@@ -7590,7 +7691,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the vectors are equal, false otherwise.
    */
 
-  function exactEquals$8(a, b) {
+  function exactEquals(a, b) {
     return a[0] === b[0] && a[1] === b[1];
   }
   /**
@@ -7601,7 +7702,7 @@ THE SOFTWARE.
    * @returns {Boolean} True if the vectors are equal, false otherwise.
    */
 
-  function equals$9(a, b) {
+  function equals(a, b) {
     var a0 = a[0],
         a1 = a[1];
     var b0 = b[0],
@@ -7613,43 +7714,43 @@ THE SOFTWARE.
    * @function
    */
 
-  var len$4 = length$4;
+  var len = length;
   /**
    * Alias for {@link vec2.subtract}
    * @function
    */
 
-  var sub$6 = subtract$6;
+  var sub = subtract;
   /**
    * Alias for {@link vec2.multiply}
    * @function
    */
 
-  var mul$8 = multiply$8;
+  var mul = multiply;
   /**
    * Alias for {@link vec2.divide}
    * @function
    */
 
-  var div$2 = divide$2;
+  var div = divide;
   /**
    * Alias for {@link vec2.distance}
    * @function
    */
 
-  var dist$2 = distance$2;
+  var dist = distance;
   /**
    * Alias for {@link vec2.squaredDistance}
    * @function
    */
 
-  var sqrDist$2 = squaredDistance$2;
+  var sqrDist = squaredDistance;
   /**
    * Alias for {@link vec2.squaredLength}
    * @function
    */
 
-  var sqrLen$4 = squaredLength$4;
+  var sqrLen = squaredLength;
   /**
    * Perform some operation over an array of vec2s.
    *
@@ -7663,8 +7764,8 @@ THE SOFTWARE.
    * @function
    */
 
-  var forEach$2 = function () {
-    var vec = create$8();
+  var forEach = function () {
+    var vec = create();
     return function (a, stride, offset, count, fn, arg) {
       var i, l;
 
@@ -7696,51 +7797,51 @@ THE SOFTWARE.
 
   var vec2 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    create: create$8,
-    clone: clone$8,
-    fromValues: fromValues$8,
-    copy: copy$8,
-    set: set$8,
-    add: add$8,
-    subtract: subtract$6,
-    multiply: multiply$8,
-    divide: divide$2,
-    ceil: ceil$2,
-    floor: floor$2,
-    min: min$2,
-    max: max$2,
-    round: round$2,
-    scale: scale$8,
-    scaleAndAdd: scaleAndAdd$2,
-    distance: distance$2,
-    squaredDistance: squaredDistance$2,
-    length: length$4,
-    squaredLength: squaredLength$4,
-    negate: negate$2,
-    inverse: inverse$2,
-    normalize: normalize$4,
-    dot: dot$4,
-    cross: cross$2,
-    lerp: lerp$4,
-    random: random$3,
+    create: create,
+    clone: clone,
+    fromValues: fromValues,
+    copy: copy,
+    set: set,
+    add: add,
+    subtract: subtract,
+    multiply: multiply,
+    divide: divide,
+    ceil: ceil,
+    floor: floor,
+    min: min,
+    max: max,
+    round: round,
+    scale: scale,
+    scaleAndAdd: scaleAndAdd,
+    distance: distance,
+    squaredDistance: squaredDistance,
+    length: length,
+    squaredLength: squaredLength,
+    negate: negate,
+    inverse: inverse,
+    normalize: normalize,
+    dot: dot,
+    cross: cross,
+    lerp: lerp,
+    random: random,
     transformMat2: transformMat2,
     transformMat2d: transformMat2d,
-    transformMat3: transformMat3$1,
-    transformMat4: transformMat4$2,
-    rotate: rotate$4,
-    angle: angle$1,
-    zero: zero$2,
-    str: str$8,
-    exactEquals: exactEquals$8,
-    equals: equals$9,
-    len: len$4,
-    sub: sub$6,
-    mul: mul$8,
-    div: div$2,
-    dist: dist$2,
-    sqrDist: sqrDist$2,
-    sqrLen: sqrLen$4,
-    forEach: forEach$2
+    transformMat3: transformMat3,
+    transformMat4: transformMat4,
+    rotate: rotate,
+    angle: angle,
+    zero: zero,
+    str: str,
+    exactEquals: exactEquals,
+    equals: equals,
+    len: len,
+    sub: sub,
+    mul: mul,
+    div: div,
+    dist: dist,
+    sqrDist: sqrDist,
+    sqrLen: sqrLen,
+    forEach: forEach
   });
 
   exports.glMatrix = common;
