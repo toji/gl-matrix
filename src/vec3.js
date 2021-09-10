@@ -481,7 +481,7 @@ export function bezier(out, a, b, c, d, t) {
  * @returns {vec3} out
  */
 export function random(out, scale) {
-  scale = scale || 1.0;
+  scale = scale === undefined ? 1.0 : scale;
 
   let r = glMatrix.RANDOM() * 2.0 * Math.PI;
   let z = glMatrix.RANDOM() * 2.0 - 1.0;
