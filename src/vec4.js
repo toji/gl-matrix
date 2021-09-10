@@ -441,7 +441,7 @@ export function lerp(out, a, b, t) {
  * @returns {vec4} out
  */
 export function random(out, scale) {
-  scale = scale || 1.0;
+  scale = scale === undefined ? 1.0 : scale;
 
   // Marsaglia, George. Choosing a Point from the Surface of a
   // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.

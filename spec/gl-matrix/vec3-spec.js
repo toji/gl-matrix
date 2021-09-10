@@ -602,7 +602,14 @@ describe("vec3", function() {
         describe("with a scale", function() {
             beforeEach(function() { result = vec3.random(out, 5.0); });
 
-            it("should result in a unit length vector", function() { expect(vec3.len(out)).toBeEqualish(5.0); });
+            it("should result in a vector of correct length", function() { expect(vec3.len(out)).toBeEqualish(5.0); });
+            it("should return out", function() { expect(result).toBe(out); });
+        });
+
+        describe("with a scale of zero", function() {
+            beforeEach(function() { result = vec3.random(out, 0); });
+
+            it("should result in a zero vector", function() { expect(vec3.len(out)).toBeEqualish(0); });
             it("should return out", function() { expect(result).toBe(out); });
         });
     });

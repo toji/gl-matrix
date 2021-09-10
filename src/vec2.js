@@ -373,7 +373,7 @@ export function lerp(out, a, b, t) {
  * @returns {vec2} out
  */
 export function random(out, scale) {
-  scale = scale || 1.0;
+  scale = scale === undefined ? 1.0 : scale;
   var r = glMatrix.RANDOM() * 2.0 * Math.PI;
   out[0] = Math.cos(r) * scale;
   out[1] = Math.sin(r) * scale;
