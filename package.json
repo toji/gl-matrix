@@ -1,8 +1,7 @@
 {
-  "version": "3.3.0",
+  "version": "3.4.0",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
-  "private": true,
   "sideEffects": false,
   "type": "module",
   "main": "./dist/esm/index.js",
