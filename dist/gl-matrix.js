@@ -30,7 +30,7 @@ THE SOFTWARE.
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.glMatrix = {}));
-}(this, (function (exports) { 'use strict';
+})(this, (function (exports) { 'use strict';
 
   /**
    * Common utilities
@@ -4408,7 +4408,7 @@ THE SOFTWARE.
    */
 
   function random$3(out, scale) {
-    scale = scale || 1.0;
+    scale = scale === undefined ? 1.0 : scale;
     var r = RANDOM() * 2.0 * Math.PI;
     var z = RANDOM() * 2.0 - 1.0;
     var zScale = Math.sqrt(1.0 - z * z) * scale;
@@ -5231,7 +5231,7 @@ THE SOFTWARE.
    */
 
   function random$2(out, scale) {
-    scale = scale || 1.0; // Marsaglia, George. Choosing a Point from the Surface of a
+    scale = scale === undefined ? 1.0 : scale; // Marsaglia, George. Choosing a Point from the Surface of a
     // Sphere. Ann. Math. Statist. 43 (1972), no. 2, 645--646.
     // http://projecteuclid.org/euclid.aoms/1177692644;
 
@@ -7549,7 +7549,7 @@ THE SOFTWARE.
    */
 
   function random(out, scale) {
-    scale = scale || 1.0;
+    scale = scale === undefined ? 1.0 : scale;
     var r = RANDOM() * 2.0 * Math.PI;
     out[0] = Math.cos(r) * scale;
     out[1] = Math.sin(r) * scale;
@@ -7857,4 +7857,4 @@ THE SOFTWARE.
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
