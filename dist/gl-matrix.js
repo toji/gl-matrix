@@ -3,7 +3,7 @@
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
 @author Colin MacKenzie IV
-@version 3.3.0
+@version 3.4.2
 
 Copyright (c) 2015-2021, Brandon Jones, Colin MacKenzie IV.
 
@@ -3244,6 +3244,8 @@ THE SOFTWARE.
   }
   /**
    * Generates a perspective projection matrix with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
+   * which matches WebGL/OpenGL's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
    *
    * @param {mat4} out mat4 frustum matrix will be written into
@@ -3254,7 +3256,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function perspective(out, fovy, aspect, near, far) {
+  function perspectiveNO(out, fovy, aspect, near, far) {
     var f = 1.0 / Math.tan(fovy / 2),
         nf;
     out[0] = f / aspect;
@@ -3279,6 +3281,55 @@ THE SOFTWARE.
     } else {
       out[10] = -1;
       out[14] = -2 * near;
+    }
+
+    return out;
+  }
+  /**
+   * Alias for {@link mat4.perspectiveNO}
+   * @function
+   */
+
+  var perspective = perspectiveNO;
+  /**
+   * Generates a perspective projection matrix suitable for WebGPU with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
+   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   * Passing null/undefined/no value for far will generate infinite projection matrix.
+   *
+   * @param {mat4} out mat4 frustum matrix will be written into
+   * @param {number} fovy Vertical field of view in radians
+   * @param {number} aspect Aspect ratio. typically viewport width/height
+   * @param {number} near Near bound of the frustum
+   * @param {number} far Far bound of the frustum, can be null or Infinity
+   * @returns {mat4} out
+   */
+
+  function perspectiveZO(out, fovy, aspect, near, far) {
+    var f = 1.0 / Math.tan(fovy / 2),
+        nf;
+    out[0] = f / aspect;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = f;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[11] = -1;
+    out[12] = 0;
+    out[13] = 0;
+    out[15] = 0;
+
+    if (far != null && far !== Infinity) {
+      nf = 1 / (near - far);
+      out[10] = far * nf;
+      out[14] = far * near * nf;
+    } else {
+      out[10] = -1;
+      out[14] = -near;
     }
 
     return out;
@@ -3321,7 +3372,9 @@ THE SOFTWARE.
     return out;
   }
   /**
-   * Generates a orthogonal projection matrix with the given bounds
+   * Generates a orthogonal projection matrix with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
+   * which matches WebGL/OpenGL's clip volume.
    *
    * @param {mat4} out mat4 frustum matrix will be written into
    * @param {number} left Left bound of the frustum
@@ -3333,7 +3386,7 @@ THE SOFTWARE.
    * @returns {mat4} out
    */
 
-  function ortho(out, left, right, bottom, top, near, far) {
+  function orthoNO(out, left, right, bottom, top, near, far) {
     var lr = 1 / (left - right);
     var bt = 1 / (bottom - top);
     var nf = 1 / (near - far);
@@ -3352,6 +3405,49 @@ THE SOFTWARE.
     out[12] = (left + right) * lr;
     out[13] = (top + bottom) * bt;
     out[14] = (far + near) * nf;
+    out[15] = 1;
+    return out;
+  }
+  /**
+   * Alias for {@link mat4.orthoNO}
+   * @function
+   */
+
+  var ortho = orthoNO;
+  /**
+   * Generates a orthogonal projection matrix with the given bounds.
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
+   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   *
+   * @param {mat4} out mat4 frustum matrix will be written into
+   * @param {number} left Left bound of the frustum
+   * @param {number} right Right bound of the frustum
+   * @param {number} bottom Bottom bound of the frustum
+   * @param {number} top Top bound of the frustum
+   * @param {number} near Near bound of the frustum
+   * @param {number} far Far bound of the frustum
+   * @returns {mat4} out
+   */
+
+  function orthoZO(out, left, right, bottom, top, near, far) {
+    var lr = 1 / (left - right);
+    var bt = 1 / (bottom - top);
+    var nf = 1 / (near - far);
+    out[0] = -2 * lr;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = -2 * bt;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = 0;
+    out[9] = 0;
+    out[10] = nf;
+    out[11] = 0;
+    out[12] = (left + right) * lr;
+    out[13] = (top + bottom) * bt;
+    out[14] = near * nf;
     out[15] = 1;
     return out;
   }
@@ -3732,9 +3828,13 @@ THE SOFTWARE.
     fromRotationTranslationScaleOrigin: fromRotationTranslationScaleOrigin,
     fromQuat: fromQuat$1,
     frustum: frustum,
+    perspectiveNO: perspectiveNO,
     perspective: perspective,
+    perspectiveZO: perspectiveZO,
     perspectiveFromFieldOfView: perspectiveFromFieldOfView,
+    orthoNO: orthoNO,
     ortho: ortho,
+    orthoZO: orthoZO,
     lookAt: lookAt,
     targetTo: targetTo,
     str: str$3,
