@@ -3,7 +3,7 @@
 @fileoverview gl-matrix - High performance matrix and vector operations
 @author Brandon Jones
 @author Colin MacKenzie IV
-@version 3.4.2
+@version 3.4.3
 
 Copyright (c) 2015-2021, Brandon Jones, Colin MacKenzie IV.
 
