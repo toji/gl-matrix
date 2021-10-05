@@ -1,8 +1,7 @@
 {
-  "version": "3.3.0",
+  "version": "3.4.1",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
-  "private": true,
   "sideEffects": false,
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -52,6 +51,5 @@
     "rollup-plugin-size-snapshot": "^0.11.0",
     "rollup-plugin-terser": "^5.3.0",
     "typescript": "^3.8.3"
-  },
-  "dependencies": {}
+  }
 }
