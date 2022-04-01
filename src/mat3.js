@@ -408,7 +408,7 @@ export function rotate(out, a, rad) {
  * Scales the mat3 by the dimensions in the given vec2
  *
  * @param {mat3} out the receiving matrix
- * @param {ReadonlyMat3} a the matrix to rotate
+ * @param {ReadonlyMat3} a the matrix to scale
  * @param {ReadonlyVec2} v the vec2 to scale the matrix by
  * @returns {mat3} out
  **/
