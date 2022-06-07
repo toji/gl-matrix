@@ -11,6 +11,19 @@ export let RANDOM = Math.random;
 export let ANGLE_ORDER = "zyx";
 
 /**
+ * Symmetric round
+ * see https://www.npmjs.com/package/round-half-up-symmetric#user-content-detailed-background
+ *
+ * @param {Number} a value to round
+ */
+export function round(a) {
+  if (a >= 0)
+    return Math.round(a);
+
+  return (a % 0.5 === 0) ? Math.floor(a) : Math.round(a);
+}
+
+/**
  * Sets the type of array used when creating new vectors and matrices
  *
  * @param {Float32ArrayConstructor | ArrayConstructor} type Array type, such as Float32Array or Array

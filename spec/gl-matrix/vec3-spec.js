@@ -400,6 +400,10 @@ describe("vec3", function() {
             it("should place values into vecA", function() { expect(vecA).toBeEqualish([3, 3, 1]); });
             it("should return vecA", function() { expect(result).toBe(vecA); });
         });
+
+        describe("symmetry", function() {
+            it("should round negative values torwards negative infinity", function() { expect(vec3.round([], [-1.5, -1.5, -2.5])).toBeEqualish([-2, -2, -3]); });
+        });
     });
 
     describe("scale", function() {
