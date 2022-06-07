@@ -259,6 +259,10 @@ describe("vec2", function() {
             it("should place values into vecA", function() { expect(vecA).toBeEqualish([3, 3]); });
             it("should return vecA", function() { expect(result).toBe(vecA); });
         });
+
+        describe("symmetry", function() {
+            it("should round negative values torwards negative infinity", function() { expect(vec2.round([], [-1.5, -1.5])).toBeEqualish([-2, -2]); });
+        });
     });
 
     describe("scale", function() {
