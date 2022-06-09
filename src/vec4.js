@@ -273,7 +273,7 @@ export function distance(a, b) {
   let y = b[1] - a[1];
   let z = b[2] - a[2];
   let w = b[3] - a[3];
-  return Math.hypot(x, y, z, w);
+  return Math.sqrt(x * x + y * y + z * z + w * w);
 }
 
 /**
@@ -302,7 +302,7 @@ export function length(a) {
   let y = a[1];
   let z = a[2];
   let w = a[3];
-  return Math.hypot(x, y, z, w);
+  return Math.sqrt(x * x + y * y + z * z + w * w);
 }
 
 /**

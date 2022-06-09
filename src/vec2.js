@@ -235,7 +235,7 @@ export function scaleAndAdd(out, a, b, scale) {
 export function distance(a, b) {
   var x = b[0] - a[0],
     y = b[1] - a[1];
-  return Math.hypot(x, y);
+  return Math.sqrt(x * x + y * y);
 }
 
 /**
@@ -260,7 +260,7 @@ export function squaredDistance(a, b) {
 export function length(a) {
   var x = a[0],
     y = a[1];
-  return Math.hypot(x, y);
+  return Math.sqrt(x * x + y * y);
 }
 
 /**
