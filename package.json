@@ -1,25 +1,10 @@
 {
-  "version": "3.4.0",
+  "version": "4.0.0",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
+  "private": true,
   "sideEffects": false,
   "type": "module",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
-  "exports": {
-    ".": "./dist/esm/index.js",
-    "./common": "./dist/esm/common.js",
-    "./mat2": "./dist/esm/mat2.js",
-    "./mat2d": "./dist/esm/mat2d.js",
-    "./mat3": "./dist/esm/mat3.js",
-    "./mat4": "./dist/esm/mat4.js",
-    "./quat": "./dist/esm/quat.js",
-    "./quat2": "./dist/esm/quat2.js",
-    "./vec2": "./dist/esm/vec2.js",
-    "./vec3": "./dist/esm/vec3.js",
-    "./vec4": "./dist/esm/vec4.js"
-  },
-  "types": "./dist/index.d.ts",
   "homepage": "http://glmatrix.net",
   "license": "MIT",
   "bugs": {
@@ -40,28 +25,16 @@
     }
   ],
   "scripts": {
-    "test": "mocha --require @babel/register --recursive spec",
-    "doc": "jsdoc -c jsdoc.config.json",
-    "update-license-version": "node utils/update-license-version.js",
-    "build-umd": "rollup -c",
-    "build-esm": "babel src -d dist/esm",
-    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --outFile ./dist/index.d.ts ./src/index.js ./src/types.d.ts && node ./utils/bundle-dts.js && tsc --noEmit ./dist/index.d.ts",
-    "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-dts && node ./utils/build.js",
-    "prepare": "npm run build"
+    "build": "tsc",
+    "build-docs": "typedoc --readme README.md --out docs src/index.ts",
+    "bundle": "esbuild src/index.ts --bundle --minify --sourcemap --outfile=dist/gl-matrix.js",
+    "watch": "tsc --watch",
+    "test": "vitest run"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.3",
-    "@babel/preset-env": "^7.14.3",
-    "@babel/register": "^7.13.16",
-    "@rollup/plugin-babel": "^5.3.0",
-    "del-cli": "^3.0.0",
-    "jsdoc": "^3.6.7",
-    "mocha": "^8.4.0",
-    "node-libs-browser": "^2.2.1",
-    "rollup": "^2.50.5",
-    "rollup-plugin-size-snapshot": "^0.12.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.3.2"
+    "esbuild": "^0.15.15",
+    "typedoc": "^0.23.21",
+    "typescript": "^4.9.3",
+    "vitest": "^0.25.2"
   }
 }
