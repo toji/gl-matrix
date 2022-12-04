@@ -1,0 +1,15 @@
+{
+  "out": "docs",
+  "readme": "README.md",
+  "defaultCategory": "Instance",
+  "categoryOrder": [
+    "Vector components",
+    "Color components",
+    "Swizzle",
+    "*"
+  ],
+  "sort": ["instance-first", "source-order"],
+  "sidebarLinks": {
+    "GitHub Repo": "https://github.com/toji/gl-matrix"
+  }
+}

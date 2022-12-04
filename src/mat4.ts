@@ -1,5 +1,7 @@
 import { EPSILON } from './common.js';
 import { Vec3, Vec3Like } from './vec3.js';
+import { Vec4Like } from './vec4.js';
+import { QuatLike } from './quat.js';
 
 /**
  * A 4x4 Matrix given as a {@link Mat4}, a 16-element Float32Array, or an array
@@ -36,8 +38,19 @@ export class Mat4 extends Float32Array {
       case 16:
         super(values); break;
       case 2:
+        super(values[0] as ArrayBufferLike, values[1], 16); break;
       case 1:
-        super(values[0] as ArrayBufferLike, values[1] ?? 0, 16); break;
+        const v = values[0];
+        if (typeof v === 'number') {
+          super([
+            v, v, v, v,
+            v, v, v, v,
+            v, v, v, v,
+            v, v, v, v]);
+        } else {
+          super(v as ArrayBufferLike, 0, 16);
+        }
+        break;
       default:
         super(IDENTITY_4X4); break;
     }
@@ -62,7 +75,6 @@ export class Mat4 extends Float32Array {
   /**
    * Set `this` to the identity matrix
    * Equivalent to Mat4.identity(this)
-   * @group Instance
    *
    * @returns `this`
    */
@@ -74,7 +86,6 @@ export class Mat4 extends Float32Array {
   /**
    * Multiplies this {@link Mat4} against another one
    * Equivalent to `Mat4.multiply(this, this, b);`
-   * @group Instance
    *
    * @param out - The receiving Matrix
    * @param a - The first operand
@@ -87,14 +98,12 @@ export class Mat4 extends Float32Array {
 
   /**
    * Alias for {@link Mat4.multiply}
-   * @group Instance
    */
   mul(b: Readonly<Mat4Like>): Mat4 { return this; }
 
   /**
    * Transpose this {@link Mat4}
    * Equivalent to `Mat4.transpose(this, this);`
-   * @group Instance
    *
    * @returns `this`
    */
@@ -105,7 +114,6 @@ export class Mat4 extends Float32Array {
   /**
    * Inverts this {@link Mat4}
    * Equivalent to `Mat4.invert(this, this);`
-   * @group Instance
    *
    * @returns `this`
    */
@@ -116,7 +124,6 @@ export class Mat4 extends Float32Array {
   /**
    * Translate this {@link Mat4} by the given vector
    * Equivalent to `Mat4.translate(this, this, v);`
-   * @group Instance
    *
    * @param v - The {@link Vec3} to translate by
    * @returns `this`
@@ -128,7 +135,6 @@ export class Mat4 extends Float32Array {
   /**
    * Scales this {@link Mat4} by the dimensions in the given vec3 not using vectorization
    * Equivalent to `Mat4.scale(this, this, v);`
-   * @group Instance
    *
    * @param v - The {@link Vec3} to scale the matrix by
    * @returns `this`
@@ -140,7 +146,6 @@ export class Mat4 extends Float32Array {
   /**
    * Rotates this {@link Mat4} by the given angle around the given axis
    * Equivalent to `Mat4.rotate(this, this, rad, axis);`
-   * @group Instance
    *
    * @param rad - the angle to rotate the matrix by
    * @param axis - the axis to rotate around
@@ -153,7 +158,6 @@ export class Mat4 extends Float32Array {
   /**
    * Rotates this {@link Mat4} by the given angle around the X axis
    * Equivalent to `Mat4.rotateX(this, this, rad);`
-   * @group Instance
    *
    * @param rad - the angle to rotate the matrix by
    * @returns `this`
@@ -165,7 +169,6 @@ export class Mat4 extends Float32Array {
   /**
    * Rotates this {@link Mat4} by the given angle around the Y axis
    * Equivalent to `Mat4.rotateY(this, this, rad);`
-   * @group Instance
    *
    * @param rad - the angle to rotate the matrix by
    * @returns `this`
@@ -173,11 +176,10 @@ export class Mat4 extends Float32Array {
   rotateY(rad: number): Mat4 {
     return Mat4.rotateY(this, this, rad) as Mat4;
   }
-  
+
   /**
    * Rotates this {@link Mat4} by the given angle around the Z axis
    * Equivalent to `Mat4.rotateZ(this, this, rad);`
-   * @group Instance
    *
    * @param rad - the angle to rotate the matrix by
    * @returns `this`
@@ -185,14 +187,13 @@ export class Mat4 extends Float32Array {
   rotateZ(rad: number): Mat4 {
     return Mat4.rotateZ(this, this, rad) as Mat4;
   }
-  
+
   /**
    * Generates a perspective projection matrix with the given bounds.
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
    * which matches WebGL/OpenGL's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
    * Equivalent to `Mat4.perspectiveNO(this, fovy, aspect, near, far);`
-   * @group Instance
    *
    * @param fovy - Vertical field of view in radians
    * @param aspect - Aspect ratio. typically viewport width/height
@@ -210,8 +211,7 @@ export class Mat4 extends Float32Array {
    * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
    * Equivalent to `Mat4.perspectiveZO(this, fovy, aspect, near, far);`
-   * @group Instance
-   * 
+   *
    * @param fovy - Vertical field of view in radians
    * @param aspect - Aspect ratio. typically viewport width/height
    * @param near - Near bound of the frustum
@@ -227,7 +227,6 @@ export class Mat4 extends Float32Array {
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
    * which matches WebGL/OpenGL's clip volume.
    * Equivalent to `Mat4.orthoNO(this, left, right, bottom, top, near, far);`
-   * @group Instance
    *
    * @param left - Left bound of the frustum
    * @param right - Right bound of the frustum
@@ -246,8 +245,7 @@ export class Mat4 extends Float32Array {
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
    * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
    * Equivalent to `Mat4.orthoZO(this, left, right, bottom, top, near, far);`
-   * @group Instance
-   * 
+   *
    * @param left - Left bound of the frustum
    * @param right - Right bound of the frustum
    * @param bottom - Bottom bound of the frustum
@@ -266,7 +264,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Creates a new, identity {@link Mat4}
-   * @group Static
+   * @category Static
    *
    * @returns A new {@link Mat4}
    */
@@ -276,7 +274,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Creates a new {@link Mat4} initialized with values from an existing matrix
-   * @group Static
+   * @category Static
    *
    * @param a - Matrix to clone
    * @returns A new {@link Mat4}
@@ -287,7 +285,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Copy the values from one {@link Mat4} to another
-   * @group Static
+   * @category Static
    *
    * @param out - The receiving Matrix
    * @param a - Matrix to copy
@@ -315,7 +313,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Create a new mat4 with the given values
-   * @group Static
+   * @category Static
    *
    * @param values - Matrix components
    * @returns A new {@link Mat4}
@@ -326,7 +324,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Set the components of a mat4 to the given values
-   * @group Static
+   * @category Static
    *
    * @param out - The receiving matrix
    * @param values - Matrix components
@@ -354,7 +352,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Set a {@link Mat4} to the identity matrix
-   * @group Static
+   * @category Static
    *
    * @param out - The receiving Matrix
    * @returns `out`
@@ -381,7 +379,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Transpose the values of a mat4
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
@@ -433,7 +431,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Inverts a mat4
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
@@ -501,7 +499,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Calculates the adjugate of a mat4
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
@@ -559,7 +557,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Calculates the determinant of a mat4
-   * @group Static
+   * @category Static
    *
    * @param a - the source matrix
    * @returns determinant of a
@@ -599,7 +597,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Multiplies two {@link Mat4}s
-   * @group Static
+   * @category Static
    *
    * @param out - The receiving Matrix
    * @param a - The first operand
@@ -665,14 +663,13 @@ export class Mat4 extends Float32Array {
 
   /**
    * Alias for {@link Mat4.multiply}
-   * @group Static
+   * @category Static
    */
   static mul(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like { return out; }
 
-
   /**
    * Translate a {@link Mat4} by the given vector
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to translate
@@ -680,9 +677,9 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static translate(out: Mat4Like, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): Mat4Like {
-    let x = v[0],
-        y = v[1],
-        z = v[2];
+    const x = v[0];
+    const y = v[1];
+    const z = v[2];
 
     if (a === out) {
       out[12] = a[0] * x + a[4] * y + a[8] * z + a[12];
@@ -690,18 +687,18 @@ export class Mat4 extends Float32Array {
       out[14] = a[2] * x + a[6] * y + a[10] * z + a[14];
       out[15] = a[3] * x + a[7] * y + a[11] * z + a[15];
     } else {
-      let a00 = a[0];
-      let a01 = a[1];
-      let a02 = a[2];
-      let a03 = a[3];
-      let a10 = a[4];
-      let a11 = a[5];
-      let a12 = a[6];
-      let a13 = a[7];
-      let a20 = a[8];
-      let a21 = a[9];
-      let a22 = a[10];
-      let a23 = a[11];
+      const a00 = a[0];
+      const a01 = a[1];
+      const a02 = a[2];
+      const a03 = a[3];
+      const a10 = a[4];
+      const a11 = a[5];
+      const a12 = a[6];
+      const a13 = a[7];
+      const a20 = a[8];
+      const a21 = a[9];
+      const a22 = a[10];
+      const a23 = a[11];
 
       out[0] = a00;
       out[1] = a01;
@@ -727,7 +724,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Scales the {@link Mat4} by the dimensions in the given vec3 not using vectorization
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to scale
@@ -735,9 +732,9 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    **/
   static scale(out: Mat4Like, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): Mat4Like {
-    let x = v[0],
-      y = v[1],
-      z = v[2];
+    const x = v[0];
+    const y = v[1];
+    const z = v[2];
 
     out[0] = a[0] * x;
     out[1] = a[1] * x;
@@ -760,7 +757,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Rotates a {@link Mat4} by the given angle around the given axis
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to rotate
@@ -769,17 +766,10 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static rotate(out: Mat4Like, a: Readonly<Mat4Like>, rad: number, axis: Readonly<Vec3Like>): Mat4Like {
-    let x = axis[0],
-      y = axis[1],
-      z = axis[2];
+    let x = axis[0];
+    let y = axis[1];
+    let z = axis[2];
     let len = Math.sqrt(x * x + y * y + z * z);
-    let s, c, t;
-    let a00, a01, a02, a03;
-    let a10, a11, a12, a13;
-    let a20, a21, a22, a23;
-    let b00, b01, b02;
-    let b10, b11, b12;
-    let b20, b21, b22;
 
     if (len < EPSILON) {
       return null;
@@ -790,33 +780,33 @@ export class Mat4 extends Float32Array {
     y *= len;
     z *= len;
 
-    s = Math.sin(rad);
-    c = Math.cos(rad);
-    t = 1 - c;
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
+    const t = 1 - c;
 
-    a00 = a[0];
-    a01 = a[1];
-    a02 = a[2];
-    a03 = a[3];
-    a10 = a[4];
-    a11 = a[5];
-    a12 = a[6];
-    a13 = a[7];
-    a20 = a[8];
-    a21 = a[9];
-    a22 = a[10];
-    a23 = a[11];
+    const a00 = a[0];
+    const a01 = a[1];
+    const a02 = a[2];
+    const a03 = a[3];
+    const a10 = a[4];
+    const a11 = a[5];
+    const a12 = a[6];
+    const a13 = a[7];
+    const a20 = a[8];
+    const a21 = a[9];
+    const a22 = a[10];
+    const a23 = a[11];
 
     // Construct the elements of the rotation matrix
-    b00 = x * x * t + c;
-    b01 = y * x * t + z * s;
-    b02 = z * x * t - y * s;
-    b10 = x * y * t - z * s;
-    b11 = y * y * t + c;
-    b12 = z * y * t + x * s;
-    b20 = x * z * t + y * s;
-    b21 = y * z * t - x * s;
-    b22 = z * z * t + c;
+    const b00 = x * x * t + c;
+    const b01 = y * x * t + z * s;
+    const b02 = z * x * t - y * s;
+    const b10 = x * y * t - z * s;
+    const b11 = y * y * t + c;
+    const b12 = z * y * t + x * s;
+    const b20 = x * z * t + y * s;
+    const b21 = y * z * t - x * s;
+    const b22 = z * z * t + c;
 
     // Perform rotation-specific matrix multiplication
     out[0] = a00 * b00 + a10 * b01 + a20 * b02;
@@ -844,7 +834,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Rotates a matrix by the given angle around the X axis
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to rotate
@@ -889,7 +879,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Rotates a matrix by the given angle around the Y axis
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to rotate
@@ -934,7 +924,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Rotates a matrix by the given angle around the Z axis
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to rotate
@@ -983,7 +973,7 @@ export class Mat4 extends Float32Array {
    *
    *     mat4.identity(dest);
    *     mat4.translate(dest, dest, vec);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param v - Translation vector
@@ -1015,7 +1005,7 @@ export class Mat4 extends Float32Array {
    *
    *     mat4.identity(dest);
    *     mat4.scale(dest, dest, vec);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param v - Scaling vector
@@ -1047,7 +1037,7 @@ export class Mat4 extends Float32Array {
    *
    *     mat4.identity(dest);
    *     mat4.rotate(dest, dest, rad, axis);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param rad - the angle to rotate the matrix by
@@ -1100,7 +1090,7 @@ export class Mat4 extends Float32Array {
    *
    *     mat4.identity(dest);
    *     mat4.rotateX(dest, dest, rad);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param rad - the angle to rotate the matrix by
@@ -1136,7 +1126,7 @@ export class Mat4 extends Float32Array {
    *
    *     mat4.identity(dest);
    *     mat4.rotateY(dest, dest, rad);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param rad - the angle to rotate the matrix by
@@ -1172,15 +1162,15 @@ export class Mat4 extends Float32Array {
    *
    *     mat4.identity(dest);
    *     mat4.rotateZ(dest, dest, rad);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
   static fromZRotation(out: Mat4Like, rad: number): Mat4Like {
-    let s = Math.sin(rad);
-    let c = Math.cos(rad);
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
 
     // Perform axis-specific matrix multiplication
     out[0] = c;
@@ -1211,32 +1201,32 @@ export class Mat4 extends Float32Array {
    *     let quatMat = mat4.create();
    *     quat4.toMat4(quat, quatMat);
    *     mat4.multiply(dest, quatMat);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param q - Rotation quaternion
    * @param v - Translation vector
    * @returns `out`
    */
-  /*static fromRotationTranslation(out: Mat4Like, q, v): Mat4Like {
+  static fromRotationTranslation(out: Mat4Like, q: Readonly<QuatLike>, v: Readonly<Vec3Like>): Mat4Like {
     // Quaternion math
-    let x = q[0],
-      y = q[1],
-      z = q[2],
-      w = q[3];
-    let x2 = x + x;
-    let y2 = y + y;
-    let z2 = z + z;
+    const x = q[0];
+    const y = q[1];
+    const z = q[2];
+    const w = q[3];
+    const x2 = x + x;
+    const y2 = y + y;
+    const z2 = z + z;
 
-    let xx = x * x2;
-    let xy = x * y2;
-    let xz = x * z2;
-    let yy = y * y2;
-    let yz = y * z2;
-    let zz = z * z2;
-    let wx = w * x2;
-    let wy = w * y2;
-    let wz = w * z2;
+    const xx = x * x2;
+    const xy = x * y2;
+    const xz = x * z2;
+    const yy = y * y2;
+    const yz = y * z2;
+    const zz = z * z2;
+    const wx = w * x2;
+    const wy = w * y2;
+    const wz = w * z2;
 
     out[0] = 1 - (yy + zz);
     out[1] = xy + wz;
@@ -1256,11 +1246,11 @@ export class Mat4 extends Float32Array {
     out[15] = 1;
 
     return out;
-  }*/
+  }
 
   /**
    * Creates a new mat4 from a dual quat.
-   * @group Static
+   * @category Static
    *
    * @param out - Matrix
    * @param a - Dual Quaternion
@@ -1297,8 +1287,8 @@ export class Mat4 extends Float32Array {
    * matrix. If a matrix is built with fromRotationTranslation,
    * the returned vector will be the same as the translation vector
    * originally supplied.
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param  {vec3} out Vector to receive translation component
    * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
    * @return {vec3} out
@@ -1317,22 +1307,22 @@ export class Mat4 extends Float32Array {
    * with a normalized Quaternion paramter, the returned vector will be
    * the same as the scaling vector
    * originally supplied.
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param  {vec3} out Vector to receive scaling factor component
    * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
    * @return {vec3} out
    */
   static getScaling(out: Vec3Like, mat: Readonly<Mat4Like>): Vec3Like {
-    let m11 = mat[0];
-    let m12 = mat[1];
-    let m13 = mat[2];
-    let m21 = mat[4];
-    let m22 = mat[5];
-    let m23 = mat[6];
-    let m31 = mat[8];
-    let m32 = mat[9];
-    let m33 = mat[10];
+    const m11 = mat[0];
+    const m12 = mat[1];
+    const m13 = mat[2];
+    const m21 = mat[4];
+    const m22 = mat[5];
+    const m23 = mat[6];
+    const m31 = mat[8];
+    const m32 = mat[9];
+    const m33 = mat[10];
 
     out[0] = Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13);
     out[1] = Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23);
@@ -1346,31 +1336,30 @@ export class Mat4 extends Float32Array {
    * of a transformation matrix. If a matrix is built with
    * fromRotationTranslation, the returned quaternion will be the
    * same as the quaternion originally supplied.
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param out - Quaternion to receive the rotation component
    * @param mat - Matrix to be decomposed (input)
    * @return `out`
    */
-  /*static getRotation(out: QuatLkike, mat: Readonly<Mat4Like>): QuatLike {
-    let scaling = new glMatrix.ARRAY_TYPE(3);
-    getScaling(scaling, mat);
+  static getRotation(out: QuatLike, mat: Readonly<Mat4Like>): QuatLike {
+    Mat4.getScaling(tmpVec3, mat);
 
-    let is1 = 1 / scaling[0];
-    let is2 = 1 / scaling[1];
-    let is3 = 1 / scaling[2];
+    const is1 = 1 / tmpVec3[0];
+    const is2 = 1 / tmpVec3[1];
+    const is3 = 1 / tmpVec3[2];
 
-    let sm11 = mat[0] * is1;
-    let sm12 = mat[1] * is2;
-    let sm13 = mat[2] * is3;
-    let sm21 = mat[4] * is1;
-    let sm22 = mat[5] * is2;
-    let sm23 = mat[6] * is3;
-    let sm31 = mat[8] * is1;
-    let sm32 = mat[9] * is2;
-    let sm33 = mat[10] * is3;
+    const sm11 = mat[0] * is1;
+    const sm12 = mat[1] * is2;
+    const sm13 = mat[2] * is3;
+    const sm21 = mat[4] * is1;
+    const sm22 = mat[5] * is2;
+    const sm23 = mat[6] * is3;
+    const sm31 = mat[8] * is1;
+    const sm32 = mat[9] * is2;
+    const sm33 = mat[10] * is3;
 
-    let trace = sm11 + sm22 + sm33;
+    const trace = sm11 + sm22 + sm33;
     let S = 0;
 
     if (trace > 0) {
@@ -1400,53 +1389,53 @@ export class Mat4 extends Float32Array {
     }
 
     return out;
-  }*/
+  }
 
   /**
    * Decomposes a transformation matrix into its rotation, translation
    * and scale components. Returns only the rotation component
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param out_r - Quaternion to receive the rotation component
    * @param out_t - Vector to receive the translation vector
    * @param out_s - Vector to receive the scaling factor
    * @param mat - Matrix to be decomposed (input)
    * @returns `out_r`
    */
-  /*static decompose(out_r, out_t, out_s, mat) {
+  static decompose(out_r: QuatLike, out_t: Vec3Like, out_s: Vec3Like, mat: Readonly<Mat4Like>): QuatLike {
     out_t[0] = mat[12];
     out_t[1] = mat[13];
     out_t[2] = mat[14];
 
-    let m11 = mat[0];
-    let m12 = mat[1];
-    let m13 = mat[2];
-    let m21 = mat[4];
-    let m22 = mat[5];
-    let m23 = mat[6];
-    let m31 = mat[8];
-    let m32 = mat[9];
-    let m33 = mat[10];
+    const m11 = mat[0];
+    const m12 = mat[1];
+    const m13 = mat[2];
+    const m21 = mat[4];
+    const m22 = mat[5];
+    const m23 = mat[6];
+    const m31 = mat[8];
+    const m32 = mat[9];
+    const m33 = mat[10];
 
     out_s[0] = Math.sqrt(m11 * m11 + m12 * m12 + m13 * m13);
     out_s[1] = Math.sqrt(m21 * m21 + m22 * m22 + m23 * m23);
     out_s[2] = Math.sqrt(m31 * m31 + m32 * m32 + m33 * m33);
 
-    let is1 = 1 / out_s[0];
-    let is2 = 1 / out_s[1];
-    let is3 = 1 / out_s[2];
+    const is1 = 1 / out_s[0];
+    const is2 = 1 / out_s[1];
+    const is3 = 1 / out_s[2];
 
-    let sm11 = m11 * is1;
-    let sm12 = m12 * is2;
-    let sm13 = m13 * is3;
-    let sm21 = m21 * is1;
-    let sm22 = m22 * is2;
-    let sm23 = m23 * is3;
-    let sm31 = m31 * is1;
-    let sm32 = m32 * is2;
-    let sm33 = m33 * is3;
+    const sm11 = m11 * is1;
+    const sm12 = m12 * is2;
+    const sm13 = m13 * is3;
+    const sm21 = m21 * is1;
+    const sm22 = m22 * is2;
+    const sm23 = m23 * is3;
+    const sm31 = m31 * is1;
+    const sm32 = m32 * is2;
+    const sm33 = m33 * is3;
 
-    let trace = sm11 + sm22 + sm33;
+    const trace = sm11 + sm22 + sm33;
     let S = 0;
 
     if (trace > 0) {
@@ -1476,7 +1465,7 @@ export class Mat4 extends Float32Array {
     }
 
     return out_r;
-  }*/
+  }
 
   /**
    * Creates a matrix from a quaternion rotation, vector translation and vector scale
@@ -1488,7 +1477,7 @@ export class Mat4 extends Float32Array {
    *     quat4.toMat4(quat, quatMat);
    *     mat4.multiply(dest, quatMat);
    *     mat4.scale(dest, scale);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param q - Rotation quaternion
@@ -1496,28 +1485,28 @@ export class Mat4 extends Float32Array {
    * @param s - Scaling vector
    * @returns `out`
    */
-  /*static fromRotationTranslationScale(out: Mat4Like, q, v, s) {
+  static fromRotationTranslationScale(out: Mat4Like, q: Readonly<QuatLike>, v: Readonly<Vec3Like>, s: Readonly<Vec3Like>): Mat4Like {
     // Quaternion math
-    let x = q[0],
-      y = q[1],
-      z = q[2],
-      w = q[3];
-    let x2 = x + x;
-    let y2 = y + y;
-    let z2 = z + z;
+    const x = q[0];
+    const y = q[1];
+    const z = q[2];
+    const w = q[3];
+    const x2 = x + x;
+    const y2 = y + y;
+    const z2 = z + z;
 
-    let xx = x * x2;
-    let xy = x * y2;
-    let xz = x * z2;
-    let yy = y * y2;
-    let yz = y * z2;
-    let zz = z * z2;
-    let wx = w * x2;
-    let wy = w * y2;
-    let wz = w * z2;
-    let sx = s[0];
-    let sy = s[1];
-    let sz = s[2];
+    const xx = x * x2;
+    const xy = x * y2;
+    const xz = x * z2;
+    const yy = y * y2;
+    const yz = y * z2;
+    const zz = z * z2;
+    const wx = w * x2;
+    const wy = w * y2;
+    const wz = w * z2;
+    const sx = s[0];
+    const sy = s[1];
+    const sz = s[2];
 
     out[0] = (1 - (yy + zz)) * sx;
     out[1] = (xy + wz) * sx;
@@ -1537,7 +1526,7 @@ export class Mat4 extends Float32Array {
     out[15] = 1;
 
     return out;
-  }*/
+  }
 
   /**
    * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
@@ -1551,7 +1540,7 @@ export class Mat4 extends Float32Array {
    *     mat4.multiply(dest, quatMat);
    *     mat4.scale(dest, scale)
    *     mat4.translate(dest, negativeOrigin);
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param q - Rotation quaternion
@@ -1560,43 +1549,43 @@ export class Mat4 extends Float32Array {
    * @param o - The origin vector around which to scale and rotate
    * @returns `out`
    */
-  /*static fromRotationTranslationScaleOrigin(out: Mat4Like, q, v, s, o) {
+  static fromRotationTranslationScaleOrigin(out: Mat4Like, q: Readonly<QuatLike>, v: Readonly<Vec3Like>, s: Readonly<Vec3Like>, o: Readonly<Vec3Like>): Mat4Like {
     // Quaternion math
-    let x = q[0],
-      y = q[1],
-      z = q[2],
-      w = q[3];
-    let x2 = x + x;
-    let y2 = y + y;
-    let z2 = z + z;
+    const x = q[0];
+    const y = q[1];
+    const z = q[2];
+    const w = q[3];
+    const x2 = x + x;
+    const y2 = y + y;
+    const z2 = z + z;
 
-    let xx = x * x2;
-    let xy = x * y2;
-    let xz = x * z2;
-    let yy = y * y2;
-    let yz = y * z2;
-    let zz = z * z2;
-    let wx = w * x2;
-    let wy = w * y2;
-    let wz = w * z2;
+    const xx = x * x2;
+    const xy = x * y2;
+    const xz = x * z2;
+    const yy = y * y2;
+    const yz = y * z2;
+    const zz = z * z2;
+    const wx = w * x2;
+    const wy = w * y2;
+    const wz = w * z2;
 
-    let sx = s[0];
-    let sy = s[1];
-    let sz = s[2];
+    const sx = s[0];
+    const sy = s[1];
+    const sz = s[2];
 
-    let ox = o[0];
-    let oy = o[1];
-    let oz = o[2];
+    const ox = o[0];
+    const oy = o[1];
+    const oz = o[2];
 
-    let out0 = (1 - (yy + zz)) * sx;
-    let out1 = (xy + wz) * sx;
-    let out2 = (xz - wy) * sx;
-    let out4 = (xy - wz) * sy;
-    let out5 = (1 - (xx + zz)) * sy;
-    let out6 = (yz + wx) * sy;
-    let out8 = (xz + wy) * sz;
-    let out9 = (yz - wx) * sz;
-    let out10 = (1 - (xx + yy)) * sz;
+    const out0 = (1 - (yy + zz)) * sx;
+    const out1 = (xy + wz) * sx;
+    const out2 = (xz - wy) * sx;
+    const out4 = (xy - wz) * sy;
+    const out5 = (1 - (xx + zz)) * sy;
+    const out6 = (yz + wx) * sy;
+    const out8 = (xz + wy) * sz;
+    const out9 = (yz - wx) * sz;
+    const out10 = (1 - (xx + yy)) * sz;
 
     out[0] = out0;
     out[1] = out1;
@@ -1616,34 +1605,34 @@ export class Mat4 extends Float32Array {
     out[15] = 1;
 
     return out;
-  }*/
+  }
 
   /**
    * Calculates a 4x4 matrix from the given quaternion
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 receiving operation result
    * @param q - Quaternion to create matrix from
    * @returns `out`
    */
-  /*static fromQuat(out: Mat4Like, q) {
-    let x = q[0],
-      y = q[1],
-      z = q[2],
-      w = q[3];
-    let x2 = x + x;
-    let y2 = y + y;
-    let z2 = z + z;
+  static fromQuat(out: Mat4Like, q: Readonly<QuatLike>): Mat4Like {
+    const x = q[0];
+    const y = q[1];
+    const z = q[2];
+    const w = q[3];
+    const x2 = x + x;
+    const y2 = y + y;
+    const z2 = z + z;
 
-    let xx = x * x2;
-    let yx = y * x2;
-    let yy = y * y2;
-    let zx = z * x2;
-    let zy = z * y2;
-    let zz = z * z2;
-    let wx = w * x2;
-    let wy = w * y2;
-    let wz = w * z2;
+    const xx = x * x2;
+    const yx = y * x2;
+    const yy = y * y2;
+    const zx = z * x2;
+    const zy = z * y2;
+    const zz = z * z2;
+    const wx = w * x2;
+    const wy = w * y2;
+    const wz = w * z2;
 
     out[0] = 1 - yy - zz;
     out[1] = yx + wz;
@@ -1666,11 +1655,11 @@ export class Mat4 extends Float32Array {
     out[15] = 1;
 
     return out;
-  }*/
+  }
 
   /**
    * Generates a frustum matrix with the given bounds
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
    * @param left - Left bound of the frustum
@@ -1682,9 +1671,9 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static frustum(out: Mat4Like, left: number, right: number, bottom: number, top: number, near: number, far: number): Mat4Like {
-    let rl = 1 / (right - left);
-    let tb = 1 / (top - bottom);
-    let nf = 1 / (near - far);
+    const rl = 1 / (right - left);
+    const tb = 1 / (top - bottom);
+    const nf = 1 / (near - far);
     out[0] = near * 2 * rl;
     out[1] = 0;
     out[2] = 0;
@@ -1709,7 +1698,7 @@ export class Mat4 extends Float32Array {
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
    * which matches WebGL/OpenGL's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
    * @param fovy - Vertical field of view in radians
@@ -1747,7 +1736,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Alias for {@link Mat4.perspectiveNO}
-   * @group Static
+   * @category Static
    * @deprecated Use {@link Mat4.perspectiveNO} or {@link Mat4.perspectiveZO} explicitly
    */
   static perspective(out: Mat4Like, fovy: number, aspect: number, near: number, far: number): Mat4Like { return out; }
@@ -1757,8 +1746,8 @@ export class Mat4 extends Float32Array {
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
    * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param out - mat4 frustum matrix will be written into
    * @param fovy - Vertical field of view in radians
    * @param aspect - Aspect ratio. typically viewport width/height
@@ -1797,7 +1786,7 @@ export class Mat4 extends Float32Array {
    * Generates a perspective projection matrix with the given field of view.
    * This is primarily useful for generating projection matrices to be used
    * with the still experiemental WebVR API.
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
    * @param fov - Object containing the following values: upDegrees, downDegrees, leftDegrees, rightDegrees
@@ -1807,12 +1796,12 @@ export class Mat4 extends Float32Array {
    * @deprecated
    */
   static perspectiveFromFieldOfView(out: Mat4Like, fov, near: number, far: number): Mat4Like {
-    let upTan = Math.tan((fov.upDegrees * Math.PI) / 180.0);
-    let downTan = Math.tan((fov.downDegrees * Math.PI) / 180.0);
-    let leftTan = Math.tan((fov.leftDegrees * Math.PI) / 180.0);
-    let rightTan = Math.tan((fov.rightDegrees * Math.PI) / 180.0);
-    let xScale = 2.0 / (leftTan + rightTan);
-    let yScale = 2.0 / (upTan + downTan);
+    const upTan = Math.tan((fov.upDegrees * Math.PI) / 180.0);
+    const downTan = Math.tan((fov.downDegrees * Math.PI) / 180.0);
+    const leftTan = Math.tan((fov.leftDegrees * Math.PI) / 180.0);
+    const rightTan = Math.tan((fov.rightDegrees * Math.PI) / 180.0);
+    const xScale = 2.0 / (leftTan + rightTan);
+    const yScale = 2.0 / (upTan + downTan);
 
     out[0] = xScale;
     out[1] = 0.0;
@@ -1837,7 +1826,7 @@ export class Mat4 extends Float32Array {
    * Generates a orthogonal projection matrix with the given bounds.
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
    * which matches WebGL/OpenGL's clip volume.
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
    * @param left - Left bound of the frustum
@@ -1873,7 +1862,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Alias for {@link Mat4.orthoNO}
-   * @group Static
+   * @category Static
    * @deprecated Use {@link Mat4.orthoNO} or {@link Mat4.orthoZO} explicitly
    */
   static ortho(out: Mat4Like, left: number, right: number, bottom: number, top: number, near: number, far: number): Mat4Like { return out; }
@@ -1882,8 +1871,8 @@ export class Mat4 extends Float32Array {
    * Generates a orthogonal projection matrix with the given bounds.
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
    * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param out - mat4 frustum matrix will be written into
    * @param left - Left bound of the frustum
    * @param right - Right bound of the frustum
@@ -1919,8 +1908,8 @@ export class Mat4 extends Float32Array {
   /**
    * Generates a look-at matrix with the given eye position, focal point, and up axis.
    * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
-   * @group Static
-   * 
+   * @category Static
+   *
    * @param out - mat4 frustum matrix will be written into
    * @param eye - Position of the viewer
    * @param center - Point the viewer is looking at
@@ -1928,15 +1917,15 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static lookAt(out: Mat4Like, eye: Readonly<Vec3Like>, center: Readonly<Vec3Like>, up: Readonly<Vec3Like>): Mat4Like {
-    let eyex = eye[0];
-    let eyey = eye[1];
-    let eyez = eye[2];
-    let upx = up[0];
-    let upy = up[1];
-    let upz = up[2];
-    let centerx = center[0];
-    let centery = center[1];
-    let centerz = center[2];
+    const eyex = eye[0];
+    const eyey = eye[1];
+    const eyez = eye[2];
+    const upx = up[0];
+    const upy = up[1];
+    const upz = up[2];
+    const centerx = center[0];
+    const centery = center[1];
+    const centerz = center[2];
 
     if (
       Math.abs(eyex - centerx) < EPSILON &&
@@ -2008,7 +1997,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Generates a matrix that makes something look at something else.
-   * @group Static
+   * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
    * @param eye - Position of the viewer
@@ -2017,16 +2006,16 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static targetTo(out: Mat4Like, eye: Readonly<Vec3Like>, target: Readonly<Vec3Like>, up: Readonly<Vec3Like>): Mat4Like {
-    const eyex = eye[0],
-          eyey = eye[1],
-          eyez = eye[2],
-          upx = up[0],
-          upy = up[1],
-          upz = up[2];
+    const eyex = eye[0];
+    const eyey = eye[1];
+    const eyez = eye[2];
+    const upx = up[0];
+    const upy = up[1];
+    const upz = up[2];
 
-    let z0 = eyex - target[0],
-        z1 = eyey - target[1],
-        z2 = eyez - target[2];
+    let z0 = eyex - target[0];
+    let z1 = eyey - target[1];
+    let z2 = eyez - target[2];
 
     let len = z0 * z0 + z1 * z1 + z2 * z2;
     if (len > 0) {
@@ -2036,9 +2025,9 @@ export class Mat4 extends Float32Array {
       z2 *= len;
     }
 
-    let x0 = upy * z2 - upz * z1,
-        x1 = upz * z0 - upx * z2,
-        x2 = upx * z1 - upy * z0;
+    let x0 = upy * z2 - upz * z1;
+    let x1 = upz * z0 - upx * z2;
+    let x2 = upx * z1 - upy * z0;
 
     len = x0 * x0 + x1 * x1 + x2 * x2;
     if (len > 0) {
@@ -2069,7 +2058,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Returns a string representation of a mat4
-   * @group Static
+   * @category Static
    *
    * @param a - matrix to represent as a string
    * @returns string representation of the matrix
@@ -2080,7 +2069,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Returns Frobenius norm of a mat4
-   * @group Static
+   * @category Static
    *
    * @param a - the matrix to calculate Frobenius norm of
    * @returns Frobenius norm
@@ -2108,7 +2097,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Adds two mat4's
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the first operand
@@ -2137,7 +2126,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Subtracts matrix b from matrix a
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the first operand
@@ -2163,10 +2152,15 @@ export class Mat4 extends Float32Array {
     out[15] = a[15] - b[15];
     return out;
   }
+  /**
+   * Alias for {@link Mat4.subtract}
+   * @category Static
+   */
+  static sub(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like { return out; }
 
   /**
    * Multiply each element of the matrix by a scalar.
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to scale
@@ -2195,7 +2189,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Adds two mat4's after multiplying each element of the second operand by a scalar value.
-   * @group Static
+   * @category Static
    *
    * @param out - the receiving vector
    * @param a - the first operand
@@ -2225,7 +2219,7 @@ export class Mat4 extends Float32Array {
 
   /**
    * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
-   * @group Static
+   * @category Static
    *
    * @param a - The first matrix.
    * @param b - The second matrix.
@@ -2254,46 +2248,46 @@ export class Mat4 extends Float32Array {
 
   /**
    * Returns whether or not the matrices have approximately the same elements in the same position.
-   * @group Static
+   * @category Static
    *
    * @param a - The first matrix.
    * @param b - The second matrix.
    * @returns True if the matrices are equal, false otherwise.
    */
   static equals(a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): boolean {
-    let a0 = a[0],
-        a1 = a[1],
-        a2 = a[2],
-        a3 = a[3];
-    let a4 = a[4],
-        a5 = a[5],
-        a6 = a[6],
-        a7 = a[7];
-    let a8 = a[8],
-        a9 = a[9],
-        a10 = a[10],
-        a11 = a[11];
-    let a12 = a[12],
-        a13 = a[13],
-        a14 = a[14],
-        a15 = a[15];
+    const a0 = a[0];
+    const a1 = a[1];
+    const a2 = a[2];
+    const a3 = a[3];
+    const a4 = a[4];
+    const a5 = a[5];
+    const a6 = a[6];
+    const a7 = a[7];
+    const a8 = a[8];
+    const a9 = a[9];
+    const a10 = a[10];
+    const a11 = a[11];
+    const a12 = a[12];
+    const a13 = a[13];
+    const a14 = a[14];
+    const a15 = a[15];
 
-    let b0 = b[0],
-        b1 = b[1],
-        b2 = b[2],
-        b3 = b[3];
-    let b4 = b[4],
-        b5 = b[5],
-        b6 = b[6],
-        b7 = b[7];
-    let b8 = b[8],
-        b9 = b[9],
-        b10 = b[10],
-        b11 = b[11];
-    let b12 = b[12],
-        b13 = b[13],
-        b14 = b[14],
-        b15 = b[15];
+    const b0 = b[0];
+    const b1 = b[1];
+    const b2 = b[2];
+    const b3 = b[3];
+    const b4 = b[4];
+    const b5 = b[5];
+    const b6 = b[6];
+    const b7 = b[7];
+    const b8 = b[8];
+    const b9 = b[9];
+    const b10 = b[10];
+    const b11 = b[11];
+    const b12 = b[12];
+    const b13 = b[13];
+    const b14 = b[14];
+    const b15 = b[15];
 
     return (
       Math.abs(a0 - b0) <= EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) &&
@@ -2316,10 +2310,14 @@ export class Mat4 extends Float32Array {
   }
 }
 
+// Temporary variables to prevent repeated allocations in the algorithms above.
+const tmpVec3 = new Vec3();
+
 // Instance method alias assignments
 Mat4.prototype.mul = Mat4.prototype.multiply;
 
 // Static method alias assignments
+Mat4.sub = Mat4.subtract;
 Mat4.mul = Mat4.multiply;
 Mat4.perspective = Mat4.perspectiveNO;
 Mat4.ortho = Mat4.orthoNO;

@@ -10,12 +10,18 @@ declare global {
 
 const EPSILON = 0.00001;
 expect.extend({
-  toBeVec(received: Float32Array, ...expected: number[] | Float32Array[]): jest.CustomMatcherResult {
+  toBeVec(received: Float32Array, ...expected: number[] | [Float32Array]): jest.CustomMatcherResult {
     let values: number[] | Float32Array;
     if (expected[0] instanceof Float32Array) {
       values = expected[0];
     } else {
       values = expected as number[];
+    }
+    if (received.length != values.length) {
+      return ({
+        pass: false,
+        message: () => `Expected (${received}) and (${values}) to have the same length. (${received.length} != ${values.length})`
+      });
     }
     for(let i = 0; i < values.length; ++i) {
       if(Math.abs(received[i] - values[i]) >= EPSILON) {

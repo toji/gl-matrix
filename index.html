@@ -1,0 +1,72 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+    <meta name='mobile-web-app-capable' content='yes'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+
+    <title>glMatrix 4.0 test</title>
+  </head>
+  <body>
+    <script type="module">
+      import { Vec2 } from './dist/index.js';
+
+      class Vector2 {
+        constructor(x = 0, y = 0) {
+          this.x = x;
+          this.y = y;
+        }
+
+        add(b) {
+          const a = this;
+          a.x += b.x;
+          a.y += b.y;
+          return a;
+        }
+      }
+
+      function Benchmark(name, callback) {
+        const start = performance.now();
+
+        for (let i = 0; i < 100000; ++i) {
+          callback();
+        }
+
+        console.log(`${name}: ${performance.now() - start}ms`);
+      }
+
+      // Baseline
+      Benchmark('vec2 allocation', () => {
+        const a = new Vec2();
+        const b = new Vec2();
+        a.add(b);
+      });
+
+      Benchmark('Float32Array allocation', () => {
+        const a = new Float32Array(2);
+        const b = new Float32Array(2);
+        Vec2.add(a, a, b);
+      });
+
+      Benchmark('Vector3 allocation', () => {
+        const a = new Vector2();
+        const b = new Vector2();
+        a.add(b);
+      });
+
+      let va = new Vec2(2, 3);
+      let vb = new Vec2(4, 5);
+
+      let vz = [1, 1];
+
+      Vec2.add(vz, vz, [20, 30]);
+
+      console.log(va.str);
+      console.log(va.mag);
+      console.log(va.dist(vb));
+
+    </script>
+  </body>
+</html>

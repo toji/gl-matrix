@@ -6,6 +6,7 @@ import * as fs from 'fs';
 
 const VEC_COMPONENT_COUNTS = [2, 3, 4];
 const VEC_COMPONENTS = ['x', 'y', 'z', 'w'];
+const COLOR_COMPONENTS = ['r', 'g', 'b', 'a'];
 const SRC_PATH = './src';
 const TEST_PATH = './tests'
 
@@ -32,9 +33,15 @@ function updateFileAutogen(path, content) {
   // Write out the typescript implementation to the src file
   console.log(`Writing to ${path}`);
   const srcFile = fs.readFileSync(path, 'utf8');
-  let autogenSrc = `[Swizzle Autogen]\n\n${content}\n  // [/Swizzle Autogen]`;
+  let autogenSrc = `[Swizzle Autogen]\n${content}\n  // [/Swizzle Autogen]`;
   const updatedSrc = srcFile.replace(AUTOGEN_REGEX, autogenSrc);
   fs.writeFileSync(path, updatedSrc);
+}
+
+function getSwizzleImpl(name, indices) {
+  const outType = `Vec${indices.length}`;
+  const args = indices.map((index) => `this[${index}]`).join(', ');
+  return `get ${name}(): ${outType} { return new ${outType}(${args}); }`;
 }
 
 for (const vecSize of VEC_COMPONENT_COUNTS) {
@@ -47,12 +54,45 @@ for (const vecSize of VEC_COMPONENT_COUNTS) {
     swizzles = { ...swizzles, ...getComponentVariants(count, components) };
   }
 
+  const colorComponents = COLOR_COMPONENTS.slice(0, vecSize);
+  for (const count of VEC_COMPONENT_COUNTS) {
+    swizzles = { ...swizzles, ...getComponentVariants(count, colorComponents) };
+  }
+
+  const primarySwizzle = components.join('');
+  const primaryIndices = swizzles[primarySwizzle];
+
+  const lastComponent = components[components.length-1];
+  const lastColorComponent = colorComponents[colorComponents.length-1];
+  const lastIndex = primaryIndices[primaryIndices.length-1];
+
   // Generate typescript implementation for every swizzle
-  let implementationSrc = '';
+  let implementationSrc = `
+  /**
+   * Swizzle operations are performed by using the \`.\` operator in conjunction with any combination
+   * of between two to four component names, either from the set \`${components.join('')}\` or \`${colorComponents.join('')}\` (though not intermixed).
+   * They return a new vector with the same number of components as specified in the swizzle attribute.
+   *
+   * @group Swizzle Accessors
+   *
+   * @example
+   * \`\`\`js
+   * let v = new ${vecType}(${primaryIndices.join(', ')});
+   *
+   * v.yx // returns new Vec2(1, 0);
+   * v.x${lastComponent}y // returns new Vec3(0, ${lastIndex}, 1);
+   * v.${lastComponent}yx${lastComponent} // returns new Vec4(${lastIndex}, 1, 0, ${lastIndex});
+   *
+   * v.${colorComponents.join('')} // returns new ${vecType}(${primaryIndices.join(', ')});
+   * v.r${lastColorComponent}g // returns new Vec3(0, ${lastIndex}, 1);
+   * v.gg // returns new Vec2(1, 1);
+   * \`\`\`
+   */
+  ${getSwizzleImpl(primarySwizzle, swizzles[primarySwizzle])}\n\n`;
+
   for (const [name, indices] of Object.entries(swizzles)) {
-    const outType = `Vec${indices.length}`;
-    const args = indices.map((index) => `this[${index}]`).join(', ');
-    implementationSrc += `  /** @group Swizzle */ get ${name}(): ${outType} { return new ${outType}(${args}); }\n`;
+    if (name === primarySwizzle) { continue; }
+    implementationSrc += `  /** @hidden */ ${getSwizzleImpl(name, indices)}\n`;
   }
 
   updateFileAutogen(`${SRC_PATH}/vec${vecSize}.ts`, implementationSrc);

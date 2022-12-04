@@ -1,7 +1,7 @@
 {
   "version": "4.0.0",
   "name": "gl-matrix",
-  "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
+  "description": "Javascript Matrix and Vector library for High Performance 3D web apps",
   "private": true,
   "sideEffects": false,
   "type": "module",
@@ -26,7 +26,7 @@
   ],
   "scripts": {
     "build": "tsc",
-    "build-docs": "typedoc --readme README.md --out docs src/index.ts",
+    "build-docs": "typedoc src/index.ts",
     "bundle": "esbuild src/index.ts --bundle --minify --sourcemap --outfile=dist/gl-matrix.js",
     "watch": "tsc --watch",
     "test": "vitest run"

@@ -10,7 +10,6 @@ describe("Vec3 Swizzles", () => {
   // not be modified by hand.
   // [Swizzle Autogen]
 
-
   describe("Vec3().xx", () => {
     it("should return Vec2(x, x)", () => {
       expect(v.xx).toBeVec(v[0], v[0]);
@@ -1293,6 +1292,1293 @@ describe("Vec3 Swizzles", () => {
     });
     it("should be return a copy", () => {
       let sw = v.zzzz;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rr", () => {
+    it("should return Vec2(r, r)", () => {
+      expect(v.rr).toBeVec(v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rg", () => {
+    it("should return Vec2(r, g)", () => {
+      expect(v.rg).toBeVec(v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rb", () => {
+    it("should return Vec2(r, b)", () => {
+      expect(v.rb).toBeVec(v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gr", () => {
+    it("should return Vec2(g, r)", () => {
+      expect(v.gr).toBeVec(v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gg", () => {
+    it("should return Vec2(g, g)", () => {
+      expect(v.gg).toBeVec(v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gb", () => {
+    it("should return Vec2(g, b)", () => {
+      expect(v.gb).toBeVec(v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().br", () => {
+    it("should return Vec2(b, r)", () => {
+      expect(v.br).toBeVec(v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.br;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bg", () => {
+    it("should return Vec2(b, g)", () => {
+      expect(v.bg).toBeVec(v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bb", () => {
+    it("should return Vec2(b, b)", () => {
+      expect(v.bb).toBeVec(v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrr", () => {
+    it("should return Vec3(r, r, r)", () => {
+      expect(v.rrr).toBeVec(v[0], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrg", () => {
+    it("should return Vec3(r, r, g)", () => {
+      expect(v.rrg).toBeVec(v[0], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrb", () => {
+    it("should return Vec3(r, r, b)", () => {
+      expect(v.rrb).toBeVec(v[0], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgr", () => {
+    it("should return Vec3(r, g, r)", () => {
+      expect(v.rgr).toBeVec(v[0], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgg", () => {
+    it("should return Vec3(r, g, g)", () => {
+      expect(v.rgg).toBeVec(v[0], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgb", () => {
+    it("should return Vec3(r, g, b)", () => {
+      expect(v.rgb).toBeVec(v[0], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbr", () => {
+    it("should return Vec3(r, b, r)", () => {
+      expect(v.rbr).toBeVec(v[0], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbg", () => {
+    it("should return Vec3(r, b, g)", () => {
+      expect(v.rbg).toBeVec(v[0], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbb", () => {
+    it("should return Vec3(r, b, b)", () => {
+      expect(v.rbb).toBeVec(v[0], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grr", () => {
+    it("should return Vec3(g, r, r)", () => {
+      expect(v.grr).toBeVec(v[1], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grg", () => {
+    it("should return Vec3(g, r, g)", () => {
+      expect(v.grg).toBeVec(v[1], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grb", () => {
+    it("should return Vec3(g, r, b)", () => {
+      expect(v.grb).toBeVec(v[1], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggr", () => {
+    it("should return Vec3(g, g, r)", () => {
+      expect(v.ggr).toBeVec(v[1], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggg", () => {
+    it("should return Vec3(g, g, g)", () => {
+      expect(v.ggg).toBeVec(v[1], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggb", () => {
+    it("should return Vec3(g, g, b)", () => {
+      expect(v.ggb).toBeVec(v[1], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbr", () => {
+    it("should return Vec3(g, b, r)", () => {
+      expect(v.gbr).toBeVec(v[1], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbg", () => {
+    it("should return Vec3(g, b, g)", () => {
+      expect(v.gbg).toBeVec(v[1], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbb", () => {
+    it("should return Vec3(g, b, b)", () => {
+      expect(v.gbb).toBeVec(v[1], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brr", () => {
+    it("should return Vec3(b, r, r)", () => {
+      expect(v.brr).toBeVec(v[2], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brg", () => {
+    it("should return Vec3(b, r, g)", () => {
+      expect(v.brg).toBeVec(v[2], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brb", () => {
+    it("should return Vec3(b, r, b)", () => {
+      expect(v.brb).toBeVec(v[2], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgr", () => {
+    it("should return Vec3(b, g, r)", () => {
+      expect(v.bgr).toBeVec(v[2], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgg", () => {
+    it("should return Vec3(b, g, g)", () => {
+      expect(v.bgg).toBeVec(v[2], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgb", () => {
+    it("should return Vec3(b, g, b)", () => {
+      expect(v.bgb).toBeVec(v[2], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbr", () => {
+    it("should return Vec3(b, b, r)", () => {
+      expect(v.bbr).toBeVec(v[2], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbg", () => {
+    it("should return Vec3(b, b, g)", () => {
+      expect(v.bbg).toBeVec(v[2], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbb", () => {
+    it("should return Vec3(b, b, b)", () => {
+      expect(v.bbb).toBeVec(v[2], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrrr", () => {
+    it("should return Vec4(r, r, r, r)", () => {
+      expect(v.rrrr).toBeVec(v[0], v[0], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrrg", () => {
+    it("should return Vec4(r, r, r, g)", () => {
+      expect(v.rrrg).toBeVec(v[0], v[0], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrrb", () => {
+    it("should return Vec4(r, r, r, b)", () => {
+      expect(v.rrrb).toBeVec(v[0], v[0], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrgr", () => {
+    it("should return Vec4(r, r, g, r)", () => {
+      expect(v.rrgr).toBeVec(v[0], v[0], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrgg", () => {
+    it("should return Vec4(r, r, g, g)", () => {
+      expect(v.rrgg).toBeVec(v[0], v[0], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrgb", () => {
+    it("should return Vec4(r, r, g, b)", () => {
+      expect(v.rrgb).toBeVec(v[0], v[0], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrbr", () => {
+    it("should return Vec4(r, r, b, r)", () => {
+      expect(v.rrbr).toBeVec(v[0], v[0], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrbg", () => {
+    it("should return Vec4(r, r, b, g)", () => {
+      expect(v.rrbg).toBeVec(v[0], v[0], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rrbb", () => {
+    it("should return Vec4(r, r, b, b)", () => {
+      expect(v.rrbb).toBeVec(v[0], v[0], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rrbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgrr", () => {
+    it("should return Vec4(r, g, r, r)", () => {
+      expect(v.rgrr).toBeVec(v[0], v[1], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgrg", () => {
+    it("should return Vec4(r, g, r, g)", () => {
+      expect(v.rgrg).toBeVec(v[0], v[1], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgrb", () => {
+    it("should return Vec4(r, g, r, b)", () => {
+      expect(v.rgrb).toBeVec(v[0], v[1], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rggr", () => {
+    it("should return Vec4(r, g, g, r)", () => {
+      expect(v.rggr).toBeVec(v[0], v[1], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rggr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rggg", () => {
+    it("should return Vec4(r, g, g, g)", () => {
+      expect(v.rggg).toBeVec(v[0], v[1], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rggg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rggb", () => {
+    it("should return Vec4(r, g, g, b)", () => {
+      expect(v.rggb).toBeVec(v[0], v[1], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rggb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgbr", () => {
+    it("should return Vec4(r, g, b, r)", () => {
+      expect(v.rgbr).toBeVec(v[0], v[1], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgbg", () => {
+    it("should return Vec4(r, g, b, g)", () => {
+      expect(v.rgbg).toBeVec(v[0], v[1], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rgbb", () => {
+    it("should return Vec4(r, g, b, b)", () => {
+      expect(v.rgbb).toBeVec(v[0], v[1], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rgbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbrr", () => {
+    it("should return Vec4(r, b, r, r)", () => {
+      expect(v.rbrr).toBeVec(v[0], v[2], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbrg", () => {
+    it("should return Vec4(r, b, r, g)", () => {
+      expect(v.rbrg).toBeVec(v[0], v[2], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbrb", () => {
+    it("should return Vec4(r, b, r, b)", () => {
+      expect(v.rbrb).toBeVec(v[0], v[2], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbgr", () => {
+    it("should return Vec4(r, b, g, r)", () => {
+      expect(v.rbgr).toBeVec(v[0], v[2], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbgg", () => {
+    it("should return Vec4(r, b, g, g)", () => {
+      expect(v.rbgg).toBeVec(v[0], v[2], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbgb", () => {
+    it("should return Vec4(r, b, g, b)", () => {
+      expect(v.rbgb).toBeVec(v[0], v[2], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbbr", () => {
+    it("should return Vec4(r, b, b, r)", () => {
+      expect(v.rbbr).toBeVec(v[0], v[2], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbbg", () => {
+    it("should return Vec4(r, b, b, g)", () => {
+      expect(v.rbbg).toBeVec(v[0], v[2], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().rbbb", () => {
+    it("should return Vec4(r, b, b, b)", () => {
+      expect(v.rbbb).toBeVec(v[0], v[2], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.rbbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grrr", () => {
+    it("should return Vec4(g, r, r, r)", () => {
+      expect(v.grrr).toBeVec(v[1], v[0], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grrg", () => {
+    it("should return Vec4(g, r, r, g)", () => {
+      expect(v.grrg).toBeVec(v[1], v[0], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grrb", () => {
+    it("should return Vec4(g, r, r, b)", () => {
+      expect(v.grrb).toBeVec(v[1], v[0], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grgr", () => {
+    it("should return Vec4(g, r, g, r)", () => {
+      expect(v.grgr).toBeVec(v[1], v[0], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grgg", () => {
+    it("should return Vec4(g, r, g, g)", () => {
+      expect(v.grgg).toBeVec(v[1], v[0], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grgb", () => {
+    it("should return Vec4(g, r, g, b)", () => {
+      expect(v.grgb).toBeVec(v[1], v[0], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grbr", () => {
+    it("should return Vec4(g, r, b, r)", () => {
+      expect(v.grbr).toBeVec(v[1], v[0], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grbg", () => {
+    it("should return Vec4(g, r, b, g)", () => {
+      expect(v.grbg).toBeVec(v[1], v[0], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().grbb", () => {
+    it("should return Vec4(g, r, b, b)", () => {
+      expect(v.grbb).toBeVec(v[1], v[0], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.grbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggrr", () => {
+    it("should return Vec4(g, g, r, r)", () => {
+      expect(v.ggrr).toBeVec(v[1], v[1], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggrg", () => {
+    it("should return Vec4(g, g, r, g)", () => {
+      expect(v.ggrg).toBeVec(v[1], v[1], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggrb", () => {
+    it("should return Vec4(g, g, r, b)", () => {
+      expect(v.ggrb).toBeVec(v[1], v[1], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gggr", () => {
+    it("should return Vec4(g, g, g, r)", () => {
+      expect(v.gggr).toBeVec(v[1], v[1], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gggr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gggg", () => {
+    it("should return Vec4(g, g, g, g)", () => {
+      expect(v.gggg).toBeVec(v[1], v[1], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gggg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gggb", () => {
+    it("should return Vec4(g, g, g, b)", () => {
+      expect(v.gggb).toBeVec(v[1], v[1], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gggb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggbr", () => {
+    it("should return Vec4(g, g, b, r)", () => {
+      expect(v.ggbr).toBeVec(v[1], v[1], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggbg", () => {
+    it("should return Vec4(g, g, b, g)", () => {
+      expect(v.ggbg).toBeVec(v[1], v[1], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().ggbb", () => {
+    it("should return Vec4(g, g, b, b)", () => {
+      expect(v.ggbb).toBeVec(v[1], v[1], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.ggbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbrr", () => {
+    it("should return Vec4(g, b, r, r)", () => {
+      expect(v.gbrr).toBeVec(v[1], v[2], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbrg", () => {
+    it("should return Vec4(g, b, r, g)", () => {
+      expect(v.gbrg).toBeVec(v[1], v[2], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbrb", () => {
+    it("should return Vec4(g, b, r, b)", () => {
+      expect(v.gbrb).toBeVec(v[1], v[2], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbgr", () => {
+    it("should return Vec4(g, b, g, r)", () => {
+      expect(v.gbgr).toBeVec(v[1], v[2], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbgg", () => {
+    it("should return Vec4(g, b, g, g)", () => {
+      expect(v.gbgg).toBeVec(v[1], v[2], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbgb", () => {
+    it("should return Vec4(g, b, g, b)", () => {
+      expect(v.gbgb).toBeVec(v[1], v[2], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbbr", () => {
+    it("should return Vec4(g, b, b, r)", () => {
+      expect(v.gbbr).toBeVec(v[1], v[2], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbbg", () => {
+    it("should return Vec4(g, b, b, g)", () => {
+      expect(v.gbbg).toBeVec(v[1], v[2], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().gbbb", () => {
+    it("should return Vec4(g, b, b, b)", () => {
+      expect(v.gbbb).toBeVec(v[1], v[2], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.gbbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brrr", () => {
+    it("should return Vec4(b, r, r, r)", () => {
+      expect(v.brrr).toBeVec(v[2], v[0], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brrg", () => {
+    it("should return Vec4(b, r, r, g)", () => {
+      expect(v.brrg).toBeVec(v[2], v[0], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brrb", () => {
+    it("should return Vec4(b, r, r, b)", () => {
+      expect(v.brrb).toBeVec(v[2], v[0], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brgr", () => {
+    it("should return Vec4(b, r, g, r)", () => {
+      expect(v.brgr).toBeVec(v[2], v[0], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brgg", () => {
+    it("should return Vec4(b, r, g, g)", () => {
+      expect(v.brgg).toBeVec(v[2], v[0], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brgb", () => {
+    it("should return Vec4(b, r, g, b)", () => {
+      expect(v.brgb).toBeVec(v[2], v[0], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brbr", () => {
+    it("should return Vec4(b, r, b, r)", () => {
+      expect(v.brbr).toBeVec(v[2], v[0], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brbg", () => {
+    it("should return Vec4(b, r, b, g)", () => {
+      expect(v.brbg).toBeVec(v[2], v[0], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().brbb", () => {
+    it("should return Vec4(b, r, b, b)", () => {
+      expect(v.brbb).toBeVec(v[2], v[0], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.brbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgrr", () => {
+    it("should return Vec4(b, g, r, r)", () => {
+      expect(v.bgrr).toBeVec(v[2], v[1], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgrg", () => {
+    it("should return Vec4(b, g, r, g)", () => {
+      expect(v.bgrg).toBeVec(v[2], v[1], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgrb", () => {
+    it("should return Vec4(b, g, r, b)", () => {
+      expect(v.bgrb).toBeVec(v[2], v[1], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bggr", () => {
+    it("should return Vec4(b, g, g, r)", () => {
+      expect(v.bggr).toBeVec(v[2], v[1], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bggr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bggg", () => {
+    it("should return Vec4(b, g, g, g)", () => {
+      expect(v.bggg).toBeVec(v[2], v[1], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bggg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bggb", () => {
+    it("should return Vec4(b, g, g, b)", () => {
+      expect(v.bggb).toBeVec(v[2], v[1], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bggb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgbr", () => {
+    it("should return Vec4(b, g, b, r)", () => {
+      expect(v.bgbr).toBeVec(v[2], v[1], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgbg", () => {
+    it("should return Vec4(b, g, b, g)", () => {
+      expect(v.bgbg).toBeVec(v[2], v[1], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bgbb", () => {
+    it("should return Vec4(b, g, b, b)", () => {
+      expect(v.bgbb).toBeVec(v[2], v[1], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bgbb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbrr", () => {
+    it("should return Vec4(b, b, r, r)", () => {
+      expect(v.bbrr).toBeVec(v[2], v[2], v[0], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbrr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbrg", () => {
+    it("should return Vec4(b, b, r, g)", () => {
+      expect(v.bbrg).toBeVec(v[2], v[2], v[0], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbrg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbrb", () => {
+    it("should return Vec4(b, b, r, b)", () => {
+      expect(v.bbrb).toBeVec(v[2], v[2], v[0], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbrb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbgr", () => {
+    it("should return Vec4(b, b, g, r)", () => {
+      expect(v.bbgr).toBeVec(v[2], v[2], v[1], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbgr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbgg", () => {
+    it("should return Vec4(b, b, g, g)", () => {
+      expect(v.bbgg).toBeVec(v[2], v[2], v[1], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbgg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbgb", () => {
+    it("should return Vec4(b, b, g, b)", () => {
+      expect(v.bbgb).toBeVec(v[2], v[2], v[1], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbgb;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbbr", () => {
+    it("should return Vec4(b, b, b, r)", () => {
+      expect(v.bbbr).toBeVec(v[2], v[2], v[2], v[0]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbbr;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbbg", () => {
+    it("should return Vec4(b, b, b, g)", () => {
+      expect(v.bbbg).toBeVec(v[2], v[2], v[2], v[1]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbbg;
+      sw[0] += 1;
+      expect(v[0]).not.toEqual(sw[0]);
+    });
+  });
+    
+  describe("Vec3().bbbb", () => {
+    it("should return Vec4(b, b, b, b)", () => {
+      expect(v.bbbb).toBeVec(v[2], v[2], v[2], v[2]);
+    });
+    it("should be return a copy", () => {
+      let sw = v.bbbb;
       sw[0] += 1;
       expect(v[0]).not.toEqual(sw[0]);
     });
