@@ -27,7 +27,7 @@
   "scripts": {
     "build": "tsc",
     "build-docs": "typedoc src/index.ts",
-    "bundle": "esbuild src/index.ts --bundle --minify --sourcemap --outfile=dist/gl-matrix.js",
+    "bundle": "node scripts/bundle.mjs",
     "watch": "tsc --watch",
     "test": "vitest run"
   },

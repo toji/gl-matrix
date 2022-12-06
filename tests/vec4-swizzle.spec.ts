@@ -1,8 +1,11 @@
 import { expect, describe, it, beforeEach } from 'vitest';
 import { Vec4 } from "../src/vec4"
+import { EnableSwizzles } from '../src/swizzle';
 import "./test-utils"
 
 describe("Vec4 Swizzles", () => {
+  EnableSwizzles();
+
   let v: Vec4;
   beforeEach(() => { v = new Vec4(1, 2, 3); });
 

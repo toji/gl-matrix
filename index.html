@@ -11,7 +11,9 @@
   </head>
   <body>
     <script type="module">
-      import { Vec2 } from './dist/index.js';
+      import { Vec2, EnableSwizzles } from './dist/esm/gl-matrix.js';
+
+      EnableSwizzles();
 
       class Vector2 {
         constructor(x = 0, y = 0) {

@@ -44,6 +44,9 @@ function getSwizzleImpl(name, indices) {
   return `get ${name}(): ${outType} { return new ${outType}(${args}); }`;
 }
 
+const prevSeenSwizzles = new Set();
+const uniqueSwizzlesByComponentCount = {};
+
 for (const vecSize of VEC_COMPONENT_COUNTS) {
   const vecType = `Vec${vecSize}`;
 
@@ -59,43 +62,8 @@ for (const vecSize of VEC_COMPONENT_COUNTS) {
     swizzles = { ...swizzles, ...getComponentVariants(count, colorComponents) };
   }
 
-  const primarySwizzle = components.join('');
-  const primaryIndices = swizzles[primarySwizzle];
-
-  const lastComponent = components[components.length-1];
-  const lastColorComponent = colorComponents[colorComponents.length-1];
-  const lastIndex = primaryIndices[primaryIndices.length-1];
-
-  // Generate typescript implementation for every swizzle
-  let implementationSrc = `
-  /**
-   * Swizzle operations are performed by using the \`.\` operator in conjunction with any combination
-   * of between two to four component names, either from the set \`${components.join('')}\` or \`${colorComponents.join('')}\` (though not intermixed).
-   * They return a new vector with the same number of components as specified in the swizzle attribute.
-   *
-   * @group Swizzle Accessors
-   *
-   * @example
-   * \`\`\`js
-   * let v = new ${vecType}(${primaryIndices.join(', ')});
-   *
-   * v.yx // returns new Vec2(1, 0);
-   * v.x${lastComponent}y // returns new Vec3(0, ${lastIndex}, 1);
-   * v.${lastComponent}yx${lastComponent} // returns new Vec4(${lastIndex}, 1, 0, ${lastIndex});
-   *
-   * v.${colorComponents.join('')} // returns new ${vecType}(${primaryIndices.join(', ')});
-   * v.r${lastColorComponent}g // returns new Vec3(0, ${lastIndex}, 1);
-   * v.gg // returns new Vec2(1, 1);
-   * \`\`\`
-   */
-  ${getSwizzleImpl(primarySwizzle, swizzles[primarySwizzle])}\n\n`;
-
-  for (const [name, indices] of Object.entries(swizzles)) {
-    if (name === primarySwizzle) { continue; }
-    implementationSrc += `  /** @hidden */ ${getSwizzleImpl(name, indices)}\n`;
-  }
-
-  updateFileAutogen(`${SRC_PATH}/vec${vecSize}.ts`, implementationSrc);
+  uniqueSwizzlesByComponentCount[vecSize] = Object.keys(swizzles).filter((key) => !prevSeenSwizzles.has(key));
+  uniqueSwizzlesByComponentCount[vecSize].forEach((key) => { prevSeenSwizzles.add(key); });
 
   let testSrc = '';
   for (const [name, indices] of Object.entries(swizzles)) {
@@ -118,3 +86,10 @@ for (const vecSize of VEC_COMPONENT_COUNTS) {
 
   updateFileAutogen(`${TEST_PATH}/vec${vecSize}-swizzle.spec.ts`, testSrc);
 }
+
+let swizzleArrays = `
+  const VEC2_SWIZZLES = ['${uniqueSwizzlesByComponentCount[2].join("','")}'];
+  const VEC3_SWIZZLES = ['${uniqueSwizzlesByComponentCount[3].join("','")}'];
+  const VEC4_SWIZZLES = ['${uniqueSwizzlesByComponentCount[4].join("','")}'];
+`;
+updateFileAutogen(`${SRC_PATH}/swizzle.ts`, swizzleArrays);

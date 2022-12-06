@@ -917,7 +917,7 @@ export class Vec2 extends Float32Array {
    * of between two to four component names, either from the set `xy` or `rg` (though not intermixed).
    * They return a new vector with the same number of components as specified in the swizzle attribute.
    *
-   * @category Swizzle
+   * @group Swizzle Accessors
    *
    * @example
    * ```js
@@ -932,63 +932,8 @@ export class Vec2 extends Float32Array {
    * v.gg // returns new Vec2(1, 1);
    * ```
    */
-  get xy(): Vec2 { return new Vec2(this[0], this[1]); }
+  //get xy(): Vec2 { return new Vec2(this[0], this[1]); }
 
-  /** @hidden */ get xx(): Vec2 { return new Vec2(this[0], this[0]); }
-  /** @hidden */ get yx(): Vec2 { return new Vec2(this[1], this[0]); }
-  /** @hidden */ get yy(): Vec2 { return new Vec2(this[1], this[1]); }
-  /** @hidden */ get xxx(): Vec3 { return new Vec3(this[0], this[0], this[0]); }
-  /** @hidden */ get xxy(): Vec3 { return new Vec3(this[0], this[0], this[1]); }
-  /** @hidden */ get xyx(): Vec3 { return new Vec3(this[0], this[1], this[0]); }
-  /** @hidden */ get xyy(): Vec3 { return new Vec3(this[0], this[1], this[1]); }
-  /** @hidden */ get yxx(): Vec3 { return new Vec3(this[1], this[0], this[0]); }
-  /** @hidden */ get yxy(): Vec3 { return new Vec3(this[1], this[0], this[1]); }
-  /** @hidden */ get yyx(): Vec3 { return new Vec3(this[1], this[1], this[0]); }
-  /** @hidden */ get yyy(): Vec3 { return new Vec3(this[1], this[1], this[1]); }
-  /** @hidden */ get xxxx(): Vec4 { return new Vec4(this[0], this[0], this[0], this[0]); }
-  /** @hidden */ get xxxy(): Vec4 { return new Vec4(this[0], this[0], this[0], this[1]); }
-  /** @hidden */ get xxyx(): Vec4 { return new Vec4(this[0], this[0], this[1], this[0]); }
-  /** @hidden */ get xxyy(): Vec4 { return new Vec4(this[0], this[0], this[1], this[1]); }
-  /** @hidden */ get xyxx(): Vec4 { return new Vec4(this[0], this[1], this[0], this[0]); }
-  /** @hidden */ get xyxy(): Vec4 { return new Vec4(this[0], this[1], this[0], this[1]); }
-  /** @hidden */ get xyyx(): Vec4 { return new Vec4(this[0], this[1], this[1], this[0]); }
-  /** @hidden */ get xyyy(): Vec4 { return new Vec4(this[0], this[1], this[1], this[1]); }
-  /** @hidden */ get yxxx(): Vec4 { return new Vec4(this[1], this[0], this[0], this[0]); }
-  /** @hidden */ get yxxy(): Vec4 { return new Vec4(this[1], this[0], this[0], this[1]); }
-  /** @hidden */ get yxyx(): Vec4 { return new Vec4(this[1], this[0], this[1], this[0]); }
-  /** @hidden */ get yxyy(): Vec4 { return new Vec4(this[1], this[0], this[1], this[1]); }
-  /** @hidden */ get yyxx(): Vec4 { return new Vec4(this[1], this[1], this[0], this[0]); }
-  /** @hidden */ get yyxy(): Vec4 { return new Vec4(this[1], this[1], this[0], this[1]); }
-  /** @hidden */ get yyyx(): Vec4 { return new Vec4(this[1], this[1], this[1], this[0]); }
-  /** @hidden */ get yyyy(): Vec4 { return new Vec4(this[1], this[1], this[1], this[1]); }
-  /** @hidden */ get rr(): Vec2 { return new Vec2(this[0], this[0]); }
-  /** @hidden */ get rg(): Vec2 { return new Vec2(this[0], this[1]); }
-  /** @hidden */ get gr(): Vec2 { return new Vec2(this[1], this[0]); }
-  /** @hidden */ get gg(): Vec2 { return new Vec2(this[1], this[1]); }
-  /** @hidden */ get rrr(): Vec3 { return new Vec3(this[0], this[0], this[0]); }
-  /** @hidden */ get rrg(): Vec3 { return new Vec3(this[0], this[0], this[1]); }
-  /** @hidden */ get rgr(): Vec3 { return new Vec3(this[0], this[1], this[0]); }
-  /** @hidden */ get rgg(): Vec3 { return new Vec3(this[0], this[1], this[1]); }
-  /** @hidden */ get grr(): Vec3 { return new Vec3(this[1], this[0], this[0]); }
-  /** @hidden */ get grg(): Vec3 { return new Vec3(this[1], this[0], this[1]); }
-  /** @hidden */ get ggr(): Vec3 { return new Vec3(this[1], this[1], this[0]); }
-  /** @hidden */ get ggg(): Vec3 { return new Vec3(this[1], this[1], this[1]); }
-  /** @hidden */ get rrrr(): Vec4 { return new Vec4(this[0], this[0], this[0], this[0]); }
-  /** @hidden */ get rrrg(): Vec4 { return new Vec4(this[0], this[0], this[0], this[1]); }
-  /** @hidden */ get rrgr(): Vec4 { return new Vec4(this[0], this[0], this[1], this[0]); }
-  /** @hidden */ get rrgg(): Vec4 { return new Vec4(this[0], this[0], this[1], this[1]); }
-  /** @hidden */ get rgrr(): Vec4 { return new Vec4(this[0], this[1], this[0], this[0]); }
-  /** @hidden */ get rgrg(): Vec4 { return new Vec4(this[0], this[1], this[0], this[1]); }
-  /** @hidden */ get rggr(): Vec4 { return new Vec4(this[0], this[1], this[1], this[0]); }
-  /** @hidden */ get rggg(): Vec4 { return new Vec4(this[0], this[1], this[1], this[1]); }
-  /** @hidden */ get grrr(): Vec4 { return new Vec4(this[1], this[0], this[0], this[0]); }
-  /** @hidden */ get grrg(): Vec4 { return new Vec4(this[1], this[0], this[0], this[1]); }
-  /** @hidden */ get grgr(): Vec4 { return new Vec4(this[1], this[0], this[1], this[0]); }
-  /** @hidden */ get grgg(): Vec4 { return new Vec4(this[1], this[0], this[1], this[1]); }
-  /** @hidden */ get ggrr(): Vec4 { return new Vec4(this[1], this[1], this[0], this[0]); }
-  /** @hidden */ get ggrg(): Vec4 { return new Vec4(this[1], this[1], this[0], this[1]); }
-  /** @hidden */ get gggr(): Vec4 { return new Vec4(this[1], this[1], this[1], this[0]); }
-  /** @hidden */ get gggg(): Vec4 { return new Vec4(this[1], this[1], this[1], this[1]); }
 
   // [/Swizzle Autogen]
 }
