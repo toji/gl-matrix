@@ -450,9 +450,9 @@ export function fromMat3(out, m) {
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
  * @param {quat} out the receiving quaternion
- * @param {x} x Angle to rotate around X axis in degrees.
- * @param {y} y Angle to rotate around Y axis in degrees.
- * @param {z} z Angle to rotate around Z axis in degrees.
+ * @param {Number} x Angle to rotate around X axis in degrees.
+ * @param {Number} y Angle to rotate around Y axis in degrees.
+ * @param {Number} z Angle to rotate around Z axis in degrees.
  * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
  * @returns {quat} out
  * @function
