@@ -10,9 +10,15 @@ const copyFileSync = (source, dest) => {
 delete pkg.private;
 delete pkg.scripts;
 delete pkg.devDependencies;
-pkg.main = 'cjs/index.js'
+pkg.type = 'module';
+pkg.main = 'cjs/index.cjs'
 pkg.module = 'esm/index.js'
-fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
+pkg.exports = {
+  '.': {
+    require: './cjs/index.cjs',
+    import: './esm/index.js'
+  }
+};
 
 copyFileSync('README.md', 'dist/README.md');
 copyFileSync('LICENSE.md', 'dist/LICENSE.md');
@@ -23,8 +29,12 @@ const files = fs.readdirSync('src')
     const name = file.endsWith('.js') ? file.slice(0, -3) : file;
     const filePkg = {
       name: `gl-matrix/${name}`,
-      main: `../cjs/${file}`,
+      main: `../cjs/${file.replace('.js', '.cjs')}`,
       module: `../esm/${file}`,
+    };
+    pkg.exports[`./${name}`] = {
+      require: `./cjs/${file.replace('.js', '.cjs')}`,
+      import: `./esm/${file}`,
     };
     if(!fs.existsSync(`dist/${name}`)) {
       fs.mkdirSync(`dist/${name}`);
@@ -34,3 +44,5 @@ const files = fs.readdirSync('src')
       JSON.stringify(filePkg, null, 2)
     );
   });
+
+fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
