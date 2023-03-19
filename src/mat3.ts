@@ -2,7 +2,7 @@ import { EPSILON } from './common.js';
 import { Mat2dLike } from './mat2d.js';
 import { Mat4Like } from './mat4.js';
 import { Vec2Like } from './vec2.js';
-import { Vec4Like } from './vec4.js';
+import { QuatLike } from './quat.js';
 
 /**
  * A 3x3 Matrix given as a {@link Mat3}, a 9-element Float32Array, or an array
@@ -695,7 +695,7 @@ export class Mat3 extends Float32Array {
    * @param q - {@link Quat} to create matrix from
    * @returns `out`
    */
-  static fromQuat(out: Mat3Like, q: Readonly<Vec4Like>): Mat3Like {
+  static fromQuat(out: Mat3Like, q: Readonly<QuatLike>): Mat3Like {
     const x = q[0];
     const y = q[1];
     const z = q[2];

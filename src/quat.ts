@@ -1,4 +1,5 @@
 import { EPSILON } from './common.js';
+import { Mat3, Mat3Like } from './mat3.js';
 import { Vec3, Vec3Like } from './vec3.js';
 import { Vec4, Vec4Like } from './vec4.js';
 
@@ -528,7 +529,7 @@ export class Quat extends Float32Array {
    * @returns `out`
    * @function
    */
-  /*static fromMat3(out: QuatLike, m: Readonly<Mat3Like>): QuatLike {
+  static fromMat3(out: QuatLike, m: Readonly<Mat3Like>): QuatLike {
     // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
     // article "Quaternion Calculus and Fast Animation".
     const fTrace = m[0] + m[4] + m[8];
@@ -559,7 +560,7 @@ export class Quat extends Float32Array {
     }
 
     return out;
-  }*/
+  }
 
   /**
    * Creates a quaternion from the given euler angle x, y, z.
@@ -869,7 +870,7 @@ export class Quat extends Float32Array {
    * @param up - the vector representing the local "up" direction
    * @returns `out`
    */
-  /*static setAxes(out: QuatLike, view: Readonly<Vec3Like>, right: Readonly<Vec3Like>, up: Readonly<Vec3Like>): QuatLike {
+  static setAxes(out: QuatLike, view: Readonly<Vec3Like>, right: Readonly<Vec3Like>, up: Readonly<Vec3Like>): QuatLike {
     tempMat3[0] = right[0];
     tempMat3[3] = right[1];
     tempMat3[6] = right[2];
@@ -883,13 +884,13 @@ export class Quat extends Float32Array {
     tempMat3[8] = -view[2];
 
     return Quat.normalize(out, Quat.fromMat3(out, tempMat3));
-  }*/
+  }
 }
 
 // Temporary variables to prevent repeated allocations in the algorithms above.
 const temp1 = new Quat();
 const temp2 = new Quat();
-//const tempMat3 = new Mat3();
+const tempMat3 = new Mat3();
 
 const tmpVec3 = new Vec3();
 const xUnitVec3 = new Vec3(1, 0, 0);

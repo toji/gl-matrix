@@ -538,7 +538,7 @@ describe("Vec2", () => {
       });
     });*/
 
-    /*describe("transformMat2", () => {
+    describe("transformMat2", () => {
       let matA;
       beforeEach(() => { matA = [1, 2, 3, 4]; });
 
@@ -580,7 +580,7 @@ describe("Vec2", () => {
         it("should return vecA", () => { expect(result).toBe(vecA); });
         it("should not modify matA", () => { expect(matA).toBeVec(1, 2, 3, 4, 5, 6); });
       });
-    });*/
+    });
 
     /*describe("forEach", () => {
       let vecArray;

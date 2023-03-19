@@ -1,7 +1,6 @@
 import { EPSILON } from './common.js';
-import { Vec2 } from './vec2.js';
-import { Vec3 } from './vec3.js';
 import { Mat4Like } from './mat4.js';
+import { QuatLike } from './quat.js';
 
 /**
  * A 4 dimensional vector given as a {@link Vec4}, a 4-element Float32Array, or
@@ -884,7 +883,7 @@ export class Vec4 extends Float32Array {
    * @param q - quaternion to transform with
    * @returns `out`
    */
-  static transformQuat(out: Vec4Like, a: Readonly<Vec4Like>, q: Readonly<Vec4Like>): Vec4Like {
+  static transformQuat(out: Vec4Like, a: Readonly<Vec4Like>, q: Readonly<QuatLike>): Vec4Like {
     const x = a[0];
     const y = a[1];
     const z = a[2];

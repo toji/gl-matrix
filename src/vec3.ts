@@ -1,8 +1,7 @@
 import { EPSILON } from './common.js';
-import { Vec2 } from './vec2.js';
-import { Vec4, Vec4Like } from './vec4.js';
 import { Mat4Like } from './mat4.js';
 import { Mat3Like } from './mat3.js';
+import { QuatLike } from './quat.js';
 
 /**
  * A 3 dimensional vector given as a {@link Vec3}, a 3-element Float32Array, or
@@ -422,7 +421,7 @@ export class Vec3 extends Float32Array {
   }
 
   /**
-   * Adds two {@link Vec4}s
+   * Adds two {@link Vec3}s
    * @category Static
    *
    * @param out - The receiving vector
@@ -925,7 +924,7 @@ export class Vec3 extends Float32Array {
    * @param q - quaternion to transform with
    * @returns `out`
    */
-  static transformQuat(out: Vec3Like, a: Readonly<Vec3Like>, q: Readonly<Vec4Like>): Vec3Like {
+  static transformQuat(out: Vec3Like, a: Readonly<Vec3Like>, q: Readonly<QuatLike>): Vec3Like {
     // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
     const qx = q[0];
     const qy = q[1];
