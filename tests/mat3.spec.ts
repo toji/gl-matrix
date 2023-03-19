@@ -42,15 +42,15 @@ describe("Mat3", function() {
         7, 8, 9);
     });
 
-    it("should return Mat3(m0, m1, ...m8) if called with (Mat4(m0, m1, ...m9))", () => {
-      let v = new Mat4(
+    it("should return Mat3(m0, m1, ...m8) if called with (Mat3(m0, m1, ...m9))", () => {
+      let v = new Mat3(
         1, 2, 3,
         4, 5, 6,
         7, 8, 9);
-      expect(new Mat4(v)).toBeVec(v);
+      expect(new Mat3(v)).toBeVec(v);
     });
 
-    it("should return Mat4(m0, m1, ...m8) if called with (Float32Array([m0, m1, ...m8]))", () => {
+    it("should return Mat3(m0, m1, ...m8) if called with (Float32Array([m0, m1, ...m8]))", () => {
       let arr = new Float32Array([
         1, 2, 3,
         4, 5, 6,

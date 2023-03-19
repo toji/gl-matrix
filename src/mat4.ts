@@ -69,7 +69,7 @@ export class Mat4 extends Float32Array {
   }
 
   //===================
-  // Instances methods
+  // Instance methods
   //===================
 
   /**
@@ -2056,17 +2056,6 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Returns a string representation of a {@link Mat4}
-   * @category Static
-   *
-   * @param a - matrix to represent as a string
-   * @returns string representation of the matrix
-   */
-  static str(a: Readonly<Mat4Like>): string {
-    return `Mat4(${a.join(', ')})`;
-  }
-
-  /**
    * Returns Frobenius norm of a {@link Mat4}
    * @category Static
    *
@@ -2306,6 +2295,17 @@ export class Mat4 extends Float32Array {
       Math.abs(a14 - b14) <= EPSILON * Math.max(1, Math.abs(a14), Math.abs(b14)) &&
       Math.abs(a15 - b15) <= EPSILON * Math.max(1, Math.abs(a15), Math.abs(b15))
     );
+  }
+
+  /**
+   * Returns a string representation of a {@link Mat4}
+   * @category Static
+   *
+   * @param a - matrix to represent as a string
+   * @returns string representation of the matrix
+   */
+  static str(a: Readonly<Mat4Like>): string {
+    return `Mat4(${a.join(', ')})`;
   }
 }
 

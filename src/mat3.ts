@@ -67,7 +67,7 @@ export class Mat3 extends Float32Array {
   }
 
   //===================
-  // Instances methods
+  // Instance methods
   //===================
 
   /**
@@ -427,6 +427,7 @@ export class Mat3 extends Float32Array {
     out[8] = a[8] - b[8];
     return out;
   }
+
   /**
    * Alias for {@link Mat3.subtract}
    * @category Static
@@ -835,19 +836,6 @@ export class Mat3 extends Float32Array {
     return out;
   }
 
-  // TODO: Left off at normalFromMat4
-
-  /**
-   * Returns a string representation of a {@link Mat3}
-   * @category Static
-   *
-   * @param a - matrix to represent as a string
-   * @returns string representation of the matrix
-   */
-  static str(a: Readonly<Mat3Like>): string {
-    return `Mat3(${a.join(', ')})`;
-  }
-
   /**
    * Returns Frobenius norm of a {@link Mat3}
    * @category Static
@@ -976,6 +964,17 @@ export class Mat3 extends Float32Array {
       Math.abs(a7 - b7) <= EPSILON * Math.max(1, Math.abs(a7), Math.abs(b7)) &&
       Math.abs(a8 - b8) <= EPSILON * Math.max(1, Math.abs(a8), Math.abs(b8))
     );
+  }
+
+  /**
+   * Returns a string representation of a {@link Mat3}
+   * @category Static
+   *
+   * @param a - matrix to represent as a string
+   * @returns string representation of the matrix
+   */
+  static str(a: Readonly<Mat3Like>): string {
+    return `Mat3(${a.join(', ')})`;
   }
 }
 
