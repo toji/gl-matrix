@@ -2,6 +2,7 @@ import { EPSILON } from './common.js';
 import { Vec2 } from './vec2.js';
 import { Vec4, Vec4Like } from './vec4.js';
 import { Mat4Like } from './mat4.js';
+import { Mat3Like } from './mat3.js';
 
 /**
  * A 3 dimensional vector given as a {@link Vec3}, a 3-element Float32Array, or
@@ -904,7 +905,7 @@ export class Vec3 extends Float32Array {
    * @param m - the 3x3 matrix to transform with
    * @returns `out`
    */
-  /*static transformMat3(out: Vec3Like, a, m) {
+  static transformMat3(out: Vec3Like, a: Vec3Like, m: Mat3Like): Vec3Like {
     let x = a[0],
       y = a[1],
       z = a[2];
@@ -912,7 +913,7 @@ export class Vec3 extends Float32Array {
     out[1] = x * m[1] + y * m[4] + z * m[7];
     out[2] = x * m[2] + y * m[5] + z * m[8];
     return out;
-  }*/
+  }
 
   /**
    * Transforms the vec3 with a quat

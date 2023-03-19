@@ -378,7 +378,7 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Transpose the values of a mat4
+   * Transpose the values of a {@link Mat4}
    * @category Static
    *
    * @param out - the receiving matrix
@@ -388,12 +388,12 @@ export class Mat4 extends Float32Array {
   static transpose(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like {
     // If we are transposing ourselves we can skip a few steps but have to cache some values
     if (out === a) {
-      let a01 = a[1],
+      const a01 = a[1],
         a02 = a[2],
         a03 = a[3];
-      let a12 = a[6],
+      const a12 = a[6],
         a13 = a[7];
-      let a23 = a[11];
+      const a23 = a[11];
 
       out[1] = a[4];
       out[2] = a[8];
@@ -430,43 +430,43 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Inverts a mat4
+   * Inverts a {@link Mat4}
    * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
    * @returns `out`
    */
-  static invert(out: Mat4Like, a): Mat4Like {
-    let a00 = a[0],
+  static invert(out: Mat4Like, a: Mat4Like): Mat4Like {
+    const a00 = a[0],
       a01 = a[1],
       a02 = a[2],
       a03 = a[3];
-    let a10 = a[4],
+    const a10 = a[4],
       a11 = a[5],
       a12 = a[6],
       a13 = a[7];
-    let a20 = a[8],
+    const a20 = a[8],
       a21 = a[9],
       a22 = a[10],
       a23 = a[11];
-    let a30 = a[12],
+    const a30 = a[12],
       a31 = a[13],
       a32 = a[14],
       a33 = a[15];
 
-    let b00 = a00 * a11 - a01 * a10;
-    let b01 = a00 * a12 - a02 * a10;
-    let b02 = a00 * a13 - a03 * a10;
-    let b03 = a01 * a12 - a02 * a11;
-    let b04 = a01 * a13 - a03 * a11;
-    let b05 = a02 * a13 - a03 * a12;
-    let b06 = a20 * a31 - a21 * a30;
-    let b07 = a20 * a32 - a22 * a30;
-    let b08 = a20 * a33 - a23 * a30;
-    let b09 = a21 * a32 - a22 * a31;
-    let b10 = a21 * a33 - a23 * a31;
-    let b11 = a22 * a33 - a23 * a32;
+    const b00 = a00 * a11 - a01 * a10;
+    const b01 = a00 * a12 - a02 * a10;
+    const b02 = a00 * a13 - a03 * a10;
+    const b03 = a01 * a12 - a02 * a11;
+    const b04 = a01 * a13 - a03 * a11;
+    const b05 = a02 * a13 - a03 * a12;
+    const b06 = a20 * a31 - a21 * a30;
+    const b07 = a20 * a32 - a22 * a30;
+    const b08 = a20 * a33 - a23 * a30;
+    const b09 = a21 * a32 - a22 * a31;
+    const b10 = a21 * a33 - a23 * a31;
+    const b11 = a22 * a33 - a23 * a32;
 
     // Calculate the determinant
     let det =
@@ -498,43 +498,43 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Calculates the adjugate of a mat4
+   * Calculates the adjugate of a {@link Mat4}
    * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
    * @returns `out`
    */
-  static adjoint(out: Mat4Like, a): Mat4Like {
-    let a00 = a[0],
+  static adjoint(out: Mat4Like, a: Mat4Like): Mat4Like {
+    const a00 = a[0],
       a01 = a[1],
       a02 = a[2],
       a03 = a[3];
-    let a10 = a[4],
+    const a10 = a[4],
       a11 = a[5],
       a12 = a[6],
       a13 = a[7];
-    let a20 = a[8],
+    const a20 = a[8],
       a21 = a[9],
       a22 = a[10],
       a23 = a[11];
-    let a30 = a[12],
+    const a30 = a[12],
       a31 = a[13],
       a32 = a[14],
       a33 = a[15];
 
-    let b00 = a00 * a11 - a01 * a10;
-    let b01 = a00 * a12 - a02 * a10;
-    let b02 = a00 * a13 - a03 * a10;
-    let b03 = a01 * a12 - a02 * a11;
-    let b04 = a01 * a13 - a03 * a11;
-    let b05 = a02 * a13 - a03 * a12;
-    let b06 = a20 * a31 - a21 * a30;
-    let b07 = a20 * a32 - a22 * a30;
-    let b08 = a20 * a33 - a23 * a30;
-    let b09 = a21 * a32 - a22 * a31;
-    let b10 = a21 * a33 - a23 * a31;
-    let b11 = a22 * a33 - a23 * a32;
+    const b00 = a00 * a11 - a01 * a10;
+    const b01 = a00 * a12 - a02 * a10;
+    const b02 = a00 * a13 - a03 * a10;
+    const b03 = a01 * a12 - a02 * a11;
+    const b04 = a01 * a13 - a03 * a11;
+    const b05 = a02 * a13 - a03 * a12;
+    const b06 = a20 * a31 - a21 * a30;
+    const b07 = a20 * a32 - a22 * a30;
+    const b08 = a20 * a33 - a23 * a30;
+    const b09 = a21 * a32 - a22 * a31;
+    const b10 = a21 * a33 - a23 * a31;
+    const b11 = a22 * a33 - a23 * a32;
 
     out[0] = a11 * b11 - a12 * b10 + a13 * b09;
     out[1] = a02 * b10 - a01 * b11 - a03 * b09;
@@ -556,40 +556,40 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Calculates the determinant of a mat4
+   * Calculates the determinant of a {@link Mat4}
    * @category Static
    *
    * @param a - the source matrix
    * @returns determinant of a
    */
   static determinant(a: Readonly<Mat4Like>): number {
-    let a00 = a[0],
+    const a00 = a[0],
       a01 = a[1],
       a02 = a[2],
       a03 = a[3];
-    let a10 = a[4],
+    const a10 = a[4],
       a11 = a[5],
       a12 = a[6],
       a13 = a[7];
-    let a20 = a[8],
+    const a20 = a[8],
       a21 = a[9],
       a22 = a[10],
       a23 = a[11];
-    let a30 = a[12],
+    const a30 = a[12],
       a31 = a[13],
       a32 = a[14],
       a33 = a[15];
 
-    let b0 = a00 * a11 - a01 * a10;
-    let b1 = a00 * a12 - a02 * a10;
-    let b2 = a01 * a12 - a02 * a11;
-    let b3 = a20 * a31 - a21 * a30;
-    let b4 = a20 * a32 - a22 * a30;
-    let b5 = a21 * a32 - a22 * a31;
-    let b6 = a00 * b5 - a01 * b4 + a02 * b3;
-    let b7 = a10 * b5 - a11 * b4 + a12 * b3;
-    let b8 = a20 * b2 - a21 * b1 + a22 * b0;
-    let b9 = a30 * b2 - a31 * b1 + a32 * b0;
+    const b0 = a00 * a11 - a01 * a10;
+    const b1 = a00 * a12 - a02 * a10;
+    const b2 = a01 * a12 - a02 * a11;
+    const b3 = a20 * a31 - a21 * a30;
+    const b4 = a20 * a32 - a22 * a30;
+    const b5 = a21 * a32 - a22 * a31;
+    const b6 = a00 * b5 - a01 * b4 + a02 * b3;
+    const b7 = a10 * b5 - a11 * b4 + a12 * b3;
+    const b8 = a20 * b2 - a21 * b1 + a22 * b0;
+    const b9 = a30 * b2 - a31 * b1 + a32 * b0;
 
     // Calculate the determinant
     return a13 * b6 - a03 * b7 + a33 * b8 - a23 * b9;
@@ -605,28 +605,28 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static multiply(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like {
-    const a00 = a[0],
-        a01 = a[1],
-        a02 = a[2],
-        a03 = a[3];
-    const a10 = a[4],
-        a11 = a[5],
-        a12 = a[6],
-        a13 = a[7];
-    const a20 = a[8],
-        a21 = a[9],
-        a22 = a[10],
-        a23 = a[11];
-    const a30 = a[12],
-        a31 = a[13],
-        a32 = a[14],
-        a33 = a[15];
+    const a00 = a[0];
+    const a01 = a[1];
+    const a02 = a[2];
+    const a03 = a[3];
+    const a10 = a[4];
+    const a11 = a[5];
+    const a12 = a[6];
+    const a13 = a[7];
+    const a20 = a[8];
+    const a21 = a[9];
+    const a22 = a[10];
+    const a23 = a[11];
+    const a30 = a[12];
+    const a31 = a[13];
+    const a32 = a[14];
+    const a33 = a[15];
 
     // Cache only the current line of the second matrix
-    let b0 = b[0],
-      b1 = b[1],
-      b2 = b[2],
-      b3 = b[3];
+    let b0 = b[0];
+    let b1 = b[1];
+    let b2 = b[2];
+    let b3 = b[3];
     out[0] = b0 * a00 + b1 * a10 + b2 * a20 + b3 * a30;
     out[1] = b0 * a01 + b1 * a11 + b2 * a21 + b3 * a31;
     out[2] = b0 * a02 + b1 * a12 + b2 * a22 + b3 * a32;
@@ -723,12 +723,12 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Scales the {@link Mat4} by the dimensions in the given vec3 not using vectorization
+   * Scales the {@link Mat4} by the dimensions in the given {@link Vec3} not using vectorization
    * @category Static
    *
    * @param out - the receiving matrix
    * @param a - the matrix to scale
-   * @param v - the vec3 to scale the matrix by
+   * @param v - the {@link Vec3} to scale the matrix by
    * @returns `out`
    **/
   static scale(out: Mat4Like, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): Mat4Like {
@@ -968,14 +968,14 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Creates a matrix from a vector translation
+   * Creates a {@link Mat4} from a vector translation
    * This is equivalent to (but much faster than):
    *
    *     mat4.identity(dest);
    *     mat4.translate(dest, dest, vec);
    * @category Static
    *
-   * @param out - mat4 receiving operation result
+   * @param out - {@link Mat4} receiving operation result
    * @param v - Translation vector
    * @returns `out`
    */
@@ -1000,14 +1000,14 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Creates a matrix from a vector scaling
+   * Creates a {@link Mat4} from a vector scaling
    * This is equivalent to (but much faster than):
    *
    *     mat4.identity(dest);
    *     mat4.scale(dest, dest, vec);
    * @category Static
    *
-   * @param out - mat4 receiving operation result
+   * @param out - {@link Mat4} receiving operation result
    * @param v - Scaling vector
    * @returns `out`
    */
@@ -1032,24 +1032,23 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Creates a matrix from a given angle around a given axis
+   * Creates a {@link Mat4} from a given angle around a given axis
    * This is equivalent to (but much faster than):
    *
    *     mat4.identity(dest);
    *     mat4.rotate(dest, dest, rad, axis);
    * @category Static
    *
-   * @param out - mat4 receiving operation result
+   * @param out - {@link Mat4} receiving operation result
    * @param rad - the angle to rotate the matrix by
    * @param axis - the axis to rotate around
    * @returns `out`
    */
   static fromRotation(out: Mat4Like, rad: number, axis: Readonly<Vec3Like>): Mat4Like {
-    let x = axis[0],
-      y = axis[1],
-      z = axis[2];
+    let x = axis[0];
+    let y = axis[1];
+    let z = axis[2];
     let len = Math.sqrt(x * x + y * y + z * z);
-    let s, c, t;
 
     if (len < EPSILON) {
       return null;
@@ -1060,9 +1059,9 @@ export class Mat4 extends Float32Array {
     y *= len;
     z *= len;
 
-    s = Math.sin(rad);
-    c = Math.cos(rad);
-    t = 1 - c;
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
+    const t = 1 - c;
 
     // Perform rotation-specific matrix multiplication
     out[0] = x * x * t + c;
@@ -2057,7 +2056,7 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Returns a string representation of a mat4
+   * Returns a string representation of a {@link Mat4}
    * @category Static
    *
    * @param a - matrix to represent as a string
@@ -2068,7 +2067,7 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Returns Frobenius norm of a mat4
+   * Returns Frobenius norm of a {@link Mat4}
    * @category Static
    *
    * @param a - the matrix to calculate Frobenius norm of
@@ -2096,7 +2095,7 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Adds two mat4's
+   * Adds two {@link Mat4}'s
    * @category Static
    *
    * @param out - the receiving matrix
@@ -2218,7 +2217,7 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Returns whether or not the matrices have exactly the same elements in the same position (when compared with ===)
+   * Returns whether or not two {@link Mat4}s have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first matrix.
@@ -2247,7 +2246,7 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Returns whether or not the matrices have approximately the same elements in the same position.
+   * Returns whether or not two {@link Mat4}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
