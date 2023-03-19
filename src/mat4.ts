@@ -133,17 +133,6 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Scales this {@link Mat4} by the dimensions in the given vec3 not using vectorization
-   * Equivalent to `Mat4.scale(this, this, v);`
-   *
-   * @param v - The {@link Vec3} to scale the matrix by
-   * @returns `this`
-   */
-  scale(v: Readonly<Vec3Like>): Mat4 {
-    return Mat4.scale(this, this, v) as Mat4;
-  }
-
-  /**
    * Rotates this {@link Mat4} by the given angle around the given axis
    * Equivalent to `Mat4.rotate(this, this, rad, axis);`
    *
@@ -153,6 +142,17 @@ export class Mat4 extends Float32Array {
    */
   rotate(rad: number, axis: Readonly<Vec3Like>): Mat4 {
     return Mat4.rotate(this, this, rad, axis) as Mat4;
+  }
+
+  /**
+   * Scales this {@link Mat4} by the dimensions in the given vec3 not using vectorization
+   * Equivalent to `Mat4.scale(this, this, v);`
+   *
+   * @param v - The {@link Vec3} to scale the matrix by
+   * @returns `this`
+   */
+  scale(v: Readonly<Vec3Like>): Mat4 {
+    return Mat4.scale(this, this, v) as Mat4;
   }
 
   /**

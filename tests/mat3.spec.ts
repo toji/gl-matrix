@@ -3,8 +3,6 @@ import "./test-utils"
 import { Mat3 } from "../src/mat3"
 import { Mat4 } from "../src/mat4"
 import { Vec3 } from "../src/vec3"
-import { Vec2 } from "../src/vec2"
-import { Quat } from "../src/quat"
 
 describe("Mat3", function() {
   describe("constructor", () => {
