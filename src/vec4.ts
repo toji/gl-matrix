@@ -20,7 +20,7 @@ export class Vec4 extends Float32Array {
   /**
    * Create a {@link Vec4}.
    */
-  constructor(...values: [Readonly<Vec4Like>, number?] | number[]) {
+  constructor(...values: [Readonly<Vec4Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
       case 4:
         super(values); break;
@@ -137,6 +137,17 @@ export class Vec4 extends Float32Array {
   //===================
   // Instances methods
   //===================
+
+  /**
+   * Copy the values from another {@link Vec4} into `this`.
+   *
+   * @param a the source vector
+   * @returns `this`
+   */
+  copy(a: Readonly<Vec4Like>): Vec4 {
+    super.set(a);
+    return this;
+  }
 
   /**
    * Adds a {@link Vec4} to `this`.

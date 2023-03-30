@@ -33,7 +33,7 @@ export class Mat4 extends Float32Array {
   /**
    * Create a {@link Mat4}.
    */
-  constructor(...values: [Readonly<Mat4Like>, number?] | number[] ) {
+  constructor(...values: [Readonly<Mat4Like> | ArrayBufferLike, number?] | number[] ) {
     switch(values.length) {
       case 16:
         super(values); break;
@@ -71,6 +71,17 @@ export class Mat4 extends Float32Array {
   //===================
   // Instance methods
   //===================
+
+  /**
+   * Copy the values from another {@link Mat4} into `this`.
+   *
+   * @param a the source vector
+   * @returns `this`
+   */
+  copy(a: Readonly<Mat4Like>): Mat4 {
+    this.set(a);
+    return this;
+  }
 
   /**
    * Set `this` to the identity matrix

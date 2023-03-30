@@ -24,7 +24,7 @@ export class Vec2 extends Float32Array {
   /**
    * Create a {@link Vec2}.
    */
-   constructor(...values: [Readonly<Vec2Like>, number?] | number[]) {
+   constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
       case 2:{
         const v = values[0];

@@ -21,7 +21,7 @@ export class Vec3 extends Float32Array {
   /**
   * Create a {@link Vec3}.
   */
-  constructor(...values: [Readonly<Vec3Like>, number?] | number[]) {
+  constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
       case 3:
         super(values); break;
@@ -137,6 +137,17 @@ export class Vec3 extends Float32Array {
   //===================
   // Instances methods
   //===================
+
+  /**
+   * Copy the values from another {@link Vec3} into `this`.
+   *
+   * @param a the source vector
+   * @returns `this`
+   */
+  copy(a: Readonly<Vec3Like>): Vec3 {
+    this.set(a);
+    return this;
+  }
 
   /**
    * Adds a {@link Vec3} to `this`.

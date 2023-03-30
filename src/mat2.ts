@@ -27,7 +27,7 @@ export class Mat2 extends Float32Array {
   /**
    * Create a {@link Mat2}.
    */
-  constructor(...values: [Readonly<Mat2Like>, number?] | number[] ) {
+  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[] ) {
     switch(values.length) {
       case 4:
         super(values); break;
@@ -63,6 +63,17 @@ export class Mat2 extends Float32Array {
   //===================
   // Instance methods
   //===================
+
+  /**
+   * Copy the values from another {@link Mat2} into `this`.
+   *
+   * @param a the source vector
+   * @returns `this`
+   */
+  copy(a: Readonly<Mat2Like>): Mat2 {
+    this.set(a);
+    return this;
+  }
 
   /**
    * Set `this` to the identity matrix
@@ -510,7 +521,7 @@ export class Mat2 extends Float32Array {
   /**
    * Returns L, D and U matrices (Lower triangular, Diagonal and Upper triangular) by factorizing the input matrix
    * @category Static
-   * 
+   *
    * @param L - the lower triangular matrix
    * @param D - the diagonal matrix
    * @param U - the upper triangular matrix

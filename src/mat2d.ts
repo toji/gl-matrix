@@ -6,7 +6,7 @@ import { Vec2Like } from './vec2.js';
  * of 6 numbers.
  */
 export type Mat2dLike = [
-  number, number, 
+  number, number,
   number, number,
   number, number
 ] | Float32Array;
@@ -29,7 +29,7 @@ export class Mat2d extends Float32Array {
   /**
    * Create a {@link Mat2}.
    */
-  constructor(...values: [Readonly<Mat2dLike>, number?] | number[] ) {
+  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[] ) {
     switch(values.length) {
       case 6:
         super(values); break;
@@ -66,6 +66,17 @@ export class Mat2d extends Float32Array {
   //===================
   // Instances methods
   //===================
+
+  /**
+   * Copy the values from another {@link Mat2d} into `this`.
+   *
+   * @param a the source vector
+   * @returns `this`
+   */
+  copy(a: Readonly<Mat2dLike>): Mat2d {
+    this.set(a);
+    return this;
+  }
 
   /**
    * Set `this` to the identity matrix

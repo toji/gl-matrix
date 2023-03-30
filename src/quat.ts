@@ -21,7 +21,7 @@ export class Quat extends Float32Array {
   /**
    * Create a {@link Quat}.
    */
-   constructor(...values: [Readonly<QuatLike>, number?] | number[]) {
+   constructor(...values: [Readonly<QuatLike> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
       case 4:
         super(values); break;
