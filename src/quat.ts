@@ -110,6 +110,118 @@ export class Quat extends Float32Array {
   // Instances methods
   //===================
 
+  /**
+   * Copy the values from another {@link Quat} into `this`.
+   *
+   * @param a the source quaternion
+   * @returns `this`
+   */
+  copy(a: Readonly<QuatLike>): Quat {
+    super.set(a);
+    return this;
+  }
+
+  /**
+   * Set `this` to the identity quaternion
+   * Equivalent to Quat.identity(this)
+   *
+   * @returns `this`
+   */
+  identity(): Quat {
+    this[0] = 0;
+    this[1] = 0;
+    this[2] = 0;
+    this[3] = 1;
+    return this;
+  }
+
+  /**
+   * Multiplies `this` by a {@link Quat}.
+   * Equivalent to `Quat.multiply(this, this, b);`
+   *
+   * @param b - The vector to multiply `this` by
+   * @returns `this`
+   */
+  multiply(b: Readonly<QuatLike>): Quat {
+    return Quat.multiply(this, this, b) as Quat;
+  }
+
+  /**
+   * Alias for {@link Quat.multiply}
+   */
+  mul(b: Readonly<QuatLike>): Quat { return this; }
+
+  /**
+   * Rotates `this` by the given angle about the X axis
+   * Equivalent to `Quat.rotateX(this, this, rad);`
+   *
+   * @param rad - angle (in radians) to rotate
+   * @returns `this`
+   */
+  rotateX(rad: number): Quat {
+    return Quat.rotateX(this, this, rad) as Quat;
+  }
+
+  /**
+   * Rotates `this` by the given angle about the Y axis
+   * Equivalent to `Quat.rotateY(this, this, rad);`
+   *
+   * @param rad - angle (in radians) to rotate
+   * @returns `this`
+   */
+  rotateY(rad: number): Quat {
+    return Quat.rotateY(this, this, rad) as Quat;
+  }
+
+  /**
+   * Rotates `this` by the given angle about the Z axis
+   * Equivalent to `Quat.rotateZ(this, this, rad);`
+   *
+   * @param rad - angle (in radians) to rotate
+   * @returns `this`
+   */
+  rotateZ(rad: number): Quat {
+    return Quat.rotateZ(this, this, rad) as Quat;
+  }
+
+  /**
+   * Inverts `this`
+   * Equivalent to `Quat.invert(this, this);`
+   *
+   * @returns `this`
+   */
+  invert(): Quat {
+    return Quat.invert(this, this) as Quat;
+  }
+
+  /**
+   * Scales `this` by a scalar number
+   * Equivalent to `Quat.scale(this, this, scale);`
+   *
+   * @param out - the receiving vector
+   * @param a - the vector to scale
+   * @param scale - amount to scale the vector by
+   * @returns `this`
+   */
+  scale(scale: number): QuatLike {
+    this[0] *= scale;
+    this[1] *= scale;
+    this[2] *= scale;
+    this[3] *= scale;
+    return this;
+  }
+
+  /**
+   * Calculates the dot product of `this` and another {@link Quat}
+   * Equivalent to `Quat.dot(this, b);`
+   *
+   * @param b - the second operand
+   * @returns dot product of `this` and b
+   */
+  dot(b: Readonly<QuatLike>): number {
+    return Quat.dot(this, b);
+  }
+
   //===================
   // Static methods
   //===================
@@ -906,6 +1018,9 @@ Quat.sqrLen = Vec4.squaredLength;
 Quat.exactEquals = Vec4.exactEquals;
 Quat.equals = Vec4.equals;
 Quat.magnitude = Vec4.magnitude;
+
+// Instance method alias assignments
+Quat.prototype.mul = Quat.prototype.multiply;
 
 // Static method alias assignments
 Quat.mul = Quat.multiply;
