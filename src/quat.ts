@@ -789,7 +789,7 @@ export class Quat extends Float32Array {
 
   /**
    * Alias for {@link Quat.multiply}
-   * @function
+   * @category Static
    */
   static mul(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>): QuatLike { return out; }
 
@@ -801,7 +801,6 @@ export class Quat extends Float32Array {
    * @param a - the vector to scale
    * @param b - amount to scale the vector by
    * @returns `out`
-   * @function
    */
   static scale(out: QuatLike, a: Readonly<QuatLike>, scale: number): QuatLike {
     out[0] = a[0] * scale;
@@ -818,7 +817,6 @@ export class Quat extends Float32Array {
    * @param a - the first operand
    * @param b - the second operand
    * @returns dot product of a and b
-   * @function
    */
   static dot(a: Readonly<QuatLike>, b: Readonly<QuatLike>): number {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2] + a[3] * b[3];
@@ -833,7 +831,6 @@ export class Quat extends Float32Array {
    * @param b - the second operand
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
-   * @function
    */
    static lerp(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>, t: number): QuatLike { return out }
 
@@ -868,29 +865,26 @@ export class Quat extends Float32Array {
   static len(a: Readonly<QuatLike>): number { return 0; }
 
   /**
-   * Calculates the squared length of a quat
+   * Calculates the squared length of a {@link Quat}
    * @category Static
    *
-   * @param a - vector to calculate squared length of
+   * @param a - quaternion to calculate squared length of
    * @returns squared length of a
-   * @function
    */
   static squaredLength(a: Readonly<QuatLike>): number { return 0; }
 
   /**
    * Alias for {@link Quat.squaredLength}
-   * @function
    */
   static sqrLen(a: Readonly<QuatLike>): number { return 0; }
 
   /**
-   * Normalize a quat
+   * Normalize a {@link Quat}
    * @category Static
    *
    * @param out - the receiving quaternion
    * @param a - quaternion to normalize
    * @returns `out`
-   * @function
    */
   static normalize(out: QuatLike, a: Readonly<QuatLike>): QuatLike { return out; }
 

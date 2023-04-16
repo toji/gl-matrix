@@ -339,7 +339,7 @@ export class Vec4 extends Float32Array {
   //===================
 
   /**
-   * Creates a new, empty vec4
+   * Creates a new, empty {@link Vec4}
    * @category Static
    *
    * @returns a new 4D vector
@@ -349,7 +349,7 @@ export class Vec4 extends Float32Array {
   }
 
   /**
-   * Creates a new vec4 initialized with values from an existing vector
+   * Creates a new {@link Vec4} initialized with values from an existing vector
    * @category Static
    *
    * @param a - vector to clone
@@ -360,7 +360,7 @@ export class Vec4 extends Float32Array {
   }
 
   /**
-   * Creates a new vec4 initialized with the given values
+   * Creates a new {@link Vec4} initialized with the given values
    * @category Static
    *
    * @param x - X component
@@ -374,7 +374,7 @@ export class Vec4 extends Float32Array {
   }
 
   /**
-   * Copy the values from one vec4 to another
+   * Copy the values from one {@link Vec4} to another
    * @category Static
    *
    * @param out - the receiving vector
@@ -390,7 +390,7 @@ export class Vec4 extends Float32Array {
   }
 
   /**
-   * Set the components of a vec4 to the given values
+   * Set the components of a {@link Vec4} to the given values
    * @category Static
    *
    * @param out - the receiving vector

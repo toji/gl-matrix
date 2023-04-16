@@ -14,7 +14,7 @@ describe("Quat", () => {
       expect(new Quat(-3, 4.4, -5.6, 7.8)).toBeVec(-3, 4.4, -5.6, 7.8);
     });
 
-    it("should return Quat(x, x, x) if called with (x)", () => {
+    it("should return Quat(x, x, x, x) if called with (x)", () => {
       expect(new Quat(1)).toBeVec(1, 1, 1, 1);
       expect(new Quat(-2.3)).toBeVec(-2.3, -2.3, -2.3, -2.3);
     });

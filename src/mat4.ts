@@ -2,6 +2,7 @@ import { EPSILON } from './common.js';
 import { Vec3, Vec3Like } from './vec3.js';
 import { Vec4Like } from './vec4.js';
 import { QuatLike } from './quat.js';
+import { Quat2Like } from './quat2.js';
 
 /**
  * A 4x4 Matrix given as a {@link Mat4}, a 16-element Float32Array, or an array
@@ -1259,23 +1260,23 @@ export class Mat4 extends Float32Array {
   }
 
   /**
-   * Creates a new mat4 from a dual quat.
+   * Sets a {@link Mat4} from a {@link Quat2}.
    * @category Static
    *
    * @param out - Matrix
    * @param a - Dual Quaternion
-   * @returns mat4 receiving operation result
+   * @returns `out`
    */
-  /*static fromQuat2(out: Mat4Like, a: Quat2Like): Mat4Like {
+  static fromQuat2(out: Mat4Like, a: Quat2Like): Mat4Like {
     let translation = new Vec3();
-    let bx = -a[0],
-      by = -a[1],
-      bz = -a[2],
-      bw = a[3],
-      ax = a[4],
-      ay = a[5],
-      az = a[6],
-      aw = a[7];
+    const bx = -a[0];
+    const by = -a[1];
+    const bz = -a[2];
+    const bw = a[3];
+    const ax = a[4];
+    const ay = a[5];
+    const az = a[6];
+    const aw = a[7];
 
     let magnitude = bx * bx + by * by + bz * bz + bw * bw;
     //Only scale if it makes sense
@@ -1288,9 +1289,9 @@ export class Mat4 extends Float32Array {
       translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
       translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
     }
-    Mat4.fromRotationTranslation(out, a, translation);
+    Mat4.fromRotationTranslation(out, a as QuatLike, translation);
     return out;
-  }*/
+  }
 
   /**
    * Returns the translation vector component of a transformation
