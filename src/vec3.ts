@@ -465,7 +465,7 @@ export class Vec3 extends Float32Array {
 
   /**
    * Alias for {@link Vec3.subtract}
-   * @function
+   * @category Static
    */
   static sub(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; };
 

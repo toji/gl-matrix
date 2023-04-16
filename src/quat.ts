@@ -228,6 +228,7 @@ export class Quat extends Float32Array {
 
   /**
    * Creates a new identity quat
+   * @category Static
    *
    * @returns a new quaternion
    */
@@ -279,6 +280,8 @@ export class Quat extends Float32Array {
    * Example: The quaternion formed by axis [0, 0, 1] and
    *  angle -90 is the same as the quaternion formed by
    *  [0, 0, 1] and 270. This method favors the latter.
+   * @category Static
+   *
    * @param out_axis - Vector receiving the axis of rotation
    * @param q - Quaternion to be decomposed
    * @return Angle, in radians, of the rotation
@@ -639,7 +642,6 @@ export class Quat extends Float32Array {
    * @param out - the receiving quaternion
    * @param m - rotation matrix
    * @returns `out`
-   * @function
    */
   static fromMat3(out: QuatLike, m: Readonly<Mat3Like>): QuatLike {
     // Algorithm in Ken Shoemake's article in 1987 SIGGRAPH course notes
@@ -683,7 +685,6 @@ export class Quat extends Float32Array {
    * @param y - Angle to rotate around Y axis in degrees.
    * @param z - Angle to rotate around Z axis in degrees.
    * @returns `out`
-   * @function
    */
   static fromEuler(out: QuatLike, x: number, y: number, z: number): QuatLike {
     let halfToRad = (0.5 * Math.PI) / 180.0;
@@ -723,7 +724,6 @@ export class Quat extends Float32Array {
    *
    * @param a - quaternion to clone
    * @returns a new quaternion
-   * @function
    */
   static clone(a: Readonly<QuatLike>): Quat {
     return new Quat(a);
@@ -738,7 +738,6 @@ export class Quat extends Float32Array {
    * @param z - Z component
    * @param w - W component
    * @returns a new quaternion
-   * @function
    */
   static fromValues(x: number, y: number, z: number, w: number): Quat {
     return new Quat(x, y, z, w);
@@ -751,7 +750,6 @@ export class Quat extends Float32Array {
    * @param out - the receiving quaternion
    * @param a - the source quaternion
    * @returns `out`
-   * @function
    */
   static copy(out: QuatLike, a: Readonly<QuatLike>): QuatLike {
     out[0] = a[0];
@@ -771,7 +769,6 @@ export class Quat extends Float32Array {
    * @param z - Z component
    * @param w - W component
    * @returns `out`
-   * @function
    */
   static set(out: QuatLike, x: number, y: number, z: number, w: number): QuatLike { return out; }
 
@@ -783,7 +780,6 @@ export class Quat extends Float32Array {
    * @param a - the first operand
    * @param b - the second operand
    * @returns `out`
-   * @function
    */
   static add(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>): QuatLike { return out; }
 
@@ -875,6 +871,7 @@ export class Quat extends Float32Array {
 
   /**
    * Alias for {@link Quat.squaredLength}
+   * @category Static
    */
   static sqrLen(a: Readonly<QuatLike>): number { return 0; }
 

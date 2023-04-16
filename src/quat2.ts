@@ -1,12 +1,10 @@
 import { EPSILON } from './common.js';
-import { Mat3, Mat3Like } from './mat3.js';
 import { Mat4, Mat4Like } from './mat4.js';
 import { Quat, QuatLike } from './quat.js';
 import { Vec3, Vec3Like } from './vec3.js';
-import { Vec4, Vec4Like } from './vec4.js';
 
 /**
- * A Quaternion given as a {@link Quat}, an 8-element Float32Array, or
+ * A Dual Quaternion given as a {@link Quat2}, an 8-element Float32Array, or
  * an array of 8 numbers.
  */
 export type Quat2Like = [
@@ -15,7 +13,7 @@ export type Quat2Like = [
 ] | Float32Array;
 
 /**
- * Quaternion
+ * Dual Quaternion
  */
 export class Quat2 extends Float32Array {
   /**
@@ -54,7 +52,7 @@ export class Quat2 extends Float32Array {
 
   /**
    * A string representation of `this`
-   * Equivalent to `Quat.str(this);`
+   * Equivalent to `Quat2.str(this);`
    */
   get str(): string {
     return Quat2.str(this);
@@ -82,6 +80,7 @@ export class Quat2 extends Float32Array {
 
   /**
    * Creates a new identity {@link Quat2}
+   * @category Static
    *
    * @returns a new dual quaternion [real -> rotation, dual -> translation]
    */
@@ -805,7 +804,7 @@ export class Quat2 extends Float32Array {
 
   /**
    * Calculates the conjugate of a {@link Quat2}
-   * If the dual quaternion is normalized, this function is faster than {@link Quat2.inverse} and produces the same result.
+   * If the dual quaternion is normalized, this function is faster than {@link Quat2.invert} and produces the same result.
    * @category Static
    *
    * @param out - the receiving dual quaternion
@@ -865,7 +864,7 @@ export class Quat2 extends Float32Array {
 
   /**
    * Alias for {@link Quat2.squaredLength}
-   * @function
+   * @category Static
    */
   static sqrLen(a: Readonly<Quat2Like>): number { return 0; }
 
@@ -876,7 +875,6 @@ export class Quat2 extends Float32Array {
    * @param out - the receiving dual quaternion
    * @param a - dual quaternion to normalize
    * @returns `out`
-   * @function
    */
   static normalize(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like {
     let magnitude = Quat2.squaredLength(a);
