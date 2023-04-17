@@ -4,3 +4,7 @@
 [![Build Status](https://travis-ci.org/toji/gl-matrix.svg)](https://travis-ci.org/toji/gl-matrix)
 
 glMatrix is a high performance, very flexible library for vector and matrix operations in JavaScript/TypeScript, designed for the needs of realtime 3D graphics APIs like WebGL and WebGPU.
+
+## Docs
+
+Documentation is available at [https://glmatrix.net/docs/v4/](https://glmatrix.net/docs/v4/)

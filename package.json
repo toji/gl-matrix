@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0",
+  "version": "4.0.0-beta.1",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance 3D web apps",
   "private": true,
@@ -28,6 +28,7 @@
     "build": "tsc",
     "build-docs": "typedoc src/index.ts",
     "bundle": "node scripts/bundle.mjs",
+    "build-all": "npm run build && npm run build-docs && npm run bundle",
     "watch": "tsc --watch",
     "test": "vitest run"
   },

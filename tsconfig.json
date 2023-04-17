@@ -3,7 +3,7 @@
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom"],
-    "outDir": "dist/src",
+    "outDir": "dist/esm",
     "rootDir": "./src",
     "sourceMap": true,
     "moduleResolution": "node",
