@@ -25,7 +25,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">Mat4</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L27">src/mat4.ts:27</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L28">src/mat4.ts:28</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -107,6 +107,7 @@
 <a href="Mat4.html#fromYRotation" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fromYRotation</span></a>
 <a href="Mat4.html#fromZRotation" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fromZRotation</span></a>
 <a href="Mat4.html#fromRotationTranslation" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>from<wbr/>Rotation<wbr/>Translation</span></a>
+<a href="Mat4.html#fromQuat2" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>from<wbr/>Quat2</span></a>
 <a href="Mat4.html#getTranslation" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Translation</span></a>
 <a href="Mat4.html#getScaling" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Scaling</span></a>
 <a href="Mat4.html#getRotation" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>get<wbr/>Rotation</span></a>
@@ -1031,7 +1032,7 @@ at begin, inclusive, up to end, exclusive.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L81">src/mat4.ts:81</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L82">src/mat4.ts:82</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="identity" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>identity</span><a href="#identity" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1044,7 +1045,7 @@ Equivalent to Mat4.identity(this)</p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L92">src/mat4.ts:92</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L93">src/mat4.ts:93</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiply" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>multiply</span><a href="#multiply" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1064,7 +1065,7 @@ Equivalent to <code>Mat4.multiply(this, this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L106">src/mat4.ts:106</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L107">src/mat4.ts:107</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="mul" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>mul</span><a href="#mul" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1079,7 +1080,7 @@ Equivalent to <code>Mat4.multiply(this, this, b);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L113">src/mat4.ts:113</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L114">src/mat4.ts:114</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="transpose" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>transpose</span><a href="#transpose" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1092,7 +1093,7 @@ Equivalent to <code>Mat4.transpose(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L121">src/mat4.ts:121</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L122">src/mat4.ts:122</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="invert" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>invert</span><a href="#invert" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1105,7 +1106,7 @@ Equivalent to <code>Mat4.invert(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L131">src/mat4.ts:131</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L132">src/mat4.ts:132</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="translate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>translate</span><a href="#translate" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1125,7 +1126,7 @@ Equivalent to <code>Mat4.translate(this, this, v);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L142">src/mat4.ts:142</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L143">src/mat4.ts:143</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>rotate</span><a href="#rotate" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1149,7 +1150,7 @@ Equivalent to <code>Mat4.rotate(this, this, rad, axis);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L154">src/mat4.ts:154</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L155">src/mat4.ts:155</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="scale" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>scale</span><a href="#scale" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1169,7 +1170,7 @@ Equivalent to <code>Mat4.scale(this, this, v);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L165">src/mat4.ts:165</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L166">src/mat4.ts:166</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateX" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>rotateX</span><a href="#rotateX" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1189,7 +1190,7 @@ Equivalent to <code>Mat4.rotateX(this, this, rad);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L176">src/mat4.ts:176</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L177">src/mat4.ts:177</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateY" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>rotateY</span><a href="#rotateY" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1209,7 +1210,7 @@ Equivalent to <code>Mat4.rotateY(this, this, rad);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L187">src/mat4.ts:187</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L188">src/mat4.ts:188</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateZ" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>rotateZ</span><a href="#rotateZ" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1229,7 +1230,7 @@ Equivalent to <code>Mat4.rotateZ(this, this, rad);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L198">src/mat4.ts:198</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L199">src/mat4.ts:199</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="perspectiveNO" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>perspectiveNO</span><a href="#perspectiveNO" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1264,7 +1265,7 @@ Equivalent to <code>Mat4.perspectiveNO(this, fovy, aspect, near, far);</code></p
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L215">src/mat4.ts:215</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L216">src/mat4.ts:216</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="perspectiveZO" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>perspectiveZO</span><a href="#perspectiveZO" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1299,7 +1300,7 @@ Equivalent to <code>Mat4.perspectiveZO(this, fovy, aspect, near, far);</code></p
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L232">src/mat4.ts:232</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L233">src/mat4.ts:233</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="orthoNO" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>orthoNO</span><a href="#orthoNO" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1341,7 +1342,7 @@ Equivalent to <code>Mat4.orthoNO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L250">src/mat4.ts:250</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L251">src/mat4.ts:251</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="orthoZO" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>orthoZO</span><a href="#orthoZO" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1383,7 +1384,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L268">src/mat4.ts:268</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L269">src/mat4.ts:269</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="of" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>of</span><a href="#of" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -1510,7 +1511,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L282">src/mat4.ts:282</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L283">src/mat4.ts:283</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="clone" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>clone</span><a href="#clone" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1529,7 +1530,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L293">src/mat4.ts:293</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L294">src/mat4.ts:294</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="copy-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>copy</span><a href="#copy-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1552,7 +1553,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L305">src/mat4.ts:305</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L306">src/mat4.ts:306</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromValues" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Values</span><a href="#fromValues" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1571,7 +1572,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L332">src/mat4.ts:332</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L333">src/mat4.ts:333</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="set-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>set</span><a href="#set-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1594,7 +1595,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L344">src/mat4.ts:344</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L345">src/mat4.ts:345</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="identity-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>identity</span><a href="#identity-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1613,7 +1614,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L371">src/mat4.ts:371</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L372">src/mat4.ts:372</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="transpose-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>transpose</span><a href="#transpose-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1636,7 +1637,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L399">src/mat4.ts:399</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L400">src/mat4.ts:400</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="invert-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>invert</span><a href="#invert-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1659,7 +1660,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L451">src/mat4.ts:451</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L452">src/mat4.ts:452</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="adjoint" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>adjoint</span><a href="#adjoint" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1682,7 +1683,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L519">src/mat4.ts:519</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L520">src/mat4.ts:520</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="determinant" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>determinant</span><a href="#determinant" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1701,7 +1702,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L576">src/mat4.ts:576</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L577">src/mat4.ts:577</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiply-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>multiply</span><a href="#multiply-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1728,7 +1729,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L618">src/mat4.ts:618</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L619">src/mat4.ts:619</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="mul-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>mul</span><a href="#mul-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1747,7 +1748,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L679">src/mat4.ts:679</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L680">src/mat4.ts:680</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="translate-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>translate</span><a href="#translate-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1774,7 +1775,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L690">src/mat4.ts:690</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L691">src/mat4.ts:691</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="scale-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>scale</span><a href="#scale-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1801,7 +1802,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L745">src/mat4.ts:745</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L746">src/mat4.ts:746</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotate-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>rotate</span><a href="#rotate-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1832,7 +1833,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L779">src/mat4.ts:779</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L780">src/mat4.ts:780</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateX-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>rotateX</span><a href="#rotateX-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1859,7 +1860,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L855">src/mat4.ts:855</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L856">src/mat4.ts:856</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateY-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>rotateY</span><a href="#rotateY-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1886,7 +1887,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L900">src/mat4.ts:900</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L901">src/mat4.ts:901</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="rotateZ-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>rotateZ</span><a href="#rotateZ-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1913,7 +1914,7 @@ Equivalent to <code>Mat4.orthoZO(this, left, right, bottom, top, near, far);</co
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L945">src/mat4.ts:945</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L946">src/mat4.ts:946</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromTranslation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Translation</span><a href="#fromTranslation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1939,7 +1940,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L993">src/mat4.ts:993</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L994">src/mat4.ts:994</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromScaling" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Scaling</span><a href="#fromScaling" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1965,7 +1966,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1025">src/mat4.ts:1025</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1026">src/mat4.ts:1026</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromRotation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Rotation</span><a href="#fromRotation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1995,7 +1996,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1058">src/mat4.ts:1058</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1059">src/mat4.ts:1059</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromXRotation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>fromXRotation</span><a href="#fromXRotation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2021,7 +2022,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1109">src/mat4.ts:1109</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1110">src/mat4.ts:1110</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromYRotation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>fromYRotation</span><a href="#fromYRotation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2047,7 +2048,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1145">src/mat4.ts:1145</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1146">src/mat4.ts:1146</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromZRotation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>fromZRotation</span><a href="#fromZRotation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2073,7 +2074,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1181">src/mat4.ts:1181</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1182">src/mat4.ts:1182</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromRotationTranslation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Rotation<wbr/>Translation</span><a href="#fromRotationTranslation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2103,7 +2104,30 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1221">src/mat4.ts:1221</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1222">src/mat4.ts:1222</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromQuat2" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Quat2</span><a href="#fromQuat2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="fromQuat2.fromQuat2-1">from<wbr/>Quat2<span class="tsd-signature-symbol">(</span>out<span class="tsd-signature-symbol">: </span><a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a>, a<span class="tsd-signature-symbol">: </span><a href="../types/Quat2Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Quat2Like</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a><a href="#fromQuat2.fromQuat2-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets a <a href="Mat4.html">Mat4</a> from a <a href="Quat2.html">Quat2</a>.</p>
+
+<h3>Returns</h3><p><code>out</code></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>out: <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h5>
+<div class="tsd-comment tsd-typography"><p>Matrix</p>
+</div></li>
+<li>
+<h5>a: <a href="../types/Quat2Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Quat2Like</a></h5>
+<div class="tsd-comment tsd-typography"><p>Dual Quaternion</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1270">src/mat4.ts:1270</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="getTranslation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>get<wbr/>Translation</span><a href="#getTranslation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2129,7 +2153,7 @@ originally supplied.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec3Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec3Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1306">src/mat4.ts:1306</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1307">src/mat4.ts:1307</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="getScaling" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>get<wbr/>Scaling</span><a href="#getScaling" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2156,7 +2180,7 @@ originally supplied.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec3Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec3Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1326">src/mat4.ts:1326</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1327">src/mat4.ts:1327</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="getRotation" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>get<wbr/>Rotation</span><a href="#getRotation" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2182,7 +2206,7 @@ same as the quaternion originally supplied.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1355">src/mat4.ts:1355</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1356">src/mat4.ts:1356</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="decompose" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>decompose</span><a href="#decompose" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2214,7 +2238,7 @@ and scale components. Returns only the rotation component</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1415">src/mat4.ts:1415</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1416">src/mat4.ts:1416</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromRotationTranslationScale" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Rotation<wbr/>Translation<wbr/>Scale</span><a href="#fromRotationTranslationScale" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2248,7 +2272,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1498">src/mat4.ts:1498</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1499">src/mat4.ts:1499</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromRotationTranslationScaleOrigin" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Rotation<wbr/>Translation<wbr/>Scale<wbr/>Origin</span><a href="#fromRotationTranslationScaleOrigin" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2286,7 +2310,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1562">src/mat4.ts:1562</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1563">src/mat4.ts:1563</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromQuat" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Quat</span><a href="#fromQuat" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2309,7 +2333,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1628">src/mat4.ts:1628</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1629">src/mat4.ts:1629</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="frustum" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>frustum</span><a href="#frustum" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2352,7 +2376,7 @@ This is equivalent to (but much faster than):</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1683">src/mat4.ts:1683</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1684">src/mat4.ts:1684</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="perspectiveNO-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>perspectiveNO</span><a href="#perspectiveNO-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2390,7 +2414,7 @@ Passing null/undefined/no value for far will generate infinite projection matrix
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1720">src/mat4.ts:1720</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1721">src/mat4.ts:1721</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="perspective" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>perspective</span><a href="#perspective" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2415,7 +2439,7 @@ Passing null/undefined/no value for far will generate infinite projection matrix
 <h5>far: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1752">src/mat4.ts:1752</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1753">src/mat4.ts:1753</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="perspectiveZO-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>perspectiveZO</span><a href="#perspectiveZO-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2453,7 +2477,7 @@ Passing null/undefined/no value for far will generate infinite projection matrix
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1768">src/mat4.ts:1768</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1769">src/mat4.ts:1769</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="perspectiveFromFieldOfView" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>perspective<wbr/>From<wbr/>Field<wbr/>Of<wbr/>View</span><a href="#perspectiveFromFieldOfView" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2487,7 +2511,7 @@ with the still experiemental WebVR API.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1808">src/mat4.ts:1808</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1809">src/mat4.ts:1809</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="orthoNO-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>orthoNO</span><a href="#orthoNO-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2532,7 +2556,7 @@ which matches WebGL/OpenGL&#39;s clip volume.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1850">src/mat4.ts:1850</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1851">src/mat4.ts:1851</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="ortho" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>ortho</span><a href="#ortho" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2561,7 +2585,7 @@ which matches WebGL/OpenGL&#39;s clip volume.</p>
 <h5>far: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1878">src/mat4.ts:1878</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1879">src/mat4.ts:1879</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="orthoZO-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>orthoZO</span><a href="#orthoZO-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2606,7 +2630,7 @@ which matches WebGPU/Vulkan/DirectX/Metal&#39;s clip volume.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1895">src/mat4.ts:1895</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1896">src/mat4.ts:1896</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="lookAt" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>look<wbr/>At</span><a href="#lookAt" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2638,7 +2662,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L1929">src/mat4.ts:1929</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L1930">src/mat4.ts:1930</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="targetTo" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>target<wbr/>To</span><a href="#targetTo" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2669,7 +2693,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2018">src/mat4.ts:2018</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2019">src/mat4.ts:2019</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="frob" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>frob</span><a href="#frob" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2688,7 +2712,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2076">src/mat4.ts:2076</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2077">src/mat4.ts:2077</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="add" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>add</span><a href="#add" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2715,7 +2739,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2106">src/mat4.ts:2106</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2107">src/mat4.ts:2107</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="subtract" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>subtract</span><a href="#subtract" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2742,7 +2766,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2135">src/mat4.ts:2135</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2136">src/mat4.ts:2136</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="sub" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>sub</span><a href="#sub" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2761,7 +2785,7 @@ If you want a matrix that actually makes an object look at another object, you s
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2158">src/mat4.ts:2158</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2159">src/mat4.ts:2159</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiplyScalar" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>multiply<wbr/>Scalar</span><a href="#multiplyScalar" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2788,7 +2812,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2169">src/mat4.ts:2169</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2170">src/mat4.ts:2170</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiplyScalarAndAdd" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>multiply<wbr/>Scalar<wbr/>And<wbr/>Add</span><a href="#multiplyScalarAndAdd" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2819,7 +2843,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Mat4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Mat4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2199">src/mat4.ts:2199</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2200">src/mat4.ts:2200</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="exactEquals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>exact<wbr/>Equals</span><a href="#exactEquals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2842,7 +2866,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2227">src/mat4.ts:2227</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2228">src/mat4.ts:2228</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="equals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>equals</span><a href="#equals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2865,7 +2889,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2256">src/mat4.ts:2256</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2257">src/mat4.ts:2257</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="str-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>str</span><a href="#str-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2884,7 +2908,7 @@ If you want a matrix that actually makes an object look at another object, you s
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L2318">src/mat4.ts:2318</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L2319">src/mat4.ts:2319</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="_toStringTag_" class="tsd-anchor"></a>
@@ -2947,7 +2971,7 @@ If you want a matrix that actually makes an object look at another object, you s
 <div class="tsd-comment tsd-typography"><p>The number of bytes in a <a href="Mat4.html">Mat4</a>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L31">src/mat4.ts:31</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L32">src/mat4.ts:32</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Constructors</h2>
 <section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"><a id="constructor" class="tsd-anchor"></a>
@@ -2965,7 +2989,7 @@ If you want a matrix that actually makes an object look at another object, you s
 <h4 class="tsd-returns-title">Returns <a href="Mat4.html" class="tsd-signature-type" data-tsd-kind="Class">Mat4</a></h4><aside class="tsd-sources">
 <p>Overrides Float32Array.constructor</p>
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L36">src/mat4.ts:36</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L37">src/mat4.ts:37</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="str" class="tsd-anchor"></a>
@@ -2978,7 +3002,7 @@ Equivalent to <code>Mat4.str(this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/05440d2/src/mat4.ts#L67">src/mat4.ts:67</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/mat4.ts#L68">src/mat4.ts:68</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/toji/gl-matrix" target="_blank">GitHub Repo</a></nav>
 <div class="tsd-navigation settings">
@@ -3086,6 +3110,7 @@ Equivalent to <code>Mat4.str(this);</code></p>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#fromYRotation" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fromYRotation</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#fromZRotation" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>fromZRotation</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#fromRotationTranslation" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>from<wbr/>Rotation<wbr/>Translation</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#fromQuat2" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>from<wbr/>Quat2</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#getTranslation" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Translation</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#getScaling" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Scaling</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Mat4.html#getRotation" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>get<wbr/>Rotation</a></li>
