@@ -1769,17 +1769,32 @@ export function lookAt(out, eye, center, up) {
   x0 = upy * z2 - upz * z1;
   x1 = upz * z0 - upx * z2;
   x2 = upx * z1 - upy * z0;
-  len = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
-  if (!len) {
-    x0 = 0;
-    x1 = 0;
-    x2 = 0;
-  } else {
-    len = 1 / len;
-    x0 *= len;
-    x1 *= len;
-    x2 *= len;
+  len = x0 * x0 + x1 * x1 + x2 * x2;
+  if (len === 0) {
+    // up and z are parallel
+    if (Math.abs(upz) === 1) {
+      z0 += 0.0001;
+    }
+    else {
+      z2 += 0.0001;
+    }
+
+    len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+    z0 *= len;
+    z1 *= len;
+    z2 *= len;
+
+    x0 = upy * z2 - upz * z1,
+    x1 = upz * z0 - upx * z2,
+    x2 = upx * z1 - upy * z0;
+
+    len = x0 * x0 + x1 * x1 + x2 * x2;
   }
+  
+  len = 1 / Math.sqrt(len);
+  x0 *= len;
+  x1 *= len;
+  x2 *= len;
 
   y0 = z1 * x2 - z2 * x1;
   y1 = z2 * x0 - z0 * x2;
@@ -1851,12 +1866,32 @@ export function targetTo(out, eye, target, up) {
     x2 = upx * z1 - upy * z0;
 
   len = x0 * x0 + x1 * x1 + x2 * x2;
-  if (len > 0) {
-    len = 1 / Math.sqrt(len);
-    x0 *= len;
-    x1 *= len;
-    x2 *= len;
+  if (len === 0) {
+    // up and z are parallel
+    if (Math.abs(upz) === 1) {
+      z0 += 0.0001;
+    }
+    else {
+      z2 += 0.0001;
+    }
+
+    len = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+    z0 *= len;
+    z1 *= len;
+    z2 *= len;
+
+    x0 = upy * z2 - upz * z1,
+    x1 = upz * z0 - upx * z2,
+    x2 = upx * z1 - upy * z0;
+
+    len = x0 * x0 + x1 * x1 + x2 * x2;
   }
+
+  len = 1 / Math.sqrt(len);
+  x0 *= len;
+  x1 *= len;
+  x2 *= len;
+
 
   out[0] = x0;
   out[1] = x1;
