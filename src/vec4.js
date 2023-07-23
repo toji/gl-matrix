@@ -448,16 +448,17 @@ export function random(out, scale) {
   // http://projecteuclid.org/euclid.aoms/1177692644;
   var v1, v2, v3, v4;
   var s1, s2;
-  do {
-    v1 = glMatrix.RANDOM() * 2 - 1;
-    v2 = glMatrix.RANDOM() * 2 - 1;
-    s1 = v1 * v1 + v2 * v2;
-  } while (s1 >= 1);
-  do {
-    v3 = glMatrix.RANDOM() * 2 - 1;
-    v4 = glMatrix.RANDOM() * 2 - 1;
-    s2 = v3 * v3 + v4 * v4;
-  } while (s2 >= 1);
+  var rand;
+  
+  rand = glMatrix.RANDOM();
+  v1 = rand * 2 - 1;
+  v2 = (4 * glMatrix.RANDOM() - 2) * Math.sqrt(rand * -rand + rand);
+  s1 = v1 * v1 + v2 * v2;
+
+  rand = glMatrix.RANDOM();
+  v3 = rand * 2 - 1;
+  v4 = (4 * glMatrix.RANDOM() - 2) * Math.sqrt(rand * -rand + rand);
+  s2 = v3 * v3 + v4 * v4;
 
   var d = Math.sqrt((1 - s1) / s2);
   out[0] = scale * v1;
