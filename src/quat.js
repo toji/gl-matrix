@@ -453,7 +453,7 @@ export function fromMat3(out, m) {
  * @param {Number} x Angle to rotate around X axis in degrees.
  * @param {Number} y Angle to rotate around Y axis in degrees.
  * @param {Number} z Angle to rotate around Z axis in degrees.
- * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
+ * @param {'xyz'|'xzy'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
  * @returns {quat} out
  * @function
  */
