@@ -34,6 +34,8 @@ export function setMatrixArrayType(type) {
 
 const degree = Math.PI / 180;
 
+const radian = 180 / Math.PI;
+
 /**
  * Convert Degree To Radian
  *
@@ -41,6 +43,15 @@ const degree = Math.PI / 180;
  */
 export function toRadian(a) {
   return a * degree;
+}
+
+/**
+ * Convert Radian To Degree
+ *
+ * @param {Number} a Angle in Radians
+ */
+export function toDegree(a) {
+  return a * radian;
 }
 
 /**
