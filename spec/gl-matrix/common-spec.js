@@ -8,6 +8,11 @@ describe("common", function(){
     it("should return a value of 3.141592654(Math.PI)", function(){ expect(result).toBeEqualish(Math.PI); });
   });
 
+  describe("toDegree", function(){
+    beforeEach(function(){ result = glMatrix.toDegree(Math.PI); });
+    it("should return a value of 180", function(){ expect(result).toBeEqualish(180); });
+  });
+
   describe("equals", function() {
     let r0, r1, r2;
     beforeEach(function() {
