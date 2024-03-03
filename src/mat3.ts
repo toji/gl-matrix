@@ -826,6 +826,45 @@ export class Mat3 extends Float32Array {
   }
 
   /**
+   * Calculates a {@link Mat3} normal matrix (transpose inverse) from a {@link Mat4}
+   * This version omits the calculation of the constant factor (1/determinant), so
+   * any normals transformed with it will need to be renormalized.
+   * From https://stackoverflow.com/a/27616419/25968
+   * @category Static
+   *
+   * @param out - Matrix receiving operation result
+   * @param a - Mat4 to derive the normal matrix from
+   * @returns `out`
+   */
+  static normalFromMat4Fast(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like {
+    const ax = a[0];
+    const ay = a[1];
+    const az = a[2];
+
+    const bx = a[4];
+    const by = a[5];
+    const bz = a[6];
+
+    const cx = a[8];
+    const cy = a[9];
+    const cz = a[10];
+
+    out[0] = by * cz - cz * cy;
+    out[1] = bz * cx - cx * cz;
+    out[2] = bx * cy - cy * cx;
+
+    out[3] = cy * az - cz * ay;
+    out[4] = cz * ax - cx * az;
+    out[5] = cx * ay - cy * ax;
+
+    out[6] = ay * bz - az * by;
+    out[7] = az * bx - ax * bz;
+    out[8] = ax * by - ay * bx;
+
+    return out;
+  }
+
+  /**
    * Generates a 2D projection matrix with the given bounds
    * @category Static
    *
