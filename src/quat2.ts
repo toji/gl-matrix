@@ -1,16 +1,16 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Mat4, Mat4Like } from './mat4.js';
 import { Quat, QuatLike } from './quat.js';
 import { Vec3, Vec3Like } from './vec3.js';
 
 /**
- * A Dual Quaternion given as a {@link Quat2}, an 8-element Float32Array, or
- * an array of 8 numbers.
+ * A Dual Quaternion given as a {@link Quat2}, an 8-element floating point
+ * TypedArray, or an array of 8 numbers.
  */
 export type Quat2Like = [
   number, number, number, number,
   number, number, number, number
-] | Float32Array;
+] | FloatArray;
 
 /**
  * Dual Quaternion

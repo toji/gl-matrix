@@ -1,12 +1,12 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Mat4Like } from './mat4.js';
 import { QuatLike } from './quat.js';
 
 /**
- * A 4 dimensional vector given as a {@link Vec4}, a 4-element Float32Array, or
- * an array of 4 numbers.
+ * A 4 dimensional vector given as a {@link Vec4}, a 4-element floating point
+ * TypedArray, or an array of 4 numbers.
  */
-export type Vec4Like = [number, number, number, number] | Float32Array;
+export type Vec4Like = [number, number, number, number] | FloatArray;
 
 /**
  * 4 Dimensional Vector
@@ -111,7 +111,7 @@ export class Vec4 extends Float32Array {
    * Equivalent to `Vec4.magnitude(this);`
    *
    * Magnitude is used because the `length` attribute is already defined by
-   * `Float32Array` to mean the number of elements in the array.
+   * TypedArrays to mean the number of elements in the array.
    */
   get magnitude(): number {
     const x = this[0];

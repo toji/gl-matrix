@@ -1,16 +1,14 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Mat2Like } from './mat2.js';
 import { Mat2dLike } from './mat2d.js';
 import { Mat3Like } from './mat3.js';
 import { Mat4Like } from './mat4.js';
-import { Vec3 } from './vec3.js';
-import { Vec4 } from './vec4.js';
 
 /**
- * A 2 dimensional vector given as a {@link Vec2}, a 2-element Float32Array, or
- * an array of 2 numbers.
+ * A 2 dimensional vector given as a {@link Vec2}, a 2-element floating point
+ * TypedArray, or an array of 2 numbers.
  */
-export type Vec2Like = [number, number] | Float32Array;
+export type Vec2Like = [number, number] | FloatArray;
 
 /**
  * 2 Dimensional Vector
@@ -92,7 +90,7 @@ export class Vec2 extends Float32Array {
    * Equivalent to `Vec2.magnitude(this);`
    *
    * Magnitude is used because the `length` attribute is already defined by
-   * `Float32Array` to mean the number of elements in the array.
+   * TypedArrays to mean the number of elements in the array.
    */
   get magnitude(): number {
     return Math.hypot(this[0], this[1]);
@@ -930,4 +928,4 @@ Vec2.len = Vec2.magnitude;
 /**
  * Vec2 alias for backwards compatibility
  */
- export const vec2 = Vec2;
+export const vec2 = Vec2;

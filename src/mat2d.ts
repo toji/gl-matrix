@@ -1,15 +1,15 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Vec2Like } from './vec2.js';
 
 /**
- * A 2x3 Matrix given as a {@link Mat2d}, a 6-element Float32Array, or an array
- * of 6 numbers.
+ * A 2x3 Matrix given as a {@link Mat2d}, a 6-element floating point TypedArray,
+ * or an array of 6 numbers.
  */
 export type Mat2dLike = [
   number, number,
   number, number,
   number, number
-] | Float32Array;
+] | FloatArray;
 
 const IDENTITY_2X3 = new Float32Array([
   1, 0,

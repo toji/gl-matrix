@@ -1,14 +1,14 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Vec2Like } from './vec2.js';
 
 /**
- * A 2x2 Matrix given as a {@link Mat2}, a 4-element Float32Array, or an array
- * of 4 numbers.
+ * A 2x2 Matrix given as a {@link Mat2}, a 4-element floating point TypedArray,
+ * or an array of 4 numbers.
  */
 export type Mat2Like = [
   number, number,
   number, number
-] | Float32Array;
+] | FloatArray;
 
 const IDENTITY_2X2 = new Float32Array([
   1, 0,

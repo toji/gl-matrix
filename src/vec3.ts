@@ -1,13 +1,13 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Mat4Like } from './mat4.js';
 import { Mat3Like } from './mat3.js';
 import { QuatLike } from './quat.js';
 
 /**
- * A 3 dimensional vector given as a {@link Vec3}, a 3-element Float32Array, or
- * an array of 3 numbers.
+ * A 3 dimensional vector given as a {@link Vec3}, a 3-element floating point
+ * TypedArray, or an array of 3 numbers.
  */
-export type Vec3Like = [number, number, number] | Float32Array;
+export type Vec3Like = [number, number, number] | FloatArray;
 
  /**
   * 3 Dimensional Vector
@@ -98,7 +98,7 @@ export class Vec3 extends Float32Array {
    * Equivalent to `Vec3.magnitude(this);`
    *
    * Magnitude is used because the `length` attribute is already defined by
-   * `Float32Array` to mean the number of elements in the array.
+   * TypedArrays to mean the number of elements in the array.
    */
   get magnitude(): number {
     const x = this[0];

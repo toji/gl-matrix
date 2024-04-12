@@ -1,19 +1,18 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Vec3, Vec3Like } from './vec3.js';
-import { Vec4Like } from './vec4.js';
 import { QuatLike } from './quat.js';
 import { Quat2Like } from './quat2.js';
 
 /**
- * A 4x4 Matrix given as a {@link Mat4}, a 16-element Float32Array, or an array
- * of 16 numbers.
+ * A 4x4 Matrix given as a {@link Mat4}, a 16-element floating point TypedArray,
+ * or an array of 16 numbers.
  */
 export type Mat4Like = [
   number, number, number, number,
   number, number, number, number,
   number, number, number, number,
   number, number, number, number
-] | Float32Array;
+] | FloatArray;
 
 const IDENTITY_4X4 = new Float32Array([
   1, 0, 0, 0,

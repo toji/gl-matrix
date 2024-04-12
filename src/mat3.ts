@@ -1,18 +1,18 @@
-import { EPSILON } from './common.js';
+import { EPSILON, FloatArray } from './common.js';
 import { Mat2dLike } from './mat2d.js';
 import { Mat4Like } from './mat4.js';
 import { Vec2Like } from './vec2.js';
 import { QuatLike } from './quat.js';
 
 /**
- * A 3x3 Matrix given as a {@link Mat3}, a 9-element Float32Array, or an array
- * of 9 numbers.
+ * A 3x3 Matrix given as a {@link Mat3}, a 9-element floating point TypedArray,
+ * or an array of 9 numbers.
  */
 export type Mat3Like = [
   number, number, number,
   number, number, number,
   number, number, number
-] | Float32Array;
+] | FloatArray;
 
 const IDENTITY_3X3 = new Float32Array([
   1, 0, 0,

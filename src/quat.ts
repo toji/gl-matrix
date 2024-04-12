@@ -1,11 +1,11 @@
-import { EPSILON } from './common.js';
+import { EPSILON, ANGLE_ORDER } from './common.js';
 import { Mat3, Mat3Like } from './mat3.js';
 import { Vec3, Vec3Like } from './vec3.js';
 import { Vec4, Vec4Like } from './vec4.js';
 
 /**
- * A Quaternion given as a {@link Quat}, a 4-element Float32Array, or
- * an array of 4 numbers.
+ * A Quaternion given as a {@link Quat}, a 4-element floating point TypedArray,
+ * or an array of 4 numbers.
  */
 export type QuatLike = Vec4Like;
 
@@ -83,7 +83,7 @@ export class Quat extends Float32Array {
    * Equivalent to `Quat.magnitude(this);`
    *
    * Magnitude is used because the `length` attribute is already defined by
-   * `Float32Array` to mean the number of elements in the array.
+   * TypedArrays to mean the number of elements in the array.
    */
   get magnitude(): number {
     const x = this[0];
@@ -684,9 +684,10 @@ export class Quat extends Float32Array {
    * @param x - Angle to rotate around X axis in degrees.
    * @param y - Angle to rotate around Y axis in degrees.
    * @param z - Angle to rotate around Z axis in degrees.
+   * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order - Intrinsic order for conversion, default is zyx.
    * @returns `out`
    */
-  static fromEuler(out: QuatLike, x: number, y: number, z: number): QuatLike {
+  static fromEuler(out: QuatLike, x: number, y: number, z: number, order = ANGLE_ORDER): QuatLike {
     let halfToRad = (0.5 * Math.PI) / 180.0;
     x *= halfToRad;
     y *= halfToRad;
@@ -699,10 +700,52 @@ export class Quat extends Float32Array {
     let sz = Math.sin(z);
     let cz = Math.cos(z);
 
-    out[0] = sx * cy * cz - cx * sy * sz;
-    out[1] = cx * sy * cz + sx * cy * sz;
-    out[2] = cx * cy * sz - sx * sy * cz;
-    out[3] = cx * cy * cz + sx * sy * sz;
+    switch (order) {
+      case 'xyz':
+        out[0] = sx * cy * cz + cx * sy * sz;
+        out[1] = cx * sy * cz - sx * cy * sz;
+        out[2] = cx * cy * sz + sx * sy * cz;
+        out[3] = cx * cy * cz - sx * sy * sz;
+        break;
+
+      case 'xzy':
+        out[0] = sx * cy * cz - cx * sy * sz;
+        out[1] = cx * sy * cz - sx * cy * sz;
+        out[2] = cx * cy * sz + sx * sy * cz;
+        out[3] = cx * cy * cz + sx * sy * sz;
+        break;
+
+      case 'yxz':
+        out[0] = sx * cy * cz + cx * sy * sz;
+        out[1] = cx * sy * cz - sx * cy * sz;
+        out[2] = cx * cy * sz - sx * sy * cz;
+        out[3] = cx * cy * cz + sx * sy * sz;
+        break;
+
+      case 'yzx':
+        out[0] = sx * cy * cz + cx * sy * sz;
+        out[1] = cx * sy * cz + sx * cy * sz;
+        out[2] = cx * cy * sz - sx * sy * cz;
+        out[3] = cx * cy * cz - sx * sy * sz;
+        break;
+
+      case 'zxy':
+        out[0] = sx * cy * cz - cx * sy * sz;
+        out[1] = cx * sy * cz + sx * cy * sz;
+        out[2] = cx * cy * sz + sx * sy * cz;
+        out[3] = cx * cy * cz - sx * sy * sz;
+        break;
+
+      case 'zyx':
+        out[0] = sx * cy * cz - cx * sy * sz;
+        out[1] = cx * sy * cz + sx * cy * sz;
+        out[2] = cx * cy * sz - sx * sy * cz;
+        out[3] = cx * cy * cz + sx * sy * sz;
+        break;
+
+      default:
+        throw new Error('Unknown angle order ' + order);
+    }
 
     return out;
   }

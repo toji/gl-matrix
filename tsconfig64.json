@@ -3,12 +3,12 @@
     "target": "esnext",
     "module": "esnext",
     "lib": ["esnext", "dom"],
-    "outDir": "dist/esm",
-    "rootDir": "./src",
+    "outDir": "dist/esm/f64",
+    "rootDir": "./f64/src",
     "sourceMap": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true
   },
-  "include": ["src/**/*"],
+  "include": ["f64/src/**/*"],
 }

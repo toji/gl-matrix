@@ -7,6 +7,7 @@ import { Quat2, quat2, Quat2Like } from './quat2.js';
 import { Vec2, vec2, Vec2Like } from './vec2.js';
 import { Vec3, vec3, Vec3Like } from './vec3.js';
 import { Vec4, vec4, Vec4Like } from './vec4.js';
+import { FloatArray } from './common.js';
 import { EnableSwizzles } from './swizzle.js';
 
 export {
@@ -19,5 +20,6 @@ export {
   Vec2, vec2, Vec2Like,
   Vec3, vec3, Vec3Like,
   Vec4, vec4, Vec4Like,
+  FloatArray,
   EnableSwizzles
 };

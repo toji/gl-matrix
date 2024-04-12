@@ -1,7 +1,6 @@
 import { expect, describe, it, beforeEach } from 'vitest';
 import "./test-utils"
 import { Mat2 } from "../src/mat2"
-import { Vec2 } from "../src/vec2"
 
 describe("Mat2", function() {
   describe("constructor", () => {
