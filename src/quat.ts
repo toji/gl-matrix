@@ -1,5 +1,5 @@
 import { EPSILON, ANGLE_ORDER } from './common.js';
-import { Mat3, Mat3Like } from './mat3.js';
+import { Mat3Like } from './mat3.js';
 import { Vec3, Vec3Like } from './vec3.js';
 import { Vec4, Vec4Like } from './vec4.js';
 
@@ -964,7 +964,7 @@ export class Quat extends Float32Array {
     let dot = Vec3.dot(a, b);
     if (dot < -0.999999) {
       Vec3.cross(tmpVec3, xUnitVec3, a);
-      if (Vec3.len(tmpVec3) < 0.000001) Vec3.cross(tmpVec3, yUnitVec3, a);
+      if (Vec3.mag(tmpVec3) < 0.000001) Vec3.cross(tmpVec3, yUnitVec3, a);
       Vec3.normalize(tmpVec3, tmpVec3);
       Quat.setAxisAngle(out, tmpVec3, Math.PI);
       return out;
@@ -997,9 +997,9 @@ export class Quat extends Float32Array {
    * @returns `out`
    */
   static sqlerp(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>, c: Readonly<QuatLike>, d: Readonly<QuatLike>, t: number): QuatLike {
-    Quat.slerp(temp1, a, d, t);
-    Quat.slerp(temp2, b, c, t);
-    Quat.slerp(out, temp1, temp2, 2 * t * (1 - t));
+    Quat.slerp(tmpQuat1, a, d, t);
+    Quat.slerp(tmpQuat2, b, c, t);
+    Quat.slerp(out, tmpQuat1, tmpQuat2, 2 * t * (1 - t));
 
     return out;
   }
@@ -1017,30 +1017,31 @@ export class Quat extends Float32Array {
    * @returns `out`
    */
   static setAxes(out: QuatLike, view: Readonly<Vec3Like>, right: Readonly<Vec3Like>, up: Readonly<Vec3Like>): QuatLike {
-    tempMat3[0] = right[0];
-    tempMat3[3] = right[1];
-    tempMat3[6] = right[2];
+    tmpMat3[0] = right[0];
+    tmpMat3[3] = right[1];
+    tmpMat3[6] = right[2];
 
-    tempMat3[1] = up[0];
-    tempMat3[4] = up[1];
-    tempMat3[7] = up[2];
+    tmpMat3[1] = up[0];
+    tmpMat3[4] = up[1];
+    tmpMat3[7] = up[2];
 
-    tempMat3[2] = -view[0];
-    tempMat3[5] = -view[1];
-    tempMat3[8] = -view[2];
+    tmpMat3[2] = -view[0];
+    tmpMat3[5] = -view[1];
+    tmpMat3[8] = -view[2];
 
-    return Quat.normalize(out, Quat.fromMat3(out, tempMat3));
+    return Quat.normalize(out, Quat.fromMat3(out, tmpMat3));
   }
 }
 
 // Temporary variables to prevent repeated allocations in the algorithms above.
-const temp1 = new Quat();
-const temp2 = new Quat();
-const tempMat3 = new Mat3();
+// These are declared as TypedArrays to aid in tree-shaking.
+const tmpQuat1 = new Float32Array(4);
+const tmpQuat2 = new Float32Array(4);
+const tmpMat3 = new Float32Array(9);
 
-const tmpVec3 = new Vec3();
-const xUnitVec3 = new Vec3(1, 0, 0);
-const yUnitVec3 = new Vec3(0, 1, 0);
+const tmpVec3 = new Float32Array(3);
+const xUnitVec3 = new Float32Array([1, 0, 0]);
+const yUnitVec3 = new Float32Array([0, 1, 0]);
 
 // Methods which re-use the Vec4 implementation
 Quat.set = Vec4.set;

@@ -302,9 +302,9 @@ export class Mat3 extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out`
+   * @returns `out` or `null` if the matrix is not invertable
    */
-  static invert(out: Mat3Like, a: Mat3Like): Mat3Like {
+  static invert(out: Mat3Like, a: Mat3Like): Mat3Like | null {
     const a00 = a[0],
       a01 = a[1],
       a02 = a[2];
@@ -768,9 +768,9 @@ export class Mat3 extends Float32Array {
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-   * @returns `out`
+   * @returns `out` or `null` if the matrix is not invertable
    */
-  static normalFromMat4(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like {
+  static normalFromMat4(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like | null {
     const a00 = a[0];
     const a01 = a[1];
     const a02 = a[2];

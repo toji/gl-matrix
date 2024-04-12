@@ -260,9 +260,9 @@ export class Mat2 extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out`
+   * @returns `out` or `null` if the matrix is not invertable
    */
-  static invert(out: Mat2Like, a: Mat2Like): Mat2Like {
+  static invert(out: Mat2Like, a: Mat2Like): Mat2Like | null {
     const a0 = a[0];
     const a1 = a[1];
     const a2 = a[2];

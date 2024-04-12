@@ -38,6 +38,9 @@ function copyDir(srcDir) {
   }
 }
 
+// Clean any existing files
+fs.rmSync(OUT_PATH, { recursive: true, force: true });
+
 // Copy src
 copyDir(SRC_PATH);
 

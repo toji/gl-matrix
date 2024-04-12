@@ -729,8 +729,10 @@ describe("Mat4", () => {
       });
     });
 
-    describe("frustum", () => {
-      beforeEach(() => { result = Mat4.frustum(out, -1, 1, -1, 1, -1, 1); });
+    describe("frustumNO", () => {
+      it("should have an alias called 'frustum'", () => { expect(Mat4.frustumNO).toEqual(Mat4.frustum); });
+
+      beforeEach(() => { result = Mat4.frustumNO(out, -1, 1, -1, 1, -1, 1); });
       it("should place values into out", () => { expect(result).toBeVec(
           -1, 0, 0, 0,
           0, -1, 0, 0,
@@ -739,11 +741,45 @@ describe("Mat4", () => {
         );
       });
       it("should return out", () => { expect(result).toBe(out); });
+
+      describe("with an Infinite far plane", () => {
+        beforeEach(() => { result = Mat4.frustumNO(out, -1, 1, -1, 1, -1, Infinity); });
+        it("should calculate correct matrix", () => { expect(result).toBeVec(
+          -1, 0, 0, 0,
+          0, -1, 0, 0,
+          0, 0, -1, -1,
+          0, 0, 2, 0
+        ); });
+      });
     });
 
-    describe("perspective", () => {
+    describe("frustumZO", () => {
+      beforeEach(() => { result = Mat4.frustumZO(out, -1, 1, -1, 1, -1, 1); });
+      it("should place values into out", () => { expect(result).toBeVec(
+          -1, 0, 0, 0,
+          0, -1, 0, 0,
+          0, 0, -0.5, -1,
+          0, 0, 0.5, 0
+        );
+      });
+      it("should return out", () => { expect(result).toBe(out); });
+
+      describe("with an Infinite far plane", () => {
+        beforeEach(() => { result = Mat4.frustumZO(out, -1, 1, -1, 1, -1, Infinity); });
+        it("should calculate correct matrix", () => { expect(result).toBeVec(
+          -1, 0, 0, 0,
+          0, -1, 0, 0,
+          0, 0, -1, -1,
+          0, 0, 1, 0
+        ); });
+      });
+    });
+
+    describe("perspectiveNO", () => {
+      it("should have an alias called 'perspective'", () => { expect(Mat4.perspectiveNO).toEqual(Mat4.perspective); });
+
       let fovy = Math.PI * 0.5;
-      beforeEach(() => { result = Mat4.perspective(out, fovy, 1, 0, 1); });
+      beforeEach(() => { result = Mat4.perspectiveNO(out, fovy, 1, 0, 1); });
       it("should place values into out", () => { expect(result).toBeVec(
           1, 0, 0, 0,
           0, 1, 0, 0,
@@ -754,7 +790,7 @@ describe("Mat4", () => {
       it("should return out", () => { expect(result).toBe(out); });
 
       describe("with nonzero near, 45deg fovy, and realistic aspect ratio", () => {
-        beforeEach(() => { result = Mat4.perspective(out, 45 * Math.PI / 180.0, 640/480, 0.1, 200); });
+        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640/480, 0.1, 200); });
         it("should calculate correct matrix", () => { expect(result).toBeVec(
           1.81066, 0, 0, 0,
           0, 2.414213, 0, 0,
@@ -764,7 +800,7 @@ describe("Mat4", () => {
       });
 
       describe("with no far plane, 45deg fovy, and realistic aspect ratio", () => {
-        beforeEach(() => { result = Mat4.perspective(out, 45 * Math.PI / 180.0, 640/480, 0.1); });
+        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640/480, 0.1); });
         it("should calculate correct matrix", () => { expect(result).toBeVec(
           1.81066, 0, 0, 0,
           0, 2.414213, 0, 0,
@@ -774,7 +810,7 @@ describe("Mat4", () => {
       });
 
       describe("with infinite far plane, 45deg fovy, and realistic aspect ratio", () => {
-        beforeEach(() => { result = Mat4.perspective(out, 45 * Math.PI / 180.0, 640/480, 0.1, Infinity); });
+        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640/480, 0.1, Infinity); });
         it("should calculate correct matrix", () => { expect(result).toBeVec(
           1.81066, 0, 0, 0,
           0, 2.414213, 0, 0,
@@ -784,8 +820,10 @@ describe("Mat4", () => {
       });
     });
 
-    describe("ortho", () => {
-      beforeEach(() => { result = Mat4.ortho(out, -1, 1, -1, 1, -1, 1); });
+    describe("orthoNO", () => {
+      it("should have an alias called 'ortho'", () => { expect(Mat4.orthoNO).toEqual(Mat4.ortho); });
+
+      beforeEach(() => { result = Mat4.orthoNO(out, -1, 1, -1, 1, -1, 1); });
       it("should place values into out", () => { expect(result).toBeVec(
           1, 0, 0, 0,
           0, 1, 0, 0,

@@ -235,9 +235,9 @@ export class Mat2d extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out`
+   * @returns `out` or `null` if the matrix is not invertable
    */
-  static invert(out: Mat2dLike, a: Mat2dLike): Mat2dLike {
+  static invert(out: Mat2dLike, a: Mat2dLike): Mat2dLike | null {
     const aa = a[0];
     const ab = a[1];
     const ac = a[2];

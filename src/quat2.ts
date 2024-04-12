@@ -1,7 +1,7 @@
 import { EPSILON, FloatArray } from './common.js';
 import { Mat4, Mat4Like } from './mat4.js';
 import { Quat, QuatLike } from './quat.js';
-import { Vec3, Vec3Like } from './vec3.js';
+import { Vec3Like } from './vec3.js';
 
 /**
  * A Dual Quaternion given as a {@link Quat2}, an 8-element floating point
@@ -221,9 +221,9 @@ export class Quat2 extends Float32Array {
    * @returns `out`
    */
   static fromMat4(out: Quat2Like, a: Readonly<Mat4Like>): Quat2Like {
-    Mat4.getRotation(tempQuat, a);
-    Mat4.getTranslation(tempVec3, a);
-    return Quat2.fromRotationTranslation(out, tempQuat, tempVec3);
+    Mat4.getRotation(tmpQuat, a);
+    Mat4.getTranslation(tmpVec3, a);
+    return Quat2.fromRotationTranslation(out, tmpQuat, tmpVec3);
   }
 
   /**
@@ -977,8 +977,9 @@ export class Quat2 extends Float32Array {
 }
 
 // Temporary variables to prevent repeated allocations in the algorithms above.
-const tempQuat = new Quat();
-const tempVec3 = new Vec3();
+// These are declared as TypedArrays to aid in tree-shaking.
+const tmpQuat = new Float32Array(4);
+const tmpVec3 = new Float32Array(3);
 
 // Methods which re-use the Quat implementation
 // @ts-ignore

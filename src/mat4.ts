@@ -1,5 +1,5 @@
 import { EPSILON, FloatArray } from './common.js';
-import { Vec3, Vec3Like } from './vec3.js';
+import { Vec3Like } from './vec3.js';
 import { QuatLike } from './quat.js';
 import { Quat2Like } from './quat2.js';
 
@@ -446,9 +446,9 @@ export class Mat4 extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out`
+   * @returns `out` or `null` if the matrix is not invertable
    */
-  static invert(out: Mat4Like, a: Mat4Like): Mat4Like {
+  static invert(out: Mat4Like, a: Mat4Like): Mat4Like | null {
     const a00 = a[0],
       a01 = a[1],
       a02 = a[2],
@@ -774,9 +774,9 @@ export class Mat4 extends Float32Array {
    * @param a - the matrix to rotate
    * @param rad - the angle to rotate the matrix by
    * @param axis - the axis to rotate around
-   * @returns `out`
+   * @returns `out` or `null` if axis has a length of 0
    */
-  static rotate(out: Mat4Like, a: Readonly<Mat4Like>, rad: number, axis: Readonly<Vec3Like>): Mat4Like {
+  static rotate(out: Mat4Like, a: Readonly<Mat4Like>, rad: number, axis: Readonly<Vec3Like>): Mat4Like | null {
     let x = axis[0];
     let y = axis[1];
     let z = axis[2];
@@ -1053,9 +1053,9 @@ export class Mat4 extends Float32Array {
    * @param out - {@link Mat4} receiving operation result
    * @param rad - the angle to rotate the matrix by
    * @param axis - the axis to rotate around
-   * @returns `out`
+   * @returns `out` or `null` if `axis` has a length of 0
    */
-  static fromRotation(out: Mat4Like, rad: number, axis: Readonly<Vec3Like>): Mat4Like {
+  static fromRotation(out: Mat4Like, rad: number, axis: Readonly<Vec3Like>): Mat4Like | null {
     let x = axis[0];
     let y = axis[1];
     let z = axis[2];
@@ -1267,7 +1267,6 @@ export class Mat4 extends Float32Array {
    * @returns `out`
    */
   static fromQuat2(out: Mat4Like, a: Quat2Like): Mat4Like {
-    let translation = new Vec3();
     const bx = -a[0];
     const by = -a[1];
     const bz = -a[2];
@@ -1280,15 +1279,15 @@ export class Mat4 extends Float32Array {
     let magnitude = bx * bx + by * by + bz * bz + bw * bw;
     //Only scale if it makes sense
     if (magnitude > 0) {
-      translation[0] = ((ax * bw + aw * bx + ay * bz - az * by) * 2) / magnitude;
-      translation[1] = ((ay * bw + aw * by + az * bx - ax * bz) * 2) / magnitude;
-      translation[2] = ((az * bw + aw * bz + ax * by - ay * bx) * 2) / magnitude;
+      tmpVec3[0] = ((ax * bw + aw * bx + ay * bz - az * by) * 2) / magnitude;
+      tmpVec3[1] = ((ay * bw + aw * by + az * bx - ax * bz) * 2) / magnitude;
+      tmpVec3[2] = ((az * bw + aw * bz + ax * by - ay * bx) * 2) / magnitude;
     } else {
-      translation[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
-      translation[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
-      translation[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
+      tmpVec3[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2;
+      tmpVec3[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2;
+      tmpVec3[2] = (az * bw + aw * bz + ax * by - ay * bx) * 2;
     }
-    Mat4.fromRotationTranslation(out, a as QuatLike, translation);
+    Mat4.fromRotationTranslation(out, a as QuatLike, tmpVec3);
     return out;
   }
 
@@ -1298,9 +1297,9 @@ export class Mat4 extends Float32Array {
    *
    * @param out - Matrix receiving operation result
    * @param a - Mat4 to derive the normal matrix from
-   * @returns `out`
+   * @returns `out` or `null` if the matrix is not invertable
    */
-  static normalFromMat4(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like {
+  static normalFromMat4(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like | null {
     const a00 = a[0];
     const a01 = a[1];
     const a02 = a[2];
@@ -1789,6 +1788,9 @@ export class Mat4 extends Float32Array {
 
   /**
    * Generates a frustum matrix with the given bounds
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
+   * which matches WebGL/OpenGL's clip volume.
+   * Passing null/undefined/no value for far will generate infinite projection matrix.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -1797,13 +1799,12 @@ export class Mat4 extends Float32Array {
    * @param bottom - Bottom bound of the frustum
    * @param top - Top bound of the frustum
    * @param near - Near bound of the frustum
-   * @param far - Far bound of the frustum
+   * @param far -  Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static frustum(out: Mat4Like, left: number, right: number, bottom: number, top: number, near: number, far: number): Mat4Like {
+  static frustumNO(out: Mat4Like, left: number, right: number, bottom: number, top: number, near: number, far: number = Infinity): Mat4Like {
     const rl = 1 / (right - left);
     const tb = 1 / (top - bottom);
-    const nf = 1 / (near - far);
     out[0] = near * 2 * rl;
     out[1] = 0;
     out[2] = 0;
@@ -1814,12 +1815,71 @@ export class Mat4 extends Float32Array {
     out[7] = 0;
     out[8] = (right + left) * rl;
     out[9] = (top + bottom) * tb;
-    out[10] = (far + near) * nf;
     out[11] = -1;
     out[12] = 0;
     out[13] = 0;
-    out[14] = far * near * 2 * nf;
     out[15] = 0;
+
+    if (far != null && far !== Infinity) {
+      const nf = 1 / (near - far);
+      out[10] = (far + near) * nf;
+      out[14] = 2 * far * near * nf;
+    } else {
+      out[10] = -1;
+      out[14] = -2 * near;
+    }
+    return out;
+  }
+
+  /**
+   * Alias for {@link Mat4.frustumNO}
+   * @category Static
+   * @deprecated Use {@link Mat4.frustumNO} or {@link Mat4.frustumZO} explicitly
+   */
+  static frustum(out: Mat4Like, left: number, right: number, bottom: number, top: number, near: number, far: number = Infinity): Mat4Like { return out; }
+
+  /**
+   * Generates a frustum matrix with the given bounds
+   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
+   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   * Passing null/undefined/no value for far will generate infinite projection matrix.
+   * @category Static
+   *
+   * @param out - mat4 frustum matrix will be written into
+   * @param left - Left bound of the frustum
+   * @param right - Right bound of the frustum
+   * @param bottom - Bottom bound of the frustum
+   * @param top - Top bound of the frustum
+   * @param near - Near bound of the frustum
+   * @param far - Far bound of the frustum, can be null or Infinity
+   * @returns `out`
+   */
+  static frustumZO(out: Mat4Like, left: number, right: number, bottom: number, top: number, near: number, far: number = Infinity): Mat4Like {
+    const rl = 1 / (right - left);
+    const tb = 1 / (top - bottom);
+    out[0] = near * 2 * rl;
+    out[1] = 0;
+    out[2] = 0;
+    out[3] = 0;
+    out[4] = 0;
+    out[5] = near * 2 * tb;
+    out[6] = 0;
+    out[7] = 0;
+    out[8] = (right + left) * rl;
+    out[9] = (top + bottom) * tb;
+    out[11] = -1;
+    out[12] = 0;
+    out[13] = 0;
+    out[15] = 0;
+
+    if (far != null && far !== Infinity) {
+      const nf = 1 / (near - far);
+      out[10] = far * nf;
+      out[14] = far * near * nf;
+    } else {
+      out[10] = -1;
+      out[14] = -near;
+    }
     return out;
   }
 
@@ -1837,7 +1897,7 @@ export class Mat4 extends Float32Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static perspectiveNO(out: Mat4Like, fovy: number, aspect: number, near: number, far: number): Mat4Like {
+  static perspectiveNO(out: Mat4Like, fovy: number, aspect: number, near: number, far: number = Infinity): Mat4Like {
     const f = 1.0 / Math.tan(fovy / 2);
     out[0] = f / aspect;
     out[1] = 0;
@@ -1869,7 +1929,7 @@ export class Mat4 extends Float32Array {
    * @category Static
    * @deprecated Use {@link Mat4.perspectiveNO} or {@link Mat4.perspectiveZO} explicitly
    */
-  static perspective(out: Mat4Like, fovy: number, aspect: number, near: number, far: number): Mat4Like { return out; }
+  static perspective(out: Mat4Like, fovy: number, aspect: number, near: number, far: number = Infinity): Mat4Like { return out; }
 
   /**
    * Generates a perspective projection matrix suitable for WebGPU with the given bounds.
@@ -1885,7 +1945,7 @@ export class Mat4 extends Float32Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static perspectiveZO(out: Mat4Like, fovy: number, aspect: number, near: number, far: number): Mat4Like {
+  static perspectiveZO(out: Mat4Like, fovy: number, aspect: number, near: number, far: number = Infinity): Mat4Like {
     const f = 1.0 / Math.tan(fovy / 2);
     out[0] = f / aspect;
     out[1] = 0;
@@ -2441,7 +2501,8 @@ export class Mat4 extends Float32Array {
 }
 
 // Temporary variables to prevent repeated allocations in the algorithms above.
-const tmpVec3 = new Vec3();
+// These are declared as TypedArrays to aid in tree-shaking.
+const tmpVec3 = new Float32Array(3);
 
 // Instance method alias assignments
 Mat4.prototype.mul = Mat4.prototype.multiply;
@@ -2449,6 +2510,7 @@ Mat4.prototype.mul = Mat4.prototype.multiply;
 // Static method alias assignments
 Mat4.sub = Mat4.subtract;
 Mat4.mul = Mat4.multiply;
+Mat4.frustum = Mat4.frustumNO;
 Mat4.perspective = Mat4.perspectiveNO;
 Mat4.ortho = Mat4.orthoNO;
 
