@@ -306,6 +306,19 @@ export class Vec3 extends Float32Array {
   }
 
   /**
+   * Sets each component of `this` to it's absolute value.
+   * Equivalent to `Vec3.abs(this, this);`
+   *
+   * @returns `this`
+   */
+  abs(): Vec3 {
+    this[0] = Math.abs(this[0]);
+    this[1] = Math.abs(this[1]);
+    this[2] = Math.abs(this[2]);
+    return this;
+  }
+
+  /**
    * Calculates the dot product of this and another {@link Vec3}.
    * Equivalent to `Vec3.dot(this, b);`
    *
@@ -706,6 +719,21 @@ export class Vec3 extends Float32Array {
     out[0] = 1.0 / a[0];
     out[1] = 1.0 / a[1];
     out[2] = 1.0 / a[2];
+    return out;
+  }
+
+  /**
+   * Returns the absolute value of the components of a {@link Vec3}
+   * @category Static
+   *
+   * @param out - The receiving vector
+   * @param a - Vector to compute the absolute values of
+   * @returns `out`
+   */
+  static abs(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+    out[0] = Math.abs(a[0]);
+    out[1] = Math.abs(a[1]);
+    out[2] = Math.abs(a[2]);
     return out;
   }
 

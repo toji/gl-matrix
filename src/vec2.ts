@@ -286,6 +286,18 @@ export class Vec2 extends Float32Array {
   }
 
   /**
+   * Sets each component of `this` to it's absolute value.
+   * Equivalent to `Vec2.abs(this, this);`
+   *
+   * @returns `this`
+   */
+  abs(): Vec2 {
+    this[0] = Math.abs(this[0]);
+    this[1] = Math.abs(this[1]);
+    return this;
+  }
+
+  /**
    * Calculates the dot product of this and another {@link Vec2}.
    * Equivalent to `Vec2.dot(this, b);`
    *
@@ -667,6 +679,20 @@ export class Vec2 extends Float32Array {
   static inverse(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
     out[0] = 1.0 / a[0];
     out[1] = 1.0 / a[1];
+    return out;
+  }
+
+  /**
+   * Returns the absolute value of the components of a {@link Vec2}
+   * @category Static
+   *
+   * @param out - The receiving vector
+   * @param a - Vector to compute the absolute values of
+   * @returns `out`
+   */
+  static abs(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+    out[0] = Math.abs(a[0]);
+    out[1] = Math.abs(a[1]);
     return out;
   }
 

@@ -395,6 +395,41 @@ describe("Vec4", () => {
       });
     });
 
+    describe("inverse", () => {
+      describe("with a separate output vector", () => {
+        beforeEach(() => { result = Vec4.inverse(out, vecA); });
+
+        it("should place values into out", () => { expect(out).toBeVec(1, 1/2, 1/3, 1/4); });
+        it("should return out", () => { expect(result).toBe(out); });
+        it("should not modify vecA", () => { expect(vecA).toBeVec(1, 2, 3, 4); });
+      });
+
+      describe("when vecA is the output vector", () => {
+        beforeEach(() => { result = Vec4.inverse(vecA, vecA); });
+
+        it("should place values into vecA", () => { expect(vecA).toBeVec(1, 1/2, 1/3, 1/4); });
+        it("should return vecA", () => { expect(result).toBe(vecA); });
+      });
+    });
+
+    describe("abs", () => {
+      beforeEach(() => { vecA = [-1, -2, -3, -4]; });
+      describe("with a separate output vector", () => {
+        beforeEach(() => { result = Vec4.abs(out, vecA); });
+
+        it("should place values into out", () => { expect(out).toBeVec(1, 2, 3, 4); });
+        it("should return out", () => { expect(result).toBe(out); });
+        it("should not modify vecA", () => { expect(vecA).toBeVec(-1, -2, -3, -4); });
+      });
+
+      describe("when vecA is the output vector", () => {
+        beforeEach(() => { result = Vec4.abs(vecA, vecA); });
+
+        it("should place values into vecA", () => { expect(vecA).toBeVec(1, 2, 3, 4); });
+        it("should return vecA", () => { expect(result).toBe(vecA); });
+      });
+    });
+
     describe("normalize", () => {
       beforeEach(() => { vecA = [5, 0, 0, 0]; });
 

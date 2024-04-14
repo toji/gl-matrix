@@ -314,6 +314,20 @@ export class Vec4 extends Float32Array {
   }
 
   /**
+   * Sets each component of `this` to it's absolute value.
+   * Equivalent to `Vec4.abs(this, this);`
+   *
+   * @returns `this`
+   */
+  abs(): Vec4 {
+    this[0] = Math.abs(this[0]);
+    this[1] = Math.abs(this[1]);
+    this[2] = Math.abs(this[2]);
+    this[3] = Math.abs(this[3]);
+    return this;
+  }
+
+  /**
    * Calculates the dot product of this and another {@link Vec4}.
    * Equivalent to `Vec4.dot(this, b);`
    *
@@ -738,6 +752,22 @@ export class Vec4 extends Float32Array {
     out[1] = 1.0 / a[1];
     out[2] = 1.0 / a[2];
     out[3] = 1.0 / a[3];
+    return out;
+  }
+
+  /**
+   * Returns the absolute value of the components of a {@link Vec4}
+   * @category Static
+   *
+   * @param out - The receiving vector
+   * @param a - Vector to compute the absolute values of
+   * @returns `out`
+   */
+  static abs(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like {
+    out[0] = Math.abs(a[0]);
+    out[1] = Math.abs(a[1]);
+    out[2] = Math.abs(a[2]);
+    out[3] = Math.abs(a[3]);
     return out;
   }
 
