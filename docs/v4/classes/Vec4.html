@@ -25,7 +25,7 @@
 <ul class="tsd-hierarchy">
 <li><span class="target">Vec4</span></li></ul></li></ul></section><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L14">src/vec4.ts:14</a></li></ul></aside>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L14">src/vec4.ts:14</a></li></ul></aside>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-index-accordion" open><summary class="tsd-accordion-summary tsd-index-summary">
@@ -39,6 +39,8 @@
 <a href="Vec4.html#values" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>values</span></a>
 <a href="Vec4.html#includes" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>includes</span></a>
 <a href="Vec4.html#at" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>at</span></a>
+<a href="Vec4.html#findLast" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>find<wbr/>Last</span></a>
+<a href="Vec4.html#findLastIndex" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>find<wbr/>Last<wbr/>Index</span></a>
 <a href="Vec4.html#copyWithin" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>copy<wbr/>Within</span></a>
 <a href="Vec4.html#every" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>every</span></a>
 <a href="Vec4.html#fill" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>fill</span></a>
@@ -77,6 +79,7 @@
 <a href="Vec4.html#sqrDist" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>sqr<wbr/>Dist</span></a>
 <a href="Vec4.html#negate" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>negate</span></a>
 <a href="Vec4.html#invert" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>invert</span></a>
+<a href="Vec4.html#abs" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>abs</span></a>
 <a href="Vec4.html#dot" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>dot</span></a>
 <a href="Vec4.html#normalize" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>normalize</span></a>
 <a href="Vec4.html#of" class="tsd-index-link tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>of</span></a>
@@ -115,6 +118,7 @@
 <a href="Vec4.html#sqrLen" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>sqr<wbr/>Len</span></a>
 <a href="Vec4.html#negate-2" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>negate</span></a>
 <a href="Vec4.html#inverse" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>inverse</span></a>
+<a href="Vec4.html#abs-2" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>abs</span></a>
 <a href="Vec4.html#normalize-2" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>normalize</span></a>
 <a href="Vec4.html#dot-2" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>dot</span></a>
 <a href="Vec4.html#cross" class="tsd-index-link tsd-kind-method tsd-parent-kind-class"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg><span>cross</span></a>
@@ -171,7 +175,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.__@iterator@82</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:445</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:443</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="entries" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>entries</span><a href="#entries" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -182,7 +186,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.entries</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:449</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:447</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="keys" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>keys</span><a href="#keys" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -193,7 +197,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.keys</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:453</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:451</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="values" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>values</span><a href="#values" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -204,7 +208,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">IterableIterator</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.values</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:457</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:455</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="includes" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>includes</span><a href="#includes" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -226,7 +230,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.includes</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2016.array.include.d.ts:108</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es2016.array.include.d.ts:106</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="at" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>at</span><a href="#at" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -244,7 +248,122 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.at</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2022.array.d.ts:98</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es2022.array.d.ts:96</li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="findLast" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>find<wbr/>Last</span><a href="#findLast" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+<li class="tsd-signature tsd-anchor-link" id="findLast.findLast-1">find<wbr/>Last<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span><span class="tsd-signature-symbol">)</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span><a href="#findLast.findLast-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the value of the last element in the array where predicate is true, and undefined
+otherwise.</p>
+</div>
+<section class="tsd-panel tsd-type-parameters">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameters">
+<li>
+<h4>S<span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">number</span></h4></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>predicate: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>findLast calls predicate once for each element of the array, in descending
+order, until it finds one where predicate returns true. If such an element is found, findLast
+immediately returns that element value. Otherwise, findLast returns undefined.</p>
+</div>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal tsd-is-external">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>value: <span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>index: <span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>array: <span class="tsd-signature-type">Float32Array</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">value</span><span class="tsd-signature-symbol"> is </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span></h4></li></ul></li></ul></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> thisArg: <span class="tsd-signature-type">any</span></h5>
+<div class="tsd-comment tsd-typography"><p>If provided, it will be used as the this value for each invocation of
+predicate. If it is not provided, undefined is used instead.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">S</span></h4><aside class="tsd-sources">
+<p>Inherited from Float32Array.findLast</p>
+<ul>
+<li>Defined in node_modules/typescript/lib/lib.es2023.array.d.ts:254</li></ul></aside></li>
+<li class="tsd-signature tsd-anchor-link" id="findLast.findLast-2">find<wbr/>Last<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#findLast.findLast-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>predicate: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span></h5>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal tsd-is-external">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>value: <span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>index: <span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>array: <span class="tsd-signature-type">Float32Array</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4></li></ul></li></ul></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> thisArg: <span class="tsd-signature-type">any</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Inherited from Float32Array.findLast</p>
+<ul>
+<li>Defined in node_modules/typescript/lib/lib.es2023.array.d.ts:255</li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="findLastIndex" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>find<wbr/>Last<wbr/>Index</span><a href="#findLastIndex" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+<li class="tsd-signature tsd-anchor-link" id="findLastIndex.findLastIndex-1">find<wbr/>Last<wbr/>Index<span class="tsd-signature-symbol">(</span>predicate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#findLastIndex.findLastIndex-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the index of the last element in the array where predicate is true, and -1
+otherwise.</p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>predicate: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span></h5>
+<div class="tsd-comment tsd-typography"><p>findLastIndex calls predicate once for each element of the array, in descending
+order, until it finds one where predicate returns true. If such an element is found,
+findLastIndex immediately returns that element index. Otherwise, findLastIndex returns -1.</p>
+</div>
+<ul class="tsd-parameters">
+<li class="tsd-parameter-signature">
+<ul class="tsd-signatures tsd-kind-type-literal tsd-is-external">
+<li class="tsd-signature"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+<li class="tsd-description">
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>value: <span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>index: <span class="tsd-signature-type">number</span></h5></li>
+<li>
+<h5>array: <span class="tsd-signature-type">Float32Array</span></h5></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4></li></ul></li></ul></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> thisArg: <span class="tsd-signature-type">any</span></h5>
+<div class="tsd-comment tsd-typography"><p>If provided, it will be used as the this value for each invocation of
+predicate. If it is not provided, undefined is used instead.</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
+<p>Inherited from Float32Array.findLastIndex</p>
+<ul>
+<li>Defined in node_modules/typescript/lib/lib.es2023.array.d.ts:266</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="copyWithin" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>copy<wbr/>Within</span><a href="#copyWithin" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -273,7 +392,7 @@ is treated as length+end.</p>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.copyWithin</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3849</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3845</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="every" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>every</span><a href="#every" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -313,7 +432,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.every</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3859</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3855</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="fill" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fill</span><a href="#fill" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -341,7 +460,7 @@ length+end.</p>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.fill</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3869</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3865</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="filter" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>filter</span><a href="#filter" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -380,7 +499,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.filter</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3878</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3874</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="find" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>find</span><a href="#find" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -421,7 +540,7 @@ predicate. If it is not provided, undefined is used instead.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.find</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3889</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3885</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="findIndex" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>find<wbr/>Index</span><a href="#findIndex" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -462,7 +581,7 @@ predicate. If it is not provided, undefined is used instead.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.findIndex</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3900</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3896</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="forEach" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>for<wbr/>Each</span><a href="#forEach" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -501,7 +620,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.forEach</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3909</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3905</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="indexOf" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>index<wbr/>Of</span><a href="#indexOf" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -524,7 +643,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.indexOf</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3917</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3913</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="join" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>join</span><a href="#join" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -543,7 +662,7 @@ resulting String. If omitted, the array elements are separated with a comma.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.join</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3924</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3920</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="lastIndexOf" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>last<wbr/>Index<wbr/>Of</span><a href="#lastIndexOf" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -566,7 +685,7 @@ search starts at index 0.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.lastIndexOf</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3932</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3928</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="map" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>map</span><a href="#map" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -606,7 +725,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.map</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3947</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3943</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="reduce" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>reduce</span><a href="#reduce" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -644,7 +763,7 @@ callbackfn function one time for each element in the array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reduce</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3959</li></ul></aside></li>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3955</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="reduce.reduce-2">reduce<span class="tsd-signature-symbol">(</span>callbackfn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>previousValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, currentIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#reduce.reduce-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -674,7 +793,7 @@ callbackfn function one time for each element in the array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reduce</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3960</li></ul></aside></li>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3956</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="reduce.reduce-3">reduce<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>callbackfn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>previousValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, currentIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><span class="tsd-signature-symbol">)</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><a href="#reduce.reduce-3" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Calls the specified callback function for all the elements in an array. The return value of
@@ -720,7 +839,7 @@ instead of an array value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reduce</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3972</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3968</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="reduceRight" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>reduce<wbr/>Right</span><a href="#reduceRight" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -758,7 +877,7 @@ the callbackfn function one time for each element in the array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reduceRight</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3984</li></ul></aside></li>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3980</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="reduceRight.reduceRight-2">reduce<wbr/>Right<span class="tsd-signature-symbol">(</span>callbackfn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>previousValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, currentIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><a href="#reduceRight.reduceRight-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -788,7 +907,7 @@ the callbackfn function one time for each element in the array.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reduceRight</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3985</li></ul></aside></li>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3981</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="reduceRight.reduceRight-3">reduce<wbr/>Right<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>callbackfn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>previousValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span>, currentValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, currentIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, array<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><span class="tsd-signature-symbol">)</span>, initialValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span><a href="#reduceRight.reduceRight-3" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Calls the specified callback function for all the elements in an array, in descending order.
@@ -834,7 +953,7 @@ instead of an array value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type" data-tsd-kind="Type parameter">U</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reduceRight</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3997</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3993</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="reverse" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>reverse</span><a href="#reverse" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -845,7 +964,7 @@ instead of an array value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.reverse</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4002</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3998</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="set" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>set</span><a href="#set" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -867,7 +986,7 @@ instead of an array value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.set</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4009</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4005</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="slice" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>slice</span><a href="#slice" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -889,7 +1008,7 @@ instead of an array value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.slice</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4016</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4012</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="some" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>some</span><a href="#some" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -929,7 +1048,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.some</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4026</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4022</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="sort" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>sort</span><a href="#sort" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -945,7 +1064,7 @@ If thisArg is omitted, undefined is used as the this value.</p>
 <div class="tsd-comment tsd-typography"><p>Function used to determine the order of the elements. It is expected to return
 a negative value if first argument is less than second argument, zero if they&#39;re equal and a positive
 value otherwise. If omitted, the elements are sorted in ascending order.</p>
-<pre><code class="language-ts"><span class="hl-0">[</span><span class="hl-1">11</span><span class="hl-0">,</span><span class="hl-1">2</span><span class="hl-0">,</span><span class="hl-1">22</span><span class="hl-0">,</span><span class="hl-1">1</span><span class="hl-0">].</span><span class="hl-2">sort</span><span class="hl-0">((</span><span class="hl-3">a</span><span class="hl-0">, </span><span class="hl-3">b</span><span class="hl-0">) </span><span class="hl-4">=&gt;</span><span class="hl-0"> </span><span class="hl-3">a</span><span class="hl-0"> - </span><span class="hl-3">b</span><span class="hl-0">)</span>
+<pre><code class="language-ts"><span class="hl-1">[</span><span class="hl-4">11</span><span class="hl-1">,</span><span class="hl-4">2</span><span class="hl-1">,</span><span class="hl-4">22</span><span class="hl-1">,</span><span class="hl-4">1</span><span class="hl-1">].</span><span class="hl-5">sort</span><span class="hl-1">((</span><span class="hl-2">a</span><span class="hl-1">, </span><span class="hl-2">b</span><span class="hl-1">) </span><span class="hl-6">=&gt;</span><span class="hl-1"> </span><span class="hl-2">a</span><span class="hl-1"> - </span><span class="hl-2">b</span><span class="hl-1">)</span>
 </code></pre>
 </div>
 <ul class="tsd-parameters">
@@ -964,7 +1083,7 @@ value otherwise. If omitted, the elements are sorted in ascending order.</p>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.sort</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4037</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4033</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="subarray" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>subarray</span><a href="#subarray" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -987,7 +1106,7 @@ at begin, inclusive, up to end, exclusive.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.subarray</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4045</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4041</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="toLocaleString" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>to<wbr/>Locale<wbr/>String</span><a href="#toLocaleString" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -998,7 +1117,7 @@ at begin, inclusive, up to end, exclusive.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.toLocaleString</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4050</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4046</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="toString" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>to<wbr/>String</span><a href="#toString" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -1009,7 +1128,7 @@ at begin, inclusive, up to end, exclusive.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.toString</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4055</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4051</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="valueOf" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>value<wbr/>Of</span><a href="#valueOf" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -1020,7 +1139,7 @@ at begin, inclusive, up to end, exclusive.</p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.valueOf</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4058</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4054</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="copy" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>copy</span><a href="#copy" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1039,7 +1158,7 @@ at begin, inclusive, up to end, exclusive.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L147">src/vec4.ts:147</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L147">src/vec4.ts:147</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="add" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>add</span><a href="#add" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1059,7 +1178,7 @@ Equivalent to <code>Vec4.add(this, this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L159">src/vec4.ts:159</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L159">src/vec4.ts:159</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="subtract" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>subtract</span><a href="#subtract" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1079,7 +1198,7 @@ Equivalent to <code>Vec4.subtract(this, this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L174">src/vec4.ts:174</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L174">src/vec4.ts:174</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="sub" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>sub</span><a href="#sub" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1094,7 +1213,7 @@ Equivalent to <code>Vec4.subtract(this, this, b);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L185">src/vec4.ts:185</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L185">src/vec4.ts:185</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiply" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>multiply</span><a href="#multiply" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1114,7 +1233,7 @@ Equivalent to <code>Vec4.multiply(this, this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L194">src/vec4.ts:194</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L194">src/vec4.ts:194</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="mul" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>mul</span><a href="#mul" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1129,7 +1248,7 @@ Equivalent to <code>Vec4.multiply(this, this, b);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L205">src/vec4.ts:205</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L205">src/vec4.ts:205</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="divide" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>divide</span><a href="#divide" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1149,7 +1268,7 @@ Equivalent to <code>Vec4.divide(this, this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L214">src/vec4.ts:214</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L214">src/vec4.ts:214</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="div" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>div</span><a href="#div" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1164,7 +1283,7 @@ Equivalent to <code>Vec4.divide(this, this, b);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L225">src/vec4.ts:225</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L225">src/vec4.ts:225</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="scale" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>scale</span><a href="#scale" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1184,7 +1303,7 @@ Equivalent to <code>Vec4.scale(this, this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L234">src/vec4.ts:234</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L234">src/vec4.ts:234</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="scaleAndAdd" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>scale<wbr/>And<wbr/>Add</span><a href="#scaleAndAdd" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1208,7 +1327,7 @@ Equivalent to <code>Vec4.scaleAndAdd(this, this, b, scale);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L250">src/vec4.ts:250</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L250">src/vec4.ts:250</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="distance" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>distance</span><a href="#distance" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1228,7 +1347,7 @@ Equivalent to <code>Vec4.distance(this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L265">src/vec4.ts:265</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L265">src/vec4.ts:265</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="dist" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dist</span><a href="#dist" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1243,7 +1362,7 @@ Equivalent to <code>Vec4.distance(this, b);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L271">src/vec4.ts:271</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L271">src/vec4.ts:271</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="squaredDistance" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>squared<wbr/>Distance</span><a href="#squaredDistance" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1263,7 +1382,7 @@ Equivalent to <code>Vec4.squaredDistance(this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L280">src/vec4.ts:280</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L280">src/vec4.ts:280</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="sqrDist" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>sqr<wbr/>Dist</span><a href="#sqrDist" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1278,7 +1397,7 @@ Equivalent to <code>Vec4.squaredDistance(this, b);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L286">src/vec4.ts:286</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L286">src/vec4.ts:286</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="negate" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>negate</span><a href="#negate" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1291,7 +1410,7 @@ Equivalent to <code>Vec4.negate(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L294">src/vec4.ts:294</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L294">src/vec4.ts:294</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="invert" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>invert</span><a href="#invert" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1304,7 +1423,20 @@ Equivalent to <code>Vec4.inverse(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L308">src/vec4.ts:308</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L308">src/vec4.ts:308</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="abs" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><span>abs</span><a href="#abs" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="abs.abs-1">abs<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a><a href="#abs.abs-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Sets each component of <code>this</code> to it&#39;s absolute value.
+Equivalent to <code>Vec4.abs(this, this);</code></p>
+
+<h3>Returns</h3><p><code>this</code></p>
+</div>
+<h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L322">src/vec4.ts:322</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="dot" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>dot</span><a href="#dot" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1324,7 +1456,7 @@ Equivalent to <code>Vec4.dot(this, b);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L323">src/vec4.ts:323</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L337">src/vec4.ts:337</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="normalize" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>normalize</span><a href="#normalize" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1337,7 +1469,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L333">src/vec4.ts:333</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L347">src/vec4.ts:347</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="of" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>of</span><a href="#of" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -1355,7 +1487,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.of</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4078</li></ul></aside></li></ul></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4074</li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="from" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from</span><a href="#from" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
@@ -1373,7 +1505,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.from</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4084</li></ul></aside></li>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4080</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="from.from-2">from<span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span>arrayLike<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ArrayLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span><span class="tsd-signature-symbol">&gt;</span>, mapfn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type" data-tsd-kind="Type parameter">T</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><a href="#from.from-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Creates an array from an array-like or iterable object.</p>
@@ -1414,7 +1546,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.from</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4092</li></ul></aside></li>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4088</li></ul></aside></li>
 <li class="tsd-signature tsd-anchor-link" id="from.from-3">from<span class="tsd-signature-symbol">(</span>arrayLike<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span>, mapfn<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>v<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, k<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span>, thisArg<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Float32Array</span><a href="#from.from-3" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Creates an array from an array-like or iterable object.</p>
@@ -1450,7 +1582,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Float32Array</span></h4><aside class="tsd-sources">
 <p>Inherited from Float32Array.from</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:469</li></ul></aside></li></ul></section></section>
+<li>Defined in node_modules/typescript/lib/lib.es2015.iterable.d.ts:467</li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Static Methods</h2>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="create" class="tsd-anchor"></a>
@@ -1464,7 +1596,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L347">src/vec4.ts:347</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L361">src/vec4.ts:361</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="clone" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>clone</span><a href="#clone" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1483,7 +1615,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L358">src/vec4.ts:358</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L372">src/vec4.ts:372</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="fromValues" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>from<wbr/>Values</span><a href="#fromValues" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1514,7 +1646,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L372">src/vec4.ts:372</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L386">src/vec4.ts:386</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="copy-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>copy</span><a href="#copy-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1537,7 +1669,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L384">src/vec4.ts:384</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L398">src/vec4.ts:398</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="set-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>set</span><a href="#set-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1572,7 +1704,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L403">src/vec4.ts:403</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L417">src/vec4.ts:417</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="add-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>add</span><a href="#add-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1599,7 +1731,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L420">src/vec4.ts:420</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L434">src/vec4.ts:434</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="subtract-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>subtract</span><a href="#subtract-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1626,7 +1758,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L437">src/vec4.ts:437</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L451">src/vec4.ts:451</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="sub-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>sub</span><a href="#sub-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1645,7 +1777,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L449">src/vec4.ts:449</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L463">src/vec4.ts:463</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="multiply-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>multiply</span><a href="#multiply-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1672,7 +1804,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L460">src/vec4.ts:460</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L474">src/vec4.ts:474</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="mul-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>mul</span><a href="#mul-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1691,7 +1823,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L472">src/vec4.ts:472</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L486">src/vec4.ts:486</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="divide-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>divide</span><a href="#divide-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1718,7 +1850,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L483">src/vec4.ts:483</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L497">src/vec4.ts:497</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="div-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>div</span><a href="#div-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1737,7 +1869,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L495">src/vec4.ts:495</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L509">src/vec4.ts:509</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="ceil" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>ceil</span><a href="#ceil" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1760,7 +1892,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L505">src/vec4.ts:505</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L519">src/vec4.ts:519</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="floor" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>floor</span><a href="#floor" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1783,7 +1915,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L521">src/vec4.ts:521</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L535">src/vec4.ts:535</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="min" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>min</span><a href="#min" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1810,7 +1942,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L538">src/vec4.ts:538</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L552">src/vec4.ts:552</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="max" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>max</span><a href="#max" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1837,7 +1969,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L555">src/vec4.ts:555</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L569">src/vec4.ts:569</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="round" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>round</span><a href="#round" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1860,7 +1992,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L571">src/vec4.ts:571</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L585">src/vec4.ts:585</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="scale-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>scale</span><a href="#scale-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1887,7 +2019,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L588">src/vec4.ts:588</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L602">src/vec4.ts:602</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="scaleAndAdd-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>scale<wbr/>And<wbr/>Add</span><a href="#scaleAndAdd-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1918,7 +2050,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L606">src/vec4.ts:606</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L620">src/vec4.ts:620</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="distance-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>distance</span><a href="#distance-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1941,7 +2073,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L622">src/vec4.ts:622</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L636">src/vec4.ts:636</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="dist-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>dist</span><a href="#dist-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1958,7 +2090,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L633">src/vec4.ts:633</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L647">src/vec4.ts:647</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="squaredDistance-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>squared<wbr/>Distance</span><a href="#squaredDistance-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1981,7 +2113,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L643">src/vec4.ts:643</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L657">src/vec4.ts:657</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="sqrDist-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>sqr<wbr/>Dist</span><a href="#sqrDist-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -1998,7 +2130,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>b: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L654">src/vec4.ts:654</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L668">src/vec4.ts:668</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="magnitude-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>magnitude</span><a href="#magnitude-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2017,7 +2149,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L663">src/vec4.ts:663</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L677">src/vec4.ts:677</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="mag-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>mag</span><a href="#mag-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2032,7 +2164,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>a: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L674">src/vec4.ts:674</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L688">src/vec4.ts:688</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="length-1" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>length</span><a href="#length-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2049,7 +2181,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>a: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L682">src/vec4.ts:682</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L696">src/vec4.ts:696</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="len" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>len</span><a href="#len" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2066,7 +2198,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>a: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L689">src/vec4.ts:689</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L703">src/vec4.ts:703</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="squaredLength" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>squared<wbr/>Length</span><a href="#squaredLength" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2085,7 +2217,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L698">src/vec4.ts:698</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L712">src/vec4.ts:712</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="sqrLen" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>sqr<wbr/>Len</span><a href="#sqrLen" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2100,7 +2232,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>a: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L710">src/vec4.ts:710</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L724">src/vec4.ts:724</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="negate-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>negate</span><a href="#negate-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2123,7 +2255,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L720">src/vec4.ts:720</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L734">src/vec4.ts:734</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="inverse" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>inverse</span><a href="#inverse" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2146,7 +2278,30 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L736">src/vec4.ts:736</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L750">src/vec4.ts:750</a></li></ul></aside></li></ul></section>
+<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="abs-2" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>abs</span><a href="#abs-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
+<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+<li class="tsd-signature tsd-anchor-link" id="abs-2.abs-3">abs<span class="tsd-signature-symbol">(</span>out<span class="tsd-signature-symbol">: </span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a>, a<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><a href="#abs-2.abs-3" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the absolute value of the components of a <a href="Vec4.html">Vec4</a></p>
+
+<h3>Returns</h3><p><code>out</code></p>
+</div>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5>out: <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h5>
+<div class="tsd-comment tsd-typography"><p>The receiving vector</p>
+</div></li>
+<li>
+<h5>a: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a><span class="tsd-signature-symbol">&gt;</span></h5>
+<div class="tsd-comment tsd-typography"><p>Vector to compute the absolute values of</p>
+</div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L766">src/vec4.ts:766</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="normalize-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>normalize</span><a href="#normalize-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2169,7 +2324,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L752">src/vec4.ts:752</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L782">src/vec4.ts:782</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="dot-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>dot</span><a href="#dot-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2192,7 +2347,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L776">src/vec4.ts:776</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L806">src/vec4.ts:806</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="cross" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>cross</span><a href="#cross" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2223,7 +2378,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L790">src/vec4.ts:790</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L820">src/vec4.ts:820</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="lerp" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>lerp</span><a href="#lerp" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2254,7 +2409,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L820">src/vec4.ts:820</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L850">src/vec4.ts:850</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="transformMat4" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>transform<wbr/>Mat4</span><a href="#transformMat4" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2281,7 +2436,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L876">src/vec4.ts:876</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L906">src/vec4.ts:906</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="transformQuat" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>transform<wbr/>Quat</span><a href="#transformQuat" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2308,7 +2463,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L897">src/vec4.ts:897</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L927">src/vec4.ts:927</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="zero" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>zero</span><a href="#zero" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2327,7 +2482,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="../types/Vec4Like.html" class="tsd-signature-type" data-tsd-kind="Type alias">Vec4Like</a></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L927">src/vec4.ts:927</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L957">src/vec4.ts:957</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="str-2" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>str</span><a href="#str-2" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2346,7 +2501,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L942">src/vec4.ts:942</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L972">src/vec4.ts:972</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="exactEquals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>exact<wbr/>Equals</span><a href="#exactEquals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2369,7 +2524,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L954">src/vec4.ts:954</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L984">src/vec4.ts:984</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class"><a id="equals" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>equals</span><a href="#equals" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -2392,7 +2547,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L966">src/vec4.ts:966</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L996">src/vec4.ts:996</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="_toStringTag_" class="tsd-anchor"></a>
@@ -2400,7 +2555,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <div class="tsd-signature">[to<wbr/>String<wbr/>Tag]<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;Float32Array&quot;</span></div><aside class="tsd-sources">
 <p>Inherited from Float32Array.__@toStringTag@22</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:306</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es2015.symbol.wellknown.d.ts:308</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="BYTES_PER_ELEMENT" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>BYTES_<wbr/>PER_<wbr/>ELEMENT</span><a href="#BYTES_PER_ELEMENT" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">BYTES_<wbr/>PER_<wbr/>ELEMENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -2408,7 +2563,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div><aside class="tsd-sources">
 <p>Inherited from Float32Array.BYTES_PER_ELEMENT</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3823</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3819</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="buffer" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>buffer</span><a href="#buffer" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">buffer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ArrayBufferLike</span></div>
@@ -2416,7 +2571,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div><aside class="tsd-sources">
 <p>Inherited from Float32Array.buffer</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3828</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3824</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="byteLength" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>byte<wbr/>Length</span><a href="#byteLength" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">byte<wbr/>Length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -2424,7 +2579,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div><aside class="tsd-sources">
 <p>Inherited from Float32Array.byteLength</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3833</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3829</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="byteOffset" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>byte<wbr/>Offset</span><a href="#byteOffset" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">byte<wbr/>Offset<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -2432,7 +2587,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div><aside class="tsd-sources">
 <p>Inherited from Float32Array.byteOffset</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3838</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3834</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="length" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>length</span><a href="#length" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">length<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -2440,7 +2595,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div><aside class="tsd-sources">
 <p>Inherited from Float32Array.length</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3937</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:3933</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a id="BYTES_PER_ELEMENT-1" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>BYTES_<wbr/>PER_<wbr/>ELEMENT</span><a href="#BYTES_PER_ELEMENT-1" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">BYTES_<wbr/>PER_<wbr/>ELEMENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -2448,14 +2603,14 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div><aside class="tsd-sources">
 <p>Inherited from Float32Array.BYTES_PER_ELEMENT</p>
 <ul>
-<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4072</li></ul></aside></section>
+<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:4068</li></ul></aside></section>
 <section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class"><a id="BYTE_LENGTH" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>BYTE_<wbr/>LENGTH</span><a href="#BYTE_LENGTH" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <div class="tsd-signature">BYTE_<wbr/>LENGTH<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>The number of bytes in a <a href="Vec4.html">Vec4</a>.</p>
 </div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L18">src/vec4.ts:18</a></li></ul></aside></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L18">src/vec4.ts:18</a></li></ul></aside></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Constructors</h2>
 <section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class"><a id="constructor" class="tsd-anchor"></a>
@@ -2473,7 +2628,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h4 class="tsd-returns-title">Returns <a href="Vec4.html" class="tsd-signature-type" data-tsd-kind="Class">Vec4</a></h4><aside class="tsd-sources">
 <p>Overrides Float32Array.constructor</p>
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L23">src/vec4.ts:23</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L23">src/vec4.ts:23</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Vector components Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="x" class="tsd-anchor"></a>
@@ -2485,7 +2640,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L54">src/vec4.ts:54</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L54">src/vec4.ts:54</a></li></ul></aside></li>
 <li class="tsd-signature" id="x.x-2"><span class="tsd-signature-symbol">set</span> x<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2495,7 +2650,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L55">src/vec4.ts:55</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L55">src/vec4.ts:55</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="y" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>y</span><a href="#y" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2505,7 +2660,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L61">src/vec4.ts:61</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L61">src/vec4.ts:61</a></li></ul></aside></li>
 <li class="tsd-signature" id="y.y-2"><span class="tsd-signature-symbol">set</span> y<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2515,7 +2670,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L62">src/vec4.ts:62</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L62">src/vec4.ts:62</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="z" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>z</span><a href="#z" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2525,7 +2680,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L68">src/vec4.ts:68</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L68">src/vec4.ts:68</a></li></ul></aside></li>
 <li class="tsd-signature" id="z.z-2"><span class="tsd-signature-symbol">set</span> z<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2535,7 +2690,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L69">src/vec4.ts:69</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L69">src/vec4.ts:69</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="w" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>w</span><a href="#w" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2545,7 +2700,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L75">src/vec4.ts:75</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L75">src/vec4.ts:75</a></li></ul></aside></li>
 <li class="tsd-signature" id="w.w-2"><span class="tsd-signature-symbol">set</span> w<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2555,7 +2710,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L76">src/vec4.ts:76</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L76">src/vec4.ts:76</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Color components Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="r" class="tsd-anchor"></a>
@@ -2567,7 +2722,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L85">src/vec4.ts:85</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L85">src/vec4.ts:85</a></li></ul></aside></li>
 <li class="tsd-signature" id="r.r-2"><span class="tsd-signature-symbol">set</span> r<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2577,7 +2732,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L86">src/vec4.ts:86</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L86">src/vec4.ts:86</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="g" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>g</span><a href="#g" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2587,7 +2742,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L92">src/vec4.ts:92</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L92">src/vec4.ts:92</a></li></ul></aside></li>
 <li class="tsd-signature" id="g.g-2"><span class="tsd-signature-symbol">set</span> g<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2597,7 +2752,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L93">src/vec4.ts:93</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L93">src/vec4.ts:93</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="b" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>b</span><a href="#b" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2607,7 +2762,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L99">src/vec4.ts:99</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L99">src/vec4.ts:99</a></li></ul></aside></li>
 <li class="tsd-signature" id="b.b-2"><span class="tsd-signature-symbol">set</span> b<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2617,7 +2772,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L100">src/vec4.ts:100</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L100">src/vec4.ts:100</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="a" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>a</span><a href="#a" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2627,7 +2782,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L106">src/vec4.ts:106</a></li></ul></aside></li>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L106">src/vec4.ts:106</a></li></ul></aside></li>
 <li class="tsd-signature" id="a.a-2"><span class="tsd-signature-symbol">set</span> a<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 <li class="tsd-description">
 <div class="tsd-parameters">
@@ -2637,7 +2792,7 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <h5>value: <span class="tsd-signature-type">number</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L107">src/vec4.ts:107</a></li></ul></aside></li></ul></section></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L107">src/vec4.ts:107</a></li></ul></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Instance Accessors</h2>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="magnitude" class="tsd-anchor"></a>
@@ -2648,11 +2803,11 @@ Equivalent to <code>Vec4.normalize(this, this);</code></p>
 <div class="tsd-comment tsd-typography"><p>The magnitude (length) of this.
 Equivalent to <code>Vec4.magnitude(this);</code></p>
 <p>Magnitude is used because the <code>length</code> attribute is already defined by
-<code>Float32Array</code> to mean the number of elements in the array.</p>
+TypedArrays to mean the number of elements in the array.</p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L116">src/vec4.ts:116</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L116">src/vec4.ts:116</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="mag" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>mag</span><a href="#mag" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2662,7 +2817,7 @@ Equivalent to <code>Vec4.magnitude(this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L127">src/vec4.ts:127</a></li></ul></aside></li></ul></section>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L127">src/vec4.ts:127</a></li></ul></aside></li></ul></section>
 <section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class"><a id="str" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>str</span><a href="#str" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><use href="#icon-anchor-a"></use><use href="#icon-anchor-b"></use><use href="#icon-anchor-c"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class">
@@ -2673,7 +2828,7 @@ Equivalent to <code>Vec4.str(this);</code></p>
 </div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/e83ad61/src/vec4.ts#L133">src/vec4.ts:133</a></li></ul></aside></li></ul></section></section></div>
+<li>Defined in <a href="https://github.com/toji/gl-matrix/blob/7651a2a/src/vec4.ts#L133">src/vec4.ts:133</a></li></ul></aside></li></ul></section></section></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <nav id="tsd-sidebar-links" class="tsd-navigation"><a href="https://github.com/toji/gl-matrix" target="_blank">GitHub Repo</a></nav>
 <div class="tsd-navigation settings">
@@ -2707,6 +2862,8 @@ Equivalent to <code>Vec4.str(this);</code></p>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#_toStringTag_" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>[to<wbr/>String<wbr/>Tag]</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#includes" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>includes</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#at" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>at</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#findLast" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>find<wbr/>Last</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#findLastIndex" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>find<wbr/>Last<wbr/>Index</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#BYTES_PER_ELEMENT" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>BYTES_<wbr/>PER_<wbr/>ELEMENT</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#buffer" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>buffer</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#byteLength" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>byte<wbr/>Length</a></li>
@@ -2762,6 +2919,7 @@ Equivalent to <code>Vec4.str(this);</code></p>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#sqrDist" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>sqr<wbr/>Dist</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#negate" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>negate</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#invert" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>invert</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#abs" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>abs</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#dot" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>dot</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#normalize" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>normalize</a></li>
 <li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="Vec4.html#BYTES_PER_ELEMENT-1" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-1024-path"></use><use href="#icon-1024-text"></use></svg>BYTES_<wbr/>PER_<wbr/>ELEMENT</a></li>
@@ -2799,6 +2957,7 @@ Equivalent to <code>Vec4.str(this);</code></p>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#sqrLen" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>sqr<wbr/>Len</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#negate-2" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>negate</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#inverse" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>inverse</a></li>
+<li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#abs-2" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>abs</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#normalize-2" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>normalize</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#dot-2" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>dot</a></li>
 <li class="tsd-kind-method tsd-parent-kind-class"><a href="Vec4.html#cross" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-2048-path"></use><use href="#icon-2048-text"></use></svg>cross</a></li>
