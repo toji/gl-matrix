@@ -1,0 +1,10 @@
+.rvmrc
+npm-debug.log
+docs
+f64
+scripts
+src
+tests
+tsconfig.json
+tsconfig64.json
+typedoc.json

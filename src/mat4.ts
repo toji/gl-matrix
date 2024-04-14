@@ -1433,7 +1433,7 @@ export class Mat4 extends Float32Array {
   /**
    * Returns the scaling factor component of a transformation
    * matrix. If a matrix is built with fromRotationTranslationScale
-   * with a normalized Quaternion paramter, the returned vector will be
+   * with a normalized Quaternion parameter, the returned vector will be
    * the same as the scaling vector
    * originally supplied.
    * @category Static

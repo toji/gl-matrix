@@ -5,6 +5,33 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "main": "./dist/esm/index.js",
+  "module": "./dist/esm/index.js",
+  "exports": {
+    ".": "./dist/esm/index.js",
+    "./common": "./dist/esm/common.js",
+    "./mat2": "./dist/esm/mat2.js",
+    "./mat2d": "./dist/esm/mat2d.js",
+    "./mat3": "./dist/esm/mat3.js",
+    "./mat4": "./dist/esm/mat4.js",
+    "./quat": "./dist/esm/quat.js",
+    "./quat2": "./dist/esm/quat2.js",
+    "./vec2": "./dist/esm/vec2.js",
+    "./vec3": "./dist/esm/vec3.js",
+    "./vec4": "./dist/esm/vec4.js",
+    "./f64": "./dist/esm/f64/index.js",
+    "./f64/common": "./dist/esm/f64/common.js",
+    "./f64/mat2": "./dist/esm/f64/mat2.js",
+    "./f64/mat2d": "./dist/esm/f64/mat2d.js",
+    "./f64/mat3": "./dist/esm/f64/mat3.js",
+    "./f64/mat4": "./dist/esm/f64/mat4.js",
+    "./f64/quat": "./dist/esm/f64/quat.js",
+    "./f64/quat2": "./dist/esm/f64/quat2.js",
+    "./f64/vec2": "./dist/esm/f64/vec2.js",
+    "./f64/vec3": "./dist/esm/f64/vec3.js",
+    "./f64/vec4": "./dist/esm/f64/vec4.js"
+  },
+  "types": "./dist/esm/index.d.ts",
   "homepage": "http://glmatrix.net",
   "license": "MIT",
   "bugs": {
@@ -12,7 +39,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/toji/gl-matrix.git"
+    "url": "git+https://github.com/toji/gl-matrix.git"
   },
   "contributors": [
     {

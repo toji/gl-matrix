@@ -684,7 +684,7 @@ export class Quat extends Float32Array {
    * @param x - Angle to rotate around X axis in degrees.
    * @param y - Angle to rotate around Y axis in degrees.
    * @param z - Angle to rotate around Z axis in degrees.
-   * @param {'zyx'|'xyz'|'yxz'|'yzx'|'zxy'|'zyx'} order - Intrinsic order for conversion, default is zyx.
+   * @param {'xyz'|'xzy'|'yxz'|'yzx'|'zxy'|'zyx'} order - Intrinsic order for conversion, default is zyx.
    * @returns `out`
    */
   static fromEuler(out: QuatLike, x: number, y: number, z: number, order = ANGLE_ORDER): QuatLike {

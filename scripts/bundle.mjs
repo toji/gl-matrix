@@ -8,9 +8,6 @@ const copyFileSync = (source, dest) => {
   fs.writeFileSync(dest, content);
 };
 
-copyFileSync('README.md', 'dist/README.md');
-copyFileSync('LICENSE.md', 'dist/LICENSE.md');
-
 //const license = fs.readFileSync('LICENSE.md', 'utf8');
 const banner = {
   js: `// glMatrix - v${pkg.version}`
