@@ -83,6 +83,21 @@ describe("mat3", function() {
         });
     });
 
+    describe("fromEuler", function() {
+      beforeEach(function() {
+          let row = 0;
+          let pitch = 0;
+          let yaw = 0;
+          result = mat3.fromEuler(out, row, pitch, yaw);
+      });
+
+      it("should return out", function() { expect(result).toBe(out); });
+
+      it("should place a 3x3 identity matrix into out", function() {
+          expect(out).toBeEqualish(identity);
+      });
+    });
+
     describe("fromMat4", function() {
         beforeEach(function() {
             result = mat3.fromMat4(out, [ 1, 2, 3, 4,
