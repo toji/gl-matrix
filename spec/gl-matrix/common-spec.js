@@ -19,7 +19,7 @@ describe("common", function(){
       r0 = glMatrix.equals(1.0, 0.0);
       r1 = glMatrix.equals(1.0, 1.0);
       r2 = glMatrix.equals(1.0+glMatrix.EPSILON/2, 1.0);
-      r3 = glMatrix.equals(1.0+glMatrix.EPSILON/2, 1.0, 0.001);
+      r3 = glMatrix.equals(1.0011, 1.0, 0.001);
       r4 = glMatrix.equals(100.5, 100.7, 0.2);
     });
     it("should return false for different numbers", function() { expect(r0).toBe(false); });
