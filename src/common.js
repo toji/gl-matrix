@@ -59,10 +59,11 @@ export function toDegree(a) {
  * or relative tolerance of glMatrix.EPSILON (an absolute tolerance is used for values less
  * than or equal to 1.0, and a relative tolerance is used for larger values)
  *
- * @param {Number} a The first number to test.
- * @param {Number} b The second number to test.
+ * @param {Number} a          The first number to test.
+ * @param {Number} b          The second number to test.
+ * @param {Number} tolerance  Absolute or relative tolerance (default glMatrix.EPSILON)
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
  */
-export function equals(a, b) {
-  return Math.abs(a - b) <= EPSILON * Math.max(1.0, Math.abs(a), Math.abs(b));
+export function equals(a, b, tolerance = EPSILON) {
+  return Math.abs(a - b) <= tolerance * Math.max(1, Math.abs(a), Math.abs(b));
 }
