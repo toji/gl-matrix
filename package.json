@@ -1,39 +1,74 @@
 {
-  "version": "4.0.0-beta.2",
+  "version": "4.0.0-beta.3",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance 3D web apps",
   "private": true,
   "sideEffects": false,
   "type": "module",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
-  "exports": {
-    ".": "./dist/esm/index.js",
-    "./common": "./dist/esm/common.js",
-    "./mat2": "./dist/esm/mat2.js",
-    "./mat2d": "./dist/esm/mat2d.js",
-    "./mat3": "./dist/esm/mat3.js",
-    "./mat4": "./dist/esm/mat4.js",
-    "./quat": "./dist/esm/quat.js",
-    "./quat2": "./dist/esm/quat2.js",
-    "./vec2": "./dist/esm/vec2.js",
-    "./vec3": "./dist/esm/vec3.js",
-    "./vec4": "./dist/esm/vec4.js",
-    "./f64": "./dist/esm/f64/index.js",
-    "./f64/common": "./dist/esm/f64/common.js",
-    "./f64/mat2": "./dist/esm/f64/mat2.js",
-    "./f64/mat2d": "./dist/esm/f64/mat2d.js",
-    "./f64/mat3": "./dist/esm/f64/mat3.js",
-    "./f64/mat4": "./dist/esm/f64/mat4.js",
-    "./f64/quat": "./dist/esm/f64/quat.js",
-    "./f64/quat2": "./dist/esm/f64/quat2.js",
-    "./f64/vec2": "./dist/esm/f64/vec2.js",
-    "./f64/vec3": "./dist/esm/f64/vec3.js",
-    "./f64/vec4": "./dist/esm/f64/vec4.js"
-  },
-  "types": "./dist/esm/index.d.ts",
-  "homepage": "http://glmatrix.net",
   "license": "MIT",
+  "imports": {
+    "#gl-matrix": "./src/index.ts",
+    "#gl-matrix/classic": "./src/classic/index.ts",
+    "#gl-matrix/common": "./src/common/index.ts",
+    "#gl-matrix/f64": "./src/f64/index.ts",
+    "#gl-matrix/swizzle": "./src/swizzle/index.ts",
+    "#gl-matrix/swizzle/f64": "./src/swizzle/f64/index.ts",
+    "#gl-matrix/types": "./src/types/index.ts",
+    "#gl-matrix/util": "./src/util/index.ts"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./classic": {
+      "types": "./dist/classic/index.d.mts",
+      "import": "./dist/classic/index.js",
+      "require": "./dist/classic/index.cjs"
+    },
+    "./common": {
+      "types": "./dist/common/index.d.mts",
+      "import": "./dist/common/index.js",
+      "require": "./dist/common/index.cjs"
+    },
+    "./f64": {
+      "types": "./dist/f64/index.d.mts",
+      "import": "./dist/f64/index.js",
+      "require": "./dist/f64/index.cjs"
+    },
+    "./swizzle": {
+      "types": "./dist/swizzle/index.d.mts",
+      "import": "./dist/swizzle/index.js",
+      "require": "./dist/swizzle/index.cjs"
+    },
+    "./swizzle/f64": {
+      "types": "./dist/swizzle/f64/index.d.mts",
+      "import": "./dist/swizzle/f64/index.js",
+      "require": "./dist/swizzle/f64/index.cjs"
+    },
+    "./types": {
+      "types": "./dist/types/index.d.mts",
+      "import": "./dist/types/index.js",
+      "require": "./dist/types/index.cjs"
+    },
+    "./types/swizzle": {
+      "types": "./dist/types/swizzle/index.d.mts",
+      "import": "./dist/types/swizzle/index.js",
+      "require": "./dist/types/swizzle/index.cjs"
+    },
+    "./types/swizzle/f64": {
+      "types": "./dist/types/swizzle/f64/index.d.mts",
+      "import": "./dist/types/swizzle/f64/index.js",
+      "require": "./dist/types/swizzle/f64/index.cjs"
+    },
+    "./util": {
+      "types": "./dist/util/index.d.mts",
+      "import": "./dist/util/index.js",
+      "require": "./dist/util/index.cjs"
+    }
+  },
+  "homepage": "https://glmatrix.net",
   "bugs": {
     "url": "https://github.com/toji/gl-matrix/issues"
   },
@@ -51,20 +86,47 @@
       "email": "sinisterchipmunk@gmail.com"
     }
   ],
+  "files": [
+    "/dist"
+  ],
+  "keywords": [
+    "vector",
+    "matrix",
+    "library",
+    "webgl",
+    "webgpu"
+  ],
   "scripts": {
-    "build": "tsc",
-    "build-docs": "typedoc src/index.ts",
-    "gen64": "node scripts/gen-f64.mjs",
-    "build64": "npm run gen64 && tsc --project tsconfig64.json",
-    "bundle": "node scripts/bundle.mjs",
-    "build-all": "npm run build && npm run build64 && npm run build-docs && npm run bundle",
-    "watch": "tsc --watch",
-    "test": "npm run gen64 && vitest run"
+    "build": "npm run gen64 && tsc --project tsconfig-build.json && node scripts/bundle.js",
+    "build-all": "npm run build && npm run types && npm run docs",
+    "docs": "typedoc-pkg --api-link es",
+    "gen64": "node scripts/gen-f64.js",
+    "test": "vitest run",
+    "test-ui": "vitest --ui --coverage",
+    "types": "esm-d-ts gen -c"
   },
   "devDependencies": {
-    "esbuild": "^0.15.15",
-    "typedoc": "^0.23.21",
-    "typescript": "^5.0.0",
-    "vitest": "^0.25.8"
+    "@typhonjs-build-test/esm-d-ts": "^0.3.0-next.7",
+    "@typhonjs-typedoc/typedoc-pkg": "^0.0.5",
+    "@typhonjs-utils/file-util": "^0.1.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
+    "esbuild": "^0.21.0",
+    "typedoc": "0.25.12",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "typedocOptions": {
+    "dmtLinksIcon": [
+      {
+        "icon": "./assets/icon/gl-matrix-icon-mono-64.webp",
+        "title": "Homepage",
+        "url": "https://glmatrix.net/"
+      }
+    ],
+    "dmtLinksService": {
+      "GitHub": "https://github.com/toji/gl-matrix",
+      "NPM": "https://www.npmjs.com/package/gl-matrix"
+    }
   }
 }

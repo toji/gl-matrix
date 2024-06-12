@@ -1,0 +1,28 @@
+/**
+ * Generates bundled type declaration for main and all sub-path exports: classic / common / f64 / swizzle, etc.
+ */
+
+// Enables handling `imports` from `package.json` as local package paths transforming them and marking them external in
+// bundling.
+const importsLocal = true;
+
+// The ambient module declaration names need explicit replacement. This option performs a regex replacement on the
+// final bundle.
+const dtsReplace = { '#gl-matrix': 'gl-matrix' };
+
+/** @type {import('@typhonjs-build-test/esm-d-ts').GenerateConfig[]} */
+const configs = [
+   // Bundles main and all sub-path export types configured in `package.json` exports.
+   { input: './src/index.ts', output: './dist/index.d.mts', importsLocal },
+   { input: './src/classic/index.ts', output: './dist/classic/index.d.mts', importsLocal },
+   { input: './src/common/index.ts', output: './dist/common/index.d.mts', importsLocal },
+   { input: './src/f64/index.ts', output: './dist/f64/index.d.mts', importsLocal },
+   { input: './src/swizzle/index.ts', output: './dist/swizzle/index.d.mts', importsLocal },
+   { input: './src/swizzle/f64/index.ts', output: './dist/swizzle/f64/index.d.mts', importsLocal },
+   { input: './src/types/index.ts', output: './dist/types/index.d.mts', importsLocal },
+   { input: './src/types/swizzle/index.ts', output: './dist/types/swizzle/index.d.mts', importsLocal, dtsReplace },
+   { input: './src/types/swizzle/f64/index.ts', output: './dist/types/swizzle/f64/index.d.mts', importsLocal, dtsReplace },
+   { input: './src/util/index.ts', output: './dist/util/index.d.mts', importsLocal }
+];
+
+export default configs;

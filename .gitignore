@@ -1,7 +1,11 @@
+.idea
 .rvmrc
 .DS_Store
-node_modules
 npm-debug.log
-dist
-docs
-f64
+/.dts
+/coverage
+/dist
+/dist-cdn
+/docs
+/html
+/node_modules
