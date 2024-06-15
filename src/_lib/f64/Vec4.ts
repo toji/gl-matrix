@@ -8,6 +8,8 @@ import type { Mat4Like, QuatLike, Vec4Like } from '#gl-matrix/types';
 export class Vec4 extends Float64Array {
   /**
    * Create a {@link Vec4}.
+   *
+   * @category Constructor
    */
   constructor(...values: [Readonly<Vec4Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
@@ -342,6 +344,8 @@ export class Vec4 extends Float64Array {
   //===================
 
   /**
+   * @category Static
+   *
    * @returns The number of bytes in a {@link Vec4}.
    */
   static get BYTE_LENGTH(): number {

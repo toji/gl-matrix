@@ -8,6 +8,8 @@ import type { Mat2Like, Mat2dLike, Mat3Like, Mat4Like, Vec2Like } from '#gl-matr
 export class Vec2 extends Float64Array {
   /**
    * Create a {@link Vec2}.
+   *
+   * @category Constructor
    */
    constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
@@ -310,6 +312,8 @@ export class Vec2 extends Float64Array {
   //===================
 
   /**
+   * @category Static
+   *
    * @returns The number of bytes in a {@link Vec2}.
    */
   static get BYTE_LENGTH(): number {

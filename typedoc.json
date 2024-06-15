@@ -1,0 +1,15 @@
+{
+  "categoryOrder": ["Constructor", "Static", "Member", "*", "Swizzle API"],
+  "defaultCategory": "Member",
+  "dmtLinksIcon": [
+    {
+      "icon": "./assets/icon/gl-matrix-icon-mono-64.webp",
+      "title": "Homepage",
+      "url": "https://glmatrix.net/"
+    }
+  ],
+  "dmtLinksService": {
+    "GitHub": "https://github.com/toji/gl-matrix",
+    "NPM": "https://www.npmjs.com/package/gl-matrix"
+  }
+}

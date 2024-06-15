@@ -8,6 +8,8 @@ import type { Mat3Like, Mat4Like, QuatLike, Vec3Like } from '#gl-matrix/types';
 export class Vec3 extends Float32Array {
   /**
    * Create a {@link Vec3}.
+   *
+   * @category Constructor
    */
   constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
@@ -332,6 +334,8 @@ export class Vec3 extends Float32Array {
   //===================
 
   /**
+   * @category Static
+   *
    * @returns The number of bytes in a {@link Vec3}.
    */
   static get BYTE_LENGTH(): number {

@@ -16,6 +16,8 @@ export class Quat2 extends Float64Array {
 
   /**
    * Create a {@link Quat2}.
+   *
+   * @category Constructor
    */
    constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[]) {
     switch(values.length) {
@@ -71,6 +73,8 @@ export class Quat2 extends Float64Array {
   //===================
 
   /**
+   * @category Static
+   *
    * @returns The number of bytes in a {@link Quat2}.
    */
   static get BYTE_LENGTH(): number {

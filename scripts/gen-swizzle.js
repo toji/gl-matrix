@@ -103,6 +103,13 @@ const swizzleTypeAlias = {
   4: 'Vec4Alias'
 }
 
+const accessorDocs = (length) => {
+  return `    /**
+     * @category Swizzle API   
+     * @returns New instance of swizzled Vec${length}
+     */`;
+};
+
 let swizzleTypes = `
   /**
    * Vec2 swizzle extension accessors.
@@ -110,7 +117,7 @@ let swizzleTypes = `
   interface Vec2 {
 `;
 
-uniqueSwizzlesByComponentCount[2].forEach((key) => swizzleTypes += `    /** @return New instance of swizzled Vec${key.length} */
+uniqueSwizzlesByComponentCount[2].forEach((key) => swizzleTypes += `${accessorDocs(key.length)}
     get ${key}(): ${swizzleTypeAlias[key.length]};\n`)
 
 swizzleTypes += `  }\n`;
@@ -122,10 +129,10 @@ swizzleTypes += `
   interface Vec3 {
 `;
 
-uniqueSwizzlesByComponentCount[2].forEach((key) => swizzleTypes += `    /** @return New instance of swizzled Vec${key.length} */
+uniqueSwizzlesByComponentCount[2].forEach((key) => swizzleTypes += `${accessorDocs(key.length)}
     get ${key}(): ${swizzleTypeAlias[key.length]};\n`)
 
-uniqueSwizzlesByComponentCount[3].forEach((key) => swizzleTypes += `    /** @return New instance of swizzled Vec${key.length} */
+uniqueSwizzlesByComponentCount[3].forEach((key) => swizzleTypes += `${accessorDocs(key.length)}
     get ${key}(): ${swizzleTypeAlias[key.length]};\n`)
 
 swizzleTypes += `  }\n`;
@@ -137,13 +144,13 @@ swizzleTypes += `
   interface Vec4 {
 `;
 
-uniqueSwizzlesByComponentCount[2].forEach((key) => swizzleTypes += `    /** @return New instance of swizzled Vec${key.length} */
+uniqueSwizzlesByComponentCount[2].forEach((key) => swizzleTypes += `${accessorDocs(key.length)}
     get ${key}(): ${swizzleTypeAlias[key.length]};\n`)
 
-uniqueSwizzlesByComponentCount[3].forEach((key) => swizzleTypes += `    /** @return New instance of swizzled Vec${key.length} */
+uniqueSwizzlesByComponentCount[3].forEach((key) => swizzleTypes += `${accessorDocs(key.length)}
     get ${key}(): ${swizzleTypeAlias[key.length]};\n`)
 
-uniqueSwizzlesByComponentCount[4].forEach((key) => swizzleTypes += `    /** @return New instance of swizzled Vec${key.length} */
+uniqueSwizzlesByComponentCount[4].forEach((key) => swizzleTypes += `${accessorDocs(key.length)}
     get ${key}(): ${swizzleTypeAlias[key.length]};\n`)
 
 swizzleTypes += `  }\n`;

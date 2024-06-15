@@ -14,6 +14,8 @@ export class Mat3 extends Float64Array {
 
   /**
    * Create a {@link Mat3}.
+   *
+   * @category Constructor
    */
   constructor(...values: [Readonly<Mat3Like> | ArrayBufferLike, number?] | number[] ) {
     switch(values.length) {
@@ -151,6 +153,8 @@ export class Mat3 extends Float64Array {
   //===================
 
   /**
+   * @category Static
+   *
    * @returns The number of bytes in a {@link Mat3}.
    */
   static get BYTE_LENGTH(): number {
