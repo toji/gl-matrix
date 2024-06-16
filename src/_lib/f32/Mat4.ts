@@ -48,14 +48,16 @@ export class Mat4 extends Float32Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   /**
    * A string representation of `this`
    * Equivalent to `Mat4.str(this);`
+   *
+   * @category Accessors
    */
-   get str(): string {
+  get str(): string {
     return Mat4.str(this);
   }
 
@@ -65,11 +67,12 @@ export class Mat4 extends Float32Array {
 
   /**
    * Copy the values from another {@link Mat4} into `this`.
+   * @category Methods
    *
    * @param a the source vector
    * @returns `this`
    */
-  copy(a: Readonly<Mat4Like>): Mat4 {
+  copy(a: Readonly<Mat4Like>): this {
     this.set(a);
     return this;
   }
@@ -77,10 +80,11 @@ export class Mat4 extends Float32Array {
   /**
    * Set `this` to the identity matrix
    * Equivalent to Mat4.identity(this)
+   * @category Methods
    *
    * @returns `this`
    */
-  identity(): Mat4 {
+  identity(): this {
     this.set(Mat4.#IDENTITY_4X4);
     return this;
   }
@@ -88,106 +92,114 @@ export class Mat4 extends Float32Array {
   /**
    * Multiplies this {@link Mat4} against another one
    * Equivalent to `Mat4.multiply(this, this, b);`
+   * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
-  multiply(b: Readonly<Mat4Like>): Mat4 {
-    return Mat4.multiply(this, this, b) as Mat4;
+  multiply(b: Readonly<Mat4Like>): this {
+    return Mat4.multiply(this, this, b) as this;
   }
 
   /**
    * Alias for {@link Mat4.multiply}
+   * @category Methods
    */
-  mul(b: Readonly<Mat4Like>): Mat4 { return this; }
+  mul(b: Readonly<Mat4Like>): this { return this; }
 
   /**
    * Transpose this {@link Mat4}
    * Equivalent to `Mat4.transpose(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  transpose(): Mat4 {
-    return Mat4.transpose(this, this) as Mat4;
+  transpose(): this {
+    return Mat4.transpose(this, this) as this;
   }
 
   /**
    * Inverts this {@link Mat4}
    * Equivalent to `Mat4.invert(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  invert(): Mat4 {
-    return Mat4.invert(this, this) as Mat4;
+  invert(): this {
+    return Mat4.invert(this, this) as this;
   }
 
   /**
    * Translate this {@link Mat4} by the given vector
    * Equivalent to `Mat4.translate(this, this, v);`
+   * @category Methods
    *
    * @param v - The {@link Vec3} to translate by
    * @returns `this`
    */
-  translate(v: Readonly<Vec3Like>): Mat4 {
-    return Mat4.translate(this, this, v) as Mat4;
+  translate(v: Readonly<Vec3Like>): this {
+    return Mat4.translate(this, this, v) as this;
   }
 
   /**
    * Rotates this {@link Mat4} by the given angle around the given axis
    * Equivalent to `Mat4.rotate(this, this, rad, axis);`
+   * @category Methods
    *
    * @param rad - the angle to rotate the matrix by
    * @param axis - the axis to rotate around
-   * @returns `out`
+   * @returns `this`
    */
-  rotate(rad: number, axis: Readonly<Vec3Like>): Mat4 {
-    return Mat4.rotate(this, this, rad, axis) as Mat4;
+  rotate(rad: number, axis: Readonly<Vec3Like>): this {
+    return Mat4.rotate(this, this, rad, axis) as this;
   }
 
   /**
    * Scales this {@link Mat4} by the dimensions in the given vec3 not using vectorization
    * Equivalent to `Mat4.scale(this, this, v);`
+   * @category Methods
    *
    * @param v - The {@link Vec3} to scale the matrix by
    * @returns `this`
    */
-  scale(v: Readonly<Vec3Like>): Mat4 {
-    return Mat4.scale(this, this, v) as Mat4;
+  scale(v: Readonly<Vec3Like>): this {
+    return Mat4.scale(this, this, v) as this;
   }
 
   /**
    * Rotates this {@link Mat4} by the given angle around the X axis
    * Equivalent to `Mat4.rotateX(this, this, rad);`
+   * @category Methods
    *
    * @param rad - the angle to rotate the matrix by
    * @returns `this`
    */
-  rotateX(rad: number): Mat4 {
-    return Mat4.rotateX(this, this, rad) as Mat4;
+  rotateX(rad: number): this {
+    return Mat4.rotateX(this, this, rad) as this;
   }
 
   /**
    * Rotates this {@link Mat4} by the given angle around the Y axis
    * Equivalent to `Mat4.rotateY(this, this, rad);`
+   * @category Methods
    *
    * @param rad - the angle to rotate the matrix by
    * @returns `this`
    */
-  rotateY(rad: number): Mat4 {
-    return Mat4.rotateY(this, this, rad) as Mat4;
+  rotateY(rad: number): this {
+    return Mat4.rotateY(this, this, rad) as this;
   }
 
   /**
    * Rotates this {@link Mat4} by the given angle around the Z axis
    * Equivalent to `Mat4.rotateZ(this, this, rad);`
+   * @category Methods
    *
    * @param rad - the angle to rotate the matrix by
    * @returns `this`
    */
-  rotateZ(rad: number): Mat4 {
-    return Mat4.rotateZ(this, this, rad) as Mat4;
+  rotateZ(rad: number): this {
+    return Mat4.rotateZ(this, this, rad) as this;
   }
 
   /**
@@ -196,6 +208,7 @@ export class Mat4 extends Float32Array {
    * which matches WebGL/OpenGL's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
    * Equivalent to `Mat4.perspectiveNO(this, fovy, aspect, near, far);`
+   * @category Methods
    *
    * @param fovy - Vertical field of view in radians
    * @param aspect - Aspect ratio. typically viewport width/height
@@ -203,8 +216,8 @@ export class Mat4 extends Float32Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `this`
    */
-  perspectiveNO(fovy: number, aspect: number, near: number, far: number): Mat4 {
-    return Mat4.perspectiveNO(this, fovy, aspect, near, far) as Mat4;
+  perspectiveNO(fovy: number, aspect: number, near: number, far: number): this {
+    return Mat4.perspectiveNO(this, fovy, aspect, near, far) as this;
   }
 
   /**
@@ -213,6 +226,7 @@ export class Mat4 extends Float32Array {
    * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
    * Passing null/undefined/no value for far will generate infinite projection matrix.
    * Equivalent to `Mat4.perspectiveZO(this, fovy, aspect, near, far);`
+   * @category Methods
    *
    * @param fovy - Vertical field of view in radians
    * @param aspect - Aspect ratio. typically viewport width/height
@@ -220,8 +234,8 @@ export class Mat4 extends Float32Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `this`
    */
-  perspectiveZO(fovy: number, aspect: number, near: number, far: number): Mat4 {
-    return Mat4.perspectiveZO(this, fovy, aspect, near, far) as Mat4;
+  perspectiveZO(fovy: number, aspect: number, near: number, far: number): this {
+    return Mat4.perspectiveZO(this, fovy, aspect, near, far) as this;
   }
 
   /**
@@ -229,6 +243,7 @@ export class Mat4 extends Float32Array {
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
    * which matches WebGL/OpenGL's clip volume.
    * Equivalent to `Mat4.orthoNO(this, left, right, bottom, top, near, far);`
+   * @category Methods
    *
    * @param left - Left bound of the frustum
    * @param right - Right bound of the frustum
@@ -238,8 +253,8 @@ export class Mat4 extends Float32Array {
    * @param far - Far bound of the frustum
    * @returns `this`
    */
-  orthoNO(left: number, right: number, bottom: number, top: number, near: number, far: number): Mat4 {
-    return Mat4.orthoNO(this, left, right, bottom, top, near, far) as Mat4;
+  orthoNO(left: number, right: number, bottom: number, top: number, near: number, far: number): this {
+    return Mat4.orthoNO(this, left, right, bottom, top, near, far) as this;
   }
 
   /**
@@ -247,6 +262,7 @@ export class Mat4 extends Float32Array {
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
    * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
    * Equivalent to `Mat4.orthoZO(this, left, right, bottom, top, near, far);`
+   * @category Methods
    *
    * @param left - Left bound of the frustum
    * @param right - Right bound of the frustum
@@ -256,8 +272,8 @@ export class Mat4 extends Float32Array {
    * @param far - Far bound of the frustum
    * @returns `this`
    */
-  orthoZO(left: number, right: number, bottom: number, top: number, near: number, far: number): Mat4 {
-    return Mat4.orthoZO(this, left, right, bottom, top, near, far) as Mat4;
+  orthoZO(left: number, right: number, bottom: number, top: number, near: number, far: number): this {
+    return Mat4.orthoZO(this, left, right, bottom, top, near, far) as this;
   }
 
   //===================

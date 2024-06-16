@@ -42,12 +42,14 @@ export class Quat2 extends Float64Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   /**
    * A string representation of `this`
    * Equivalent to `Quat2.str(this);`
+   *
+   * @category Accessors
    */
   get str(): string {
     return Quat2.str(this);
@@ -59,11 +61,12 @@ export class Quat2 extends Float64Array {
 
   /**
    * Copy the values from another {@link Quat2} into `this`.
+   * @category Methods
    *
    * @param a the source dual quaternion
    * @returns `this`
    */
-  copy(a: Readonly<Quat2Like>): Quat2 {
+  copy(a: Readonly<Quat2Like>): this {
     super.set(a);
     return this;
   }

@@ -105,7 +105,7 @@ const swizzleTypeAlias = {
 
 const accessorDocs = (length) => {
   return `    /**
-     * @category Swizzle API   
+     * @category Swizzle Accessors (Optional)   
      * @returns New instance of swizzled Vec${length}
      */`;
 };

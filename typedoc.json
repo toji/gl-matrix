@@ -1,6 +1,16 @@
 {
-  "categoryOrder": ["Constructor", "Static", "Member", "*", "Swizzle API"],
-  "defaultCategory": "Member",
+  "categoryOrder": [
+    "Constructor",
+    "Static",
+    "Accessors",
+    "Methods",
+    "Color Components",
+    "Vector Components",
+    "Quaternion Components",
+    "Swizzle Accessors (Optional)",
+    "*"
+  ],
+  "defaultCategory": "Inherited",
   "dmtLinksIcon": [
     {
       "icon": "./assets/icon/gl-matrix-icon-mono-64.webp",

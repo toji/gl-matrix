@@ -37,7 +37,7 @@ export class Vec2 extends Float32Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   // Getters and setters to make component access read better.
@@ -45,14 +45,14 @@ export class Vec2 extends Float32Array {
 
   /**
    * The x component of the vector. Equivalent to `this[0];`
-   * @category Vector components
+   * @category Vector Components
    */
   get x(): number { return this[0]; }
   set x(value: number) { this[0] = value; }
 
   /**
    * The y component of the vector. Equivalent to `this[1];`
-   * @category Vector components
+   * @category Vector Components
    */
   get y(): number { return this[1]; }
   set y(value: number) { this[1] = value; }
@@ -62,14 +62,14 @@ export class Vec2 extends Float32Array {
 
   /**
    * The r component of the vector. Equivalent to `this[0];`
-   * @category Color components
+   * @category Color Components
    */
   get r(): number { return this[0]; }
   set r(value: number) { this[0] = value; }
 
   /**
    * The g component of the vector. Equivalent to `this[1];`
-   * @category Color components
+   * @category Color Components
    */
   get g(): number { return this[1]; }
   set g(value: number) { this[1] = value; }
@@ -80,32 +80,44 @@ export class Vec2 extends Float32Array {
    *
    * Magnitude is used because the `length` attribute is already defined by
    * TypedArrays to mean the number of elements in the array.
+   *
+   * @category Accessors
    */
   get magnitude(): number {
     return Math.hypot(this[0], this[1]);
   }
+
   /**
    * Alias for {@link Vec2.magnitude}
+   *
+   * @category Accessors
    */
   get mag(): number { return this.magnitude; }
 
   /**
    * The squared magnitude (length) of `this`.
    * Equivalent to `Vec2.squaredMagnitude(this);`
+   *
+   * @category Accessors
    */
   get squaredMagnitude(): number {
     const x = this[0];
     const y = this[1];
     return x * x + y * y;
   }
+
   /**
    * Alias for {@link Vec2.squaredMagnitude}
+   *
+   * @category Accessors
    */
   get sqrMag(): number { return this.squaredMagnitude; }
 
   /**
    * A string representation of `this`
    * Equivalent to `Vec2.str(this);`
+   *
+   * @category Accessors
    */
   get str(): string {
     return Vec2.str(this);
@@ -117,11 +129,12 @@ export class Vec2 extends Float32Array {
 
   /**
    * Copy the values from another {@link Vec2} into `this`.
+   * @category Methods
    *
    * @param a the source vector
    * @returns `this`
    */
-  copy(a: Readonly<Vec2Like>): Vec2 {
+  copy(a: Readonly<Vec2Like>): this {
     this.set(a);
     return this;
   }
@@ -131,11 +144,12 @@ export class Vec2 extends Float32Array {
   /**
    * Adds a {@link Vec2} to `this`.
    * Equivalent to `Vec2.add(this, this, b);`
+   * @category Methods
    *
    * @param b - The vector to add to `this`
    * @returns `this`
    */
-  add(b: Readonly<Vec2Like>): Vec2 {
+  add(b: Readonly<Vec2Like>): this {
     this[0] += b[0];
     this[1] += b[1];
     return this;
@@ -144,11 +158,12 @@ export class Vec2 extends Float32Array {
   /**
    * Subtracts a {@link Vec2} from `this`.
    * Equivalent to `Vec2.subtract(this, this, b);`
+   * @category Methods
    *
    * @param b - The vector to subtract from `this`
    * @returns `this`
    */
-  subtract(b: Readonly<Vec2Like>): Vec2 {
+  subtract(b: Readonly<Vec2Like>): this {
     this[0] -= b[0];
     this[1] -= b[1];
     return this;
@@ -156,51 +171,59 @@ export class Vec2 extends Float32Array {
 
   /**
    * Alias for {@link Vec2.subtract}
+   * @category Methods
    */
-  sub(b: Readonly<Vec2Like>): Vec2 { return this; }
+  sub(b: Readonly<Vec2Like>): this { return this; }
 
   /**
    * Multiplies `this` by a {@link Vec2}.
    * Equivalent to `Vec2.multiply(this, this, b);`
+   * @category Methods
    *
    * @param b - The vector to multiply `this` by
    * @returns `this`
    */
-  multiply(b: Readonly<Vec2Like>): Vec2 {
+  multiply(b: Readonly<Vec2Like>): this {
     this[0] *= b[0];
     this[1] *= b[1];
     return this;
   }
+
   /**
    * Alias for {@link Vec2.multiply}
+   * @category Methods
    */
-  mul(b: Readonly<Vec2Like>): Vec2 { return this; }
+  mul(b: Readonly<Vec2Like>): this { return this; }
 
   /**
    * Divides `this` by a {@link Vec2}.
    * Equivalent to `Vec2.divide(this, this, b);`
+   * @category Methods
    *
    * @param b - The vector to divide `this` by
-   * @returns {Vec2} `this`
+   * @returns `this`
    */
-  divide(b: Readonly<Vec2Like>): Vec2 {
+  divide(b: Readonly<Vec2Like>): this {
     this[0] /= b[0];
     this[1] /= b[1];
     return this;
   }
+
   /**
    * Alias for {@link Vec2.divide}
+   * @category Methods
    */
-  div(b: Readonly<Vec2Like>): Vec2 { return this; }
+  div(b: Readonly<Vec2Like>): this { return this; }
 
   /**
    * Scales `this` by a scalar number.
    * Equivalent to `Vec2.scale(this, this, b);`
+   * @category Methods
    *
    * @param b - Amount to scale `this` by
    * @returns `this`
    */
-  scale(b: number): Vec2 {
+  scale(b: number): this {
     this[0] *= b;
     this[1] *= b;
     return this;
@@ -209,20 +232,22 @@ export class Vec2 extends Float32Array {
   /**
    * Calculates `this` scaled by a scalar value then adds the result to `this`.
    * Equivalent to `Vec2.scaleAndAdd(this, this, b, scale);`
+   * @category Methods
    *
    * @param b - The vector to add to `this`
    * @param scale - The amount to scale `b` by before adding
    * @returns `this`
    */
-  scaleAndAdd(b: Readonly<Vec2Like>, scale: number): Vec2 {
+  scaleAndAdd(b: Readonly<Vec2Like>, scale: number): this {
     this[0] += b[0] * scale;
     this[1] += b[1] * scale;
     return this;
   }
 
   /**
-   * Calculates the euclidian distance between another {@link Vec2} and `this`.
+   * Calculates the Euclidean distance between another {@link Vec2} and `this`.
    * Equivalent to `Vec2.distance(this, b);`
+   * @category Methods
    *
    * @param b - The vector to calculate the distance to
    * @returns Distance between `this` and `b`
@@ -232,12 +257,14 @@ export class Vec2 extends Float32Array {
   }
   /**
    * Alias for {@link Vec2.distance}
+   * @category Methods
    */
   dist(b: Readonly<Vec2Like>): number { return 0; }
 
   /**
-   * Calculates the squared euclidian distance between another {@link Vec2} and `this`.
+   * Calculates the squared Euclidean distance between another {@link Vec2} and `this`.
    * Equivalent to `Vec2.squaredDistance(this, b);`
+   * @category Methods
    *
    * @param b The vector to calculate the squared distance to
    * @returns Squared distance between `this` and `b`
@@ -247,16 +274,18 @@ export class Vec2 extends Float32Array {
   }
   /**
    * Alias for {@link Vec2.squaredDistance}
+   * @category Methods
    */
   sqrDist(b: Readonly<Vec2Like>): number { return 0; }
 
   /**
    * Negates the components of `this`.
    * Equivalent to `Vec2.negate(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  negate(): Vec2 {
+  negate(): this {
     this[0] *= -1;
     this[1] *= -1;
     return this;
@@ -265,10 +294,11 @@ export class Vec2 extends Float32Array {
   /**
    * Inverts the components of `this`.
    * Equivalent to `Vec2.inverse(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  invert(): Vec2 {
+  invert(): this {
     this[0] = 1.0 / this[0];
     this[1] = 1.0 / this[1];
     return this;
@@ -277,10 +307,11 @@ export class Vec2 extends Float32Array {
   /**
    * Sets each component of `this` to it's absolute value.
    * Equivalent to `Vec2.abs(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  abs(): Vec2 {
+  abs(): this {
     this[0] = Math.abs(this[0]);
     this[1] = Math.abs(this[1]);
     return this;
@@ -289,6 +320,7 @@ export class Vec2 extends Float32Array {
   /**
    * Calculates the dot product of this and another {@link Vec2}.
    * Equivalent to `Vec2.dot(this, b);`
+   * @category Methods
    *
    * @param b - The second operand
    * @returns Dot product of `this` and `b`
@@ -300,11 +332,12 @@ export class Vec2 extends Float32Array {
   /**
    * Normalize `this`.
    * Equivalent to `Vec2.normalize(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-   normalize(): Vec2 {
-    return Vec2.normalize(this, this) as Vec2;
+   normalize(): this {
+    return Vec2.normalize(this, this) as this;
   }
 
   //===================
@@ -568,7 +601,7 @@ export class Vec2 extends Float32Array {
   }
 
   /**
-   * Calculates the euclidian distance between two {@link Vec2}s
+   * Calculates the Euclidean distance between two {@link Vec2}s
    * @category Static
    *
    * @param a - The first operand
@@ -586,7 +619,7 @@ export class Vec2 extends Float32Array {
   static dist(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): number { return 0; }
 
   /**
-   * Calculates the squared euclidian distance between two {@link Vec2}s
+   * Calculates the squared Euclidean distance between two {@link Vec2}s
    * @category Static
    *
    * @param a - The first operand
@@ -651,8 +684,10 @@ export class Vec2 extends Float32Array {
     const y = a[1];
     return x * x + y * y;
   }
+
   /**
    * Alias for {@link Vec2.squaredLength}
+   * @category Static
    */
   static sqrLen(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): number { return 0; }
 
@@ -774,6 +809,7 @@ export class Vec2 extends Float32Array {
    * @param a - The vector to transform
    * @param m - Matrix to transform with
    * @returns `out`
+   * @category Static
    */
   static transformMat2(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat2Like>): Vec2Like {
     const x = a[0];
@@ -790,6 +826,7 @@ export class Vec2 extends Float32Array {
    * @param a - The vector to transform
    * @param m - Matrix to transform with
    * @returns `out`
+   * @category Static
    */
   static transformMat2d(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat2dLike>): Vec2Like {
     const x = a[0];
@@ -807,6 +844,7 @@ export class Vec2 extends Float32Array {
    * @param a - The vector to transform
    * @param m - Matrix to transform with
    * @returns `out`
+   * @category Static
    */
   static transformMat3(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat3Like>): Vec2Like {
     const x = a[0];
@@ -825,6 +863,7 @@ export class Vec2 extends Float32Array {
    * @param a - The vector to transform
    * @param m - Matrix to transform with
    * @returns `out`
+   * @category Static
    */
   static transformMat4(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat4Like>): Vec2Like {
     const x = a[0];

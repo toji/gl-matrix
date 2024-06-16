@@ -40,14 +40,16 @@ export class Mat3 extends Float32Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   /**
    * A string representation of `this`
    * Equivalent to `Mat3.str(this);`
+   *
+   * @category Accessors
    */
-   get str(): string {
+  get str(): string {
     return Mat3.str(this);
   }
 
@@ -57,11 +59,12 @@ export class Mat3 extends Float32Array {
 
   /**
    * Copy the values from another {@link Mat3} into `this`.
+   * @category Methods
    *
    * @param a the source vector
    * @returns `this`
    */
-  copy(a: Readonly<Mat3Like>): Mat3 {
+  copy(a: Readonly<Mat3Like>): this {
     this.set(a);
     return this;
   }
@@ -69,10 +72,11 @@ export class Mat3 extends Float32Array {
   /**
    * Set `this` to the identity matrix
    * Equivalent to Mat3.identity(this)
+   * @category Methods
    *
    * @returns `this`
    */
-  identity(): Mat3 {
+  identity(): this {
     this.set(Mat3.#IDENTITY_3X3);
     return this;
   }
@@ -80,72 +84,79 @@ export class Mat3 extends Float32Array {
   /**
    * Multiplies this {@link Mat3} against another one
    * Equivalent to `Mat3.multiply(this, this, b);`
+   * @category Methods
    *
    * @param out - The receiving Matrix
    * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
-  multiply(b: Readonly<Mat3Like>): Mat3 {
-    return Mat3.multiply(this, this, b) as Mat3;
+  multiply(b: Readonly<Mat3Like>): this {
+    return Mat3.multiply(this, this, b) as this;
   }
 
   /**
    * Alias for {@link Mat3.multiply}
+   * @category Methods
    */
-  mul(b: Readonly<Mat3Like>): Mat3 { return this; }
+  mul(b: Readonly<Mat3Like>): this { return this; }
 
   /**
    * Transpose this {@link Mat3}
    * Equivalent to `Mat3.transpose(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  transpose(): Mat3 {
-    return Mat3.transpose(this, this) as Mat3;
+  transpose(): this {
+    return Mat3.transpose(this, this) as this;
   }
 
   /**
    * Inverts this {@link Mat3}
    * Equivalent to `Mat4.invert(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  invert(): Mat3 {
-    return Mat3.invert(this, this) as Mat3;
+  invert(): this {
+    return Mat3.invert(this, this) as this;
   }
 
   /**
    * Translate this {@link Mat3} by the given vector
    * Equivalent to `Mat3.translate(this, this, v);`
+   * @category Methods
    *
    * @param v - The {@link Vec2} to translate by
    * @returns `this`
    */
-  translate(v: Readonly<Vec2Like>): Mat3 {
-    return Mat3.translate(this, this, v) as Mat3;
+  translate(v: Readonly<Vec2Like>): this {
+    return Mat3.translate(this, this, v) as this;
   }
 
   /**
    * Rotates this {@link Mat3} by the given angle around the given axis
    * Equivalent to `Mat3.rotate(this, this, rad);`
+   * @category Methods
    *
    * @param rad - the angle to rotate the matrix by
-   * @returns `out`
+   * @returns `this`
    */
-  rotate(rad: number): Mat3 {
-    return Mat3.rotate(this, this, rad) as Mat3;
+  rotate(rad: number): this {
+    return Mat3.rotate(this, this, rad) as this;
   }
 
   /**
    * Scales this {@link Mat3} by the dimensions in the given vec3 not using vectorization
    * Equivalent to `Mat3.scale(this, this, v);`
+   * @category Methods
    *
    * @param v - The {@link Vec2} to scale the matrix by
    * @returns `this`
    */
-  scale(v: Readonly<Vec2Like>): Mat3 {
-    return Mat3.scale(this, this, v) as Mat3;
+  scale(v: Readonly<Vec2Like>): this {
+    return Mat3.scale(this, this, v) as this;
   }
 
   //===================
@@ -699,6 +710,7 @@ export class Mat3 extends Float32Array {
 
   /**
    * Calculates a {@link Mat3} from the given quaternion
+   * @category Static
    *
    * @param out - {@link Mat3} receiving operation result
    * @param q - {@link Quat} to create matrix from

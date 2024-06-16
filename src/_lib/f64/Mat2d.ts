@@ -40,14 +40,16 @@ export class Mat2d extends Float64Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   /**
    * A string representation of `this`
    * Equivalent to `Mat2d.str(this);`
+   *
+   * @category Accessors
    */
-   get str(): string {
+  get str(): string {
     return Mat2d.str(this);
   }
 
@@ -57,11 +59,12 @@ export class Mat2d extends Float64Array {
 
   /**
    * Copy the values from another {@link Mat2d} into `this`.
+   * @category Methods
    *
    * @param a the source vector
    * @returns `this`
    */
-  copy(a: Readonly<Mat2dLike>): Mat2d {
+  copy(a: Readonly<Mat2dLike>): this {
     this.set(a);
     return this;
   }
@@ -69,10 +72,11 @@ export class Mat2d extends Float64Array {
   /**
    * Set `this` to the identity matrix
    * Equivalent to Mat2d.identity(this)
+   * @category Methods
    *
    * @returns `this`
    */
-  identity(): Mat2d {
+  identity(): this {
     this.set(Mat2d.#IDENTITY_2X3);
     return this;
   }
@@ -80,52 +84,57 @@ export class Mat2d extends Float64Array {
   /**
    * Multiplies this {@link Mat2d} against another one
    * Equivalent to `Mat2d.multiply(this, this, b);`
+   * @category Methods
    *
    * @param out - The receiving Matrix
    * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
-  multiply(b: Readonly<Mat2dLike>): Mat2d {
-    return Mat2d.multiply(this, this, b) as Mat2d;
+  multiply(b: Readonly<Mat2dLike>): this {
+    return Mat2d.multiply(this, this, b) as this;
   }
 
   /**
    * Alias for {@link Mat2d.multiply}
+   * @category Methods
    */
-  mul(b: Readonly<Mat2dLike>): Mat2d { return this; }
+  mul(b: Readonly<Mat2dLike>): this { return this; }
 
   /**
    * Translate this {@link Mat2d} by the given vector
    * Equivalent to `Mat2d.translate(this, this, v);`
+   * @category Methods
    *
    * @param v - The {@link Vec2} to translate by
    * @returns `this`
    */
-  translate(v: Readonly<Vec2Like>): Mat2d {
-    return Mat2d.translate(this, this, v) as Mat2d;
+  translate(v: Readonly<Vec2Like>): this {
+    return Mat2d.translate(this, this, v) as this;
   }
 
   /**
    * Rotates this {@link Mat2d} by the given angle around the given axis
    * Equivalent to `Mat2d.rotate(this, this, rad);`
+   * @category Methods
    *
    * @param rad - the angle to rotate the matrix by
-   * @returns `out`
+   * @returns `this`
    */
-  rotate(rad: number): Mat2d {
-    return Mat2d.rotate(this, this, rad) as Mat2d;
+  rotate(rad: number): this {
+    return Mat2d.rotate(this, this, rad) as this;
   }
 
   /**
    * Scales this {@link Mat2d} by the dimensions in the given vec3 not using vectorization
    * Equivalent to `Mat2d.scale(this, this, v);`
+   * @category Methods
    *
    * @param v - The {@link Vec2} to scale the matrix by
    * @returns `this`
    */
-  scale(v: Readonly<Vec2Like>): Mat2d {
-    return Mat2d.scale(this, this, v) as Mat2d;
+  scale(v: Readonly<Vec2Like>): this {
+    return Mat2d.scale(this, this, v) as this;
   }
 
   //===================

@@ -38,14 +38,16 @@ export class Mat2 extends Float32Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   /**
    * A string representation of `this`
    * Equivalent to `Mat2.str(this);`
+   *
+   * @category Accessors
    */
-   get str(): string {
+  get str(): string {
     return Mat2.str(this);
   }
 
@@ -58,8 +60,9 @@ export class Mat2 extends Float32Array {
    *
    * @param a the source vector
    * @returns `this`
+   * @category Methods
    */
-  copy(a: Readonly<Mat2Like>): Mat2 {
+  copy(a: Readonly<Mat2Like>): this {
     this.set(a);
     return this;
   }
@@ -69,8 +72,9 @@ export class Mat2 extends Float32Array {
    * Equivalent to Mat2.identity(this)
    *
    * @returns `this`
+   * @category Methods
    */
-  identity(): Mat2 {
+  identity(): this {
     this.set(Mat2.#IDENTITY_2X2);
     return this;
   }
@@ -79,28 +83,29 @@ export class Mat2 extends Float32Array {
    * Multiplies this {@link Mat2} against another one
    * Equivalent to `Mat2.multiply(this, this, b);`
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
+   * @category Methods
    */
-  multiply(b: Readonly<Mat2Like>): Mat2 {
-    return Mat2.multiply(this, this, b) as Mat2;
+  multiply(b: Readonly<Mat2Like>): this {
+    return Mat2.multiply(this, this, b) as this;
   }
 
   /**
    * Alias for {@link Mat2.multiply}
+   * @category Methods
    */
-  mul(b: Readonly<Mat2Like>): Mat2 { return this; }
+  mul(b: Readonly<Mat2Like>): this { return this; }
 
   /**
    * Transpose this {@link Mat2}
    * Equivalent to `Mat2.transpose(this, this);`
    *
    * @returns `this`
+   * @category Methods
    */
-  transpose(): Mat2 {
-    return Mat2.transpose(this, this) as Mat2;
+  transpose(): this {
+    return Mat2.transpose(this, this) as this;
   }
 
   /**
@@ -108,9 +113,10 @@ export class Mat2 extends Float32Array {
    * Equivalent to `Mat4.invert(this, this);`
    *
    * @returns `this`
+   * @category Methods
    */
-  invert(): Mat2 {
-    return Mat2.invert(this, this) as Mat2;
+  invert(): this {
+    return Mat2.invert(this, this) as this;
   }
 
   /**
@@ -119,9 +125,10 @@ export class Mat2 extends Float32Array {
    *
    * @param v - The {@link Vec2} to scale the matrix by
    * @returns `this`
+   * @category Methods
    */
-  scale(v: Readonly<Vec2Like>): Mat2 {
-    return Mat2.scale(this, this, v) as Mat2;
+  scale(v: Readonly<Vec2Like>): this {
+    return Mat2.scale(this, this, v) as this;
   }
 
   /**
@@ -129,10 +136,11 @@ export class Mat2 extends Float32Array {
    * Equivalent to `Mat2.rotate(this, this, rad);`
    *
    * @param rad - the angle to rotate the matrix by
-   * @returns `out`
+   * @returns `this`
+   * @category Methods
    */
-  rotate(rad: number): Mat2 {
-    return Mat2.rotate(this, this, rad) as Mat2;
+  rotate(rad: number): this {
+    return Mat2.rotate(this, this, rad) as this;
   }
 
   //===================
@@ -435,9 +443,10 @@ export class Mat2 extends Float32Array {
   /**
    * Creates a {@link Mat2} from a given angle around a given axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat2.identity(dest);
-   *     mat2.rotate(dest, dest, rad);
+   * ```js
+   *   mat2.identity(dest);
+   *   mat2.rotate(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2} receiving operation result
@@ -457,9 +466,10 @@ export class Mat2 extends Float32Array {
   /**
    * Creates a {@link Mat2} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     mat2.identity(dest);
-   *     mat2.scale(dest, dest, vec);
+   * ```js
+   *   mat2.identity(dest);
+   *   mat2.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2} receiving operation result
@@ -539,7 +549,7 @@ export class Mat2 extends Float32Array {
   }
 
   /**
-   * Returns whether or not two {@link Mat2}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat2}s have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first matrix.
@@ -556,7 +566,7 @@ export class Mat2 extends Float32Array {
   }
 
   /**
-   * Returns whether or not two {@link Mat2}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat2}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.

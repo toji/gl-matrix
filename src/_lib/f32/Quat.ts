@@ -49,7 +49,7 @@ export class Quat extends Float32Array {
   }
 
   //============
-  // Attributes
+  // Accessors
   //============
 
   // Getters and setters to make component access read better.
@@ -57,28 +57,28 @@ export class Quat extends Float32Array {
 
   /**
    * The x component of the quaternion. Equivalent to `this[0];`
-   * @category Quaternion components
+   * @category Quaternion Components
    */
   get x(): number { return this[0]; }
   set x(value: number) { this[0] = value; }
 
   /**
    * The y component of the quaternion. Equivalent to `this[1];`
-   * @category Quaternion components
+   * @category Quaternion Components
    */
   get y(): number { return this[1]; }
   set y(value: number) { this[1] = value; }
 
   /**
    * The z component of the quaternion. Equivalent to `this[2];`
-   * @category Quaternion components
+   * @category Quaternion Components
    */
   get z(): number { return this[2]; }
   set z(value: number) { this[2] = value; }
 
   /**
    * The w component of the quaternion. Equivalent to `this[3];`
-   * @category Quaternion components
+   * @category Quaternion Components
    */
   get w(): number { return this[3]; }
   set w(value: number) { this[3] = value; }
@@ -89,6 +89,8 @@ export class Quat extends Float32Array {
    *
    * Magnitude is used because the `length` attribute is already defined by
    * TypedArrays to mean the number of elements in the array.
+   *
+   * @category Accessors
    */
   get magnitude(): number {
     const x = this[0];
@@ -100,12 +102,16 @@ export class Quat extends Float32Array {
 
   /**
    * Alias for {@link Quat.magnitude}
+   *
+   * @category Accessors
    */
   get mag(): number { return this.magnitude; }
 
   /**
    * A string representation of `this`
    * Equivalent to `Quat.str(this);`
+   *
+   * @category Accessors
    */
   get str(): string {
     return Quat.str(this);
@@ -117,11 +123,12 @@ export class Quat extends Float32Array {
 
   /**
    * Copy the values from another {@link Quat} into `this`.
+   * @category Methods
    *
    * @param a the source quaternion
    * @returns `this`
    */
-  copy(a: Readonly<QuatLike>): Quat {
+  copy(a: Readonly<QuatLike>): this {
     super.set(a);
     return this;
   }
@@ -129,10 +136,11 @@ export class Quat extends Float32Array {
   /**
    * Set `this` to the identity quaternion
    * Equivalent to Quat.identity(this)
+   * @category Methods
    *
    * @returns `this`
    */
-  identity(): Quat {
+  identity(): this {
     this[0] = 0;
     this[1] = 0;
     this[2] = 0;
@@ -143,68 +151,73 @@ export class Quat extends Float32Array {
   /**
    * Multiplies `this` by a {@link Quat}.
    * Equivalent to `Quat.multiply(this, this, b);`
+   * @category Methods
    *
    * @param b - The vector to multiply `this` by
    * @returns `this`
    */
-  multiply(b: Readonly<QuatLike>): Quat {
-    return Quat.multiply(this, this, b) as Quat;
+  multiply(b: Readonly<QuatLike>): this {
+    return Quat.multiply(this, this, b) as this;
   }
 
   /**
    * Alias for {@link Quat.multiply}
+   * @category Methods
    */
-  mul(b: Readonly<QuatLike>): Quat { return this; }
+  mul(b: Readonly<QuatLike>): this { return this; }
 
   /**
    * Rotates `this` by the given angle about the X axis
    * Equivalent to `Quat.rotateX(this, this, rad);`
+   * @category Methods
    *
    * @param rad - angle (in radians) to rotate
    * @returns `this`
    */
-  rotateX(rad: number): Quat {
-    return Quat.rotateX(this, this, rad) as Quat;
+  rotateX(rad: number): this {
+    return Quat.rotateX(this, this, rad) as this;
   }
 
   /**
    * Rotates `this` by the given angle about the Y axis
    * Equivalent to `Quat.rotateY(this, this, rad);`
+   * @category Methods
    *
    * @param rad - angle (in radians) to rotate
    * @returns `this`
    */
-  rotateY(rad: number): Quat {
-    return Quat.rotateY(this, this, rad) as Quat;
+  rotateY(rad: number): this {
+    return Quat.rotateY(this, this, rad) as this;
   }
 
   /**
    * Rotates `this` by the given angle about the Z axis
    * Equivalent to `Quat.rotateZ(this, this, rad);`
+   * @category Methods
    *
    * @param rad - angle (in radians) to rotate
    * @returns `this`
    */
-  rotateZ(rad: number): Quat {
-    return Quat.rotateZ(this, this, rad) as Quat;
+  rotateZ(rad: number): this {
+    return Quat.rotateZ(this, this, rad) as this;
   }
 
   /**
    * Inverts `this`
    * Equivalent to `Quat.invert(this, this);`
+   * @category Methods
    *
    * @returns `this`
    */
-  invert(): Quat {
-    return Quat.invert(this, this) as Quat;
+  invert(): this {
+    return Quat.invert(this, this) as this;
   }
 
   /**
    * Scales `this` by a scalar number
    * Equivalent to `Quat.scale(this, this, scale);`
+   * @category Methods
    *
-   * @param out - the receiving vector
-   * @param a - the vector to scale
    * @param scale - amount to scale the vector by
    * @returns `this`
    */
@@ -219,6 +232,7 @@ export class Quat extends Float32Array {
   /**
    * Calculates the dot product of `this` and another {@link Quat}
    * Equivalent to `Quat.dot(this, b);`
+   * @category Methods
    *
    * @param b - the second operand
    * @returns dot product of `this` and b
