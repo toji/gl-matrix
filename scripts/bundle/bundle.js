@@ -8,7 +8,9 @@ const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
 // ESBuild data ------------------------------------------------------------------------------------------------------
 
-const banner = { js: `// glMatrix - v${pkg.version}` };
+const bannerText = `// glMatrix - v${pkg.version}`;
+
+const banner = { js: bannerText };
 
 // Add the `package.json` imports as external for ESBuild removing the leading `#`.
 const external = Object.keys(pkg.imports ?? {}).map((key) => key.slice(1));
@@ -284,7 +286,7 @@ try {
         ]
       },
       output: {
-        banner,
+        banner: bannerText,
         file: 'dist-cdn/umd/gl-matrix-f32.cjs',
         format: 'umd',
         generatedCode: 'es5',
@@ -303,7 +305,7 @@ try {
         ]
       },
       output: {
-        banner,
+        banner: bannerText,
         file: 'dist-cdn/umd/gl-matrix-f32.min.cjs',
         format: 'umd',
         generatedCode: 'es5',
@@ -324,7 +326,7 @@ try {
         ]
       },
       output: {
-        banner,
+        banner: bannerText,
         file: 'dist-cdn/umd/gl-matrix-f64.cjs',
         format: 'umd',
         generatedCode: 'es5',
@@ -343,7 +345,7 @@ try {
         ]
       },
       output: {
-        banner,
+        banner: bannerText,
         file: 'dist-cdn/umd/gl-matrix-f64.min.cjs',
         format: 'umd',
         generatedCode: 'es5',
