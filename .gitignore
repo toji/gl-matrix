@@ -5,7 +5,6 @@ npm-debug.log
 /.dts
 /coverage
 /dist
-/dist-cdn
 /docs
 /html
 /node_modules

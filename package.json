@@ -14,6 +14,8 @@
     "#gl-matrix/swizzle": "./src/swizzle/index.ts",
     "#gl-matrix/swizzle/f64": "./src/swizzle/f64/index.ts",
     "#gl-matrix/types": "./src/types/index.ts",
+    "#gl-matrix/types/swizzle": "./src/types/swizzle/index.ts",
+    "#gl-matrix/types/swizzle/f64": "./src/types/swizzle/f64/index.ts",
     "#gl-matrix/util": "./src/util/index.ts"
   },
   "exports": {
@@ -68,6 +70,8 @@
       "require": "./dist/util/index.cjs"
     }
   },
+  "main": "./dist-cdn/esm/2022/gl-matrix-f32.min.js",
+  "types": "./dist-cdn/types/gl-matrix-f32.d.mts",
   "homepage": "https://glmatrix.net",
   "bugs": {
     "url": "https://github.com/toji/gl-matrix/issues"
@@ -87,7 +91,8 @@
     }
   ],
   "files": [
-    "/dist"
+    "/dist",
+    "/dist-cdn"
   ],
   "keywords": [
     "vector",
@@ -97,21 +102,26 @@
     "webgpu"
   ],
   "scripts": {
-    "build": "npm run gen64 && tsc --project tsconfig-build.json && node scripts/bundle.js",
-    "build-all": "npm run build && npm run types && npm run docs",
+    "build": "npm run gen64 && tsc --project tsconfig-build.json && node scripts/bundle/bundle.js",
+    "build-all": "npm run build && npm run types && npm run docs && npm run docs-cdn",
     "docs": "typedoc-pkg --api-link es",
+    "docs-cdn": "typedoc-pkg --api-link es --path dist-cdn/types/gl-matrix-f32.d.mts:dist-cdn/types/gl-matrix-f64.d.mts --output docs/cdn --typedoc typedoc-cdn.json",
     "gen64": "node scripts/gen-f64.js",
     "test": "vitest run",
     "test-ui": "vitest --ui --coverage",
     "types": "esm-d-ts gen -c"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@rollup/plugin-babel": "^6.0.4",
     "@typhonjs-build-test/esm-d-ts": "^0.3.0-next.7",
     "@typhonjs-typedoc/typedoc-pkg": "^0.0.5",
     "@typhonjs-utils/file-util": "^0.1.0",
     "@vitest/coverage-v8": "^1.6.0",
     "@vitest/ui": "^1.6.0",
     "esbuild": "^0.21.0",
+    "rollup": "^4.18.0",
     "typedoc": "0.25.12",
     "typescript": "^5.4.0",
     "vitest": "^1.6.0"

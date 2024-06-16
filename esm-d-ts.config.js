@@ -22,7 +22,11 @@ const configs = [
    { input: './src/types/index.ts', output: './dist/types/index.d.mts', importsLocal },
    { input: './src/types/swizzle/index.ts', output: './dist/types/swizzle/index.d.mts', importsLocal, dtsReplace },
    { input: './src/types/swizzle/f64/index.ts', output: './dist/types/swizzle/f64/index.d.mts', importsLocal, dtsReplace },
-   { input: './src/util/index.ts', output: './dist/util/index.d.mts', importsLocal }
+   { input: './src/util/index.ts', output: './dist/util/index.d.mts', importsLocal },
+
+   // Bundles CDN types.
+   { input: './scripts/bundle/cdn-entry-f32.ts', output: './dist-cdn/types/gl-matrix-f32.d.mts' },
+   { input: './scripts/bundle/cdn-entry-f64.ts', output: './dist-cdn/types/gl-matrix-f64.d.mts' }
 ];
 
 export default configs;

@@ -1,0 +1,4445 @@
+[object Object]
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.glMatrix = {}));
+})(this, (function (exports) { 'use strict';
+
+  function _assertThisInitialized(e) {
+    if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    return e;
+  }
+  function _callSuper(t, o, e) {
+    return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e));
+  }
+  function _classCallCheck(a, n) {
+    if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
+  }
+  function _construct(t, e, r) {
+    if (_isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
+    var o = [null];
+    o.push.apply(o, e);
+    var p = new (t.bind.apply(t, o))();
+    return r && _setPrototypeOf(p, r.prototype), p;
+  }
+  function _defineProperties(e, r) {
+    for (var t = 0; t < r.length; t++) {
+      var o = r[t];
+      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
+    }
+  }
+  function _createClass(e, r, t) {
+    return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
+      writable: !1
+    }), e;
+  }
+  function _get() {
+    return _get = "undefined" != typeof Reflect && Reflect.get ? Reflect.get.bind() : function (e, t, r) {
+      var p = _superPropBase(e, t);
+      if (p) {
+        var n = Object.getOwnPropertyDescriptor(p, t);
+        return n.get ? n.get.call(arguments.length < 3 ? e : r) : n.value;
+      }
+    }, _get.apply(null, arguments);
+  }
+  function _getPrototypeOf(t) {
+    return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) {
+      return t.__proto__ || Object.getPrototypeOf(t);
+    }, _getPrototypeOf(t);
+  }
+  function _inherits(t, e) {
+    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
+    t.prototype = Object.create(e && e.prototype, {
+      constructor: {
+        value: t,
+        writable: !0,
+        configurable: !0
+      }
+    }), Object.defineProperty(t, "prototype", {
+      writable: !1
+    }), e && _setPrototypeOf(t, e);
+  }
+  function _isNativeFunction(t) {
+    try {
+      return -1 !== Function.toString.call(t).indexOf("[native code]");
+    } catch (n) {
+      return "function" == typeof t;
+    }
+  }
+  function _isNativeReflectConstruct() {
+    try {
+      var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
+    } catch (t) {}
+    return (_isNativeReflectConstruct = function () {
+      return !!t;
+    })();
+  }
+  function _possibleConstructorReturn(t, e) {
+    if (e && ("object" == typeof e || "function" == typeof e)) return e;
+    if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
+    return _assertThisInitialized(t);
+  }
+  function _setPrototypeOf(t, e) {
+    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) {
+      return t.__proto__ = e, t;
+    }, _setPrototypeOf(t, e);
+  }
+  function _superPropBase(t, o) {
+    for (; !{}.hasOwnProperty.call(t, o) && null !== (t = _getPrototypeOf(t)););
+    return t;
+  }
+  function _toPrimitive(t, r) {
+    if ("object" != typeof t || !t) return t;
+    var e = t[Symbol.toPrimitive];
+    if (void 0 !== e) {
+      var i = e.call(t, r );
+      if ("object" != typeof i) return i;
+      throw new TypeError("@@toPrimitive must return a primitive value.");
+    }
+    return (String )(t);
+  }
+  function _toPropertyKey(t) {
+    var i = _toPrimitive(t, "string");
+    return "symbol" == typeof i ? i : i + "";
+  }
+  function _wrapNativeSuper(t) {
+    var r = "function" == typeof Map ? new Map() : void 0;
+    return _wrapNativeSuper = function (t) {
+      if (null === t || !_isNativeFunction(t)) return t;
+      if ("function" != typeof t) throw new TypeError("Super expression must either be null or a function");
+      if (void 0 !== r) {
+        if (r.has(t)) return r.get(t);
+        r.set(t, Wrapper);
+      }
+      function Wrapper() {
+        return _construct(t, arguments, _getPrototypeOf(this).constructor);
+      }
+      return Wrapper.prototype = Object.create(t.prototype, {
+        constructor: {
+          value: Wrapper,
+          enumerable: !1,
+          writable: !0,
+          configurable: !0
+        }
+      }), _setPrototypeOf(Wrapper, t);
+    }, _wrapNativeSuper(t);
+  }
+
+  // glMatrix - v4.0.0-beta.3
+  var de = function de(A) {
+    throw TypeError(A);
+  };
+  var xe = function xe(A, e, t) {
+    return e.has(A) || de("Cannot " + t);
+  };
+  var E = function E(A, e, t) {
+      return xe(A, e, "read from private field"), t ? t.call(A) : e.get(A);
+    },
+    Z = function Z(A, e, t) {
+      return e.has(A) ? de("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(A) : e.set(A, t);
+    };
+  var ne,
+    C = /*#__PURE__*/function (_Float32Array) {
+      function C() {
+        var _this;
+        _classCallCheck(this, C);
+        for (var _len = arguments.length, e = new Array(_len), _key = 0; _key < _len; _key++) {
+          e[_key] = arguments[_key];
+        }
+        switch (e.length) {
+          case 4:
+            _this = _callSuper(this, C, [e]);
+            break;
+          case 2:
+            _this = _callSuper(this, C, [e[0], e[1], 4]);
+            break;
+          case 1:
+            var t = e[0];
+            typeof t == "number" ? _this = _callSuper(this, C, [[t, t, t, t]]) : _this = _callSuper(this, C, [t, 0, 4]);
+            break;
+          default:
+            _this = _callSuper(this, C, [E(C, ne)]);
+            break;
+        }
+        return _assertThisInitialized(_this);
+      }
+      _inherits(C, _Float32Array);
+      return _createClass(C, [{
+        key: "str",
+        get: function get() {
+          return C.str(this);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e) {
+          return this.set(e), this;
+        }
+      }, {
+        key: "identity",
+        value: function identity() {
+          return this.set(E(C, ne)), this;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e) {
+          return C.multiply(this, this, e);
+        }
+      }, {
+        key: "mul",
+        value: function mul(e) {
+          return this;
+        }
+      }, {
+        key: "transpose",
+        value: function transpose() {
+          return C.transpose(this, this);
+        }
+      }, {
+        key: "invert",
+        value: function invert() {
+          return C.invert(this, this);
+        }
+      }, {
+        key: "scale",
+        value: function scale(e) {
+          return C.scale(this, this, e);
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e) {
+          return C.rotate(this, this, e);
+        }
+      }], [{
+        key: "BYTE_LENGTH",
+        get: function get() {
+          return 4 * Float32Array.BYTES_PER_ELEMENT;
+        }
+      }, {
+        key: "create",
+        value: function create() {
+          return new C();
+        }
+      }, {
+        key: "clone",
+        value: function clone(e) {
+          return new C(e);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e;
+        }
+      }, {
+        key: "fromValues",
+        value: function fromValues() {
+          for (var _len2 = arguments.length, e = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+            e[_key2] = arguments[_key2];
+          }
+          return _construct(C, e);
+        }
+      }, {
+        key: "set",
+        value: function set(e) {
+          return e[0] = arguments.length <= 1 ? undefined : arguments[1], e[1] = arguments.length <= 2 ? undefined : arguments[2], e[2] = arguments.length <= 3 ? undefined : arguments[3], e[3] = arguments.length <= 4 ? undefined : arguments[4], e;
+        }
+      }, {
+        key: "identity",
+        value: function identity(e) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 1, e;
+        }
+      }, {
+        key: "transpose",
+        value: function transpose(e, t) {
+          if (e === t) {
+            var n = t[1];
+            e[1] = t[2], e[2] = n;
+          } else e[0] = t[0], e[1] = t[2], e[2] = t[1], e[3] = t[3];
+          return e;
+        }
+      }, {
+        key: "invert",
+        value: function invert(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = n * a - r * s;
+          return i ? (i = 1 / i, e[0] = a * i, e[1] = -s * i, e[2] = -r * i, e[3] = n * i, e) : null;
+        }
+      }, {
+        key: "adjoint",
+        value: function adjoint(e, t) {
+          var n = t[0];
+          return e[0] = t[3], e[1] = -t[1], e[2] = -t[2], e[3] = n, e;
+        }
+      }, {
+        key: "determinant",
+        value: function determinant(e) {
+          return e[0] * e[3] - e[2] * e[1];
+        }
+      }, {
+        key: "add",
+        value: function add(e, t, n) {
+          return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e[3] = t[3] + n[3], e;
+        }
+      }, {
+        key: "subtract",
+        value: function subtract(e, t, n) {
+          return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e[2] = t[2] - n[2], e[3] = t[3] - n[3], e;
+        }
+      }, {
+        key: "sub",
+        value: function sub(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = n[0],
+            y = n[1],
+            L = n[2],
+            k = n[3];
+          return e[0] = s * c + a * y, e[1] = r * c + i * y, e[2] = s * L + a * k, e[3] = r * L + i * k, e;
+        }
+      }, {
+        key: "mul",
+        value: function mul(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = Math.sin(n),
+            y = Math.cos(n);
+          return e[0] = s * y + a * c, e[1] = r * y + i * c, e[2] = s * -c + a * y, e[3] = r * -c + i * y, e;
+        }
+      }, {
+        key: "scale",
+        value: function scale(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = n[0],
+            y = n[1];
+          return e[0] = s * c, e[1] = r * c, e[2] = a * y, e[3] = i * y, e;
+        }
+      }, {
+        key: "fromRotation",
+        value: function fromRotation(e, t) {
+          var n = Math.sin(t),
+            s = Math.cos(t);
+          return e[0] = s, e[1] = n, e[2] = -n, e[3] = s, e;
+        }
+      }, {
+        key: "fromScaling",
+        value: function fromScaling(e, t) {
+          return e[0] = t[0], e[1] = 0, e[2] = 0, e[3] = t[1], e;
+        }
+      }, {
+        key: "frob",
+        value: function frob(e) {
+          return Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2] + e[3] * e[3]);
+        }
+      }, {
+        key: "multiplyScalar",
+        value: function multiplyScalar(e, t, n) {
+          return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e;
+        }
+      }, {
+        key: "multiplyScalarAndAdd",
+        value: function multiplyScalarAndAdd(e, t, n, s) {
+          return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e[2] = t[2] + n[2] * s, e[3] = t[3] + n[3] * s, e;
+        }
+      }, {
+        key: "LDU",
+        value: function LDU(e, t, n, s) {
+          return e[2] = s[2] / s[0], n[0] = s[0], n[1] = s[1], n[3] = s[3] - e[2] * n[1], [e, t, n];
+        }
+      }, {
+        key: "exactEquals",
+        value: function exactEquals(e, t) {
+          return e[0] === t[0] && e[1] === t[1] && e[2] === t[2] && e[3] === t[3];
+        }
+      }, {
+        key: "equals",
+        value: function equals(e, t) {
+          var n = e[0],
+            s = e[1],
+            r = e[2],
+            a = e[3],
+            i = t[0],
+            c = t[1],
+            y = t[2],
+            L = t[3];
+          return Math.abs(n - i) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(i)) && Math.abs(s - c) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(c)) && Math.abs(r - y) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(y)) && Math.abs(a - L) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(L));
+        }
+      }, {
+        key: "str",
+        value: function str(e) {
+          return "Mat2(".concat(e.join(", "), ")");
+        }
+      }]);
+    }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  ne = new WeakMap(), Z(C, ne, new Float32Array([1, 0, 0, 1]));
+  var v = C;
+  v.prototype.mul = v.prototype.multiply;
+  v.mul = v.multiply;
+  v.sub = v.subtract;
+  var se,
+    $ = /*#__PURE__*/function (_Float32Array2) {
+      function $() {
+        var _this2;
+        _classCallCheck(this, $);
+        for (var _len3 = arguments.length, e = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+          e[_key3] = arguments[_key3];
+        }
+        switch (e.length) {
+          case 6:
+            _this2 = _callSuper(this, $, [e]);
+            break;
+          case 2:
+            _this2 = _callSuper(this, $, [e[0], e[1], 6]);
+            break;
+          case 1:
+            var t = e[0];
+            typeof t == "number" ? _this2 = _callSuper(this, $, [[t, t, t, t, t, t]]) : _this2 = _callSuper(this, $, [t, 0, 6]);
+            break;
+          default:
+            _this2 = _callSuper(this, $, [E($, se)]);
+            break;
+        }
+        return _assertThisInitialized(_this2);
+      }
+      _inherits($, _Float32Array2);
+      return _createClass($, [{
+        key: "str",
+        get: function get() {
+          return $.str(this);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e) {
+          return this.set(e), this;
+        }
+      }, {
+        key: "identity",
+        value: function identity() {
+          return this.set(E($, se)), this;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e) {
+          return $.multiply(this, this, e);
+        }
+      }, {
+        key: "mul",
+        value: function mul(e) {
+          return this;
+        }
+      }, {
+        key: "translate",
+        value: function translate(e) {
+          return $.translate(this, this, e);
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e) {
+          return $.rotate(this, this, e);
+        }
+      }, {
+        key: "scale",
+        value: function scale(e) {
+          return $.scale(this, this, e);
+        }
+      }], [{
+        key: "BYTE_LENGTH",
+        get: function get() {
+          return 6 * Float32Array.BYTES_PER_ELEMENT;
+        }
+      }, {
+        key: "create",
+        value: function create() {
+          return new $();
+        }
+      }, {
+        key: "clone",
+        value: function clone(e) {
+          return new $(e);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e[4] = t[4], e[5] = t[5], e;
+        }
+      }, {
+        key: "fromValues",
+        value: function fromValues() {
+          for (var _len4 = arguments.length, e = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+            e[_key4] = arguments[_key4];
+          }
+          return _construct($, e);
+        }
+      }, {
+        key: "set",
+        value: function set(e) {
+          return e[0] = arguments.length <= 1 ? undefined : arguments[1], e[1] = arguments.length <= 2 ? undefined : arguments[2], e[2] = arguments.length <= 3 ? undefined : arguments[3], e[3] = arguments.length <= 4 ? undefined : arguments[4], e[4] = arguments.length <= 5 ? undefined : arguments[5], e[5] = arguments.length <= 6 ? undefined : arguments[6], e;
+        }
+      }, {
+        key: "identity",
+        value: function identity(e) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 1, e[4] = 0, e[5] = 0, e;
+        }
+      }, {
+        key: "invert",
+        value: function invert(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = n * a - s * r;
+          return y ? (y = 1 / y, e[0] = a * y, e[1] = -s * y, e[2] = -r * y, e[3] = n * y, e[4] = (r * c - a * i) * y, e[5] = (s * i - n * c) * y, e) : null;
+        }
+      }, {
+        key: "determinant",
+        value: function determinant(e) {
+          return e[0] * e[3] - e[1] * e[2];
+        }
+      }, {
+        key: "add",
+        value: function add(e, t, n) {
+          return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e[3] = t[3] + n[3], e[4] = t[4] + n[4], e[5] = t[5] + n[5], e;
+        }
+      }, {
+        key: "subtract",
+        value: function subtract(e, t, n) {
+          return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e[2] = t[2] - n[2], e[3] = t[3] - n[3], e[4] = t[4] - n[4], e[5] = t[5] - n[5], e;
+        }
+      }, {
+        key: "sub",
+        value: function sub(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = n[0],
+            k = n[1],
+            l = n[2],
+            M = n[3],
+            h = n[4],
+            b = n[5];
+          return e[0] = s * L + a * k, e[1] = r * L + i * k, e[2] = s * l + a * M, e[3] = r * l + i * M, e[4] = s * h + a * b + c, e[5] = r * h + i * b + y, e;
+        }
+      }, {
+        key: "mul",
+        value: function mul(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "translate",
+        value: function translate(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = n[0],
+            k = n[1];
+          return e[0] = s, e[1] = r, e[2] = a, e[3] = i, e[4] = s * L + a * k + c, e[5] = r * L + i * k + y, e;
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = Math.sin(n),
+            k = Math.cos(n);
+          return e[0] = s * k + a * L, e[1] = r * k + i * L, e[2] = s * -L + a * k, e[3] = r * -L + i * k, e[4] = c, e[5] = y, e;
+        }
+      }, {
+        key: "scale",
+        value: function scale(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = n[0],
+            k = n[1];
+          return e[0] = s * L, e[1] = r * L, e[2] = a * k, e[3] = i * k, e[4] = c, e[5] = y, e;
+        }
+      }, {
+        key: "fromTranslation",
+        value: function fromTranslation(e, t) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 1, e[4] = t[0], e[5] = t[1], e;
+        }
+      }, {
+        key: "fromRotation",
+        value: function fromRotation(e, t) {
+          var n = Math.sin(t),
+            s = Math.cos(t);
+          return e[0] = s, e[1] = n, e[2] = -n, e[3] = s, e[4] = 0, e[5] = 0, e;
+        }
+      }, {
+        key: "fromScaling",
+        value: function fromScaling(e, t) {
+          return e[0] = t[0], e[1] = 0, e[2] = 0, e[3] = t[1], e[4] = 0, e[5] = 0, e;
+        }
+      }, {
+        key: "frob",
+        value: function frob(e) {
+          return Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2] + e[3] * e[3] + e[4] * e[4] + e[5] * e[5] + 1);
+        }
+      }, {
+        key: "multiplyScalar",
+        value: function multiplyScalar(e, t, n) {
+          return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e[4] = t[4] * n, e[5] = t[5] * n, e;
+        }
+      }, {
+        key: "multiplyScalarAndAdd",
+        value: function multiplyScalarAndAdd(e, t, n, s) {
+          return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e[2] = t[2] + n[2] * s, e[3] = t[3] + n[3] * s, e[4] = t[4] + n[4] * s, e[5] = t[5] + n[5] * s, e;
+        }
+      }, {
+        key: "exactEquals",
+        value: function exactEquals(e, t) {
+          return e[0] === t[0] && e[1] === t[1] && e[2] === t[2] && e[3] === t[3] && e[4] === t[4] && e[5] === t[5];
+        }
+      }, {
+        key: "equals",
+        value: function equals(e, t) {
+          var n = e[0],
+            s = e[1],
+            r = e[2],
+            a = e[3],
+            i = e[4],
+            c = e[5],
+            y = t[0],
+            L = t[1],
+            k = t[2],
+            l = t[3],
+            M = t[4],
+            h = t[5];
+          return Math.abs(n - y) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(y)) && Math.abs(s - L) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(L)) && Math.abs(r - k) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(k)) && Math.abs(a - l) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(l)) && Math.abs(i - M) <= 1e-6 * Math.max(1, Math.abs(i), Math.abs(M)) && Math.abs(c - h) <= 1e-6 * Math.max(1, Math.abs(c), Math.abs(h));
+        }
+      }, {
+        key: "str",
+        value: function str(e) {
+          return "Mat2d(".concat(e.join(", "), ")");
+        }
+      }]);
+    }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  se = new WeakMap(), Z($, se, new Float32Array([1, 0, 0, 1, 0, 0]));
+  var _ = $;
+  _.mul = _.multiply;
+  _.sub = _.subtract;
+  var re,
+    X = /*#__PURE__*/function (_Float32Array3) {
+      function X() {
+        var _this3;
+        _classCallCheck(this, X);
+        for (var _len5 = arguments.length, e = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+          e[_key5] = arguments[_key5];
+        }
+        switch (e.length) {
+          case 9:
+            _this3 = _callSuper(this, X, [e]);
+            break;
+          case 2:
+            _this3 = _callSuper(this, X, [e[0], e[1], 9]);
+            break;
+          case 1:
+            var t = e[0];
+            typeof t == "number" ? _this3 = _callSuper(this, X, [[t, t, t, t, t, t, t, t, t]]) : _this3 = _callSuper(this, X, [t, 0, 9]);
+            break;
+          default:
+            _this3 = _callSuper(this, X, [E(X, re)]);
+            break;
+        }
+        return _assertThisInitialized(_this3);
+      }
+      _inherits(X, _Float32Array3);
+      return _createClass(X, [{
+        key: "str",
+        get: function get() {
+          return X.str(this);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e) {
+          return this.set(e), this;
+        }
+      }, {
+        key: "identity",
+        value: function identity() {
+          return this.set(E(X, re)), this;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e) {
+          return X.multiply(this, this, e);
+        }
+      }, {
+        key: "mul",
+        value: function mul(e) {
+          return this;
+        }
+      }, {
+        key: "transpose",
+        value: function transpose() {
+          return X.transpose(this, this);
+        }
+      }, {
+        key: "invert",
+        value: function invert() {
+          return X.invert(this, this);
+        }
+      }, {
+        key: "translate",
+        value: function translate(e) {
+          return X.translate(this, this, e);
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e) {
+          return X.rotate(this, this, e);
+        }
+      }, {
+        key: "scale",
+        value: function scale(e) {
+          return X.scale(this, this, e);
+        }
+      }], [{
+        key: "BYTE_LENGTH",
+        get: function get() {
+          return 9 * Float32Array.BYTES_PER_ELEMENT;
+        }
+      }, {
+        key: "create",
+        value: function create() {
+          return new X();
+        }
+      }, {
+        key: "clone",
+        value: function clone(e) {
+          return new X(e);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e[4] = t[4], e[5] = t[5], e[6] = t[6], e[7] = t[7], e[8] = t[8], e;
+        }
+      }, {
+        key: "fromValues",
+        value: function fromValues() {
+          for (var _len6 = arguments.length, e = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+            e[_key6] = arguments[_key6];
+          }
+          return _construct(X, e);
+        }
+      }, {
+        key: "set",
+        value: function set(e) {
+          return e[0] = arguments.length <= 1 ? undefined : arguments[1], e[1] = arguments.length <= 2 ? undefined : arguments[2], e[2] = arguments.length <= 3 ? undefined : arguments[3], e[3] = arguments.length <= 4 ? undefined : arguments[4], e[4] = arguments.length <= 5 ? undefined : arguments[5], e[5] = arguments.length <= 6 ? undefined : arguments[6], e[6] = arguments.length <= 7 ? undefined : arguments[7], e[7] = arguments.length <= 8 ? undefined : arguments[8], e[8] = arguments.length <= 9 ? undefined : arguments[9], e;
+        }
+      }, {
+        key: "identity",
+        value: function identity(e) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 1, e[5] = 0, e[6] = 0, e[7] = 0, e[8] = 1, e;
+        }
+      }, {
+        key: "transpose",
+        value: function transpose(e, t) {
+          if (e === t) {
+            var n = t[1],
+              s = t[2],
+              r = t[5];
+            e[1] = t[3], e[2] = t[6], e[3] = n, e[5] = t[7], e[6] = s, e[7] = r;
+          } else e[0] = t[0], e[1] = t[3], e[2] = t[6], e[3] = t[1], e[4] = t[4], e[5] = t[7], e[6] = t[2], e[7] = t[5], e[8] = t[8];
+          return e;
+        }
+      }, {
+        key: "invert",
+        value: function invert(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = t[8],
+            l = k * i - c * L,
+            M = -k * a + c * y,
+            h = L * a - i * y,
+            b = n * l + s * M + r * h;
+          return b ? (b = 1 / b, e[0] = l * b, e[1] = (-k * s + r * L) * b, e[2] = (c * s - r * i) * b, e[3] = M * b, e[4] = (k * n - r * y) * b, e[5] = (-c * n + r * a) * b, e[6] = h * b, e[7] = (-L * n + s * y) * b, e[8] = (i * n - s * a) * b, e) : null;
+        }
+      }, {
+        key: "adjoint",
+        value: function adjoint(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = t[8];
+          return e[0] = i * k - c * L, e[1] = r * L - s * k, e[2] = s * c - r * i, e[3] = c * y - a * k, e[4] = n * k - r * y, e[5] = r * a - n * c, e[6] = a * L - i * y, e[7] = s * y - n * L, e[8] = n * i - s * a, e;
+        }
+      }, {
+        key: "determinant",
+        value: function determinant(e) {
+          var t = e[0],
+            n = e[1],
+            s = e[2],
+            r = e[3],
+            a = e[4],
+            i = e[5],
+            c = e[6],
+            y = e[7],
+            L = e[8];
+          return t * (L * a - i * y) + n * (-L * r + i * c) + s * (y * r - a * c);
+        }
+      }, {
+        key: "add",
+        value: function add(e, t, n) {
+          return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e[3] = t[3] + n[3], e[4] = t[4] + n[4], e[5] = t[5] + n[5], e[6] = t[6] + n[6], e[7] = t[7] + n[7], e[8] = t[8] + n[8], e;
+        }
+      }, {
+        key: "subtract",
+        value: function subtract(e, t, n) {
+          return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e[2] = t[2] - n[2], e[3] = t[3] - n[3], e[4] = t[4] - n[4], e[5] = t[5] - n[5], e[6] = t[6] - n[6], e[7] = t[7] - n[7], e[8] = t[8] - n[8], e;
+        }
+      }, {
+        key: "sub",
+        value: function sub(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = t[8],
+            M = n[0],
+            h = n[1],
+            b = n[2];
+          return e[0] = M * s + h * i + b * L, e[1] = M * r + h * c + b * k, e[2] = M * a + h * y + b * l, M = n[3], h = n[4], b = n[5], e[3] = M * s + h * i + b * L, e[4] = M * r + h * c + b * k, e[5] = M * a + h * y + b * l, M = n[6], h = n[7], b = n[8], e[6] = M * s + h * i + b * L, e[7] = M * r + h * c + b * k, e[8] = M * a + h * y + b * l, e;
+        }
+      }, {
+        key: "mul",
+        value: function mul(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "translate",
+        value: function translate(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = t[8],
+            M = n[0],
+            h = n[1];
+          return e[0] = s, e[1] = r, e[2] = a, e[3] = i, e[4] = c, e[5] = y, e[6] = M * s + h * i + L, e[7] = M * r + h * c + k, e[8] = M * a + h * y + l, e;
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = t[8],
+            M = Math.sin(n),
+            h = Math.cos(n);
+          return e[0] = h * s + M * i, e[1] = h * r + M * c, e[2] = h * a + M * y, e[3] = h * i - M * s, e[4] = h * c - M * r, e[5] = h * y - M * a, e[6] = L, e[7] = k, e[8] = l, e;
+        }
+      }, {
+        key: "scale",
+        value: function scale(e, t, n) {
+          var s = n[0],
+            r = n[1];
+          return e[0] = s * t[0], e[1] = s * t[1], e[2] = s * t[2], e[3] = r * t[3], e[4] = r * t[4], e[5] = r * t[5], e[6] = t[6], e[7] = t[7], e[8] = t[8], e;
+        }
+      }, {
+        key: "fromTranslation",
+        value: function fromTranslation(e, t) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 1, e[5] = 0, e[6] = t[0], e[7] = t[1], e[8] = 1, e;
+        }
+      }, {
+        key: "fromRotation",
+        value: function fromRotation(e, t) {
+          var n = Math.sin(t),
+            s = Math.cos(t);
+          return e[0] = s, e[1] = n, e[2] = 0, e[3] = -n, e[4] = s, e[5] = 0, e[6] = 0, e[7] = 0, e[8] = 1, e;
+        }
+      }, {
+        key: "fromScaling",
+        value: function fromScaling(e, t) {
+          return e[0] = t[0], e[1] = 0, e[2] = 0, e[3] = 0, e[4] = t[1], e[5] = 0, e[6] = 0, e[7] = 0, e[8] = 1, e;
+        }
+      }, {
+        key: "fromMat2d",
+        value: function fromMat2d(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = 0, e[3] = t[2], e[4] = t[3], e[5] = 0, e[6] = t[4], e[7] = t[5], e[8] = 1, e;
+        }
+      }, {
+        key: "fromQuat",
+        value: function fromQuat(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = n + n,
+            c = s + s,
+            y = r + r,
+            L = n * i,
+            k = s * i,
+            l = s * c,
+            M = r * i,
+            h = r * c,
+            b = r * y,
+            d = a * i,
+            m = a * c,
+            x = a * y;
+          return e[0] = 1 - l - b, e[3] = k - x, e[6] = M + m, e[1] = k + x, e[4] = 1 - L - b, e[7] = h - d, e[2] = M - m, e[5] = h + d, e[8] = 1 - L - l, e;
+        }
+      }, {
+        key: "fromMat4",
+        value: function fromMat4(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[4], e[4] = t[5], e[5] = t[6], e[6] = t[8], e[7] = t[9], e[8] = t[10], e;
+        }
+      }, {
+        key: "normalFromMat4",
+        value: function normalFromMat4(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = t[8],
+            l = t[9],
+            M = t[10],
+            h = t[11],
+            b = t[12],
+            d = t[13],
+            m = t[14],
+            x = t[15],
+            V = n * c - s * i,
+            o = n * y - r * i,
+            R = n * L - a * i,
+            z = s * y - r * c,
+            g = s * L - a * c,
+            S = r * L - a * y,
+            B = k * d - l * b,
+            N = k * m - M * b,
+            p = k * x - h * b,
+            Y = l * m - M * d,
+            F = l * x - h * d,
+            P = M * x - h * m,
+            Q = V * P - o * F + R * Y + z * p - g * N + S * B;
+          return Q ? (Q = 1 / Q, e[0] = (c * P - y * F + L * Y) * Q, e[1] = (y * p - i * P - L * N) * Q, e[2] = (i * F - c * p + L * B) * Q, e[3] = (r * F - s * P - a * Y) * Q, e[4] = (n * P - r * p + a * N) * Q, e[5] = (s * p - n * F - a * B) * Q, e[6] = (d * S - m * g + x * z) * Q, e[7] = (m * R - b * S - x * o) * Q, e[8] = (b * g - d * R + x * V) * Q, e) : null;
+        }
+      }, {
+        key: "normalFromMat4Fast",
+        value: function normalFromMat4Fast(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[4],
+            i = t[5],
+            c = t[6],
+            y = t[8],
+            L = t[9],
+            k = t[10];
+          return e[0] = i * k - k * L, e[1] = c * y - y * k, e[2] = a * L - L * y, e[3] = L * r - k * s, e[4] = k * n - y * r, e[5] = y * s - L * n, e[6] = s * c - r * i, e[7] = r * a - n * c, e[8] = n * i - s * a, e;
+        }
+      }, {
+        key: "projection",
+        value: function projection(e, t, n) {
+          return e[0] = 2 / t, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = -2 / n, e[5] = 0, e[6] = -1, e[7] = 1, e[8] = 1, e;
+        }
+      }, {
+        key: "frob",
+        value: function frob(e) {
+          return Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2] + e[3] * e[3] + e[4] * e[4] + e[5] * e[5] + e[6] * e[6] + e[7] * e[7] + e[8] * e[8]);
+        }
+      }, {
+        key: "multiplyScalar",
+        value: function multiplyScalar(e, t, n) {
+          return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e[4] = t[4] * n, e[5] = t[5] * n, e[6] = t[6] * n, e[7] = t[7] * n, e[8] = t[8] * n, e;
+        }
+      }, {
+        key: "multiplyScalarAndAdd",
+        value: function multiplyScalarAndAdd(e, t, n, s) {
+          return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e[2] = t[2] + n[2] * s, e[3] = t[3] + n[3] * s, e[4] = t[4] + n[4] * s, e[5] = t[5] + n[5] * s, e[6] = t[6] + n[6] * s, e[7] = t[7] + n[7] * s, e[8] = t[8] + n[8] * s, e;
+        }
+      }, {
+        key: "exactEquals",
+        value: function exactEquals(e, t) {
+          return e[0] === t[0] && e[1] === t[1] && e[2] === t[2] && e[3] === t[3] && e[4] === t[4] && e[5] === t[5] && e[6] === t[6] && e[7] === t[7] && e[8] === t[8];
+        }
+      }, {
+        key: "equals",
+        value: function equals(e, t) {
+          var n = e[0],
+            s = e[1],
+            r = e[2],
+            a = e[3],
+            i = e[4],
+            c = e[5],
+            y = e[6],
+            L = e[7],
+            k = e[8],
+            l = t[0],
+            M = t[1],
+            h = t[2],
+            b = t[3],
+            d = t[4],
+            m = t[5],
+            x = t[6],
+            V = t[7],
+            o = t[8];
+          return Math.abs(n - l) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(l)) && Math.abs(s - M) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(M)) && Math.abs(r - h) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(h)) && Math.abs(a - b) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(b)) && Math.abs(i - d) <= 1e-6 * Math.max(1, Math.abs(i), Math.abs(d)) && Math.abs(c - m) <= 1e-6 * Math.max(1, Math.abs(c), Math.abs(m)) && Math.abs(y - x) <= 1e-6 * Math.max(1, Math.abs(y), Math.abs(x)) && Math.abs(L - V) <= 1e-6 * Math.max(1, Math.abs(L), Math.abs(V)) && Math.abs(k - o) <= 1e-6 * Math.max(1, Math.abs(k), Math.abs(o));
+        }
+      }, {
+        key: "str",
+        value: function str(e) {
+          return "Mat3(".concat(e.join(", "), ")");
+        }
+      }]);
+    }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  re = new WeakMap(), Z(X, re, new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]));
+  var u = X;
+  u.prototype.mul = u.prototype.multiply;
+  u.mul = u.multiply;
+  u.sub = u.subtract;
+  var ae,
+    H,
+    D = /*#__PURE__*/function (_Float32Array4) {
+      function D() {
+        var _this4;
+        _classCallCheck(this, D);
+        for (var _len7 = arguments.length, e = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
+          e[_key7] = arguments[_key7];
+        }
+        switch (e.length) {
+          case 16:
+            _this4 = _callSuper(this, D, [e]);
+            break;
+          case 2:
+            _this4 = _callSuper(this, D, [e[0], e[1], 16]);
+            break;
+          case 1:
+            var t = e[0];
+            typeof t == "number" ? _this4 = _callSuper(this, D, [[t, t, t, t, t, t, t, t, t, t, t, t, t, t, t, t]]) : _this4 = _callSuper(this, D, [t, 0, 16]);
+            break;
+          default:
+            _this4 = _callSuper(this, D, [E(D, ae)]);
+            break;
+        }
+        return _assertThisInitialized(_this4);
+      }
+      _inherits(D, _Float32Array4);
+      return _createClass(D, [{
+        key: "str",
+        get: function get() {
+          return D.str(this);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e) {
+          return this.set(e), this;
+        }
+      }, {
+        key: "identity",
+        value: function identity() {
+          return this.set(E(D, ae)), this;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e) {
+          return D.multiply(this, this, e);
+        }
+      }, {
+        key: "mul",
+        value: function mul(e) {
+          return this;
+        }
+      }, {
+        key: "transpose",
+        value: function transpose() {
+          return D.transpose(this, this);
+        }
+      }, {
+        key: "invert",
+        value: function invert() {
+          return D.invert(this, this);
+        }
+      }, {
+        key: "translate",
+        value: function translate(e) {
+          return D.translate(this, this, e);
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e, t) {
+          return D.rotate(this, this, e, t);
+        }
+      }, {
+        key: "scale",
+        value: function scale(e) {
+          return D.scale(this, this, e);
+        }
+      }, {
+        key: "rotateX",
+        value: function rotateX(e) {
+          return D.rotateX(this, this, e);
+        }
+      }, {
+        key: "rotateY",
+        value: function rotateY(e) {
+          return D.rotateY(this, this, e);
+        }
+      }, {
+        key: "rotateZ",
+        value: function rotateZ(e) {
+          return D.rotateZ(this, this, e);
+        }
+      }, {
+        key: "perspectiveNO",
+        value: function perspectiveNO(e, t, n, s) {
+          return D.perspectiveNO(this, e, t, n, s);
+        }
+      }, {
+        key: "perspectiveZO",
+        value: function perspectiveZO(e, t, n, s) {
+          return D.perspectiveZO(this, e, t, n, s);
+        }
+      }, {
+        key: "orthoNO",
+        value: function orthoNO(e, t, n, s, r, a) {
+          return D.orthoNO(this, e, t, n, s, r, a);
+        }
+      }, {
+        key: "orthoZO",
+        value: function orthoZO(e, t, n, s, r, a) {
+          return D.orthoZO(this, e, t, n, s, r, a);
+        }
+      }], [{
+        key: "BYTE_LENGTH",
+        get: function get() {
+          return 16 * Float32Array.BYTES_PER_ELEMENT;
+        }
+      }, {
+        key: "create",
+        value: function create() {
+          return new D();
+        }
+      }, {
+        key: "clone",
+        value: function clone(e) {
+          return new D(e);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e[4] = t[4], e[5] = t[5], e[6] = t[6], e[7] = t[7], e[8] = t[8], e[9] = t[9], e[10] = t[10], e[11] = t[11], e[12] = t[12], e[13] = t[13], e[14] = t[14], e[15] = t[15], e;
+        }
+      }, {
+        key: "fromValues",
+        value: function fromValues() {
+          for (var _len8 = arguments.length, e = new Array(_len8), _key8 = 0; _key8 < _len8; _key8++) {
+            e[_key8] = arguments[_key8];
+          }
+          return _construct(D, e);
+        }
+      }, {
+        key: "set",
+        value: function set(e) {
+          return e[0] = arguments.length <= 1 ? undefined : arguments[1], e[1] = arguments.length <= 2 ? undefined : arguments[2], e[2] = arguments.length <= 3 ? undefined : arguments[3], e[3] = arguments.length <= 4 ? undefined : arguments[4], e[4] = arguments.length <= 5 ? undefined : arguments[5], e[5] = arguments.length <= 6 ? undefined : arguments[6], e[6] = arguments.length <= 7 ? undefined : arguments[7], e[7] = arguments.length <= 8 ? undefined : arguments[8], e[8] = arguments.length <= 9 ? undefined : arguments[9], e[9] = arguments.length <= 10 ? undefined : arguments[10], e[10] = arguments.length <= 11 ? undefined : arguments[11], e[11] = arguments.length <= 12 ? undefined : arguments[12], e[12] = arguments.length <= 13 ? undefined : arguments[13], e[13] = arguments.length <= 14 ? undefined : arguments[14], e[14] = arguments.length <= 15 ? undefined : arguments[15], e[15] = arguments.length <= 16 ? undefined : arguments[16], e;
+        }
+      }, {
+        key: "identity",
+        value: function identity(e) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = 1, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[10] = 1, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "transpose",
+        value: function transpose(e, t) {
+          if (e === t) {
+            var n = t[1],
+              s = t[2],
+              r = t[3],
+              a = t[6],
+              i = t[7],
+              c = t[11];
+            e[1] = t[4], e[2] = t[8], e[3] = t[12], e[4] = n, e[6] = t[9], e[7] = t[13], e[8] = s, e[9] = a, e[11] = t[14], e[12] = r, e[13] = i, e[14] = c;
+          } else e[0] = t[0], e[1] = t[4], e[2] = t[8], e[3] = t[12], e[4] = t[1], e[5] = t[5], e[6] = t[9], e[7] = t[13], e[8] = t[2], e[9] = t[6], e[10] = t[10], e[11] = t[14], e[12] = t[3], e[13] = t[7], e[14] = t[11], e[15] = t[15];
+          return e;
+        }
+      }, {
+        key: "invert",
+        value: function invert(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = t[8],
+            l = t[9],
+            M = t[10],
+            h = t[11],
+            b = t[12],
+            d = t[13],
+            m = t[14],
+            x = t[15],
+            V = n * c - s * i,
+            o = n * y - r * i,
+            R = n * L - a * i,
+            z = s * y - r * c,
+            g = s * L - a * c,
+            S = r * L - a * y,
+            B = k * d - l * b,
+            N = k * m - M * b,
+            p = k * x - h * b,
+            Y = l * m - M * d,
+            F = l * x - h * d,
+            P = M * x - h * m,
+            Q = V * P - o * F + R * Y + z * p - g * N + S * B;
+          return Q ? (Q = 1 / Q, e[0] = (c * P - y * F + L * Y) * Q, e[1] = (r * F - s * P - a * Y) * Q, e[2] = (d * S - m * g + x * z) * Q, e[3] = (M * g - l * S - h * z) * Q, e[4] = (y * p - i * P - L * N) * Q, e[5] = (n * P - r * p + a * N) * Q, e[6] = (m * R - b * S - x * o) * Q, e[7] = (k * S - M * R + h * o) * Q, e[8] = (i * F - c * p + L * B) * Q, e[9] = (s * p - n * F - a * B) * Q, e[10] = (b * g - d * R + x * V) * Q, e[11] = (l * R - k * g - h * V) * Q, e[12] = (c * N - i * Y - y * B) * Q, e[13] = (n * Y - s * N + r * B) * Q, e[14] = (d * o - b * z - m * V) * Q, e[15] = (k * z - l * o + M * V) * Q, e) : null;
+        }
+      }, {
+        key: "adjoint",
+        value: function adjoint(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = t[8],
+            l = t[9],
+            M = t[10],
+            h = t[11],
+            b = t[12],
+            d = t[13],
+            m = t[14],
+            x = t[15],
+            V = n * c - s * i,
+            o = n * y - r * i,
+            R = n * L - a * i,
+            z = s * y - r * c,
+            g = s * L - a * c,
+            S = r * L - a * y,
+            B = k * d - l * b,
+            N = k * m - M * b,
+            p = k * x - h * b,
+            Y = l * m - M * d,
+            F = l * x - h * d,
+            P = M * x - h * m;
+          return e[0] = c * P - y * F + L * Y, e[1] = r * F - s * P - a * Y, e[2] = d * S - m * g + x * z, e[3] = M * g - l * S - h * z, e[4] = y * p - i * P - L * N, e[5] = n * P - r * p + a * N, e[6] = m * R - b * S - x * o, e[7] = k * S - M * R + h * o, e[8] = i * F - c * p + L * B, e[9] = s * p - n * F - a * B, e[10] = b * g - d * R + x * V, e[11] = l * R - k * g - h * V, e[12] = c * N - i * Y - y * B, e[13] = n * Y - s * N + r * B, e[14] = d * o - b * z - m * V, e[15] = k * z - l * o + M * V, e;
+        }
+      }, {
+        key: "determinant",
+        value: function determinant(e) {
+          var t = e[0],
+            n = e[1],
+            s = e[2],
+            r = e[3],
+            a = e[4],
+            i = e[5],
+            c = e[6],
+            y = e[7],
+            L = e[8],
+            k = e[9],
+            l = e[10],
+            M = e[11],
+            h = e[12],
+            b = e[13],
+            d = e[14],
+            m = e[15],
+            x = t * i - n * a,
+            V = t * c - s * a,
+            o = n * c - s * i,
+            R = L * b - k * h,
+            z = L * d - l * h,
+            g = k * d - l * b,
+            S = t * g - n * z + s * R,
+            B = a * g - i * z + c * R,
+            N = L * o - k * V + l * x,
+            p = h * o - b * V + d * x;
+          return y * S - r * B + m * N - M * p;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = t[8],
+            M = t[9],
+            h = t[10],
+            b = t[11],
+            d = t[12],
+            m = t[13],
+            x = t[14],
+            V = t[15],
+            o = n[0],
+            R = n[1],
+            z = n[2],
+            g = n[3];
+          return e[0] = o * s + R * c + z * l + g * d, e[1] = o * r + R * y + z * M + g * m, e[2] = o * a + R * L + z * h + g * x, e[3] = o * i + R * k + z * b + g * V, o = n[4], R = n[5], z = n[6], g = n[7], e[4] = o * s + R * c + z * l + g * d, e[5] = o * r + R * y + z * M + g * m, e[6] = o * a + R * L + z * h + g * x, e[7] = o * i + R * k + z * b + g * V, o = n[8], R = n[9], z = n[10], g = n[11], e[8] = o * s + R * c + z * l + g * d, e[9] = o * r + R * y + z * M + g * m, e[10] = o * a + R * L + z * h + g * x, e[11] = o * i + R * k + z * b + g * V, o = n[12], R = n[13], z = n[14], g = n[15], e[12] = o * s + R * c + z * l + g * d, e[13] = o * r + R * y + z * M + g * m, e[14] = o * a + R * L + z * h + g * x, e[15] = o * i + R * k + z * b + g * V, e;
+        }
+      }, {
+        key: "mul",
+        value: function mul(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "translate",
+        value: function translate(e, t, n) {
+          var s = n[0],
+            r = n[1],
+            a = n[2];
+          if (t === e) e[12] = t[0] * s + t[4] * r + t[8] * a + t[12], e[13] = t[1] * s + t[5] * r + t[9] * a + t[13], e[14] = t[2] * s + t[6] * r + t[10] * a + t[14], e[15] = t[3] * s + t[7] * r + t[11] * a + t[15];else {
+            var i = t[0],
+              c = t[1],
+              y = t[2],
+              L = t[3],
+              k = t[4],
+              l = t[5],
+              M = t[6],
+              h = t[7],
+              b = t[8],
+              d = t[9],
+              m = t[10],
+              x = t[11];
+            e[0] = i, e[1] = c, e[2] = y, e[3] = L, e[4] = k, e[5] = l, e[6] = M, e[7] = h, e[8] = b, e[9] = d, e[10] = m, e[11] = x, e[12] = i * s + k * r + b * a + t[12], e[13] = c * s + l * r + d * a + t[13], e[14] = y * s + M * r + m * a + t[14], e[15] = L * s + h * r + x * a + t[15];
+          }
+          return e;
+        }
+      }, {
+        key: "scale",
+        value: function scale(e, t, n) {
+          var s = n[0],
+            r = n[1],
+            a = n[2];
+          return e[0] = t[0] * s, e[1] = t[1] * s, e[2] = t[2] * s, e[3] = t[3] * s, e[4] = t[4] * r, e[5] = t[5] * r, e[6] = t[6] * r, e[7] = t[7] * r, e[8] = t[8] * a, e[9] = t[9] * a, e[10] = t[10] * a, e[11] = t[11] * a, e[12] = t[12], e[13] = t[13], e[14] = t[14], e[15] = t[15], e;
+        }
+      }, {
+        key: "rotate",
+        value: function rotate(e, t, n, s) {
+          var r = s[0],
+            a = s[1],
+            i = s[2],
+            c = Math.sqrt(r * r + a * a + i * i);
+          if (c < 1e-6) return null;
+          c = 1 / c, r *= c, a *= c, i *= c;
+          var y = Math.sin(n),
+            L = Math.cos(n),
+            k = 1 - L,
+            l = t[0],
+            M = t[1],
+            h = t[2],
+            b = t[3],
+            d = t[4],
+            m = t[5],
+            x = t[6],
+            V = t[7],
+            o = t[8],
+            R = t[9],
+            z = t[10],
+            g = t[11],
+            S = r * r * k + L,
+            B = a * r * k + i * y,
+            N = i * r * k - a * y,
+            p = r * a * k - i * y,
+            Y = a * a * k + L,
+            F = i * a * k + r * y,
+            P = r * i * k + a * y,
+            Q = a * i * k - r * y,
+            K = i * i * k + L;
+          return e[0] = l * S + d * B + o * N, e[1] = M * S + m * B + R * N, e[2] = h * S + x * B + z * N, e[3] = b * S + V * B + g * N, e[4] = l * p + d * Y + o * F, e[5] = M * p + m * Y + R * F, e[6] = h * p + x * Y + z * F, e[7] = b * p + V * Y + g * F, e[8] = l * P + d * Q + o * K, e[9] = M * P + m * Q + R * K, e[10] = h * P + x * Q + z * K, e[11] = b * P + V * Q + g * K, t !== e && (e[12] = t[12], e[13] = t[13], e[14] = t[14], e[15] = t[15]), e;
+        }
+      }, {
+        key: "rotateX",
+        value: function rotateX(e, t, n) {
+          var s = Math.sin(n),
+            r = Math.cos(n),
+            a = t[4],
+            i = t[5],
+            c = t[6],
+            y = t[7],
+            L = t[8],
+            k = t[9],
+            l = t[10],
+            M = t[11];
+          return t !== e && (e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e[12] = t[12], e[13] = t[13], e[14] = t[14], e[15] = t[15]), e[4] = a * r + L * s, e[5] = i * r + k * s, e[6] = c * r + l * s, e[7] = y * r + M * s, e[8] = L * r - a * s, e[9] = k * r - i * s, e[10] = l * r - c * s, e[11] = M * r - y * s, e;
+        }
+      }, {
+        key: "rotateY",
+        value: function rotateY(e, t, n) {
+          var s = Math.sin(n),
+            r = Math.cos(n),
+            a = t[0],
+            i = t[1],
+            c = t[2],
+            y = t[3],
+            L = t[8],
+            k = t[9],
+            l = t[10],
+            M = t[11];
+          return t !== e && (e[4] = t[4], e[5] = t[5], e[6] = t[6], e[7] = t[7], e[12] = t[12], e[13] = t[13], e[14] = t[14], e[15] = t[15]), e[0] = a * r - L * s, e[1] = i * r - k * s, e[2] = c * r - l * s, e[3] = y * r - M * s, e[8] = a * s + L * r, e[9] = i * s + k * r, e[10] = c * s + l * r, e[11] = y * s + M * r, e;
+        }
+      }, {
+        key: "rotateZ",
+        value: function rotateZ(e, t, n) {
+          var s = Math.sin(n),
+            r = Math.cos(n),
+            a = t[0],
+            i = t[1],
+            c = t[2],
+            y = t[3],
+            L = t[4],
+            k = t[5],
+            l = t[6],
+            M = t[7];
+          return t !== e && (e[8] = t[8], e[9] = t[9], e[10] = t[10], e[11] = t[11], e[12] = t[12], e[13] = t[13], e[14] = t[14], e[15] = t[15]), e[0] = a * r + L * s, e[1] = i * r + k * s, e[2] = c * r + l * s, e[3] = y * r + M * s, e[4] = L * r - a * s, e[5] = k * r - i * s, e[6] = l * r - c * s, e[7] = M * r - y * s, e;
+        }
+      }, {
+        key: "fromTranslation",
+        value: function fromTranslation(e, t) {
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = 1, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[10] = 1, e[11] = 0, e[12] = t[0], e[13] = t[1], e[14] = t[2], e[15] = 1, e;
+        }
+      }, {
+        key: "fromScaling",
+        value: function fromScaling(e, t) {
+          return e[0] = t[0], e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = t[1], e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[10] = t[2], e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "fromRotation",
+        value: function fromRotation(e, t, n) {
+          var s = n[0],
+            r = n[1],
+            a = n[2],
+            i = Math.sqrt(s * s + r * r + a * a);
+          if (i < 1e-6) return null;
+          i = 1 / i, s *= i, r *= i, a *= i;
+          var c = Math.sin(t),
+            y = Math.cos(t),
+            L = 1 - y;
+          return e[0] = s * s * L + y, e[1] = r * s * L + a * c, e[2] = a * s * L - r * c, e[3] = 0, e[4] = s * r * L - a * c, e[5] = r * r * L + y, e[6] = a * r * L + s * c, e[7] = 0, e[8] = s * a * L + r * c, e[9] = r * a * L - s * c, e[10] = a * a * L + y, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "fromXRotation",
+        value: function fromXRotation(e, t) {
+          var n = Math.sin(t),
+            s = Math.cos(t);
+          return e[0] = 1, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = s, e[6] = n, e[7] = 0, e[8] = 0, e[9] = -n, e[10] = s, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "fromYRotation",
+        value: function fromYRotation(e, t) {
+          var n = Math.sin(t),
+            s = Math.cos(t);
+          return e[0] = s, e[1] = 0, e[2] = -n, e[3] = 0, e[4] = 0, e[5] = 1, e[6] = 0, e[7] = 0, e[8] = n, e[9] = 0, e[10] = s, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "fromZRotation",
+        value: function fromZRotation(e, t) {
+          var n = Math.sin(t),
+            s = Math.cos(t);
+          return e[0] = s, e[1] = n, e[2] = 0, e[3] = 0, e[4] = -n, e[5] = s, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[10] = 1, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "fromRotationTranslation",
+        value: function fromRotationTranslation(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = s + s,
+            y = r + r,
+            L = a + a,
+            k = s * c,
+            l = s * y,
+            M = s * L,
+            h = r * y,
+            b = r * L,
+            d = a * L,
+            m = i * c,
+            x = i * y,
+            V = i * L;
+          return e[0] = 1 - (h + d), e[1] = l + V, e[2] = M - x, e[3] = 0, e[4] = l - V, e[5] = 1 - (k + d), e[6] = b + m, e[7] = 0, e[8] = M + x, e[9] = b - m, e[10] = 1 - (k + h), e[11] = 0, e[12] = n[0], e[13] = n[1], e[14] = n[2], e[15] = 1, e;
+        }
+      }, {
+        key: "fromQuat2",
+        value: function fromQuat2(e, t) {
+          var n = -t[0],
+            s = -t[1],
+            r = -t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = n * n + s * s + r * r + a * a;
+          return k > 0 ? (E(D, H)[0] = (i * a + L * n + c * r - y * s) * 2 / k, E(D, H)[1] = (c * a + L * s + y * n - i * r) * 2 / k, E(D, H)[2] = (y * a + L * r + i * s - c * n) * 2 / k) : (E(D, H)[0] = (i * a + L * n + c * r - y * s) * 2, E(D, H)[1] = (c * a + L * s + y * n - i * r) * 2, E(D, H)[2] = (y * a + L * r + i * s - c * n) * 2), D.fromRotationTranslation(e, t, E(D, H)), e;
+        }
+      }, {
+        key: "normalFromMat4",
+        value: function normalFromMat4(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = t[4],
+            c = t[5],
+            y = t[6],
+            L = t[7],
+            k = t[8],
+            l = t[9],
+            M = t[10],
+            h = t[11],
+            b = t[12],
+            d = t[13],
+            m = t[14],
+            x = t[15],
+            V = n * c - s * i,
+            o = n * y - r * i,
+            R = n * L - a * i,
+            z = s * y - r * c,
+            g = s * L - a * c,
+            S = r * L - a * y,
+            B = k * d - l * b,
+            N = k * m - M * b,
+            p = k * x - h * b,
+            Y = l * m - M * d,
+            F = l * x - h * d,
+            P = M * x - h * m,
+            Q = V * P - o * F + R * Y + z * p - g * N + S * B;
+          return Q ? (Q = 1 / Q, e[0] = (c * P - y * F + L * Y) * Q, e[1] = (y * p - i * P - L * N) * Q, e[2] = (i * F - c * p + L * B) * Q, e[3] = 0, e[4] = (r * F - s * P - a * Y) * Q, e[5] = (n * P - r * p + a * N) * Q, e[6] = (s * p - n * F - a * B) * Q, e[7] = 0, e[8] = (d * S - m * g + x * z) * Q, e[9] = (m * R - b * S - x * o) * Q, e[10] = (b * g - d * R + x * V) * Q, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e) : null;
+        }
+      }, {
+        key: "normalFromMat4Fast",
+        value: function normalFromMat4Fast(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[4],
+            i = t[5],
+            c = t[6],
+            y = t[8],
+            L = t[9],
+            k = t[10];
+          return e[0] = i * k - k * L, e[1] = c * y - y * k, e[2] = a * L - L * y, e[3] = 0, e[4] = L * r - k * s, e[5] = k * n - y * r, e[6] = y * s - L * n, e[7] = 0, e[8] = s * c - r * i, e[9] = r * a - n * c, e[10] = n * i - s * a, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "getTranslation",
+        value: function getTranslation(e, t) {
+          return e[0] = t[12], e[1] = t[13], e[2] = t[14], e;
+        }
+      }, {
+        key: "getScaling",
+        value: function getScaling(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[4],
+            i = t[5],
+            c = t[6],
+            y = t[8],
+            L = t[9],
+            k = t[10];
+          return e[0] = Math.sqrt(n * n + s * s + r * r), e[1] = Math.sqrt(a * a + i * i + c * c), e[2] = Math.sqrt(y * y + L * L + k * k), e;
+        }
+      }, {
+        key: "getRotation",
+        value: function getRotation(e, t) {
+          D.getScaling(E(D, H), t);
+          var n = 1 / E(D, H)[0],
+            s = 1 / E(D, H)[1],
+            r = 1 / E(D, H)[2],
+            a = t[0] * n,
+            i = t[1] * s,
+            c = t[2] * r,
+            y = t[4] * n,
+            L = t[5] * s,
+            k = t[6] * r,
+            l = t[8] * n,
+            M = t[9] * s,
+            h = t[10] * r,
+            b = a + L + h,
+            d = 0;
+          return b > 0 ? (d = Math.sqrt(b + 1) * 2, e[3] = .25 * d, e[0] = (k - M) / d, e[1] = (l - c) / d, e[2] = (i - y) / d) : a > L && a > h ? (d = Math.sqrt(1 + a - L - h) * 2, e[3] = (k - M) / d, e[0] = .25 * d, e[1] = (i + y) / d, e[2] = (l + c) / d) : L > h ? (d = Math.sqrt(1 + L - a - h) * 2, e[3] = (l - c) / d, e[0] = (i + y) / d, e[1] = .25 * d, e[2] = (k + M) / d) : (d = Math.sqrt(1 + h - a - L) * 2, e[3] = (i - y) / d, e[0] = (l + c) / d, e[1] = (k + M) / d, e[2] = .25 * d), e;
+        }
+      }, {
+        key: "decompose",
+        value: function decompose(e, t, n, s) {
+          t[0] = s[12], t[1] = s[13], t[2] = s[14];
+          var r = s[0],
+            a = s[1],
+            i = s[2],
+            c = s[4],
+            y = s[5],
+            L = s[6],
+            k = s[8],
+            l = s[9],
+            M = s[10];
+          n[0] = Math.sqrt(r * r + a * a + i * i), n[1] = Math.sqrt(c * c + y * y + L * L), n[2] = Math.sqrt(k * k + l * l + M * M);
+          var h = 1 / n[0],
+            b = 1 / n[1],
+            d = 1 / n[2],
+            m = r * h,
+            x = a * b,
+            V = i * d,
+            o = c * h,
+            R = y * b,
+            z = L * d,
+            g = k * h,
+            S = l * b,
+            B = M * d,
+            N = m + R + B,
+            p = 0;
+          return N > 0 ? (p = Math.sqrt(N + 1) * 2, e[3] = .25 * p, e[0] = (z - S) / p, e[1] = (g - V) / p, e[2] = (x - o) / p) : m > R && m > B ? (p = Math.sqrt(1 + m - R - B) * 2, e[3] = (z - S) / p, e[0] = .25 * p, e[1] = (x + o) / p, e[2] = (g + V) / p) : R > B ? (p = Math.sqrt(1 + R - m - B) * 2, e[3] = (g - V) / p, e[0] = (x + o) / p, e[1] = .25 * p, e[2] = (z + S) / p) : (p = Math.sqrt(1 + B - m - R) * 2, e[3] = (x - o) / p, e[0] = (g + V) / p, e[1] = (z + S) / p, e[2] = .25 * p), e;
+        }
+      }, {
+        key: "fromRotationTranslationScale",
+        value: function fromRotationTranslationScale(e, t, n, s) {
+          var r = t[0],
+            a = t[1],
+            i = t[2],
+            c = t[3],
+            y = r + r,
+            L = a + a,
+            k = i + i,
+            l = r * y,
+            M = r * L,
+            h = r * k,
+            b = a * L,
+            d = a * k,
+            m = i * k,
+            x = c * y,
+            V = c * L,
+            o = c * k,
+            R = s[0],
+            z = s[1],
+            g = s[2];
+          return e[0] = (1 - (b + m)) * R, e[1] = (M + o) * R, e[2] = (h - V) * R, e[3] = 0, e[4] = (M - o) * z, e[5] = (1 - (l + m)) * z, e[6] = (d + x) * z, e[7] = 0, e[8] = (h + V) * g, e[9] = (d - x) * g, e[10] = (1 - (l + b)) * g, e[11] = 0, e[12] = n[0], e[13] = n[1], e[14] = n[2], e[15] = 1, e;
+        }
+      }, {
+        key: "fromRotationTranslationScaleOrigin",
+        value: function fromRotationTranslationScaleOrigin(e, t, n, s, r) {
+          var a = t[0],
+            i = t[1],
+            c = t[2],
+            y = t[3],
+            L = a + a,
+            k = i + i,
+            l = c + c,
+            M = a * L,
+            h = a * k,
+            b = a * l,
+            d = i * k,
+            m = i * l,
+            x = c * l,
+            V = y * L,
+            o = y * k,
+            R = y * l,
+            z = s[0],
+            g = s[1],
+            S = s[2],
+            B = r[0],
+            N = r[1],
+            p = r[2],
+            Y = (1 - (d + x)) * z,
+            F = (h + R) * z,
+            P = (b - o) * z,
+            Q = (h - R) * g,
+            K = (1 - (M + x)) * g,
+            ee = (m + V) * g,
+            te = (b + o) * S,
+            Me = (m - V) * S,
+            be = (1 - (M + d)) * S;
+          return e[0] = Y, e[1] = F, e[2] = P, e[3] = 0, e[4] = Q, e[5] = K, e[6] = ee, e[7] = 0, e[8] = te, e[9] = Me, e[10] = be, e[11] = 0, e[12] = n[0] + B - (Y * B + Q * N + te * p), e[13] = n[1] + N - (F * B + K * N + Me * p), e[14] = n[2] + p - (P * B + ee * N + be * p), e[15] = 1, e;
+        }
+      }, {
+        key: "fromQuat",
+        value: function fromQuat(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = n + n,
+            c = s + s,
+            y = r + r,
+            L = n * i,
+            k = s * i,
+            l = s * c,
+            M = r * i,
+            h = r * c,
+            b = r * y,
+            d = a * i,
+            m = a * c,
+            x = a * y;
+          return e[0] = 1 - l - b, e[1] = k + x, e[2] = M - m, e[3] = 0, e[4] = k - x, e[5] = 1 - L - b, e[6] = h + d, e[7] = 0, e[8] = M + m, e[9] = h - d, e[10] = 1 - L - l, e[11] = 0, e[12] = 0, e[13] = 0, e[14] = 0, e[15] = 1, e;
+        }
+      }, {
+        key: "frustumNO",
+        value: function frustumNO(e, t, n, s, r, a) {
+          var i = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1 / 0;
+          var c = 1 / (n - t),
+            y = 1 / (r - s);
+          if (e[0] = a * 2 * c, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = a * 2 * y, e[6] = 0, e[7] = 0, e[8] = (n + t) * c, e[9] = (r + s) * y, e[11] = -1, e[12] = 0, e[13] = 0, e[15] = 0, i != null && i !== 1 / 0) {
+            var L = 1 / (a - i);
+            e[10] = (i + a) * L, e[14] = 2 * i * a * L;
+          } else e[10] = -1, e[14] = -2 * a;
+          return e;
+        }
+      }, {
+        key: "frustum",
+        value: function frustum(e, t, n, s, r, a) {
+          return e;
+        }
+      }, {
+        key: "frustumZO",
+        value: function frustumZO(e, t, n, s, r, a) {
+          var i = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 1 / 0;
+          var c = 1 / (n - t),
+            y = 1 / (r - s);
+          if (e[0] = a * 2 * c, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = a * 2 * y, e[6] = 0, e[7] = 0, e[8] = (n + t) * c, e[9] = (r + s) * y, e[11] = -1, e[12] = 0, e[13] = 0, e[15] = 0, i != null && i !== 1 / 0) {
+            var L = 1 / (a - i);
+            e[10] = i * L, e[14] = i * a * L;
+          } else e[10] = -1, e[14] = -a;
+          return e;
+        }
+      }, {
+        key: "perspectiveNO",
+        value: function perspectiveNO(e, t, n, s) {
+          var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1 / 0;
+          var a = 1 / Math.tan(t / 2);
+          if (e[0] = a / n, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = a, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[11] = -1, e[12] = 0, e[13] = 0, e[15] = 0, r != null && r !== 1 / 0) {
+            var i = 1 / (s - r);
+            e[10] = (r + s) * i, e[14] = 2 * r * s * i;
+          } else e[10] = -1, e[14] = -2 * s;
+          return e;
+        }
+      }, {
+        key: "perspective",
+        value: function perspective(e, t, n, s) {
+          return e;
+        }
+      }, {
+        key: "perspectiveZO",
+        value: function perspectiveZO(e, t, n, s) {
+          var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1 / 0;
+          var a = 1 / Math.tan(t / 2);
+          if (e[0] = a / n, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = a, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[11] = -1, e[12] = 0, e[13] = 0, e[15] = 0, r != null && r !== 1 / 0) {
+            var i = 1 / (s - r);
+            e[10] = r * i, e[14] = r * s * i;
+          } else e[10] = -1, e[14] = -s;
+          return e;
+        }
+      }, {
+        key: "perspectiveFromFieldOfView",
+        value: function perspectiveFromFieldOfView(e, t, n, s) {
+          var r = Math.tan(t.upDegrees * Math.PI / 180),
+            a = Math.tan(t.downDegrees * Math.PI / 180),
+            i = Math.tan(t.leftDegrees * Math.PI / 180),
+            c = Math.tan(t.rightDegrees * Math.PI / 180),
+            y = 2 / (i + c),
+            L = 2 / (r + a);
+          return e[0] = y, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = L, e[6] = 0, e[7] = 0, e[8] = -((i - c) * y * .5), e[9] = (r - a) * L * .5, e[10] = s / (n - s), e[11] = -1, e[12] = 0, e[13] = 0, e[14] = s * n / (n - s), e[15] = 0, e;
+        }
+      }, {
+        key: "orthoNO",
+        value: function orthoNO(e, t, n, s, r, a, i) {
+          var c = 1 / (t - n),
+            y = 1 / (s - r),
+            L = 1 / (a - i);
+          return e[0] = -2 * c, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = -2 * y, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[10] = 2 * L, e[11] = 0, e[12] = (t + n) * c, e[13] = (r + s) * y, e[14] = (i + a) * L, e[15] = 1, e;
+        }
+      }, {
+        key: "ortho",
+        value: function ortho(e, t, n, s, r, a, i) {
+          return e;
+        }
+      }, {
+        key: "orthoZO",
+        value: function orthoZO(e, t, n, s, r, a, i) {
+          var c = 1 / (t - n),
+            y = 1 / (s - r),
+            L = 1 / (a - i);
+          return e[0] = -2 * c, e[1] = 0, e[2] = 0, e[3] = 0, e[4] = 0, e[5] = -2 * y, e[6] = 0, e[7] = 0, e[8] = 0, e[9] = 0, e[10] = L, e[11] = 0, e[12] = (t + n) * c, e[13] = (r + s) * y, e[14] = a * L, e[15] = 1, e;
+        }
+      }, {
+        key: "lookAt",
+        value: function lookAt(e, t, n, s) {
+          var r = t[0],
+            a = t[1],
+            i = t[2],
+            c = s[0],
+            y = s[1],
+            L = s[2],
+            k = n[0],
+            l = n[1],
+            M = n[2];
+          if (Math.abs(r - k) < 1e-6 && Math.abs(a - l) < 1e-6 && Math.abs(i - M) < 1e-6) return D.identity(e);
+          var h = r - k,
+            b = a - l,
+            d = i - M,
+            m = 1 / Math.sqrt(h * h + b * b + d * d);
+          h *= m, b *= m, d *= m;
+          var x = y * d - L * b,
+            V = L * h - c * d,
+            o = c * b - y * h;
+          m = Math.sqrt(x * x + V * V + o * o), m ? (m = 1 / m, x *= m, V *= m, o *= m) : (x = 0, V = 0, o = 0);
+          var R = b * o - d * V,
+            z = d * x - h * o,
+            g = h * V - b * x;
+          return m = Math.sqrt(R * R + z * z + g * g), m ? (m = 1 / m, R *= m, z *= m, g *= m) : (R = 0, z = 0, g = 0), e[0] = x, e[1] = R, e[2] = h, e[3] = 0, e[4] = V, e[5] = z, e[6] = b, e[7] = 0, e[8] = o, e[9] = g, e[10] = d, e[11] = 0, e[12] = -(x * r + V * a + o * i), e[13] = -(R * r + z * a + g * i), e[14] = -(h * r + b * a + d * i), e[15] = 1, e;
+        }
+      }, {
+        key: "targetTo",
+        value: function targetTo(e, t, n, s) {
+          var r = t[0],
+            a = t[1],
+            i = t[2],
+            c = s[0],
+            y = s[1],
+            L = s[2],
+            k = r - n[0],
+            l = a - n[1],
+            M = i - n[2],
+            h = k * k + l * l + M * M;
+          h > 0 && (h = 1 / Math.sqrt(h), k *= h, l *= h, M *= h);
+          var b = y * M - L * l,
+            d = L * k - c * M,
+            m = c * l - y * k;
+          return h = b * b + d * d + m * m, h > 0 && (h = 1 / Math.sqrt(h), b *= h, d *= h, m *= h), e[0] = b, e[1] = d, e[2] = m, e[3] = 0, e[4] = l * m - M * d, e[5] = M * b - k * m, e[6] = k * d - l * b, e[7] = 0, e[8] = k, e[9] = l, e[10] = M, e[11] = 0, e[12] = r, e[13] = a, e[14] = i, e[15] = 1, e;
+        }
+      }, {
+        key: "frob",
+        value: function frob(e) {
+          return Math.sqrt(e[0] * e[0] + e[1] * e[1] + e[2] * e[2] + e[3] * e[3] + e[4] * e[4] + e[5] * e[5] + e[6] * e[6] + e[7] * e[7] + e[8] * e[8] + e[9] * e[9] + e[10] * e[10] + e[11] * e[11] + e[12] * e[12] + e[13] * e[13] + e[14] * e[14] + e[15] * e[15]);
+        }
+      }, {
+        key: "add",
+        value: function add(e, t, n) {
+          return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e[3] = t[3] + n[3], e[4] = t[4] + n[4], e[5] = t[5] + n[5], e[6] = t[6] + n[6], e[7] = t[7] + n[7], e[8] = t[8] + n[8], e[9] = t[9] + n[9], e[10] = t[10] + n[10], e[11] = t[11] + n[11], e[12] = t[12] + n[12], e[13] = t[13] + n[13], e[14] = t[14] + n[14], e[15] = t[15] + n[15], e;
+        }
+      }, {
+        key: "subtract",
+        value: function subtract(e, t, n) {
+          return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e[2] = t[2] - n[2], e[3] = t[3] - n[3], e[4] = t[4] - n[4], e[5] = t[5] - n[5], e[6] = t[6] - n[6], e[7] = t[7] - n[7], e[8] = t[8] - n[8], e[9] = t[9] - n[9], e[10] = t[10] - n[10], e[11] = t[11] - n[11], e[12] = t[12] - n[12], e[13] = t[13] - n[13], e[14] = t[14] - n[14], e[15] = t[15] - n[15], e;
+        }
+      }, {
+        key: "sub",
+        value: function sub(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "multiplyScalar",
+        value: function multiplyScalar(e, t, n) {
+          return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e[4] = t[4] * n, e[5] = t[5] * n, e[6] = t[6] * n, e[7] = t[7] * n, e[8] = t[8] * n, e[9] = t[9] * n, e[10] = t[10] * n, e[11] = t[11] * n, e[12] = t[12] * n, e[13] = t[13] * n, e[14] = t[14] * n, e[15] = t[15] * n, e;
+        }
+      }, {
+        key: "multiplyScalarAndAdd",
+        value: function multiplyScalarAndAdd(e, t, n, s) {
+          return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e[2] = t[2] + n[2] * s, e[3] = t[3] + n[3] * s, e[4] = t[4] + n[4] * s, e[5] = t[5] + n[5] * s, e[6] = t[6] + n[6] * s, e[7] = t[7] + n[7] * s, e[8] = t[8] + n[8] * s, e[9] = t[9] + n[9] * s, e[10] = t[10] + n[10] * s, e[11] = t[11] + n[11] * s, e[12] = t[12] + n[12] * s, e[13] = t[13] + n[13] * s, e[14] = t[14] + n[14] * s, e[15] = t[15] + n[15] * s, e;
+        }
+      }, {
+        key: "exactEquals",
+        value: function exactEquals(e, t) {
+          return e[0] === t[0] && e[1] === t[1] && e[2] === t[2] && e[3] === t[3] && e[4] === t[4] && e[5] === t[5] && e[6] === t[6] && e[7] === t[7] && e[8] === t[8] && e[9] === t[9] && e[10] === t[10] && e[11] === t[11] && e[12] === t[12] && e[13] === t[13] && e[14] === t[14] && e[15] === t[15];
+        }
+      }, {
+        key: "equals",
+        value: function equals(e, t) {
+          var n = e[0],
+            s = e[1],
+            r = e[2],
+            a = e[3],
+            i = e[4],
+            c = e[5],
+            y = e[6],
+            L = e[7],
+            k = e[8],
+            l = e[9],
+            M = e[10],
+            h = e[11],
+            b = e[12],
+            d = e[13],
+            m = e[14],
+            x = e[15],
+            V = t[0],
+            o = t[1],
+            R = t[2],
+            z = t[3],
+            g = t[4],
+            S = t[5],
+            B = t[6],
+            N = t[7],
+            p = t[8],
+            Y = t[9],
+            F = t[10],
+            P = t[11],
+            Q = t[12],
+            K = t[13],
+            ee = t[14],
+            te = t[15];
+          return Math.abs(n - V) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(V)) && Math.abs(s - o) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(o)) && Math.abs(r - R) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(R)) && Math.abs(a - z) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(z)) && Math.abs(i - g) <= 1e-6 * Math.max(1, Math.abs(i), Math.abs(g)) && Math.abs(c - S) <= 1e-6 * Math.max(1, Math.abs(c), Math.abs(S)) && Math.abs(y - B) <= 1e-6 * Math.max(1, Math.abs(y), Math.abs(B)) && Math.abs(L - N) <= 1e-6 * Math.max(1, Math.abs(L), Math.abs(N)) && Math.abs(k - p) <= 1e-6 * Math.max(1, Math.abs(k), Math.abs(p)) && Math.abs(l - Y) <= 1e-6 * Math.max(1, Math.abs(l), Math.abs(Y)) && Math.abs(M - F) <= 1e-6 * Math.max(1, Math.abs(M), Math.abs(F)) && Math.abs(h - P) <= 1e-6 * Math.max(1, Math.abs(h), Math.abs(P)) && Math.abs(b - Q) <= 1e-6 * Math.max(1, Math.abs(b), Math.abs(Q)) && Math.abs(d - K) <= 1e-6 * Math.max(1, Math.abs(d), Math.abs(K)) && Math.abs(m - ee) <= 1e-6 * Math.max(1, Math.abs(m), Math.abs(ee)) && Math.abs(x - te) <= 1e-6 * Math.max(1, Math.abs(x), Math.abs(te));
+        }
+      }, {
+        key: "str",
+        value: function str(e) {
+          return "Mat4(".concat(e.join(", "), ")");
+        }
+      }]);
+    }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  ae = new WeakMap(), H = new WeakMap(), Z(D, ae, new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1])), Z(D, H, new Float32Array(3));
+  var G = D;
+  G.prototype.mul = G.prototype.multiply;
+  G.sub = G.subtract;
+  G.mul = G.multiply;
+  G.frustum = G.frustumNO;
+  G.perspective = G.perspectiveNO;
+  G.ortho = G.orthoNO;
+  var T = /*#__PURE__*/function (_Float32Array5) {
+    function A() {
+      var _this5;
+      _classCallCheck(this, A);
+      for (var _len9 = arguments.length, e = new Array(_len9), _key9 = 0; _key9 < _len9; _key9++) {
+        e[_key9] = arguments[_key9];
+      }
+      switch (e.length) {
+        case 3:
+          _this5 = _callSuper(this, A, [e]);
+          break;
+        case 2:
+          _this5 = _callSuper(this, A, [e[0], e[1], 3]);
+          break;
+        case 1:
+          {
+            var t = e[0];
+            typeof t == "number" ? _this5 = _callSuper(this, A, [[t, t, t]]) : _this5 = _callSuper(this, A, [t, 0, 3]);
+            break;
+          }
+        default:
+          _this5 = _callSuper(this, A, [3]);
+          break;
+      }
+      return _assertThisInitialized(_this5);
+    }
+    _inherits(A, _Float32Array5);
+    return _createClass(A, [{
+      key: "x",
+      get: function get() {
+        return this[0];
+      },
+      set: function set(e) {
+        this[0] = e;
+      }
+    }, {
+      key: "y",
+      get: function get() {
+        return this[1];
+      },
+      set: function set(e) {
+        this[1] = e;
+      }
+    }, {
+      key: "z",
+      get: function get() {
+        return this[2];
+      },
+      set: function set(e) {
+        this[2] = e;
+      }
+    }, {
+      key: "r",
+      get: function get() {
+        return this[0];
+      },
+      set: function set(e) {
+        this[0] = e;
+      }
+    }, {
+      key: "g",
+      get: function get() {
+        return this[1];
+      },
+      set: function set(e) {
+        this[1] = e;
+      }
+    }, {
+      key: "b",
+      get: function get() {
+        return this[2];
+      },
+      set: function set(e) {
+        this[2] = e;
+      }
+    }, {
+      key: "magnitude",
+      get: function get() {
+        var e = this[0],
+          t = this[1],
+          n = this[2];
+        return Math.sqrt(e * e + t * t + n * n);
+      }
+    }, {
+      key: "mag",
+      get: function get() {
+        return this.magnitude;
+      }
+    }, {
+      key: "squaredMagnitude",
+      get: function get() {
+        var e = this[0],
+          t = this[1],
+          n = this[2];
+        return e * e + t * t + n * n;
+      }
+    }, {
+      key: "sqrMag",
+      get: function get() {
+        return this.squaredMagnitude;
+      }
+    }, {
+      key: "str",
+      get: function get() {
+        return A.str(this);
+      }
+    }, {
+      key: "copy",
+      value: function copy(e) {
+        return this.set(e), this;
+      }
+    }, {
+      key: "add",
+      value: function add(e) {
+        return this[0] += e[0], this[1] += e[1], this[2] += e[2], this;
+      }
+    }, {
+      key: "subtract",
+      value: function subtract(e) {
+        return this[0] -= e[0], this[1] -= e[1], this[2] -= e[2], this;
+      }
+    }, {
+      key: "sub",
+      value: function sub(e) {
+        return this;
+      }
+    }, {
+      key: "multiply",
+      value: function multiply(e) {
+        return this[0] *= e[0], this[1] *= e[1], this[2] *= e[2], this;
+      }
+    }, {
+      key: "mul",
+      value: function mul(e) {
+        return this;
+      }
+    }, {
+      key: "divide",
+      value: function divide(e) {
+        return this[0] /= e[0], this[1] /= e[1], this[2] /= e[2], this;
+      }
+    }, {
+      key: "div",
+      value: function div(e) {
+        return this;
+      }
+    }, {
+      key: "scale",
+      value: function scale(e) {
+        return this[0] *= e, this[1] *= e, this[2] *= e, this;
+      }
+    }, {
+      key: "scaleAndAdd",
+      value: function scaleAndAdd(e, t) {
+        return this[0] += e[0] * t, this[1] += e[1] * t, this[2] += e[2] * t, this;
+      }
+    }, {
+      key: "distance",
+      value: function distance(e) {
+        return A.distance(this, e);
+      }
+    }, {
+      key: "dist",
+      value: function dist(e) {
+        return 0;
+      }
+    }, {
+      key: "squaredDistance",
+      value: function squaredDistance(e) {
+        return A.squaredDistance(this, e);
+      }
+    }, {
+      key: "sqrDist",
+      value: function sqrDist(e) {
+        return 0;
+      }
+    }, {
+      key: "negate",
+      value: function negate() {
+        return this[0] *= -1, this[1] *= -1, this[2] *= -1, this;
+      }
+    }, {
+      key: "invert",
+      value: function invert() {
+        return this[0] = 1 / this[0], this[1] = 1 / this[1], this[2] = 1 / this[2], this;
+      }
+    }, {
+      key: "abs",
+      value: function abs() {
+        return this[0] = Math.abs(this[0]), this[1] = Math.abs(this[1]), this[2] = Math.abs(this[2]), this;
+      }
+    }, {
+      key: "dot",
+      value: function dot(e) {
+        return this[0] * e[0] + this[1] * e[1] + this[2] * e[2];
+      }
+    }, {
+      key: "normalize",
+      value: function normalize() {
+        return A.normalize(this, this);
+      }
+    }], [{
+      key: "BYTE_LENGTH",
+      get: function get() {
+        return 3 * Float32Array.BYTES_PER_ELEMENT;
+      }
+    }, {
+      key: "create",
+      value: function create() {
+        return new A();
+      }
+    }, {
+      key: "clone",
+      value: function clone(e) {
+        return new A(e);
+      }
+    }, {
+      key: "magnitude",
+      value: function magnitude(e) {
+        var t = e[0],
+          n = e[1],
+          s = e[2];
+        return Math.sqrt(t * t + n * n + s * s);
+      }
+    }, {
+      key: "mag",
+      value: function mag(e) {
+        return 0;
+      }
+    }, {
+      key: "length",
+      value: function length(e) {
+        return 0;
+      }
+    }, {
+      key: "len",
+      value: function len(e) {
+        return 0;
+      }
+    }, {
+      key: "fromValues",
+      value: function fromValues(e, t, n) {
+        return new A(e, t, n);
+      }
+    }, {
+      key: "copy",
+      value: function copy(e, t) {
+        return e[0] = t[0], e[1] = t[1], e[2] = t[2], e;
+      }
+    }, {
+      key: "set",
+      value: function set(e, t, n, s) {
+        return e[0] = t, e[1] = n, e[2] = s, e;
+      }
+    }, {
+      key: "add",
+      value: function add(e, t, n) {
+        return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e;
+      }
+    }, {
+      key: "subtract",
+      value: function subtract(e, t, n) {
+        return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e[2] = t[2] - n[2], e;
+      }
+    }, {
+      key: "sub",
+      value: function sub(e, t, n) {
+        return [0, 0, 0];
+      }
+    }, {
+      key: "multiply",
+      value: function multiply(e, t, n) {
+        return e[0] = t[0] * n[0], e[1] = t[1] * n[1], e[2] = t[2] * n[2], e;
+      }
+    }, {
+      key: "mul",
+      value: function mul(e, t, n) {
+        return [0, 0, 0];
+      }
+    }, {
+      key: "divide",
+      value: function divide(e, t, n) {
+        return e[0] = t[0] / n[0], e[1] = t[1] / n[1], e[2] = t[2] / n[2], e;
+      }
+    }, {
+      key: "div",
+      value: function div(e, t, n) {
+        return [0, 0, 0];
+      }
+    }, {
+      key: "ceil",
+      value: function ceil(e, t) {
+        return e[0] = Math.ceil(t[0]), e[1] = Math.ceil(t[1]), e[2] = Math.ceil(t[2]), e;
+      }
+    }, {
+      key: "floor",
+      value: function floor(e, t) {
+        return e[0] = Math.floor(t[0]), e[1] = Math.floor(t[1]), e[2] = Math.floor(t[2]), e;
+      }
+    }, {
+      key: "min",
+      value: function min(e, t, n) {
+        return e[0] = Math.min(t[0], n[0]), e[1] = Math.min(t[1], n[1]), e[2] = Math.min(t[2], n[2]), e;
+      }
+    }, {
+      key: "max",
+      value: function max(e, t, n) {
+        return e[0] = Math.max(t[0], n[0]), e[1] = Math.max(t[1], n[1]), e[2] = Math.max(t[2], n[2]), e;
+      }
+    }, {
+      key: "scale",
+      value: function scale(e, t, n) {
+        return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e;
+      }
+    }, {
+      key: "scaleAndAdd",
+      value: function scaleAndAdd(e, t, n, s) {
+        return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e[2] = t[2] + n[2] * s, e;
+      }
+    }, {
+      key: "distance",
+      value: function distance(e, t) {
+        var n = t[0] - e[0],
+          s = t[1] - e[1],
+          r = t[2] - e[2];
+        return Math.sqrt(n * n + s * s + r * r);
+      }
+    }, {
+      key: "dist",
+      value: function dist(e, t) {
+        return 0;
+      }
+    }, {
+      key: "squaredDistance",
+      value: function squaredDistance(e, t) {
+        var n = t[0] - e[0],
+          s = t[1] - e[1],
+          r = t[2] - e[2];
+        return n * n + s * s + r * r;
+      }
+    }, {
+      key: "sqrDist",
+      value: function sqrDist(e, t) {
+        return 0;
+      }
+    }, {
+      key: "squaredLength",
+      value: function squaredLength(e) {
+        var t = e[0],
+          n = e[1],
+          s = e[2];
+        return t * t + n * n + s * s;
+      }
+    }, {
+      key: "sqrLen",
+      value: function sqrLen(e, t) {
+        return 0;
+      }
+    }, {
+      key: "negate",
+      value: function negate(e, t) {
+        return e[0] = -t[0], e[1] = -t[1], e[2] = -t[2], e;
+      }
+    }, {
+      key: "inverse",
+      value: function inverse(e, t) {
+        return e[0] = 1 / t[0], e[1] = 1 / t[1], e[2] = 1 / t[2], e;
+      }
+    }, {
+      key: "abs",
+      value: function abs(e, t) {
+        return e[0] = Math.abs(t[0]), e[1] = Math.abs(t[1]), e[2] = Math.abs(t[2]), e;
+      }
+    }, {
+      key: "normalize",
+      value: function normalize(e, t) {
+        var n = t[0],
+          s = t[1],
+          r = t[2],
+          a = n * n + s * s + r * r;
+        return a > 0 && (a = 1 / Math.sqrt(a)), e[0] = t[0] * a, e[1] = t[1] * a, e[2] = t[2] * a, e;
+      }
+    }, {
+      key: "dot",
+      value: function dot(e, t) {
+        return e[0] * t[0] + e[1] * t[1] + e[2] * t[2];
+      }
+    }, {
+      key: "cross",
+      value: function cross(e, t, n) {
+        var s = t[0],
+          r = t[1],
+          a = t[2],
+          i = n[0],
+          c = n[1],
+          y = n[2];
+        return e[0] = r * y - a * c, e[1] = a * i - s * y, e[2] = s * c - r * i, e;
+      }
+    }, {
+      key: "lerp",
+      value: function lerp(e, t, n, s) {
+        var r = t[0],
+          a = t[1],
+          i = t[2];
+        return e[0] = r + s * (n[0] - r), e[1] = a + s * (n[1] - a), e[2] = i + s * (n[2] - i), e;
+      }
+    }, {
+      key: "slerp",
+      value: function slerp(e, t, n, s) {
+        var r = Math.acos(Math.min(Math.max(A.dot(t, n), -1), 1)),
+          a = Math.sin(r),
+          i = Math.sin((1 - s) * r) / a,
+          c = Math.sin(s * r) / a;
+        return e[0] = i * t[0] + c * n[0], e[1] = i * t[1] + c * n[1], e[2] = i * t[2] + c * n[2], e;
+      }
+    }, {
+      key: "hermite",
+      value: function hermite(e, t, n, s, r, a) {
+        var i = a * a,
+          c = i * (2 * a - 3) + 1,
+          y = i * (a - 2) + a,
+          L = i * (a - 1),
+          k = i * (3 - 2 * a);
+        return e[0] = t[0] * c + n[0] * y + s[0] * L + r[0] * k, e[1] = t[1] * c + n[1] * y + s[1] * L + r[1] * k, e[2] = t[2] * c + n[2] * y + s[2] * L + r[2] * k, e;
+      }
+    }, {
+      key: "bezier",
+      value: function bezier(e, t, n, s, r, a) {
+        var i = 1 - a,
+          c = i * i,
+          y = a * a,
+          L = c * i,
+          k = 3 * a * c,
+          l = 3 * y * i,
+          M = y * a;
+        return e[0] = t[0] * L + n[0] * k + s[0] * l + r[0] * M, e[1] = t[1] * L + n[1] * k + s[1] * l + r[1] * M, e[2] = t[2] * L + n[2] * k + s[2] * l + r[2] * M, e;
+      }
+    }, {
+      key: "transformMat4",
+      value: function transformMat4(e, t, n) {
+        var s = t[0],
+          r = t[1],
+          a = t[2],
+          i = n[3] * s + n[7] * r + n[11] * a + n[15] || 1;
+        return e[0] = (n[0] * s + n[4] * r + n[8] * a + n[12]) / i, e[1] = (n[1] * s + n[5] * r + n[9] * a + n[13]) / i, e[2] = (n[2] * s + n[6] * r + n[10] * a + n[14]) / i, e;
+      }
+    }, {
+      key: "transformMat3",
+      value: function transformMat3(e, t, n) {
+        var s = t[0],
+          r = t[1],
+          a = t[2];
+        return e[0] = s * n[0] + r * n[3] + a * n[6], e[1] = s * n[1] + r * n[4] + a * n[7], e[2] = s * n[2] + r * n[5] + a * n[8], e;
+      }
+    }, {
+      key: "transformQuat",
+      value: function transformQuat(e, t, n) {
+        var s = n[0],
+          r = n[1],
+          a = n[2],
+          i = n[3] * 2,
+          c = t[0],
+          y = t[1],
+          L = t[2],
+          k = r * L - a * y,
+          l = a * c - s * L,
+          M = s * y - r * c,
+          h = (r * M - a * l) * 2,
+          b = (a * k - s * M) * 2,
+          d = (s * l - r * k) * 2;
+        return e[0] = c + k * i + h, e[1] = y + l * i + b, e[2] = L + M * i + d, e;
+      }
+    }, {
+      key: "rotateX",
+      value: function rotateX(e, t, n, s) {
+        var r = n[1],
+          a = n[2],
+          i = t[1] - r,
+          c = t[2] - a;
+        return e[0] = t[0], e[1] = i * Math.cos(s) - c * Math.sin(s) + r, e[2] = i * Math.sin(s) + c * Math.cos(s) + a, e;
+      }
+    }, {
+      key: "rotateY",
+      value: function rotateY(e, t, n, s) {
+        var r = n[0],
+          a = n[2],
+          i = t[0] - r,
+          c = t[2] - a;
+        return e[0] = c * Math.sin(s) + i * Math.cos(s) + r, e[1] = t[1], e[2] = c * Math.cos(s) - i * Math.sin(s) + a, e;
+      }
+    }, {
+      key: "rotateZ",
+      value: function rotateZ(e, t, n, s) {
+        var r = n[0],
+          a = n[1],
+          i = t[0] - r,
+          c = t[1] - a;
+        return e[0] = i * Math.cos(s) - c * Math.sin(s) + r, e[1] = i * Math.sin(s) + c * Math.cos(s) + a, e[2] = n[2], e;
+      }
+    }, {
+      key: "angle",
+      value: function angle(e, t) {
+        var n = e[0],
+          s = e[1],
+          r = e[2],
+          a = t[0],
+          i = t[1],
+          c = t[2],
+          y = Math.sqrt((n * n + s * s + r * r) * (a * a + i * i + c * c)),
+          L = y && A.dot(e, t) / y;
+        return Math.acos(Math.min(Math.max(L, -1), 1));
+      }
+    }, {
+      key: "zero",
+      value: function zero(e) {
+        return e[0] = 0, e[1] = 0, e[2] = 0, e;
+      }
+    }, {
+      key: "str",
+      value: function str(e) {
+        return "Vec3(".concat(e.join(", "), ")");
+      }
+    }, {
+      key: "exactEquals",
+      value: function exactEquals(e, t) {
+        return e[0] === t[0] && e[1] === t[1] && e[2] === t[2];
+      }
+    }, {
+      key: "equals",
+      value: function equals(e, t) {
+        var n = e[0],
+          s = e[1],
+          r = e[2],
+          a = t[0],
+          i = t[1],
+          c = t[2];
+        return Math.abs(n - a) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(a)) && Math.abs(s - i) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(i)) && Math.abs(r - c) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(c));
+      }
+    }]);
+  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  T.prototype.sub = T.prototype.subtract;
+  T.prototype.mul = T.prototype.multiply;
+  T.prototype.div = T.prototype.divide;
+  T.prototype.dist = T.prototype.distance;
+  T.prototype.sqrDist = T.prototype.squaredDistance;
+  T.sub = T.subtract;
+  T.mul = T.multiply;
+  T.div = T.divide;
+  T.dist = T.distance;
+  T.sqrDist = T.squaredDistance;
+  T.sqrLen = T.squaredLength;
+  T.mag = T.magnitude;
+  T.length = T.magnitude;
+  T.len = T.magnitude;
+  var q = /*#__PURE__*/function (_Float32Array6) {
+    function A() {
+      var _this6;
+      _classCallCheck(this, A);
+      for (var _len10 = arguments.length, e = new Array(_len10), _key10 = 0; _key10 < _len10; _key10++) {
+        e[_key10] = arguments[_key10];
+      }
+      switch (e.length) {
+        case 4:
+          _this6 = _callSuper(this, A, [e]);
+          break;
+        case 2:
+          _this6 = _callSuper(this, A, [e[0], e[1], 4]);
+          break;
+        case 1:
+          {
+            var t = e[0];
+            typeof t == "number" ? _this6 = _callSuper(this, A, [[t, t, t, t]]) : _this6 = _callSuper(this, A, [t, 0, 4]);
+            break;
+          }
+        default:
+          _this6 = _callSuper(this, A, [4]);
+          break;
+      }
+      return _assertThisInitialized(_this6);
+    }
+    _inherits(A, _Float32Array6);
+    return _createClass(A, [{
+      key: "x",
+      get: function get() {
+        return this[0];
+      },
+      set: function set(e) {
+        this[0] = e;
+      }
+    }, {
+      key: "y",
+      get: function get() {
+        return this[1];
+      },
+      set: function set(e) {
+        this[1] = e;
+      }
+    }, {
+      key: "z",
+      get: function get() {
+        return this[2];
+      },
+      set: function set(e) {
+        this[2] = e;
+      }
+    }, {
+      key: "w",
+      get: function get() {
+        return this[3];
+      },
+      set: function set(e) {
+        this[3] = e;
+      }
+    }, {
+      key: "r",
+      get: function get() {
+        return this[0];
+      },
+      set: function set(e) {
+        this[0] = e;
+      }
+    }, {
+      key: "g",
+      get: function get() {
+        return this[1];
+      },
+      set: function set(e) {
+        this[1] = e;
+      }
+    }, {
+      key: "b",
+      get: function get() {
+        return this[2];
+      },
+      set: function set(e) {
+        this[2] = e;
+      }
+    }, {
+      key: "a",
+      get: function get() {
+        return this[3];
+      },
+      set: function set(e) {
+        this[3] = e;
+      }
+    }, {
+      key: "magnitude",
+      get: function get() {
+        var e = this[0],
+          t = this[1],
+          n = this[2],
+          s = this[3];
+        return Math.sqrt(e * e + t * t + n * n + s * s);
+      }
+    }, {
+      key: "mag",
+      get: function get() {
+        return this.magnitude;
+      }
+    }, {
+      key: "str",
+      get: function get() {
+        return A.str(this);
+      }
+    }, {
+      key: "copy",
+      value: function copy(e) {
+        return _get(_getPrototypeOf(A.prototype), "set", this).call(this, e), this;
+      }
+    }, {
+      key: "add",
+      value: function add(e) {
+        return this[0] += e[0], this[1] += e[1], this[2] += e[2], this[3] += e[3], this;
+      }
+    }, {
+      key: "subtract",
+      value: function subtract(e) {
+        return this[0] -= e[0], this[1] -= e[1], this[2] -= e[2], this[3] -= e[3], this;
+      }
+    }, {
+      key: "sub",
+      value: function sub(e) {
+        return this;
+      }
+    }, {
+      key: "multiply",
+      value: function multiply(e) {
+        return this[0] *= e[0], this[1] *= e[1], this[2] *= e[2], this[3] *= e[3], this;
+      }
+    }, {
+      key: "mul",
+      value: function mul(e) {
+        return this;
+      }
+    }, {
+      key: "divide",
+      value: function divide(e) {
+        return this[0] /= e[0], this[1] /= e[1], this[2] /= e[2], this[3] /= e[3], this;
+      }
+    }, {
+      key: "div",
+      value: function div(e) {
+        return this;
+      }
+    }, {
+      key: "scale",
+      value: function scale(e) {
+        return this[0] *= e, this[1] *= e, this[2] *= e, this[3] *= e, this;
+      }
+    }, {
+      key: "scaleAndAdd",
+      value: function scaleAndAdd(e, t) {
+        return this[0] += e[0] * t, this[1] += e[1] * t, this[2] += e[2] * t, this[3] += e[3] * t, this;
+      }
+    }, {
+      key: "distance",
+      value: function distance(e) {
+        return A.distance(this, e);
+      }
+    }, {
+      key: "dist",
+      value: function dist(e) {
+        return 0;
+      }
+    }, {
+      key: "squaredDistance",
+      value: function squaredDistance(e) {
+        return A.squaredDistance(this, e);
+      }
+    }, {
+      key: "sqrDist",
+      value: function sqrDist(e) {
+        return 0;
+      }
+    }, {
+      key: "negate",
+      value: function negate() {
+        return this[0] *= -1, this[1] *= -1, this[2] *= -1, this[3] *= -1, this;
+      }
+    }, {
+      key: "invert",
+      value: function invert() {
+        return this[0] = 1 / this[0], this[1] = 1 / this[1], this[2] = 1 / this[2], this[3] = 1 / this[3], this;
+      }
+    }, {
+      key: "abs",
+      value: function abs() {
+        return this[0] = Math.abs(this[0]), this[1] = Math.abs(this[1]), this[2] = Math.abs(this[2]), this[3] = Math.abs(this[3]), this;
+      }
+    }, {
+      key: "dot",
+      value: function dot(e) {
+        return this[0] * e[0] + this[1] * e[1] + this[2] * e[2] + this[3] * e[3];
+      }
+    }, {
+      key: "normalize",
+      value: function normalize() {
+        return A.normalize(this, this);
+      }
+    }], [{
+      key: "BYTE_LENGTH",
+      get: function get() {
+        return 4 * Float32Array.BYTES_PER_ELEMENT;
+      }
+    }, {
+      key: "create",
+      value: function create() {
+        return new A();
+      }
+    }, {
+      key: "clone",
+      value: function clone(e) {
+        return new A(e);
+      }
+    }, {
+      key: "fromValues",
+      value: function fromValues(e, t, n, s) {
+        return new A(e, t, n, s);
+      }
+    }, {
+      key: "copy",
+      value: function copy(e, t) {
+        return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e;
+      }
+    }, {
+      key: "set",
+      value: function set(e, t, n, s, r) {
+        return e[0] = t, e[1] = n, e[2] = s, e[3] = r, e;
+      }
+    }, {
+      key: "add",
+      value: function add(e, t, n) {
+        return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e[3] = t[3] + n[3], e;
+      }
+    }, {
+      key: "subtract",
+      value: function subtract(e, t, n) {
+        return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e[2] = t[2] - n[2], e[3] = t[3] - n[3], e;
+      }
+    }, {
+      key: "sub",
+      value: function sub(e, t, n) {
+        return e;
+      }
+    }, {
+      key: "multiply",
+      value: function multiply(e, t, n) {
+        return e[0] = t[0] * n[0], e[1] = t[1] * n[1], e[2] = t[2] * n[2], e[3] = t[3] * n[3], e;
+      }
+    }, {
+      key: "mul",
+      value: function mul(e, t, n) {
+        return e;
+      }
+    }, {
+      key: "divide",
+      value: function divide(e, t, n) {
+        return e[0] = t[0] / n[0], e[1] = t[1] / n[1], e[2] = t[2] / n[2], e[3] = t[3] / n[3], e;
+      }
+    }, {
+      key: "div",
+      value: function div(e, t, n) {
+        return e;
+      }
+    }, {
+      key: "ceil",
+      value: function ceil(e, t) {
+        return e[0] = Math.ceil(t[0]), e[1] = Math.ceil(t[1]), e[2] = Math.ceil(t[2]), e[3] = Math.ceil(t[3]), e;
+      }
+    }, {
+      key: "floor",
+      value: function floor(e, t) {
+        return e[0] = Math.floor(t[0]), e[1] = Math.floor(t[1]), e[2] = Math.floor(t[2]), e[3] = Math.floor(t[3]), e;
+      }
+    }, {
+      key: "min",
+      value: function min(e, t, n) {
+        return e[0] = Math.min(t[0], n[0]), e[1] = Math.min(t[1], n[1]), e[2] = Math.min(t[2], n[2]), e[3] = Math.min(t[3], n[3]), e;
+      }
+    }, {
+      key: "max",
+      value: function max(e, t, n) {
+        return e[0] = Math.max(t[0], n[0]), e[1] = Math.max(t[1], n[1]), e[2] = Math.max(t[2], n[2]), e[3] = Math.max(t[3], n[3]), e;
+      }
+    }, {
+      key: "round",
+      value: function round(e, t) {
+        return e[0] = Math.round(t[0]), e[1] = Math.round(t[1]), e[2] = Math.round(t[2]), e[3] = Math.round(t[3]), e;
+      }
+    }, {
+      key: "scale",
+      value: function scale(e, t, n) {
+        return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e;
+      }
+    }, {
+      key: "scaleAndAdd",
+      value: function scaleAndAdd(e, t, n, s) {
+        return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e[2] = t[2] + n[2] * s, e[3] = t[3] + n[3] * s, e;
+      }
+    }, {
+      key: "distance",
+      value: function distance(e, t) {
+        var n = t[0] - e[0],
+          s = t[1] - e[1],
+          r = t[2] - e[2],
+          a = t[3] - e[3];
+        return Math.hypot(n, s, r, a);
+      }
+    }, {
+      key: "dist",
+      value: function dist(e, t) {
+        return 0;
+      }
+    }, {
+      key: "squaredDistance",
+      value: function squaredDistance(e, t) {
+        var n = t[0] - e[0],
+          s = t[1] - e[1],
+          r = t[2] - e[2],
+          a = t[3] - e[3];
+        return n * n + s * s + r * r + a * a;
+      }
+    }, {
+      key: "sqrDist",
+      value: function sqrDist(e, t) {
+        return 0;
+      }
+    }, {
+      key: "magnitude",
+      value: function magnitude(e) {
+        var t = e[0],
+          n = e[1],
+          s = e[2],
+          r = e[3];
+        return Math.sqrt(t * t + n * n + s * s + r * r);
+      }
+    }, {
+      key: "mag",
+      value: function mag(e) {
+        return 0;
+      }
+    }, {
+      key: "length",
+      value: function length(e) {
+        return 0;
+      }
+    }, {
+      key: "len",
+      value: function len(e) {
+        return 0;
+      }
+    }, {
+      key: "squaredLength",
+      value: function squaredLength(e) {
+        var t = e[0],
+          n = e[1],
+          s = e[2],
+          r = e[3];
+        return t * t + n * n + s * s + r * r;
+      }
+    }, {
+      key: "sqrLen",
+      value: function sqrLen(e) {
+        return 0;
+      }
+    }, {
+      key: "negate",
+      value: function negate(e, t) {
+        return e[0] = -t[0], e[1] = -t[1], e[2] = -t[2], e[3] = -t[3], e;
+      }
+    }, {
+      key: "inverse",
+      value: function inverse(e, t) {
+        return e[0] = 1 / t[0], e[1] = 1 / t[1], e[2] = 1 / t[2], e[3] = 1 / t[3], e;
+      }
+    }, {
+      key: "abs",
+      value: function abs(e, t) {
+        return e[0] = Math.abs(t[0]), e[1] = Math.abs(t[1]), e[2] = Math.abs(t[2]), e[3] = Math.abs(t[3]), e;
+      }
+    }, {
+      key: "normalize",
+      value: function normalize(e, t) {
+        var n = t[0],
+          s = t[1],
+          r = t[2],
+          a = t[3],
+          i = n * n + s * s + r * r + a * a;
+        return i > 0 && (i = 1 / Math.sqrt(i)), e[0] = n * i, e[1] = s * i, e[2] = r * i, e[3] = a * i, e;
+      }
+    }, {
+      key: "dot",
+      value: function dot(e, t) {
+        return e[0] * t[0] + e[1] * t[1] + e[2] * t[2] + e[3] * t[3];
+      }
+    }, {
+      key: "cross",
+      value: function cross(e, t, n, s) {
+        var r = n[0] * s[1] - n[1] * s[0],
+          a = n[0] * s[2] - n[2] * s[0],
+          i = n[0] * s[3] - n[3] * s[0],
+          c = n[1] * s[2] - n[2] * s[1],
+          y = n[1] * s[3] - n[3] * s[1],
+          L = n[2] * s[3] - n[3] * s[2],
+          k = t[0],
+          l = t[1],
+          M = t[2],
+          h = t[3];
+        return e[0] = l * L - M * y + h * c, e[1] = -(k * L) + M * i - h * a, e[2] = k * y - l * i + h * r, e[3] = -(k * c) + l * a - M * r, e;
+      }
+    }, {
+      key: "lerp",
+      value: function lerp(e, t, n, s) {
+        var r = t[0],
+          a = t[1],
+          i = t[2],
+          c = t[3];
+        return e[0] = r + s * (n[0] - r), e[1] = a + s * (n[1] - a), e[2] = i + s * (n[2] - i), e[3] = c + s * (n[3] - c), e;
+      }
+    }, {
+      key: "transformMat4",
+      value: function transformMat4(e, t, n) {
+        var s = t[0],
+          r = t[1],
+          a = t[2],
+          i = t[3];
+        return e[0] = n[0] * s + n[4] * r + n[8] * a + n[12] * i, e[1] = n[1] * s + n[5] * r + n[9] * a + n[13] * i, e[2] = n[2] * s + n[6] * r + n[10] * a + n[14] * i, e[3] = n[3] * s + n[7] * r + n[11] * a + n[15] * i, e;
+      }
+    }, {
+      key: "transformQuat",
+      value: function transformQuat(e, t, n) {
+        var s = t[0],
+          r = t[1],
+          a = t[2],
+          i = n[0],
+          c = n[1],
+          y = n[2],
+          L = n[3],
+          k = L * s + c * a - y * r,
+          l = L * r + y * s - i * a,
+          M = L * a + i * r - c * s,
+          h = -i * s - c * r - y * a;
+        return e[0] = k * L + h * -i + l * -y - M * -c, e[1] = l * L + h * -c + M * -i - k * -y, e[2] = M * L + h * -y + k * -c - l * -i, e[3] = t[3], e;
+      }
+    }, {
+      key: "zero",
+      value: function zero(e) {
+        return e[0] = 0, e[1] = 0, e[2] = 0, e[3] = 0, e;
+      }
+    }, {
+      key: "str",
+      value: function str(e) {
+        return "Vec4(".concat(e.join(", "), ")");
+      }
+    }, {
+      key: "exactEquals",
+      value: function exactEquals(e, t) {
+        return e[0] === t[0] && e[1] === t[1] && e[2] === t[2] && e[3] === t[3];
+      }
+    }, {
+      key: "equals",
+      value: function equals(e, t) {
+        var n = e[0],
+          s = e[1],
+          r = e[2],
+          a = e[3],
+          i = t[0],
+          c = t[1],
+          y = t[2],
+          L = t[3];
+        return Math.abs(n - i) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(i)) && Math.abs(s - c) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(c)) && Math.abs(r - y) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(y)) && Math.abs(a - L) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(L));
+      }
+    }]);
+  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  q.prototype.sub = q.prototype.subtract;
+  q.prototype.mul = q.prototype.multiply;
+  q.prototype.div = q.prototype.divide;
+  q.prototype.dist = q.prototype.distance;
+  q.prototype.sqrDist = q.prototype.squaredDistance;
+  q.sub = q.subtract;
+  q.mul = q.multiply;
+  q.div = q.divide;
+  q.dist = q.distance;
+  q.sqrDist = q.squaredDistance;
+  q.sqrLen = q.squaredLength;
+  q.mag = q.magnitude;
+  q.length = q.magnitude;
+  q.len = q.magnitude;
+  var ke,
+    ie,
+    ce,
+    W,
+    U,
+    le,
+    he,
+    f = /*#__PURE__*/function (_Float32Array7) {
+      function f() {
+        var _this7;
+        _classCallCheck(this, f);
+        for (var _len11 = arguments.length, e = new Array(_len11), _key11 = 0; _key11 < _len11; _key11++) {
+          e[_key11] = arguments[_key11];
+        }
+        switch (e.length) {
+          case 4:
+            _this7 = _callSuper(this, f, [e]);
+            break;
+          case 2:
+            _this7 = _callSuper(this, f, [e[0], e[1], 4]);
+            break;
+          case 1:
+            {
+              var t = e[0];
+              typeof t == "number" ? _this7 = _callSuper(this, f, [[t, t, t, t]]) : _this7 = _callSuper(this, f, [t, 0, 4]);
+              break;
+            }
+          default:
+            _this7 = _callSuper(this, f, [4]), _this7[3] = 1;
+            break;
+        }
+        return _assertThisInitialized(_this7);
+      }
+      _inherits(f, _Float32Array7);
+      return _createClass(f, [{
+        key: "x",
+        get: function get() {
+          return this[0];
+        },
+        set: function set(e) {
+          this[0] = e;
+        }
+      }, {
+        key: "y",
+        get: function get() {
+          return this[1];
+        },
+        set: function set(e) {
+          this[1] = e;
+        }
+      }, {
+        key: "z",
+        get: function get() {
+          return this[2];
+        },
+        set: function set(e) {
+          this[2] = e;
+        }
+      }, {
+        key: "w",
+        get: function get() {
+          return this[3];
+        },
+        set: function set(e) {
+          this[3] = e;
+        }
+      }, {
+        key: "magnitude",
+        get: function get() {
+          var e = this[0],
+            t = this[1],
+            n = this[2],
+            s = this[3];
+          return Math.sqrt(e * e + t * t + n * n + s * s);
+        }
+      }, {
+        key: "mag",
+        get: function get() {
+          return this.magnitude;
+        }
+      }, {
+        key: "str",
+        get: function get() {
+          return f.str(this);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e) {
+          return _get(_getPrototypeOf(f.prototype), "set", this).call(this, e), this;
+        }
+      }, {
+        key: "identity",
+        value: function identity() {
+          return this[0] = 0, this[1] = 0, this[2] = 0, this[3] = 1, this;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e) {
+          return f.multiply(this, this, e);
+        }
+      }, {
+        key: "mul",
+        value: function mul(e) {
+          return this;
+        }
+      }, {
+        key: "rotateX",
+        value: function rotateX(e) {
+          return f.rotateX(this, this, e);
+        }
+      }, {
+        key: "rotateY",
+        value: function rotateY(e) {
+          return f.rotateY(this, this, e);
+        }
+      }, {
+        key: "rotateZ",
+        value: function rotateZ(e) {
+          return f.rotateZ(this, this, e);
+        }
+      }, {
+        key: "invert",
+        value: function invert() {
+          return f.invert(this, this);
+        }
+      }, {
+        key: "scale",
+        value: function scale(e) {
+          return this[0] *= e, this[1] *= e, this[2] *= e, this[3] *= e, this;
+        }
+      }, {
+        key: "dot",
+        value: function dot(e) {
+          return f.dot(this, e);
+        }
+      }], [{
+        key: "BYTE_LENGTH",
+        get: function get() {
+          return 4 * Float32Array.BYTES_PER_ELEMENT;
+        }
+      }, {
+        key: "create",
+        value: function create() {
+          return new f();
+        }
+      }, {
+        key: "identity",
+        value: function identity(e) {
+          return e[0] = 0, e[1] = 0, e[2] = 0, e[3] = 1, e;
+        }
+      }, {
+        key: "setAxisAngle",
+        value: function setAxisAngle(e, t, n) {
+          n = n * .5;
+          var s = Math.sin(n);
+          return e[0] = s * t[0], e[1] = s * t[1], e[2] = s * t[2], e[3] = Math.cos(n), e;
+        }
+      }, {
+        key: "getAxisAngle",
+        value: function getAxisAngle(e, t) {
+          var n = Math.acos(t[3]) * 2,
+            s = Math.sin(n / 2);
+          return s > 1e-6 ? (e[0] = t[0] / s, e[1] = t[1] / s, e[2] = t[2] / s) : (e[0] = 1, e[1] = 0, e[2] = 0), n;
+        }
+      }, {
+        key: "getAngle",
+        value: function getAngle(e, t) {
+          var n = f.dot(e, t);
+          return Math.acos(2 * n * n - 1);
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = n[0],
+            y = n[1],
+            L = n[2],
+            k = n[3];
+          return e[0] = s * k + i * c + r * L - a * y, e[1] = r * k + i * y + a * c - s * L, e[2] = a * k + i * L + s * y - r * c, e[3] = i * k - s * c - r * y - a * L, e;
+        }
+      }, {
+        key: "rotateX",
+        value: function rotateX(e, t, n) {
+          n *= .5;
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = Math.sin(n),
+            y = Math.cos(n);
+          return e[0] = s * y + i * c, e[1] = r * y + a * c, e[2] = a * y - r * c, e[3] = i * y - s * c, e;
+        }
+      }, {
+        key: "rotateY",
+        value: function rotateY(e, t, n) {
+          n *= .5;
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = Math.sin(n),
+            y = Math.cos(n);
+          return e[0] = s * y - a * c, e[1] = r * y + i * c, e[2] = a * y + s * c, e[3] = i * y - r * c, e;
+        }
+      }, {
+        key: "rotateZ",
+        value: function rotateZ(e, t, n) {
+          n *= .5;
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = Math.sin(n),
+            y = Math.cos(n);
+          return e[0] = s * y + r * c, e[1] = r * y - s * c, e[2] = a * y + i * c, e[3] = i * y - a * c, e;
+        }
+      }, {
+        key: "calculateW",
+        value: function calculateW(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2];
+          return e[0] = n, e[1] = s, e[2] = r, e[3] = Math.sqrt(Math.abs(1 - n * n - s * s - r * r)), e;
+        }
+      }, {
+        key: "exp",
+        value: function exp(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = Math.sqrt(n * n + s * s + r * r),
+            c = Math.exp(a),
+            y = i > 0 ? c * Math.sin(i) / i : 0;
+          return e[0] = n * y, e[1] = s * y, e[2] = r * y, e[3] = c * Math.cos(i), e;
+        }
+      }, {
+        key: "ln",
+        value: function ln(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = Math.sqrt(n * n + s * s + r * r),
+            c = i > 0 ? Math.atan2(i, a) / i : 0;
+          return e[0] = n * c, e[1] = s * c, e[2] = r * c, e[3] = .5 * Math.log(n * n + s * s + r * r + a * a), e;
+        }
+      }, {
+        key: "pow",
+        value: function pow(e, t, n) {
+          return f.ln(e, t), f.scale(e, e, n), f.exp(e, e), e;
+        }
+      }, {
+        key: "slerp",
+        value: function slerp(e, t, n, s) {
+          var r = t[0],
+            a = t[1],
+            i = t[2],
+            c = t[3],
+            y = n[0],
+            L = n[1],
+            k = n[2],
+            l = n[3],
+            M,
+            h,
+            b = r * y + a * L + i * k + c * l;
+          if (b < 0 && (b = -b, y = -y, L = -L, k = -k, l = -l), 1 - b > 1e-6) {
+            var d = Math.acos(b),
+              m = Math.sin(d);
+            M = Math.sin((1 - s) * d) / m, h = Math.sin(s * d) / m;
+          } else M = 1 - s, h = s;
+          return e[0] = M * r + h * y, e[1] = M * a + h * L, e[2] = M * i + h * k, e[3] = M * c + h * l, e;
+        }
+      }, {
+        key: "invert",
+        value: function invert(e, t) {
+          var n = t[0],
+            s = t[1],
+            r = t[2],
+            a = t[3],
+            i = n * n + s * s + r * r + a * a,
+            c = i ? 1 / i : 0;
+          return e[0] = -n * c, e[1] = -s * c, e[2] = -r * c, e[3] = a * c, e;
+        }
+      }, {
+        key: "conjugate",
+        value: function conjugate(e, t) {
+          return e[0] = -t[0], e[1] = -t[1], e[2] = -t[2], e[3] = t[3], e;
+        }
+      }, {
+        key: "fromMat3",
+        value: function fromMat3(e, t) {
+          var n = t[0] + t[4] + t[8],
+            s;
+          if (n > 0) s = Math.sqrt(n + 1), e[3] = .5 * s, s = .5 / s, e[0] = (t[5] - t[7]) * s, e[1] = (t[6] - t[2]) * s, e[2] = (t[1] - t[3]) * s;else {
+            var r = 0;
+            t[4] > t[0] && (r = 1), t[8] > t[r * 3 + r] && (r = 2);
+            var a = (r + 1) % 3,
+              i = (r + 2) % 3;
+            s = Math.sqrt(t[r * 3 + r] - t[a * 3 + a] - t[i * 3 + i] + 1), e[r] = .5 * s, s = .5 / s, e[3] = (t[a * 3 + i] - t[i * 3 + a]) * s, e[a] = (t[a * 3 + r] + t[r * 3 + a]) * s, e[i] = (t[i * 3 + r] + t[r * 3 + i]) * s;
+          }
+          return e;
+        }
+      }, {
+        key: "fromEuler",
+        value: function fromEuler(e, t, n, s) {
+          var r = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : E(f, ke);
+          var a = .5 * Math.PI / 180;
+          t *= a, n *= a, s *= a;
+          var i = Math.sin(t),
+            c = Math.cos(t),
+            y = Math.sin(n),
+            L = Math.cos(n),
+            k = Math.sin(s),
+            l = Math.cos(s);
+          switch (r) {
+            case "xyz":
+              e[0] = i * L * l + c * y * k, e[1] = c * y * l - i * L * k, e[2] = c * L * k + i * y * l, e[3] = c * L * l - i * y * k;
+              break;
+            case "xzy":
+              e[0] = i * L * l - c * y * k, e[1] = c * y * l - i * L * k, e[2] = c * L * k + i * y * l, e[3] = c * L * l + i * y * k;
+              break;
+            case "yxz":
+              e[0] = i * L * l + c * y * k, e[1] = c * y * l - i * L * k, e[2] = c * L * k - i * y * l, e[3] = c * L * l + i * y * k;
+              break;
+            case "yzx":
+              e[0] = i * L * l + c * y * k, e[1] = c * y * l + i * L * k, e[2] = c * L * k - i * y * l, e[3] = c * L * l - i * y * k;
+              break;
+            case "zxy":
+              e[0] = i * L * l - c * y * k, e[1] = c * y * l + i * L * k, e[2] = c * L * k + i * y * l, e[3] = c * L * l - i * y * k;
+              break;
+            case "zyx":
+              e[0] = i * L * l - c * y * k, e[1] = c * y * l + i * L * k, e[2] = c * L * k - i * y * l, e[3] = c * L * l + i * y * k;
+              break;
+            default:
+              throw new Error("Unknown angle order " + r);
+          }
+          return e;
+        }
+      }, {
+        key: "str",
+        value: function str(e) {
+          return "Quat(".concat(e.join(", "), ")");
+        }
+      }, {
+        key: "clone",
+        value: function clone(e) {
+          return new f(e);
+        }
+      }, {
+        key: "fromValues",
+        value: function fromValues(e, t, n, s) {
+          return new f(e, t, n, s);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e;
+        }
+      }, {
+        key: "set",
+        value: function set(e, t, n, s, r) {
+          return e;
+        }
+      }, {
+        key: "add",
+        value: function add(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "mul",
+        value: function mul(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "scale",
+        value: function scale(e, t, n) {
+          return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e;
+        }
+      }, {
+        key: "dot",
+        value: function dot(e, t) {
+          return e[0] * t[0] + e[1] * t[1] + e[2] * t[2] + e[3] * t[3];
+        }
+      }, {
+        key: "lerp",
+        value: function lerp(e, t, n, s) {
+          return e;
+        }
+      }, {
+        key: "magnitude",
+        value: function magnitude(e) {
+          return 0;
+        }
+      }, {
+        key: "mag",
+        value: function mag(e) {
+          return 0;
+        }
+      }, {
+        key: "length",
+        value: function length(e) {
+          return 0;
+        }
+      }, {
+        key: "len",
+        value: function len(e) {
+          return 0;
+        }
+      }, {
+        key: "squaredLength",
+        value: function squaredLength(e) {
+          return 0;
+        }
+      }, {
+        key: "sqrLen",
+        value: function sqrLen(e) {
+          return 0;
+        }
+      }, {
+        key: "normalize",
+        value: function normalize(e, t) {
+          return e;
+        }
+      }, {
+        key: "exactEquals",
+        value: function exactEquals(e, t) {
+          return !1;
+        }
+      }, {
+        key: "equals",
+        value: function equals(e, t) {
+          return !1;
+        }
+      }, {
+        key: "rotationTo",
+        value: function rotationTo(e, t, n) {
+          var s = T.dot(t, n);
+          return s < -.999999 ? (T.cross(E(f, U), E(f, le), t), T.mag(E(f, U)) < 1e-6 && T.cross(E(f, U), E(f, he), t), T.normalize(E(f, U), E(f, U)), f.setAxisAngle(e, E(f, U), Math.PI), e) : s > .999999 ? (e[0] = 0, e[1] = 0, e[2] = 0, e[3] = 1, e) : (T.cross(E(f, U), t, n), e[0] = E(f, U)[0], e[1] = E(f, U)[1], e[2] = E(f, U)[2], e[3] = 1 + s, f.normalize(e, e));
+        }
+      }, {
+        key: "sqlerp",
+        value: function sqlerp(e, t, n, s, r, a) {
+          return f.slerp(E(f, ie), t, r, a), f.slerp(E(f, ce), n, s, a), f.slerp(e, E(f, ie), E(f, ce), 2 * a * (1 - a)), e;
+        }
+      }, {
+        key: "setAxes",
+        value: function setAxes(e, t, n, s) {
+          return E(f, W)[0] = n[0], E(f, W)[3] = n[1], E(f, W)[6] = n[2], E(f, W)[1] = s[0], E(f, W)[4] = s[1], E(f, W)[7] = s[2], E(f, W)[2] = -t[0], E(f, W)[5] = -t[1], E(f, W)[8] = -t[2], f.normalize(e, f.fromMat3(e, E(f, W)));
+        }
+      }]);
+    }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  ke = new WeakMap(), ie = new WeakMap(), ce = new WeakMap(), W = new WeakMap(), U = new WeakMap(), le = new WeakMap(), he = new WeakMap(), Z(f, ke, "zyx"), Z(f, ie, new Float32Array(4)), Z(f, ce, new Float32Array(4)), Z(f, W, new Float32Array(9)), Z(f, U, new Float32Array(3)), Z(f, le, new Float32Array([1, 0, 0])), Z(f, he, new Float32Array([0, 1, 0]));
+  var O = f;
+  O.set = q.set;
+  O.add = q.add;
+  O.lerp = q.lerp;
+  O.normalize = q.normalize;
+  O.squaredLength = q.squaredLength;
+  O.sqrLen = q.squaredLength;
+  O.exactEquals = q.exactEquals;
+  O.equals = q.equals;
+  O.magnitude = q.magnitude;
+  O.prototype.mul = O.prototype.multiply;
+  O.mul = O.multiply;
+  O.mag = O.magnitude;
+  O.length = O.magnitude;
+  O.len = O.magnitude;
+  var ye,
+    Le,
+    j = /*#__PURE__*/function (_Float32Array8) {
+      function j() {
+        var _this8;
+        _classCallCheck(this, j);
+        for (var _len12 = arguments.length, e = new Array(_len12), _key12 = 0; _key12 < _len12; _key12++) {
+          e[_key12] = arguments[_key12];
+        }
+        switch (e.length) {
+          case 8:
+            _this8 = _callSuper(this, j, [e]);
+            break;
+          case 2:
+            _this8 = _callSuper(this, j, [e[0], e[1], 8]);
+            break;
+          case 1:
+            {
+              var t = e[0];
+              typeof t == "number" ? _this8 = _callSuper(this, j, [[t, t, t, t, t, t, t, t]]) : _this8 = _callSuper(this, j, [t, 0, 8]);
+              break;
+            }
+          default:
+            _this8 = _callSuper(this, j, [8]), _this8[3] = 1;
+            break;
+        }
+        return _assertThisInitialized(_this8);
+      }
+      _inherits(j, _Float32Array8);
+      return _createClass(j, [{
+        key: "str",
+        get: function get() {
+          return j.str(this);
+        }
+      }, {
+        key: "copy",
+        value: function copy(e) {
+          return _get(_getPrototypeOf(j.prototype), "set", this).call(this, e), this;
+        }
+      }], [{
+        key: "BYTE_LENGTH",
+        get: function get() {
+          return 8 * Float32Array.BYTES_PER_ELEMENT;
+        }
+      }, {
+        key: "create",
+        value: function create() {
+          return new j();
+        }
+      }, {
+        key: "clone",
+        value: function clone(e) {
+          return new j(e);
+        }
+      }, {
+        key: "fromValues",
+        value: function fromValues(e, t, n, s, r, a, i, c) {
+          return new j(e, t, n, s, r, a, i, c);
+        }
+      }, {
+        key: "fromRotationTranslationValues",
+        value: function fromRotationTranslationValues(e, t, n, s, r, a, i) {
+          var c = r * .5,
+            y = a * .5,
+            L = i * .5;
+          return new j(e, t, n, s, c * s + y * n - L * t, y * s + L * e - c * n, L * s + c * t - y * e, -c * e - y * t - L * n);
+        }
+      }, {
+        key: "fromRotationTranslation",
+        value: function fromRotationTranslation(e, t, n) {
+          var s = n[0] * .5,
+            r = n[1] * .5,
+            a = n[2] * .5,
+            i = t[0],
+            c = t[1],
+            y = t[2],
+            L = t[3];
+          return e[0] = i, e[1] = c, e[2] = y, e[3] = L, e[4] = s * L + r * y - a * c, e[5] = r * L + a * i - s * y, e[6] = a * L + s * c - r * i, e[7] = -s * i - r * c - a * y, e;
+        }
+      }, {
+        key: "fromTranslation",
+        value: function fromTranslation(e, t) {
+          return e[0] = 0, e[1] = 0, e[2] = 0, e[3] = 1, e[4] = t[0] * .5, e[5] = t[1] * .5, e[6] = t[2] * .5, e[7] = 0, e;
+        }
+      }, {
+        key: "fromRotation",
+        value: function fromRotation(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e[4] = 0, e[5] = 0, e[6] = 0, e[7] = 0, e;
+        }
+      }, {
+        key: "fromMat4",
+        value: function fromMat4(e, t) {
+          return G.getRotation(E(j, ye), t), G.getTranslation(E(j, Le), t), j.fromRotationTranslation(e, E(j, ye), E(j, Le));
+        }
+      }, {
+        key: "copy",
+        value: function copy(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e[4] = t[4], e[5] = t[5], e[6] = t[6], e[7] = t[7], e;
+        }
+      }, {
+        key: "identity",
+        value: function identity(e) {
+          return e[0] = 0, e[1] = 0, e[2] = 0, e[3] = 1, e[4] = 0, e[5] = 0, e[6] = 0, e[7] = 0, e;
+        }
+      }, {
+        key: "set",
+        value: function set(e, t, n, s, r, a, i, c, y) {
+          return e[0] = t, e[1] = n, e[2] = s, e[3] = r, e[4] = a, e[5] = i, e[6] = c, e[7] = y, e;
+        }
+      }, {
+        key: "getReal",
+        value: function getReal(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e;
+        }
+      }, {
+        key: "getDual",
+        value: function getDual(e, t) {
+          return e[0] = t[4], e[1] = t[5], e[2] = t[6], e[3] = t[7], e;
+        }
+      }, {
+        key: "setReal",
+        value: function setReal(e, t) {
+          return e[0] = t[0], e[1] = t[1], e[2] = t[2], e[3] = t[3], e;
+        }
+      }, {
+        key: "setDual",
+        value: function setDual(e, t) {
+          return e[4] = t[0], e[5] = t[1], e[6] = t[2], e[7] = t[3], e;
+        }
+      }, {
+        key: "getTranslation",
+        value: function getTranslation(e, t) {
+          var n = t[4],
+            s = t[5],
+            r = t[6],
+            a = t[7],
+            i = -t[0],
+            c = -t[1],
+            y = -t[2],
+            L = t[3];
+          return e[0] = (n * L + a * i + s * y - r * c) * 2, e[1] = (s * L + a * c + r * i - n * y) * 2, e[2] = (r * L + a * y + n * c - s * i) * 2, e;
+        }
+      }, {
+        key: "translate",
+        value: function translate(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = n[0] * .5,
+            y = n[1] * .5,
+            L = n[2] * .5,
+            k = t[4],
+            l = t[5],
+            M = t[6],
+            h = t[7];
+          return e[0] = s, e[1] = r, e[2] = a, e[3] = i, e[4] = i * c + r * L - a * y + k, e[5] = i * y + a * c - s * L + l, e[6] = i * L + s * y - r * c + M, e[7] = -s * c - r * y - a * L + h, e;
+        }
+      }, {
+        key: "rotateX",
+        value: function rotateX(e, t, n) {
+          var s = -t[0],
+            r = -t[1],
+            a = -t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = c * i + k * s + y * a - L * r,
+            M = y * i + k * r + L * s - c * a,
+            h = L * i + k * a + c * r - y * s,
+            b = k * i - c * s - y * r - L * a;
+          return O.rotateX(e, t, n), s = e[0], r = e[1], a = e[2], i = e[3], e[4] = l * i + b * s + M * a - h * r, e[5] = M * i + b * r + h * s - l * a, e[6] = h * i + b * a + l * r - M * s, e[7] = b * i - l * s - M * r - h * a, e;
+        }
+      }, {
+        key: "rotateY",
+        value: function rotateY(e, t, n) {
+          var s = -t[0],
+            r = -t[1],
+            a = -t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = c * i + k * s + y * a - L * r,
+            M = y * i + k * r + L * s - c * a,
+            h = L * i + k * a + c * r - y * s,
+            b = k * i - c * s - y * r - L * a;
+          return O.rotateY(e, t, n), s = e[0], r = e[1], a = e[2], i = e[3], e[4] = l * i + b * s + M * a - h * r, e[5] = M * i + b * r + h * s - l * a, e[6] = h * i + b * a + l * r - M * s, e[7] = b * i - l * s - M * r - h * a, e;
+        }
+      }, {
+        key: "rotateZ",
+        value: function rotateZ(e, t, n) {
+          var s = -t[0],
+            r = -t[1],
+            a = -t[2],
+            i = t[3],
+            c = t[4],
+            y = t[5],
+            L = t[6],
+            k = t[7],
+            l = c * i + k * s + y * a - L * r,
+            M = y * i + k * r + L * s - c * a,
+            h = L * i + k * a + c * r - y * s,
+            b = k * i - c * s - y * r - L * a;
+          return O.rotateZ(e, t, n), s = e[0], r = e[1], a = e[2], i = e[3], e[4] = l * i + b * s + M * a - h * r, e[5] = M * i + b * r + h * s - l * a, e[6] = h * i + b * a + l * r - M * s, e[7] = b * i - l * s - M * r - h * a, e;
+        }
+      }, {
+        key: "rotateByQuatAppend",
+        value: function rotateByQuatAppend(e, t, n) {
+          var s = n[0],
+            r = n[1],
+            a = n[2],
+            i = n[3],
+            c = t[0],
+            y = t[1],
+            L = t[2],
+            k = t[3];
+          return e[0] = c * i + k * s + y * a - L * r, e[1] = y * i + k * r + L * s - c * a, e[2] = L * i + k * a + c * r - y * s, e[3] = k * i - c * s - y * r - L * a, c = t[4], y = t[5], L = t[6], k = t[7], e[4] = c * i + k * s + y * a - L * r, e[5] = y * i + k * r + L * s - c * a, e[6] = L * i + k * a + c * r - y * s, e[7] = k * i - c * s - y * r - L * a, e;
+        }
+      }, {
+        key: "rotateByQuatPrepend",
+        value: function rotateByQuatPrepend(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = n[0],
+            y = n[1],
+            L = n[2],
+            k = n[3];
+          return e[0] = s * k + i * c + r * L - a * y, e[1] = r * k + i * y + a * c - s * L, e[2] = a * k + i * L + s * y - r * c, e[3] = i * k - s * c - r * y - a * L, c = n[4], y = n[5], L = n[6], k = n[7], e[4] = s * k + i * c + r * L - a * y, e[5] = r * k + i * y + a * c - s * L, e[6] = a * k + i * L + s * y - r * c, e[7] = i * k - s * c - r * y - a * L, e;
+        }
+      }, {
+        key: "rotateAroundAxis",
+        value: function rotateAroundAxis(e, t, n, s) {
+          if (Math.abs(s) < 1e-6) return j.copy(e, t);
+          var r = Math.sqrt(n[0] * n[0] + n[1] * n[1] + n[2] * n[2]);
+          s = s * .5;
+          var a = Math.sin(s),
+            i = a * n[0] / r,
+            c = a * n[1] / r,
+            y = a * n[2] / r,
+            L = Math.cos(s),
+            k = t[0],
+            l = t[1],
+            M = t[2],
+            h = t[3];
+          e[0] = k * L + h * i + l * y - M * c, e[1] = l * L + h * c + M * i - k * y, e[2] = M * L + h * y + k * c - l * i, e[3] = h * L - k * i - l * c - M * y;
+          var b = t[4],
+            d = t[5],
+            m = t[6],
+            x = t[7];
+          return e[4] = b * L + x * i + d * y - m * c, e[5] = d * L + x * c + m * i - b * y, e[6] = m * L + x * y + b * c - d * i, e[7] = x * L - b * i - d * c - m * y, e;
+        }
+      }, {
+        key: "add",
+        value: function add(e, t, n) {
+          return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e[2] = t[2] + n[2], e[3] = t[3] + n[3], e[4] = t[4] + n[4], e[5] = t[5] + n[5], e[6] = t[6] + n[6], e[7] = t[7] + n[7], e;
+        }
+      }, {
+        key: "multiply",
+        value: function multiply(e, t, n) {
+          var s = t[0],
+            r = t[1],
+            a = t[2],
+            i = t[3],
+            c = n[4],
+            y = n[5],
+            L = n[6],
+            k = n[7],
+            l = t[4],
+            M = t[5],
+            h = t[6],
+            b = t[7],
+            d = n[0],
+            m = n[1],
+            x = n[2],
+            V = n[3];
+          return e[0] = s * V + i * d + r * x - a * m, e[1] = r * V + i * m + a * d - s * x, e[2] = a * V + i * x + s * m - r * d, e[3] = i * V - s * d - r * m - a * x, e[4] = s * k + i * c + r * L - a * y + l * V + b * d + M * x - h * m, e[5] = r * k + i * y + a * c - s * L + M * V + b * m + h * d - l * x, e[6] = a * k + i * L + s * y - r * c + h * V + b * x + l * m - M * d, e[7] = i * k - s * c - r * y - a * L + b * V - l * d - M * m - h * x, e;
+        }
+      }, {
+        key: "mul",
+        value: function mul(e, t, n) {
+          return e;
+        }
+      }, {
+        key: "scale",
+        value: function scale(e, t, n) {
+          return e[0] = t[0] * n, e[1] = t[1] * n, e[2] = t[2] * n, e[3] = t[3] * n, e[4] = t[4] * n, e[5] = t[5] * n, e[6] = t[6] * n, e[7] = t[7] * n, e;
+        }
+      }, {
+        key: "dot",
+        value: function dot(e, t) {
+          return 0;
+        }
+      }, {
+        key: "lerp",
+        value: function lerp(e, t, n, s) {
+          var r = 1 - s;
+          return j.dot(t, n) < 0 && (s = -s), e[0] = t[0] * r + n[0] * s, e[1] = t[1] * r + n[1] * s, e[2] = t[2] * r + n[2] * s, e[3] = t[3] * r + n[3] * s, e[4] = t[4] * r + n[4] * s, e[5] = t[5] * r + n[5] * s, e[6] = t[6] * r + n[6] * s, e[7] = t[7] * r + n[7] * s, e;
+        }
+      }, {
+        key: "invert",
+        value: function invert(e, t) {
+          var n = j.squaredLength(t);
+          return e[0] = -t[0] / n, e[1] = -t[1] / n, e[2] = -t[2] / n, e[3] = t[3] / n, e[4] = -t[4] / n, e[5] = -t[5] / n, e[6] = -t[6] / n, e[7] = t[7] / n, e;
+        }
+      }, {
+        key: "conjugate",
+        value: function conjugate(e, t) {
+          return e[0] = -t[0], e[1] = -t[1], e[2] = -t[2], e[3] = t[3], e[4] = -t[4], e[5] = -t[5], e[6] = -t[6], e[7] = t[7], e;
+        }
+      }, {
+        key: "magnitude",
+        value: function magnitude(e) {
+          return 0;
+        }
+      }, {
+        key: "mag",
+        value: function mag(e) {
+          return 0;
+        }
+      }, {
+        key: "length",
+        value: function length(e) {
+          return 0;
+        }
+      }, {
+        key: "len",
+        value: function len(e) {
+          return 0;
+        }
+      }, {
+        key: "squaredLength",
+        value: function squaredLength(e) {
+          return 0;
+        }
+      }, {
+        key: "sqrLen",
+        value: function sqrLen(e) {
+          return 0;
+        }
+      }, {
+        key: "normalize",
+        value: function normalize(e, t) {
+          var n = j.squaredLength(t);
+          if (n > 0) {
+            n = Math.sqrt(n);
+            var s = t[0] / n,
+              r = t[1] / n,
+              a = t[2] / n,
+              i = t[3] / n,
+              c = t[4],
+              y = t[5],
+              L = t[6],
+              k = t[7],
+              l = s * c + r * y + a * L + i * k;
+            e[0] = s, e[1] = r, e[2] = a, e[3] = i, e[4] = (c - s * l) / n, e[5] = (y - r * l) / n, e[6] = (L - a * l) / n, e[7] = (k - i * l) / n;
+          }
+          return e;
+        }
+      }, {
+        key: "str",
+        value: function str(e) {
+          return "Quat2(".concat(e.join(", "), ")");
+        }
+      }, {
+        key: "exactEquals",
+        value: function exactEquals(e, t) {
+          return e[0] === t[0] && e[1] === t[1] && e[2] === t[2] && e[3] === t[3] && e[4] === t[4] && e[5] === t[5] && e[6] === t[6] && e[7] === t[7];
+        }
+      }, {
+        key: "equals",
+        value: function equals(e, t) {
+          var n = e[0],
+            s = e[1],
+            r = e[2],
+            a = e[3],
+            i = e[4],
+            c = e[5],
+            y = e[6],
+            L = e[7],
+            k = t[0],
+            l = t[1],
+            M = t[2],
+            h = t[3],
+            b = t[4],
+            d = t[5],
+            m = t[6],
+            x = t[7];
+          return Math.abs(n - k) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(k)) && Math.abs(s - l) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(l)) && Math.abs(r - M) <= 1e-6 * Math.max(1, Math.abs(r), Math.abs(M)) && Math.abs(a - h) <= 1e-6 * Math.max(1, Math.abs(a), Math.abs(h)) && Math.abs(i - b) <= 1e-6 * Math.max(1, Math.abs(i), Math.abs(b)) && Math.abs(c - d) <= 1e-6 * Math.max(1, Math.abs(c), Math.abs(d)) && Math.abs(y - m) <= 1e-6 * Math.max(1, Math.abs(y), Math.abs(m)) && Math.abs(L - x) <= 1e-6 * Math.max(1, Math.abs(L), Math.abs(x));
+        }
+      }]);
+    }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  ye = new WeakMap(), Le = new WeakMap(), Z(j, ye, new Float32Array(4)), Z(j, Le, new Float32Array(3));
+  var J = j;
+  J.dot = O.dot;
+  J.squaredLength = O.squaredLength;
+  J.sqrLen = O.squaredLength;
+  J.mag = O.magnitude;
+  J.length = O.magnitude;
+  J.len = O.magnitude;
+  J.mul = J.multiply;
+  var I = /*#__PURE__*/function (_Float32Array9) {
+    function A() {
+      var _this9;
+      _classCallCheck(this, A);
+      switch (arguments.length) {
+        case 2:
+          {
+            var t = arguments.length <= 0 ? undefined : arguments[0];
+            typeof t == "number" ? _this9 = _callSuper(this, A, [[t, arguments.length <= 1 ? undefined : arguments[1]]]) : _this9 = _callSuper(this, A, [t, arguments.length <= 1 ? undefined : arguments[1], 2]);
+            break;
+          }
+        case 1:
+          {
+            var _t = arguments.length <= 0 ? undefined : arguments[0];
+            typeof _t == "number" ? _this9 = _callSuper(this, A, [[_t, _t]]) : _this9 = _callSuper(this, A, [_t, 0, 2]);
+            break;
+          }
+        default:
+          _this9 = _callSuper(this, A, [2]);
+          break;
+      }
+      return _assertThisInitialized(_this9);
+    }
+    _inherits(A, _Float32Array9);
+    return _createClass(A, [{
+      key: "x",
+      get: function get() {
+        return this[0];
+      },
+      set: function set(e) {
+        this[0] = e;
+      }
+    }, {
+      key: "y",
+      get: function get() {
+        return this[1];
+      },
+      set: function set(e) {
+        this[1] = e;
+      }
+    }, {
+      key: "r",
+      get: function get() {
+        return this[0];
+      },
+      set: function set(e) {
+        this[0] = e;
+      }
+    }, {
+      key: "g",
+      get: function get() {
+        return this[1];
+      },
+      set: function set(e) {
+        this[1] = e;
+      }
+    }, {
+      key: "magnitude",
+      get: function get() {
+        return Math.hypot(this[0], this[1]);
+      }
+    }, {
+      key: "mag",
+      get: function get() {
+        return this.magnitude;
+      }
+    }, {
+      key: "squaredMagnitude",
+      get: function get() {
+        var e = this[0],
+          t = this[1];
+        return e * e + t * t;
+      }
+    }, {
+      key: "sqrMag",
+      get: function get() {
+        return this.squaredMagnitude;
+      }
+    }, {
+      key: "str",
+      get: function get() {
+        return A.str(this);
+      }
+    }, {
+      key: "copy",
+      value: function copy(e) {
+        return this.set(e), this;
+      }
+    }, {
+      key: "add",
+      value: function add(e) {
+        return this[0] += e[0], this[1] += e[1], this;
+      }
+    }, {
+      key: "subtract",
+      value: function subtract(e) {
+        return this[0] -= e[0], this[1] -= e[1], this;
+      }
+    }, {
+      key: "sub",
+      value: function sub(e) {
+        return this;
+      }
+    }, {
+      key: "multiply",
+      value: function multiply(e) {
+        return this[0] *= e[0], this[1] *= e[1], this;
+      }
+    }, {
+      key: "mul",
+      value: function mul(e) {
+        return this;
+      }
+    }, {
+      key: "divide",
+      value: function divide(e) {
+        return this[0] /= e[0], this[1] /= e[1], this;
+      }
+    }, {
+      key: "div",
+      value: function div(e) {
+        return this;
+      }
+    }, {
+      key: "scale",
+      value: function scale(e) {
+        return this[0] *= e, this[1] *= e, this;
+      }
+    }, {
+      key: "scaleAndAdd",
+      value: function scaleAndAdd(e, t) {
+        return this[0] += e[0] * t, this[1] += e[1] * t, this;
+      }
+    }, {
+      key: "distance",
+      value: function distance(e) {
+        return A.distance(this, e);
+      }
+    }, {
+      key: "dist",
+      value: function dist(e) {
+        return 0;
+      }
+    }, {
+      key: "squaredDistance",
+      value: function squaredDistance(e) {
+        return A.squaredDistance(this, e);
+      }
+    }, {
+      key: "sqrDist",
+      value: function sqrDist(e) {
+        return 0;
+      }
+    }, {
+      key: "negate",
+      value: function negate() {
+        return this[0] *= -1, this[1] *= -1, this;
+      }
+    }, {
+      key: "invert",
+      value: function invert() {
+        return this[0] = 1 / this[0], this[1] = 1 / this[1], this;
+      }
+    }, {
+      key: "abs",
+      value: function abs() {
+        return this[0] = Math.abs(this[0]), this[1] = Math.abs(this[1]), this;
+      }
+    }, {
+      key: "dot",
+      value: function dot(e) {
+        return this[0] * e[0] + this[1] * e[1];
+      }
+    }, {
+      key: "normalize",
+      value: function normalize() {
+        return A.normalize(this, this);
+      }
+    }], [{
+      key: "BYTE_LENGTH",
+      get: function get() {
+        return 2 * Float32Array.BYTES_PER_ELEMENT;
+      }
+    }, {
+      key: "create",
+      value: function create() {
+        return new A();
+      }
+    }, {
+      key: "clone",
+      value: function clone(e) {
+        return new A(e);
+      }
+    }, {
+      key: "fromValues",
+      value: function fromValues(e, t) {
+        return new A(e, t);
+      }
+    }, {
+      key: "copy",
+      value: function copy(e, t) {
+        return e[0] = t[0], e[1] = t[1], e;
+      }
+    }, {
+      key: "set",
+      value: function set(e, t, n) {
+        return e[0] = t, e[1] = n, e;
+      }
+    }, {
+      key: "add",
+      value: function add(e, t, n) {
+        return e[0] = t[0] + n[0], e[1] = t[1] + n[1], e;
+      }
+    }, {
+      key: "subtract",
+      value: function subtract(e, t, n) {
+        return e[0] = t[0] - n[0], e[1] = t[1] - n[1], e;
+      }
+    }, {
+      key: "sub",
+      value: function sub(e, t, n) {
+        return [0, 0];
+      }
+    }, {
+      key: "multiply",
+      value: function multiply(e, t, n) {
+        return e[0] = t[0] * n[0], e[1] = t[1] * n[1], e;
+      }
+    }, {
+      key: "mul",
+      value: function mul(e, t, n) {
+        return [0, 0];
+      }
+    }, {
+      key: "divide",
+      value: function divide(e, t, n) {
+        return e[0] = t[0] / n[0], e[1] = t[1] / n[1], e;
+      }
+    }, {
+      key: "div",
+      value: function div(e, t, n) {
+        return [0, 0];
+      }
+    }, {
+      key: "ceil",
+      value: function ceil(e, t) {
+        return e[0] = Math.ceil(t[0]), e[1] = Math.ceil(t[1]), e;
+      }
+    }, {
+      key: "floor",
+      value: function floor(e, t) {
+        return e[0] = Math.floor(t[0]), e[1] = Math.floor(t[1]), e;
+      }
+    }, {
+      key: "min",
+      value: function min(e, t, n) {
+        return e[0] = Math.min(t[0], n[0]), e[1] = Math.min(t[1], n[1]), e;
+      }
+    }, {
+      key: "max",
+      value: function max(e, t, n) {
+        return e[0] = Math.max(t[0], n[0]), e[1] = Math.max(t[1], n[1]), e;
+      }
+    }, {
+      key: "round",
+      value: function round(e, t) {
+        return e[0] = Math.round(t[0]), e[1] = Math.round(t[1]), e;
+      }
+    }, {
+      key: "scale",
+      value: function scale(e, t, n) {
+        return e[0] = t[0] * n, e[1] = t[1] * n, e;
+      }
+    }, {
+      key: "scaleAndAdd",
+      value: function scaleAndAdd(e, t, n, s) {
+        return e[0] = t[0] + n[0] * s, e[1] = t[1] + n[1] * s, e;
+      }
+    }, {
+      key: "distance",
+      value: function distance(e, t) {
+        return Math.hypot(t[0] - e[0], t[1] - e[1]);
+      }
+    }, {
+      key: "dist",
+      value: function dist(e, t) {
+        return 0;
+      }
+    }, {
+      key: "squaredDistance",
+      value: function squaredDistance(e, t) {
+        var n = t[0] - e[0],
+          s = t[1] - e[1];
+        return n * n + s * s;
+      }
+    }, {
+      key: "sqrDist",
+      value: function sqrDist(e, t) {
+        return 0;
+      }
+    }, {
+      key: "magnitude",
+      value: function magnitude(e) {
+        var t = e[0],
+          n = e[1];
+        return Math.sqrt(t * t + n * n);
+      }
+    }, {
+      key: "mag",
+      value: function mag(e) {
+        return 0;
+      }
+    }, {
+      key: "length",
+      value: function length(e) {
+        return 0;
+      }
+    }, {
+      key: "len",
+      value: function len(e) {
+        return 0;
+      }
+    }, {
+      key: "squaredLength",
+      value: function squaredLength(e) {
+        var t = e[0],
+          n = e[1];
+        return t * t + n * n;
+      }
+    }, {
+      key: "sqrLen",
+      value: function sqrLen(e, t) {
+        return 0;
+      }
+    }, {
+      key: "negate",
+      value: function negate(e, t) {
+        return e[0] = -t[0], e[1] = -t[1], e;
+      }
+    }, {
+      key: "inverse",
+      value: function inverse(e, t) {
+        return e[0] = 1 / t[0], e[1] = 1 / t[1], e;
+      }
+    }, {
+      key: "abs",
+      value: function abs(e, t) {
+        return e[0] = Math.abs(t[0]), e[1] = Math.abs(t[1]), e;
+      }
+    }, {
+      key: "normalize",
+      value: function normalize(e, t) {
+        var n = t[0],
+          s = t[1],
+          r = n * n + s * s;
+        return r > 0 && (r = 1 / Math.sqrt(r)), e[0] = t[0] * r, e[1] = t[1] * r, e;
+      }
+    }, {
+      key: "dot",
+      value: function dot(e, t) {
+        return e[0] * t[0] + e[1] * t[1];
+      }
+    }, {
+      key: "cross",
+      value: function cross(e, t, n) {
+        var s = t[0] * n[1] - t[1] * n[0];
+        return e[0] = e[1] = 0, e[2] = s, e;
+      }
+    }, {
+      key: "lerp",
+      value: function lerp(e, t, n, s) {
+        var r = t[0],
+          a = t[1];
+        return e[0] = r + s * (n[0] - r), e[1] = a + s * (n[1] - a), e;
+      }
+    }, {
+      key: "transformMat2",
+      value: function transformMat2(e, t, n) {
+        var s = t[0],
+          r = t[1];
+        return e[0] = n[0] * s + n[2] * r, e[1] = n[1] * s + n[3] * r, e;
+      }
+    }, {
+      key: "transformMat2d",
+      value: function transformMat2d(e, t, n) {
+        var s = t[0],
+          r = t[1];
+        return e[0] = n[0] * s + n[2] * r + n[4], e[1] = n[1] * s + n[3] * r + n[5], e;
+      }
+    }, {
+      key: "transformMat3",
+      value: function transformMat3(e, t, n) {
+        var s = t[0],
+          r = t[1];
+        return e[0] = n[0] * s + n[3] * r + n[6], e[1] = n[1] * s + n[4] * r + n[7], e;
+      }
+    }, {
+      key: "transformMat4",
+      value: function transformMat4(e, t, n) {
+        var s = t[0],
+          r = t[1];
+        return e[0] = n[0] * s + n[4] * r + n[12], e[1] = n[1] * s + n[5] * r + n[13], e;
+      }
+    }, {
+      key: "rotate",
+      value: function rotate(e, t, n, s) {
+        var r = t[0] - n[0],
+          a = t[1] - n[1],
+          i = Math.sin(s),
+          c = Math.cos(s);
+        return e[0] = r * c - a * i + n[0], e[1] = r * i + a * c + n[1], e;
+      }
+    }, {
+      key: "angle",
+      value: function angle(e, t) {
+        var n = e[0],
+          s = e[1],
+          r = t[0],
+          a = t[1],
+          i = Math.sqrt(n * n + s * s) * Math.sqrt(r * r + a * a),
+          c = i && (n * r + s * a) / i;
+        return Math.acos(Math.min(Math.max(c, -1), 1));
+      }
+    }, {
+      key: "zero",
+      value: function zero(e) {
+        return e[0] = 0, e[1] = 0, e;
+      }
+    }, {
+      key: "exactEquals",
+      value: function exactEquals(e, t) {
+        return e[0] === t[0] && e[1] === t[1];
+      }
+    }, {
+      key: "equals",
+      value: function equals(e, t) {
+        var n = e[0],
+          s = e[1],
+          r = t[0],
+          a = t[1];
+        return Math.abs(n - r) <= 1e-6 * Math.max(1, Math.abs(n), Math.abs(r)) && Math.abs(s - a) <= 1e-6 * Math.max(1, Math.abs(s), Math.abs(a));
+      }
+    }, {
+      key: "str",
+      value: function str(e) {
+        return "Vec2(".concat(e.join(", "), ")");
+      }
+    }]);
+  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  I.prototype.sub = I.prototype.subtract;
+  I.prototype.mul = I.prototype.multiply;
+  I.prototype.div = I.prototype.divide;
+  I.prototype.dist = I.prototype.distance;
+  I.prototype.sqrDist = I.prototype.squaredDistance;
+  I.sub = I.subtract;
+  I.mul = I.multiply;
+  I.div = I.divide;
+  I.dist = I.distance;
+  I.sqrDist = I.squaredDistance;
+  I.sqrLen = I.squaredLength;
+  I.mag = I.magnitude;
+  I.length = I.magnitude;
+  I.len = I.magnitude;
+  var me = !1;
+  function _e() {
+    if (me) return;
+    var A = ["xx", "xy", "yx", "yy", "xxx", "xxy", "xyx", "xyy", "yxx", "yxy", "yyx", "yyy", "xxxx", "xxxy", "xxyx", "xxyy", "xyxx", "xyxy", "xyyx", "xyyy", "yxxx", "yxxy", "yxyx", "yxyy", "yyxx", "yyxy", "yyyx", "yyyy", "rr", "rg", "gr", "gg", "rrr", "rrg", "rgr", "rgg", "grr", "grg", "ggr", "ggg", "rrrr", "rrrg", "rrgr", "rrgg", "rgrr", "rgrg", "rggr", "rggg", "grrr", "grrg", "grgr", "grgg", "ggrr", "ggrg", "gggr", "gggg"],
+      e = ["xz", "yz", "zx", "zy", "zz", "xxz", "xyz", "xzx", "xzy", "xzz", "yxz", "yyz", "yzx", "yzy", "yzz", "zxx", "zxy", "zxz", "zyx", "zyy", "zyz", "zzx", "zzy", "zzz", "xxxz", "xxyz", "xxzx", "xxzy", "xxzz", "xyxz", "xyyz", "xyzx", "xyzy", "xyzz", "xzxx", "xzxy", "xzxz", "xzyx", "xzyy", "xzyz", "xzzx", "xzzy", "xzzz", "yxxz", "yxyz", "yxzx", "yxzy", "yxzz", "yyxz", "yyyz", "yyzx", "yyzy", "yyzz", "yzxx", "yzxy", "yzxz", "yzyx", "yzyy", "yzyz", "yzzx", "yzzy", "yzzz", "zxxx", "zxxy", "zxxz", "zxyx", "zxyy", "zxyz", "zxzx", "zxzy", "zxzz", "zyxx", "zyxy", "zyxz", "zyyx", "zyyy", "zyyz", "zyzx", "zyzy", "zyzz", "zzxx", "zzxy", "zzxz", "zzyx", "zzyy", "zzyz", "zzzx", "zzzy", "zzzz", "rb", "gb", "br", "bg", "bb", "rrb", "rgb", "rbr", "rbg", "rbb", "grb", "ggb", "gbr", "gbg", "gbb", "brr", "brg", "brb", "bgr", "bgg", "bgb", "bbr", "bbg", "bbb", "rrrb", "rrgb", "rrbr", "rrbg", "rrbb", "rgrb", "rggb", "rgbr", "rgbg", "rgbb", "rbrr", "rbrg", "rbrb", "rbgr", "rbgg", "rbgb", "rbbr", "rbbg", "rbbb", "grrb", "grgb", "grbr", "grbg", "grbb", "ggrb", "gggb", "ggbr", "ggbg", "ggbb", "gbrr", "gbrg", "gbrb", "gbgr", "gbgg", "gbgb", "gbbr", "gbbg", "gbbb", "brrr", "brrg", "brrb", "brgr", "brgg", "brgb", "brbr", "brbg", "brbb", "bgrr", "bgrg", "bgrb", "bggr", "bggg", "bggb", "bgbr", "bgbg", "bgbb", "bbrr", "bbrg", "bbrb", "bbgr", "bbgg", "bbgb", "bbbr", "bbbg", "bbbb"],
+      t = ["xw", "yw", "zw", "wx", "wy", "wz", "ww", "xxw", "xyw", "xzw", "xwx", "xwy", "xwz", "xww", "yxw", "yyw", "yzw", "ywx", "ywy", "ywz", "yww", "zxw", "zyw", "zzw", "zwx", "zwy", "zwz", "zww", "wxx", "wxy", "wxz", "wxw", "wyx", "wyy", "wyz", "wyw", "wzx", "wzy", "wzz", "wzw", "wwx", "wwy", "wwz", "www", "xxxw", "xxyw", "xxzw", "xxwx", "xxwy", "xxwz", "xxww", "xyxw", "xyyw", "xyzw", "xywx", "xywy", "xywz", "xyww", "xzxw", "xzyw", "xzzw", "xzwx", "xzwy", "xzwz", "xzww", "xwxx", "xwxy", "xwxz", "xwxw", "xwyx", "xwyy", "xwyz", "xwyw", "xwzx", "xwzy", "xwzz", "xwzw", "xwwx", "xwwy", "xwwz", "xwww", "yxxw", "yxyw", "yxzw", "yxwx", "yxwy", "yxwz", "yxww", "yyxw", "yyyw", "yyzw", "yywx", "yywy", "yywz", "yyww", "yzxw", "yzyw", "yzzw", "yzwx", "yzwy", "yzwz", "yzww", "ywxx", "ywxy", "ywxz", "ywxw", "ywyx", "ywyy", "ywyz", "ywyw", "ywzx", "ywzy", "ywzz", "ywzw", "ywwx", "ywwy", "ywwz", "ywww", "zxxw", "zxyw", "zxzw", "zxwx", "zxwy", "zxwz", "zxww", "zyxw", "zyyw", "zyzw", "zywx", "zywy", "zywz", "zyww", "zzxw", "zzyw", "zzzw", "zzwx", "zzwy", "zzwz", "zzww", "zwxx", "zwxy", "zwxz", "zwxw", "zwyx", "zwyy", "zwyz", "zwyw", "zwzx", "zwzy", "zwzz", "zwzw", "zwwx", "zwwy", "zwwz", "zwww", "wxxx", "wxxy", "wxxz", "wxxw", "wxyx", "wxyy", "wxyz", "wxyw", "wxzx", "wxzy", "wxzz", "wxzw", "wxwx", "wxwy", "wxwz", "wxww", "wyxx", "wyxy", "wyxz", "wyxw", "wyyx", "wyyy", "wyyz", "wyyw", "wyzx", "wyzy", "wyzz", "wyzw", "wywx", "wywy", "wywz", "wyww", "wzxx", "wzxy", "wzxz", "wzxw", "wzyx", "wzyy", "wzyz", "wzyw", "wzzx", "wzzy", "wzzz", "wzzw", "wzwx", "wzwy", "wzwz", "wzww", "wwxx", "wwxy", "wwxz", "wwxw", "wwyx", "wwyy", "wwyz", "wwyw", "wwzx", "wwzy", "wwzz", "wwzw", "wwwx", "wwwy", "wwwz", "wwww", "ra", "ga", "ba", "ar", "ag", "ab", "aa", "rra", "rga", "rba", "rar", "rag", "rab", "raa", "gra", "gga", "gba", "gar", "gag", "gab", "gaa", "bra", "bga", "bba", "bar", "bag", "bab", "baa", "arr", "arg", "arb", "ara", "agr", "agg", "agb", "aga", "abr", "abg", "abb", "aba", "aar", "aag", "aab", "aaa", "rrra", "rrga", "rrba", "rrar", "rrag", "rrab", "rraa", "rgra", "rgga", "rgba", "rgar", "rgag", "rgab", "rgaa", "rbra", "rbga", "rbba", "rbar", "rbag", "rbab", "rbaa", "rarr", "rarg", "rarb", "rara", "ragr", "ragg", "ragb", "raga", "rabr", "rabg", "rabb", "raba", "raar", "raag", "raab", "raaa", "grra", "grga", "grba", "grar", "grag", "grab", "graa", "ggra", "ggga", "ggba", "ggar", "ggag", "ggab", "ggaa", "gbra", "gbga", "gbba", "gbar", "gbag", "gbab", "gbaa", "garr", "garg", "garb", "gara", "gagr", "gagg", "gagb", "gaga", "gabr", "gabg", "gabb", "gaba", "gaar", "gaag", "gaab", "gaaa", "brra", "brga", "brba", "brar", "brag", "brab", "braa", "bgra", "bgga", "bgba", "bgar", "bgag", "bgab", "bgaa", "bbra", "bbga", "bbba", "bbar", "bbag", "bbab", "bbaa", "barr", "barg", "barb", "bara", "bagr", "bagg", "bagb", "baga", "babr", "babg", "babb", "baba", "baar", "baag", "baab", "baaa", "arrr", "arrg", "arrb", "arra", "argr", "argg", "argb", "arga", "arbr", "arbg", "arbb", "arba", "arar", "arag", "arab", "araa", "agrr", "agrg", "agrb", "agra", "aggr", "aggg", "aggb", "agga", "agbr", "agbg", "agbb", "agba", "agar", "agag", "agab", "agaa", "abrr", "abrg", "abrb", "abra", "abgr", "abgg", "abgb", "abga", "abbr", "abbg", "abbb", "abba", "abar", "abag", "abab", "abaa", "aarr", "aarg", "aarb", "aara", "aagr", "aagg", "aagb", "aaga", "aabr", "aabg", "aabb", "aaba", "aaar", "aaag", "aaab", "aaaa"],
+      n = {
+        x: 0,
+        r: 0,
+        y: 1,
+        g: 1,
+        z: 2,
+        b: 2,
+        w: 3,
+        a: 3
+      };
+    function s(r) {
+      switch (r.length) {
+        case 2:
+          return function () {
+            return new I(this[n[r[0]]], this[n[r[1]]]);
+          };
+        case 3:
+          return function () {
+            return new T(this[n[r[0]]], this[n[r[1]]], this[n[r[2]]]);
+          };
+        case 4:
+          return function () {
+            return new q(this[n[r[0]]], this[n[r[1]]], this[n[r[2]]], this[n[r[3]]]);
+          };
+      }
+    }
+    for (var _i = 0, _A = A; _i < _A.length; _i++) {
+      var r = _A[_i];
+      var a = s(r);
+      Object.defineProperty(I.prototype, r, {
+        get: a
+      }), Object.defineProperty(T.prototype, r, {
+        get: a
+      }), Object.defineProperty(q.prototype, r, {
+        get: a
+      });
+    }
+    for (var _i2 = 0, _e2 = e; _i2 < _e2.length; _i2++) {
+      var _r = _e2[_i2];
+      var _a = s(_r);
+      Object.defineProperty(T.prototype, _r, {
+        get: _a
+      }), Object.defineProperty(q.prototype, _r, {
+        get: _a
+      });
+    }
+    for (var _i3 = 0, _t2 = t; _i3 < _t2.length; _i3++) {
+      var _r2 = _t2[_i3];
+      var _a2 = s(_r2);
+      Object.defineProperty(q.prototype, _r2, {
+        get: _a2
+      });
+    }
+    me = !0;
+  }
+  var oe = Math.PI / 180,
+    Re = 180 / Math.PI;
+  function tt(A) {
+    return A * Re;
+  }
+  function nt(A) {
+    return A * oe;
+  }
+
+  exports.EnableSwizzles = _e;
+  exports.Mat2 = v;
+  exports.Mat2d = _;
+  exports.Mat3 = u;
+  exports.Mat4 = G;
+  exports.Quat = O;
+  exports.Quat2 = J;
+  exports.Vec2 = I;
+  exports.Vec3 = T;
+  exports.Vec4 = q;
+  exports.mat2 = v;
+  exports.mat2d = _;
+  exports.mat3 = u;
+  exports.mat4 = G;
+  exports.quat = O;
+  exports.quat2 = J;
+  exports.toDegree = tt;
+  exports.toRadian = nt;
+  exports.vec2 = I;
+  exports.vec3 = T;
+  exports.vec4 = q;
+
+}));
+//# sourceMappingURL=gl-matrix-f32.min.cjs.map
