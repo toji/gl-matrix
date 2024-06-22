@@ -1,8 +1,11 @@
-// glMatrix - v4.0.0-beta.3
+// gl-matrix - v4.0.0-beta.3 - A high performance matrix and vector library.
+// @author Brandon Jones
+// @author Colin MacKenzie IV
+// @license MIT (https://github.com/toji/gl-matrix/blob/master/LICENSE.md)
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.glMatrix = {}));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.glMatrixF64 = {}));
 })(this, (function (exports) { 'use strict';
 
   function _assertThisInitialized(e) {
@@ -125,7 +128,10 @@
     }, _wrapNativeSuper(t);
   }
 
-  // glMatrix - v4.0.0-beta.3
+  // gl-matrix - v4.0.0-beta.3 - A high performance matrix and vector library.
+  // @author Brandon Jones
+  // @author Colin MacKenzie IV
+  // @license MIT (https://github.com/toji/gl-matrix/blob/master/LICENSE.md)
   var __typeError = function __typeError(msg) {
     throw TypeError(msg);
   };
@@ -10667,4 +10673,4 @@
   exports.toRadian = toRadian;
 
 }));
-//# sourceMappingURL=gl-matrix-f64.cjs.map
+//# sourceMappingURL=gl-matrix-f64.js.map

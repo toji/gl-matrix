@@ -10,6 +10,10 @@ const importsLocal = true;
 // final bundle.
 const dtsReplace = { '#gl-matrix': 'gl-matrix' };
 
+// The ambient module declarations are repurposed for the all-inclusive CDN bundles and the `declare module` wrapper
+// needs to be removed.
+const dtsReplaceCDN = { "declare module '[^']*' \\{([\\s\\S]*?)^\\}": '$1' };
+
 /** @type {import('@typhonjs-build-test/esm-d-ts').GenerateConfig[]} */
 const configs = [
    // Bundles main and all sub-path export types configured in `package.json` exports.
@@ -25,8 +29,8 @@ const configs = [
    { input: './src/util/index.ts', output: './dist/util/index.d.mts', importsLocal },
 
    // Bundles CDN types.
-   { input: './scripts/bundle/cdn-entry-f32.ts', output: './dist-cdn/types/gl-matrix-f32.d.mts' },
-   { input: './scripts/bundle/cdn-entry-f64.ts', output: './dist-cdn/types/gl-matrix-f64.d.mts' }
+   { input: './src/cdn/index.ts', output: './dist-cdn/types/gl-matrix-f32.d.mts', dtsReplace: dtsReplaceCDN  },
+   { input: './src/cdn/f64/index.ts', output: './dist-cdn/types/gl-matrix-f64.d.mts', dtsReplace: dtsReplaceCDN }
 ];
 
 export default configs;

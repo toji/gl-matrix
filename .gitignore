@@ -3,6 +3,7 @@
 .DS_Store
 npm-debug.log
 /.dts
+/.vscode
 /coverage
 /dist
 /docs

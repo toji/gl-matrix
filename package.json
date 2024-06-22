@@ -24,6 +24,14 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./cdn": {
+      "types": "./dist-cdn/types/gl-matrix-f32.d.mts",
+      "import": "./dist-cdn/esm/2022/gl-matrix-f32.js"
+    },
+    "./cdn/f64": {
+      "types": "./dist-cdn/types/gl-matrix-f64.d.mts",
+      "import": "./dist-cdn/esm/2022/gl-matrix-f64.js"
+    },
     "./classic": {
       "types": "./dist/classic/index.d.mts",
       "import": "./dist/classic/index.js",
@@ -53,6 +61,16 @@
       "types": "./dist/types/index.d.mts",
       "import": "./dist/types/index.js",
       "require": "./dist/types/index.cjs"
+    },
+    "./types/cdn/umd": {
+      "types": "./dist-cdn/types/globals-f32.d.mts",
+      "import": "./dist-cdn/types/index.js",
+      "require": "./dist-cdn/types/index.cjs"
+    },
+    "./types/cdn/umd/f64": {
+      "types": "./dist-cdn/types/globals-f64.d.mts",
+      "import": "./dist-cdn/types/index.js",
+      "require": "./dist-cdn/types/index.cjs"
     },
     "./types/swizzle": {
       "types": "./dist/types/swizzle/index.d.mts",
@@ -102,14 +120,15 @@
     "webgpu"
   ],
   "scripts": {
-    "build": "npm run gen64 && tsc --project tsconfig-build.json && node scripts/bundle/bundle.js",
+    "build": "node scripts/build.js",
     "build-all": "npm run build && npm run types && npm run docs && npm run docs-cdn",
     "docs": "typedoc-pkg --api-link es",
-    "docs-cdn": "typedoc-pkg --api-link es --path dist-cdn/types/gl-matrix-f32.d.mts:dist-cdn/types/gl-matrix-f64.d.mts --output docs/cdn --typedoc typedoc-cdn.json",
+    "docs-cdn": "typedoc-pkg --api-link es --output docs/cdn --typedoc typedoc-cdn.json",
     "gen64": "node scripts/gen-f64.js",
     "test": "vitest run",
     "test-ui": "vitest --ui --coverage",
-    "types": "esm-d-ts gen -c"
+    "types": "esm-d-ts gen -c",
+    "build-test": "node scripts/test-build.js"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -117,7 +136,6 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@typhonjs-build-test/esm-d-ts": "^0.3.0-next.7",
     "@typhonjs-typedoc/typedoc-pkg": "^0.0.5",
-    "@typhonjs-utils/file-util": "^0.1.0",
     "@vitest/coverage-v8": "^1.6.0",
     "@vitest/ui": "^1.6.0",
     "esbuild": "^0.21.0",

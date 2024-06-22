@@ -1,7 +1,9 @@
 {
-  "name": "gl-matrix (Node / NPM Distribution)",
+  "name": "gl-matrix (CDN Distribution)",
   "basePath": ".",
-  "exclude": ["dist-cdn/types/*"],
+  "exclude": ["./dist/**/*"],
+  "out": "docs/cdn",
+  "readme": "./README-CDN.md",
   "categoryOrder": [
     "Constructor",
     "Static",
@@ -26,6 +28,6 @@
     "NPM": "https://www.npmjs.com/package/gl-matrix"
   },
   "sidebarLinks": {
-    "Go to: CDN Distribution": "https://typhonjs-svelte-scratch.github.io/gl-matrix-beta3-dist/cdn"
+    "Go to: Node / NPM Distribution": "https://typhonjs-svelte-scratch.github.io/gl-matrix-beta3-dist/"
   }
 }

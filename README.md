@@ -1,5 +1,7 @@
 [![NPM Version](https://img.shields.io/npm/v/gl-matrix.svg)](https://www.npmjs.com/package/gl-matrix)
 [![License](https://img.shields.io/badge/license-MIT-yellowgreen.svg?style=flat)](https://github.com/typhonjs-svelte/trie-search/blob/main/LICENSE)
+[![Build Status](https://github.com/toji/gl-matrix/workflows/CI/CD/badge.svg)](#)
+[![Coverage](https://img.shields.io/codecov/c/github/toji/gl-matrix.svg)](https://codecov.io/github/toji/gl-matrix)
 [![API Docs](https://img.shields.io/badge/API%20Documentation-476ff0)](https://glmatrix.net/docs/v4/)
 
 `gl-matrix` is a versatile and high-performance JavaScript / TypeScript library for vector and matrix operations, 

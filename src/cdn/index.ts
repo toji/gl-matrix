@@ -4,6 +4,7 @@
  * @packageDocumentation
  */
 
+/* v8 ignore next 6 */
 export * from '#gl-matrix';
 export * from '#gl-matrix/classic';
 export * from '#gl-matrix/swizzle';
