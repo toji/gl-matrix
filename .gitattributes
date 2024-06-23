@@ -4,3 +4,4 @@
 # Explicitly mark binary files.
 *.png binary
 *.jpg binary
+*.ico binary
