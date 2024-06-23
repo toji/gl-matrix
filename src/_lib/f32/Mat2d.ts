@@ -17,8 +17,8 @@ export class Mat2d extends Float32Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[] ) {
-    switch(values.length) {
+  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[]) {
+    switch (values.length) {
       case 6:
         super(values); break;
       case 2:
@@ -39,9 +39,9 @@ export class Mat2d extends Float32Array {
     }
   }
 
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
 
   /**
    * A string representation of `this`
@@ -53,9 +53,9 @@ export class Mat2d extends Float32Array {
     return Mat2d.str(this);
   }
 
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
 
   /**
    * Copy the values from another {@link Mat2d} into `this`.
@@ -99,7 +99,7 @@ export class Mat2d extends Float32Array {
    * Alias for {@link Mat2d.multiply}
    * @category Methods
    */
-  mul(b: Readonly<Mat2dLike>): this { return this; }
+  mul(b: Readonly<Mat2dLike>): this { return this; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Translate this {@link Mat2d} by the given vector
@@ -137,9 +137,9 @@ export class Mat2d extends Float32Array {
     return Mat2d.scale(this, this, v) as this;
   }
 
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
 
   /**
    * @category Static
@@ -150,9 +150,9 @@ export class Mat2d extends Float32Array {
     return 6 * Float32Array.BYTES_PER_ELEMENT;
   }
 
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
 
   /**
    * Creates a new, identity {@link Mat2d}
@@ -245,7 +245,7 @@ export class Mat2d extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out: Mat2dLike, a: Mat2dLike): Mat2dLike | null {
     const aa = a[0];
@@ -323,6 +323,7 @@ export class Mat2d extends Float32Array {
    * Alias for {@link Mat2d.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike { return out; }
 
   /**
@@ -360,6 +361,7 @@ export class Mat2d extends Float32Array {
    * Alias for {@link Mat2d.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike { return out; }
 
   /**
@@ -448,9 +450,10 @@ export class Mat2d extends Float32Array {
   /**
    * Creates a {@link Mat2d} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.translate(dest, dest, vec);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -470,9 +473,10 @@ export class Mat2d extends Float32Array {
   /**
    * Creates a {@link Mat2d} from a given angle around a given axis
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.rotate(dest, dest, rad);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.rotate(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -494,9 +498,10 @@ export class Mat2d extends Float32Array {
   /**
    * Creates a {@link Mat2d} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.scale(dest, dest, vec);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -553,7 +558,8 @@ export class Mat2d extends Float32Array {
    * @param scale - the amount to scale b's elements by before adding
    * @returns `out`
    */
-  static multiplyScalarAndAdd(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>, scale: number): Mat2dLike {
+  static multiplyScalarAndAdd(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>, scale: number):
+    Mat2dLike {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -564,7 +570,7 @@ export class Mat2d extends Float32Array {
   }
 
   /**
-   * Returns whether or not two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -583,7 +589,7 @@ export class Mat2d extends Float32Array {
   }
 
   /**
-   * Returns whether or not two {@link Mat2d}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat2d}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.

@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Vec2 } from '#gl-matrix/f64';
 
-import type { Vec2Like } from '#gl-matrix/types';
+import type { Mat2Like, Mat2dLike, Vec2Like, Vec3Like } from '#gl-matrix/types';
 
 describe('Vec2', () => {
   let vecA: Vec2;
@@ -34,12 +34,12 @@ describe('Vec2', () => {
     });
 
     it('should return Vec2(x, y) if called with (Vec2(x, y))', () => {
-      let v = new Vec2(3.4, 5.6);
+      const v = new Vec2(3.4, 5.6);
       expect(new Vec2(v)).toBeVec(v);
     });
 
     it('should return Vec2(x, y) if called with (Float64Array([x, y]))', () => {
-      let arr = new Float64Array([1.2, 3.4]);
+      const arr = new Float64Array([1.2, 3.4]);
       expect(new Vec2(arr)).toBeVec(arr);
     });
   });
@@ -78,7 +78,7 @@ describe('Vec2', () => {
       });
 
       describe('with raw array as the output', () => {
-        let outArray: Vec2Like = [0, 0];
+        const outArray: Vec2Like = [0, 0];
         beforeEach(() => { result = Vec2.add(outArray, vecA, vecB); });
 
         it('should place values into out', () => expect(outArray).toBeVec(4, 6));
@@ -95,7 +95,7 @@ describe('Vec2', () => {
   });
 
   describe('static', () => {
-    let out: Vec2Like, vecA: Vec2Like, vecB: Vec2Like, result: any;
+    let out: Vec2Like, vecA: Vec2Like, vecB: Vec2Like, result: Vec2Like | number;
 
     beforeEach(() => {
       vecA = new Vec2(1, 2);
@@ -457,7 +457,7 @@ describe('Vec2', () => {
       describe('with a separate output vector', () => {
         beforeEach(() => { result = Vec2.inverse(out, vecA); });
 
-        it('should place values into out', () => expect(out).toBeVec(1, 1/2));
+        it('should place values into out', () => expect(out).toBeVec(1, 1 / 2));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify vecA', () => expect(vecA).toBeVec(1, 2));
       });
@@ -465,7 +465,7 @@ describe('Vec2', () => {
       describe('when vecA is the output vector', () => {
         beforeEach(() => { result = Vec2.inverse(vecA, vecA); });
 
-        it('should place values into vecA', () => expect(vecA).toBeVec(1, 1/2));
+        it('should place values into vecA', () => expect(vecA).toBeVec(1, 1 / 2));
         it('should return vecA', () => expect(result).toBe(vecA));
       });
     });
@@ -516,11 +516,11 @@ describe('Vec2', () => {
     });
 
     describe('cross', () => {
-      let out3;
+      let out3: Vec3Like;
 
       beforeEach(() => {
         out3 = [0, 0, 0];
-        result = Vec2.cross(out3, vecA, vecB);
+        result = Vec2.cross(out3 as unknown as Vec2Like, vecA, vecB);
       });
 
       it('should place values into out', () => expect(out3).toBeVec(0, 0, -2));
@@ -556,7 +556,8 @@ describe('Vec2', () => {
       });
     });
 
-    /*describe('random', () => {
+    /*
+      describe('random', () => {
       describe('with no scale', () => {
         beforeEach(() => { result = Vec2.random(out); });
 
@@ -573,7 +574,7 @@ describe('Vec2', () => {
     });*/
 
     describe('transformMat2', () => {
-      let matA;
+      let matA: Mat2Like;
 
       beforeEach(() => { matA = [1, 2, 3, 4]; });
 
@@ -596,7 +597,7 @@ describe('Vec2', () => {
     });
 
     describe('transformMat2d', () => {
-      let matA;
+      let matA: Mat2dLike;
 
       beforeEach(() => { matA = [1, 2, 3, 4, 5, 6]; });
 
@@ -618,7 +619,8 @@ describe('Vec2', () => {
       });
     });
 
-    /*describe('forEach', () => {
+    /*
+      describe('forEach', () => {
       let vecArray;
 
       beforeEach(() => {
@@ -736,8 +738,8 @@ describe('Vec2', () => {
 
     describe('angle', () => {
       beforeEach(() => {
-        vecA = [1,0];
-        vecB = [1,2];
+        vecA = [1, 0];
+        vecB = [1, 2];
         result = Vec2.angle(vecA, vecB);
       });
 
@@ -751,7 +753,7 @@ describe('Vec2', () => {
     });
 
     describe('exactEquals', () => {
-      let vecC, r0, r1;
+      let vecC: Vec2Like, r0: boolean, r1: boolean;
 
       beforeEach(() => {
         vecA = [0, 1];
@@ -768,7 +770,7 @@ describe('Vec2', () => {
     });
 
     describe('equals', () => {
-      let vecC, vecD, r0, r1, r2;
+      let vecC: Vec2Like, vecD: Vec2Like, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         vecA = [0, 1];

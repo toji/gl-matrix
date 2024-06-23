@@ -24,12 +24,12 @@ describe('Vec4', () => {
     });
 
     it('should return Vec4(x, y, z, w) if called with (Vec4(x, y, z, w))', () => {
-      let v = new Vec4(3.4, 5.6, 7.8, 9);
+      const v = new Vec4(3.4, 5.6, 7.8, 9);
       expect(new Vec4(v)).toBeVec(v);
     });
 
     it('should return Vec4(x, y, z, w) if called with (Float32Array([x, y, z, w]))', () => {
-      let arr = new Float32Array([1.2, 3.4, 5.6, 7.8]);
+      const arr = new Float32Array([1.2, 3.4, 5.6, 7.8]);
       expect(new Vec4(arr)).toBeVec(arr);
     });
   });
@@ -38,7 +38,7 @@ describe('Vec4', () => {
     let out: Vec4Like;
     let vecA: Vec4Like;
     let vecB: Vec4Like;
-    let result: any;
+    let result: Vec4Like | number;
 
     beforeEach(() => {
       vecA = new Vec4(1, 2, 3, 4);
@@ -406,7 +406,7 @@ describe('Vec4', () => {
       describe('with a separate output vector', () => {
         beforeEach(() => { result = Vec4.inverse(out, vecA); });
 
-        it('should place values into out', () => expect(out).toBeVec(1, 1/2, 1/3, 1/4));
+        it('should place values into out', () => expect(out).toBeVec(1, 1 / 2, 1 / 3, 1 / 4));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify vecA', () => expect(vecA).toBeVec(1, 2, 3, 4));
       });
@@ -414,7 +414,7 @@ describe('Vec4', () => {
       describe('when vecA is the output vector', () => {
         beforeEach(() => { result = Vec4.inverse(vecA, vecA); });
 
-        it('should place values into vecA', () => expect(vecA).toBeVec(1, 1/2, 1/3, 1/4));
+        it('should place values into vecA', () => expect(vecA).toBeVec(1, 1 / 2, 1 / 3, 1 / 4));
         it('should return vecA', () => expect(result).toBe(vecA));
       });
     });
@@ -491,7 +491,8 @@ describe('Vec4', () => {
       });
     });
 
-    /*describe('random', () => {
+    /*
+      describe('random', () => {
       describe('with no scale', () => {
         beforeEach(() => { result = Vec4.random(out); });
 
@@ -517,7 +518,7 @@ describe('Vec4', () => {
       });
 
       describe('with a separate output vector', () => {
-        beforeEach(() => { result = Vec4.cross(out, vecA,vecB,vecC); });
+        beforeEach(() => { result = Vec4.cross(out, vecA, vecB, vecC); });
 
         it('should place values into out', () => expect(out).toBeVec(0, 0, 0, -1));
         it('should return out', () => expect(result).toBe(out));
@@ -527,32 +528,33 @@ describe('Vec4', () => {
       });
 
       describe('when vecA is the output vector', () => {
-        beforeEach(() => { result = Vec4.cross(vecA, vecA,vecB,vecC); });
+        beforeEach(() => { result = Vec4.cross(vecA, vecA, vecB, vecC); });
 
-        it('should place values into vecA', () => expect(vecA).toBeVec(0, 0, 0,-1));
+        it('should place values into vecA', () => expect(vecA).toBeVec(0, 0, 0, -1));
         it('should return vecA', () => expect(result).toBe(vecA));
         it('should not modify vecB', () => expect(vecB).toBeVec(0, 1, 0, 0));
         it('should not modify vecC', () => expect(vecC).toBeVec(0, 0, 1, 0));
       });
       describe('when vecB is the output vector', () => {
-        beforeEach(() => { result = Vec4.cross(vecB, vecA,vecB,vecC); });
+        beforeEach(() => { result = Vec4.cross(vecB, vecA, vecB, vecC); });
 
-        it('should place values into vecB', () => expect(vecB).toBeVec(0, 0, 0,-1));
+        it('should place values into vecB', () => expect(vecB).toBeVec(0, 0, 0, -1));
         it('should return vecB', () => expect(result).toBe(vecB));
         it('should not modify vecA', () => expect(vecA).toBeVec(1, 0, 0, 0));
         it('should not modify vecC', () => expect(vecC).toBeVec(0, 0, 1, 0));
       });
       describe('when vecC is the output vector', () => {
-        beforeEach(() => { result = Vec4.cross(vecC, vecA,vecB,vecC); });
+        beforeEach(() => { result = Vec4.cross(vecC, vecA, vecB, vecC); });
 
-        it('should place values into vecC', () => expect(vecC).toBeVec(0, 0, 0,-1));
+        it('should place values into vecC', () => expect(vecC).toBeVec(0, 0, 0, -1));
         it('should return vecC', () => expect(result).toBe(vecC));
         it('should not modify vecA', () => expect(vecA).toBeVec(1, 0, 0, 0));
         it('should not modify vecB', () => expect(vecB).toBeVec(0, 1, 0, 0));
       });
     });
 
-    /*describe('forEach', () => {
+    /*
+      describe('forEach', () => {
       let vecArray;
 
       beforeEach(() => {
@@ -648,7 +650,7 @@ describe('Vec4', () => {
 
     describe('str', () => {
       it('should return a string representation of the vector',
-       () => expect(Vec4.str(vecA)).toEqual('Vec4(1, 2, 3, 4)'));
+        () => expect(Vec4.str(vecA)).toEqual('Vec4(1, 2, 3, 4)'));
     });
 
     describe('exactEquals', () => {

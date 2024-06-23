@@ -16,8 +16,8 @@ export class Mat2 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[] ) {
-    switch(values.length) {
+  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[]) {
+    switch (values.length) {
       case 4:
         super(values); break;
       case 2:
@@ -37,9 +37,9 @@ export class Mat2 extends Float64Array {
     }
   }
 
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
 
   /**
    * A string representation of `this`
@@ -51,9 +51,9 @@ export class Mat2 extends Float64Array {
     return Mat2.str(this);
   }
 
-  //===================
+  // ===================
   // Instance methods
-  //===================
+  // ===================
 
   /**
    * Copy the values from another {@link Mat2} into `this`.
@@ -95,7 +95,7 @@ export class Mat2 extends Float64Array {
    * Alias for {@link Mat2.multiply}
    * @category Methods
    */
-  mul(b: Readonly<Mat2Like>): this { return this; }
+  mul(b: Readonly<Mat2Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Transpose this {@link Mat2}
@@ -143,9 +143,9 @@ export class Mat2 extends Float64Array {
     return Mat2.rotate(this, this, rad) as this;
   }
 
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
 
   /**
    * @category Static
@@ -156,9 +156,9 @@ export class Mat2 extends Float64Array {
     return 4 * Float64Array.BYTES_PER_ELEMENT;
   }
 
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
 
   /**
    * Creates a new, identity {@link Mat2}
@@ -251,7 +251,7 @@ export class Mat2 extends Float64Array {
     // If we are transposing ourselves we can skip a few steps but have to cache
     // some values
     if (out === a) {
-      let a1 = a[1];
+      const a1 = a[1];
       out[1] = a[2];
       out[2] = a1;
     } else {
@@ -270,7 +270,7 @@ export class Mat2 extends Float64Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out: Mat2Like, a: Mat2Like): Mat2Like | null {
     const a0 = a[0];
@@ -361,6 +361,7 @@ export class Mat2 extends Float64Array {
    * Alias for {@link Mat2.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like { return out; }
 
   /**
@@ -387,11 +388,11 @@ export class Mat2 extends Float64Array {
     out[3] = a1 * b2 + a3 * b3;
     return out;
   }
-
   /**
    * Alias for {@link Mat2.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like { return out; }
 
   /**
@@ -540,7 +541,8 @@ export class Mat2 extends Float64Array {
    * @param a - the input matrix to factorize
    */
 
-  static LDU(L: Mat2Like, D: Readonly<Mat2Like>, U: Mat2Like, a: Readonly<Mat2Like>) {
+  static LDU(L: Mat2Like, D: Readonly<Mat2Like>, U: Mat2Like, a: Readonly<Mat2Like>):
+   [Mat2Like, Readonly<Mat2Like>, Mat2Like] {
     L[2] = a[2] / a[0];
     U[0] = a[0];
     U[1] = a[1];
@@ -605,7 +607,7 @@ export class Mat2 extends Float64Array {
 }
 
 // Instance method alias assignments
-Mat2.prototype.mul = Mat2.prototype.multiply;
+Mat2.prototype.mul = Mat2.prototype.multiply; // eslint-disable-line @typescript-eslint/unbound-method
 
 // Static method alias assignments
 Mat2.mul = Mat2.multiply;

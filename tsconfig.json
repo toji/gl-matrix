@@ -2,7 +2,8 @@
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
     "module": "NodeNext",
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "strictNullChecks": true
   },
   "include": [
     "src/**/*",

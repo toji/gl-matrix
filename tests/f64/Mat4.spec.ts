@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Mat4, Quat, Vec3 } from '#gl-matrix/f64';
 
-import type { Vec3Like } from '#gl-matrix/types';
+import type { FloatArray, Mat4Like, Vec3Like, Vec4Like } from '#gl-matrix/types';
 
 describe('Mat4', () => {
   describe('constructor', () => {
@@ -47,7 +47,7 @@ describe('Mat4', () => {
     });
 
     it('should return Mat4(m0, m1, ...m15) if called with (Mat4(m0, m1, ...m15))', () => {
-      let v = new Mat4(
+      const v = new Mat4(
         1, 2, 3, 4,
         5, 6, 7, 8,
         9, 10, 11, 12,
@@ -56,7 +56,7 @@ describe('Mat4', () => {
     });
 
     it('should return Mat4(m0, m1, ...m15) if called with (Float64Array([m0, m1, ...m15]))', () => {
-      let arr = new Float64Array([
+      const arr = new Float64Array([
         1, 2, 3, 4,
         5, 6, 7, 8,
         9, 10, 11, 12,
@@ -66,7 +66,8 @@ describe('Mat4', () => {
   });
 
   describe('static', () => {
-    let out, matA, matB, identity, result;
+    let out: Mat4Like, matA: Mat4Like, matB: Mat4Like, identity: Mat4Like,
+      result: Mat4Like | Vec3Like | Vec4Like | null | number | string;
 
     beforeEach(() => {
       // Attempting to portray a semi-realistic transform matrix
@@ -103,7 +104,7 @@ describe('Mat4', () => {
       beforeEach(() => { result = Mat4.create(); });
 
       it('should return a 16 element array initialized to a 4x4 identity matrix',
-       () => expect(result).toBeVec(identity));
+        () => expect(result).toBeVec(identity));
     });
 
     describe('clone', () => {
@@ -358,8 +359,8 @@ describe('Mat4', () => {
     });
 
     describe('rotate', () => {
-      let rad = Math.PI * 0.5;
-      let axis: Vec3Like = [1, 0, 0];
+      const rad = Math.PI * 0.5;
+      const axis: Vec3Like = [1, 0, 0];
 
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat4.rotate(out, matA, rad, axis); });
@@ -393,7 +394,7 @@ describe('Mat4', () => {
     });
 
     describe('rotateX', () => {
-      let rad = Math.PI * 0.5;
+      const rad = Math.PI * 0.5;
 
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat4.rotateX(out, matA, rad); });
@@ -427,7 +428,7 @@ describe('Mat4', () => {
     });
 
     describe('rotateY', () => {
-      let rad = Math.PI * 0.5;
+      const rad = Math.PI * 0.5;
 
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat4.rotateY(out, matA, rad); });
@@ -461,7 +462,7 @@ describe('Mat4', () => {
     });
 
     describe('rotateZ', () => {
-      let rad = Math.PI * 0.5;
+      const rad = Math.PI * 0.5;
 
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat4.rotateZ(out, matA, rad); });
@@ -498,10 +499,11 @@ describe('Mat4', () => {
 
     describe('normalFromMat4', () => {
       beforeEach(() => {
-        matA = new Float64Array([1, 0, 0, 0,
-                                 0, 1, 0, 0,
-                                 0, 0, 1, 0,
-                                 0, 0, 0, 1]);
+        matA = new Float64Array([
+          1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1]);
         result = Mat4.normalFromMat4(out, matA);
       });
 
@@ -516,10 +518,10 @@ describe('Mat4', () => {
         });
 
         it('should give rotated matrix', () => expect(result).toBeVec(
-          1, 0, 0, 0,
-          0, 0, 1, 0,
-          0,-1, 0, 0,
-          0, 0, 0, 1
+          1,  0, 0, 0,
+          0,  0, 1, 0,
+          0, -1, 0, 0,
+          0,  0, 0, 1
         ));
 
         describe('and scale', () => {
@@ -563,8 +565,8 @@ describe('Mat4', () => {
 
       describe('from a translation and rotation matrix', () => {
         beforeEach(() => {
-          let q = new Quat();
-          let v = new Vec3(5, 6, 7);
+          const q = new Quat();
+          const v = new Vec3(5, 6, 7);
           Quat.setAxisAngle(q, [0.26726124, 0.534522474, 0.8017837], 0.55);
           Mat4.fromRotationTranslation(out, q, v);
 
@@ -590,8 +592,8 @@ describe('Mat4', () => {
 
       describe('from a scale-only matrix', () => {
         beforeEach(() => {
-          let v = new Vec3(4, 5, 6);
-          result = new Vec3(1, 2, 3)
+          const v = new Vec3(4, 5, 6);
+          result = new Vec3(1, 2, 3);
           out = new Vec3(1, 2, 3);
           Mat4.fromScaling(matA, v);
           result = Mat4.getScaling(out, matA);
@@ -603,7 +605,7 @@ describe('Mat4', () => {
       describe('from a translation and rotation matrix', () => {
         beforeEach(() => {
           let q = Quat.create();
-          let v = Vec3.fromValues(5, 6, 7);
+          const v = Vec3.fromValues(5, 6, 7);
           q = Quat.setAxisAngle(q, [1, 0, 0], 0.5) as Quat;
           Mat4.fromRotationTranslation(out, q, v);
 
@@ -617,8 +619,8 @@ describe('Mat4', () => {
       describe('from a translation, rotation and scale matrix', () => {
         beforeEach(() => {
           let q = Quat.create();
-          let t = Vec3.fromValues(1, 2, 3);
-          let s = Vec3.fromValues(5, 6, 7);
+          const t = Vec3.fromValues(1, 2, 3);
+          const s = Vec3.fromValues(5, 6, 7);
           q = Quat.setAxisAngle(q, [0, 1, 0], 0.7) as Quat;
           Mat4.fromRotationTranslationScale(out, q, t, s);
           result = Vec3.fromValues(5, 6, 7);
@@ -639,7 +641,7 @@ describe('Mat4', () => {
 
         it('should place result both in result and out', () => expect(result).toBe(out));
         it('should return the unit quaternion', () => {
-          let unitQuat = Quat.create();
+          const unitQuat = Quat.create();
           Quat.identity(unitQuat);
           expect(result).toBeVec(unitQuat);
         });
@@ -653,7 +655,7 @@ describe('Mat4', () => {
         });
 
         it('should return the unit quaternion', () => {
-          let unitQuat = Quat.create();
+          const unitQuat = Quat.create();
           Quat.identity(unitQuat);
           expect(result).toBeVec(unitQuat);
         });
@@ -662,9 +664,9 @@ describe('Mat4', () => {
       describe('from a translation and rotation matrix', () => {
         it('should keep the same rotation as when created', () => {
           let q = Quat.create();
-          let outVec = Vec3.fromValues(5, 6, 7);
-          let testVec = Vec3.fromValues(1, 5, 2);
-          let ang = 0.78972;
+          const outVec = Vec3.fromValues(5, 6, 7);
+          const testVec = Vec3.fromValues(1, 5, 2);
+          const ang = 0.78972;
 
           Vec3.normalize(testVec, testVec);
           q = Quat.setAxisAngle(q, testVec, ang) as Quat;
@@ -672,8 +674,8 @@ describe('Mat4', () => {
 
           result = Quat.fromValues(2, 3, 4, 6);
           Mat4.getRotation(result, out);
-          let outaxis = Vec3.create();
-          let outangle = Quat.getAxisAngle(outaxis, result);
+          const outaxis = Vec3.create();
+          const outangle = Quat.getAxisAngle(outaxis, result);
 
           expect(outaxis).toBeVec(testVec);
           expect(outangle).toBeCloseTo(ang);
@@ -732,7 +734,7 @@ describe('Mat4', () => {
     describe('perspectiveNO', () => {
       it('should have an alias called `perspective`', () => expect(Mat4.perspectiveNO).toEqual(Mat4.perspective));
 
-      let fovy = Math.PI * 0.5;
+      const fovy = Math.PI * 0.5;
       beforeEach(() => { result = Mat4.perspectiveNO(out, fovy, 1, 0, 1); });
 
       it('should place values into out', () => expect(result).toBeVec(
@@ -744,7 +746,7 @@ describe('Mat4', () => {
       it('should return out', () => expect(result).toBe(out));
 
       describe('with nonzero near, 45deg fovy, and realistic aspect ratio', () => {
-        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640/480, 0.1, 200); });
+        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640 / 480, 0.1, 200); });
 
         it('should calculate correct matrix', () => expect(result).toBeVec(
           1.81066, 0, 0, 0,
@@ -755,7 +757,7 @@ describe('Mat4', () => {
       });
 
       describe('with no far plane, 45deg fovy, and realistic aspect ratio', () => {
-        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640/480, 0.1); });
+        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640 / 480, 0.1); });
 
         it('should calculate correct matrix', () => expect(result).toBeVec(
           1.81066, 0, 0, 0,
@@ -766,7 +768,7 @@ describe('Mat4', () => {
       });
 
       describe('with infinite far plane, 45deg fovy, and realistic aspect ratio', () => {
-        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640/480, 0.1, Infinity); });
+        beforeEach(() => { result = Mat4.perspectiveNO(out, 45 * Math.PI / 180.0, 640 / 480, 0.1, Infinity); });
 
         it('should calculate correct matrix', () => expect(result).toBeVec(
           1.81066, 0, 0, 0,
@@ -791,10 +793,10 @@ describe('Mat4', () => {
     });
 
     describe('lookAt', () => {
-      let eye    = new Float64Array([0, 0, 1]);
-      let center = new Float64Array([0, 0, -1]);
-      let up     = new Float64Array([0, 1, 0]);
-      let view, right;
+      let eye: FloatArray    = new Float64Array([0, 0, 1]);
+      let center: FloatArray = new Float64Array([0, 0, -1]);
+      let up: FloatArray     = new Float64Array([0, 1, 0]);
+      let view: FloatArray, right: FloatArray;
 
       beforeEach(() => {
         eye    = new Float64Array([0, 0, 1]);
@@ -805,9 +807,9 @@ describe('Mat4', () => {
 
       describe('looking down', () => {
         beforeEach(() => {
-          view = new Float64Array([0, -1,  0]);
-          up   = new Float64Array([0,  0, -1]);
-          right= new Float64Array([1,  0,  0]);
+          view   = new Float64Array([0, -1,  0]);
+          up     = new Float64Array([0,  0, -1]);
+          right  = new Float64Array([1,  0,  0]);
           result = Mat4.lookAt(out, [0, 0, 0], view, up);
         });
 
@@ -832,9 +834,9 @@ describe('Mat4', () => {
       describe('#74', () => {
         beforeEach(() => {
           Mat4.lookAt(out,
-            new Float64Array([0,2,0]),
-            new Float64Array([0,0.6,0]),
-            new Float64Array([0,0,-1]));
+            new Float64Array([0, 2, 0]),
+            new Float64Array([0, 0.6, 0]),
+            new Float64Array([0, 0, -1]));
         });
 
         it('should transform a point `above` into local +Y', () => {
@@ -863,10 +865,10 @@ describe('Mat4', () => {
     });
 
     describe('targetTo', () => {
-      let eye    = new Float64Array([0, 0, 1]);
-      let center = new Float64Array([0, 0, -1]);
-      let up     = new Float64Array([0, 1, 0]);
-      let view: Float64Array, right: Float64Array;
+      let eye: FloatArray    = new Float64Array([0, 0, 1]);
+      let center: FloatArray = new Float64Array([0, 0, -1]);
+      let up: FloatArray     = new Float64Array([0, 1, 0]);
+      let view: FloatArray, right: FloatArray;
 
       beforeEach(() => {
         eye    = new Float64Array([0, 0, 1]);
@@ -877,9 +879,9 @@ describe('Mat4', () => {
 
       describe('looking down', () => {
         beforeEach(() => {
-          view = new Float64Array([0, -1,  0]);
-          up   = new Float64Array([0,  0, -1]);
-          right= new Float64Array([1,  0,  0]);
+          view   = new Float64Array([0, -1,  0]);
+          up     = new Float64Array([0,  0, -1]);
+          right  = new Float64Array([1,  0,  0]);
           result = Mat4.targetTo(out, [0, 0, 0], view, up);
         });
 
@@ -901,7 +903,7 @@ describe('Mat4', () => {
         it('should return out', () => expect(result).toBe(out));
 
         it('scaling should be [1, 1, 1]', () => {
-          let scaling = Mat4.getScaling(new Float64Array(3), out);
+          const scaling = Mat4.getScaling(new Float64Array(3), out);
           expect(scaling).toBeVec(1, 1, 1);
         });
       });
@@ -909,9 +911,9 @@ describe('Mat4', () => {
       describe('#74', () => {
         beforeEach(() => {
           Mat4.targetTo(out,
-            new Float64Array([0,2,0]),
-            new Float64Array([0,0.6,0]),
-            new Float64Array([0,0,-1]));
+            new Float64Array([0, 2, 0]),
+            new Float64Array([0, 0.6, 0]),
+            new Float64Array([0, 0, -1]));
         });
 
         it('should transform a point `above` into local +Y', () => {
@@ -930,7 +932,7 @@ describe('Mat4', () => {
         });
 
         it('scaling should be [1, 1, 1]', () => {
-          let scaling = Mat4.getScaling(new Float64Array(3), out);
+          const scaling = Mat4.getScaling(new Float64Array(3), out);
           expect(scaling).toBeVec(1, 1, 1);
         });
       });
@@ -938,13 +940,13 @@ describe('Mat4', () => {
       describe('scaling test', () => {
         beforeEach(() => {
           Mat4.targetTo(out,
-            new Float64Array([0,1,0]),
-            new Float64Array([0,0,1]),
-            new Float64Array([0,0,-1]));
+            new Float64Array([0, 1, 0]),
+            new Float64Array([0, 0, 1]),
+            new Float64Array([0, 0, -1]));
         });
 
         it('scaling should be [1, 1, 1]', () => {
-          let scaling = Mat4.getScaling(new Float64Array(3), out);
+          const scaling = Mat4.getScaling(new Float64Array(3), out);
           expect(scaling).toBeVec(1, 1, 1);
         });
       });
@@ -957,7 +959,7 @@ describe('Mat4', () => {
       ));
       it('should return out', () => expect(result).toBe(out));
       it('scaling should be [1, 1, 1]', () => {
-        let scaling = Mat4.getScaling(new Float64Array(3), out);
+        const scaling = Mat4.getScaling(new Float64Array(3), out);
         expect(scaling).toBeVec(1, 1, 1);
       });
     });
@@ -966,14 +968,14 @@ describe('Mat4', () => {
       beforeEach(() => { result = Mat4.str(matA); });
 
       it('should return a string representation of the matrix',
-       () => expect(result).toEqual('Mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 2, 3, 1)'));
+        () => expect(result).toEqual('Mat4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 2, 3, 1)'));
     });
 
     describe('frob', () => {
       beforeEach(() => { result = Mat4.frob(matA); });
 
-      it('should return the Frobenius Norm of the matrix', () => expect(result).toBeCloseTo( Math.sqrt(Math.pow(1, 2) +
-       Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) )));
+      it('should return the Frobenius Norm of the matrix', () => expect(result).toBeCloseTo(Math.sqrt(Math.pow(1, 2) +
+       Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2))));
     });
 
     describe('add', () => {
@@ -986,28 +988,28 @@ describe('Mat4', () => {
         beforeEach(() => { result = Mat4.add(out, matA, matB); });
 
         it('should place values into out',
-         () => expect(out).toBeVec(18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48));
+          () => expect(out).toBeVec(18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
         it('should not modify matB',
-         () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
+          () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
       });
 
       describe('when matA is the output matrix', () => {
         beforeEach(() => { result = Mat4.add(matA, matA, matB); });
 
         it('should place values into matA',
-         () => expect(matA).toBeVec(18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48));
+          () => expect(matA).toBeVec(18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48));
         it('should return matA', () => expect(result).toBe(matA));
         it('should not modify matB',
-         () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
+          () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
       });
 
       describe('when matB is the output matrix', () => {
         beforeEach(() => { result = Mat4.add(matB, matA, matB); });
 
         it('should place values into matB',
-         () => expect(matB).toBeVec(18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48));
+          () => expect(matB).toBeVec(18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48));
         it('should return matB', () => expect(result).toBe(matB));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
       });
@@ -1025,28 +1027,28 @@ describe('Mat4', () => {
         beforeEach(() => { result = Mat4.subtract(out, matA, matB); });
 
         it('should place values into out',
-         () => expect(out).toBeVec(-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16));
+          () => expect(out).toBeVec(-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
         it('should not modify matB',
-         () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
+          () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
       });
 
       describe('when matA is the output matrix', () => {
         beforeEach(() => { result = Mat4.subtract(matA, matA, matB); });
 
         it('should place values into matA',
-         () => expect(matA).toBeVec(-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16));
+          () => expect(matA).toBeVec(-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16));
         it('should return matA', () => expect(result).toBe(matA));
         it('should not modify matB',
-         () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
+          () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
       });
 
       describe('when matB is the output matrix', () => {
         beforeEach(() => { result = Mat4.subtract(matB, matA, matB); });
 
         it('should place values into matB',
-         () => expect(matB).toBeVec(-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16));
+          () => expect(matB).toBeVec(-16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16, -16));
         it('should return matB', () => expect(result).toBe(matB));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
       });
@@ -1056,14 +1058,14 @@ describe('Mat4', () => {
       beforeEach(() => { result = Mat4.fromValues(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16); });
 
       it('should return a 16 element array initialized to the values passed',
-       () => expect(result).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
+        () => expect(result).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
     });
 
     describe('set', () => {
       beforeEach(() => { result = Mat4.set(out, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16); });
 
       it('should place values into out',
-       () => expect(out).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
+        () => expect(out).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
       it('should return out', () => expect(result).toBe(out));
     });
 
@@ -1074,7 +1076,7 @@ describe('Mat4', () => {
         beforeEach(() => { result = Mat4.multiplyScalar(out, matA, 2); });
 
         it('should place values into out',
-         () => expect(out).toBeVec(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32));
+          () => expect(out).toBeVec(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
       });
@@ -1083,7 +1085,7 @@ describe('Mat4', () => {
         beforeEach(() => { result = Mat4.multiplyScalar(matA, matA, 2); });
 
         it('should place values into matA',
-         () => expect(matA).toBeVec(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32));
+          () => expect(matA).toBeVec(2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32));
         it('should return matA', () => expect(result).toBe(matA));
       });
     });
@@ -1098,35 +1100,35 @@ describe('Mat4', () => {
         beforeEach(() => { result = Mat4.multiplyScalarAndAdd(out, matA, matB, 0.5); });
 
         it('should place values into out',
-         () => expect(out).toBeVec(9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32));
+          () => expect(out).toBeVec(9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
         it('should not modify matB',
-         () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
+          () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
       });
 
       describe('when matA is the output matrix', () => {
         beforeEach(() => { result = Mat4.multiplyScalarAndAdd(matA, matA, matB, 0.5); });
 
         it('should place values into matA',
-         () => expect(matA).toBeVec(9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32));
+          () => expect(matA).toBeVec(9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32));
         it('should return matA', () => expect(result).toBe(matA));
         it('should not modify matB',
-         () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
+          () => expect(matB).toBeVec(17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32));
       });
 
       describe('when matB is the output matrix', () => {
         beforeEach(() => { result = Mat4.multiplyScalarAndAdd(matB, matA, matB, 0.5); });
 
         it('should place values into matB',
-         () => expect(matB).toBeVec(9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32));
+          () => expect(matB).toBeVec(9.5, 11, 12.5, 14, 15.5, 17, 18.5, 20, 21.5, 23, 24.5, 26, 27.5, 29, 30.5, 32));
         it('should return matB', () => expect(result).toBe(matB));
         it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
       });
     });
 
     describe('exactEquals', () => {
-      let matC, r0, r1;
+      let matC: Mat4Like, r0: boolean, r1: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
@@ -1143,7 +1145,7 @@ describe('Mat4', () => {
     });
 
     describe('equals', () => {
-      let matC, matD, r0, r1, r2;
+      let matC: Mat4Like, matD: Mat4Like, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];

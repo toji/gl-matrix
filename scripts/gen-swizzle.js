@@ -73,7 +73,7 @@ for (const vecSize of VEC_COMPONENT_COUNTS) {
   describe('${vecType}().${name}', () => {
     it('should return ${outType}(${argNames})', () => expect(v.${name}).toBeVec(${args}));
     it('should be return a copy', () => {
-      let sw = v.${name};
+      const sw = v.${name};
       sw[0] += 1;
       expect(v[0]).not.toEqual(sw[0]);
     });
@@ -105,7 +105,7 @@ const swizzleTypeAlias = {
 
 const accessorDocs = (length) => {
   return `    /**
-     * @category Swizzle Accessors (Optional)   
+     * @category Swizzle Accessors (Optional)
      * @returns New instance of swizzled Vec${length}
      */`;
 };

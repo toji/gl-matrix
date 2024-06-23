@@ -2,13 +2,15 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Mat3, Mat4, Vec3 } from '#gl-matrix';
 
+import type { Mat3Like, Mat4Like, Vec4Like } from '#gl-matrix/types';
+
 describe('Mat3', () => {
   describe('constructor', () => {
     it('should return an identity Mat3 if called with no arguments', () => {
       expect(new Mat3()).toBeVec(
         1, 0, 0,
         0, 1, 0,
-        0, 0, 1)
+        0, 0, 1);
     });
 
     it('should return Mat3(m0, m1, ...m8) if called with (m0, m1, ...m8)', () => {
@@ -39,7 +41,7 @@ describe('Mat3', () => {
     });
 
     it('should return Mat3(m0, m1, ...m8) if called with (Mat3(m0, m1, ...m9))', () => {
-      let v = new Mat3(
+      const v = new Mat3(
         1, 2, 3,
         4, 5, 6,
         7, 8, 9);
@@ -47,7 +49,7 @@ describe('Mat3', () => {
     });
 
     it('should return Mat3(m0, m1, ...m8) if called with (Float32Array([m0, m1, ...m8]))', () => {
-      let arr = new Float32Array([
+      const arr = new Float32Array([
         1, 2, 3,
         4, 5, 6,
         7, 8, 9]);
@@ -56,7 +58,8 @@ describe('Mat3', () => {
   });
 
   describe('static', () => {
-    let out, matA, matB, identity, result;
+    let out: Mat3Like, matA: Mat3Like, matB: Mat3Like, mat4: Mat4Like, identity: Mat3Like,
+      result: Mat3Like | null | number | string;
 
     beforeEach(() => {
       matA = new Float32Array([1, 0, 0,
@@ -78,90 +81,95 @@ describe('Mat3', () => {
 
     describe('normalFromMat4', () => {
       beforeEach(() => {
-        matA = new Float32Array([1, 0, 0, 0,
+        mat4 = new Float32Array([1, 0, 0, 0,
           0, 1, 0, 0,
           0, 0, 1, 0,
           0, 0, 0, 1]);
-        result = Mat3.normalFromMat4(out, matA);
+        result = Mat3.normalFromMat4(out, mat4);
       });
 
       it('should return out', () => expect(result).toBe(out));
 
       describe('with translation and rotation', () => {
         beforeEach(() => {
-          Mat4.translate(matA, matA, [2, 4, 6]);
-          Mat4.rotateX(matA, matA, Math.PI / 2);
+          Mat4.translate(mat4, mat4, [2, 4, 6]);
+          Mat4.rotateX(mat4, mat4, Math.PI / 2);
 
-          result = Mat3.normalFromMat4(out, matA);
+          result = Mat3.normalFromMat4(out, mat4);
         });
 
         it('should give rotated matrix', () => {
-          expect(result).toBeVec(1, 0, 0,
-                                 0, 0, 1,
-                                 0,-1, 0);
+          expect(result).toBeVec(
+            1, 0,  0,
+            0, 0,  1,
+            0, -1, 0);
         });
 
         describe('and scale', () => {
           beforeEach(() => {
-            Mat4.scale(matA, matA, [2, 3, 4]);
+            Mat4.scale(mat4, mat4, [2, 3, 4]);
 
-            result = Mat3.normalFromMat4(out, matA);
+            result = Mat3.normalFromMat4(out, mat4);
           });
 
           it('should give rotated matrix', () => {
-            expect(result).toBeVec(0.5, 0,    0,
-                                   0,   0,    0.333333,
-                                   0,  -0.25, 0);
+            expect(result).toBeVec(
+              0.5, 0,    0,
+              0,   0,    0.333333,
+              0,  -0.25, 0);
           });
         });
       });
     });
 
     describe('fromQuat', () => {
-      let q;
+      let q: Vec4Like;
 
       beforeEach(() => {
-        q = [ 0, -0.7071067811865475, 0, 0.7071067811865475 ];
+        q = [0, -0.7071067811865475, 0, 0.7071067811865475];
         result = Mat3.fromQuat(out, q);
       });
 
       it('should return out', () => expect(result).toBe(out));
 
       it('should rotate a vector the same as the original quat', () => {
-        let vecOut = new Vec3();
-        Vec3.transformQuat(vecOut, [0,0,-1], q);
-        expect(Vec3.transformMat3([0, 0, 0], [0,0,-1], out)).toBeVec(vecOut);
+        const vecOut = new Vec3();
+        Vec3.transformQuat(vecOut, [0, 0, -1], q);
+        expect(Vec3.transformMat3([0, 0, 0], [0, 0, -1], out)).toBeVec(vecOut);
       });
 
       it('should rotate a vector by PI/2 radians',
-       () => expect(Vec3.transformMat3([0, 0, 0], [0,0,-1], out)).toBeVec(1,0,0));
+        () => expect(Vec3.transformMat3([0, 0, 0], [0, 0, -1], out)).toBeVec(1, 0, 0));
     });
 
     describe('fromMat4', () => {
       beforeEach(() => {
-        result = Mat3.fromMat4(out, [ 1, 2, 3, 4,
-                                      5, 6, 7, 8,
-                                      9,10,11,12,
-                                     13,14,15,16]);
+        result = Mat3.fromMat4(out, [
+          1,   2,  3,  4,
+          5,   6,  7,  8,
+          9,  10, 11, 12,
+          13, 14, 15, 16]);
       });
 
       it('should return out', () => expect(result).toBe(out));
 
       it('should calculate proper Mat3', () => {
-        expect(out).toBeVec( 1, 2, 3,
-                             5, 6, 7,
-                             9,10,11);
+        expect(out).toBeVec(
+          1,  2,  3,
+          5,  6,  7,
+          9, 10, 11);
       });
     });
 
     describe('scale', () => {
-      beforeEach(() => { result = Mat3.scale(out, matA, [2,2]); });
+      beforeEach(() => { result = Mat3.scale(out, matA, [2, 2]); });
 
       it('should return out', () => expect(result).toBe(out));
       it('should place proper values in out', () => {
-        expect(out).toBeVec( 2, 0, 0,
-                             0, 2, 0,
-                             1, 2, 1);
+        expect(out).toBeVec(
+          2, 0, 0,
+          0, 2, 0,
+          1, 2, 1);
       });
     });
 
@@ -169,7 +177,7 @@ describe('Mat3', () => {
       beforeEach(() => { result = Mat3.create(); });
 
       it('should return a 9 element array initialized to a 3x3 identity matrix',
-       () => expect(result).toBeVec(identity));
+        () => expect(result).toBeVec(identity));
     });
 
     describe('clone', () => {
@@ -378,13 +386,13 @@ describe('Mat3', () => {
       beforeEach(() => { result = Mat3.str(matA); });
 
       it('should return a string representation of the matrix',
-       () => expect(result).toEqual('Mat3(1, 0, 0, 0, 1, 0, 1, 2, 1)'));
+        () => expect(result).toEqual('Mat3(1, 0, 0, 0, 1, 0, 1, 2, 1)'));
     });
 
     describe('frob', () => {
       beforeEach(() => { result = Mat3.frob(matA); });
 
-      it('should return the Frobenius Norm of the matrix', () => expect(result).toEqual( Math.sqrt(Math.pow(1, 2) +
+      it('should return the Frobenius Norm of the matrix', () => expect(result).toEqual(Math.sqrt(Math.pow(1, 2) +
        Math.pow(0, 2) + Math.pow(0, 2) + Math.pow(0, 2) + Math.pow(1, 2) + Math.pow(0, 2) + Math.pow(1, 2) +
         Math.pow(2, 2) + Math.pow(1, 2))));
     });
@@ -459,7 +467,7 @@ describe('Mat3', () => {
       beforeEach(() => { result = Mat3.fromValues(1, 2, 3, 4, 5, 6, 7, 8, 9); });
 
       it('should return a 9 element array initialized to the values passed',
-       () => expect(result).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        () => expect(result).toBeVec(1, 2, 3, 4, 5, 6, 7, 8, 9));
     });
 
     describe('set', () => {
@@ -526,14 +534,15 @@ describe('Mat3', () => {
       it('should return out', () => expect(result).toBe(out));
 
       it('should give projection matrix', () => {
-        expect(result).toBeVec(0.02,     0, 0,
-                                  0, -0.01, 0,
-                                 -1,     1, 1);
+        expect(result).toBeVec(
+          0.02,     0, 0,
+          0,    -0.01, 0,
+          -1,       1, 1);
       });
     });
 
     describe('exactEquals', () => {
-      let matC, r0, r1;
+      let matC: Mat3Like, r0: boolean, r1: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -550,7 +559,7 @@ describe('Mat3', () => {
     });
 
     describe('equals', () => {
-      let matC, matD, r0, r1, r2;
+      let matC: Mat3Like, matD: Mat3Like, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3, 4, 5, 6, 7, 8];

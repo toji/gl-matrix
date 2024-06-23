@@ -2,13 +2,15 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Mat2d } from '#gl-matrix/f64';
 
+import type { Mat2dLike, Vec2Like } from '#gl-matrix/types';
+
 describe('Mat2d', () => {
   describe('constructor', () => {
     it('should return an identity Mat2d if called with no arguments', () => {
       expect(new Mat2d()).toBeVec(
         1, 0,
         0, 1,
-        0, 0)
+        0, 0);
     });
 
     it('should return Mat2d(m0, m1, ...m5) if called with (m0, m1, ...m5)', () => {
@@ -16,9 +18,9 @@ describe('Mat2d', () => {
         1, 2,
         3, 4,
         5, 6)).toBeVec(
-          1, 2,
-          3, 4,
-          5, 6);
+        1, 2,
+        3, 4,
+        5, 6);
     });
 
     it('should return Mat2d(x, x, x, ...) if called with (x)', () => {
@@ -39,7 +41,7 @@ describe('Mat2d', () => {
     });
 
     it('should return Mat2d(m0, m1, ...m8) if called with (Mat2d(m0, m1, ...m9))', () => {
-      let v = new Mat2d(
+      const v = new Mat2d(
         1, 2,
         3, 4,
         5, 6);
@@ -47,7 +49,7 @@ describe('Mat2d', () => {
     });
 
     it('should return Mat2d(m0, m1, ...m8) if called with (Float64Array([m0, m1, ...m8]))', () => {
-      let arr = new Float64Array([
+      const arr = new Float64Array([
         1, 2,
         3, 4,
         5, 6]);
@@ -56,7 +58,8 @@ describe('Mat2d', () => {
   });
 
   describe('static', () => {
-    let out, matA, matB, oldA, oldB, identity, result;
+    let out: Mat2dLike, matA: Mat2dLike, matB: Mat2dLike, oldA: Mat2dLike, oldB: Mat2dLike,
+      identity: Mat2dLike, result: Mat2dLike | null | number | string;
 
     beforeEach(() => {
       matA = new Float64Array([1, 2,
@@ -79,7 +82,7 @@ describe('Mat2d', () => {
         0, 0,
         0, 0]);
 
-        identity = new Float64Array([1, 0,
+      identity = new Float64Array([1, 0,
         0, 1,
         0, 0]);
     });
@@ -88,7 +91,7 @@ describe('Mat2d', () => {
       beforeEach(() => { result = Mat2d.create(); });
 
       it('should return a 6 element array initialized to a 2x3 identity matrix',
-       () => expect(result).toBeVec(identity));
+        () => expect(result).toBeVec(identity));
     });
 
     describe('clone', () => {
@@ -115,7 +118,7 @@ describe('Mat2d', () => {
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat2d.invert(out, matA); });
 
-        it('should place values into out', () => expect(out).toBeVec( -2, 1, 1.5, -0.5, 1, -2 ));
+        it('should place values into out', () => expect(out).toBeVec(-2, 1, 1.5, -0.5, 1, -2));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify matA', () => expect(matA).toBeVec(oldA));
       });
@@ -123,7 +126,7 @@ describe('Mat2d', () => {
       describe('when matA is the output matrix', () => {
         beforeEach(() => { result = Mat2d.invert(matA, matA); });
 
-        it('should place values into matA', () => expect(matA).toBeVec( -2, 1, 1.5, -0.5, 1, -2 ));
+        it('should place values into matA', () => expect(matA).toBeVec(-2, 1, 1.5, -0.5, 1, -2));
         it('should return matA', () => expect(result).toBe(matA));
       });
     });
@@ -181,7 +184,7 @@ describe('Mat2d', () => {
     });
 
     describe('scale', () => {
-      let vecA;
+      let vecA: Vec2Like;
       beforeEach(() => { vecA = [2, 3]; });
 
       describe('with a separate output matrix', () => {
@@ -201,7 +204,7 @@ describe('Mat2d', () => {
     });
 
     describe('translate', () => {
-      let vecA;
+      let vecA: Vec2Like;
       beforeEach(() => { vecA = [2, 3]; });
 
       describe('with a separate output matrix', () => {
@@ -224,7 +227,7 @@ describe('Mat2d', () => {
       beforeEach(() => { result = Mat2d.str(matA); });
 
       it('should return a string representation of the matrix',
-       () => expect(result).toEqual('Mat2d(1, 2, 3, 4, 5, 6)'));
+        () => expect(result).toEqual('Mat2d(1, 2, 3, 4, 5, 6)'));
     });
 
     describe('frob', () => {
@@ -294,7 +297,7 @@ describe('Mat2d', () => {
       beforeEach(() => { result = Mat2d.fromValues(1, 2, 3, 4, 5, 6); });
 
       it('should return a 6 element array initialized to the values passed',
-       () => expect(result).toBeVec(1, 2, 3, 4, 5, 6));
+        () => expect(result).toBeVec(1, 2, 3, 4, 5, 6));
     });
 
     describe('set', () => {
@@ -349,7 +352,7 @@ describe('Mat2d', () => {
     });
 
     describe('exactEquals', () => {
-      let matC, r0, r1;
+      let matC: Mat2dLike, r0: boolean, r1: boolean;
       beforeEach(() => {
         matA = [0, 1, 2, 3, 4, 5];
         matB = [0, 1, 2, 3, 4, 5];
@@ -365,7 +368,7 @@ describe('Mat2d', () => {
     });
 
     describe('equals', () => {
-      let matC, matD, r0, r1, r2;
+      let matC: Mat2dLike, matD: Mat2dLike, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3, 4, 5];

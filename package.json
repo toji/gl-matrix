@@ -124,11 +124,11 @@
     "build-all": "npm run build && npm run types && npm run docs && npm run docs-cdn",
     "docs": "typedoc-pkg --api-link es",
     "docs-cdn": "typedoc-pkg --api-link es --output docs/cdn --typedoc typedoc-cdn.json",
+    "eslint": "eslint .",
     "gen64": "node scripts/gen-f64.js",
     "test": "vitest run",
     "test-ui": "vitest --ui --coverage",
-    "types": "esm-d-ts gen -c",
-    "build-test": "node scripts/test-build.js"
+    "types": "esm-d-ts gen -c"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -139,9 +139,11 @@
     "@vitest/coverage-v8": "^1.6.0",
     "@vitest/ui": "^1.6.0",
     "esbuild": "^0.21.0",
+    "eslint": "^9.5.0",
     "rollup": "^4.18.0",
     "typedoc": "0.25.12",
     "typescript": "^5.4.0",
+    "typescript-eslint": "rc-v8",
     "vitest": "^1.6.0"
   }
 }

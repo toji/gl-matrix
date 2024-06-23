@@ -19,8 +19,8 @@ export class Quat2 extends Float64Array {
    *
    * @category Constructor
    */
-   constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[]) {
-    switch(values.length) {
+  constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[]) {
+    switch (values.length) {
       case 8:
         super(values); break;
       case 2:
@@ -41,9 +41,9 @@ export class Quat2 extends Float64Array {
     }
   }
 
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
 
   /**
    * A string representation of `this`
@@ -55,9 +55,9 @@ export class Quat2 extends Float64Array {
     return Quat2.str(this);
   }
 
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
 
   /**
    * Copy the values from another {@link Quat2} into `this`.
@@ -71,9 +71,9 @@ export class Quat2 extends Float64Array {
     return this;
   }
 
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
 
   /**
    * @category Static
@@ -84,9 +84,9 @@ export class Quat2 extends Float64Array {
     return 8 * Float64Array.BYTES_PER_ELEMENT;
   }
 
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
 
   /**
    * Creates a new identity {@link Quat2}
@@ -124,7 +124,7 @@ export class Quat2 extends Float64Array {
    * @returns a new dual quaternion
    */
   static fromValues(x1: number, y1: number, z1: number, w1: number,
-                    x2: number, y2: number, z2: number, w2: number): Quat2 {
+    x2: number, y2: number, z2: number, w2: number): Quat2 {
     return new Quat2(x1, y1, z1, w1, x2, y2, z2, w2);
   }
 
@@ -142,7 +142,7 @@ export class Quat2 extends Float64Array {
    * @returns a new dual quaternion
    */
   static fromRotationTranslationValues(x1: number, y1: number, z1: number, w1: number,
-                                       x2: number, y2: number, z2: number): Quat2 {
+    x2: number, y2: number, z2: number): Quat2 {
     const ax = x2 * 0.5;
     const ay = y2 * 0.5;
     const az = z2 * 0.5;
@@ -151,7 +151,7 @@ export class Quat2 extends Float64Array {
       ax * w1 + ay * z1 - az * y1,
       ay * w1 + az * x1 - ax * z1,
       az * w1 + ax * y1 - ay * x1,
-     -ax * x1 - ay * y1 - az * z1);
+      -ax * x1 - ay * y1 - az * z1);
   }
 
   /**
@@ -291,7 +291,7 @@ export class Quat2 extends Float64Array {
    * @returns `out`
    */
   static set(out: Quat2Like, x1: number, y1: number, z1: number, w1: number,
-                             x2: number, y2: number, z2: number, w2: number): Quat2Like {
+    x2: number, y2: number, z2: number, w2: number): Quat2Like {
     out[0] = x1;
     out[1] = y1;
     out[2] = z1;
@@ -603,13 +603,13 @@ export class Quat2 extends Float64Array {
    * @returns `out`
    */
   static rotateAroundAxis(out: Quat2Like, a: Readonly<Quat2Like>, axis: Readonly<Vec3Like>, rad: number): Quat2Like {
-    //Special case for rad = 0
+    // Special case for rad = 0
     if (Math.abs(rad) < GLM_EPSILON) {
       return Quat2.copy(out, a);
     }
     const axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
 
-    rad = rad * 0.5;
+    rad *= 0.5;
     const s = Math.sin(rad);
     const bx = (s * axis[0]) / axisLength;
     const by = (s * axis[1]) / axisLength;
@@ -731,6 +731,7 @@ export class Quat2 extends Float64Array {
    * Alias for {@link Quat2.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like { return out; }
 
   /**
@@ -762,6 +763,7 @@ export class Quat2 extends Float64Array {
    * @param b - the second operand
    * @returns dot product of a and b
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dot(a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): number { return 0; }
 
   /**
@@ -777,7 +779,7 @@ export class Quat2 extends Float64Array {
    */
   static lerp(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>, t: number): Quat2Like {
     const mt = 1 - t;
-    if (Quat2.dot(a, b) < 0) t = -t;
+    if (Quat2.dot(a, b) < 0) { t = -t; }
 
     out[0] = a[0] * mt + b[0] * t;
     out[1] = a[1] * mt + b[1] * t;
@@ -813,8 +815,8 @@ export class Quat2 extends Float64Array {
   }
 
   /**
-   * Calculates the conjugate of a {@link Quat2}
-   * If the dual quaternion is normalized, this function is faster than {@link Quat2.invert} and produces the same result.
+   * Calculates the conjugate of a {@link Quat2}. If the dual quaternion is normalized, this function is faster than
+   * {@link Quat2.invert} and produces the same result.
    * @category Static
    *
    * @param out - the receiving dual quaternion
@@ -840,28 +842,29 @@ export class Quat2 extends Float64Array {
    * @param a - dual quaternion to calculate length of
    * @returns length of `a`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static magnitude(a: Readonly<Quat2Like>): number { return 0; }
 
   /**
    * Alias for {@link Quat2.magnitude}
    * @category Static
    */
-  static mag(a: Readonly<Quat2Like>): number { return 0; }
+  static mag(a: Readonly<Quat2Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Alias for {@link Quat2.magnitude}
    * @category Static
    * @deprecated Use {@link Quat2.magnitude} to avoid conflicts with builtin `length` methods/attribs
    */
-  // @ts-ignore: Length conflicts with Function.length
-  static length(a: Readonly<Quat2Like>): number { return 0; }
+  // Length conflicts with Function.length
+  static length(a: Readonly<Quat2Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Alias for {@link Quat2.magnitude}
    * @category Static
    * @deprecated Use {@link Quat2.mag}
    */
-  static len(a: Readonly<Quat2Like>): number { return 0; }
+  static len(a: Readonly<Quat2Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Calculates the squared length of a {@link Quat2}
@@ -870,13 +873,14 @@ export class Quat2 extends Float64Array {
    * @param a - dual quaternion to calculate squared length of
    * @returns squared length of a
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static squaredLength(a: Readonly<Quat2Like>): number { return 0; }
 
   /**
    * Alias for {@link Quat2.squaredLength}
    * @category Static
    */
-  static sqrLen(a: Readonly<Quat2Like>): number { return 0; }
+  static sqrLen(a: Readonly<Quat2Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Normalize a {@link Quat2}
@@ -928,7 +932,7 @@ export class Quat2 extends Float64Array {
   }
 
   /**
-   * Returns whether or not the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first dual quaternion.
@@ -949,7 +953,7 @@ export class Quat2 extends Float64Array {
   }
 
   /**
-   * Returns whether or not the {@link Quat2}s have approximately the same elements in the same position.
+   * Returns whether the {@link Quat2}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first dual quaternion.
@@ -987,17 +991,17 @@ export class Quat2 extends Float64Array {
 }
 
 // Methods which re-use the Quat implementation
-// @ts-ignore
+// @ts-expect-error: Ignore type error coercion.
 Quat2.dot = Quat.dot;
-// @ts-ignore
+// @ts-expect-error: Ignore type error coercion.
 Quat2.squaredLength = Quat.squaredLength;
-// @ts-ignore
+// @ts-expect-error: Ignore type error coercion.
 Quat2.sqrLen = Quat.squaredLength;
-// @ts-ignore
+// @ts-expect-error: Ignore type error coercion.
 Quat2.mag = Quat.magnitude;
-// @ts-ignore
+// @ts-expect-error: Ignore type error coercion.
 Quat2.length = Quat.magnitude;
-// @ts-ignore
+// @ts-expect-error: Ignore type error coercion.
 Quat2.len = Quat.magnitude;
 
 // Static method alias assignments

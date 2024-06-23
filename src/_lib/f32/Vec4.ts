@@ -12,7 +12,7 @@ export class Vec4 extends Float32Array {
    * @category Constructor
    */
   constructor(...values: [Readonly<Vec4Like> | ArrayBufferLike, number?] | number[]) {
-    switch(values.length) {
+    switch (values.length) {
       case 4:
         super(values); break;
       case 2:
@@ -31,9 +31,9 @@ export class Vec4 extends Float32Array {
     }
   }
 
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
 
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
@@ -131,9 +131,9 @@ export class Vec4 extends Float32Array {
     return Vec4.str(this);
   }
 
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
 
   /**
    * Copy the values from another {@link Vec4} into `this`.
@@ -171,7 +171,7 @@ export class Vec4 extends Float32Array {
    * @param b - The vector to subtract from `this`
    * @returns `this`
    */
-   subtract(b: Readonly<Vec4Like>): this {
+  subtract(b: Readonly<Vec4Like>): this {
     this[0] -= b[0];
     this[1] -= b[1];
     this[2] -= b[2];
@@ -183,7 +183,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.subtract}
    * @category Methods
    */
-  sub(b: Readonly<Vec4Like>): this { return this; }
+  sub(b: Readonly<Vec4Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Multiplies `this` by a {@link Vec4}.
@@ -205,7 +205,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.multiply}
    * @category Methods
    */
-  mul(b: Readonly<Vec4Like>): this { return this; }
+  mul(b: Readonly<Vec4Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Divides `this` by a {@link Vec4}.
@@ -227,7 +227,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.divide}
    * @category Methods
    */
-  div(b: Readonly<Vec4Like>): this { return this; }
+  div(b: Readonly<Vec4Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Scales `this` by a scalar number.
@@ -278,7 +278,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.distance}
    * @category Methods
    */
-  dist(b: Readonly<Vec4Like>): number { return 0; }
+  dist(b: Readonly<Vec4Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Calculates the squared Euclidean distance between another {@link Vec4} and `this`.
@@ -296,7 +296,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.squaredDistance}
    * @category Methods
    */
-  sqrDist(b: Readonly<Vec4Like>): number { return 0; }
+  sqrDist(b: Readonly<Vec4Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Negates the components of `this`.
@@ -366,9 +366,9 @@ export class Vec4 extends Float32Array {
     return Vec4.normalize(this, this) as this;
   }
 
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
 
   /**
    * @category Static
@@ -379,9 +379,9 @@ export class Vec4 extends Float32Array {
     return 4 * Float32Array.BYTES_PER_ELEMENT;
   }
 
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
 
   /**
    * Creates a new, empty {@link Vec4}
@@ -491,6 +491,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like { return out; }
 
   /**
@@ -514,6 +515,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like { return out; }
 
   /**
@@ -537,6 +539,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.divide}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like { return out; }
 
   /**
@@ -675,6 +678,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dist(a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): number { return 0; }
 
   /**
@@ -696,6 +700,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.squaredDistance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrDist(a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): number { return 0; }
 
   /**
@@ -716,22 +721,22 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.magnitude}
    * @category Static
    */
-  static mag(a: Readonly<Vec4Like>): number { return 0; }
+  static mag(a: Readonly<Vec4Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Alias for {@link Vec4.magnitude}
    * @category Static
    * @deprecated Use {@link Vec4.magnitude} to avoid conflicts with builtin `length` methods/attribs
    */
-  // @ts-ignore: Length conflicts with Function.length
-  static length(a: Readonly<Vec4Like>): number { return 0; }
+  // Length conflicts with Function.length
+  static length(a: Readonly<Vec4Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Alias for {@link Vec4.magnitude}
    * @category Static
    * @deprecated Use {@link Vec4.mag}
    */
-  static len(a: Readonly<Vec4Like>): number { return 0; }
+  static len(a: Readonly<Vec4Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Calculates the squared length of a {@link Vec4}
@@ -752,7 +757,7 @@ export class Vec4 extends Float32Array {
    * Alias for {@link Vec4.squaredLength}
    * @category Static
    */
-  static sqrLen(a: Readonly<Vec4Like>): number { return 0; }
+  static sqrLen(a: Readonly<Vec4Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Negates the components of a {@link Vec4}
@@ -898,7 +903,8 @@ export class Vec4 extends Float32Array {
    * @param [scale] - Length of the resulting vector. If ommitted, a unit vector will be returned
    * @returns `out`
    */
-  /*static random(out: Vec4Like, scale): Vec4Like {
+  /*
+    static random(out: Vec4Like, scale): Vec4Like {
     scale = scale || 1.0;
 
     // Marsaglia, George. Choosing a Point from the Surface of a
@@ -1005,7 +1011,7 @@ export class Vec4 extends Float32Array {
   }
 
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -1017,7 +1023,7 @@ export class Vec4 extends Float32Array {
   }
 
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -1043,11 +1049,11 @@ export class Vec4 extends Float32Array {
 }
 
 // Instance method alias assignments
-Vec4.prototype.sub = Vec4.prototype.subtract;
-Vec4.prototype.mul = Vec4.prototype.multiply;
-Vec4.prototype.div = Vec4.prototype.divide;
-Vec4.prototype.dist = Vec4.prototype.distance;
-Vec4.prototype.sqrDist = Vec4.prototype.squaredDistance;
+Vec4.prototype.sub = Vec4.prototype.subtract;             // eslint-disable-line @typescript-eslint/unbound-method
+Vec4.prototype.mul = Vec4.prototype.multiply;             // eslint-disable-line @typescript-eslint/unbound-method
+Vec4.prototype.div = Vec4.prototype.divide;               // eslint-disable-line @typescript-eslint/unbound-method
+Vec4.prototype.dist = Vec4.prototype.distance;            // eslint-disable-line @typescript-eslint/unbound-method
+Vec4.prototype.sqrDist = Vec4.prototype.squaredDistance;  // eslint-disable-line @typescript-eslint/unbound-method
 
 // Static method alias assignments
 Vec4.sub = Vec4.subtract;

@@ -15,10 +15,10 @@ in the next beta release.
 
 ---
 
-There are multiple distribution methods to utilize `gl-matrix` from legacy module systems like 
-[RequireJS](https://requirejs.org/) to modern ES Module (ESM) oriented CDNs. If you are not using Node / NPM and 
-bundling `gl-matrix` directly into your project / product various pre-built versions are available on most CDNs that 
-automatically make NPM package available for consumption online in a web application deployment. 
+There are multiple distribution methods to utilize `gl-matrix` from legacy module systems like
+[RequireJS](https://requirejs.org/) to modern ES Module (ESM) oriented CDNs. If you are not using Node / NPM and
+bundling `gl-matrix` directly into your project / product various pre-built versions are available on most CDNs that
+automatically make NPM package available for consumption online in a web application deployment.
 
 Pre-built ESM and ES5 / UMD bundles are available in the `/dist-cdn` directory checked into the `gl-matrix` repo.
 The `gl-matrix/cdn` and `gl-matrix/cdn/f64` exports are linked to the types and pre-built all-inclusive CDN ESM

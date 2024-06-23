@@ -1,6 +1,15 @@
 import { expect } from 'vitest';
 
-import type { FloatArray, Quat2Like, Vec2Like, Vec3Like, Vec4Like } from '#gl-matrix/types';
+import type {
+  FloatArray,
+  Quat2Like,
+  Mat2Like,
+  Mat2dLike,
+  Mat3Like,
+  Mat4Like,
+  Vec2Like,
+  Vec3Like,
+  Vec4Like } from '#gl-matrix/types';
 
 /** Less precision than `GSM_EPSILON` from #gl-matrix/common. */
 const TEST_EPSILON = 0.00001;
@@ -11,7 +20,8 @@ interface MatcherResult {
 }
 
 expect.extend({
-  toBeVec(received: FloatArray, ...expected: number[] | [FloatArray] | [Vec2Like] | [Vec3Like] | [Vec4Like]):
+  toBeVec(received: FloatArray, ...expected: number[] | [FloatArray] | [Mat2Like] | [Mat2dLike] | [Mat3Like] |
+    [Mat4Like] | [Vec2Like] | [Vec3Like] | [Vec4Like]):
    MatcherResult {
     let values: number[] | FloatArray;
     if (expected[0] instanceof Float32Array || expected[0] instanceof Float64Array) {
@@ -23,15 +33,15 @@ expect.extend({
       return ({
         pass: false,
         message: () => `Expected (${received}) and (${values}) to have the same length. (${
-         received.length} != ${values.length})`
+          received.length} != ${values.length})`
       });
     }
-    for(let i = 0; i < values.length; ++i) {
-      if(Math.abs(received[i] - values[i]) >= TEST_EPSILON) {
+    for (let i = 0; i < values.length; ++i) {
+      if (Math.abs(received[i] - values[i]) >= TEST_EPSILON) {
         return ({
           pass: false,
           message: () => `Expected (${received}) to be (${values}), but value[${i}] is not within tolerance. (${
-           received[i]} != ${values[i]})`
+            received[i]} != ${values[i]})`
         });
       }
     }
@@ -42,7 +52,7 @@ expect.extend({
     });
   },
 
-  //Dual quaternions are very special & unique snowflakes
+  // Dual quaternions are very special & unique snowflakes
   toBeQuat2(received: FloatArray, ...expected: number[] | [FloatArray] | [Quat2Like]): MatcherResult {
     let values: number[] | FloatArray;
     if (expected[0] instanceof Float32Array || expected[0] instanceof Float64Array) {
@@ -56,7 +66,7 @@ expect.extend({
       return ({
         pass: false,
         message: () => `Expected (${received}) and (${values}) to have the same length. (${
-         received.length} != ${values.length})`
+          received.length} != ${values.length})`
       });
     }
 
@@ -65,7 +75,7 @@ expect.extend({
         return ({
           pass: false,
           message: () => `Expected (${received}) and (${values}) to be equalish. (${
-           received.length} != ${values.length})`
+            received.length} != ${values.length})`
         });
       }
 
@@ -74,7 +84,7 @@ expect.extend({
           return ({
             pass: false,
             message: () => `Expected (${received}) and (${values}) to be equalish. (${
-             received.length} != ${values.length})`
+              received.length} != ${values.length})`
           });
         }
       } else {

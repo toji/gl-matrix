@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Quat, Vec3 } from '#gl-matrix/f64';
 
-import type { Vec3Like, QuatLike } from '#gl-matrix/types';
+import type { Vec3Like, Vec4Like, QuatLike } from '#gl-matrix/types';
 
 describe('Quat', () => {
   describe('constructor', () => {
@@ -24,21 +24,21 @@ describe('Quat', () => {
     });
 
     it('should return Quat(x, y, z, w) if called with (Quat(x, y, z, w))', () => {
-      let v = new Quat(3.4, 5.6, 7.8, 9);
+      const v = new Quat(3.4, 5.6, 7.8, 9);
       expect(new Quat(v)).toBeVec(v);
     });
 
     it('should return Quat(x, y, z, w) if called with (Float64Array([x, y, z, w]))', () => {
-      let arr = new Float64Array([1.2, 3.4, 5.6, 7.8]);
+      const arr = new Float64Array([1.2, 3.4, 5.6, 7.8]);
       expect(new Quat(arr)).toBeVec(arr);
     });
   });
 
   describe('static', () => {
-    let out: Quat
+    let out: Quat;
     let quatA: QuatLike;
     let quatB: QuatLike;
-    let result: any;
+    let result: Vec4Like | number | string;
     let vec: Vec3Like;
 
     const id = new Quat(0, 0, 0, 1);
@@ -68,11 +68,11 @@ describe('Quat', () => {
 
       describe('where theta == 180deg', () => {
         beforeEach(() => {
-          Quat.rotateX(quatA, [1,0,0,0], Math.PI); // 180 deg
-          result = Quat.slerp(out, [1,0,0,0], quatA, 1);
+          Quat.rotateX(quatA, [1, 0, 0, 0], Math.PI); // 180 deg
+          result = Quat.slerp(out, [1, 0, 0, 0], quatA, 1);
         });
 
-        it('should calculate proper quat', () => expect(result).toBeVec(0,0,0,-1));
+        it('should calculate proper quat', () => expect(result).toBeVec(0, 0, 0, -1));
       });
 
       describe('where a == -b', () => {
@@ -99,7 +99,7 @@ describe('Quat', () => {
         });
 
         it('should be the identity', () => expect(result).toBeVec(quatA));
-        it('should be normalized', () => expect(Quat.length(result)).toBeCloseTo(1));
+        it('should be normalized', () => expect(Quat.length(result as Vec4Like)).toBeCloseTo(1));
       });
 
       describe('squared', () => {
@@ -110,11 +110,11 @@ describe('Quat', () => {
         });
 
         it('should be the square', () => {
-          let reference = Quat.multiply(Quat.create(), quatA, quatA);
+          const reference = Quat.multiply(Quat.create(), quatA, quatA);
           expect(result).toBeVec(reference);
         });
 
-        it('should be normalized', () => expect(Quat.length(result)).toBeCloseTo(1));
+        it('should be normalized', () => expect(Quat.length(result as Vec4Like)).toBeCloseTo(1));
       });
 
       describe('conjugate', () => {
@@ -125,23 +125,23 @@ describe('Quat', () => {
         });
 
         it('should be the conjugate', () => {
-          let reference = Quat.conjugate(Quat.create(), quatA);
+          const reference = Quat.conjugate(Quat.create(), quatA);
           expect(result).toBeVec(reference);
         });
-        it('should be normalized', () => expect(Quat.length(result)).toBeCloseTo(1));
+        it('should be normalized', () => expect(Quat.length(result as Vec4Like)).toBeCloseTo(1));
       });
 
       describe('reversible', () => {
         beforeEach(() => {
           Quat.normalize(quatA, quatA);
 
-          let b = 2.1; // random number
+          const b = 2.1; // random number
           result = Quat.pow(out, quatA, b);
-          result = Quat.pow(out, result, 1/b);
+          result = Quat.pow(out, result, 1 / b);
         });
 
         it('should be reverted', () => expect(result).toBeVec(quatA));
-        it('should be normalized', () => expect(Quat.length(result)).toBeCloseTo(1));
+        it('should be normalized', () => expect(Quat.length(result as Vec4Like)).toBeCloseTo(1));
       });
     });
 
@@ -150,7 +150,7 @@ describe('Quat', () => {
 
       it('should return out', () => expect(result).toBe(out));
       it('should transform vec accordingly', () => {
-        Vec3.transformQuat(vec, [0,0,-1], out);
+        Vec3.transformQuat(vec, [0, 0, -1], out);
         expect(vec).toBeVec(0, 1, 0);
       });
     });
@@ -160,7 +160,7 @@ describe('Quat', () => {
 
       it('should return out', () => expect(result).toBe(out));
       it('should transform vec accordingly', () => {
-        Vec3.transformQuat(vec, [0,0,-1], out);
+        Vec3.transformQuat(vec, [0, 0, -1], out);
         expect(vec).toBeVec(-1, 0, 0);
       });
     });
@@ -170,12 +170,13 @@ describe('Quat', () => {
 
       it('should return out', () => expect(result).toBe(out));
       it('should transform vec accordingly', () => {
-        Vec3.transformQuat(vec, [0,1,0], out);
+        Vec3.transformQuat(vec, [0, 1, 0], out);
         expect(vec).toBeVec(-1, 0, 0);
       });
     });
 
-    /*describe('fromMat3', () => {
+    /*
+      describe('fromMat3', () => {
       let matr;
 
       describe('legacy', () => {
@@ -259,11 +260,12 @@ describe('Quat', () => {
         it('should return out', () => expect(result).toBe(out));
 
         it('should produce the correct transformation',
-         () => expect(Vec3.transformQuat([0, 0, 0], [0,1,0], out)).toBeVec(0,0,-1));
+          () => expect(Vec3.transformQuat([0, 0, 0], [0, 1, 0], out)).toBeVec(0, 0, -1));
       });
     });
 
-    /*describe('setAxes', () => {
+    /*
+      describe('setAxes', () => {
       let r;
       beforeEach(() => { r = Vec3.create(); });
 
@@ -317,7 +319,7 @@ describe('Quat', () => {
     });*/
 
     describe('rotationTo', () => {
-      let r;
+      let r: Vec3;
 
       beforeEach(() => { r = Vec3.create(); });
 
@@ -361,7 +363,7 @@ describe('Quat', () => {
       beforeEach(() => { result = Quat.create(); });
 
       it('should return a 4 element array initialized to an identity quaternion',
-       () => expect(result).toBeVec(0, 0, 0, 1));
+        () => expect(result).toBeVec(0, 0, 0, 1));
     });
 
     describe('clone', () => {
@@ -411,7 +413,7 @@ describe('Quat', () => {
         beforeEach(() => { result = Quat.setAxisAngle(out, [0, 1, 0], 0.0); angle = Quat.getAxisAngle(vec, out); });
 
         it('should return a multiple of 2*PI as the angle component',
-         () => expect(angle % (Math.PI * 2.0)).toBeCloseTo(0.0));
+          () => expect(angle % (Math.PI * 2.0)).toBeCloseTo(0.0));
       });
 
       describe('for a simple rotation about X axis', () => {
@@ -490,10 +492,10 @@ describe('Quat', () => {
 
         it('should be equalish', () => {
           // compute reference value as axisAngle of quatA^{-1} * quatB
-          let quatAInv = Quat.conjugate(Quat.create(), quatA);
-          let quatAB = Quat.multiply(quatAInv, quatAInv, quatB);
-          let dummy = Vec3.create();
-          let reference = Quat.getAxisAngle(dummy, quatAB);
+          const quatAInv = Quat.conjugate(Quat.create(), quatA);
+          const quatAB = Quat.multiply(quatAInv, quatAInv, quatB);
+          const dummy = Vec3.create();
+          const reference = Quat.getAxisAngle(dummy, quatAB);
 
           expect(Quat.getAngle(quatA, quatB)).toBeCloseTo(reference);
         });
@@ -660,7 +662,8 @@ describe('Quat', () => {
       });
     });
 
-    /*describe('random', () => {
+    /*
+      describe('random', () => {
       beforeEach(() => { result = Quat.random(out); });
 
       it('should result in a normalized quaternion', () => {
@@ -711,7 +714,7 @@ describe('Quat', () => {
     });
 
     describe('exactEquals', () => {
-      let quatC, r0, r1;
+      let quatC: Vec4Like, r0: boolean, r1: boolean;
 
       beforeEach(() => {
         quatA = [0, 1, 2, 3];
@@ -728,7 +731,7 @@ describe('Quat', () => {
     });
 
     describe('equals', () => {
-      let quatC, quatD, r0, r1, r2;
+      let quatC: Vec4Like, quatD: Vec4Like, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         quatA = [0, 1, 2, 3];

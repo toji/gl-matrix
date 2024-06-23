@@ -183,9 +183,9 @@
       }
       return _assertThisInitialized(_this);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     /**
      * A string representation of `this`
      * Equivalent to `Mat2.str(this);`
@@ -198,9 +198,9 @@
       get: function get() {
         return _Mat2.str(this);
       }
-      //===================
+      // ===================
       // Instance methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Mat2} into `this`.
        *
@@ -249,6 +249,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Transpose this {@link Mat2}
        * Equivalent to `Mat2.transpose(this, this);`
@@ -299,9 +300,9 @@
       value: function rotate(rad) {
         return _Mat2.rotate(this, this, rad);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -312,9 +313,9 @@
       get: function get() {
         return 4 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, identity {@link Mat2}
        * @category Static
@@ -432,7 +433,7 @@
        *
        * @param out - the receiving matrix
        * @param a - the source matrix
-       * @returns `out` or `null` if the matrix is not invertable
+       * @returns `out` or `null` if the matrix is not invertible
        */
     }, {
       key: "invert",
@@ -522,6 +523,7 @@
        * Alias for {@link Mat2.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -557,6 +559,7 @@
        * Alias for {@link Mat2.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -813,9 +816,9 @@
       }
       return _assertThisInitialized(_this2);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     /**
      * A string representation of `this`
      * Equivalent to `Mat2d.str(this);`
@@ -828,9 +831,9 @@
       get: function get() {
         return _Mat2d.str(this);
       }
-      //===================
+      // ===================
       // Instances methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Mat2d} into `this`.
        * @category Methods
@@ -881,6 +884,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Translate this {@link Mat2d} by the given vector
        * Equivalent to `Mat2d.translate(this, this, v);`
@@ -920,9 +924,9 @@
       value: function scale(v) {
         return _Mat2d.scale(this, this, v);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -933,9 +937,9 @@
       get: function get() {
         return 6 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, identity {@link Mat2d}
        * @category Static
@@ -1036,7 +1040,7 @@
        *
        * @param out - the receiving matrix
        * @param a - the source matrix
-       * @returns `out` or `null` if the matrix is not invertable
+       * @returns `out` or `null` if the matrix is not invertible
        */
     }, {
       key: "invert",
@@ -1116,6 +1120,7 @@
        * Alias for {@link Mat2d.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -1157,6 +1162,7 @@
        * Alias for {@link Mat2d.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -1250,9 +1256,10 @@
       /**
        * Creates a {@link Mat2d} from a vector translation
        * This is equivalent to (but much faster than):
-       *
-       *     Mat2d.identity(dest);
-       *     Mat2d.translate(dest, dest, vec);
+       * ```js
+       *   Mat2d.identity(dest);
+       *   Mat2d.translate(dest, dest, vec);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat2d} receiving operation result
@@ -1273,9 +1280,10 @@
       /**
        * Creates a {@link Mat2d} from a given angle around a given axis
        * This is equivalent to (but much faster than):
-       *
-       *     Mat2d.identity(dest);
-       *     Mat2d.rotate(dest, dest, rad);
+       * ```js
+       *   Mat2d.identity(dest);
+       *   Mat2d.rotate(dest, dest, rad);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat2d} receiving operation result
@@ -1298,9 +1306,10 @@
       /**
        * Creates a {@link Mat2d} from a vector scaling
        * This is equivalent to (but much faster than):
-       *
-       *     Mat2d.identity(dest);
-       *     Mat2d.scale(dest, dest, vec);
+       * ```js
+       *   Mat2d.identity(dest);
+       *   Mat2d.scale(dest, dest, vec);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat2d} receiving operation result
@@ -1372,7 +1381,7 @@
         return out;
       }
       /**
-       * Returns whether or not two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===)
+       * Returns whether two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===).
        * @category Static
        *
        * @param a - The first matrix.
@@ -1385,7 +1394,7 @@
         return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5];
       }
       /**
-       * Returns whether or not two {@link Mat2d}s have approximately the same elements in the same position.
+       * Returns whether two {@link Mat2d}s have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first matrix.
@@ -1464,9 +1473,9 @@
       }
       return _assertThisInitialized(_this3);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     /**
      * A string representation of `this`
      * Equivalent to `Mat3.str(this);`
@@ -1479,9 +1488,9 @@
       get: function get() {
         return _Mat3.str(this);
       }
-      //===================
+      // ===================
       // Instance methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Mat3} into `this`.
        * @category Methods
@@ -1532,6 +1541,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Transpose this {@link Mat3}
        * Equivalent to `Mat3.transpose(this, this);`
@@ -1595,9 +1605,9 @@
       value: function scale(v) {
         return _Mat3.scale(this, this, v);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -1608,9 +1618,9 @@
       get: function get() {
         return 9 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, identity {@link Mat3}
        * @category Static
@@ -1754,7 +1764,7 @@
        *
        * @param out - the receiving matrix
        * @param a - the source matrix
-       * @returns `out` or `null` if the matrix is not invertable
+       * @returns `out` or `null` if the matrix is not invertible
        */
     }, {
       key: "invert",
@@ -1889,6 +1899,7 @@
        * Alias for {@link Mat3.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -1939,6 +1950,7 @@
        * Alias for {@link Mat3.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -2040,9 +2052,10 @@
       /**
        * Creates a {@link Mat3} from a vector translation
        * This is equivalent to (but much faster than):
-       *
-       *     mat3.identity(dest);
-       *     mat3.translate(dest, dest, vec);
+       * ```js
+       *   mat3.identity(dest);
+       *   mat3.translate(dest, dest, vec);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat3} receiving operation result
@@ -2094,9 +2107,10 @@
       /**
        * Creates a {@link Mat3} from a vector scaling
        * This is equivalent to (but much faster than):
-       *
-       *     mat3.identity(dest);
-       *     mat3.scale(dest, dest, vec);
+       * ```js
+       *   mat3.identity(dest);
+       *   mat3.scale(dest, dest, vec);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat3} receiving operation result
@@ -2207,7 +2221,7 @@
        *
        * @param {mat3} out mat3 receiving operation result
        * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-       * @returns `out` or `null` if the matrix is not invertable
+       * @returns `out` or `null` if the matrix is not invertible
        */
     }, {
       key: "normalFromMat4",
@@ -2373,7 +2387,7 @@
         return out;
       }
       /**
-       * Returns whether or not two {@link Mat3}s have exactly the same elements in the same position (when compared with ===)
+       * Returns whether two {@link Mat3}s have exactly the same elements in the same position (when compared with ===).
        * @category Static
        *
        * @param a - The first matrix.
@@ -2386,7 +2400,7 @@
         return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && a[8] === b[8];
       }
       /**
-       * Returns whether or not two {@link Mat3}s have approximately the same elements in the same position.
+       * Returns whether two {@link Mat3}s have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first matrix.
@@ -2472,9 +2486,9 @@
       }
       return _assertThisInitialized(_this4);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     /**
      * A string representation of `this`
      * Equivalent to `Mat4.str(this);`
@@ -2487,9 +2501,9 @@
       get: function get() {
         return _Mat4.str(this);
       }
-      //===================
+      // ===================
       // Instance methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Mat4} into `this`.
        * @category Methods
@@ -2538,6 +2552,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Transpose this {@link Mat4}
        * Equivalent to `Mat4.transpose(this, this);`
@@ -2719,9 +2734,9 @@
       value: function orthoZO(left, right, bottom, top, near, far) {
         return _Mat4.orthoZO(this, left, right, bottom, top, near, far);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -2732,9 +2747,9 @@
       get: function get() {
         return 16 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, identity {@link Mat4}
        * @category Static
@@ -2915,7 +2930,7 @@
        *
        * @param out - the receiving matrix
        * @param a - the source matrix
-       * @returns `out` or `null` if the matrix is not invertable
+       * @returns `out` or `null` if the matrix is not invertible
        */
     }, {
       key: "invert",
@@ -3132,6 +3147,7 @@
        * Alias for {@link Mat4.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -3419,9 +3435,10 @@
       /**
        * Creates a {@link Mat4} from a vector translation
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.translate(dest, dest, vec);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.translate(dest, dest, vec);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat4} receiving operation result
@@ -3452,9 +3469,10 @@
       /**
        * Creates a {@link Mat4} from a vector scaling
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.scale(dest, dest, vec);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.scale(dest, dest, vec);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat4} receiving operation result
@@ -3485,9 +3503,10 @@
       /**
        * Creates a {@link Mat4} from a given angle around a given axis
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.rotate(dest, dest, rad, axis);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.rotate(dest, dest, rad, axis);
+       * ```
        * @category Static
        *
        * @param out - {@link Mat4} receiving operation result
@@ -3533,9 +3552,10 @@
       /**
        * Creates a matrix from the given angle around the X axis
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.rotateX(dest, dest, rad);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.rotateX(dest, dest, rad);
+       * ```
        * @category Static
        *
        * @param out - mat4 receiving operation result
@@ -3568,9 +3588,10 @@
       /**
        * Creates a matrix from the given angle around the Y axis
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.rotateY(dest, dest, rad);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.rotateY(dest, dest, rad);
+       * ```
        * @category Static
        *
        * @param out - mat4 receiving operation result
@@ -3603,9 +3624,10 @@
       /**
        * Creates a matrix from the given angle around the Z axis
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.rotateZ(dest, dest, rad);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.rotateZ(dest, dest, rad);
+       * ```
        * @category Static
        *
        * @param out - mat4 receiving operation result
@@ -3638,12 +3660,13 @@
       /**
        * Creates a matrix from a quaternion rotation and vector translation
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.translate(dest, vec);
-       *     let quatMat = mat4.create();
-       *     quat4.toMat4(quat, quatMat);
-       *     mat4.multiply(dest, quatMat);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.translate(dest, vec);
+       *   let quatMat = mat4.create();
+       *   quat4.toMat4(quat, quatMat);
+       *   mat4.multiply(dest, quatMat);
+       * ```
        * @category Static
        *
        * @param out - mat4 receiving operation result
@@ -3726,7 +3749,7 @@
        *
        * @param out - Matrix receiving operation result
        * @param a - Mat4 to derive the normal matrix from
-       * @returns `out` or `null` if the matrix is not invertable
+       * @returns `out` or `null` if the matrix is not invertible
        */
     }, {
       key: "normalFromMat4",
@@ -4000,13 +4023,14 @@
       /**
        * Creates a matrix from a quaternion rotation, vector translation and vector scale
        * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.translate(dest, vec);
-       *     let quatMat = mat4.create();
-       *     quat4.toMat4(quat, quatMat);
-       *     mat4.multiply(dest, quatMat);
-       *     mat4.scale(dest, scale);
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.translate(dest, vec);
+       *   let quatMat = mat4.create();
+       *   quat4.toMat4(quat, quatMat);
+       *   mat4.multiply(dest, quatMat);
+       *   mat4.scale(dest, scale);
+       * ```
        * @category Static
        *
        * @param out - mat4 receiving operation result
@@ -4056,17 +4080,18 @@
         return out;
       }
       /**
-       * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
-       * This is equivalent to (but much faster than):
-       *
-       *     mat4.identity(dest);
-       *     mat4.translate(dest, vec);
-       *     mat4.translate(dest, origin);
-       *     let quatMat = mat4.create();
-       *     quat4.toMat4(quat, quatMat);
-       *     mat4.multiply(dest, quatMat);
-       *     mat4.scale(dest, scale)
-       *     mat4.translate(dest, negativeOrigin);
+       * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the
+       * given origin. This is equivalent to (but much faster than):
+       * ```js
+       *   mat4.identity(dest);
+       *   mat4.translate(dest, vec);
+       *   mat4.translate(dest, origin);
+       *   let quatMat = mat4.create();
+       *   quat4.toMat4(quat, quatMat);
+       *   mat4.multiply(dest, quatMat);
+       *   mat4.scale(dest, scale)
+       *   mat4.translate(dest, negativeOrigin);
+       * ```
        * @category Static
        *
        * @param out - mat4 receiving operation result
@@ -4229,6 +4254,7 @@
       value: function frustum(out, left, right, bottom, top, near) {
         return out;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Generates a frustum matrix with the given bounds
        * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
@@ -4323,6 +4349,7 @@
        * @category Static
        * @deprecated Use {@link Mat4.perspectiveNO} or {@link Mat4.perspectiveZO} explicitly
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "perspective",
       value: function perspective(out, fovy, aspect, near) {
@@ -4372,9 +4399,8 @@
         return out;
       }
       /**
-       * Generates a perspective projection matrix with the given field of view.
-       * This is primarily useful for generating projection matrices to be used
-       * with the still experiemental WebVR API.
+       * Generates a perspective projection matrix with the given field of view. This is primarily useful for generating
+       * projection matrices to be used with the still experimental WebVR API.
        * @category Static
        *
        * @param out - mat4 frustum matrix will be written into
@@ -4412,9 +4438,8 @@
         return out;
       }
       /**
-       * Generates a orthogonal projection matrix with the given bounds.
-       * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
-       * which matches WebGL/OpenGL's clip volume.
+       * Generates an orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
+       * normalized device coordinate Z range of [-1, 1], which matches WebGL / OpenGLs clip volume.
        * @category Static
        *
        * @param out - mat4 frustum matrix will be written into
@@ -4455,15 +4480,15 @@
        * @category Static
        * @deprecated Use {@link Mat4.orthoNO} or {@link Mat4.orthoZO} explicitly
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "ortho",
       value: function ortho(out, left, right, bottom, top, near, far) {
         return out;
       }
       /**
-       * Generates a orthogonal projection matrix with the given bounds.
-       * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
-       * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+       * Generates a orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
+       * normalized device coordinate Z range of [0, 1], which matches WebGPU / Vulkan / DirectX / Metal's clip volume.
        * @category Static
        *
        * @param out - mat4 frustum matrix will be written into
@@ -4500,8 +4525,8 @@
         return out;
       }
       /**
-       * Generates a look-at matrix with the given eye position, focal point, and up axis.
-       * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
+       * Generates a look-at matrix with the given eye position, focal point, and up axis. If you want a matrix that
+       * actually makes an object look at another object, you should use targetTo instead.
        * @category Static
        *
        * @param out - mat4 frustum matrix will be written into
@@ -4711,6 +4736,7 @@
        * Alias for {@link Mat4.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -4778,7 +4804,7 @@
         return out;
       }
       /**
-       * Returns whether or not two {@link Mat4}s have exactly the same elements in the same position (when compared with ===)
+       * Returns whether two {@link Mat4}s have exactly the same elements in the same position (when compared with ===).
        * @category Static
        *
        * @param a - The first matrix.
@@ -4791,7 +4817,7 @@
         return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && a[8] === b[8] && a[9] === b[9] && a[10] === b[10] && a[11] === b[11] && a[12] === b[12] && a[13] === b[13] && a[14] === b[14] && a[15] === b[15];
       }
       /**
-       * Returns whether or not two {@link Mat4}s have approximately the same elements in the same position.
+       * Returns whether two {@link Mat4}s have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first matrix.
@@ -4901,9 +4927,9 @@
       }
       return _assertThisInitialized(_this5);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     // Getters and setters to make component access read better.
     // These are likely to be a little bit slower than direct array access.
     /**
@@ -5043,9 +5069,9 @@
       get: function get() {
         return _Vec3.str(this);
       }
-      //===================
+      // ===================
       // Instances methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Vec3} into `this`.
        * @category Methods
@@ -5100,6 +5126,7 @@
       value: function sub(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Multiplies `this` by a {@link Vec3}.
        * Equivalent to `Vec3.multiply(this, this, b);`
@@ -5125,6 +5152,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Divides `this` by a {@link Vec3}.
        * Equivalent to `Vec3.divide(this, this, b);`
@@ -5150,6 +5178,7 @@
       value: function div(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Scales `this` by a scalar number.
        * Equivalent to `Vec3.scale(this, this, b);`
@@ -5205,6 +5234,7 @@
       value: function dist(b) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared Euclidean distance between another {@link Vec3} and `this`.
        * Equivalent to `Vec3.squaredDistance(this, b);`
@@ -5227,6 +5257,7 @@
       value: function sqrDist(b) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Negates the components of `this`.
        * Equivalent to `Vec3.negate(this, this);`
@@ -5297,9 +5328,9 @@
       value: function normalize() {
         return _Vec3.normalize(this, this);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -5310,9 +5341,9 @@
       get: function get() {
         return 3 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, empty vec3
        * @category Static
@@ -5360,6 +5391,7 @@
       value: function mag(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Vec3.magnitude}
        * @category Static
@@ -5368,12 +5400,13 @@
        * @param a - vector to calculate length of
        * @returns length of a
        */
-      // @ts-ignore: Length conflicts with Function.length
+      // Length conflicts with Function.length
     }, {
       key: "length",
       value: function length(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Vec3.magnitude}
        * @category Static
@@ -5384,6 +5417,7 @@
       value: function len(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Creates a new vec3 initialized with the given values
        * @category Static
@@ -5470,6 +5504,7 @@
        * Alias for {@link Vec3.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -5496,6 +5531,7 @@
        * Alias for {@link Vec3.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -5522,6 +5558,7 @@
        * Alias for {@link Vec3.divide}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "div",
       value: function div(out, a, b) {
@@ -5601,7 +5638,8 @@
        * @param a - vector to round
        * @returns `out`
        */
-      /*static round(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+      /*
+        static round(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
         out[0] = glMatrix.round(a[0]);
         out[1] = glMatrix.round(a[1]);
         out[2] = glMatrix.round(a[2]);
@@ -5662,6 +5700,7 @@
        * Alias for {@link Vec3.distance}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "dist",
       value: function dist(a, b) {
@@ -5687,6 +5726,7 @@
        * Alias for {@link Vec3.squaredDistance}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sqrDist",
       value: function sqrDist(a, b) {
@@ -5711,6 +5751,7 @@
        * Alias for {@link Vec3.squaredLength}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sqrLen",
       value: function sqrLen(a, b) {
@@ -5926,7 +5967,8 @@
        * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
        * @returns `out`
        */
-      /*static random(out: Vec3Like, scale) {
+      /*
+          static random(out: Vec3Like, scale) {
           scale = scale === undefined ? 1.0 : scale;
       
           let r = glMatrix.RANDOM() * 2.0 * Math.PI;
@@ -6126,7 +6168,7 @@
         return "Vec3(".concat(a.join(", "), ")");
       }
       /**
-       * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+       * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
        * @category Static
        *
        * @param a - The first vector.
@@ -6139,7 +6181,7 @@
         return a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
       }
       /**
-       * Returns whether or not the vectors have approximately the same elements in the same position.
+       * Returns whether the vectors have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first vector.
@@ -6210,9 +6252,9 @@
       }
       return _assertThisInitialized(_this6);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     // Getters and setters to make component access read better.
     // These are likely to be a little bit slower than direct array access.
     /**
@@ -6353,9 +6395,9 @@
       get: function get() {
         return _Vec4.str(this);
       }
-      //===================
+      // ===================
       // Instances methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Vec4} into `this`.
        * @category Methods
@@ -6412,6 +6454,7 @@
       value: function sub(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Multiplies `this` by a {@link Vec4}.
        * Equivalent to `Vec4.multiply(this, this, b);`
@@ -6438,6 +6481,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Divides `this` by a {@link Vec4}.
        * Equivalent to `Vec4.divide(this, this, b);`
@@ -6464,6 +6508,7 @@
       value: function div(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Scales `this` by a scalar number.
        * Equivalent to `Vec4.scale(this, this, b);`
@@ -6521,6 +6566,7 @@
       value: function dist(b) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared Euclidean distance between another {@link Vec4} and `this`.
        * Equivalent to `Vec4.squaredDistance(this, b);`
@@ -6543,6 +6589,7 @@
       value: function sqrDist(b) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Negates the components of `this`.
        * Equivalent to `Vec4.negate(this, this);`
@@ -6616,9 +6663,9 @@
       value: function normalize() {
         return _Vec4.normalize(this, this);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -6629,9 +6676,9 @@
       get: function get() {
         return 4 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, empty {@link Vec4}
        * @category Static
@@ -6747,6 +6794,7 @@
        * Alias for {@link Vec4.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -6774,6 +6822,7 @@
        * Alias for {@link Vec4.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -6801,6 +6850,7 @@
        * Alias for {@link Vec4.divide}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "div",
       value: function div(out, a, b) {
@@ -6951,6 +7001,7 @@
        * Alias for {@link Vec4.distance}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "dist",
       value: function dist(a, b) {
@@ -6977,6 +7028,7 @@
        * Alias for {@link Vec4.squaredDistance}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sqrDist",
       value: function sqrDist(a, b) {
@@ -7007,17 +7059,19 @@
       value: function mag(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Vec4.magnitude}
        * @category Static
        * @deprecated Use {@link Vec4.magnitude} to avoid conflicts with builtin `length` methods/attribs
        */
-      // @ts-ignore: Length conflicts with Function.length
+      // Length conflicts with Function.length
     }, {
       key: "length",
       value: function length(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Vec4.magnitude}
        * @category Static
@@ -7028,6 +7082,7 @@
       value: function len(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared length of a {@link Vec4}
        * @category Static
@@ -7053,6 +7108,7 @@
       value: function sqrLen(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Negates the components of a {@link Vec4}
        * @category Static
@@ -7202,7 +7258,8 @@
        * @param [scale] - Length of the resulting vector. If ommitted, a unit vector will be returned
        * @returns `out`
        */
-      /*static random(out: Vec4Like, scale): Vec4Like {
+      /*
+          static random(out: Vec4Like, scale): Vec4Like {
           scale = scale || 1.0;
       
           // Marsaglia, George. Choosing a Point from the Surface of a
@@ -7308,7 +7365,7 @@
         return "Vec4(".concat(a.join(", "), ")");
       }
       /**
-       * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+       * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
        * @category Static
        *
        * @param a - The first vector.
@@ -7321,7 +7378,7 @@
         return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
       }
       /**
-       * Returns whether or not the vectors have approximately the same elements in the same position.
+       * Returns whether the vectors have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first vector.
@@ -7396,9 +7453,9 @@
       }
       return _assertThisInitialized(_this7);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     // Getters and setters to make component access read better.
     // These are likely to be a little bit slower than direct array access.
     /**
@@ -7489,9 +7546,9 @@
       get: function get() {
         return _Quat.str(this);
       }
-      //===================
+      // ===================
       // Instances methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Quat} into `this`.
        * @category Methods
@@ -7543,6 +7600,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Rotates `this` by the given angle about the X axis
        * Equivalent to `Quat.rotateX(this, this, rad);`
@@ -7624,9 +7682,9 @@
       value: function dot(b) {
         return _Quat.dot(this, b);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -7637,9 +7695,9 @@
       get: function get() {
         return 4 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new identity quat
        * @category Static
@@ -7680,7 +7738,7 @@
     }, {
       key: "setAxisAngle",
       value: function setAxisAngle(out, axis, rad) {
-        rad = rad * 0.5;
+        rad *= 0.5;
         var s = Math.sin(rad);
         out[0] = s * axis[0];
         out[1] = s * axis[1];
@@ -7692,7 +7750,7 @@
        * Gets the rotation axis and angle for a given
        *  quaternion. If a quaternion is created with
        *  setAxisAngle, this method will return the same
-       *  values as providied in the original parameter list
+       *  values as provided in the original parameter list
        *  OR functionally equivalent values.
        * Example: The quaternion formed by axis [0, 0, 1] and
        *  angle -90 is the same as the quaternion formed by
@@ -7734,7 +7792,7 @@
         return Math.acos(2 * dotproduct * dotproduct - 1);
       }
       /**
-       * Multiplies two quat's
+       * Multiplies two quaternions.
        * @category Static
        *
        * @param out - the receiving quaternion
@@ -7973,7 +8031,7 @@
        * @param out - the receiving quaternion
        * @returns `out`
        */
-      /*static random(out: QuatLike): QuatLike {
+      /* static random(out: QuatLike): QuatLike {
           // Implementation of http://planning.cs.uiuc.edu/node198.html
           // TODO: Calling random 3 times is probably not the fastest solution
           let u1 = glMatrix.RANDOM();
@@ -8014,7 +8072,7 @@
       }
       /**
        * Calculates the conjugate of a quat
-       * If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+       * If the quaternion is normalized, this function is faster than `quat.inverse` and produces the same result.
        * @category Static
        *
        * @param out - the receiving quaternion
@@ -8034,7 +8092,7 @@
        * Creates a quaternion from the given 3x3 rotation matrix.
        *
        * NOTE: The resultant quaternion is not normalized, so you should be sure
-       * to renormalize the quaternion yourself where necessary.
+       * to re-normalize the quaternion yourself where necessary.
        * @category Static
        *
        * @param out - the receiving quaternion
@@ -8055,8 +8113,12 @@
           out[2] = (m[1] - m[3]) * fRoot;
         } else {
           var i = 0;
-          if (m[4] > m[0]) i = 1;
-          if (m[8] > m[i * 3 + i]) i = 2;
+          if (m[4] > m[0]) {
+            i = 1;
+          }
+          if (m[8] > m[i * 3 + i]) {
+            i = 2;
+          }
           var j = (i + 1) % 3;
           var k = (i + 2) % 3;
           fRoot = Math.sqrt(m[i * 3 + i] - m[j * 3 + j] - m[k * 3 + k] + 1);
@@ -8131,7 +8193,7 @@
             out[3] = cx * cy * cz + sx * sy * sz;
             break;
           default:
-            throw new Error("Unknown angle order " + order);
+            throw new Error("Unknown angle order ".concat(order));
         }
         return out;
       }
@@ -8202,6 +8264,7 @@
        * @param w - W component
        * @returns `out`
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "set",
       value: function set(out, x, y, z, w) {
@@ -8216,6 +8279,7 @@
        * @param b - the second operand
        * @returns `out`
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "add",
       value: function add(out, a, b) {
@@ -8225,6 +8289,7 @@
        * Alias for {@link Quat.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -8271,6 +8336,7 @@
        * @param t - interpolation amount, in the range [0-1], between the two inputs
        * @returns `out`
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "lerp",
       value: function lerp(out, a, b, t) {
@@ -8283,6 +8349,7 @@
        * @param a - quaternion to calculate length of
        * @returns length of `a`
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "magnitude",
       value: function magnitude(a) {
@@ -8292,6 +8359,7 @@
        * Alias for {@link Quat.magnitude}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mag",
       value: function mag(a) {
@@ -8302,12 +8370,13 @@
        * @category Static
        * @deprecated Use {@link Quat.magnitude} to avoid conflicts with builtin `length` methods/attribs
        */
-      // @ts-ignore: Length conflicts with Function.length
+      // Length conflicts with Function.length
     }, {
       key: "length",
       value: function length(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Quat.magnitude}
        * @category Static
@@ -8318,6 +8387,7 @@
       value: function len(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared length of a {@link Quat}
        * @category Static
@@ -8325,6 +8395,7 @@
        * @param a - quaternion to calculate squared length of
        * @returns squared length of a
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "squaredLength",
       value: function squaredLength(a) {
@@ -8339,6 +8410,7 @@
       value: function sqrLen(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Normalize a {@link Quat}
        * @category Static
@@ -8347,32 +8419,35 @@
        * @param a - quaternion to normalize
        * @returns `out`
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "normalize",
       value: function normalize(out, a) {
         return out;
       }
       /**
-       * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with ===)
+       * Returns whether the quaternions have exactly the same elements in the same position (when compared with ===)
        * @category Static
        *
        * @param a - The first quaternion.
        * @param b - The second quaternion.
        * @returns True if the vectors are equal, false otherwise.
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "exactEquals",
       value: function exactEquals(a, b) {
         return false;
       }
       /**
-       * Returns whether or not the quaternions have approximately the same elements in the same position.
+       * Returns whether the quaternions have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first vector.
        * @param b - The second vector.
        * @returns True if the vectors are equal, false otherwise.
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "equals",
       value: function equals(a, b) {
@@ -8396,7 +8471,9 @@
         var dot = Vec3.dot(a, b);
         if (dot < -0.999999) {
           Vec3.cross(__privateGet(_Quat, _TMP_VEC32), __privateGet(_Quat, _X_UNIT_VEC3), a);
-          if (Vec3.mag(__privateGet(_Quat, _TMP_VEC32)) < 1e-6) Vec3.cross(__privateGet(_Quat, _TMP_VEC32), __privateGet(_Quat, _Y_UNIT_VEC3), a);
+          if (Vec3.mag(__privateGet(_Quat, _TMP_VEC32)) < 1e-6) {
+            Vec3.cross(__privateGet(_Quat, _TMP_VEC32), __privateGet(_Quat, _Y_UNIT_VEC3), a);
+          }
           Vec3.normalize(__privateGet(_Quat, _TMP_VEC32), __privateGet(_Quat, _TMP_VEC32));
           _Quat.setAxisAngle(out, __privateGet(_Quat, _TMP_VEC32), Math.PI);
           return out;
@@ -8533,9 +8610,9 @@
       }
       return _assertThisInitialized(_this8);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     /**
      * A string representation of `this`
      * Equivalent to `Quat2.str(this);`
@@ -8548,9 +8625,9 @@
       get: function get() {
         return _Quat2.str(this);
       }
-      //===================
+      // ===================
       // Instances methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Quat2} into `this`.
        * @category Methods
@@ -8564,9 +8641,9 @@
         _get(_getPrototypeOf(_Quat2.prototype), "set", this).call(this, a);
         return this;
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -8577,9 +8654,9 @@
       get: function get() {
         return 8 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new identity {@link Quat2}
        * @category Static
@@ -9113,7 +9190,7 @@
           return _Quat2.copy(out, a);
         }
         var axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
-        rad = rad * 0.5;
+        rad *= 0.5;
         var s = Math.sin(rad);
         var bx = s * axis[0] / axisLength;
         var by = s * axis[1] / axisLength;
@@ -9201,6 +9278,7 @@
        * Alias for {@link Quat2.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -9236,6 +9314,7 @@
        * @param b - the second operand
        * @returns dot product of a and b
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "dot",
       value: function dot(a, b) {
@@ -9256,7 +9335,9 @@
       key: "lerp",
       value: function lerp(out, a, b, t) {
         var mt = 1 - t;
-        if (_Quat2.dot(a, b) < 0) t = -t;
+        if (_Quat2.dot(a, b) < 0) {
+          t = -t;
+        }
         out[0] = a[0] * mt + b[0] * t;
         out[1] = a[1] * mt + b[1] * t;
         out[2] = a[2] * mt + b[2] * t;
@@ -9290,8 +9371,8 @@
         return out;
       }
       /**
-       * Calculates the conjugate of a {@link Quat2}
-       * If the dual quaternion is normalized, this function is faster than {@link Quat2.invert} and produces the same result.
+       * Calculates the conjugate of a {@link Quat2}. If the dual quaternion is normalized, this function is faster than
+       * {@link Quat2.invert} and produces the same result.
        * @category Static
        *
        * @param out - the receiving dual quaternion
@@ -9318,6 +9399,7 @@
        * @param a - dual quaternion to calculate length of
        * @returns length of `a`
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "magnitude",
       value: function magnitude(a) {
@@ -9332,17 +9414,19 @@
       value: function mag(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Quat2.magnitude}
        * @category Static
        * @deprecated Use {@link Quat2.magnitude} to avoid conflicts with builtin `length` methods/attribs
        */
-      // @ts-ignore: Length conflicts with Function.length
+      // Length conflicts with Function.length
     }, {
       key: "length",
       value: function length(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Quat2.magnitude}
        * @category Static
@@ -9353,6 +9437,7 @@
       value: function len(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared length of a {@link Quat2}
        * @category Static
@@ -9360,6 +9445,7 @@
        * @param a - dual quaternion to calculate squared length of
        * @returns squared length of a
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "squaredLength",
       value: function squaredLength(a) {
@@ -9374,6 +9460,7 @@
       value: function sqrLen(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Normalize a {@link Quat2}
        * @category Static
@@ -9421,7 +9508,7 @@
         return "Quat2(".concat(a.join(", "), ")");
       }
       /**
-       * Returns whether or not the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
+       * Returns whether the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
        * @category Static
        *
        * @param a - The first dual quaternion.
@@ -9434,7 +9521,7 @@
         return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7];
       }
       /**
-       * Returns whether or not the {@link Quat2}s have approximately the same elements in the same position.
+       * Returns whether the {@link Quat2}s have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first dual quaternion.
@@ -9516,9 +9603,9 @@
       }
       return _assertThisInitialized(_this9);
     }
-    //============
+    // ============
     // Accessors
-    //============
+    // ============
     // Getters and setters to make component access read better.
     // These are likely to be a little bit slower than direct array access.
     /**
@@ -9630,9 +9717,9 @@
       get: function get() {
         return _Vec2.str(this);
       }
-      //===================
+      // ===================
       // Instances methods
-      //===================
+      // ===================
       /**
        * Copy the values from another {@link Vec2} into `this`.
        * @category Methods
@@ -9686,6 +9773,7 @@
       value: function sub(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Multiplies `this` by a {@link Vec2}.
        * Equivalent to `Vec2.multiply(this, this, b);`
@@ -9710,6 +9798,7 @@
       value: function mul(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Divides `this` by a {@link Vec2}.
        * Equivalent to `Vec2.divide(this, this, b);`
@@ -9734,6 +9823,7 @@
       value: function div(b) {
         return this;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Scales `this` by a scalar number.
        * Equivalent to `Vec2.scale(this, this, b);`
@@ -9787,6 +9877,7 @@
       value: function dist(b) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared Euclidean distance between another {@link Vec2} and `this`.
        * Equivalent to `Vec2.squaredDistance(this, b);`
@@ -9809,6 +9900,7 @@
       value: function sqrDist(b) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Negates the components of `this`.
        * Equivalent to `Vec2.negate(this, this);`
@@ -9876,9 +9968,9 @@
       value: function normalize() {
         return _Vec2.normalize(this, this);
       }
-      //===================
+      // ===================
       // Static accessors
-      //===================
+      // ===================
       /**
        * @category Static
        *
@@ -9889,9 +9981,9 @@
       get: function get() {
         return 2 * Float32Array.BYTES_PER_ELEMENT;
       }
-      //===================
+      // ===================
       // Static methods
-      //===================
+      // ===================
       /**
        * Creates a new, empty {@link Vec2}
        * @category Static
@@ -9995,6 +10087,7 @@
        * Alias for {@link Vec2.subtract}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sub",
       value: function sub(out, a, b) {
@@ -10020,6 +10113,7 @@
        * Alias for {@link Vec2.multiply}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "mul",
       value: function mul(out, a, b) {
@@ -10045,6 +10139,7 @@
        * Alias for {@link Vec2.divide}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "div",
       value: function div(out, a, b) {
@@ -10177,6 +10272,7 @@
        * Alias for {@link Vec2.distance}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "dist",
       value: function dist(a, b) {
@@ -10201,6 +10297,7 @@
        * Alias for {@link Vec2.distance}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sqrDist",
       value: function sqrDist(a, b) {
@@ -10229,6 +10326,7 @@
       value: function mag(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Vec2.magnitude}
        * @category Static
@@ -10237,12 +10335,13 @@
        * @param a - vector to calculate length of
        * @returns length of a
        */
-      // @ts-ignore: Length conflicts with Function.length
+      // Length conflicts with Function.length
     }, {
       key: "length",
       value: function length(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Alias for {@link Vec2.magnitude}
        * @category Static
@@ -10253,6 +10352,7 @@
       value: function len(a) {
         return 0;
       }
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       /**
        * Calculates the squared length of a {@link Vec2}
        * @category Static
@@ -10271,6 +10371,7 @@
        * Alias for {@link Vec2.squaredLength}
        * @category Static
        */
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     }, {
       key: "sqrLen",
       value: function sqrLen(a, b) {
@@ -10523,7 +10624,7 @@
         return out;
       }
       /**
-       * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+       * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
        * @category Static
        *
        * @param a - The first vector.
@@ -10536,7 +10637,7 @@
         return a[0] === b[0] && a[1] === b[1];
       }
       /**
-       * Returns whether or not the vectors have approximately the same elements in the same position.
+       * Returns whether the vectors have approximately the same elements in the same position.
        * @category Static
        *
        * @param a - The first vector.
@@ -10615,6 +10716,7 @@
             return new Vec4(this[SWIZZLE_INDEX[swizzle[0]]], this[SWIZZLE_INDEX[swizzle[1]]], this[SWIZZLE_INDEX[swizzle[2]]], this[SWIZZLE_INDEX[swizzle[3]]]);
           };
       }
+      throw new Error("Illegal swizzle length");
     }
     for (var _i = 0, _VEC2_SWIZZLES = VEC2_SWIZZLES; _i < _VEC2_SWIZZLES.length; _i++) {
       var swizzle = _VEC2_SWIZZLES[_i];

@@ -24,12 +24,12 @@ describe('Vec3', () => {
     });
 
     it('should return Vec3(x, y, z) if called with (Vec3(x, y, z))', () => {
-      let v = new Vec3(3.4, 5.6, 7.8);
+      const v = new Vec3(3.4, 5.6, 7.8);
       expect(new Vec3(v)).toBeVec(v);
     });
 
     it('should return Vec3(x, y, z) if called with (Float64Array([x, y, z]))', () => {
-      let arr = new Float64Array([1.2, 3.4, 5.6]);
+      const arr = new Float64Array([1.2, 3.4, 5.6]);
       expect(new Vec3(arr)).toBeVec(arr);
     });
   });
@@ -115,7 +115,7 @@ describe('Vec3', () => {
 
       describe('with an identity', () => {
         beforeEach(() => {
-          matr = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 ];
+          matr = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
           result = Vec3.transformMat4(out, vecA, matr);
         });
 
@@ -129,23 +129,25 @@ describe('Vec3', () => {
           result = Vec3.transformMat4(out, vecA, matr);
         });
 
-        it('should rotate and translate the input', () => expect(out).toBeVec( 4, -4, -4 ));
+        it('should rotate and translate the input', () => expect(out).toBeVec(4, -4, -4));
         it('should return out', () => expect(result).toBe(out));
       });
 
       describe('with a perspective matrix (#92)', () => {
         it('should transform a point from perspective(pi/2, 4/3, 1, 100)', () => {
-          matr = [0.750, 0, 0, 0,
-              0, 1, 0, 0,
-              0, 0, -1.02, -1,
-              0, 0, -2.02, 0];
+          matr = [
+            0.750, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, -1.02, -1,
+            0, 0, -2.02, 0];
           result = Vec3.transformMat4([0, 0, 0], [10, 20, 30], matr);
           expect(result).toBeVec(-0.25, -0.666666, 1.087333);
         });
       });
     });
 
-    /*describe('transformMat3', () => {
+    /*
+      describe('transformMat3', () => {
       let matr;
 
       describe('with an identity', () => {
@@ -193,11 +195,11 @@ describe('Vec3', () => {
     describe('transformQuat', () => {
       beforeEach(() => {
         result = Vec3.transformQuat(out, vecA,
-         [0.18257418567011074, 0.3651483713402215, 0.5477225570103322, 0.730296742680443]);
+          [0.18257418567011074, 0.3651483713402215, 0.5477225570103322, 0.730296742680443]);
       });
 
       it('should rotate the input vector', () => expect(out).toBeVec(1, 2, 3));
-      it('should return out', () => expect(result).not.toBe([1,2,3,4]));
+      it('should return out', () => expect(result).not.toBe([1, 2, 3, 4]));
     });
 
     describe('create', () => {
@@ -442,7 +444,8 @@ describe('Vec3', () => {
       });
     });
 
-    /*describe('round', () => {
+    /*
+      describe('round', () => {
       beforeEach(() => { vecA = [Math.E, Math.PI, Math.SQRT2]; });
 
       describe('with a separate output vector', () => {
@@ -546,7 +549,7 @@ describe('Vec3', () => {
       describe('with a separate output vector', () => {
         beforeEach(() => { result = Vec3.inverse(out, vecA); });
 
-        it('should place values into out', () => expect(out).toBeVec(1, 1/2, 1/3));
+        it('should place values into out', () => expect(out).toBeVec(1, 1 / 2, 1 / 3));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify vecA', () => expect(vecA).toBeVec(1, 2, 3));
       });
@@ -554,7 +557,7 @@ describe('Vec3', () => {
       describe('when vecA is the output vector', () => {
         beforeEach(() => { result = Vec3.inverse(vecA, vecA); });
 
-        it('should place values into vecA', () => expect(vecA).toBeVec(1, 1/2, 1/3));
+        it('should place values into vecA', () => expect(vecA).toBeVec(1, 1 / 2, 1 / 3));
         it('should return vecA', () => expect(result).toBe(vecA));
       });
     });
@@ -693,10 +696,10 @@ describe('Vec3', () => {
 
     describe('equals', () => {
       let vecC: Vec3Like,
-          vecD: Vec3Like,
-          r0: boolean,
-          r1: boolean,
-          r2: boolean;
+        vecD: Vec3Like,
+        r0: boolean,
+        r1: boolean,
+        r2: boolean;
 
       beforeEach(() => {
         vecA = [0, 1, 2];

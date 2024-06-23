@@ -2,7 +2,7 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Mat4, Quat, Quat2, Vec3 } from '#gl-matrix';
 
-import type { QuatLike, Quat2Like, Vec3Like } from '#gl-matrix/types';
+import type { QuatLike, Quat2Like, Vec3Like, Vec4Like } from '#gl-matrix/types';
 
 describe('Quat2', () => {
   describe('constructor', () => {
@@ -12,7 +12,8 @@ describe('Quat2', () => {
 
     it('should return Quat(x, y, z, w, x2, y2, z2, w2) if called with (x, y, z, w, x2, y2, z2, w2)', () => {
       expect(new Quat2(1, 2, 3, 4, 5, 6, 7, 8)).toBeVec(1, 2, 3, 4, 5, 6, 7, 8);
-      expect(new Quat2(-3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15)).toBeVec(-3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15);
+      expect(new Quat2(-3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15)).toBeVec(
+        -3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15);
     });
 
     it('should return Quat(x, x, x, x, x, x, x, x) if called with (x)', () => {
@@ -22,18 +23,20 @@ describe('Quat2', () => {
 
     it('should return Quat(x, y, z, w) if called with ([x, y, z, w])', () => {
       expect(new Quat2([1, 2, 3, 4, 5, 6, 7, 8])).toBeVec(1, 2, 3, 4, 5, 6, 7, 8);
-      expect(new Quat2([-3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15])).toBeVec(-3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15);
+      expect(new Quat2([-3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15])).toBeVec(
+        -3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15);
     });
 
     it('should return Quat(x, y, z, w, x2, y2, z2, w2) if called with (Quat(x, y, z, w, x2, y2, z2, w2))', () => {
-      let v = new Quat2(1, 2, 3, 4, 5, 6, 7, 8);
+      const v = new Quat2(1, 2, 3, 4, 5, 6, 7, 8);
       expect(new Quat2(v)).toBeVec(v);
     });
 
-    it('should return Quat(x, y, z, w, x2, y2, z2, w2) if called with (Float32Array([x, y, z, w, x2, y2, z2, w2]))', () => {
-      let arr = new Float32Array([1.2, 3.4, 5.6, 7.8, 9.10, 11.12, 13.14, 15.16]);
-      expect(new Quat2(arr)).toBeVec(arr);
-    });
+    it('should return Quat(x, y, z, w, x2, y2, z2, w2) if called with (Float32Array([x, y, z, w, x2, y2, z2, w2]))',
+      () => {
+        const arr = new Float32Array([1.2, 3.4, 5.6, 7.8, 9.10, 11.12, 13.14, 15.16]);
+        expect(new Quat2(arr)).toBeVec(arr);
+      });
   });
 
   describe('static', () => {
@@ -41,7 +44,7 @@ describe('Quat2', () => {
     let outVec: Vec3;
     let quat2A: Quat2Like;
     let quat2B: Quat2Like;
-    let result: any;
+    let result: Vec4Like | Quat2Like | number | string;
     let resultVec: Vec3Like;
     let outQuat: QuatLike;
     let vec: Vec3Like;
@@ -56,11 +59,11 @@ describe('Quat2', () => {
     });
 
     describe('translate', () => {
-      let matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
+      const matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
 
       beforeEach(() => {
-        //quat2A only seems to work when created using this function?
-        quat2B = Quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
+        // quat2A only seems to work when created using this function?
+        quat2B = Quat2.fromRotationTranslation(quat2A, [1, 2, 3, 4], [-5, 4, 10]);
         Quat2.normalize(quat2A, quat2A);
         Mat4.fromQuat2(matrixA, quat2A);
       });
@@ -68,7 +71,7 @@ describe('Quat2', () => {
       describe('with a separate output quaternion', () => {
         beforeEach(() => {
           result = Quat2.translate(out, quat2A, vec);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.translate(matOut, matrixA, vec);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -76,13 +79,13 @@ describe('Quat2', () => {
         it('should place values into out', () => expect(out).toBeQuat2(quatOut));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify quat2A', () => expect(quat2A).toBeQuat2(quat2B));
-        it('should not modify vec', () => expect(vec).toBeVec(1,1,-1));
+        it('should not modify vec', () => expect(vec).toBeVec(1, 1, -1));
       });
 
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => {
           result = Quat2.translate(quat2A, quat2A, vec);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.translate(matOut, matrixA, vec);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -93,13 +96,13 @@ describe('Quat2', () => {
     });
 
     describe('rotateAroundAxis', () => {
-      let matrixA = new Mat4();
-      let matOut = new Mat4();
-      let ax: Vec3Like = [1,4,2];
+      const matrixA = new Mat4();
+      const matOut = new Mat4();
+      const ax: Vec3Like = [1, 4, 2];
 
       beforeEach(() => {
-        //quat2A only seems to work when created using this function?
-        Quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
+        // quat2A only seems to work when created using this function?
+        Quat2.fromRotationTranslation(quat2A, [1, 2, 3, 4], [-5, 4, 10]);
         Quat2.normalize(quat2A, quat2A);
         Mat4.fromQuat2(matrixA, quat2A);
       });
@@ -108,7 +111,7 @@ describe('Quat2', () => {
         beforeEach(() => {
           result = Quat2.rotateAroundAxis(out, quat2A, ax, 5);
 
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotate(matOut, matrixA, 5, ax);
           Quat2.fromMat4(quat2B, matOut);
         });
@@ -125,7 +128,7 @@ describe('Quat2', () => {
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateAroundAxis(quat2A, quat2A, ax, 5);
-          //Same thing with a matrix
+          // Same thing with a matrix
 
           Mat4.rotate(matOut, matrixA, 5, ax);
           Quat2.fromMat4(quat2B, matOut);
@@ -138,8 +141,8 @@ describe('Quat2', () => {
     });
 
     describe('rotateByQuatAppend', () => {
-      let correctResult = Quat2.create();
-      let rotationQuat = Quat2.create();
+      const correctResult = Quat2.create();
+      const rotationQuat = Quat2.create();
 
       beforeEach(() => {
         rotationQuat[0] = 2;
@@ -155,7 +158,7 @@ describe('Quat2', () => {
         it('should place values into out', () => expect(out).toBeQuat2(correctResult));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify quat2A', () => expect(quat2A).toBeQuat2(1, 2, 3, 4, 2, 5, 6, -2));
-        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2,5,2,-10,0,0,0,0));
+        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2, 5, 2, -10, 0, 0, 0, 0));
       });
 
       describe('when quat2A is the output quaternion', () => {
@@ -163,13 +166,13 @@ describe('Quat2', () => {
 
         it('should place values into quat2A', () => expect(quat2A).toBeQuat2(correctResult));
         it('should return quat2A', () => expect(result).toBe(quat2A));
-        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2,5,2,-10,0,0,0,0));
+        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2, 5, 2, -10, 0, 0, 0, 0));
       });
     });
 
     describe('rotateByQuatPrepend', () => {
-      let correctResult = Quat2.create();
-      let rotationQuat = Quat2.create();
+      const correctResult = Quat2.create();
+      const rotationQuat = Quat2.create();
 
       beforeEach(() => {
         rotationQuat[0] = 2;
@@ -185,7 +188,7 @@ describe('Quat2', () => {
         it('should place values into out', () => expect(out).toBeQuat2(correctResult));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify quat2A', () => expect(quat2A).toBeQuat2(1, 2, 3, 4, 2, 5, 6, -2));
-        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2,5,2,-10,0,0,0,0));
+        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2, 5, 2, -10, 0, 0, 0, 0));
       });
 
       describe('when quat2A is the output quaternion', () => {
@@ -193,16 +196,16 @@ describe('Quat2', () => {
 
         it('should place values into quat2A', () => expect(quat2A).toBeQuat2(correctResult));
         it('should return quat2A', () => expect(result).toBe(quat2A));
-        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2,5,2,-10,0,0,0,0));
+        it('should not modify the rotation quaternion', () => expect(rotationQuat).toBeQuat2(2, 5, 2, -10, 0, 0, 0, 0));
       });
     });
 
     describe('rotateX', () => {
-      let matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
+      const matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
 
       beforeEach(() => {
-        //quat2A only seems to work when created using this function?
-        quat2B = Quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]) as Quat2;
+        // quat2A only seems to work when created using this function?
+        quat2B = Quat2.fromRotationTranslation(quat2A, [1, 2, 3, 4], [-5, 4, 10]) as Quat2;
         Quat2.normalize(quat2A, quat2A);
         Mat4.fromQuat2(matrixA, quat2A);
       });
@@ -210,7 +213,7 @@ describe('Quat2', () => {
       describe('with a separate output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateX(out, quat2A, 5);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotateX(matOut, matrixA, 5);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -223,7 +226,7 @@ describe('Quat2', () => {
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateX(quat2A, quat2A, 5);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotateX(matOut, matrixA, 5);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -234,11 +237,11 @@ describe('Quat2', () => {
     });
 
     describe('rotateY', () => {
-      let matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
+      const matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
 
       beforeEach(() => {
-        //quat2A only seems to work when created using this function?
-        quat2B = Quat2.fromRotationTranslation(quat2A, [1,2,3,4], [5, 4, -10]) as Quat2;
+        // quat2A only seems to work when created using this function?
+        quat2B = Quat2.fromRotationTranslation(quat2A, [1, 2, 3, 4], [5, 4, -10]) as Quat2;
         Quat2.normalize(quat2A, quat2A);
         Mat4.fromQuat2(matrixA, quat2A);
       });
@@ -246,7 +249,7 @@ describe('Quat2', () => {
       describe('with a separate output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateY(out, quat2A, -2);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotateY(matOut, matrixA, -2);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -259,7 +262,7 @@ describe('Quat2', () => {
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateY(quat2A, quat2A, -2);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotateY(matOut, matrixA, -2);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -270,11 +273,11 @@ describe('Quat2', () => {
     });
 
     describe('rotateZ', () => {
-      let matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
+      const matrixA = Mat4.create(), matOut = Mat4.create(), quatOut = Quat2.create();
 
       beforeEach(() => {
-        //quat2A only seems to work when created using this function?
-        quat2B = Quat2.fromRotationTranslation(quat2A, [1,0,3,-4], [0, -4, -10]) as Quat2;
+        // quat2A only seems to work when created using this function?
+        quat2B = Quat2.fromRotationTranslation(quat2A, [1, 0, 3, -4], [0, -4, -10]) as Quat2;
         Quat2.normalize(quat2A, quat2A);
         Mat4.fromQuat2(matrixA, quat2A);
       });
@@ -282,7 +285,7 @@ describe('Quat2', () => {
       describe('with a separate output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateZ(out, quat2A, 1);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotateZ(matOut, matrixA, 1);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -295,7 +298,7 @@ describe('Quat2', () => {
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => {
           result = Quat2.rotateZ(quat2A, quat2A, 1);
-          //Same thing with a matrix
+          // Same thing with a matrix
           Mat4.rotateZ(matOut, matrixA, 1);
           Quat2.fromMat4(quatOut, matOut);
         });
@@ -306,14 +309,15 @@ describe('Quat2', () => {
     });
 
     describe('from/toMat4', () => {
-      let matRes = Mat4.create(), matOut = Mat4.create();
-      let rotationQuat = Quat.create();
+      let matRes = Mat4.create();
+      const matOut = Mat4.create();
+      const rotationQuat = Quat.create();
 
       describe('quat to matrix and back', () => {
         beforeEach(() => {
-          Quat.normalize(rotationQuat, [1,2,3,4]);
+          Quat.normalize(rotationQuat, [1, 2, 3, 4]);
 
-          Quat2.fromRotationTranslation(quat2A, rotationQuat, [1,-5,3]);
+          Quat2.fromRotationTranslation(quat2A, rotationQuat, [1, -5, 3]);
           matRes = Mat4.fromQuat2(matOut, quat2A) as Mat4;
 
           result = Quat2.fromMat4(out, matRes);
@@ -322,8 +326,8 @@ describe('Quat2', () => {
         it('should return out', () => expect(result).toBe(out));
         it('should return matOut', () => expect(matRes).toBe(matOut));
         it('should not modify quat2A', () => expect(quat2A).toBeQuat2(0.18257418, 0.36514836, 0.54772257, 0.73029673,
-         -1.5518806, -1.82574184, 1.73445473, 0 ));
-        it('should be equal to the starting dual quat', () => expect(quat2A).toBeQuat2(result));
+          -1.5518806, -1.82574184, 1.73445473, 0));
+        it('should be equal to the starting dual quat', () => expect(quat2A).toBeQuat2(result as Quat2Like));
       });
     });
 
@@ -331,21 +335,21 @@ describe('Quat2', () => {
       beforeEach(() => { result = Quat2.create(); });
 
       it('should return 2 4 element arrays initialized to an identity dual quaternion',
-       () => expect(result).toBeQuat2(0, 0, 0, 1, 0, 0, 0, 0));
+        () => expect(result).toBeQuat2(0, 0, 0, 1, 0, 0, 0, 0));
     });
 
     describe('clone', () => {
       beforeEach(() => { result = Quat2.clone(quat2A); });
 
       it('should return 2 4 element arrays initialized to the values in quat2A',
-       () => expect(result).toBeQuat2(quat2A));
+        () => expect(result).toBeQuat2(quat2A));
     });
 
     describe('fromValues', () => {
       beforeEach(() => { result = Quat2.fromValues(1, 2, 3, 4, 5, 7, 8, -2); });
 
       it('should return 2 4 element arrays initialized to the values passedd to the values passed',
-       () => expect(result).toBeQuat2(1, 2, 3, 4, 5, 7, 8, -2));
+        () => expect(result).toBeQuat2(1, 2, 3, 4, 5, 7, 8, -2));
     });
 
     describe('copy', () => {
@@ -411,7 +415,7 @@ describe('Quat2', () => {
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => { result = Quat2.multiply(quat2A, quat2A, quat2B); });
 
-        it('should place values into quat2A', () => expect(quat2A).toBeQuat2(24, 48, 48, -6,  25, 89, 23, -157 ));
+        it('should place values into quat2A', () => expect(quat2A).toBeQuat2(24, 48, 48, -6,  25, 89, 23, -157));
         it('should return quat2A', () => expect(result).toBe(quat2A));
         it('should not modify quat2B', () => expect(quat2B).toBeQuat2(5, 6, 7, 8, 9, 8, 6, -4));
       });
@@ -425,12 +429,12 @@ describe('Quat2', () => {
       });
 
       describe('same as matrix multiplication', () => {
-        let matrixA = Mat4.create(), matrixB = Mat4.create();
-        let matOut = Mat4.create(), quatOut = Quat2.create();
+        const matrixA = Mat4.create(), matrixB = Mat4.create();
+        const matOut = Mat4.create(), quatOut = Quat2.create();
 
         beforeEach(() => {
-          //quat2A and quat2B only seem to work when created using this function?
-          Quat2.fromRotationTranslation(quat2A, [1,2,3,4], [-5, 4, 10]);
+          // quat2A and quat2B only seem to work when created using this function?
+          Quat2.fromRotationTranslation(quat2A, [1, 2, 3, 4], [-5, 4, 10]);
           Quat2.normalize(quat2A, quat2A);
           Mat4.fromQuat2(matrixA, quat2A);
 
@@ -440,7 +444,7 @@ describe('Quat2', () => {
         });
 
         it('the matrices should be equal to the dual quaternions', () => {
-          let testQuat = Quat2.create();
+          const testQuat = Quat2.create();
           Quat2.fromMat4(testQuat, matrixA);
           expect(testQuat).toBeQuat2(...quat2A);
 
@@ -515,7 +519,7 @@ describe('Quat2', () => {
       it('should not modify the quaternion', () => expect(Quat2.getReal(outQuat, quat2A)).toBeVec(1, 2, 3, 4));
       it('should not modify the vector', () => expect(vec).toBeVec(1, 2, 3));
       it('should have a translation that can be retrieved with getTranslation', () => {
-        let t: Vec3Like = [0, 0, 0];
+        const t: Vec3Like = [0, 0, 0];
         Quat2.normalize(out, out);
         Quat2.getTranslation(t, out);
 
@@ -524,14 +528,14 @@ describe('Quat2', () => {
     });
 
     describe('fromRotationTranslationValues', () => {
-      beforeEach(() => { result = Quat2.fromRotationTranslationValues(1,2,3,4, 1,2,3); });
+      beforeEach(() => { result = Quat2.fromRotationTranslationValues(1, 2, 3, 4, 1, 2, 3); });
 
       it('should return the correct result', () => expect(result).toBeQuat2(1, 2, 3, 4,  2, 4, 6, -7));
       it('should have a translation that can be retrieved with getTranslation', () => {
-        let t: Vec3Like = [0, 0, 0];
+        const t: Vec3Like = [0, 0, 0];
 
-        Quat2.normalize(result, result);
-        Quat2.getTranslation(t, result);
+        Quat2.normalize(result as Quat2Like, result as Quat2Like);
+        Quat2.getTranslation(t, result as Quat2Like);
         expect(t).toBeVec(1, 2, 3);
       });
     });
@@ -539,7 +543,7 @@ describe('Quat2', () => {
     describe('getTranslation', () => {
       describe('without a real part', () => {
         beforeEach(() => {
-          Quat2.fromTranslation(out, [1,2,3]);
+          Quat2.fromTranslation(out, [1, 2, 3]);
           resultVec = Quat2.getTranslation(outVec, out);
         });
 
@@ -584,8 +588,8 @@ describe('Quat2', () => {
           Quat2.normalize(out, quat2A);
         });
 
-        it('both parts should have been normalized', () => expect(out).toBeQuat2(1/5.4772255, 2/5.4772255,
-         3/5.4772255, 4/5.4772255, 0.231260, 0.6450954, 0.693781,-0.9006993));
+        it('both parts should have been normalized', () => expect(out).toBeQuat2(1 / 5.4772255, 2 / 5.4772255,
+          3 / 5.4772255, 4 / 5.4772255, 0.231260, 0.6450954, 0.693781, -0.9006993));
       });
 
       beforeEach(() => { quat2A = [5, 0, 0, 0, 0, 0, 0, 0]; });
@@ -628,7 +632,7 @@ describe('Quat2', () => {
       describe('when quat2A is the output quaternion', () => {
         beforeEach(() => { result = Quat2.lerp(quat2A, quat2A, quat2B, 0.5); });
 
-        it('should place values into quat2A', () => expect(quat2A).toBeQuat2(3, 4, 5, 6,5.5, 6.5, 6, -3));
+        it('should place values into quat2A', () => expect(quat2A).toBeQuat2(3, 4, 5, 6, 5.5, 6.5, 6, -3));
         it('should return quat2A', () => expect(result).toBe(quat2A));
         it('should not modify quat2B', () => expect(quat2B).toBeQuat2(5, 6, 7, 8, 9, 8, 6, -4));
       });
@@ -636,7 +640,7 @@ describe('Quat2', () => {
       describe('when quat2B is the output quaternion', () => {
         beforeEach(() => { result = Quat2.lerp(quat2B, quat2A, quat2B, 0.5); });
 
-        it('should place values into quat2B', () => expect(quat2B).toBeQuat2(3, 4, 5, 6,5.5, 6.5, 6, -3));
+        it('should place values into quat2B', () => expect(quat2B).toBeQuat2(3, 4, 5, 6, 5.5, 6.5, 6, -3));
         it('should return quat2B', () => expect(result).toBe(quat2B));
         it('should not modify quat2A', () => expect(quat2A).toBeQuat2(1, 2, 3, 4, 2, 5, 6, -2));
       });
@@ -644,7 +648,7 @@ describe('Quat2', () => {
       describe('shortest path', () => {
         beforeEach(() => { result = Quat2.lerp(out, [1, 2, 3, -4, 2, 5, 6, -2], [5, -6, 7, 8, 9, 8, 6, -4], 0.4); });
 
-        it('should pick the shorter path', () => expect(out).toBeQuat2( -1.4, 3.6, -1, -5.6, -2.4, -0.2, 1.2, 0.4 ));
+        it('should pick the shorter path', () => expect(out).toBeQuat2(-1.4, 3.6, -1, -5.6, -2.4, -0.2, 1.2, 0.4));
       });
     });
 
@@ -663,7 +667,7 @@ describe('Quat2', () => {
         beforeEach(() => { result = Quat2.invert(out, quat2A); });
 
         it('should place values into out', () => expect(out).toBeQuat2(
-         -0.0333333333, -0.06666666666, -0.1, 0.13333333333, -2/30, -5/30, -6/30, -2/30));
+          -0.0333333333, -0.06666666666, -0.1, 0.13333333333, -2 / 30, -5 / 30, -6 / 30, -2 / 30));
         it('should return out', () => expect(result).toBe(out));
         it('should not modify quat2A', () => expect(quat2A).toBeQuat2(1, 2, 3, 4, 2, 5, 6, -2));
         it('the real part should be equal to a inverted quaternion', () => {
@@ -676,7 +680,7 @@ describe('Quat2', () => {
         beforeEach(() => { result = Quat2.invert(quat2A, quat2A); });
 
         it('should place values into quat2A', () => expect(quat2A).toBeVec(
-         -0.0333333333, -0.06666666666, -0.1, 0.13333333333, -2/30, -5/30, -6/30, -2/30));
+          -0.0333333333, -0.06666666666, -0.1, 0.13333333333, -2 / 30, -5 / 30, -6 / 30, -2 / 30));
         it('should return quat2A', () => expect(result).toBe(quat2A));
       });
     });
@@ -744,11 +748,11 @@ describe('Quat2', () => {
       beforeEach(() => { result = Quat2.str(quat2A); });
 
       it('should return a string representation of the quaternion',
-       () => expect(result).toEqual('Quat2(1, 2, 3, 4, 2, 5, 6, -2)'));
+        () => expect(result).toEqual('Quat2(1, 2, 3, 4, 2, 5, 6, -2)'));
     });
 
     describe('exactEquals', () => {
-      let quat2C, r0, r1;
+      let quat2C: Quat2Like, r0: boolean, r1: boolean;
 
       beforeEach(() => {
         quat2A = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -765,7 +769,7 @@ describe('Quat2', () => {
     });
 
     describe('equals', () => {
-      let quat2C, quat2D, r0, r1, r2;
+      let quat2C: Quat2Like, quat2D: Quat2Like, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         quat2A = [0, 1, 2, 3, 4, 5, 6, 7];

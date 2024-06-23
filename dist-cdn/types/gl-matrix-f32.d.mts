@@ -242,7 +242,7 @@ declare class Mat2 extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out: Mat2Like, a: Mat2Like): Mat2Like | null;
   /**
@@ -393,7 +393,7 @@ declare class Mat2 extends Float32Array {
     D: Readonly<Mat2Like>,
     U: Mat2Like,
     a: Readonly<Mat2Like>,
-  ): (Readonly<Float32Array> | Readonly<Float64Array> | readonly [number, number, number, number])[];
+  ): [Mat2Like, Readonly<Mat2Like>, Mat2Like];
   /**
    * Returns whether two {@link Mat2}s have exactly the same elements in the same position (when compared with ===)
    * @category Static
@@ -560,7 +560,7 @@ declare class Mat2d extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out: Mat2dLike, a: Mat2dLike): Mat2dLike | null;
   /**
@@ -644,9 +644,10 @@ declare class Mat2d extends Float32Array {
   /**
    * Creates a {@link Mat2d} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.translate(dest, dest, vec);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -657,9 +658,10 @@ declare class Mat2d extends Float32Array {
   /**
    * Creates a {@link Mat2d} from a given angle around a given axis
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.rotate(dest, dest, rad);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.rotate(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -670,9 +672,10 @@ declare class Mat2d extends Float32Array {
   /**
    * Creates a {@link Mat2d} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.scale(dest, dest, vec);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -710,7 +713,7 @@ declare class Mat2d extends Float32Array {
    */
   static multiplyScalarAndAdd(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>, scale: number): Mat2dLike;
   /**
-   * Returns whether or not two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -719,7 +722,7 @@ declare class Mat2d extends Float32Array {
    */
   static exactEquals(a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): boolean;
   /**
-   * Returns whether or not two {@link Mat2d}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat2d}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
@@ -900,7 +903,7 @@ declare class Mat3 extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out: Mat3Like, a: Mat3Like): Mat3Like | null;
   /**
@@ -993,9 +996,10 @@ declare class Mat3 extends Float32Array {
   /**
    * Creates a {@link Mat3} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     mat3.identity(dest);
-   *     mat3.translate(dest, dest, vec);
+   * ```js
+   *   mat3.identity(dest);
+   *   mat3.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat3} receiving operation result
@@ -1019,9 +1023,10 @@ declare class Mat3 extends Float32Array {
   /**
    * Creates a {@link Mat3} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     mat3.identity(dest);
-   *     mat3.scale(dest, dest, vec);
+   * ```js
+   *   mat3.identity(dest);
+   *   mat3.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat3} receiving operation result
@@ -1064,7 +1069,7 @@ declare class Mat3 extends Float32Array {
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static normalFromMat4(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like | null;
   /**
@@ -1119,7 +1124,7 @@ declare class Mat3 extends Float32Array {
    */
   static multiplyScalarAndAdd(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>, scale: number): Mat3Like;
   /**
-   * Returns whether or not two {@link Mat3}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat3}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -1128,7 +1133,7 @@ declare class Mat3 extends Float32Array {
    */
   static exactEquals(a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): boolean;
   /**
-   * Returns whether or not two {@link Mat3}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat3}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
@@ -1397,7 +1402,7 @@ declare class Mat4 extends Float32Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out: Mat4Like, a: Mat4Like): Mat4Like | null;
   /**
@@ -1496,9 +1501,10 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a {@link Mat4} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, dest, vec);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat4} receiving operation result
@@ -1509,9 +1515,10 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a {@link Mat4} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.scale(dest, dest, vec);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat4} receiving operation result
@@ -1522,9 +1529,10 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a {@link Mat4} from a given angle around a given axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotate(dest, dest, rad, axis);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotate(dest, dest, rad, axis);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat4} receiving operation result
@@ -1536,9 +1544,10 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a matrix from the given angle around the X axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotateX(dest, dest, rad);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotateX(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -1549,9 +1558,10 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a matrix from the given angle around the Y axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotateY(dest, dest, rad);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotateY(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -1562,9 +1572,10 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a matrix from the given angle around the Z axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotateZ(dest, dest, rad);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotateZ(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -1575,12 +1586,13 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a matrix from a quaternion rotation and vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, vec);
-   *     let quatMat = mat4.create();
-   *     quat4.toMat4(quat, quatMat);
-   *     mat4.multiply(dest, quatMat);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, vec);
+   *   let quatMat = mat4.create();
+   *   quat4.toMat4(quat, quatMat);
+   *   mat4.multiply(dest, quatMat);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -1604,7 +1616,7 @@ declare class Mat4 extends Float32Array {
    *
    * @param out - Matrix receiving operation result
    * @param a - Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static normalFromMat4(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like | null;
   /**
@@ -1671,13 +1683,14 @@ declare class Mat4 extends Float32Array {
   /**
    * Creates a matrix from a quaternion rotation, vector translation and vector scale
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, vec);
-   *     let quatMat = mat4.create();
-   *     quat4.toMat4(quat, quatMat);
-   *     mat4.multiply(dest, quatMat);
-   *     mat4.scale(dest, scale);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, vec);
+   *   let quatMat = mat4.create();
+   *   quat4.toMat4(quat, quatMat);
+   *   mat4.multiply(dest, quatMat);
+   *   mat4.scale(dest, scale);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -1693,17 +1706,18 @@ declare class Mat4 extends Float32Array {
     s: Readonly<Vec3Like>,
   ): Mat4Like;
   /**
-   * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
-   * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, vec);
-   *     mat4.translate(dest, origin);
-   *     let quatMat = mat4.create();
-   *     quat4.toMat4(quat, quatMat);
-   *     mat4.multiply(dest, quatMat);
-   *     mat4.scale(dest, scale)
-   *     mat4.translate(dest, negativeOrigin);
+   * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the
+   * given origin. This is equivalent to (but much faster than):
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, vec);
+   *   mat4.translate(dest, origin);
+   *   let quatMat = mat4.create();
+   *   quat4.toMat4(quat, quatMat);
+   *   mat4.multiply(dest, quatMat);
+   *   mat4.scale(dest, scale)
+   *   mat4.translate(dest, negativeOrigin);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -1830,9 +1844,8 @@ declare class Mat4 extends Float32Array {
    */
   static perspectiveZO(out: Mat4Like, fovy: number, aspect: number, near: number, far?: number): Mat4Like;
   /**
-   * Generates a perspective projection matrix with the given field of view.
-   * This is primarily useful for generating projection matrices to be used
-   * with the still experiemental WebVR API.
+   * Generates a perspective projection matrix with the given field of view. This is primarily useful for generating
+   * projection matrices to be used with the still experimental WebVR API.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -1842,11 +1855,20 @@ declare class Mat4 extends Float32Array {
    * @returns `out`
    * @deprecated
    */
-  static perspectiveFromFieldOfView(out: Mat4Like, fov: any, near: number, far: number): Mat4Like;
+  static perspectiveFromFieldOfView(
+    out: Mat4Like,
+    fov: {
+      upDegrees: number;
+      downDegrees: number;
+      leftDegrees: number;
+      rightDegrees: number;
+    },
+    near: number,
+    far: number,
+  ): Mat4Like;
   /**
-   * Generates a orthogonal projection matrix with the given bounds.
-   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
-   * which matches WebGL/OpenGL's clip volume.
+   * Generates an orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
+   * normalized device coordinate Z range of [-1, 1], which matches WebGL / OpenGLs clip volume.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -1882,9 +1904,8 @@ declare class Mat4 extends Float32Array {
     far: number,
   ): Mat4Like;
   /**
-   * Generates a orthogonal projection matrix with the given bounds.
-   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
-   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   * Generates a orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
+   * normalized device coordinate Z range of [0, 1], which matches WebGPU / Vulkan / DirectX / Metal's clip volume.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -1906,8 +1927,8 @@ declare class Mat4 extends Float32Array {
     far: number,
   ): Mat4Like;
   /**
-   * Generates a look-at matrix with the given eye position, focal point, and up axis.
-   * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
+   * Generates a look-at matrix with the given eye position, focal point, and up axis. If you want a matrix that
+   * actually makes an object look at another object, you should use targetTo instead.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -1983,7 +2004,7 @@ declare class Mat4 extends Float32Array {
    */
   static multiplyScalarAndAdd(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>, scale: number): Mat4Like;
   /**
-   * Returns whether or not two {@link Mat4}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat4}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -1992,7 +2013,7 @@ declare class Mat4 extends Float32Array {
    */
   static exactEquals(a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): boolean;
   /**
-   * Returns whether or not two {@link Mat4}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat4}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
@@ -2187,7 +2208,7 @@ declare class Quat extends Float32Array {
    * Gets the rotation axis and angle for a given
    *  quaternion. If a quaternion is created with
    *  setAxisAngle, this method will return the same
-   *  values as providied in the original parameter list
+   *  values as provided in the original parameter list
    *  OR functionally equivalent values.
    * Example: The quaternion formed by axis [0, 0, 1] and
    *  angle -90 is the same as the quaternion formed by
@@ -2209,7 +2230,7 @@ declare class Quat extends Float32Array {
    */
   static getAngle(a: Readonly<QuatLike>, b: Readonly<QuatLike>): number;
   /**
-   * Multiplies two quat's
+   * Multiplies two quaternions.
    * @category Static
    *
    * @param out - the receiving quaternion
@@ -2316,7 +2337,7 @@ declare class Quat extends Float32Array {
   static invert(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
   /**
    * Calculates the conjugate of a quat
-   * If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+   * If the quaternion is normalized, this function is faster than `quat.inverse` and produces the same result.
    * @category Static
    *
    * @param out - the receiving quaternion
@@ -2328,7 +2349,7 @@ declare class Quat extends Float32Array {
    * Creates a quaternion from the given 3x3 rotation matrix.
    *
    * NOTE: The resultant quaternion is not normalized, so you should be sure
-   * to renormalize the quaternion yourself where necessary.
+   * to re-normalize the quaternion yourself where necessary.
    * @category Static
    *
    * @param out - the receiving quaternion
@@ -2489,7 +2510,7 @@ declare class Quat extends Float32Array {
    */
   static normalize(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
   /**
-   * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the quaternions have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first quaternion.
@@ -2498,7 +2519,7 @@ declare class Quat extends Float32Array {
    */
   static exactEquals(a: Readonly<QuatLike>, b: Readonly<QuatLike>): boolean;
   /**
-   * Returns whether or not the quaternions have approximately the same elements in the same position.
+   * Returns whether the quaternions have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -2909,8 +2930,8 @@ declare class Quat2 extends Float32Array {
    */
   static invert(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like;
   /**
-   * Calculates the conjugate of a {@link Quat2}
-   * If the dual quaternion is normalized, this function is faster than {@link Quat2.invert} and produces the same result.
+   * Calculates the conjugate of a {@link Quat2}. If the dual quaternion is normalized, this function is faster than
+   * {@link Quat2.invert} and produces the same result.
    * @category Static
    *
    * @param out - the receiving dual quaternion
@@ -2974,7 +2995,7 @@ declare class Quat2 extends Float32Array {
    */
   static str(a: Readonly<Quat2Like>): string;
   /**
-   * Returns whether or not the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first dual quaternion.
@@ -2983,7 +3004,7 @@ declare class Quat2 extends Float32Array {
    */
   static exactEquals(a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): boolean;
   /**
-   * Returns whether or not the {@link Quat2}s have approximately the same elements in the same position.
+   * Returns whether the {@link Quat2}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first dual quaternion.
@@ -3591,7 +3612,7 @@ declare class Vec2 extends Float32Array {
    */
   static zero(out: Vec2Like): Vec2Like;
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -3600,7 +3621,7 @@ declare class Vec2 extends Float32Array {
    */
   static exactEquals(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): boolean;
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -4305,7 +4326,7 @@ declare class Vec3 extends Float32Array {
    */
   static str(a: Readonly<Vec3Like>): string;
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -4314,7 +4335,7 @@ declare class Vec3 extends Float32Array {
    */
   static exactEquals(a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): boolean;
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -4906,7 +4927,7 @@ declare class Vec4 extends Float32Array {
    */
   static str(a: Readonly<Vec4Like>): string;
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -4915,7 +4936,7 @@ declare class Vec4 extends Float32Array {
    */
   static exactEquals(a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): boolean;
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.

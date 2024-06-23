@@ -2,20 +2,22 @@ import { expect, describe, it, beforeEach } from 'vitest';
 
 import { Mat2 } from '#gl-matrix';
 
+import type { FloatArray, Mat2Like, Vec2Like } from '#gl-matrix/types';
+
 describe('Mat2', () => {
   describe('constructor', () => {
     it('should return an identity Mat2 if called with no arguments', () => {
       expect(new Mat2()).toBeVec(
         1, 0,
-        0, 1)
+        0, 1);
     });
 
     it('should return Mat2(m0, m1, ...m8) if called with (m0, m1, ...m8)', () => {
       expect(new Mat2(
         1, 2,
         3, 4)).toBeVec(
-          1, 2,
-          3, 4);
+        1, 2,
+        3, 4);
     });
 
     it('should return Mat2(x, x, x, ...) if called with (x)', () => {
@@ -33,14 +35,14 @@ describe('Mat2', () => {
     });
 
     it('should return Mat2(m0, m1, ...m8) if called with (Mat4(m0, m1, ...m9))', () => {
-      let v = new Mat2(
+      const v = new Mat2(
         1, 2,
         3, 4);
       expect(new Mat2(v)).toBeVec(v);
     });
 
     it('should return Mat2(m0, m1, ...m8) if called with (Float32Array([m0, m1, ...m8]))', () => {
-      let arr = new Float32Array([
+      const arr = new Float32Array([
         1, 2,
         3, 4]);
       expect(new Mat2(arr)).toBeVec(arr);
@@ -48,7 +50,8 @@ describe('Mat2', () => {
   });
 
   describe('static', () => {
-    let out, matA, matB, identity, result;
+    let out: Mat2Like, matA: Mat2Like, matB: Mat2Like, identity: Mat2Like,
+      result: [Mat2Like, Readonly<Mat2Like>, Mat2Like] | FloatArray | Mat2Like | null | number | string;
 
     beforeEach(() => {
       matA = new Float32Array([1, 2, 3, 4]);
@@ -61,7 +64,7 @@ describe('Mat2', () => {
       beforeEach(() => { result = Mat2.create(); });
 
       it('should return a 4 element array initialized to a 2x2 identity matrix',
-       () => expect(result).toBeVec(identity));
+        () => expect(result).toBeVec(identity));
     });
 
     describe('clone', () => {
@@ -147,10 +150,10 @@ describe('Mat2', () => {
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat2.multiply(out, matA, matB); });
 
-          it('should place values into out', () => expect(out).toBeVec(23, 34, 31, 46));
-          it('should return out', () => expect(result).toBe(out));
-          it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4));
-          it('should not modify matB', () => expect(matB).toBeVec(5, 6, 7, 8));
+        it('should place values into out', () => expect(out).toBeVec(23, 34, 31, 46));
+        it('should return out', () => expect(result).toBe(out));
+        it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4));
+        it('should not modify matB', () => expect(matB).toBeVec(5, 6, 7, 8));
       });
 
       describe('when matA is the output matrix', () => {
@@ -188,7 +191,7 @@ describe('Mat2', () => {
     });
 
     describe('scale', () => {
-      let vecA;
+      let vecA: Vec2Like;
 
       beforeEach(() => { vecA = [2, 3]; });
 
@@ -217,17 +220,17 @@ describe('Mat2', () => {
     describe('frob', () => {
       beforeEach(() => { result = Mat2.frob(matA); });
       it('should return the Frobenius Norm of the matrix',
-       () => expect(result).toEqual( Math.sqrt(Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) + Math.pow(4, 2))));
+        () => expect(result).toEqual(Math.sqrt(Math.pow(1, 2) + Math.pow(2, 2) + Math.pow(3, 2) + Math.pow(4, 2))));
     });
 
     describe('LDU', () => {
-      let L, D, U, L_result, D_result, U_result;
+      let L: Mat2, D: Mat2, U: Mat2, L_result: Mat2, D_result: Mat2, U_result: Mat2;
 
       beforeEach(() => {
         L = Mat2.create();
         D = Mat2.create();
         U = Mat2.create();
-        result = Mat2.LDU(L, D, U, [4,3,6,3]);
+        result = Mat2.LDU(L, D, U, [4, 3, 6, 3]);
         L_result = Mat2.create(); L_result[2] = 1.5;
         D_result = Mat2.create();
         U_result = Mat2.create();
@@ -235,20 +238,23 @@ describe('Mat2', () => {
       });
 
       it('should return a lower triangular, a diagonal and an upper triangular matrix', () => {
+        // @ts-expect-error Not null
         expect(result[0]).toBeVec(L_result);
+        // @ts-expect-error Not null
         expect(result[1]).toBeVec(D_result);
+        // @ts-expect-error Not null
         expect(result[2]).toBeVec(U_result);
       });
-   });
+    });
 
     describe('add', () => {
       describe('with a separate output matrix', () => {
         beforeEach(() => { result = Mat2.add(out, matA, matB); });
 
-          it('should place values into out', () => expect(out).toBeVec(6, 8, 10, 12));
-          it('should return out', () => expect(result).toBe(out));
-          it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4));
-          it('should not modify matB', () => expect(matB).toBeVec(5, 6, 7, 8));
+        it('should place values into out', () => expect(out).toBeVec(6, 8, 10, 12));
+        it('should return out', () => expect(result).toBe(out));
+        it('should not modify matA', () => expect(matA).toBeVec(1, 2, 3, 4));
+        it('should not modify matB', () => expect(matB).toBeVec(5, 6, 7, 8));
       });
 
       describe('when matA is the output matrix', () => {
@@ -355,7 +361,7 @@ describe('Mat2', () => {
     });
 
     describe('exactEquals', () => {
-      let matC, r0, r1, r2;
+      let matC: Mat2Like, r0: boolean, r1: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3];
@@ -372,7 +378,7 @@ describe('Mat2', () => {
     });
 
     describe('equals', () => {
-      let matC, matD, r0, r1, r2;
+      let matC: Mat2Like, matD: Mat2Like, r0: boolean, r1: boolean, r2: boolean;
 
       beforeEach(() => {
         matA = [0, 1, 2, 3];

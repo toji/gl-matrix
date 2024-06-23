@@ -45,9 +45,9 @@ var Mat2 = class _Mat2 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   /**
    * A string representation of `this`
    * Equivalent to `Mat2.str(this);`
@@ -57,9 +57,9 @@ var Mat2 = class _Mat2 extends Float64Array {
   get str() {
     return _Mat2.str(this);
   }
-  //===================
+  // ===================
   // Instance methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Mat2} into `this`.
    *
@@ -100,6 +100,7 @@ var Mat2 = class _Mat2 extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Transpose this {@link Mat2}
    * Equivalent to `Mat2.transpose(this, this);`
@@ -142,9 +143,9 @@ var Mat2 = class _Mat2 extends Float64Array {
   rotate(rad) {
     return _Mat2.rotate(this, this, rad);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -153,9 +154,9 @@ var Mat2 = class _Mat2 extends Float64Array {
   static get BYTE_LENGTH() {
     return 4 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, identity {@link Mat2}
    * @category Static
@@ -239,7 +240,7 @@ var Mat2 = class _Mat2 extends Float64Array {
    */
   static transpose(out, a) {
     if (out === a) {
-      let a1 = a[1];
+      const a1 = a[1];
       out[1] = a[2];
       out[2] = a1;
     } else {
@@ -256,7 +257,7 @@ var Mat2 = class _Mat2 extends Float64Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out, a) {
     const a0 = a[0];
@@ -336,6 +337,7 @@ var Mat2 = class _Mat2 extends Float64Array {
    * Alias for {@link Mat2.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return out;
   }
@@ -367,6 +369,7 @@ var Mat2 = class _Mat2 extends Float64Array {
    * Alias for {@link Mat2.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -603,9 +606,9 @@ var Mat2d = class _Mat2d extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   /**
    * A string representation of `this`
    * Equivalent to `Mat2d.str(this);`
@@ -615,9 +618,9 @@ var Mat2d = class _Mat2d extends Float64Array {
   get str() {
     return _Mat2d.str(this);
   }
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Mat2d} into `this`.
    * @category Methods
@@ -660,6 +663,7 @@ var Mat2d = class _Mat2d extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Translate this {@link Mat2d} by the given vector
    * Equivalent to `Mat2d.translate(this, this, v);`
@@ -693,9 +697,9 @@ var Mat2d = class _Mat2d extends Float64Array {
   scale(v) {
     return _Mat2d.scale(this, this, v);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -704,9 +708,9 @@ var Mat2d = class _Mat2d extends Float64Array {
   static get BYTE_LENGTH() {
     return 6 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, identity {@link Mat2d}
    * @category Static
@@ -792,7 +796,7 @@ var Mat2d = class _Mat2d extends Float64Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out, a) {
     const aa = a[0];
@@ -864,6 +868,7 @@ var Mat2d = class _Mat2d extends Float64Array {
    * Alias for {@link Mat2d.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return out;
   }
@@ -901,6 +906,7 @@ var Mat2d = class _Mat2d extends Float64Array {
    * Alias for {@link Mat2d.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -986,9 +992,10 @@ var Mat2d = class _Mat2d extends Float64Array {
   /**
    * Creates a {@link Mat2d} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.translate(dest, dest, vec);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -1007,9 +1014,10 @@ var Mat2d = class _Mat2d extends Float64Array {
   /**
    * Creates a {@link Mat2d} from a given angle around a given axis
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.rotate(dest, dest, rad);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.rotate(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -1030,9 +1038,10 @@ var Mat2d = class _Mat2d extends Float64Array {
   /**
    * Creates a {@link Mat2d} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     Mat2d.identity(dest);
-   *     Mat2d.scale(dest, dest, vec);
+   * ```js
+   *   Mat2d.identity(dest);
+   *   Mat2d.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat2d} receiving operation result
@@ -1096,7 +1105,7 @@ var Mat2d = class _Mat2d extends Float64Array {
     return out;
   }
   /**
-   * Returns whether or not two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat2d}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -1107,7 +1116,7 @@ var Mat2d = class _Mat2d extends Float64Array {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5];
   }
   /**
-   * Returns whether or not two {@link Mat2d}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat2d}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
@@ -1192,9 +1201,9 @@ var Mat3 = class _Mat3 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   /**
    * A string representation of `this`
    * Equivalent to `Mat3.str(this);`
@@ -1204,9 +1213,9 @@ var Mat3 = class _Mat3 extends Float64Array {
   get str() {
     return _Mat3.str(this);
   }
-  //===================
+  // ===================
   // Instance methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Mat3} into `this`.
    * @category Methods
@@ -1249,6 +1258,7 @@ var Mat3 = class _Mat3 extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Transpose this {@link Mat3}
    * Equivalent to `Mat3.transpose(this, this);`
@@ -1302,9 +1312,9 @@ var Mat3 = class _Mat3 extends Float64Array {
   scale(v) {
     return _Mat3.scale(this, this, v);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -1313,9 +1323,9 @@ var Mat3 = class _Mat3 extends Float64Array {
   static get BYTE_LENGTH() {
     return 9 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, identity {@link Mat3}
    * @category Static
@@ -1440,7 +1450,7 @@ var Mat3 = class _Mat3 extends Float64Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out, a) {
     const a00 = a[0], a01 = a[1], a02 = a[2];
@@ -1559,6 +1569,7 @@ var Mat3 = class _Mat3 extends Float64Array {
    * Alias for {@link Mat3.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return out;
   }
@@ -1605,6 +1616,7 @@ var Mat3 = class _Mat3 extends Float64Array {
    * Alias for {@link Mat3.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -1698,9 +1710,10 @@ var Mat3 = class _Mat3 extends Float64Array {
   /**
    * Creates a {@link Mat3} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     mat3.identity(dest);
-   *     mat3.translate(dest, dest, vec);
+   * ```js
+   *   mat3.identity(dest);
+   *   mat3.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat3} receiving operation result
@@ -1748,9 +1761,10 @@ var Mat3 = class _Mat3 extends Float64Array {
   /**
    * Creates a {@link Mat3} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     mat3.identity(dest);
-   *     mat3.scale(dest, dest, vec);
+   * ```js
+   *   mat3.identity(dest);
+   *   mat3.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat3} receiving operation result
@@ -1853,7 +1867,7 @@ var Mat3 = class _Mat3 extends Float64Array {
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static normalFromMat4(out, a) {
     const a00 = a[0];
@@ -2009,7 +2023,7 @@ var Mat3 = class _Mat3 extends Float64Array {
     return out;
   }
   /**
-   * Returns whether or not two {@link Mat3}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat3}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -2020,7 +2034,7 @@ var Mat3 = class _Mat3 extends Float64Array {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && a[8] === b[8];
   }
   /**
-   * Returns whether or not two {@link Mat3}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat3}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
@@ -2131,9 +2145,9 @@ var Mat4 = class _Mat4 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   /**
    * A string representation of `this`
    * Equivalent to `Mat4.str(this);`
@@ -2143,9 +2157,9 @@ var Mat4 = class _Mat4 extends Float64Array {
   get str() {
     return _Mat4.str(this);
   }
-  //===================
+  // ===================
   // Instance methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Mat4} into `this`.
    * @category Methods
@@ -2186,6 +2200,7 @@ var Mat4 = class _Mat4 extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Transpose this {@link Mat4}
    * Equivalent to `Mat4.transpose(this, this);`
@@ -2343,9 +2358,9 @@ var Mat4 = class _Mat4 extends Float64Array {
   orthoZO(left, right, bottom, top, near, far) {
     return _Mat4.orthoZO(this, left, right, bottom, top, near, far);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -2354,9 +2369,9 @@ var Mat4 = class _Mat4 extends Float64Array {
   static get BYTE_LENGTH() {
     return 16 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, identity {@link Mat4}
    * @category Static
@@ -2517,7 +2532,7 @@ var Mat4 = class _Mat4 extends Float64Array {
    *
    * @param out - the receiving matrix
    * @param a - the source matrix
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static invert(out, a) {
     const a00 = a[0], a01 = a[1], a02 = a[2], a03 = a[3];
@@ -2690,6 +2705,7 @@ var Mat4 = class _Mat4 extends Float64Array {
    * Alias for {@link Mat4.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -2850,16 +2866,16 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @returns `out`
    */
   static rotateX(out, a, rad) {
-    let s = Math.sin(rad);
-    let c = Math.cos(rad);
-    let a10 = a[4];
-    let a11 = a[5];
-    let a12 = a[6];
-    let a13 = a[7];
-    let a20 = a[8];
-    let a21 = a[9];
-    let a22 = a[10];
-    let a23 = a[11];
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
+    const a10 = a[4];
+    const a11 = a[5];
+    const a12 = a[6];
+    const a13 = a[7];
+    const a20 = a[8];
+    const a21 = a[9];
+    const a22 = a[10];
+    const a23 = a[11];
     if (a !== out) {
       out[0] = a[0];
       out[1] = a[1];
@@ -2890,16 +2906,16 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @returns `out`
    */
   static rotateY(out, a, rad) {
-    let s = Math.sin(rad);
-    let c = Math.cos(rad);
-    let a00 = a[0];
-    let a01 = a[1];
-    let a02 = a[2];
-    let a03 = a[3];
-    let a20 = a[8];
-    let a21 = a[9];
-    let a22 = a[10];
-    let a23 = a[11];
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
+    const a00 = a[0];
+    const a01 = a[1];
+    const a02 = a[2];
+    const a03 = a[3];
+    const a20 = a[8];
+    const a21 = a[9];
+    const a22 = a[10];
+    const a23 = a[11];
     if (a !== out) {
       out[4] = a[4];
       out[5] = a[5];
@@ -2930,16 +2946,16 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @returns `out`
    */
   static rotateZ(out, a, rad) {
-    let s = Math.sin(rad);
-    let c = Math.cos(rad);
-    let a00 = a[0];
-    let a01 = a[1];
-    let a02 = a[2];
-    let a03 = a[3];
-    let a10 = a[4];
-    let a11 = a[5];
-    let a12 = a[6];
-    let a13 = a[7];
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
+    const a00 = a[0];
+    const a01 = a[1];
+    const a02 = a[2];
+    const a03 = a[3];
+    const a10 = a[4];
+    const a11 = a[5];
+    const a12 = a[6];
+    const a13 = a[7];
     if (a !== out) {
       out[8] = a[8];
       out[9] = a[9];
@@ -2963,9 +2979,10 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a {@link Mat4} from a vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, dest, vec);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat4} receiving operation result
@@ -2994,9 +3011,10 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a {@link Mat4} from a vector scaling
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.scale(dest, dest, vec);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.scale(dest, dest, vec);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat4} receiving operation result
@@ -3025,9 +3043,10 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a {@link Mat4} from a given angle around a given axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotate(dest, dest, rad, axis);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotate(dest, dest, rad, axis);
+   * ```
    * @category Static
    *
    * @param out - {@link Mat4} receiving operation result
@@ -3071,9 +3090,10 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a matrix from the given angle around the X axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotateX(dest, dest, rad);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotateX(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -3081,8 +3101,8 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @returns `out`
    */
   static fromXRotation(out, rad) {
-    let s = Math.sin(rad);
-    let c = Math.cos(rad);
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -3104,9 +3124,10 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a matrix from the given angle around the Y axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotateY(dest, dest, rad);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotateY(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -3114,8 +3135,8 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @returns `out`
    */
   static fromYRotation(out, rad) {
-    let s = Math.sin(rad);
-    let c = Math.cos(rad);
+    const s = Math.sin(rad);
+    const c = Math.cos(rad);
     out[0] = c;
     out[1] = 0;
     out[2] = -s;
@@ -3137,9 +3158,10 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a matrix from the given angle around the Z axis
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.rotateZ(dest, dest, rad);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.rotateZ(dest, dest, rad);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -3170,12 +3192,13 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a matrix from a quaternion rotation and vector translation
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, vec);
-   *     let quatMat = mat4.create();
-   *     quat4.toMat4(quat, quatMat);
-   *     mat4.multiply(dest, quatMat);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, vec);
+   *   let quatMat = mat4.create();
+   *   quat4.toMat4(quat, quatMat);
+   *   mat4.multiply(dest, quatMat);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -3235,7 +3258,7 @@ var Mat4 = class _Mat4 extends Float64Array {
     const ay = a[5];
     const az = a[6];
     const aw = a[7];
-    let magnitude = bx * bx + by * by + bz * bz + bw * bw;
+    const magnitude = bx * bx + by * by + bz * bz + bw * bw;
     if (magnitude > 0) {
       _Mat4.#TMP_VEC3[0] = (ax * bw + aw * bx + ay * bz - az * by) * 2 / magnitude;
       _Mat4.#TMP_VEC3[1] = (ay * bw + aw * by + az * bx - ax * bz) * 2 / magnitude;
@@ -3254,7 +3277,7 @@ var Mat4 = class _Mat4 extends Float64Array {
    *
    * @param out - Matrix receiving operation result
    * @param a - Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertable
+   * @returns `out` or `null` if the matrix is not invertible
    */
   static normalFromMat4(out, a) {
     const a00 = a[0];
@@ -3516,13 +3539,14 @@ var Mat4 = class _Mat4 extends Float64Array {
   /**
    * Creates a matrix from a quaternion rotation, vector translation and vector scale
    * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, vec);
-   *     let quatMat = mat4.create();
-   *     quat4.toMat4(quat, quatMat);
-   *     mat4.multiply(dest, quatMat);
-   *     mat4.scale(dest, scale);
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, vec);
+   *   let quatMat = mat4.create();
+   *   quat4.toMat4(quat, quatMat);
+   *   mat4.multiply(dest, quatMat);
+   *   mat4.scale(dest, scale);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -3570,17 +3594,18 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the given origin
-   * This is equivalent to (but much faster than):
-   *
-   *     mat4.identity(dest);
-   *     mat4.translate(dest, vec);
-   *     mat4.translate(dest, origin);
-   *     let quatMat = mat4.create();
-   *     quat4.toMat4(quat, quatMat);
-   *     mat4.multiply(dest, quatMat);
-   *     mat4.scale(dest, scale)
-   *     mat4.translate(dest, negativeOrigin);
+   * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the
+   * given origin. This is equivalent to (but much faster than):
+   * ```js
+   *   mat4.identity(dest);
+   *   mat4.translate(dest, vec);
+   *   mat4.translate(dest, origin);
+   *   let quatMat = mat4.create();
+   *   quat4.toMat4(quat, quatMat);
+   *   mat4.multiply(dest, quatMat);
+   *   mat4.scale(dest, scale)
+   *   mat4.translate(dest, negativeOrigin);
+   * ```
    * @category Static
    *
    * @param out - mat4 receiving operation result
@@ -3734,6 +3759,7 @@ var Mat4 = class _Mat4 extends Float64Array {
   static frustum(out, left, right, bottom, top, near, far = Infinity) {
     return out;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Generates a frustum matrix with the given bounds
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
@@ -3822,6 +3848,7 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @category Static
    * @deprecated Use {@link Mat4.perspectiveNO} or {@link Mat4.perspectiveZO} explicitly
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static perspective(out, fovy, aspect, near, far = Infinity) {
     return out;
   }
@@ -3866,9 +3893,8 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Generates a perspective projection matrix with the given field of view.
-   * This is primarily useful for generating projection matrices to be used
-   * with the still experiemental WebVR API.
+   * Generates a perspective projection matrix with the given field of view. This is primarily useful for generating
+   * projection matrices to be used with the still experimental WebVR API.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -3904,9 +3930,8 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Generates a orthogonal projection matrix with the given bounds.
-   * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
-   * which matches WebGL/OpenGL's clip volume.
+   * Generates an orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
+   * normalized device coordinate Z range of [-1, 1], which matches WebGL / OpenGLs clip volume.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -3945,13 +3970,13 @@ var Mat4 = class _Mat4 extends Float64Array {
    * @category Static
    * @deprecated Use {@link Mat4.orthoNO} or {@link Mat4.orthoZO} explicitly
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static ortho(out, left, right, bottom, top, near, far) {
     return out;
   }
   /**
-   * Generates a orthogonal projection matrix with the given bounds.
-   * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
-   * which matches WebGPU/Vulkan/DirectX/Metal's clip volume.
+   * Generates a orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
+   * normalized device coordinate Z range of [0, 1], which matches WebGPU / Vulkan / DirectX / Metal's clip volume.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -3986,8 +4011,8 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Generates a look-at matrix with the given eye position, focal point, and up axis.
-   * If you want a matrix that actually makes an object look at another object, you should use targetTo instead.
+   * Generates a look-at matrix with the given eye position, focal point, and up axis. If you want a matrix that
+   * actually makes an object look at another object, you should use targetTo instead.
    * @category Static
    *
    * @param out - mat4 frustum matrix will be written into
@@ -4189,6 +4214,7 @@ var Mat4 = class _Mat4 extends Float64Array {
    * Alias for {@link Mat4.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return out;
   }
@@ -4250,7 +4276,7 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Returns whether or not two {@link Mat4}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether two {@link Mat4}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
    *
    * @param a - The first matrix.
@@ -4261,7 +4287,7 @@ var Mat4 = class _Mat4 extends Float64Array {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7] && a[8] === b[8] && a[9] === b[9] && a[10] === b[10] && a[11] === b[11] && a[12] === b[12] && a[13] === b[13] && a[14] === b[14] && a[15] === b[15];
   }
   /**
-   * Returns whether or not two {@link Mat4}s have approximately the same elements in the same position.
+   * Returns whether two {@link Mat4}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first matrix.
@@ -4350,9 +4376,9 @@ var Vec3 = class _Vec3 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
   /**
@@ -4469,9 +4495,9 @@ var Vec3 = class _Vec3 extends Float64Array {
   get str() {
     return _Vec3.str(this);
   }
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Vec3} into `this`.
    * @category Methods
@@ -4518,6 +4544,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   sub(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Multiplies `this` by a {@link Vec3}.
    * Equivalent to `Vec3.multiply(this, this, b);`
@@ -4539,6 +4566,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Divides `this` by a {@link Vec3}.
    * Equivalent to `Vec3.divide(this, this, b);`
@@ -4560,6 +4588,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   div(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Scales `this` by a scalar number.
    * Equivalent to `Vec3.scale(this, this, b);`
@@ -4607,6 +4636,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   dist(b) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared Euclidean distance between another {@link Vec3} and `this`.
    * Equivalent to `Vec3.squaredDistance(this, b);`
@@ -4625,6 +4655,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   sqrDist(b) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Negates the components of `this`.
    * Equivalent to `Vec3.negate(this, this);`
@@ -4685,9 +4716,9 @@ var Vec3 = class _Vec3 extends Float64Array {
   normalize() {
     return _Vec3.normalize(this, this);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -4696,9 +4727,9 @@ var Vec3 = class _Vec3 extends Float64Array {
   static get BYTE_LENGTH() {
     return 3 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, empty vec3
    * @category Static
@@ -4726,9 +4757,9 @@ var Vec3 = class _Vec3 extends Float64Array {
    * @returns Magnitude of a
    */
   static magnitude(a) {
-    let x = a[0];
-    let y = a[1];
-    let z = a[2];
+    const x = a[0];
+    const y = a[1];
+    const z = a[2];
     return Math.sqrt(x * x + y * y + z * z);
   }
   /**
@@ -4738,6 +4769,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   static mag(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec3.magnitude}
    * @category Static
@@ -4746,10 +4778,11 @@ var Vec3 = class _Vec3 extends Float64Array {
    * @param a - vector to calculate length of
    * @returns length of a
    */
-  // @ts-ignore: Length conflicts with Function.length
+  // Length conflicts with Function.length
   static length(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec3.magnitude}
    * @category Static
@@ -4758,6 +4791,7 @@ var Vec3 = class _Vec3 extends Float64Array {
   static len(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Creates a new vec3 initialized with the given values
    * @category Static
@@ -4834,6 +4868,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * Alias for {@link Vec3.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return [0, 0, 0];
   }
@@ -4856,6 +4891,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * Alias for {@link Vec3.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return [0, 0, 0];
   }
@@ -4878,6 +4914,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * Alias for {@link Vec3.divide}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out, a, b) {
     return [0, 0, 0];
   }
@@ -4947,7 +4984,8 @@ var Vec3 = class _Vec3 extends Float64Array {
    * @param a - vector to round
    * @returns `out`
    */
-  /*static round(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  /*
+    static round(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
     out[0] = glMatrix.round(a[0]);
     out[1] = glMatrix.round(a[1]);
     out[2] = glMatrix.round(a[2]);
@@ -5002,6 +5040,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * Alias for {@link Vec3.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dist(a, b) {
     return 0;
   }
@@ -5023,6 +5062,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * Alias for {@link Vec3.squaredDistance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrDist(a, b) {
     return 0;
   }
@@ -5043,6 +5083,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * Alias for {@link Vec3.squaredLength}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrLen(a, b) {
     return 0;
   }
@@ -5232,7 +5273,8 @@ var Vec3 = class _Vec3 extends Float64Array {
    * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
    * @returns `out`
    */
-  /*static random(out: Vec3Like, scale) {
+  /*
+      static random(out: Vec3Like, scale) {
       scale = scale === undefined ? 1.0 : scale;
   
       let r = glMatrix.RANDOM() * 2.0 * Math.PI;
@@ -5272,7 +5314,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    * @returns `out`
    */
   static transformMat3(out, a, m) {
-    let x = a[0], y = a[1], z = a[2];
+    const x = a[0], y = a[1], z = a[2];
     out[0] = x * m[0] + y * m[3] + z * m[6];
     out[1] = x * m[1] + y * m[4] + z * m[7];
     out[2] = x * m[2] + y * m[5] + z * m[8];
@@ -5410,7 +5452,7 @@ var Vec3 = class _Vec3 extends Float64Array {
     return `Vec3(${a.join(", ")})`;
   }
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -5421,7 +5463,7 @@ var Vec3 = class _Vec3 extends Float64Array {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
   }
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -5482,9 +5524,9 @@ var Vec4 = class _Vec4 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
   /**
@@ -5602,9 +5644,9 @@ var Vec4 = class _Vec4 extends Float64Array {
   get str() {
     return _Vec4.str(this);
   }
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Vec4} into `this`.
    * @category Methods
@@ -5653,6 +5695,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   sub(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Multiplies `this` by a {@link Vec4}.
    * Equivalent to `Vec4.multiply(this, this, b);`
@@ -5675,6 +5718,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Divides `this` by a {@link Vec4}.
    * Equivalent to `Vec4.divide(this, this, b);`
@@ -5697,6 +5741,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   div(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Scales `this` by a scalar number.
    * Equivalent to `Vec4.scale(this, this, b);`
@@ -5746,6 +5791,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   dist(b) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared Euclidean distance between another {@link Vec4} and `this`.
    * Equivalent to `Vec4.squaredDistance(this, b);`
@@ -5764,6 +5810,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   sqrDist(b) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Negates the components of `this`.
    * Equivalent to `Vec4.negate(this, this);`
@@ -5827,9 +5874,9 @@ var Vec4 = class _Vec4 extends Float64Array {
   normalize() {
     return _Vec4.normalize(this, this);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -5838,9 +5885,9 @@ var Vec4 = class _Vec4 extends Float64Array {
   static get BYTE_LENGTH() {
     return 4 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, empty {@link Vec4}
    * @category Static
@@ -5942,6 +5989,7 @@ var Vec4 = class _Vec4 extends Float64Array {
    * Alias for {@link Vec4.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return out;
   }
@@ -5965,6 +6013,7 @@ var Vec4 = class _Vec4 extends Float64Array {
    * Alias for {@link Vec4.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -5988,6 +6037,7 @@ var Vec4 = class _Vec4 extends Float64Array {
    * Alias for {@link Vec4.divide}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out, a, b) {
     return out;
   }
@@ -6120,6 +6170,7 @@ var Vec4 = class _Vec4 extends Float64Array {
    * Alias for {@link Vec4.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dist(a, b) {
     return 0;
   }
@@ -6142,6 +6193,7 @@ var Vec4 = class _Vec4 extends Float64Array {
    * Alias for {@link Vec4.squaredDistance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrDist(a, b) {
     return 0;
   }
@@ -6166,15 +6218,17 @@ var Vec4 = class _Vec4 extends Float64Array {
   static mag(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec4.magnitude}
    * @category Static
    * @deprecated Use {@link Vec4.magnitude} to avoid conflicts with builtin `length` methods/attribs
    */
-  // @ts-ignore: Length conflicts with Function.length
+  // Length conflicts with Function.length
   static length(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec4.magnitude}
    * @category Static
@@ -6183,6 +6237,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   static len(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared length of a {@link Vec4}
    * @category Static
@@ -6204,6 +6259,7 @@ var Vec4 = class _Vec4 extends Float64Array {
   static sqrLen(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Negates the components of a {@link Vec4}
    * @category Static
@@ -6339,7 +6395,8 @@ var Vec4 = class _Vec4 extends Float64Array {
    * @param [scale] - Length of the resulting vector. If ommitted, a unit vector will be returned
    * @returns `out`
    */
-  /*static random(out: Vec4Like, scale): Vec4Like {
+  /*
+      static random(out: Vec4Like, scale): Vec4Like {
       scale = scale || 1.0;
   
       // Marsaglia, George. Choosing a Point from the Surface of a
@@ -6437,7 +6494,7 @@ var Vec4 = class _Vec4 extends Float64Array {
     return `Vec4(${a.join(", ")})`;
   }
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -6448,7 +6505,7 @@ var Vec4 = class _Vec4 extends Float64Array {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3];
   }
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -6521,9 +6578,9 @@ var Quat = class _Quat extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
   /**
@@ -6599,9 +6656,9 @@ var Quat = class _Quat extends Float64Array {
   get str() {
     return _Quat.str(this);
   }
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Quat} into `this`.
    * @category Methods
@@ -6645,6 +6702,7 @@ var Quat = class _Quat extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Rotates `this` by the given angle about the X axis
    * Equivalent to `Quat.rotateX(this, this, rad);`
@@ -6714,9 +6772,9 @@ var Quat = class _Quat extends Float64Array {
   dot(b) {
     return _Quat.dot(this, b);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -6725,9 +6783,9 @@ var Quat = class _Quat extends Float64Array {
   static get BYTE_LENGTH() {
     return 4 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new identity quat
    * @category Static
@@ -6762,7 +6820,7 @@ var Quat = class _Quat extends Float64Array {
    * @returns `out`
    **/
   static setAxisAngle(out, axis, rad) {
-    rad = rad * 0.5;
+    rad *= 0.5;
     const s = Math.sin(rad);
     out[0] = s * axis[0];
     out[1] = s * axis[1];
@@ -6774,7 +6832,7 @@ var Quat = class _Quat extends Float64Array {
    * Gets the rotation axis and angle for a given
    *  quaternion. If a quaternion is created with
    *  setAxisAngle, this method will return the same
-   *  values as providied in the original parameter list
+   *  values as provided in the original parameter list
    *  OR functionally equivalent values.
    * Example: The quaternion formed by axis [0, 0, 1] and
    *  angle -90 is the same as the quaternion formed by
@@ -6812,7 +6870,7 @@ var Quat = class _Quat extends Float64Array {
     return Math.acos(2 * dotproduct * dotproduct - 1);
   }
   /**
-   * Multiplies two quat's
+   * Multiplies two quaternions.
    * @category Static
    *
    * @param out - the receiving quaternion
@@ -7019,7 +7077,7 @@ var Quat = class _Quat extends Float64Array {
    * @param out - the receiving quaternion
    * @returns `out`
    */
-  /*static random(out: QuatLike): QuatLike {
+  /* static random(out: QuatLike): QuatLike {
       // Implementation of http://planning.cs.uiuc.edu/node198.html
       // TODO: Calling random 3 times is probably not the fastest solution
       let u1 = glMatrix.RANDOM();
@@ -7055,7 +7113,7 @@ var Quat = class _Quat extends Float64Array {
   }
   /**
    * Calculates the conjugate of a quat
-   * If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+   * If the quaternion is normalized, this function is faster than `quat.inverse` and produces the same result.
    * @category Static
    *
    * @param out - the receiving quaternion
@@ -7073,7 +7131,7 @@ var Quat = class _Quat extends Float64Array {
    * Creates a quaternion from the given 3x3 rotation matrix.
    *
    * NOTE: The resultant quaternion is not normalized, so you should be sure
-   * to renormalize the quaternion yourself where necessary.
+   * to re-normalize the quaternion yourself where necessary.
    * @category Static
    *
    * @param out - the receiving quaternion
@@ -7092,10 +7150,14 @@ var Quat = class _Quat extends Float64Array {
       out[2] = (m[1] - m[3]) * fRoot;
     } else {
       let i = 0;
-      if (m[4] > m[0]) i = 1;
-      if (m[8] > m[i * 3 + i]) i = 2;
-      let j = (i + 1) % 3;
-      let k = (i + 2) % 3;
+      if (m[4] > m[0]) {
+        i = 1;
+      }
+      if (m[8] > m[i * 3 + i]) {
+        i = 2;
+      }
+      const j = (i + 1) % 3;
+      const k = (i + 2) % 3;
       fRoot = Math.sqrt(m[i * 3 + i] - m[j * 3 + j] - m[k * 3 + k] + 1);
       out[i] = 0.5 * fRoot;
       fRoot = 0.5 / fRoot;
@@ -7117,16 +7179,16 @@ var Quat = class _Quat extends Float64Array {
    * @returns `out`
    */
   static fromEuler(out, x, y, z, order = _Quat.#DEFAULT_ANGLE_ORDER) {
-    let halfToRad = 0.5 * Math.PI / 180;
+    const halfToRad = 0.5 * Math.PI / 180;
     x *= halfToRad;
     y *= halfToRad;
     z *= halfToRad;
-    let sx = Math.sin(x);
-    let cx = Math.cos(x);
-    let sy = Math.sin(y);
-    let cy = Math.cos(y);
-    let sz = Math.sin(z);
-    let cz = Math.cos(z);
+    const sx = Math.sin(x);
+    const cx = Math.cos(x);
+    const sy = Math.sin(y);
+    const cy = Math.cos(y);
+    const sz = Math.sin(z);
+    const cz = Math.cos(z);
     switch (order) {
       case "xyz":
         out[0] = sx * cy * cz + cx * sy * sz;
@@ -7165,7 +7227,7 @@ var Quat = class _Quat extends Float64Array {
         out[3] = cx * cy * cz + sx * sy * sz;
         break;
       default:
-        throw new Error("Unknown angle order " + order);
+        throw new Error(`Unknown angle order ${order}`);
     }
     return out;
   }
@@ -7228,6 +7290,7 @@ var Quat = class _Quat extends Float64Array {
    * @param w - W component
    * @returns `out`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static set(out, x, y, z, w) {
     return out;
   }
@@ -7240,6 +7303,7 @@ var Quat = class _Quat extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static add(out, a, b) {
     return out;
   }
@@ -7247,6 +7311,7 @@ var Quat = class _Quat extends Float64Array {
    * Alias for {@link Quat.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -7287,6 +7352,7 @@ var Quat = class _Quat extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static lerp(out, a, b, t) {
     return out;
   }
@@ -7297,6 +7363,7 @@ var Quat = class _Quat extends Float64Array {
    * @param a - quaternion to calculate length of
    * @returns length of `a`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static magnitude(a) {
     return 0;
   }
@@ -7304,6 +7371,7 @@ var Quat = class _Quat extends Float64Array {
    * Alias for {@link Quat.magnitude}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mag(a) {
     return 0;
   }
@@ -7312,10 +7380,11 @@ var Quat = class _Quat extends Float64Array {
    * @category Static
    * @deprecated Use {@link Quat.magnitude} to avoid conflicts with builtin `length` methods/attribs
    */
-  // @ts-ignore: Length conflicts with Function.length
+  // Length conflicts with Function.length
   static length(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Quat.magnitude}
    * @category Static
@@ -7324,6 +7393,7 @@ var Quat = class _Quat extends Float64Array {
   static len(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared length of a {@link Quat}
    * @category Static
@@ -7331,6 +7401,7 @@ var Quat = class _Quat extends Float64Array {
    * @param a - quaternion to calculate squared length of
    * @returns squared length of a
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static squaredLength(a) {
     return 0;
   }
@@ -7341,6 +7412,7 @@ var Quat = class _Quat extends Float64Array {
   static sqrLen(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Normalize a {@link Quat}
    * @category Static
@@ -7349,28 +7421,31 @@ var Quat = class _Quat extends Float64Array {
    * @param a - quaternion to normalize
    * @returns `out`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static normalize(out, a) {
     return out;
   }
   /**
-   * Returns whether or not the quaternions have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the quaternions have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first quaternion.
    * @param b - The second quaternion.
    * @returns True if the vectors are equal, false otherwise.
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static exactEquals(a, b) {
     return false;
   }
   /**
-   * Returns whether or not the quaternions have approximately the same elements in the same position.
+   * Returns whether the quaternions have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
    * @param b - The second vector.
    * @returns True if the vectors are equal, false otherwise.
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static equals(a, b) {
     return false;
   }
@@ -7387,10 +7462,12 @@ var Quat = class _Quat extends Float64Array {
    * @returns `out`
    */
   static rotationTo(out, a, b) {
-    let dot = Vec3.dot(a, b);
+    const dot = Vec3.dot(a, b);
     if (dot < -0.999999) {
       Vec3.cross(_Quat.#TMP_VEC3, _Quat.#X_UNIT_VEC3, a);
-      if (Vec3.mag(_Quat.#TMP_VEC3) < 1e-6) Vec3.cross(_Quat.#TMP_VEC3, _Quat.#Y_UNIT_VEC3, a);
+      if (Vec3.mag(_Quat.#TMP_VEC3) < 1e-6) {
+        Vec3.cross(_Quat.#TMP_VEC3, _Quat.#Y_UNIT_VEC3, a);
+      }
       Vec3.normalize(_Quat.#TMP_VEC3, _Quat.#TMP_VEC3);
       _Quat.setAxisAngle(out, _Quat.#TMP_VEC3, Math.PI);
       return out;
@@ -7501,9 +7578,9 @@ var Quat2 = class _Quat2 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   /**
    * A string representation of `this`
    * Equivalent to `Quat2.str(this);`
@@ -7513,9 +7590,9 @@ var Quat2 = class _Quat2 extends Float64Array {
   get str() {
     return _Quat2.str(this);
   }
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Quat2} into `this`.
    * @category Methods
@@ -7527,9 +7604,9 @@ var Quat2 = class _Quat2 extends Float64Array {
     super.set(a);
     return this;
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -7538,9 +7615,9 @@ var Quat2 = class _Quat2 extends Float64Array {
   static get BYTE_LENGTH() {
     return 8 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new identity {@link Quat2}
    * @category Static
@@ -8037,7 +8114,7 @@ var Quat2 = class _Quat2 extends Float64Array {
       return _Quat2.copy(out, a);
     }
     const axisLength = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
-    rad = rad * 0.5;
+    rad *= 0.5;
     const s = Math.sin(rad);
     const bx = s * axis[0] / axisLength;
     const by = s * axis[1] / axisLength;
@@ -8121,6 +8198,7 @@ var Quat2 = class _Quat2 extends Float64Array {
    * Alias for {@link Quat2.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return out;
   }
@@ -8152,6 +8230,7 @@ var Quat2 = class _Quat2 extends Float64Array {
    * @param b - the second operand
    * @returns dot product of a and b
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dot(a, b) {
     return 0;
   }
@@ -8168,7 +8247,9 @@ var Quat2 = class _Quat2 extends Float64Array {
    */
   static lerp(out, a, b, t) {
     const mt = 1 - t;
-    if (_Quat2.dot(a, b) < 0) t = -t;
+    if (_Quat2.dot(a, b) < 0) {
+      t = -t;
+    }
     out[0] = a[0] * mt + b[0] * t;
     out[1] = a[1] * mt + b[1] * t;
     out[2] = a[2] * mt + b[2] * t;
@@ -8200,8 +8281,8 @@ var Quat2 = class _Quat2 extends Float64Array {
     return out;
   }
   /**
-   * Calculates the conjugate of a {@link Quat2}
-   * If the dual quaternion is normalized, this function is faster than {@link Quat2.invert} and produces the same result.
+   * Calculates the conjugate of a {@link Quat2}. If the dual quaternion is normalized, this function is faster than
+   * {@link Quat2.invert} and produces the same result.
    * @category Static
    *
    * @param out - the receiving dual quaternion
@@ -8226,6 +8307,7 @@ var Quat2 = class _Quat2 extends Float64Array {
    * @param a - dual quaternion to calculate length of
    * @returns length of `a`
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static magnitude(a) {
     return 0;
   }
@@ -8236,15 +8318,17 @@ var Quat2 = class _Quat2 extends Float64Array {
   static mag(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Quat2.magnitude}
    * @category Static
    * @deprecated Use {@link Quat2.magnitude} to avoid conflicts with builtin `length` methods/attribs
    */
-  // @ts-ignore: Length conflicts with Function.length
+  // Length conflicts with Function.length
   static length(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Quat2.magnitude}
    * @category Static
@@ -8253,6 +8337,7 @@ var Quat2 = class _Quat2 extends Float64Array {
   static len(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared length of a {@link Quat2}
    * @category Static
@@ -8260,6 +8345,7 @@ var Quat2 = class _Quat2 extends Float64Array {
    * @param a - dual quaternion to calculate squared length of
    * @returns squared length of a
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static squaredLength(a) {
     return 0;
   }
@@ -8270,6 +8356,7 @@ var Quat2 = class _Quat2 extends Float64Array {
   static sqrLen(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Normalize a {@link Quat2}
    * @category Static
@@ -8313,7 +8400,7 @@ var Quat2 = class _Quat2 extends Float64Array {
     return `Quat2(${a.join(", ")})`;
   }
   /**
-   * Returns whether or not the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the {@link Quat2}s have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first dual quaternion.
@@ -8324,7 +8411,7 @@ var Quat2 = class _Quat2 extends Float64Array {
     return a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3] && a[4] === b[4] && a[5] === b[5] && a[6] === b[6] && a[7] === b[7];
   }
   /**
-   * Returns whether or not the {@link Quat2}s have approximately the same elements in the same position.
+   * Returns whether the {@link Quat2}s have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first dual quaternion.
@@ -8391,9 +8478,9 @@ var Vec2 = class _Vec2 extends Float64Array {
         break;
     }
   }
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
   /**
@@ -8486,9 +8573,9 @@ var Vec2 = class _Vec2 extends Float64Array {
   get str() {
     return _Vec2.str(this);
   }
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
   /**
    * Copy the values from another {@link Vec2} into `this`.
    * @category Methods
@@ -8534,6 +8621,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   sub(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Multiplies `this` by a {@link Vec2}.
    * Equivalent to `Vec2.multiply(this, this, b);`
@@ -8554,6 +8642,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   mul(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Divides `this` by a {@link Vec2}.
    * Equivalent to `Vec2.divide(this, this, b);`
@@ -8574,6 +8663,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   div(b) {
     return this;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Scales `this` by a scalar number.
    * Equivalent to `Vec2.scale(this, this, b);`
@@ -8619,6 +8709,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   dist(b) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared Euclidean distance between another {@link Vec2} and `this`.
    * Equivalent to `Vec2.squaredDistance(this, b);`
@@ -8637,6 +8728,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   sqrDist(b) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Negates the components of `this`.
    * Equivalent to `Vec2.negate(this, this);`
@@ -8694,9 +8786,9 @@ var Vec2 = class _Vec2 extends Float64Array {
   normalize() {
     return _Vec2.normalize(this, this);
   }
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
   /**
    * @category Static
    *
@@ -8705,9 +8797,9 @@ var Vec2 = class _Vec2 extends Float64Array {
   static get BYTE_LENGTH() {
     return 2 * Float64Array.BYTES_PER_ELEMENT;
   }
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
   /**
    * Creates a new, empty {@link Vec2}
    * @category Static
@@ -8797,6 +8889,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    * Alias for {@link Vec2.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
     return [0, 0];
   }
@@ -8818,6 +8911,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    * Alias for {@link Vec2.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
     return [0, 0];
   }
@@ -8839,6 +8933,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    * Alias for {@link Vec2.divide}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out, a, b) {
     return [0, 0];
   }
@@ -8953,6 +9048,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    * Alias for {@link Vec2.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dist(a, b) {
     return 0;
   }
@@ -8973,6 +9069,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    * Alias for {@link Vec2.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrDist(a, b) {
     return 0;
   }
@@ -8984,8 +9081,8 @@ var Vec2 = class _Vec2 extends Float64Array {
    * @returns Magnitude of a
    */
   static magnitude(a) {
-    let x = a[0];
-    let y = a[1];
+    const x = a[0];
+    const y = a[1];
     return Math.sqrt(x * x + y * y);
   }
   /**
@@ -8995,6 +9092,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   static mag(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec2.magnitude}
    * @category Static
@@ -9003,10 +9101,11 @@ var Vec2 = class _Vec2 extends Float64Array {
    * @param a - vector to calculate length of
    * @returns length of a
    */
-  // @ts-ignore: Length conflicts with Function.length
+  // Length conflicts with Function.length
   static length(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec2.magnitude}
    * @category Static
@@ -9015,6 +9114,7 @@ var Vec2 = class _Vec2 extends Float64Array {
   static len(a) {
     return 0;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Calculates the squared length of a {@link Vec2}
    * @category Static
@@ -9031,6 +9131,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    * Alias for {@link Vec2.squaredLength}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrLen(a, b) {
     return 0;
   }
@@ -9253,7 +9354,7 @@ var Vec2 = class _Vec2 extends Float64Array {
     return out;
   }
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -9264,7 +9365,7 @@ var Vec2 = class _Vec2 extends Float64Array {
     return a[0] === b[0] && a[1] === b[1];
   }
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -9331,13 +9432,23 @@ function EnableSwizzlesF64() {
         };
       case 3:
         return function() {
-          return new Vec3(this[SWIZZLE_INDEX[swizzle[0]]], this[SWIZZLE_INDEX[swizzle[1]]], this[SWIZZLE_INDEX[swizzle[2]]]);
+          return new Vec3(
+            this[SWIZZLE_INDEX[swizzle[0]]],
+            this[SWIZZLE_INDEX[swizzle[1]]],
+            this[SWIZZLE_INDEX[swizzle[2]]]
+          );
         };
       case 4:
         return function() {
-          return new Vec4(this[SWIZZLE_INDEX[swizzle[0]]], this[SWIZZLE_INDEX[swizzle[1]]], this[SWIZZLE_INDEX[swizzle[2]]], this[SWIZZLE_INDEX[swizzle[3]]]);
+          return new Vec4(
+            this[SWIZZLE_INDEX[swizzle[0]]],
+            this[SWIZZLE_INDEX[swizzle[1]]],
+            this[SWIZZLE_INDEX[swizzle[2]]],
+            this[SWIZZLE_INDEX[swizzle[3]]]
+          );
         };
     }
+    throw new Error("Illegal swizzle length");
   }
   for (const swizzle of VEC2_SWIZZLES) {
     const impl = getSwizzleImpl(swizzle);

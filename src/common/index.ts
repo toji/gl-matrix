@@ -7,4 +7,4 @@
 /**
  * A small constant used to determine the acceptable error margin in floating-point calculations.
  */
-export const GLM_EPSILON: number = 0.000001;
+export const GLM_EPSILON = 0.000001;

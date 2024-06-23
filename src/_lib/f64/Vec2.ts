@@ -11,12 +11,12 @@ export class Vec2 extends Float64Array {
    *
    * @category Constructor
    */
-   constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[]) {
-    switch(values.length) {
+  constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[]) {
+    switch (values.length) {
       case 2:{
         const v = values[0];
         if (typeof v === 'number') {
-          super([v, values[1]]);
+          super([v, values[1]!]);
         } else {
           super(v as ArrayBufferLike, values[1], 2);
         }
@@ -36,9 +36,9 @@ export class Vec2 extends Float64Array {
     }
   }
 
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
 
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
@@ -123,9 +123,9 @@ export class Vec2 extends Float64Array {
     return Vec2.str(this);
   }
 
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
 
   /**
    * Copy the values from another {@link Vec2} into `this`.
@@ -173,7 +173,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.subtract}
    * @category Methods
    */
-  sub(b: Readonly<Vec2Like>): this { return this; }
+  sub(b: Readonly<Vec2Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Multiplies `this` by a {@link Vec2}.
@@ -193,7 +193,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.multiply}
    * @category Methods
    */
-  mul(b: Readonly<Vec2Like>): this { return this; }
+  mul(b: Readonly<Vec2Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Divides `this` by a {@link Vec2}.
@@ -213,7 +213,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.divide}
    * @category Methods
    */
-  div(b: Readonly<Vec2Like>): this { return this; }
+  div(b: Readonly<Vec2Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Scales `this` by a scalar number.
@@ -259,7 +259,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.distance}
    * @category Methods
    */
-  dist(b: Readonly<Vec2Like>): number { return 0; }
+  dist(b: Readonly<Vec2Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Calculates the squared Euclidean distance between another {@link Vec2} and `this`.
@@ -276,7 +276,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.squaredDistance}
    * @category Methods
    */
-  sqrDist(b: Readonly<Vec2Like>): number { return 0; }
+  sqrDist(b: Readonly<Vec2Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Negates the components of `this`.
@@ -336,13 +336,13 @@ export class Vec2 extends Float64Array {
    *
    * @returns `this`
    */
-   normalize(): this {
+  normalize(): this {
     return Vec2.normalize(this, this) as this;
   }
 
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
 
   /**
    * @category Static
@@ -353,9 +353,9 @@ export class Vec2 extends Float64Array {
     return 2 * Float64Array.BYTES_PER_ELEMENT;
   }
 
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
 
   /**
    * Creates a new, empty {@link Vec2}
@@ -386,7 +386,7 @@ export class Vec2 extends Float64Array {
    * @param y - Y component
    * @returns A new 2D vector
    */
-   static fromValues(x: number, y: number): Vec2 {
+  static fromValues(x: number, y: number): Vec2 {
     return new Vec2(x, y);
   }
 
@@ -453,6 +453,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
 
   /**
@@ -474,7 +475,8 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.multiply}
    * @category Static
    */
-   static mul(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static mul(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
 
   /**
    * Divides two {@link Vec2}s
@@ -495,6 +497,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.divide}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
 
   /**
@@ -616,6 +619,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dist(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): number { return 0; }
 
   /**
@@ -636,7 +640,8 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.distance}
    * @category Static
    */
-   static sqrDist(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): number { return 0; }
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static sqrDist(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): number { return 0; }
 
   /**
    * Calculates the magnitude (length) of a {@link Vec2}
@@ -646,15 +651,17 @@ export class Vec2 extends Float64Array {
    * @returns Magnitude of a
    */
   static magnitude(a: Readonly<Vec2Like>): number {
-    let x = a[0];
-    let y = a[1];
+    const x = a[0];
+    const y = a[1];
     return Math.sqrt(x * x + y * y);
   }
+
   /**
    * Alias for {@link Vec2.magnitude}
    * @category Static
    */
-  static mag(a: Readonly<Vec2Like>): number { return 0; }
+  static mag(a: Readonly<Vec2Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
+
   /**
    * Alias for {@link Vec2.magnitude}
    * @category Static
@@ -663,14 +670,15 @@ export class Vec2 extends Float64Array {
    * @param a - vector to calculate length of
    * @returns length of a
    */
-  // @ts-ignore: Length conflicts with Function.length
-  static length(a: Readonly<Vec2Like>): number { return 0; }
+  // Length conflicts with Function.length
+  static length(a: Readonly<Vec2Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
+
   /**
    * Alias for {@link Vec2.magnitude}
    * @category Static
    * @deprecated Use {@link Vec2.mag}
    */
-  static len(a: Readonly<Vec2Like>): number { return 0; }
+  static len(a: Readonly<Vec2Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Calculates the squared length of a {@link Vec2}
@@ -689,6 +697,7 @@ export class Vec2 extends Float64Array {
    * Alias for {@link Vec2.squaredLength}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrLen(a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): number { return 0; }
 
   /**
@@ -746,7 +755,7 @@ export class Vec2 extends Float64Array {
     const y = a[1];
     let len = x * x + y * y;
     if (len > 0) {
-      //TODO: evaluate use of glm_invsqrt here?
+      // TODO: evaluate use of glm_invsqrt here?
       len = 1 / Math.sqrt(len);
     }
     out[0] = a[0] * len;
@@ -884,13 +893,13 @@ export class Vec2 extends Float64Array {
    * @returns `out`
    */
   static rotate(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, rad: number): Vec2Like {
-    //Translate point to the origin
+    // Translate point to the origin
     const p0 = a[0] - b[0];
     const p1 = a[1] - b[1];
     const sinC = Math.sin(rad);
     const cosC = Math.cos(rad);
 
-    //perform rotation and translate to correct position
+    // perform rotation and translate to correct position
     out[0] = p0 * cosC - p1 * sinC + b[0];
     out[1] = p0 * sinC + p1 * cosC + b[1];
 
@@ -932,7 +941,7 @@ export class Vec2 extends Float64Array {
   }
 
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -944,7 +953,7 @@ export class Vec2 extends Float64Array {
   }
 
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -969,17 +978,17 @@ export class Vec2 extends Float64Array {
    * @param a - Vector to represent as a string
    * @returns String representation of the vector
    */
-   static str(a: Readonly<Vec2Like>): string {
+  static str(a: Readonly<Vec2Like>): string {
     return `Vec2(${a.join(', ')})`;
   }
 }
 
 // Instance method alias assignments
-Vec2.prototype.sub = Vec2.prototype.subtract;
-Vec2.prototype.mul = Vec2.prototype.multiply;
-Vec2.prototype.div = Vec2.prototype.divide;
-Vec2.prototype.dist = Vec2.prototype.distance;
-Vec2.prototype.sqrDist = Vec2.prototype.squaredDistance;
+Vec2.prototype.sub = Vec2.prototype.subtract;             // eslint-disable-line @typescript-eslint/unbound-method
+Vec2.prototype.mul = Vec2.prototype.multiply;             // eslint-disable-line @typescript-eslint/unbound-method
+Vec2.prototype.div = Vec2.prototype.divide;               // eslint-disable-line @typescript-eslint/unbound-method
+Vec2.prototype.dist = Vec2.prototype.distance;            // eslint-disable-line @typescript-eslint/unbound-method
+Vec2.prototype.sqrDist = Vec2.prototype.squaredDistance;  // eslint-disable-line @typescript-eslint/unbound-method
 
 // Static method alias assignments
 Vec2.sub = Vec2.subtract;

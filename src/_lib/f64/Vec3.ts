@@ -2,9 +2,9 @@ import { GLM_EPSILON } from '#gl-matrix/common';
 
 import type { Mat3Like, Mat4Like, QuatLike, Vec3Like } from '#gl-matrix/types';
 
- /**
-  * 3 Dimensional Vector
-  */
+/**
+ * 3 Dimensional Vector
+ */
 export class Vec3 extends Float64Array {
   /**
    * Create a {@link Vec3}.
@@ -12,7 +12,7 @@ export class Vec3 extends Float64Array {
    * @category Constructor
    */
   constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[]) {
-    switch(values.length) {
+    switch (values.length) {
       case 3:
         super(values); break;
       case 2:
@@ -31,9 +31,9 @@ export class Vec3 extends Float64Array {
     }
   }
 
-  //============
+  // ============
   // Accessors
-  //============
+  // ============
 
   // Getters and setters to make component access read better.
   // These are likely to be a little bit slower than direct array access.
@@ -136,9 +136,9 @@ export class Vec3 extends Float64Array {
     return Vec3.str(this);
   }
 
-  //===================
+  // ===================
   // Instances methods
-  //===================
+  // ===================
 
   /**
    * Copy the values from another {@link Vec3} into `this`.
@@ -186,7 +186,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.subtract}
    * @category Methods
    */
-  sub(b: Readonly<Vec3Like>): this { return this; }
+  sub(b: Readonly<Vec3Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Multiplies `this` by a {@link Vec3}.
@@ -207,7 +207,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.multiply}
    * @category Methods
    */
-  mul(b: Readonly<Vec3Like>): this { return this; }
+  mul(b: Readonly<Vec3Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Divides `this` by a {@link Vec3}.
@@ -228,7 +228,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.divide}
    * @category Methods
    */
-  div(b: Readonly<Vec3Like>): this { return this; }
+  div(b: Readonly<Vec3Like>): this { return this; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Scales `this` by a scalar number.
@@ -276,7 +276,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.distance}
    * @category Methods
    */
-  dist(b: Readonly<Vec3Like>): number { return 0; }
+  dist(b: Readonly<Vec3Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Calculates the squared Euclidean distance between another {@link Vec3} and `this`.
@@ -294,7 +294,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.squaredDistance}
    * @category Methods
    */
-  sqrDist(b: Readonly<Vec3Like>): number { return 0; }
+  sqrDist(b: Readonly<Vec3Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Negates the components of `this`.
@@ -357,13 +357,13 @@ export class Vec3 extends Float64Array {
    *
    * @returns `this`
    */
-   normalize(): this {
+  normalize(): this {
     return Vec3.normalize(this, this) as this;
   }
 
-  //===================
+  // ===================
   // Static accessors
-  //===================
+  // ===================
 
   /**
    * @category Static
@@ -374,9 +374,9 @@ export class Vec3 extends Float64Array {
     return 3 * Float64Array.BYTES_PER_ELEMENT;
   }
 
-  //===================
+  // ===================
   // Static methods
-  //===================
+  // ===================
 
   /**
    * Creates a new, empty vec3
@@ -407,16 +407,16 @@ export class Vec3 extends Float64Array {
    * @returns Magnitude of a
    */
   static magnitude(a: Readonly<Vec3Like>): number {
-    let x = a[0];
-    let y = a[1];
-    let z = a[2];
+    const x = a[0];
+    const y = a[1];
+    const z = a[2];
     return Math.sqrt(x * x + y * y + z * z);
   }
   /**
    * Alias for {@link Vec3.magnitude}
    * @category Static
    */
-  static mag(a: Readonly<Vec3Like>): number { return 0; }
+  static mag(a: Readonly<Vec3Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec3.magnitude}
    * @category Static
@@ -425,14 +425,14 @@ export class Vec3 extends Float64Array {
    * @param a - vector to calculate length of
    * @returns length of a
    */
-  // @ts-ignore: Length conflicts with Function.length
-  static length(a: Readonly<Vec3Like>): number { return 0; }
+  // Length conflicts with Function.length
+  static length(a: Readonly<Vec3Like>): number { return 0; }  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Alias for {@link Vec3.magnitude}
    * @category Static
    * @deprecated Use {@link Vec3.mag}
    */
-  static len(a: Readonly<Vec3Like>): number { return 0; }
+  static len(a: Readonly<Vec3Like>): number { return 0; } // eslint-disable-line @typescript-eslint/no-unused-vars
 
   /**
    * Creates a new vec3 initialized with the given values
@@ -515,6 +515,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.subtract}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; };
 
   /**
@@ -537,6 +538,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.multiply}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; }
 
   /**
@@ -559,7 +561,8 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.divide}
    * @category Static
    */
-   static div(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; };
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  static div(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; };
 
   /**
    * Math.ceil the components of a vec3
@@ -631,7 +634,8 @@ export class Vec3 extends Float64Array {
    * @param a - vector to round
    * @returns `out`
    */
-  /*static round(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  /*
+    static round(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
     out[0] = glMatrix.round(a[0]);
     out[1] = glMatrix.round(a[1]);
     out[2] = glMatrix.round(a[2]);
@@ -689,6 +693,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.distance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static dist(a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): number { return 0; }
 
   /**
@@ -710,6 +715,7 @@ export class Vec3 extends Float64Array {
    * Alias for {@link Vec3.squaredDistance}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrDist(a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): number { return 0; }
 
   /**
@@ -725,10 +731,12 @@ export class Vec3 extends Float64Array {
     const z = a[2];
     return x * x + y * y + z * z;
   }
+
   /**
    * Alias for {@link Vec3.squaredLength}
    * @category Static
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sqrLen(a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): number { return 0; }
 
   /**
@@ -790,7 +798,7 @@ export class Vec3 extends Float64Array {
     const z = a[2];
     let len = x * x + y * y + z * z;
     if (len > 0) {
-      //TODO: evaluate use of glm_invsqrt here?
+      // TODO: evaluate use of glm_invsqrt here?
       len = 1 / Math.sqrt(len);
     }
     out[0] = a[0] * len;
@@ -889,7 +897,8 @@ export class Vec3 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static hermite(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, c: Readonly<Vec3Like>, d: Readonly<Vec3Like>, t: number): Vec3Like {
+  static hermite(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, c: Readonly<Vec3Like>,
+    d: Readonly<Vec3Like>, t: number): Vec3Like {
     const factorTimes2 = t * t;
     const factor1 = factorTimes2 * (2 * t - 3) + 1;
     const factor2 = factorTimes2 * (t - 2) + t;
@@ -915,7 +924,8 @@ export class Vec3 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static bezier(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, c: Readonly<Vec3Like>, d: Readonly<Vec3Like>, t: number): Vec3Like {
+  static bezier(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, c: Readonly<Vec3Like>,
+    d: Readonly<Vec3Like>, t: number): Vec3Like {
     const inverseFactor = 1 - t;
     const inverseFactorTimesTwo = inverseFactor * inverseFactor;
     const factorTimes2 = t * t;
@@ -939,7 +949,8 @@ export class Vec3 extends Float64Array {
    * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
    * @returns `out`
    */
-  /*static random(out: Vec3Like, scale) {
+  /*
+    static random(out: Vec3Like, scale) {
     scale = scale === undefined ? 1.0 : scale;
 
     let r = glMatrix.RANDOM() * 2.0 * Math.PI;
@@ -983,7 +994,7 @@ export class Vec3 extends Float64Array {
    * @returns `out`
    */
   static transformMat3(out: Vec3Like, a: Vec3Like, m: Mat3Like): Vec3Like {
-    let x = a[0],
+    const x = a[0],
       y = a[1],
       z = a[2];
     out[0] = x * m[0] + y * m[3] + z * m[6];
@@ -1023,9 +1034,9 @@ export class Vec3 extends Float64Array {
     const uuvz = (qx * uvy - qy * uvx) * 2;
     // vec3.scale(uv, uv, 2 * w);
     // return vec3.add(out, a, vec3.add(out, uv, uuv));
-    out[0] = x + (uvx*w2) + uuvx;
-    out[1] = y + (uvy*w2) + uuvy;
-    out[2] = z + (uvz*w2) + uuvz;
+    out[0] = x + (uvx * w2) + uuvx;
+    out[1] = y + (uvy * w2) + uuvy;
+    out[2] = z + (uvz * w2) + uuvz;
     return out;
   }
 
@@ -1043,12 +1054,12 @@ export class Vec3 extends Float64Array {
     const by = b[1];
     const bz = b[2];
 
-    //Translate point to the origin
+    // Translate point to the origin
     const py = a[1] - by;
     const pz = a[2] - bz;
 
-    //perform rotation
-    //translate to correct position
+    // perform rotation
+    // translate to correct position
     out[0] = a[0];
     out[1] = (py * Math.cos(rad) - pz * Math.sin(rad)) + by;
     out[2] = (py * Math.sin(rad) + pz * Math.cos(rad)) + bz;
@@ -1070,12 +1081,12 @@ export class Vec3 extends Float64Array {
     const bx = b[0];
     const bz = b[2];
 
-    //Translate point to the origin
+    // Translate point to the origin
     const px = a[0] - bx;
     const pz = a[2] - bz;
 
-    //perform rotation
-    //translate to correct position
+    // perform rotation
+    // translate to correct position
     out[0] = (pz * Math.sin(rad) + px * Math.cos(rad)) + bx;
     out[1] = a[1];
     out[2] = (pz * Math.cos(rad) - px * Math.sin(rad)) + bz;
@@ -1097,12 +1108,12 @@ export class Vec3 extends Float64Array {
     const bx = b[0];
     const by = b[1];
 
-    //Translate point to the origin
+    // Translate point to the origin
     const px = a[0] - bx;
     const py = a[1] - by;
 
-    //perform rotation
-    //translate to correct position
+    // perform rotation
+    // translate to correct position
     out[0] = (px * Math.cos(rad) - py * Math.sin(rad)) + bx;
     out[1] = (px * Math.sin(rad) + py * Math.cos(rad)) + by;
     out[2] = b[2];
@@ -1156,7 +1167,7 @@ export class Vec3 extends Float64Array {
   }
 
   /**
-   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
    *
    * @param a - The first vector.
@@ -1168,7 +1179,7 @@ export class Vec3 extends Float64Array {
   }
 
   /**
-   * Returns whether or not the vectors have approximately the same elements in the same position.
+   * Returns whether the vectors have approximately the same elements in the same position.
    * @category Static
    *
    * @param a - The first vector.
@@ -1191,11 +1202,11 @@ export class Vec3 extends Float64Array {
 }
 
 // Instance method alias assignments
-Vec3.prototype.sub = Vec3.prototype.subtract;
-Vec3.prototype.mul = Vec3.prototype.multiply;
-Vec3.prototype.div = Vec3.prototype.divide;
-Vec3.prototype.dist = Vec3.prototype.distance;
-Vec3.prototype.sqrDist = Vec3.prototype.squaredDistance;
+Vec3.prototype.sub = Vec3.prototype.subtract;             // eslint-disable-line @typescript-eslint/unbound-method
+Vec3.prototype.mul = Vec3.prototype.multiply;             // eslint-disable-line @typescript-eslint/unbound-method
+Vec3.prototype.div = Vec3.prototype.divide;               // eslint-disable-line @typescript-eslint/unbound-method
+Vec3.prototype.dist = Vec3.prototype.distance;            // eslint-disable-line @typescript-eslint/unbound-method
+Vec3.prototype.sqrDist = Vec3.prototype.squaredDistance;  // eslint-disable-line @typescript-eslint/unbound-method
 
 // Static method alias assignments
 Vec3.sub = Vec3.subtract;
