@@ -1,2 +1,6 @@
 # Set line endings.
 * text eol=lf
+
+# Explicitly mark binary files.
+*.png binary
+*.jpg binary
