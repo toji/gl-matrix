@@ -1041,7 +1041,7 @@ export function fromZRotation(out, rad) {
  *     mat4.identity(dest);
  *     mat4.translate(dest, vec);
  *     let quatMat = mat4.create();
- *     quat4.toMat4(quat, quatMat);
+ *     mat4.fromQuat(quatMat, quat);
  *     mat4.multiply(dest, quatMat);
  *
  * @param {mat4} out mat4 receiving operation result
@@ -1307,7 +1307,7 @@ export function decompose(out_r, out_t, out_s, mat) {
  *     mat4.identity(dest);
  *     mat4.translate(dest, vec);
  *     let quatMat = mat4.create();
- *     quat4.toMat4(quat, quatMat);
+ *     mat4.fromQuat(quatMat, quat);
  *     mat4.multiply(dest, quatMat);
  *     mat4.scale(dest, scale)
  *
@@ -1368,7 +1368,7 @@ export function fromRotationTranslationScale(out, q, v, s) {
  *     mat4.translate(dest, vec);
  *     mat4.translate(dest, origin);
  *     let quatMat = mat4.create();
- *     quat4.toMat4(quat, quatMat);
+ *     mat4.fromQuat(quatMat, quat);
  *     mat4.multiply(dest, quatMat);
  *     mat4.scale(dest, scale)
  *     mat4.translate(dest, negativeOrigin);
