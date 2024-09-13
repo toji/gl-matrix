@@ -1039,10 +1039,10 @@ export function fromZRotation(out, rad) {
  * This is equivalent to (but much faster than):
  *
  *     mat4.identity(dest);
- *     mat4.translate(dest, vec);
+ *     mat4.translate(dest, dest, vec);
  *     let quatMat = mat4.create();
  *     mat4.fromQuat(quatMat, quat);
- *     mat4.multiply(dest, quatMat);
+ *     mat4.multiply(dest, dest, quatMat);
  *
  * @param {mat4} out mat4 receiving operation result
  * @param {quat4} q Rotation quaternion
@@ -1305,11 +1305,11 @@ export function decompose(out_r, out_t, out_s, mat) {
  * This is equivalent to (but much faster than):
  *
  *     mat4.identity(dest);
- *     mat4.translate(dest, vec);
+ *     mat4.translate(dest, dest, vec);
  *     let quatMat = mat4.create();
  *     mat4.fromQuat(quatMat, quat);
- *     mat4.multiply(dest, quatMat);
- *     mat4.scale(dest, scale)
+ *     mat4.multiply(dest, dest, quatMat);
+ *     mat4.scale(dest, dest, scale)
  *
  * @param {mat4} out mat4 receiving operation result
  * @param {quat4} q Rotation quaternion
@@ -1365,13 +1365,13 @@ export function fromRotationTranslationScale(out, q, v, s) {
  * This is equivalent to (but much faster than):
  *
  *     mat4.identity(dest);
- *     mat4.translate(dest, vec);
- *     mat4.translate(dest, origin);
+ *     mat4.translate(dest, dest, vec);
+ *     mat4.translate(dest, dest, origin);
  *     let quatMat = mat4.create();
  *     mat4.fromQuat(quatMat, quat);
- *     mat4.multiply(dest, quatMat);
- *     mat4.scale(dest, scale)
- *     mat4.translate(dest, negativeOrigin);
+ *     mat4.multiply(dest, dest, quatMat);
+ *     mat4.scale(dest, dest, scale)
+ *     mat4.translate(dest, dest, negativeOrigin);
  *
  * @param {mat4} out mat4 receiving operation result
  * @param {quat4} q Rotation quaternion
