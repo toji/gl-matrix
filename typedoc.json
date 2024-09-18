@@ -25,6 +25,10 @@
     "GitHub": "https://github.com/toji/gl-matrix",
     "NPM": "https://www.npmjs.com/package/gl-matrix"
   },
+  "navigation": {
+    "includeCategories": true
+  },
+  "projectDocuments": ["docs-md/main/**/*.md"],
   "sidebarLinks": {
     "Go to: CDN Distribution": "https://typhonjs-svelte-scratch.github.io/gl-matrix-beta3-dist/cdn"
   }
