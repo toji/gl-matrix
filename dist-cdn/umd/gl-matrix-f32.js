@@ -91,11 +91,17 @@
     for (; !{}.hasOwnProperty.call(t, o) && null !== (t = _getPrototypeOf(t)););
     return t;
   }
+  function _superPropGet(t, e, o, r) {
+    var p = _get(_getPrototypeOf(t.prototype ), e, o);
+    return "function" == typeof p ? function (t) {
+      return p.apply(o, t);
+    } : p;
+  }
   function _toPrimitive(t, r) {
     if ("object" != typeof t || !t) return t;
     var e = t[Symbol.toPrimitive];
     if (void 0 !== e) {
-      var i = e.call(t, r );
+      var i = e.call(t, r);
       if ("object" != typeof i) return i;
       throw new TypeError("@@toPrimitive must return a primitive value.");
     }
@@ -773,7 +779,7 @@
         return "Mat2(".concat(a.join(", "), ")");
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   _IDENTITY_2X2 = new WeakMap();
   __privateAdd(_Mat2, _IDENTITY_2X2, new Float32Array([1, 0, 0, 1]));
   var Mat2 = _Mat2;
@@ -1431,7 +1437,7 @@
         return "Mat2d(".concat(a.join(", "), ")");
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   _IDENTITY_2X3 = new WeakMap();
   __privateAdd(_Mat2d, _IDENTITY_2X3, new Float32Array([1, 0, 0, 1, 0, 0]));
   var Mat2d = _Mat2d;
@@ -2443,7 +2449,7 @@
         return "Mat3(".concat(a.join(", "), ")");
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   _IDENTITY_3X3 = new WeakMap();
   __privateAdd(_Mat3, _IDENTITY_3X3, new Float32Array([1, 0, 0, 0, 1, 0, 0, 0, 1]));
   var Mat3 = _Mat3;
@@ -4874,7 +4880,7 @@
         return "Mat4(".concat(a.join(", "), ")");
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   _IDENTITY_4X4 = new WeakMap();
   _TMP_VEC3 = new WeakMap();
   __privateAdd(_Mat4, _IDENTITY_4X4, new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]));
@@ -6200,7 +6206,7 @@
         return Math.abs(a0 - b0) <= GLM_EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) && Math.abs(a1 - b1) <= GLM_EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) && Math.abs(a2 - b2) <= GLM_EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2));
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   Vec3.prototype.sub = Vec3.prototype.subtract;
   Vec3.prototype.mul = Vec3.prototype.multiply;
   Vec3.prototype.div = Vec3.prototype.divide;
@@ -6408,7 +6414,7 @@
     }, {
       key: "copy",
       value: function copy(a) {
-        _get(_getPrototypeOf(_Vec4.prototype), "set", this).call(this, a);
+        _superPropGet(_Vec4, "set", this)([a]);
         return this;
       }
       /**
@@ -7399,7 +7405,7 @@
         return Math.abs(a0 - b0) <= GLM_EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) && Math.abs(a1 - b1) <= GLM_EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) && Math.abs(a2 - b2) <= GLM_EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2)) && Math.abs(a3 - b3) <= GLM_EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3));
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   Vec4.prototype.sub = Vec4.prototype.subtract;
   Vec4.prototype.mul = Vec4.prototype.multiply;
   Vec4.prototype.div = Vec4.prototype.divide;
@@ -7559,7 +7565,7 @@
     }, {
       key: "copy",
       value: function copy(a) {
-        _get(_getPrototypeOf(_Quat.prototype), "set", this).call(this, a);
+        _superPropGet(_Quat, "set", this)([a]);
         return this;
       }
       /**
@@ -8539,7 +8545,7 @@
         return _Quat.normalize(out, _Quat.fromMat3(out, __privateGet(_Quat, _TMP_MAT3)));
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   _DEFAULT_ANGLE_ORDER = new WeakMap();
   _TMP_QUAT1 = new WeakMap();
   _TMP_QUAT2 = new WeakMap();
@@ -8638,7 +8644,7 @@
     }, {
       key: "copy",
       value: function copy(a) {
-        _get(_getPrototypeOf(_Quat2.prototype), "set", this).call(this, a);
+        _superPropGet(_Quat2, "set", this)([a]);
         return this;
       }
       // ===================
@@ -9550,7 +9556,7 @@
         return Math.abs(a0 - b0) <= GLM_EPSILON * Math.max(1, Math.abs(a0), Math.abs(b0)) && Math.abs(a1 - b1) <= GLM_EPSILON * Math.max(1, Math.abs(a1), Math.abs(b1)) && Math.abs(a2 - b2) <= GLM_EPSILON * Math.max(1, Math.abs(a2), Math.abs(b2)) && Math.abs(a3 - b3) <= GLM_EPSILON * Math.max(1, Math.abs(a3), Math.abs(b3)) && Math.abs(a4 - b4) <= GLM_EPSILON * Math.max(1, Math.abs(a4), Math.abs(b4)) && Math.abs(a5 - b5) <= GLM_EPSILON * Math.max(1, Math.abs(a5), Math.abs(b5)) && Math.abs(a6 - b6) <= GLM_EPSILON * Math.max(1, Math.abs(a6), Math.abs(b6)) && Math.abs(a7 - b7) <= GLM_EPSILON * Math.max(1, Math.abs(a7), Math.abs(b7));
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   _TMP_QUAT = new WeakMap();
   _TMP_VEC33 = new WeakMap();
   // Temporary variables to prevent repeated allocations in the algorithms within Quat2.
@@ -10666,7 +10672,7 @@
         return "Vec2(".concat(a.join(", "), ")");
       }
     }]);
-  }( /*#__PURE__*/_wrapNativeSuper(Float32Array));
+  }(/*#__PURE__*/_wrapNativeSuper(Float32Array));
   Vec2.prototype.sub = Vec2.prototype.subtract;
   Vec2.prototype.mul = Vec2.prototype.multiply;
   Vec2.prototype.div = Vec2.prototype.divide;
