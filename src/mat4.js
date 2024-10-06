@@ -1822,7 +1822,7 @@ export function lookAt(out, eye, center, up) {
  *
  * @param {mat4} out mat4 frustum matrix will be written into
  * @param {ReadonlyVec3} eye Position of the viewer
- * @param {ReadonlyVec3} center Point the viewer is looking at
+ * @param {ReadonlyVec3} target Point the viewer is looking at
  * @param {ReadonlyVec3} up vec3 pointing up
  * @returns {mat4} out
  */
