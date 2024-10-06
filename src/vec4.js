@@ -386,10 +386,10 @@ export function dot(a, b) {
 /**
  * Returns the cross-product of three vectors in a 4-dimensional space
  *
- * @param {ReadonlyVec4} result the receiving vector
- * @param {ReadonlyVec4} U the first vector
- * @param {ReadonlyVec4} V the second vector
- * @param {ReadonlyVec4} W the third vector
+ * @param {ReadonlyVec4} out the receiving vector
+ * @param {ReadonlyVec4} u the first vector
+ * @param {ReadonlyVec4} v the second vector
+ * @param {ReadonlyVec4} w the third vector
  * @returns {vec4} result
  */
 export function cross(out, u, v, w) {
