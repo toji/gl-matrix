@@ -538,40 +538,38 @@ export function transformMat3(out, a, m) {
  *
  * @param {vec3} out the receiving vector
  * @param {ReadonlyVec3} a the vector to transform
- * @param {ReadonlyQuat} q quaternion to transform with
+ * @param {ReadonlyQuat} q normalized quaternion to transform with
  * @returns {vec3} out
  */
 export function transformQuat(out, a, q) {
-  // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
-  let qx = q[0],
+
+  // Fast Vector Rotation using Quaternions by Robert Eisele
+  // https://raw.org/proof/vector-rotation-using-quaternions/
+
+  const qx = q[0],
     qy = q[1],
     qz = q[2],
     qw = q[3];
-  let x = a[0],
-    y = a[1],
-    z = a[2];
-  // var qvec = [qx, qy, qz];
-  // var uv = vec3.cross([], qvec, a);
-  let uvx = qy * z - qz * y,
-    uvy = qz * x - qx * z,
-    uvz = qx * y - qy * x;
-  // var uuv = vec3.cross([], qvec, uv);
-  let uuvx = qy * uvz - qz * uvy,
-    uuvy = qz * uvx - qx * uvz,
-    uuvz = qx * uvy - qy * uvx;
-  // vec3.scale(uv, uv, 2 * w);
-  let w2 = qw * 2;
-  uvx *= w2;
-  uvy *= w2;
-  uvz *= w2;
-  // vec3.scale(uuv, uuv, 2);
-  uuvx *= 2;
-  uuvy *= 2;
-  uuvz *= 2;
-  // return vec3.add(out, a, vec3.add(out, uv, uuv));
-  out[0] = x + uvx + uuvx;
-  out[1] = y + uvy + uuvy;
-  out[2] = z + uvz + uuvz;
+
+  const vx = a[0],
+    vy = a[1],
+    vz = a[2];
+
+  // t = q x v
+  let tx = qy * vz - qz * vy;
+  let ty = qz * vx - qx * vz;
+  let tz = qx * vy - qy * vx;
+
+  // t = 2t
+  tx = tx + tx;
+  ty = ty + ty;
+  tz = tz + tz;
+
+  // v + w t + q x t
+  out[0] = vx + qw * tx + qy * tz - qz * ty;
+  out[1] = vy + qw * ty + qz * tx - qx * tz;
+  out[2] = vz + qw * tz + qx * ty - qy * tx;
+
   return out;
 }
 
