@@ -1045,7 +1045,7 @@ export function fromZRotation(out, rad) {
  *     mat4.multiply(dest, dest, quatMat);
  *
  * @param {mat4} out mat4 receiving operation result
- * @param {quat4} q Rotation quaternion
+ * @param {quat} q Rotation quaternion
  * @param {ReadonlyVec3} v Translation vector
  * @returns {mat4} out
  */
@@ -1142,7 +1142,7 @@ export function getTranslation(out, mat) {
 /**
  * Returns the scaling factor component of a transformation
  *  matrix. If a matrix is built with fromRotationTranslationScale
- *  with a normalized Quaternion paramter, the returned vector will be
+ *  with a normalized Quaternion parameter, the returned vector will be
  *  the same as the scaling vector
  *  originally supplied.
  * @param  {vec3} out Vector to receive scaling factor component
@@ -1312,7 +1312,7 @@ export function decompose(out_r, out_t, out_s, mat) {
  *     mat4.scale(dest, dest, scale)
  *
  * @param {mat4} out mat4 receiving operation result
- * @param {quat4} q Rotation quaternion
+ * @param {quat} q Rotation quaternion
  * @param {ReadonlyVec3} v Translation vector
  * @param {ReadonlyVec3} s Scaling vector
  * @returns {mat4} out
@@ -1374,7 +1374,7 @@ export function fromRotationTranslationScale(out, q, v, s) {
  *     mat4.translate(dest, dest, negativeOrigin);
  *
  * @param {mat4} out mat4 receiving operation result
- * @param {quat4} q Rotation quaternion
+ * @param {quat} q Rotation quaternion
  * @param {ReadonlyVec3} v Translation vector
  * @param {ReadonlyVec3} s Scaling vector
  * @param {ReadonlyVec3} o The origin vector around which to scale and rotate
