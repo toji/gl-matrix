@@ -1,16 +1,22 @@
 {
   "version": "4.0.0-beta.3",
   "name": "gl-matrix",
-  "description": "Javascript Matrix and Vector library for High Performance 3D web apps",
+  "description": "Javascript Matrix and Vector library for High Performance 3D web apps.",
   "private": true,
   "sideEffects": false,
   "type": "module",
   "license": "MIT",
   "imports": {
-    "#gl-matrix": "./src/index.ts",
+    "#gl-matrix": {
+      "types": "./dist/index.d.mts",
+      "default": "./src/index.ts"
+    },
     "#gl-matrix/classic": "./src/classic/index.ts",
     "#gl-matrix/common": "./src/common/index.ts",
-    "#gl-matrix/f64": "./src/f64/index.ts",
+    "#gl-matrix/f64": {
+      "types": "./dist/f64/index.d.mts",
+      "default": "./src/f64/index.ts"
+    },
     "#gl-matrix/swizzle": "./src/swizzle/index.ts",
     "#gl-matrix/swizzle/f64": "./src/swizzle/f64/index.ts",
     "#gl-matrix/types": "./src/types/index.ts",
@@ -20,72 +26,144 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./cdn": {
-      "types": "./dist-cdn/types/gl-matrix-f32.d.mts",
-      "import": "./dist-cdn/esm/2022/gl-matrix-f32.js"
+      "import": {
+        "types": "./dist-cdn/types/gl-matrix-f32.d.mts",
+        "default": "./dist-cdn/esm/2022/gl-matrix-f32.js"
+      },
+      "require": {
+        "types": "./dist-cdn/types/gl-matrix-f32.d.cts",
+        "default": "./dist-cdn/cjs/2022/gl-matrix-f32.cjs"
+      }
     },
     "./cdn/f64": {
-      "types": "./dist-cdn/types/gl-matrix-f64.d.mts",
-      "import": "./dist-cdn/esm/2022/gl-matrix-f64.js"
+      "import": {
+        "types": "./dist-cdn/types/gl-matrix-f64.d.mts",
+        "default": "./dist-cdn/esm/2022/gl-matrix-f64.js"
+      },
+      "require": {
+        "types": "./dist-cdn/types/gl-matrix-f64.d.cts",
+        "default": "./dist-cdn/cjs/2022/gl-matrix-f64.cjs"
+      }
     },
     "./classic": {
-      "types": "./dist/classic/index.d.mts",
-      "import": "./dist/classic/index.js",
-      "require": "./dist/classic/index.cjs"
+      "import": {
+        "types": "./dist/classic/index.d.mts",
+        "default": "./dist/classic/index.js"
+      },
+      "require": {
+        "types": "./dist/classic/index.d.cts",
+        "default": "./dist/classic/index.cjs"
+      }
     },
     "./common": {
-      "types": "./dist/common/index.d.mts",
-      "import": "./dist/common/index.js",
-      "require": "./dist/common/index.cjs"
+      "import": {
+        "types": "./dist/common/index.d.mts",
+        "default": "./dist/common/index.js"
+      },
+      "require": {
+        "types": "./dist/common/index.d.cts",
+        "default": "./dist/common/index.cjs"
+      }
     },
     "./f64": {
-      "types": "./dist/f64/index.d.mts",
-      "import": "./dist/f64/index.js",
-      "require": "./dist/f64/index.cjs"
+      "import": {
+        "types": "./dist/f64/index.d.mts",
+        "default": "./dist/f64/index.js"
+      },
+      "require": {
+        "types": "./dist/f64/index.d.cts",
+        "default": "./dist/f64/index.cjs"
+      }
     },
     "./swizzle": {
-      "types": "./dist/swizzle/index.d.mts",
-      "import": "./dist/swizzle/index.js",
-      "require": "./dist/swizzle/index.cjs"
+      "import": {
+        "types": "./dist/swizzle/index.d.mts",
+        "default": "./dist/swizzle/index.js"
+      },
+      "require": {
+        "types": "./dist/swizzle/index.d.cts",
+        "default": "./dist/swizzle/index.cjs"
+      }
     },
     "./swizzle/f64": {
-      "types": "./dist/swizzle/f64/index.d.mts",
-      "import": "./dist/swizzle/f64/index.js",
-      "require": "./dist/swizzle/f64/index.cjs"
+      "import": {
+        "types": "./dist/swizzle/f64/index.d.mts",
+        "default": "./dist/swizzle/f64/index.js"
+      },
+      "require": {
+        "types": "./dist/swizzle/f64/index.d.cts",
+        "default": "./dist/swizzle/f64/index.cjs"
+      }
     },
     "./types": {
-      "types": "./dist/types/index.d.mts",
-      "import": "./dist/types/index.js",
-      "require": "./dist/types/index.cjs"
+      "import": {
+        "types": "./dist/types/index.d.mts",
+        "default": "./dist/types/index.js"
+      },
+      "require": {
+        "types": "./dist/types/index.d.cts",
+        "default": "./dist/types/index.cjs"
+      }
     },
     "./types/cdn/umd": {
-      "types": "./dist-cdn/types/globals-f32.d.mts",
-      "import": "./dist-cdn/types/index.js",
-      "require": "./dist-cdn/types/index.cjs"
+      "import": {
+        "types": "./dist-cdn/types/globals-f32.d.mts",
+        "default": "./dist-cdn/types/index.js"
+      },
+      "require": {
+        "types": "./dist-cdn/types/globals-f32.d.cts",
+        "default": "./dist-cdn/types/index.cjs"
+      }
     },
     "./types/cdn/umd/f64": {
-      "types": "./dist-cdn/types/globals-f64.d.mts",
-      "import": "./dist-cdn/types/index.js",
-      "require": "./dist-cdn/types/index.cjs"
+      "import": {
+        "types": "./dist-cdn/types/globals-f64.d.mts",
+        "default": "./dist-cdn/types/index.js"
+      },
+      "require": {
+        "types": "./dist-cdn/types/globals-f64.d.cts",
+        "default": "./dist-cdn/types/index.cjs"
+      }
     },
     "./types/swizzle": {
-      "types": "./dist/types/swizzle/index.d.mts",
-      "import": "./dist/types/swizzle/index.js",
-      "require": "./dist/types/swizzle/index.cjs"
+      "import": {
+        "types": "./dist/types/swizzle/index.d.mts",
+        "default": "./dist/types/swizzle/index.js"
+      },
+      "require": {
+        "types": "./dist/types/swizzle/index.d.cts",
+        "default": "./dist/types/swizzle/index.cjs"
+      }
     },
     "./types/swizzle/f64": {
-      "types": "./dist/types/swizzle/f64/index.d.mts",
-      "import": "./dist/types/swizzle/f64/index.js",
-      "require": "./dist/types/swizzle/f64/index.cjs"
+      "import": {
+        "types": "./dist/types/swizzle/f64/index.d.mts",
+        "default": "./dist/types/swizzle/f64/index.js"
+      },
+      "require": {
+        "types": "./dist/types/swizzle/f64/index.d.cts",
+        "default": "./dist/types/swizzle/f64/index.cjs"
+      }
     },
     "./util": {
-      "types": "./dist/util/index.d.mts",
-      "import": "./dist/util/index.js",
-      "require": "./dist/util/index.cjs"
+      "import": {
+        "types": "./dist/util/index.d.mts",
+        "default": "./dist/util/index.js"
+      },
+      "require": {
+        "types": "./dist/util/index.d.cts",
+        "default": "./dist/util/index.cjs"
+      }
     }
   },
   "main": "./dist-cdn/esm/2022/gl-matrix-f32.min.js",
@@ -131,18 +209,18 @@
     "types": "esm-d-ts gen -c"
   },
   "devDependencies": {
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
     "@rollup/plugin-babel": "^6.0.4",
-    "@typhonjs-build-test/esm-d-ts": "^0.3.0-next.7",
-    "@typhonjs-typedoc/typedoc-pkg": "^0.1.1",
+    "@typhonjs-build-test/esm-d-ts": "^0.3.0-next.9",
+    "@typhonjs-typedoc/typedoc-pkg": "^0.2.0",
     "@vitest/coverage-v8": "^2.1.0",
     "@vitest/ui": "^2.1.0",
-    "esbuild": "^0.23.0",
-    "eslint": "^9.10.0",
-    "rollup": "^4.22.0",
-    "typescript": "^5.6.0",
-    "typescript-eslint": "^8.6.0",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.16.0",
+    "rollup": "^4.28.0",
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.17.0",
     "vitest": "^2.1.0"
   }
 }

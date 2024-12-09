@@ -92,24 +92,40 @@ try {
 
   promises.push(esbuild.build(cdnEsbuildOptions));
 
-  // Minified 2022 CDN bundles ------
+  // [ESM] Minified 2022 CDN bundles ------
 
   cdnEsbuildOptions.minify = true;
   cdnEsbuildOptions.outExtension = { '.js': '.min.js' };
 
   promises.push(esbuild.build(cdnEsbuildOptions));
 
-  // Minified 2016 CDN bundles ------
+  // [ESM] Minified 2016 CDN bundles ------
 
   cdnEsbuildOptions.outdir = 'dist-cdn/esm/2016';
   cdnEsbuildOptions.target = 'es2016';
 
   promises.push(esbuild.build(cdnEsbuildOptions));
 
-  // 2016 CDN bundles ---------------
+  // [ESM] 2016 CDN bundles ---------------
 
   cdnEsbuildOptions.minify = false;
   cdnEsbuildOptions.outExtension = void 0;
+
+  promises.push(esbuild.build(cdnEsbuildOptions));
+
+  // [CJS] 2022 CDN bundles ---------------
+
+  cdnEsbuildOptions.format = 'cjs';
+  cdnEsbuildOptions.outdir = 'dist-cdn/cjs/2022';
+  cdnEsbuildOptions.outExtension = { '.js': '.cjs' };
+  cdnEsbuildOptions.target = 'es2022';
+
+  promises.push(esbuild.build(cdnEsbuildOptions));
+
+  // [CJS] Minified 2022 CDN bundles ------
+
+  cdnEsbuildOptions.minify = true;
+  cdnEsbuildOptions.outExtension = { '.js': '.min.cjs' };
 
   promises.push(esbuild.build(cdnEsbuildOptions));
 

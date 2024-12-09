@@ -91,10 +91,10 @@
     for (; !{}.hasOwnProperty.call(t, o) && null !== (t = _getPrototypeOf(t)););
     return t;
   }
-  function _superPropGet(t, e, o, r) {
-    var p = _get(_getPrototypeOf(t.prototype ), e, o);
+  function _superPropGet(t, o, e, r) {
+    var p = _get(_getPrototypeOf(t.prototype ), o, e);
     return "function" == typeof p ? function (t) {
-      return p.apply(o, t);
+      return p.apply(e, t);
     } : p;
   }
   function _toPrimitive(t, r) {
