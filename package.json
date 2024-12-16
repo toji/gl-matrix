@@ -45,7 +45,7 @@
     "update-license-version": "node utils/update-license-version.js",
     "build-umd": "rollup -c",
     "build-esm": "babel src -d dist/esm",
-    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --outFile ./dist/index.d.ts ./src/index.js ./src/types.d.ts && node ./utils/bundle-dts.js && tsc --noEmit ./dist/index.d.ts",
+    "build-dts": "tsc --allowJs --declaration --emitDeclarationOnly --module amd --moduleResolution node --outFile ./dist/index.d.ts ./src/index.js ./src/types.d.ts && node ./utils/bundle-dts.js && tsc --noEmit ./dist/index.d.ts",
     "build": "del dist && npm run update-license-version && npm run build-umd && npm run build-esm && npm run build-dts && node ./utils/build.js",
     "prepare": "npm run build"
   },
@@ -56,7 +56,7 @@
     "@babel/register": "^7.13.16",
     "@rollup/plugin-babel": "^5.3.0",
     "del-cli": "^3.0.0",
-    "jsdoc": "^3.6.7",
+    "jsdoc": "3.6.7",
     "mocha": "^8.4.0",
     "node-libs-browser": "^2.2.1",
     "rollup": "^2.50.5",
