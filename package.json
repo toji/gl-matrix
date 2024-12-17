@@ -2,7 +2,7 @@
   "version": "4.0.0-beta.2",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance 3D web apps",
-  "private": true,
+  "private": false,
   "sideEffects": false,
   "type": "module",
   "main": "./dist/esm/index.js",
