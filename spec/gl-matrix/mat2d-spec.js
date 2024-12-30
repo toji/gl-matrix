@@ -1,7 +1,7 @@
 import * as mat2d from "../../src/mat2d.js"
 
 describe("mat2d", function() {
-    let out, matA, matB, oldA, oldB, identity, result;
+    let out, matA, matB, oldA, oldB, identity, nonInvertible, result;
 
     beforeEach(function() {
         matA = [1, 2,
@@ -27,6 +27,10 @@ describe("mat2d", function() {
         identity = [1, 0,
                     0, 1,
                     0, 0];
+
+        nonInvertible = [1, 0,
+                         1, 0,
+                         1, 0];
     });
 
     describe("create", function() {
@@ -65,6 +69,12 @@ describe("mat2d", function() {
 
             it("should place values into matA", function() { expect(matA).toBeEqualish([ -2, 1, 1.5, -0.5, 1, -2 ]); });
             it("should return matA", function() { expect(result).toBe(matA); });
+        });
+
+        describe("when matrix is not invertible", function() {
+            beforeEach(function() { result = mat2d.invert(out, nonInvertible); });
+
+            it("should return null", function() { expect(result).toBe(null); });
         });
     });
 

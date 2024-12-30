@@ -288,7 +288,7 @@ export function transpose(out, a) {
  *
  * @param {mat4} out the receiving matrix
  * @param {ReadonlyMat4} a the source matrix
- * @returns {mat4} out
+ * @returns {mat4 | null} out, or null if source matrix is not invertible
  */
 export function invert(out, a) {
   let a00 = a[0],

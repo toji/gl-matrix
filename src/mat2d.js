@@ -136,7 +136,7 @@ export function set(out, a, b, c, d, tx, ty) {
  *
  * @param {mat2d} out the receiving matrix
  * @param {ReadonlyMat2d} a the source matrix
- * @returns {mat2d} out
+ * @returns {mat2d | null} out, or null if source matrix is not invertible
  */
 export function invert(out, a) {
   let aa = a[0],

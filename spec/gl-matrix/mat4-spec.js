@@ -5,7 +5,7 @@ import * as vec3 from "../../src/vec3.js"
 
 function buildMat4Tests() {
     return function() {
-        let out, matA, matB, identity, result;
+        let out, matA, matB, identity, nonInvertible, result;
 
         beforeEach(function() {
             // Attempting to portray a semi-realistic transform matrix
@@ -28,6 +28,11 @@ function buildMat4Tests() {
                                          0, 1, 0, 0,
                                          0, 0, 1, 0,
                                          0, 0, 0, 1]);
+
+            nonInvertible = new Float32Array([1, 2, 3, 4,
+                                              1, 2, 3, 4,
+                                              1, 2, 3, 4,
+                                              1, 2, 3, 4]);
         });
 
         describe("create", function() {
@@ -125,6 +130,12 @@ function buildMat4Tests() {
                     ]);
                 });
                 it("should return matA", function() { expect(result).toBe(matA); });
+            });
+
+            describe("when matrix is not invertible", function() {
+                beforeEach(function() { result = mat4.invert(out, nonInvertible); });
+
+                it("should return null", function() { expect(result).toBe(null); });
             });
         });
 
