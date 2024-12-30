@@ -130,7 +130,7 @@ export function transpose(out, a) {
  *
  * @param {mat2} out the receiving matrix
  * @param {ReadonlyMat2} a the source matrix
- * @returns {mat2} out
+ * @returns {mat2 | null} out, or null if source matrix is not invertible
  */
 export function invert(out, a) {
   let a0 = a[0],

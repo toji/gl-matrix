@@ -1,7 +1,7 @@
 import * as mat2 from "../../src/mat2.js"
 
 describe("mat2", function() {
-    let out, matA, matB, identity, result;
+    let out, matA, matB, identity, nonInvertible, result;
 
     beforeEach(function() {
         matA = [1, 2,
@@ -12,6 +12,9 @@ describe("mat2", function() {
 
         out =  [0, 0,
                 0, 0];
+
+        nonInvertible = [1, 0,
+                         1, 0];
 
         identity = [1, 0,
                     0, 1];
@@ -70,6 +73,12 @@ describe("mat2", function() {
 
             it("should place values into matA", function() { expect(matA).toBeEqualish([-2, 1, 1.5, -0.5]); });
             it("should return matA", function() { expect(result).toBe(matA); });
+        });
+
+        describe("when matrix is not invertible", function() {
+            beforeEach(function() { result = mat2.invert(out, nonInvertible); });
+
+            it("should return null", function() { expect(result).toBe(null); });
         });
     });
 

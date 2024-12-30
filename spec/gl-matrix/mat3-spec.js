@@ -3,7 +3,7 @@ import * as mat4 from "../../src/mat4.js"
 import * as vec3 from "../../src/vec3.js"
 
 describe("mat3", function() {
-    let out, matA, matB, identity, result;
+    let out, matA, matB, identity, nonInvertible, result;
 
     beforeEach(function() {
         matA = [1, 0, 0,
@@ -21,6 +21,10 @@ describe("mat3", function() {
         identity = [1, 0, 0,
                     0, 1, 0,
                     0, 0, 1];
+
+        nonInvertible = [1, 2, 3,
+                         1, 2, 3,
+                         1, 2, 3];
     });
 
     describe("normalFromMat4", function() {
@@ -198,6 +202,12 @@ describe("mat3", function() {
                 ]);
             });
             it("should return matA", function() { expect(result).toBe(matA); });
+        });
+
+        describe("when matrix is not invertible", function() {
+            beforeEach(function() { result = mat3.invert(out, nonInvertible); });
+
+            it("should return null", function() { expect(result).toBe(null); });
         });
     });
 
