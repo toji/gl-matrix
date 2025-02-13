@@ -11,7 +11,7 @@ export class Vec2 extends Float32Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[]) {
+   constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch (values.length) {
       case 2:{
         const v = values[0];
@@ -24,7 +24,9 @@ export class Vec2 extends Float32Array {
       }
       case 1: {
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(2);
+        } else if (typeof v === 'number') {
           super([v, v]);
         } else {
           super(v as ArrayBufferLike, 0, 2);

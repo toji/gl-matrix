@@ -27,6 +27,10 @@ describe('Quat2', () => {
         -3, 4.4, -5.6, 7.8, 9.0, -10.11, 12.13, -14.15);
     });
 
+    it('should return Quat2(0, 0, 0, 1, 0, 0, 0, 0) if called with undefined argument', () => {
+      expect(new Quat2(undefined)).toBeVec(0, 0, 0, 1, 0, 0, 0, 0);
+    });
+
     it('should return Quat(x, y, z, w, x2, y2, z2, w2) if called with (Quat(x, y, z, w, x2, y2, z2, w2))', () => {
       const v = new Quat2(1, 2, 3, 4, 5, 6, 7, 8);
       expect(new Quat2(v)).toBeVec(v);

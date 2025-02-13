@@ -24,7 +24,7 @@ export class Mat4 extends Float32Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat4Like> | ArrayBufferLike, number?] | number[]) {
+  constructor(...values: [Readonly<Mat4Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch (values.length) {
       case 16:
         super(values); break;
@@ -32,7 +32,9 @@ export class Mat4 extends Float32Array {
         super(values[0] as ArrayBufferLike, values[1], 16); break;
       case 1:
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(IDENTITY_4X4);
+        } else if (typeof v === 'number') {
           super([
             v, v, v, v,
             v, v, v, v,

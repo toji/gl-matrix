@@ -4,6 +4,11 @@ import { GLM_EPSILON } from '#gl-matrix/common';
 
 import type { Mat4Like, QuatLike, Quat2Like, Vec3Like } from '#gl-matrix/types';
 
+const IDENTITY_QUAT2 = new Float32Array([
+  0, 0, 0, 1,
+  0, 0, 0, 0
+]);
+
 /**
  * Dual Quaternion
  */
@@ -19,7 +24,7 @@ export class Quat2 extends Float32Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[]) {
+  constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch (values.length) {
       case 8:
         super(values); break;
@@ -27,7 +32,9 @@ export class Quat2 extends Float32Array {
         super(values[0] as ArrayBufferLike, values[1], 8); break;
       case 1: {
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(IDENTITY_QUAT2);
+        } else if (typeof v === 'number') {
           super([v, v, v, v, v, v, v, v]);
         } else {
           super(v as ArrayBufferLike, 0, 8);
@@ -35,8 +42,7 @@ export class Quat2 extends Float32Array {
         break;
       }
       default:
-        super(8);
-        this[3] = 1;
+        super(IDENTITY_QUAT2);
         break;
     }
   }

@@ -23,6 +23,10 @@ describe('Quat', () => {
       expect(new Quat([-3, 4.4, -5.6, 7.8])).toBeVec(-3, 4.4, -5.6, 7.8);
     });
 
+    it('should return Quat(0, 0, 0, 1) if called with undefined argument', () => {
+      expect(new Quat(undefined)).toBeVec(0, 0, 0, 1);
+    });
+
     it('should return Quat(x, y, z, w) if called with (Quat(x, y, z, w))', () => {
       const v = new Quat(3.4, 5.6, 7.8, 9);
       expect(new Quat(v)).toBeVec(v);

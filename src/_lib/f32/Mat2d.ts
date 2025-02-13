@@ -17,15 +17,22 @@ export class Mat2d extends Float32Array {
    *
    * @category Constructor
    */
+<<<<<<< HEAD:src/_lib/f32/Mat2d.ts
   constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[]) {
     switch (values.length) {
+=======
+  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[] | [undefined]) {
+    switch (values.length) {
+>>>>>>> 98f98ec (Allow undefined as argument to class constructors):src/mat2d.ts
       case 6:
         super(values); break;
       case 2:
         super(values[0] as ArrayBufferLike, values[1], 6); break;
       case 1:
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(IDENTITY_2X3);
+        } else if (typeof v === 'number') {
           super([
             v, v,
             v, v,
