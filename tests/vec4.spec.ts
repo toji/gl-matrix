@@ -8,6 +8,10 @@ describe("Vec4", () => {
       expect(new Vec4()).toBeVec(0, 0, 0, 0);
     });
 
+    it("should return Vec4(0, 0, 0, 0) if called with undefined argument", () => {
+      expect(new Vec4(undefined)).toBeVec(0, 0, 0, 0);
+    });
+
     it("should return Vec4(x, y, z, w) if called with (x, y, z, w)", () => {
       expect(new Vec4(1, 2, 3, 4)).toBeVec(1, 2, 3, 4);
       expect(new Vec4(-3, 4.4, -5.6, 7.8)).toBeVec(-3, 4.4, -5.6, 7.8);

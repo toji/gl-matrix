@@ -10,6 +10,12 @@ describe("Mat2", function() {
         0, 1)
     });
 
+    it("should return an identity Mat2 if called with undefined argument", () => {
+      expect(new Mat2(undefined)).toBeVec(
+        1, 0,
+        0, 1)
+    });
+
     it("should return Mat2(m0, m1, ...m8) if called with (m0, m1, ...m8)", () => {
       expect(new Mat2(
         1, 2,

@@ -32,7 +32,7 @@ export class Mat3 extends Float32Array {
   /**
    * Create a {@link Mat3}.
    */
-  constructor(...values: [Readonly<Mat3Like> | ArrayBufferLike, number?] | number[] ) {
+  constructor(...values: [Readonly<Mat3Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch(values.length) {
       case 9:
         super(values); break;
@@ -40,7 +40,9 @@ export class Mat3 extends Float32Array {
         super(values[0] as ArrayBufferLike, values[1], 9); break;
       case 1:
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(IDENTITY_3X3);
+        } else if (typeof v === 'number') {
           super([
             v, v, v,
             v, v, v,
