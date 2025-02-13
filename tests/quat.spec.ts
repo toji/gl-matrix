@@ -9,6 +9,10 @@ describe("Quat", () => {
       expect(new Quat()).toBeVec(0, 0, 0, 1);
     });
 
+    it("should return Quat(0, 0, 0, 1) if called with undefined argument", () => {
+      expect(new Quat(undefined)).toBeVec(0, 0, 0, 1);
+    });
+
     it("should return Quat(x, y, z, w) if called with (x, y, z, w)", () => {
       expect(new Quat(1, 2, 3, 4)).toBeVec(1, 2, 3, 4);
       expect(new Quat(-3, 4.4, -5.6, 7.8)).toBeVec(-3, 4.4, -5.6, 7.8);

@@ -14,6 +14,14 @@ describe("Mat4", () => {
         0, 0, 0, 1);
     });
 
+    it("should return an identity Mat4 if called with undefined argument", () => {
+      expect(new Mat4(undefined)).toBeVec(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 0, 1);
+    });
+
     it("should return Mat4(m0, m1, ...m15) if called with (m0, m1, ...m15)", () => {
       expect(new Mat4(
         1, 2, 3, 4,

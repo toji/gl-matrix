@@ -21,7 +21,7 @@ export class Vec3 extends Float32Array {
   /**
   * Create a {@link Vec3}.
   */
-  constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[]) {
+  constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch(values.length) {
       case 3:
         super(values); break;
@@ -29,7 +29,9 @@ export class Vec3 extends Float32Array {
         super(values[0] as ArrayBufferLike, values[1], 3); break;
       case 1: {
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(3);
+        } else if (typeof v === 'number') {
           super([v, v, v]);
         } else {
           super(v as ArrayBufferLike, 0, 3);
