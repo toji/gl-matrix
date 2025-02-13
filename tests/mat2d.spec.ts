@@ -11,6 +11,13 @@ describe("Mat2d", function() {
         0, 0)
     });
 
+    it("should return an identity Mat2d if called with undefined argument", () => {
+      expect(new Mat2d(undefined)).toBeVec(
+        1, 0,
+        0, 1,
+        0, 0)
+    });
+
     it("should return Mat2d(m0, m1, ...m5) if called with (m0, m1, ...m5)", () => {
       expect(new Mat2d(
         1, 2,

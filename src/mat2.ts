@@ -27,7 +27,7 @@ export class Mat2 extends Float32Array {
   /**
    * Create a {@link Mat2}.
    */
-  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[] ) {
+  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch(values.length) {
       case 4:
         super(values); break;
@@ -35,7 +35,9 @@ export class Mat2 extends Float32Array {
         super(values[0] as ArrayBufferLike, values[1], 4); break;
       case 1:
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(IDENTITY_2X2);
+        } else if (typeof v === 'number') {
           super([
             v, v,
             v, v]);
