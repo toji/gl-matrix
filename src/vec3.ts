@@ -336,7 +336,7 @@ export class Vec3 extends Float32Array {
    * @returns `this`
    */
    normalize(): Vec3 {
-    return Vec3.normalize(this, this) as Vec3;
+    return Vec3.normalize(this, this);
   }
 
   //================
@@ -420,7 +420,7 @@ export class Vec3 extends Float32Array {
    * @param a - the source vector
    * @returns `out`
    */
-  static copy(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static copy<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -437,7 +437,7 @@ export class Vec3 extends Float32Array {
    * @param z - Z component
    * @returns `out`
    */
-  static set(out: Vec3Like, x: number, y: number, z: number): Vec3Like {
+  static set<T extends Vec3Like>(out: T, x: number, y: number, z: number): T {
     out[0] = x;
     out[1] = y;
     out[2] = z;
@@ -453,7 +453,7 @@ export class Vec3 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static add(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static add<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -469,7 +469,7 @@ export class Vec3 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static subtract<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -480,7 +480,7 @@ export class Vec3 extends Float32Array {
    * Alias for {@link Vec3.subtract}
    * @category Static
    */
-  static sub(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; };
+  static sub<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T { return out; };
 
   /**
    * Multiplies two vec3's
@@ -491,7 +491,7 @@ export class Vec3 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static multiply(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static multiply<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     out[2] = a[2] * b[2];
@@ -502,7 +502,7 @@ export class Vec3 extends Float32Array {
    * Alias for {@link Vec3.multiply}
    * @category Static
    */
-  static mul(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; }
+  static mul<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T { return out; }
 
   /**
    * Divides two vec3's
@@ -513,7 +513,7 @@ export class Vec3 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static divide(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static divide<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     out[2] = a[2] / b[2];
@@ -524,7 +524,7 @@ export class Vec3 extends Float32Array {
    * Alias for {@link Vec3.divide}
    * @category Static
    */
-   static div(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like { return [0, 0, 0]; };
+   static div<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T { return out; };
 
   /**
    * Math.ceil the components of a vec3
@@ -534,7 +534,7 @@ export class Vec3 extends Float32Array {
    * @param a - vector to ceil
    * @returns `out`
    */
-  static ceil(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static ceil<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     out[0] = Math.ceil(a[0]);
     out[1] = Math.ceil(a[1]);
     out[2] = Math.ceil(a[2]);
@@ -549,7 +549,7 @@ export class Vec3 extends Float32Array {
    * @param a - vector to floor
    * @returns `out`
    */
-  static floor(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static floor<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     out[0] = Math.floor(a[0]);
     out[1] = Math.floor(a[1]);
     out[2] = Math.floor(a[2]);
@@ -565,7 +565,7 @@ export class Vec3 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static min(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static min<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     out[0] = Math.min(a[0], b[0]);
     out[1] = Math.min(a[1], b[1]);
     out[2] = Math.min(a[2], b[2]);
@@ -581,7 +581,7 @@ export class Vec3 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static max(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static max<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     out[0] = Math.max(a[0], b[0]);
     out[1] = Math.max(a[1], b[1]);
     out[2] = Math.max(a[2], b[2]);
@@ -612,7 +612,7 @@ export class Vec3 extends Float32Array {
    * @param scale - amount to scale the vector by
    * @returns `out`
    */
-  static scale(out: Vec3Like, a: Readonly<Vec3Like>, scale: number): Vec3Like {
+  static scale<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, scale: number): T {
     out[0] = a[0] * scale;
     out[1] = a[1] * scale;
     out[2] = a[2] * scale;
@@ -629,7 +629,7 @@ export class Vec3 extends Float32Array {
    * @param scale - the amount to scale b by before adding
    * @returns `out`
    */
-  static scaleAndAdd(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, scale: number) {
+  static scaleAndAdd<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, scale: number): T {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
@@ -700,7 +700,7 @@ export class Vec3 extends Float32Array {
    * @param a - vector to negate
    * @returns `out`
    */
-  static negate(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static negate<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     out[0] = -a[0];
     out[1] = -a[1];
     out[2] = -a[2];
@@ -715,7 +715,7 @@ export class Vec3 extends Float32Array {
    * @param a - vector to invert
    * @returns `out`
    */
-  static inverse(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static inverse<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     out[0] = 1.0 / a[0];
     out[1] = 1.0 / a[1];
     out[2] = 1.0 / a[2];
@@ -730,7 +730,7 @@ export class Vec3 extends Float32Array {
    * @param a - Vector to compute the absolute values of
    * @returns `out`
    */
-  static abs(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static abs<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     out[0] = Math.abs(a[0]);
     out[1] = Math.abs(a[1]);
     out[2] = Math.abs(a[2]);
@@ -745,7 +745,7 @@ export class Vec3 extends Float32Array {
    * @param a - vector to normalize
    * @returns `out`
    */
-  static normalize(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like {
+  static normalize<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T {
     const x = a[0];
     const y = a[1];
     const z = a[2];
@@ -781,7 +781,7 @@ export class Vec3 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static cross(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like {
+  static cross<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T {
     const ax = a[0],
       ay = a[1],
       az = a[2];
@@ -805,7 +805,7 @@ export class Vec3 extends Float32Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): Vec3Like {
+  static lerp<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): T {
     const ax = a[0];
     const ay = a[1];
     const az = a[2];
@@ -825,7 +825,7 @@ export class Vec3 extends Float32Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static slerp(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): Vec3Like {
+  static slerp<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): T {
     const angle = Math.acos(Math.min(Math.max(Vec3.dot(a, b), -1), 1));
     const sinTotal = Math.sin(angle);
 
@@ -850,7 +850,7 @@ export class Vec3 extends Float32Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static hermite(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, c: Readonly<Vec3Like>, d: Readonly<Vec3Like>, t: number): Vec3Like {
+  static hermite<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, c: Readonly<Vec3Like>, d: Readonly<Vec3Like>, t: number): T {
     const factorTimes2 = t * t;
     const factor1 = factorTimes2 * (2 * t - 3) + 1;
     const factor2 = factorTimes2 * (t - 2) + t;
@@ -923,7 +923,7 @@ export class Vec3 extends Float32Array {
    * @param m - matrix to transform with
    * @returns `out`
    */
-  static transformMat4(out: Vec3Like, a: Readonly<Vec3Like>, m: Readonly<Mat4Like>): Vec3Like {
+  static transformMat4<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, m: Readonly<Mat4Like>): T {
     const x = a[0],
       y = a[1],
       z = a[2];
@@ -943,7 +943,7 @@ export class Vec3 extends Float32Array {
    * @param m - the 3x3 matrix to transform with
    * @returns `out`
    */
-  static transformMat3(out: Vec3Like, a: Vec3Like, m: Mat3Like): Vec3Like {
+  static transformMat3<T extends Vec3Like>(out: T, a: Vec3Like, m: Mat3Like): T {
     let x = a[0],
       y = a[1],
       z = a[2];
@@ -963,7 +963,7 @@ export class Vec3 extends Float32Array {
    * @param q - quaternion to transform with
    * @returns `out`
    */
-  static transformQuat(out: Vec3Like, a: Readonly<Vec3Like>, q: Readonly<QuatLike>): Vec3Like {
+  static transformQuat<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, q: Readonly<QuatLike>): T {
     // benchmarks: https://jsperf.com/quaternion-transform-vec3-implementations-fixed
     const qx = q[0];
     const qy = q[1];
@@ -998,7 +998,7 @@ export class Vec3 extends Float32Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotateX(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): Vec3Like {
+  static rotateX<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): T {
     const by = b[1];
     const bz = b[2];
 
@@ -1023,7 +1023,7 @@ export class Vec3 extends Float32Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotateY(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): Vec3Like {
+  static rotateY<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): T {
     const bx = b[0];
     const bz = b[2];
 
@@ -1048,7 +1048,7 @@ export class Vec3 extends Float32Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotateZ(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): Vec3Like {
+  static rotateZ<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): T {
     const bx = b[0];
     const by = b[1];
 
@@ -1090,7 +1090,7 @@ export class Vec3 extends Float32Array {
    * @param out - the receiving vector
    * @returns `out`
    */
-  static zero(out: Vec3Like): Vec3Like {
+  static zero<T extends Vec3Like>(out: T): T {
     out[0] = 0.0;
     out[1] = 0.0;
     out[2] = 0.0;
