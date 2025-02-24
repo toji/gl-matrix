@@ -23,6 +23,10 @@ describe('Vec4', () => {
       expect(new Vec4([-3, 4.4, -5.6, 7.8])).toBeVec(-3, 4.4, -5.6, 7.8);
     });
 
+    it('should return Vec4(0, 0, 0, 0) if called with undefined argument', () => {
+      expect(new Vec4(undefined)).toBeVec(0, 0, 0, 0);
+    });
+
     it('should return Vec4(x, y, z, w) if called with (Vec4(x, y, z, w))', () => {
       const v = new Vec4(3.4, 5.6, 7.8, 9);
       expect(new Vec4(v)).toBeVec(v);

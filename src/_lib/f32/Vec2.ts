@@ -11,12 +11,12 @@ export class Vec2 extends Float32Array {
    *
    * @category Constructor
    */
-   constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
+  constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch (values.length) {
       case 2:{
         const v = values[0];
         if (typeof v === 'number') {
-          super([v, values[1]!]);
+          super([v, values[1]]);
         } else {
           super(v as ArrayBufferLike, values[1], 2);
         }
@@ -339,7 +339,7 @@ export class Vec2 extends Float32Array {
    * @returns `this`
    */
   normalize(): this {
-    return Vec2.normalize(this, this) as this;
+    return Vec2.normalize(this, this);
   }
 
   // ===================
@@ -400,7 +400,7 @@ export class Vec2 extends Float32Array {
    * @param a - The source vector
    * @returns `out`
    */
-  static copy(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static copy<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = a[0];
     out[1] = a[1];
     return out;
@@ -415,7 +415,7 @@ export class Vec2 extends Float32Array {
    * @param y - Y component
    * @returns `out`
    */
-  static set(out: Vec2Like, x: number, y: number): Vec2Like {
+  static set<T extends Vec2Like>(out: T, x: number, y: number): T {
     out[0] = x;
     out[1] = y;
     return out;
@@ -430,7 +430,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static add(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static add<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     return out;
@@ -445,7 +445,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static subtract(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static subtract<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     return out;
@@ -456,7 +456,7 @@ export class Vec2 extends Float32Array {
    * @category Static
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static sub(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
+  static sub<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T { return out; }
 
   /**
    * Multiplies two {@link Vec2}s
@@ -467,7 +467,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static multiply(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static multiply<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     out[0] = a[0] * b[0];
     out[1] = a[1] * b[1];
     return out;
@@ -478,7 +478,7 @@ export class Vec2 extends Float32Array {
    * @category Static
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static mul(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
+  static mul<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T { return out; }
 
   /**
    * Divides two {@link Vec2}s
@@ -489,7 +489,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static divide(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static divide<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     out[0] = a[0] / b[0];
     out[1] = a[1] / b[1];
     return out;
@@ -500,7 +500,7 @@ export class Vec2 extends Float32Array {
    * @category Static
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static div(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like { return [0, 0]; }
+  static div<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T { return out; }
 
   /**
    * Math.ceil the components of a {@link Vec2}
@@ -510,7 +510,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to ceil
    * @returns `out`
    */
-  static ceil(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static ceil<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = Math.ceil(a[0]);
     out[1] = Math.ceil(a[1]);
     return out;
@@ -524,7 +524,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to floor
    * @returns `out`
    */
-  static floor(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static floor<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = Math.floor(a[0]);
     out[1] = Math.floor(a[1]);
     return out;
@@ -539,7 +539,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static min(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static min<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     out[0] = Math.min(a[0], b[0]);
     out[1] = Math.min(a[1], b[1]);
     return out;
@@ -554,7 +554,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static max(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static max<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     out[0] = Math.max(a[0], b[0]);
     out[1] = Math.max(a[1], b[1]);
     return out;
@@ -568,7 +568,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to round
    * @returns `out`
    */
-  static round(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static round<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = Math.round(a[0]);
     out[1] = Math.round(a[1]);
     return out;
@@ -583,7 +583,7 @@ export class Vec2 extends Float32Array {
    * @param b - Amount to scale the vector by
    * @returns `out`
    */
-  static scale(out: Vec2Like, a: Readonly<Vec2Like>, b: number): Vec2Like {
+  static scale<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: number): T {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     return out;
@@ -599,7 +599,7 @@ export class Vec2 extends Float32Array {
    * @param scale - The amount to scale b by before adding
    * @returns `out`
    */
-  static scaleAndAdd(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, scale: number): Vec2Like {
+  static scaleAndAdd<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, scale: number): T {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     return out;
@@ -710,7 +710,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to negate
    * @returns `out`
    */
-  static negate(out: Vec2Like, a: Readonly<Vec2Like>) {
+  static negate<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = -a[0];
     out[1] = -a[1];
     return out;
@@ -724,7 +724,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to invert
    * @returns `out`
    */
-  static inverse(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static inverse<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = 1.0 / a[0];
     out[1] = 1.0 / a[1];
     return out;
@@ -738,7 +738,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to compute the absolute values of
    * @returns `out`
    */
-  static abs(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static abs<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     out[0] = Math.abs(a[0]);
     out[1] = Math.abs(a[1]);
     return out;
@@ -752,7 +752,7 @@ export class Vec2 extends Float32Array {
    * @param a - Vector to normalize
    * @returns `out`
    */
-  static normalize(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like {
+  static normalize<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T {
     const x = a[0];
     const y = a[1];
     let len = x * x + y * y;
@@ -788,7 +788,7 @@ export class Vec2 extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static cross(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like {
+  static cross<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T {
     const z = a[0] * b[1] - a[1] * b[0];
     out[0] = out[1] = 0;
     out[2] = z;
@@ -805,7 +805,7 @@ export class Vec2 extends Float32Array {
    * @param t - Interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, t: number): Vec2Like {
+  static lerp<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, t: number): T {
     const ax = a[0];
     const ay = a[1];
     out[0] = ax + t * (b[0] - ax);
@@ -822,7 +822,7 @@ export class Vec2 extends Float32Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat2(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat2Like>): Vec2Like {
+  static transformMat2<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat2Like>): T {
     const x = a[0];
     const y = a[1];
     out[0] = m[0] * x + m[2] * y;
@@ -839,7 +839,7 @@ export class Vec2 extends Float32Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat2d(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat2dLike>): Vec2Like {
+  static transformMat2d<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat2dLike>): T {
     const x = a[0];
     const y = a[1];
     out[0] = m[0] * x + m[2] * y + m[4];
@@ -857,7 +857,7 @@ export class Vec2 extends Float32Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat3(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat3Like>): Vec2Like {
+  static transformMat3<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat3Like>): T {
     const x = a[0];
     const y = a[1];
     out[0] = m[0] * x + m[3] * y + m[6];
@@ -876,7 +876,7 @@ export class Vec2 extends Float32Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat4(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat4Like>): Vec2Like {
+  static transformMat4<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat4Like>): T {
     const x = a[0];
     const y = a[1];
     out[0] = m[0] * x + m[4] * y + m[12];
@@ -894,7 +894,7 @@ export class Vec2 extends Float32Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotate(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, rad: number): Vec2Like {
+  static rotate<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, rad: number): T {
     // Translate point to the origin
     const p0 = a[0] - b[0];
     const p1 = a[1] - b[1];
@@ -936,7 +936,7 @@ export class Vec2 extends Float32Array {
    * @param out - The receiving vector
    * @returns `out`
    */
-  static zero(out: Vec2Like): Vec2Like {
+  static zero<T extends Vec2Like>(out: T): T {
     out[0] = 0.0;
     out[1] = 0.0;
     return out;

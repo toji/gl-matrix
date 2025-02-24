@@ -33,6 +33,10 @@ describe('Vec2', () => {
       expect(new Vec2([-3, 4.4])).toBeVec(-3, 4.4);
     });
 
+    it('should return Vec2(0, 0) if called with undefined argument', () => {
+      expect(new Vec2(undefined)).toBeVec(0, 0);
+    });
+
     it('should return Vec2(x, y) if called with (Vec2(x, y))', () => {
       const v = new Vec2(3.4, 5.6);
       expect(new Vec2(v)).toBeVec(v);

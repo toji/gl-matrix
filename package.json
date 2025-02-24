@@ -203,6 +203,7 @@
     "docs": "typedoc-pkg --api-link es",
     "docs-cdn": "typedoc-pkg --api-link es --output docs/cdn --typedoc typedoc-cdn.json",
     "eslint": "eslint .",
+    "eslint-fix": "eslint . --fix",
     "gen64": "node scripts/gen-f64.js",
     "test": "vitest run",
     "test-ui": "vitest --ui --coverage",

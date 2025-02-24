@@ -17,7 +17,7 @@ export class Mat2d extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[]) {
+  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[] | [undefined]) {
     switch (values.length) {
       case 6:
         super(values); break;
@@ -25,7 +25,9 @@ export class Mat2d extends Float64Array {
         super(values[0] as ArrayBufferLike, values[1], 6); break;
       case 1:
         const v = values[0];
-        if (typeof v === 'number') {
+        if (v === undefined) {
+          super(Mat2d.#IDENTITY_2X3);
+        } else if (typeof v === 'number') {
           super([
             v, v,
             v, v,

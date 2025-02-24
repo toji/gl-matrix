@@ -44,7 +44,7 @@ describe('Mat3', () => {
       expect(new Mat3(undefined)).toBeVec(
         1, 0, 0,
         0, 1, 0,
-        0, 0, 1)
+        0, 0, 1);
     });
 
     it('should return Mat3(m0, m1, ...m8) if called with (Mat3(m0, m1, ...m9))', () => {

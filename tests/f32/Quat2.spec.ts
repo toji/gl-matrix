@@ -322,7 +322,7 @@ describe('Quat2', () => {
           Quat.normalize(rotationQuat, [1, 2, 3, 4]);
 
           Quat2.fromRotationTranslation(quat2A, rotationQuat, [1, -5, 3]);
-          matRes = Mat4.fromQuat2(matOut, quat2A) as Mat4;
+          matRes = Mat4.fromQuat2(matOut, quat2A);
 
           result = Quat2.fromMat4(out, matRes);
         });

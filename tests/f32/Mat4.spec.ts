@@ -614,7 +614,7 @@ describe('Mat4', () => {
         beforeEach(() => {
           let q = Quat.create();
           const v = Vec3.fromValues(5, 6, 7);
-          q = Quat.setAxisAngle(q, [1, 0, 0], 0.5) as Quat;
+          q = Quat.setAxisAngle(q, [1, 0, 0], 0.5);
           Mat4.fromRotationTranslation(out, q, v);
 
           result = Vec3.fromValues(1, 2, 3);
@@ -629,7 +629,7 @@ describe('Mat4', () => {
           let q = Quat.create();
           const t = Vec3.fromValues(1, 2, 3);
           const s = Vec3.fromValues(5, 6, 7);
-          q = Quat.setAxisAngle(q, [0, 1, 0], 0.7) as Quat;
+          q = Quat.setAxisAngle(q, [0, 1, 0], 0.7);
           Mat4.fromRotationTranslationScale(out, q, t, s);
           result = Vec3.fromValues(5, 6, 7);
           Mat4.getScaling(result, out);
@@ -677,7 +677,7 @@ describe('Mat4', () => {
           const ang = 0.78972;
 
           Vec3.normalize(testVec, testVec);
-          q = Quat.setAxisAngle(q, testVec, ang) as Quat;
+          q = Quat.setAxisAngle(q, testVec, ang);
           Mat4.fromRotationTranslation(out, q, outVec);
 
           result = Quat.fromValues(2, 3, 4, 6);

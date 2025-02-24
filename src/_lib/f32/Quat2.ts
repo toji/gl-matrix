@@ -169,7 +169,7 @@ export class Quat2 extends Float32Array {
    * @param t - translation vector
    * @returns `out`
    */
-  static fromRotationTranslation(out: Quat2Like, q: Readonly<QuatLike>, t: Readonly<Vec3Like>): Quat2Like {
+  static fromRotationTranslation<T extends Quat2Like>(out: T, q: Readonly<QuatLike>, t: Readonly<Vec3Like>): T {
     const ax = t[0] * 0.5;
     const ay = t[1] * 0.5;
     const az = t[2] * 0.5;
@@ -196,7 +196,7 @@ export class Quat2 extends Float32Array {
    * @param t - translation vector
    * @returns `out`
    */
-  static fromTranslation(out: Quat2Like, t: Readonly<Vec3Like>): Quat2Like {
+  static fromTranslation<T extends Quat2Like>(out: T, t: Readonly<Vec3Like>): T {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -216,7 +216,7 @@ export class Quat2 extends Float32Array {
    * @param q - a normalized quaternion
    * @returns `out`
    */
-  static fromRotation(out: Quat2Like, q: Readonly<QuatLike>): Quat2Like {
+  static fromRotation<T extends Quat2Like>(out: T, q: Readonly<QuatLike>): T {
     out[0] = q[0];
     out[1] = q[1];
     out[2] = q[2];
@@ -236,7 +236,7 @@ export class Quat2 extends Float32Array {
    * @param a - the matrix
    * @returns `out`
    */
-  static fromMat4(out: Quat2Like, a: Readonly<Mat4Like>): Quat2Like {
+  static fromMat4<T extends Quat2Like>(out: T, a: Readonly<Mat4Like>): T {
     Mat4.getRotation(Quat2.#TMP_QUAT, a);
     Mat4.getTranslation(Quat2.#TMP_VEC3, a);
     return Quat2.fromRotationTranslation(out, Quat2.#TMP_QUAT, Quat2.#TMP_VEC3);
@@ -250,7 +250,7 @@ export class Quat2 extends Float32Array {
    * @param a - the source dual quaternion
    * @returns `out`
    */
-  static copy(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like {
+  static copy<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -269,7 +269,7 @@ export class Quat2 extends Float32Array {
    * @param out - the receiving dual quaternion
    * @returns `out`
    */
-  static identity(out: QuatLike): QuatLike {
+  static identity<T extends Quat2Like>(out: T): T {
     out[0] = 0;
     out[1] = 0;
     out[2] = 0;
@@ -296,8 +296,8 @@ export class Quat2 extends Float32Array {
    * @param w2 - 2nd W component
    * @returns `out`
    */
-  static set(out: Quat2Like, x1: number, y1: number, z1: number, w1: number,
-    x2: number, y2: number, z2: number, w2: number): Quat2Like {
+  static set<T extends Quat2Like>(out: T, x1: number, y1: number, z1: number, w1: number,
+    x2: number, y2: number, z2: number, w2: number): T {
     out[0] = x1;
     out[1] = y1;
     out[2] = z1;
@@ -317,7 +317,7 @@ export class Quat2 extends Float32Array {
    * @param a - Dual Quaternion
    * @return `out`
    */
-  static getReal(out: QuatLike, a: Readonly<Quat2Like>): QuatLike {
+  static getReal<T extends QuatLike>(out: T, a: Readonly<Quat2Like>): T {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -333,7 +333,7 @@ export class Quat2 extends Float32Array {
    * @param a - Dual Quaternion
    * @return `out`
    */
-  static getDual(out: QuatLike, a: Readonly<Quat2Like>): QuatLike {
+  static getDual<T extends QuatLike>(out: T, a: Readonly<Quat2Like>): T {
     out[0] = a[4];
     out[1] = a[5];
     out[2] = a[6];
@@ -349,7 +349,7 @@ export class Quat2 extends Float32Array {
    * @param a - a quaternion representing the real part
    * @return `out`
    */
-  static setReal(out: Quat2Like, a: Readonly<QuatLike>): Quat2Like {
+  static setReal<T extends Quat2Like>(out: T, a: Readonly<QuatLike>): T {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -365,7 +365,7 @@ export class Quat2 extends Float32Array {
    * @param a - a quaternion representing the dual part
    * @return `out`
    */
-  static setDual(out: Quat2Like, a: Readonly<QuatLike>): Quat2Like {
+  static setDual<T extends Quat2Like>(out: T, a: Readonly<QuatLike>): T {
     out[4] = a[0];
     out[5] = a[1];
     out[6] = a[2];
@@ -381,7 +381,7 @@ export class Quat2 extends Float32Array {
    * @param a - Dual Quaternion to be decomposed
    * @return `out`
    */
-  static getTranslation(out: Vec3Like, a: Readonly<Quat2Like>): Vec3Like {
+  static getTranslation<T extends Vec3Like>(out: T, a: Readonly<Quat2Like>): T {
     const ax = a[4];
     const ay = a[5];
     const az = a[6];
@@ -405,7 +405,7 @@ export class Quat2 extends Float32Array {
    * @param v - vector to translate by
    * @returns `out`
    */
-  static translate(out: Quat2Like, a: Readonly<Quat2Like>, v: Readonly<Vec3Like>): Quat2Like {
+  static translate<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, v: Readonly<Vec3Like>): T {
     const ax1 = a[0];
     const ay1 = a[1];
     const az1 = a[2];
@@ -437,7 +437,7 @@ export class Quat2 extends Float32Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateX(out: Quat2Like, a: Readonly<Quat2Like>, rad: number): Quat2Like {
+  static rotateX<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, rad: number): T {
     let bx = -a[0];
     let by = -a[1];
     let bz = -a[2];
@@ -471,7 +471,7 @@ export class Quat2 extends Float32Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateY(out: Quat2Like, a: Readonly<Quat2Like>, rad: number): Quat2Like {
+  static rotateY<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, rad: number): T {
     let bx = -a[0];
     let by = -a[1];
     let bz = -a[2];
@@ -505,7 +505,7 @@ export class Quat2 extends Float32Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateZ(out: Quat2Like, a: Readonly<Quat2Like>, rad: number): Quat2Like {
+  static rotateZ<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, rad: number): T {
     let bx = -a[0];
     let by = -a[1];
     let bz = -a[2];
@@ -539,7 +539,7 @@ export class Quat2 extends Float32Array {
    * @param q - quaternion to rotate by
    * @returns `out`
    */
-  static rotateByQuatAppend(out: Quat2Like, a: Readonly<Quat2Like>, q: Readonly<QuatLike>): Quat2Like {
+  static rotateByQuatAppend<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, q: Readonly<QuatLike>): T {
     const qx = q[0];
     const qy = q[1];
     const qz = q[2];
@@ -573,7 +573,7 @@ export class Quat2 extends Float32Array {
    * @param a - the dual quaternion to rotate
    * @returns `out`
    */
-  static rotateByQuatPrepend(out: Quat2Like, q: Readonly<QuatLike>, a: Readonly<Quat2Like>): Quat2Like {
+  static rotateByQuatPrepend<T extends Quat2Like>(out: T, q: Readonly<QuatLike>, a: Readonly<Quat2Like>): T {
     const qx = q[0];
     const qy = q[1];
     const qz = q[2];
@@ -608,7 +608,8 @@ export class Quat2 extends Float32Array {
    * @param rad - how far the rotation should be
    * @returns `out`
    */
-  static rotateAroundAxis(out: Quat2Like, a: Readonly<Quat2Like>, axis: Readonly<Vec3Like>, rad: number): Quat2Like {
+  static rotateAroundAxis<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, axis: Readonly<Vec3Like>,
+    rad: number): T {
     // Special case for rad = 0
     if (Math.abs(rad) < GLM_EPSILON) {
       return Quat2.copy(out, a);
@@ -652,7 +653,7 @@ export class Quat2 extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like {
+  static add<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): T {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -673,7 +674,7 @@ export class Quat2 extends Float32Array {
    * @param b - the second operand
    * @returns {quat2} out
    */
-  static multiply(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like {
+  static multiply<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): T {
     const ax0 = a[0];
     const ay0 = a[1];
     const az0 = a[2];
@@ -738,7 +739,7 @@ export class Quat2 extends Float32Array {
    * @category Static
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static mul(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like { return out; }
+  static mul<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): T { return out; }
 
   /**
    * Scales a {@link Quat2} by a scalar value
@@ -749,7 +750,7 @@ export class Quat2 extends Float32Array {
    * @param b - scalar value to scale the dual quaterion by
    * @returns `out`
    */
-  static scale(out: Quat2Like, a: Readonly<Quat2Like>, b: number): Quat2Like {
+  static scale<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: number): T {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -783,7 +784,7 @@ export class Quat2 extends Float32Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>, t: number): Quat2Like {
+  static lerp<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>, t: number): T {
     const mt = 1 - t;
     if (Quat2.dot(a, b) < 0) { t = -t; }
 
@@ -807,7 +808,7 @@ export class Quat2 extends Float32Array {
    * @param a - dual quat to calculate inverse of
    * @returns `out`
    */
-  static invert(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like {
+  static invert<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T {
     const sqlen = Quat2.squaredLength(a);
     out[0] = -a[0] / sqlen;
     out[1] = -a[1] / sqlen;
@@ -829,7 +830,7 @@ export class Quat2 extends Float32Array {
    * @param a - dual quaternion to calculate conjugate of
    * @returns `out`
    */
-  static conjugate(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like {
+  static conjugate<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T {
     out[0] = -a[0];
     out[1] = -a[1];
     out[2] = -a[2];
@@ -896,7 +897,7 @@ export class Quat2 extends Float32Array {
    * @param a - dual quaternion to normalize
    * @returns `out`
    */
-  static normalize(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like {
+  static normalize<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T {
     let magnitude = Quat2.squaredLength(a);
     if (magnitude > 0) {
       magnitude = Math.sqrt(magnitude);

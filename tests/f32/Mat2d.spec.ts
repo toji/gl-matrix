@@ -44,7 +44,7 @@ describe('Mat2d', () => {
       expect(new Mat2d(undefined)).toBeVec(
         1, 0,
         0, 1,
-        0, 0)
+        0, 0);
     });
 
     it('should return Mat2d(m0, m1, ...m8) if called with (Mat2d(m0, m1, ...m9))', () => {
