@@ -101,7 +101,7 @@ export class Mat2d extends Float32Array {
    * @returns `this`
    */
   multiply(b: Readonly<Mat2dLike>): Mat2d {
-    return Mat2d.multiply(this, this, b) as Mat2d;
+    return Mat2d.multiply(this, this, b);
   }
 
   /**
@@ -117,7 +117,7 @@ export class Mat2d extends Float32Array {
    * @returns `this`
    */
   translate(v: Readonly<Vec2Like>): Mat2d {
-    return Mat2d.translate(this, this, v) as Mat2d;
+    return Mat2d.translate(this, this, v);
   }
 
   /**
@@ -128,7 +128,7 @@ export class Mat2d extends Float32Array {
    * @returns `out`
    */
   rotate(rad: number): Mat2d {
-    return Mat2d.rotate(this, this, rad) as Mat2d;
+    return Mat2d.rotate(this, this, rad);
   }
 
   /**
@@ -139,7 +139,7 @@ export class Mat2d extends Float32Array {
    * @returns `this`
    */
   scale(v: Readonly<Vec2Like>): Mat2d {
-    return Mat2d.scale(this, this, v) as Mat2d;
+    return Mat2d.scale(this, this, v);
   }
 
   //================
@@ -175,7 +175,7 @@ export class Mat2d extends Float32Array {
    * @param a - Matrix to copy
    * @returns `out`
    */
-  static copy(out: Mat2dLike, a: Readonly<Mat2dLike>): Mat2dLike {
+  static copy<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>): T {
     out[0] = a[0];
     out[1] = a[1];
     out[2] = a[2];
@@ -204,7 +204,7 @@ export class Mat2d extends Float32Array {
    * @param values - Matrix components
    * @returns `out`
    */
-  static set(out: Mat2dLike, ...values: number[]): Mat2dLike {
+  static set<T extends Mat2dLike>(out: T, ...values: number[]): T {
     out[0] = values[0];
     out[1] = values[1];
     out[2] = values[2];
@@ -221,7 +221,7 @@ export class Mat2d extends Float32Array {
    * @param out - The receiving matrix
    * @returns `out`
    */
-  static identity(out: Mat2dLike): Mat2dLike {
+  static identity<T extends Mat2dLike>(out: T): T {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -239,7 +239,7 @@ export class Mat2d extends Float32Array {
    * @param a - the source matrix
    * @returns `out` or `null` if the matrix is not invertable
    */
-  static invert(out: Mat2dLike, a: Mat2dLike): Mat2dLike | null {
+  static invert<T extends Mat2dLike>(out: T, a: Mat2dLike): T | null {
     const aa = a[0];
     const ab = a[1];
     const ac = a[2];
@@ -282,7 +282,7 @@ export class Mat2d extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike {
+  static add<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): T {
     out[0] = a[0] + b[0];
     out[1] = a[1] + b[1];
     out[2] = a[2] + b[2];
@@ -301,7 +301,7 @@ export class Mat2d extends Float32Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike {
+  static subtract<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): T {
     out[0] = a[0] - b[0];
     out[1] = a[1] - b[1];
     out[2] = a[2] - b[2];
@@ -315,7 +315,7 @@ export class Mat2d extends Float32Array {
    * Alias for {@link Mat2d.subtract}
    * @category Static
    */
-  static sub(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike { return out; }
+  static sub<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): T { return out; }
 
   /**
    * Multiplies two {@link Mat2d}s
@@ -326,7 +326,7 @@ export class Mat2d extends Float32Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static multiply(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike {
+  static multiply<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): T {
     const a0 = a[0];
     const a1 = a[1];
     const a2 = a[2];
@@ -352,7 +352,7 @@ export class Mat2d extends Float32Array {
    * Alias for {@link Mat2d.multiply}
    * @category Static
    */
-  static mul(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): Mat2dLike { return out; }
+  static mul<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>): T { return out; }
 
   /**
    * Translate a {@link Mat2d} by the given vector
@@ -363,7 +363,7 @@ export class Mat2d extends Float32Array {
    * @param v - vector to translate by
    * @returns `out`
    */
-  static translate(out: Mat2dLike, a: Readonly<Mat2dLike>, v: Readonly<Vec2Like>): Mat2dLike {
+  static translate<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, v: Readonly<Vec2Like>): T {
     const a0 = a[0];
     const a1 = a[1];
     const a2 = a[2];
@@ -390,7 +390,7 @@ export class Mat2d extends Float32Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static rotate(out: Mat2dLike, a: Readonly<Mat2dLike>, rad: number): Mat2dLike {
+  static rotate<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, rad: number): T {
     const a0 = a[0];
     const a1 = a[1];
     const a2 = a[2];
@@ -417,7 +417,7 @@ export class Mat2d extends Float32Array {
    * @param v - the {@link Vec2} to scale the matrix by
    * @returns `out`
    **/
-  static scale(out: Mat2dLike, a: Readonly<Mat2dLike>, v: Readonly<Vec2Like>): Mat2dLike {
+  static scale<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, v: Readonly<Vec2Like>): T {
     const a0 = a[0];
     const a1 = a[1];
     const a2 = a[2];
@@ -449,7 +449,7 @@ export class Mat2d extends Float32Array {
    * @param v - Translation vector
    * @returns `out`
    */
-  static fromTranslation(out: Mat2dLike, v: Readonly<Vec2Like>): Mat2dLike {
+  static fromTranslation<T extends Mat2dLike>(out: T, v: Readonly<Vec2Like>): T {
     out[0] = 1;
     out[1] = 0;
     out[2] = 0;
@@ -471,7 +471,7 @@ export class Mat2d extends Float32Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static fromRotation(out: Mat2dLike, rad: number): Mat2dLike {
+  static fromRotation<T extends Mat2dLike>(out: T, rad: number): T {
     const s = Math.sin(rad);
     const c = Math.cos(rad);
     out[0] = c;
@@ -495,7 +495,7 @@ export class Mat2d extends Float32Array {
    * @param v - Scaling vector
    * @returns `out`
    */
-  static fromScaling(out: Mat2dLike, v: Readonly<Vec2Like>): Mat2dLike {
+  static fromScaling<T extends Mat2dLike>(out: T, v: Readonly<Vec2Like>): T {
     out[0] = v[0];
     out[1] = 0;
     out[2] = 0;
@@ -525,7 +525,7 @@ export class Mat2d extends Float32Array {
    * @param b - amount to scale the matrix's elements by
    * @returns `out`
    */
-  static multiplyScalar(out: Mat2dLike, a: Readonly<Mat2dLike>, b: number): Mat2dLike {
+  static multiplyScalar<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: number): T {
     out[0] = a[0] * b;
     out[1] = a[1] * b;
     out[2] = a[2] * b;
@@ -545,7 +545,7 @@ export class Mat2d extends Float32Array {
    * @param scale - the amount to scale b's elements by before adding
    * @returns `out`
    */
-  static multiplyScalarAndAdd(out: Mat2dLike, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>, scale: number): Mat2dLike {
+  static multiplyScalarAndAdd<T extends Mat2dLike>(out: T, a: Readonly<Mat2dLike>, b: Readonly<Mat2dLike>, scale: number): T {
     out[0] = a[0] + b[0] * scale;
     out[1] = a[1] + b[1] * scale;
     out[2] = a[2] + b[2] * scale;
