@@ -1534,9 +1534,11 @@ export function frustum(out, left, right, bottom, top, near, far) {
  * @param {number} aspect Aspect ratio. typically viewport width/height
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum, can be null or Infinity
+ * @param {boolean} symmetric Z will normalized to range [-1, 1] if true and [0, 1] otherwise
  * @returns {mat4} out
  */
-export function perspectiveNO(out, fovy, aspect, near, far) {
+export function perspectiveNO(out, fovy, aspect, near, far, symmetric = true) {
+  const offset = symmetric ? near : 0;
   const f = 1.0 / Math.tan(fovy / 2);
   out[0] = f / aspect;
   out[1] = 0;
@@ -1555,10 +1557,10 @@ export function perspectiveNO(out, fovy, aspect, near, far) {
   if (far != null && far !== Infinity) {
     const nf = 1 / (near - far);
     out[10] = (far + near) * nf;
-    out[14] = 2 * far * near * nf;
+    out[14] = (near + offset) * far * nf;
   } else {
     out[10] = -1;
-    out[14] = -2 * near;
+    out[14] = -(near + offset);
   }
   return out;
 }
@@ -1583,30 +1585,7 @@ export const perspective = perspectiveNO;
  * @returns {mat4} out
  */
 export function perspectiveZO(out, fovy, aspect, near, far) {
-  const f = 1.0 / Math.tan(fovy / 2);
-  out[0] = f / aspect;
-  out[1] = 0;
-  out[2] = 0;
-  out[3] = 0;
-  out[4] = 0;
-  out[5] = f;
-  out[6] = 0;
-  out[7] = 0;
-  out[8] = 0;
-  out[9] = 0;
-  out[11] = -1;
-  out[12] = 0;
-  out[13] = 0;
-  out[15] = 0;
-  if (far != null && far !== Infinity) {
-    const nf = 1 / (near - far);
-    out[10] = far * nf;
-    out[14] = far * near * nf;
-  } else {
-    out[10] = -1;
-    out[14] = -near;
-  }
-  return out;
+  return perspectiveNO(out, fovy, aspect, near, far, false);
 }
 
 /**
@@ -1659,12 +1638,14 @@ export function perspectiveFromFieldOfView(out, fov, near, far) {
  * @param {number} top Top bound of the frustum
  * @param {number} near Near bound of the frustum
  * @param {number} far Far bound of the frustum
+ * @param {boolean} symmetric Z will normalized to range [-1, 1] if true and [0, 1] otherwise
  * @returns {mat4} out
  */
-export function orthoNO(out, left, right, bottom, top, near, far) {
+export function orthoNO(out, left, right, bottom, top, near, far, symmetric = true) {
   const lr = 1 / (left - right);
   const bt = 1 / (bottom - top);
   const nf = 1 / (near - far);
+  const sc = symmetric ? nf : 0;
   out[0] = -2 * lr;
   out[1] = 0;
   out[2] = 0;
@@ -1675,11 +1656,11 @@ export function orthoNO(out, left, right, bottom, top, near, far) {
   out[7] = 0;
   out[8] = 0;
   out[9] = 0;
-  out[10] = 2 * nf;
+  out[10] = nf + sc;
   out[11] = 0;
   out[12] = (left + right) * lr;
   out[13] = (top + bottom) * bt;
-  out[14] = (far + near) * nf;
+  out[14] = far * sc + near * nf;
   out[15] = 1;
   return out;
 }
@@ -1705,26 +1686,7 @@ export const ortho = orthoNO;
  * @returns {mat4} out
  */
 export function orthoZO(out, left, right, bottom, top, near, far) {
-  const lr = 1 / (left - right);
-  const bt = 1 / (bottom - top);
-  const nf = 1 / (near - far);
-  out[0] = -2 * lr;
-  out[1] = 0;
-  out[2] = 0;
-  out[3] = 0;
-  out[4] = 0;
-  out[5] = -2 * bt;
-  out[6] = 0;
-  out[7] = 0;
-  out[8] = 0;
-  out[9] = 0;
-  out[10] = nf;
-  out[11] = 0;
-  out[12] = (left + right) * lr;
-  out[13] = (top + bottom) * bt;
-  out[14] = near * nf;
-  out[15] = 1;
-  return out;
+  return orthoNO(out, left, right, bottom, top, near, far, false);
 }
 
 /**
