@@ -449,7 +449,7 @@ export function random(out, scale) {
   var v1, v2, v3, v4;
   var s1, s2;
   var rand;
-  
+
   rand = glMatrix.RANDOM();
   v1 = rand * 2 - 1;
   v2 = (4 * glMatrix.RANDOM() - 2) * Math.sqrt(rand * -rand + rand);
@@ -493,28 +493,37 @@ export function transformMat4(out, a, m) {
  *
  * @param {vec4} out the receiving vector
  * @param {ReadonlyVec4} a the vector to transform
- * @param {ReadonlyQuat} q quaternion to transform with
+ * @param {ReadonlyQuat} q normalized quaternion to transform with
  * @returns {vec4} out
  */
 export function transformQuat(out, a, q) {
-  let x = a[0],
-    y = a[1],
-    z = a[2];
-  let qx = q[0],
+
+  // Fast Vector Rotation using Quaternions by Robert Eisele
+  // https://raw.org/proof/vector-rotation-using-quaternions/
+
+  const qx = q[0],
     qy = q[1],
     qz = q[2],
     qw = q[3];
 
-  // calculate quat * vec
-  let ix = qw * x + qy * z - qz * y;
-  let iy = qw * y + qz * x - qx * z;
-  let iz = qw * z + qx * y - qy * x;
-  let iw = -qx * x - qy * y - qz * z;
+  const vx = a[0],
+    vy = a[1],
+    vz = a[2];
 
-  // calculate result * inverse quat
-  out[0] = ix * qw + iw * -qx + iy * -qz - iz * -qy;
-  out[1] = iy * qw + iw * -qy + iz * -qx - ix * -qz;
-  out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx;
+  // t = q x v
+  let tx = qy * vz - qz * vy;
+  let ty = qz * vx - qx * vz;
+  let tz = qx * vy - qy * vx;
+
+  // t = 2t
+  tx = tx + tx;
+  ty = ty + ty;
+  tz = tz + tz;
+
+  // v + w t + q x t
+  out[0] = vx + qw * tx + qy * tz - qz * ty;
+  out[1] = vy + qw * ty + qz * tx - qx * tz;
+  out[2] = vz + qw * tz + qx * ty - qy * tx;
   out[3] = a[3];
   return out;
 }
