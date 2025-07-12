@@ -19,7 +19,7 @@ if (typingsLength == typings.length)
 // Rename common module to glMatrix
 typings = typings.replace(
   'declare module "common" {',
-  "export module glMatrix {"
+  "export namespace glMatrix {"
 );
 
 // Replace imports from other modules with direct references
@@ -29,7 +29,7 @@ typings = typings.replace(/import\("([^"]+?)(\.js)?"\)/g, "$1");
 typings = typings.replace(/ *import.+from.*;/g, "");
 
 // Replace declare module with exports
-typings = typings.replace(/declare module "([^"]+?)" {/g, "export module $1 {");
+typings = typings.replace(/declare module "([^"]+?)" {/g, "export namespace $1 {");
 
 // Add types
 typings = "\n" + sourceTypings.replace(/declare/g, "export") + "\n" + typings;
