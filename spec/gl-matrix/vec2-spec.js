@@ -601,15 +601,41 @@ describe("vec2", function() {
 	});
     
     describe("angle", function() {
-        beforeEach(function() {
-            vecA = [1,0];
-            vecB = [1,2];
-            result = vec2.angle(vecA, vecB);
+        it("should always return the positive angle between 0 and pi", function() {
+            expect(vec2.angle([1, 0], [1, 2]))
+                .toBeEqualish(1.10714);
+            expect(vec2.angle([1, 2], [1, 0]))
+                .toBeEqualish(1.10714);
+            expect(vec2.angle([-1, 0], [1, 2]))
+                .toBeEqualish(2.03445);
+            expect(vec2.angle([1, 2], [-1, 0]))
+                .toBeEqualish(2.03445);
         });
+        it("should not modify the arguments", function() {
+            let a = [1, 0], b = [1, 2];
+            vec2.angle(a, b);
+            expect(a).toBeEqualish([1, 0]);
+            expect(b).toBeEqualish([1, 2]);
+        });
+    });
 
-        it("should return the angle", function() { expect(result).toBeEqualish(1.10714); });
-        it("should not modify vecA", function() { expect(vecA).toBeEqualish([1, 0]); });
-        it("should not modify vecB", function() { expect(vecB).toBeEqualish([1, 2]); });
+    describe("signedAngle", function() {
+        it("should always return the signed angle between -pi and pi", function() {
+            expect(vec2.signedAngle([1, 0], [1, 2]))
+                .toBeEqualish(1.10714);
+            expect(vec2.signedAngle([1, 2], [1, 0]))
+                .toBeEqualish(-1.10714);
+            expect(vec2.signedAngle([-1, 0], [1, 2]))
+                .toBeEqualish(-2.03445);
+            expect(vec2.signedAngle([1, 2], [-1, 0]))
+                .toBeEqualish(2.03445);
+        });
+        it("should not modify the arguments", function() {
+            let a = [1, 0], b = [1, 2];
+            vec2.signedAngle(a, b);
+            expect(a).toBeEqualish([1, 0]);
+            expect(b).toBeEqualish([1, 2]);
+        });
     });
 
     describe("str", function() {
