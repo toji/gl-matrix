@@ -470,23 +470,30 @@ export function rotate(out, a, b, rad) {
 }
 
 /**
- * Get the angle between two 2D vectors
+ * Get the smallest angle between two 2D vectors
  * @param {ReadonlyVec2} a The first operand
  * @param {ReadonlyVec2} b The second operand
  * @returns {Number} The angle in radians
  */
 export function angle(a, b) {
-  let x1 = a[0],
-    y1 = a[1],
-    x2 = b[0],
-    y2 = b[1],
-    // mag is the product of the magnitudes of a and b
-    mag = Math.sqrt((x1 * x1 + y1 * y1) * (x2 * x2 + y2 * y2)),
-    // mag &&.. short circuits if mag == 0
-    cosine = mag && (x1 * x2 + y1 * y2) / mag;
-  // Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
-  return Math.acos(Math.min(Math.max(cosine, -1), 1));
+  let ax = a[0], ay = a[1],
+    bx = b[0], by = b[1];
+  return Math.abs(Math.atan2(ay * bx - ax * by, ax * bx + ay * by));
 }
+
+/**
+ * Get the signed angle in the interval [-pi,pi] between two 2D vectors (positive if `a` is to the right of `b`)
+ * 
+ * @param {ReadonlyVec2} a The first vector
+ * @param {ReadonlyVec2} b The second vector
+ * @returns {number} The signed angle in radians
+ */
+export function signedAngle(a, b) {
+  let ax = a[0], ay = a[1],
+    bx = b[0], by = b[1];
+  return Math.atan2(ax * by - ay * bx, ax * bx + ay * by);
+}
+
 
 /**
  * Set the components of a vec2 to zero
