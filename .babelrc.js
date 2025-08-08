@@ -1,3 +1,8 @@
-export default {
-  "presets": [["@babel/env", { "modules": false }]]
+module.exports = {
+  "presets": ["@babel/env"],
+  "env": {
+    "esm": {
+      "presets": [["@babel/env", { "modules": false }]]
+    }
+  }
 };
