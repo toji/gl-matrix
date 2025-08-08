@@ -1,5 +1,5 @@
-import * as vec3 from "../../src/vec3.js"
-import * as vec4 from "../../src/vec4.js"
+import * as vec3 from "../../src/vec3"
+import * as vec4 from "../../src/vec4"
 
 describe("vec4", function() {
     let out, vecA, vecB, result;

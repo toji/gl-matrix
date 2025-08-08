@@ -1,11 +1,9 @@
-import fs from 'fs';
-import babel from '@rollup/plugin-babel';
+import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 
-import license from './utils/license-template.js';
-
-const { version } = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url)));
+const version = require('./package.json').version;
+const license = require('./utils/license-template');
 
 const input = './src/index.js';
 const name = 'glMatrix';

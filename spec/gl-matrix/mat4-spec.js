@@ -1,7 +1,7 @@
-import * as glMatrix from "../../src/common.js"
-import * as mat4 from "../../src/mat4.js"
-import * as quat from "../../src/quat.js"
-import * as vec3 from "../../src/vec3.js"
+import * as glMatrix from "../../src/common"
+import * as mat4 from "../../src/mat4"
+import * as quat from "../../src/quat"
+import * as vec3 from "../../src/vec3"
 
 function buildMat4Tests() {
     return function() {

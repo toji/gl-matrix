@@ -1,4 +1,6 @@
-export default `Copyright (c) 2015-${new Date().getFullYear()}, Brandon Jones, Colin MacKenzie IV.
+'use strict'
+
+module.exports = `Copyright (c) 2015-${new Date().getFullYear()}, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

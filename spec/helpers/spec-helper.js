@@ -1,5 +1,5 @@
-import assert from 'assert';
 const EPSILON = 0.00001;
+const assert = require('assert');
 
 
 global.expect = function(e) {

@@ -1,7 +1,6 @@
-import fs from 'fs';
-
-const pkgStr = fs.readFileSync(new URL('../package.json', import.meta.url), 'utf-8');
-const pkg = JSON.parse(pkgStr.replace(/\.\/dist\//g, './'));
+const fs = require('fs');
+const path = require('path');
+const pkg = require('../package.json');
 
 const copyFileSync = (source, dest) => {
   const content = fs.readFileSync(source, 'utf-8');

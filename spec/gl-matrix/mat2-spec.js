@@ -1,4 +1,4 @@
-import * as mat2 from "../../src/mat2.js"
+import * as mat2 from "../../src/mat2"
 
 describe("mat2", function() {
     let out, matA, matB, identity, nonInvertible, result;
