@@ -64,7 +64,9 @@ var Mat2 = class _Mat2 extends Float64Array {
         break;
       case 1:
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(_Mat2.#IDENTITY_2X2);
+        } else if (typeof v === "number") {
           super([
             v,
             v,
@@ -150,7 +152,7 @@ var Mat2 = class _Mat2 extends Float64Array {
    * Inverts this {@link Mat2}
    * Equivalent to `Mat4.invert(this, this);`
    *
-   * @returns `this`
+   * @returns `this` or `null` if the matrix is not invertible
    * @category Methods
    */
   invert() {
@@ -623,7 +625,9 @@ var Mat2d = class _Mat2d extends Float64Array {
         break;
       case 1:
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(_Mat2d.#IDENTITY_2X3);
+        } else if (typeof v === "number") {
           super([
             v,
             v,
@@ -1215,7 +1219,9 @@ var Mat3 = class _Mat3 extends Float64Array {
         break;
       case 1:
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(_Mat3.#IDENTITY_3X3);
+        } else if (typeof v === "number") {
           super([
             v,
             v,
@@ -1309,7 +1315,7 @@ var Mat3 = class _Mat3 extends Float64Array {
    * Equivalent to `Mat4.invert(this, this);`
    * @category Methods
    *
-   * @returns `this`
+   * @returns `this` or `null` id the matrix isn't invertable
    */
   invert() {
     return _Mat3.invert(this, this);
@@ -1897,7 +1903,8 @@ var Mat3 = class _Mat3 extends Float64Array {
     return out;
   }
   /**
-   * Calculates a 3x3 normal matrix (transpose inverse) from the 4x4 matrix
+   * Calculates a {@link Mat3} normal matrix (adjoint) from the upper 3x3 of a {@link Mat4}.
+   * See https://www.shadertoy.com/view/3s33zj for details.
    * @category Static
    *
    * @param {mat3} out mat3 receiving operation result
@@ -1908,77 +1915,30 @@ var Mat3 = class _Mat3 extends Float64Array {
     const a00 = a[0];
     const a01 = a[1];
     const a02 = a[2];
-    const a03 = a[3];
     const a10 = a[4];
     const a11 = a[5];
     const a12 = a[6];
-    const a13 = a[7];
     const a20 = a[8];
     const a21 = a[9];
     const a22 = a[10];
-    const a23 = a[11];
-    const a30 = a[12];
-    const a31 = a[13];
-    const a32 = a[14];
-    const a33 = a[15];
-    const b00 = a00 * a11 - a01 * a10;
-    const b01 = a00 * a12 - a02 * a10;
-    const b02 = a00 * a13 - a03 * a10;
-    const b03 = a01 * a12 - a02 * a11;
-    const b04 = a01 * a13 - a03 * a11;
-    const b05 = a02 * a13 - a03 * a12;
-    const b06 = a20 * a31 - a21 * a30;
-    const b07 = a20 * a32 - a22 * a30;
-    const b08 = a20 * a33 - a23 * a30;
-    const b09 = a21 * a32 - a22 * a31;
-    const b10 = a21 * a33 - a23 * a31;
-    const b11 = a22 * a33 - a23 * a32;
-    let det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
-    if (!det) {
-      return null;
-    }
-    det = 1 / det;
-    out[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
-    out[1] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
-    out[2] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
-    out[3] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
-    out[4] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
-    out[5] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
-    out[6] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
-    out[7] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
-    out[8] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
+    out[0] = a11 * a22 - a12 * a21;
+    out[1] = a02 * a21 - a01 * a22;
+    out[2] = a01 * a12 - a02 * a11;
+    out[3] = a12 * a20 - a10 * a22;
+    out[4] = a00 * a22 - a02 * a20;
+    out[5] = a02 * a10 - a00 * a12;
+    out[6] = a10 * a21 - a11 * a20;
+    out[7] = a01 * a20 - a00 * a21;
+    out[8] = a00 * a11 - a01 * a10;
     return out;
   }
   /**
-   * Calculates a {@link Mat3} normal matrix (transpose inverse) from a {@link Mat4}
-   * This version omits the calculation of the constant factor (1/determinant), so
-   * any normals transformed with it will need to be renormalized.
-   * From https://stackoverflow.com/a/27616419/25968
+   * Alias for {@link Mat3.adjointFromMat4}
    * @category Static
-   *
-   * @param out - Matrix receiving operation result
-   * @param a - Mat4 to derive the normal matrix from
-   * @returns `out`
+   * @deprecated Use {@link Mat3.normalFromMat4}
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static normalFromMat4Fast(out, a) {
-    const ax = a[0];
-    const ay = a[1];
-    const az = a[2];
-    const bx = a[4];
-    const by = a[5];
-    const bz = a[6];
-    const cx = a[8];
-    const cy = a[9];
-    const cz = a[10];
-    out[0] = by * cz - cz * cy;
-    out[1] = bz * cx - cx * cz;
-    out[2] = bx * cy - cy * cx;
-    out[3] = cy * az - cz * ay;
-    out[4] = cz * ax - cx * az;
-    out[5] = cx * ay - cy * ax;
-    out[6] = ay * bz - az * by;
-    out[7] = az * bx - ax * bz;
-    out[8] = ax * by - ay * bx;
     return out;
   }
   /**
@@ -2111,6 +2071,7 @@ var Mat3 = class _Mat3 extends Float64Array {
 Mat3.prototype.mul = Mat3.prototype.multiply;
 Mat3.mul = Mat3.multiply;
 Mat3.sub = Mat3.subtract;
+Mat3.normalFromMat4Fast = Mat3.normalFromMat4;
 
 // src/_lib/f64/Mat4.ts
 var Mat4 = class _Mat4 extends Float64Array {
@@ -2152,7 +2113,9 @@ var Mat4 = class _Mat4 extends Float64Array {
         break;
       case 1:
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(_Mat4.#IDENTITY_4X4);
+        } else if (typeof v === "number") {
           super([
             v,
             v,
@@ -2251,7 +2214,7 @@ var Mat4 = class _Mat4 extends Float64Array {
    * Equivalent to `Mat4.invert(this, this);`
    * @category Methods
    *
-   * @returns `this`
+   * @returns `this` or `null` if the matrix isn't invertable
    */
   invert() {
     return _Mat4.invert(this, this);
@@ -3307,58 +3270,35 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Calculates a {@link Mat4} normal matrix (transpose inverse) from a {@link Mat4}
+   * Calculates a {@link Mat4} normal matrix (adjoint) from a {@link Mat4}
+   * See https://www.shadertoy.com/view/3s33zj for details.
    * @category Static
    *
    * @param out - Matrix receiving operation result
    * @param a - Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertible
+   * @returns `out`
    */
   static normalFromMat4(out, a) {
     const a00 = a[0];
     const a01 = a[1];
     const a02 = a[2];
-    const a03 = a[3];
     const a10 = a[4];
     const a11 = a[5];
     const a12 = a[6];
-    const a13 = a[7];
     const a20 = a[8];
     const a21 = a[9];
     const a22 = a[10];
-    const a23 = a[11];
-    const a30 = a[12];
-    const a31 = a[13];
-    const a32 = a[14];
-    const a33 = a[15];
-    const b00 = a00 * a11 - a01 * a10;
-    const b01 = a00 * a12 - a02 * a10;
-    const b02 = a00 * a13 - a03 * a10;
-    const b03 = a01 * a12 - a02 * a11;
-    const b04 = a01 * a13 - a03 * a11;
-    const b05 = a02 * a13 - a03 * a12;
-    const b06 = a20 * a31 - a21 * a30;
-    const b07 = a20 * a32 - a22 * a30;
-    const b08 = a20 * a33 - a23 * a30;
-    const b09 = a21 * a32 - a22 * a31;
-    const b10 = a21 * a33 - a23 * a31;
-    const b11 = a22 * a33 - a23 * a32;
-    let det = b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
-    if (!det) {
-      return null;
-    }
-    det = 1 / det;
-    out[0] = (a11 * b11 - a12 * b10 + a13 * b09) * det;
-    out[1] = (a12 * b08 - a10 * b11 - a13 * b07) * det;
-    out[2] = (a10 * b10 - a11 * b08 + a13 * b06) * det;
+    out[0] = a11 * a22 - a12 * a21;
+    out[1] = a02 * a21 - a01 * a22;
+    out[2] = a01 * a12 - a02 * a11;
     out[3] = 0;
-    out[4] = (a02 * b10 - a01 * b11 - a03 * b09) * det;
-    out[5] = (a00 * b11 - a02 * b08 + a03 * b07) * det;
-    out[6] = (a01 * b08 - a00 * b10 - a03 * b06) * det;
+    out[4] = a12 * a20 - a10 * a22;
+    out[5] = a00 * a22 - a02 * a20;
+    out[6] = a02 * a10 - a00 * a12;
     out[7] = 0;
-    out[8] = (a31 * b05 - a32 * b04 + a33 * b03) * det;
-    out[9] = (a32 * b02 - a30 * b05 - a33 * b01) * det;
-    out[10] = (a30 * b04 - a31 * b02 + a33 * b00) * det;
+    out[8] = a10 * a21 - a11 * a20;
+    out[9] = a01 * a20 - a00 * a21;
+    out[10] = a00 * a11 - a01 * a10;
     out[11] = 0;
     out[12] = 0;
     out[13] = 0;
@@ -3367,42 +3307,12 @@ var Mat4 = class _Mat4 extends Float64Array {
     return out;
   }
   /**
-   * Calculates a {@link Mat4} normal matrix (transpose inverse) from a {@link Mat4}
-   * This version omits the calculation of the constant factor (1/determinant), so
-   * any normals transformed with it will need to be renormalized.
-   * From https://stackoverflow.com/a/27616419/25968
+   * Alias for {@link Mat4.adjointFromMat4}
    * @category Static
-   *
-   * @param out - Matrix receiving operation result
-   * @param a - Mat4 to derive the normal matrix from
-   * @returns `out`
+   * @deprecated Use {@link Mat4.normalFromMat4}
    */
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static normalFromMat4Fast(out, a) {
-    const ax = a[0];
-    const ay = a[1];
-    const az = a[2];
-    const bx = a[4];
-    const by = a[5];
-    const bz = a[6];
-    const cx = a[8];
-    const cy = a[9];
-    const cz = a[10];
-    out[0] = by * cz - cz * cy;
-    out[1] = bz * cx - cx * cz;
-    out[2] = bx * cy - cy * cx;
-    out[3] = 0;
-    out[4] = cy * az - cz * ay;
-    out[5] = cz * ax - cx * az;
-    out[6] = cx * ay - cy * ax;
-    out[7] = 0;
-    out[8] = ay * bz - az * by;
-    out[9] = az * bx - ax * bz;
-    out[10] = ax * by - ay * bx;
-    out[11] = 0;
-    out[12] = 0;
-    out[13] = 0;
-    out[14] = 0;
-    out[15] = 1;
     return out;
   }
   /**
@@ -4009,6 +3919,7 @@ var Mat4 = class _Mat4 extends Float64Array {
   static ortho(out, left, right, bottom, top, near, far) {
     return out;
   }
+  // eslint-disable-line @typescript-eslint/no-unused-vars
   /**
    * Generates a orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
    * normalized device coordinate Z range of [0, 1], which matches WebGPU / Vulkan / DirectX / Metal's clip volume.
@@ -4381,14 +4292,15 @@ Mat4.mul = Mat4.multiply;
 Mat4.frustum = Mat4.frustumNO;
 Mat4.perspective = Mat4.perspectiveNO;
 Mat4.ortho = Mat4.orthoNO;
+Mat4.normalFromMat4Fast = Mat4.normalFromMat4;
 
 // src/_lib/f64/Vec3.ts
 var Vec3 = class _Vec3 extends Float64Array {
   /**
-   * Create a {@link Vec3}.
-   *
-   * @category Constructor
-   */
+  * Create a {@link Vec3}.
+  * 
+  * @category Constructor
+  */
   constructor(...values) {
     switch (values.length) {
       case 3:
@@ -4399,7 +4311,9 @@ var Vec3 = class _Vec3 extends Float64Array {
         break;
       case 1: {
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(3);
+        } else if (typeof v === "number") {
           super([v, v, v]);
         } else {
           super(v, 0, 3);
@@ -4905,7 +4819,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
-    return [0, 0, 0];
+    return out;
   }
   /**
    * Multiplies two vec3's
@@ -4928,7 +4842,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
-    return [0, 0, 0];
+    return out;
   }
   /**
    * Divides two vec3's
@@ -4951,7 +4865,7 @@ var Vec3 = class _Vec3 extends Float64Array {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out, a, b) {
-    return [0, 0, 0];
+    return out;
   }
   /**
    * Math.ceil the components of a vec3
@@ -5547,7 +5461,9 @@ var Vec4 = class _Vec4 extends Float64Array {
         break;
       case 1: {
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(4);
+        } else if (typeof v === "number") {
           super([v, v, v, v]);
         } else {
           super(v, 0, 4);
@@ -6575,6 +6491,12 @@ Vec4.length = Vec4.magnitude;
 Vec4.len = Vec4.magnitude;
 
 // src/_lib/f64/Quat.ts
+var IDENTITY_QUAT = new Float64Array([
+  0,
+  0,
+  0,
+  1
+]);
 var Quat = class _Quat extends Float64Array {
   static #DEFAULT_ANGLE_ORDER = "zyx";
   // Temporary variables to prevent repeated allocations in the algorithms within Quat.
@@ -6600,7 +6522,9 @@ var Quat = class _Quat extends Float64Array {
         break;
       case 1: {
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(IDENTITY_QUAT);
+        } else if (typeof v === "number") {
           super([v, v, v, v]);
         } else {
           super(v, 0, 4);
@@ -6608,8 +6532,7 @@ var Quat = class _Quat extends Float64Array {
         break;
       }
       default:
-        super(4);
-        this[3] = 1;
+        super(IDENTITY_QUAT);
         break;
     }
   }
@@ -6713,10 +6636,7 @@ var Quat = class _Quat extends Float64Array {
    * @returns `this`
    */
   identity() {
-    this[0] = 0;
-    this[1] = 0;
-    this[2] = 0;
-    this[3] = 1;
+    this.set(IDENTITY_QUAT);
     return this;
   }
   /**
@@ -7580,6 +7500,16 @@ Quat.length = Quat.magnitude;
 Quat.len = Quat.magnitude;
 
 // src/_lib/f64/Quat2.ts
+var IDENTITY_QUAT2 = new Float64Array([
+  0,
+  0,
+  0,
+  1,
+  0,
+  0,
+  0,
+  0
+]);
 var Quat2 = class _Quat2 extends Float64Array {
   // Temporary variables to prevent repeated allocations in the algorithms within Quat2.
   // These are declared as TypedArrays to aid in tree-shaking.
@@ -7600,7 +7530,9 @@ var Quat2 = class _Quat2 extends Float64Array {
         break;
       case 1: {
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(IDENTITY_QUAT2);
+        } else if (typeof v === "number") {
           super([v, v, v, v, v, v, v, v]);
         } else {
           super(v, 0, 8);
@@ -7608,8 +7540,7 @@ var Quat2 = class _Quat2 extends Float64Array {
         break;
       }
       default:
-        super(8);
-        this[3] = 1;
+        super(IDENTITY_QUAT2);
         break;
     }
   }
@@ -8501,7 +8432,9 @@ var Vec2 = class _Vec2 extends Float64Array {
       }
       case 1: {
         const v = values[0];
-        if (typeof v === "number") {
+        if (v === void 0) {
+          super(2);
+        } else if (typeof v === "number") {
           super([v, v]);
         } else {
           super(v, 0, 2);
@@ -8926,7 +8859,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static sub(out, a, b) {
-    return [0, 0];
+    return out;
   }
   /**
    * Multiplies two {@link Vec2}s
@@ -8948,7 +8881,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static mul(out, a, b) {
-    return [0, 0];
+    return out;
   }
   /**
    * Divides two {@link Vec2}s
@@ -8970,7 +8903,7 @@ var Vec2 = class _Vec2 extends Float64Array {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static div(out, a, b) {
-    return [0, 0];
+    return out;
   }
   /**
    * Math.ceil the components of a {@link Vec2}
