@@ -32,7 +32,7 @@ import * as vec3 from "./vec3.js";
 import * as vec4 from "./vec4.js";
 
 /**
- * Quaternion
+ * Quaternion in the format XYZW
  * @module quat
  */
 
@@ -475,20 +475,21 @@ export function fromMat3(out, m) {
 }
 
 /**
- * Creates a quaternion from the given euler angle x, y, z.
+ * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
  * @param {quat} out the receiving quaternion
- * @param {x} Angle to rotate around X axis in degrees.
- * @param {y} Angle to rotate around Y axis in degrees.
- * @param {z} Angle to rotate around Z axis in degrees.
+ * @param {Number} x Angle to rotate around X axis in degrees.
+ * @param {Number} y Angle to rotate around Y axis in degrees.
+ * @param {Number} z Angle to rotate around Z axis in degrees.
+ * @param {'xyz'|'xzy'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
  * @returns {quat} out
  * @function
  */
-export function fromEuler(out, x, y, z) {
-  let halfToRad = (0.5 * Math.PI) / 180.0;
+export function fromEuler(out, x, y, z, order = glMatrix.ANGLE_ORDER) {
+  let halfToRad = Math.PI / 360;
   x *= halfToRad;
-  y *= halfToRad;
   z *= halfToRad;
+  y *= halfToRad;
 
   let sx = Math.sin(x);
   let cx = Math.cos(x);
@@ -497,10 +498,52 @@ export function fromEuler(out, x, y, z) {
   let sz = Math.sin(z);
   let cz = Math.cos(z);
 
-  out[0] = sx * cy * cz - cx * sy * sz;
-  out[1] = cx * sy * cz + sx * cy * sz;
-  out[2] = cx * cy * sz - sx * sy * cz;
-  out[3] = cx * cy * cz + sx * sy * sz;
+  switch (order) {
+    case "xyz":
+      out[0] = sx * cy * cz + cx * sy * sz;
+      out[1] = cx * sy * cz - sx * cy * sz;
+      out[2] = cx * cy * sz + sx * sy * cz;
+      out[3] = cx * cy * cz - sx * sy * sz;
+      break;
+
+    case "xzy":
+      out[0] = sx * cy * cz - cx * sy * sz;
+      out[1] = cx * sy * cz - sx * cy * sz;
+      out[2] = cx * cy * sz + sx * sy * cz;
+      out[3] = cx * cy * cz + sx * sy * sz;
+      break;
+
+    case "yxz":
+      out[0] = sx * cy * cz + cx * sy * sz;
+      out[1] = cx * sy * cz - sx * cy * sz;
+      out[2] = cx * cy * sz - sx * sy * cz;
+      out[3] = cx * cy * cz + sx * sy * sz;
+      break;
+
+    case "yzx":
+      out[0] = sx * cy * cz + cx * sy * sz;
+      out[1] = cx * sy * cz + sx * cy * sz;
+      out[2] = cx * cy * sz - sx * sy * cz;
+      out[3] = cx * cy * cz - sx * sy * sz;
+      break;
+
+    case "zxy":
+      out[0] = sx * cy * cz - cx * sy * sz;
+      out[1] = cx * sy * cz + sx * cy * sz;
+      out[2] = cx * cy * sz + sx * sy * cz;
+      out[3] = cx * cy * cz - sx * sy * sz;
+      break;
+
+    case "zyx":
+      out[0] = sx * cy * cz - cx * sy * sz;
+      out[1] = cx * sy * cz + sx * cy * sz;
+      out[2] = cx * cy * sz - sx * sy * cz;
+      out[3] = cx * cy * cz + sx * sy * sz;
+      break;
+
+    default:
+      throw new Error('Unknown angle order ' + order);
+  }
 
   return out;
 }
@@ -658,13 +701,17 @@ export const normalize = vec4.normalize;
 export const exactEquals = vec4.exactEquals;
 
 /**
- * Returns whether or not the quaternions have approximately the same elements in the same position.
+ * Returns whether or not the quaternions point approximately to the same direction.
  *
- * @param {ReadonlyQuat} a The first vector.
- * @param {ReadonlyQuat} b The second vector.
- * @returns {Boolean} True if the vectors are equal, false otherwise.
+ * Both quaternions are assumed to be unit length.
+ *
+ * @param {ReadonlyQuat} a The first unit quaternion.
+ * @param {ReadonlyQuat} b The second unit quaternion.
+ * @returns {Boolean} True if the quaternions are equal, false otherwise.
  */
-export const equals = vec4.equals;
+export function equals(a, b) {
+    return Math.abs(vec4.dot(a, b)) >= 1 - glMatrix.EPSILON;
+}
 
 /**
  * Sets a quaternion to represent the shortest rotation from one
@@ -677,12 +724,12 @@ export const equals = vec4.equals;
  * @param {ReadonlyVec3} b the destination vector
  * @returns {quat} out
  */
-export const rotationTo = (function() {
+export const rotationTo = (function () {
   let tmpvec3 = vec3.create();
   let xUnitVec3 = vec3.fromValues(1, 0, 0);
   let yUnitVec3 = vec3.fromValues(0, 1, 0);
 
-  return function(out, a, b) {
+  return function (out, a, b) {
     let dot = vec3.dot(a, b);
     if (dot &lt; -0.999999) {
       vec3.cross(tmpvec3, xUnitVec3, a);
@@ -718,11 +765,11 @@ export const rotationTo = (function() {
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
  */
-export const sqlerp = (function() {
+export const sqlerp = (function () {
   let temp1 = create();
   let temp2 = create();
 
-  return function(out, a, b, c, d, t) {
+  return function (out, a, b, c, d, t) {
     slerp(temp1, a, d, t);
     slerp(temp2, b, c, t);
     slerp(out, temp1, temp2, 2 * t * (1 - t));
@@ -741,10 +788,10 @@ export const sqlerp = (function() {
  * @param {ReadonlyVec3} up    the vector representing the local "up" direction
  * @returns {quat} out
  */
-export const setAxes = (function() {
+export const setAxes = (function () {
   let matr = mat3.create();
 
-  return function(out, view, right, up) {
+  return function (out, view, right, up) {
     matr[0] = right[0];
     matr[3] = right[1];
     matr[6] = right[2];
@@ -776,7 +823,7 @@ export const setAxes = (function() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Apr 01 2020 11:00:40 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Aug 08 2025 11:06:23 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

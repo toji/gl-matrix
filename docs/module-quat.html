@@ -38,7 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Quaternion</div>
+            <div class="description">Quaternion in the format XYZW</div>
         
 
         
@@ -138,68 +138,6 @@
 
         
             
-<h4 class="name" id=".equals"><span class="type-signature">(static, constant) </span>equals<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    Returns whether or not the quaternions have approximately the same elements in the same position.
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line639">line 639</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
 <h4 class="name" id=".exactEquals"><span class="type-signature">(static, constant) </span>exactEquals<span class="type-signature"></span></h4>
 
 
@@ -244,7 +182,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line630">line 630</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line673">line 673</a>
     </li></ul></dd>
     
 
@@ -306,7 +244,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line590">line 590</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line633">line 633</a>
     </li></ul></dd>
     
 
@@ -330,7 +268,10 @@
 
 
 <div class="description">
-    Sets a quaternion to represent the shortest rotation from one vector to another.Both vectors are assumed to be unit length.
+    Sets a quaternion to represent the shortest rotation from one
+vector to another.
+
+Both vectors are assumed to be unit length.
 </div>
 
 
@@ -368,7 +309,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line652">line 652</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line699">line 699</a>
     </li></ul></dd>
     
 
@@ -392,7 +333,9 @@
 
 
 <div class="description">
-    Sets the specified quaternion with values corresponding to the given axes. Each axis is a vec3 and is expected to be unit length and perpendicular to all other specified axes.
+    Sets the specified quaternion with values corresponding to the given
+axes. Each axis is a vec3 and is expected to be unit length and
+perpendicular to all other specified axes.
 </div>
 
 
@@ -430,7 +373,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line716">line 716</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line763">line 763</a>
     </li></ul></dd>
     
 
@@ -492,7 +435,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line693">line 693</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line740">line 740</a>
     </li></ul></dd>
     
 
@@ -667,7 +610,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line543">line 543</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line586">line 586</a>
     </li></ul></dd>
     
 
@@ -733,7 +676,9 @@
 
 
 <div class="description">
-    Calculates the W component of a quat from the X, Y, and Z components.Assumes that quaternion is 1 unit in length.Any existing W component will be ignored.
+    Calculates the W component of a quat from the X, Y, and Z components.
+Assumes that quaternion is 1 unit in length.
+Any existing W component will be ignored.
 </div>
 
 
@@ -1008,7 +953,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line497">line 497</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line540">line 540</a>
     </li></ul></dd>
     
 
@@ -1074,7 +1019,8 @@
 
 
 <div class="description">
-    Calculates the conjugate of a quat If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
+    Calculates the conjugate of a quat
+If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
 </div>
 
 
@@ -1372,7 +1318,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line519">line 519</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line562">line 562</a>
     </li></ul></dd>
     
 
@@ -1664,7 +1610,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line570">line 570</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line613">line 613</a>
     </li></ul></dd>
     
 
@@ -1705,6 +1651,190 @@
     <dd>
         
 <span class="param-type">Number</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".equals"><span class="type-signature">(static) </span>equals<span class="signature">(a, b)</span><span class="type-signature"> &rarr; {Boolean}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Returns whether or not the quaternions point approximately to the same direction.
+
+Both quaternions are assumed to be unit length.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>a</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">ReadonlyQuat</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The first unit quaternion.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>b</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">ReadonlyQuat</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The second unit quaternion.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line684">line 684</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    True if the quaternions are equal, false otherwise.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
 
 
     </dd>
@@ -1904,7 +2034,7 @@
     
 
     
-    <h4 class="name" id=".fromEuler"><span class="type-signature">(static) </span>fromEuler<span class="signature">(out, Angle, Angle, Angle)</span><span class="type-signature"> &rarr; {quat}</span></h4>
+    <h4 class="name" id=".fromEuler"><span class="type-signature">(static) </span>fromEuler<span class="signature">(out, x, y, z, order)</span><span class="type-signature"> &rarr; {quat}</span></h4>
     
 
     
@@ -1912,7 +2042,7 @@
 
 
 <div class="description">
-    Creates a quaternion from the given euler angle x, y, z.
+    Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
 </div>
 
 
@@ -1971,13 +2101,13 @@
 
         <tr>
             
-                <td class="name"><code>Angle</code></td>
+                <td class="name"><code>x</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">x</span>
+<span class="param-type">Number</span>
 
 
             
@@ -1987,20 +2117,20 @@
 
             
 
-            <td class="description last">to rotate around X axis in degrees.</td>
+            <td class="description last">Angle to rotate around X axis in degrees.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>Angle</code></td>
+                <td class="name"><code>y</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">y</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2010,20 +2140,20 @@
 
             
 
-            <td class="description last">to rotate around Y axis in degrees.</td>
+            <td class="description last">Angle to rotate around Y axis in degrees.</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>Angle</code></td>
+                <td class="name"><code>z</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">z</span>
+<span class="param-type">Number</span>
 
 
             
@@ -2033,7 +2163,45 @@
 
             
 
-            <td class="description last">to rotate around Z axis in degrees.</td>
+            <td class="description last">Angle to rotate around Z axis in degrees.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>order</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">'xyz'</span>
+|
+
+<span class="param-type">'xzy'</span>
+|
+
+<span class="param-type">'yxz'</span>
+|
+
+<span class="param-type">'yzx'</span>
+|
+
+<span class="param-type">'zxy'</span>
+|
+
+<span class="param-type">'zyx'</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Intrinsic order for conversion, default is zyx.</td>
         </tr>
 
     
@@ -2074,7 +2242,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line459">line 459</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line460">line 460</a>
     </li></ul></dd>
     
 
@@ -2140,7 +2308,10 @@
 
 
 <div class="description">
-    Creates a quaternion from the given 3x3 rotation matrix.NOTE: The resultant quaternion is not normalized, so you should be sure to renormalize the quaternion yourself where necessary.
+    Creates a quaternion from the given 3x3 rotation matrix.
+
+NOTE: The resultant quaternion is not normalized, so you should be sure
+to renormalize the quaternion yourself where necessary.
 </div>
 
 
@@ -2484,7 +2655,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line509">line 509</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line552">line 552</a>
     </li></ul></dd>
     
 
@@ -2732,7 +2903,14 @@
 
 
 <div class="description">
-    Gets the rotation axis and angle for a given quaternion. If a quaternion is created with setAxisAngle, this method will return the same values as providied in the original parameter list OR functionally equivalent values.Example: The quaternion formed by axis [0, 0, 1] and angle -90 is the same as the quaternion formed by [0, 0, 1] and 270. This method favors the latter.
+    Gets the rotation axis and angle for a given
+ quaternion. If a quaternion is created with
+ setAxisAngle, this method will return the same
+ values as providied in the original parameter list
+ OR functionally equivalent values.
+Example: The quaternion formed by axis [0, 0, 1] and
+ angle -90 is the same as the quaternion formed by
+ [0, 0, 1] and 270. This method favors the latter.
 </div>
 
 
@@ -3299,7 +3477,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line596">line 596</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line639">line 639</a>
     </li></ul></dd>
     
 
@@ -3505,7 +3683,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line582">line 582</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line625">line 625</a>
     </li></ul></dd>
     
 
@@ -3797,7 +3975,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line549">line 549</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line592">line 592</a>
     </li></ul></dd>
     
 
@@ -4162,7 +4340,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line621">line 621</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line664">line 664</a>
     </li></ul></dd>
     
 
@@ -5346,7 +5524,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line560">line 560</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line603">line 603</a>
     </li></ul></dd>
     
 
@@ -5597,7 +5775,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line532">line 532</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line575">line 575</a>
     </li></ul></dd>
     
 
@@ -5663,7 +5841,8 @@
 
 
 <div class="description">
-    Sets a quat from the given angle and rotation axis,then returns it.
+    Sets a quat from the given angle and rotation axis,
+then returns it.
 </div>
 
 
@@ -6140,7 +6319,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line611">line 611</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line654">line 654</a>
     </li></ul></dd>
     
 
@@ -6277,7 +6456,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line605">line 605</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line648">line 648</a>
     </li></ul></dd>
     
 
@@ -6436,7 +6615,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line486">line 486</a>
+        <a href="quat.js.html">quat.js</a>, <a href="quat.js.html#line529">line 529</a>
     </li></ul></dd>
     
 
@@ -6510,7 +6689,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Wed Apr 01 2020 11:00:40 GMT+0200 (Central European Summer Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Aug 08 2025 11:06:23 GMT-0700 (Pacific Daylight Time)
 </footer>
 
 <script> prettyPrint(); </script>

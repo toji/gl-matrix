@@ -1,5 +1,5 @@
 {
-  "version": "3.4.3",
+  "version": "3.4.4",
   "name": "gl-matrix",
   "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
   "private": true,
@@ -63,6 +63,6 @@
     "rollup": "^2.50.5",
     "rollup-plugin-size-snapshot": "^0.12.0",
     "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.3.2"
+    "typescript": "^5.9.2"
   }
 }
