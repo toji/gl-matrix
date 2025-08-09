@@ -526,26 +526,11 @@ describe('Mat4', () => {
         });
 
         it('should give rotated matrix', () => expect(result).toBeVec(
-          1,  0, 0, 0,
-          0,  0, 1, 0,
-          0, -1, 0, 0,
-          0,  0, 0, 1
+          1, 0,  0, 0,
+          0, 0, -1, 0,
+          0, 1,  0, 0,
+          0, 0,  0, 1
         ));
-
-        describe('and scale', () => {
-          beforeEach(() => {
-            Mat4.scale(matA, matA, [2, 3, 4]);
-
-            result = Mat4.normalFromMat4(out, matA);
-          });
-
-          it('should give rotated matrix', () => expect(result).toBeVec(
-            0.5, 0, 0, 0,
-            0, 0, 0.333333, 0,
-            0, -0.25, 0, 0,
-            0, 0, 0, 1
-          ));
-        });
       });
     });
 

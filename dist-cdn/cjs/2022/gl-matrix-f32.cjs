@@ -1,4 +1,4 @@
-// gl-matrix - v4.0.0-beta.3 - A high performance matrix and vector library.
+// gl-matrix - v4.0.0-beta.4 - A high performance matrix and vector library.
 // @author Brandon Jones
 // @author Colin MacKenzie IV
 // @license MIT (https://github.com/toji/gl-matrix/blob/master/LICENSE.md)
@@ -695,8 +695,6 @@ var Mat2d = class _Mat2d extends Float32Array {
    * Equivalent to `Mat2d.multiply(this, this, b);`
    * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
@@ -1292,8 +1290,6 @@ var Mat3 = class _Mat3 extends Float32Array {
    * Equivalent to `Mat3.multiply(this, this, b);`
    * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
@@ -1917,7 +1913,7 @@ var Mat3 = class _Mat3 extends Float32Array {
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertible
+   * @returns `out`
    */
   static normalFromMat4(out, a) {
     const a00 = a[0];
@@ -7284,7 +7280,7 @@ var Quat = class _Quat extends Float32Array {
    *
    * @param out - the receiving vector
    * @param a - the vector to scale
-   * @param b - amount to scale the vector by
+   * @param scale - amount to scale the vector by
    * @returns `out`
    */
   static scale(out, a, scale) {

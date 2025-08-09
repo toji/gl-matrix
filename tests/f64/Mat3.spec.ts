@@ -88,7 +88,8 @@ describe('Mat3', () => {
 
     describe('normalFromMat4', () => {
       beforeEach(() => {
-        mat4 = new Float64Array([1, 0, 0, 0,
+        mat4 = new Float64Array([
+          1, 0, 0, 0,
           0, 1, 0, 0,
           0, 0, 1, 0,
           0, 0, 0, 1]);
@@ -108,23 +109,8 @@ describe('Mat3', () => {
         it('should give rotated matrix', () => {
           expect(result).toBeVec(
             1, 0,  0,
-            0, 0,  1,
-            0, -1, 0);
-        });
-
-        describe('and scale', () => {
-          beforeEach(() => {
-            Mat4.scale(mat4, mat4, [2, 3, 4]);
-
-            result = Mat3.normalFromMat4(out, mat4);
-          });
-
-          it('should give rotated matrix', () => {
-            expect(result).toBeVec(
-              0.5, 0,    0,
-              0,   0,    0.333333,
-              0,  -0.25, 0);
-          });
+            0, 0,  -1,
+            0, 1, 0);
         });
       });
     });

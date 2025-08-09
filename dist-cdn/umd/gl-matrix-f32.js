@@ -1,4 +1,4 @@
-// gl-matrix - v4.0.0-beta.3 - A high performance matrix and vector library.
+// gl-matrix - v4.0.0-beta.4 - A high performance matrix and vector library.
 // @author Brandon Jones
 // @author Colin MacKenzie IV
 // @license MIT (https://github.com/toji/gl-matrix/blob/master/LICENSE.md)
@@ -28,12 +28,12 @@
   function _defineProperties(e, r) {
     for (var t = 0; t < r.length; t++) {
       var o = r[t];
-      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
+      o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o);
     }
   }
   function _createClass(e, r, t) {
     return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", {
-      writable: !1
+      writable: false
     }), e;
   }
   function _get() {
@@ -55,11 +55,11 @@
     t.prototype = Object.create(e && e.prototype, {
       constructor: {
         value: t,
-        writable: !0,
-        configurable: !0
+        writable: true,
+        configurable: true
       }
     }), Object.defineProperty(t, "prototype", {
-      writable: !1
+      writable: false
     }), e && _setPrototypeOf(t, e);
   }
   function _isNativeFunction(t) {
@@ -126,15 +126,15 @@
       return Wrapper.prototype = Object.create(t.prototype, {
         constructor: {
           value: Wrapper,
-          enumerable: !1,
-          writable: !0,
-          configurable: !0
+          enumerable: false,
+          writable: true,
+          configurable: true
         }
       }), _setPrototypeOf(Wrapper, t);
     }, _wrapNativeSuper(t);
   }
 
-  // gl-matrix - v4.0.0-beta.3 - A high performance matrix and vector library.
+  // gl-matrix - v4.0.0-beta.4 - A high performance matrix and vector library.
   // @author Brandon Jones
   // @author Colin MacKenzie IV
   // @license MIT (https://github.com/toji/gl-matrix/blob/master/LICENSE.md)
@@ -875,8 +875,6 @@
        * Equivalent to `Mat2d.multiply(this, this, b);`
        * @category Methods
        *
-       * @param out - The receiving Matrix
-       * @param a - The first operand
        * @param b - The second operand
        * @returns `this`
        */
@@ -1534,8 +1532,6 @@
        * Equivalent to `Mat3.multiply(this, this, b);`
        * @category Methods
        *
-       * @param out - The receiving Matrix
-       * @param a - The first operand
        * @param b - The second operand
        * @returns `this`
        */
@@ -2234,7 +2230,7 @@
        *
        * @param {mat3} out mat3 receiving operation result
        * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-       * @returns `out` or `null` if the matrix is not invertible
+       * @returns `out`
        */
     }, {
       key: "normalFromMat4",
@@ -6146,8 +6142,8 @@
     function _Vec4() {
       var _this6;
       _classCallCheck(this, _Vec4);
-      for (var _len10 = arguments.length, values = new Array(_len10), _key10 = 0; _key10 < _len10; _key10++) {
-        values[_key10] = arguments[_key10];
+      for (var _len0 = arguments.length, values = new Array(_len0), _key0 = 0; _key0 < _len0; _key0++) {
+        values[_key0] = arguments[_key0];
       }
       switch (values.length) {
         case 4:
@@ -7349,8 +7345,8 @@
     function _Quat() {
       var _this7;
       _classCallCheck(this, _Quat);
-      for (var _len11 = arguments.length, values = new Array(_len11), _key11 = 0; _key11 < _len11; _key11++) {
-        values[_key11] = arguments[_key11];
+      for (var _len1 = arguments.length, values = new Array(_len1), _key1 = 0; _key1 < _len1; _key1++) {
+        values[_key1] = arguments[_key1];
       }
       switch (values.length) {
         case 4:
@@ -8222,7 +8218,7 @@
        *
        * @param out - the receiving vector
        * @param a - the vector to scale
-       * @param b - amount to scale the vector by
+       * @param scale - amount to scale the vector by
        * @returns `out`
        */
     }, {
@@ -8505,8 +8501,8 @@
     function _Quat2() {
       var _this8;
       _classCallCheck(this, _Quat2);
-      for (var _len12 = arguments.length, values = new Array(_len12), _key12 = 0; _key12 < _len12; _key12++) {
-        values[_key12] = arguments[_key12];
+      for (var _len10 = arguments.length, values = new Array(_len10), _key10 = 0; _key10 < _len10; _key10++) {
+        values[_key10] = arguments[_key10];
       }
       switch (values.length) {
         case 8:

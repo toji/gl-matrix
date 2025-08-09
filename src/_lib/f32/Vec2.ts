@@ -18,7 +18,7 @@ export class Vec2 extends Float32Array {
         if (typeof v === 'number') {
           super([v, values[1]]);
         } else {
-          super(v as ArrayBufferLike, values[1], 2);
+          super(v as ArrayBuffer, values[1], 2);
         }
         break;
       }
@@ -29,7 +29,7 @@ export class Vec2 extends Float32Array {
         } else if (typeof v === 'number') {
           super([v, v]);
         } else {
-          super(v as ArrayBufferLike, 0, 2);
+          super(v as ArrayBuffer, 0, 2);
         }
         break;
       }

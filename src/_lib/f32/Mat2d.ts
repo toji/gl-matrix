@@ -22,7 +22,7 @@ export class Mat2d extends Float32Array {
       case 6:
         super(values); break;
       case 2:
-        super(values[0] as ArrayBufferLike, values[1], 6); break;
+        super(values[0] as ArrayBuffer, values[1], 6); break;
       case 1:
         const v = values[0];
         if (v === undefined) {
@@ -33,7 +33,7 @@ export class Mat2d extends Float32Array {
             v, v,
             v, v]);
         } else {
-          super(v as ArrayBufferLike, 0, 6);
+          super(v as ArrayBuffer, 0, 6);
         }
         break;
       default:
@@ -88,8 +88,6 @@ export class Mat2d extends Float32Array {
    * Equivalent to `Mat2d.multiply(this, this, b);`
    * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */

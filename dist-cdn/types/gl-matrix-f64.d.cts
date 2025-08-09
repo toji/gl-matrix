@@ -466,8 +466,6 @@ declare class Mat2d extends Float64Array {
    * Equivalent to `Mat2d.multiply(this, this, b);`
    * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
@@ -784,8 +782,6 @@ declare class Mat3 extends Float64Array {
    * Equivalent to `Mat3.multiply(this, this, b);`
    * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
@@ -1075,7 +1071,7 @@ declare class Mat3 extends Float64Array {
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertible
+   * @returns `out`
    */
   static normalFromMat4<T extends Mat3Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
@@ -2453,7 +2449,7 @@ declare class Quat extends Float64Array {
    *
    * @param out - the receiving vector
    * @param a - the vector to scale
-   * @param b - amount to scale the vector by
+   * @param scale - amount to scale the vector by
    * @returns `out`
    */
   static scale<T extends QuatLike>(out: T, a: Readonly<QuatLike>, scale: number): T;
@@ -4986,26 +4982,5 @@ declare function toDegree(value: number): number;
  */
 declare function toRadian(value: number): number;
 
-export {
-  type FloatArray,
-  Mat2,
-  type Mat2Like,
-  Mat2d,
-  type Mat2dLike,
-  Mat3,
-  type Mat3Like,
-  Mat4,
-  type Mat4Like,
-  Quat,
-  Quat2,
-  type Quat2Like,
-  type QuatLike,
-  Vec2,
-  type Vec2Like,
-  Vec3,
-  type Vec3Like,
-  Vec4,
-  type Vec4Like,
-  toDegree,
-  toRadian,
-};
+export { Mat2, Mat2d, Mat3, Mat4, Quat, Quat2, Vec2, Vec3, Vec4, toDegree, toRadian };
+export type { FloatArray, Mat2Like, Mat2dLike, Mat3Like, Mat4Like, Quat2Like, QuatLike, Vec2Like, Vec3Like, Vec4Like };

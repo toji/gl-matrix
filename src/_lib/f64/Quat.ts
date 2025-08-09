@@ -35,7 +35,7 @@ export class Quat extends Float64Array {
       case 4:
         super(values); break;
       case 2:
-        super(values[0] as ArrayBufferLike, values[1], 4); break;
+        super(values[0] as ArrayBuffer, values[1], 4); break;
       case 1: {
         const v = values[0];
         if (v === undefined) {
@@ -43,7 +43,7 @@ export class Quat extends Float64Array {
         } else if (typeof v === 'number') {
           super([v, v, v, v]);
         } else {
-          super(v as ArrayBufferLike, 0, 4);
+          super(v as ArrayBuffer, 0, 4);
         }
         break;
       }
@@ -875,7 +875,7 @@ export class Quat extends Float64Array {
    *
    * @param out - the receiving vector
    * @param a - the vector to scale
-   * @param b - amount to scale the vector by
+   * @param scale - amount to scale the vector by
    * @returns `out`
    */
   static scale<T extends QuatLike>(out: T, a: Readonly<QuatLike>, scale: number): T {

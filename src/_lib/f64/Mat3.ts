@@ -22,7 +22,7 @@ export class Mat3 extends Float64Array {
       case 9:
         super(values); break;
       case 2:
-        super(values[0] as ArrayBufferLike, values[1], 9); break;
+        super(values[0] as ArrayBuffer, values[1], 9); break;
       case 1:
         const v = values[0];
         if (v === undefined) {
@@ -33,7 +33,7 @@ export class Mat3 extends Float64Array {
             v, v, v,
             v, v, v]);
         } else {
-          super(v as ArrayBufferLike, 0, 9);
+          super(v as ArrayBuffer, 0, 9);
         }
         break;
       default:
@@ -88,8 +88,6 @@ export class Mat3 extends Float64Array {
    * Equivalent to `Mat3.multiply(this, this, b);`
    * @category Methods
    *
-   * @param out - The receiving Matrix
-   * @param a - The first operand
    * @param b - The second operand
    * @returns `this`
    */
@@ -785,7 +783,7 @@ export class Mat3 extends Float64Array {
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertible
+   * @returns `out`
    */
   static normalFromMat4<T extends Mat3Like>(out: T, a: Readonly<Mat4Like>): T {
     // Only difference from adjoint() is these indices.

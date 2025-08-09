@@ -16,7 +16,7 @@ export class Vec3 extends Float32Array {
       case 3:
         super(values); break;
       case 2:
-        super(values[0] as ArrayBufferLike, values[1], 3); break;
+        super(values[0] as ArrayBuffer, values[1], 3); break;
       case 1: {
         const v = values[0];
         if (v === undefined) {
@@ -24,7 +24,7 @@ export class Vec3 extends Float32Array {
         } else if (typeof v === 'number') {
           super([v, v, v]);
         } else {
-          super(v as ArrayBufferLike, 0, 3);
+          super(v as ArrayBuffer, 0, 3);
         }
         break;
       }
