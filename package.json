@@ -17,11 +17,7 @@
       "types": "./dist/f64/index.d.mts",
       "default": "./src/f64/index.ts"
     },
-    "#gl-matrix/swizzle": "./src/swizzle/index.ts",
-    "#gl-matrix/swizzle/f64": "./src/swizzle/f64/index.ts",
     "#gl-matrix/types": "./src/types/index.ts",
-    "#gl-matrix/types/swizzle": "./src/types/swizzle/index.ts",
-    "#gl-matrix/types/swizzle/f64": "./src/types/swizzle/f64/index.ts",
     "#gl-matrix/util": "./src/util/index.ts"
   },
   "exports": {
@@ -85,26 +81,6 @@
         "default": "./dist/f64/index.cjs"
       }
     },
-    "./swizzle": {
-      "import": {
-        "types": "./dist/swizzle/index.d.mts",
-        "default": "./dist/swizzle/index.js"
-      },
-      "require": {
-        "types": "./dist/swizzle/index.d.cts",
-        "default": "./dist/swizzle/index.cjs"
-      }
-    },
-    "./swizzle/f64": {
-      "import": {
-        "types": "./dist/swizzle/f64/index.d.mts",
-        "default": "./dist/swizzle/f64/index.js"
-      },
-      "require": {
-        "types": "./dist/swizzle/f64/index.d.cts",
-        "default": "./dist/swizzle/f64/index.cjs"
-      }
-    },
     "./types": {
       "import": {
         "types": "./dist/types/index.d.mts",
@@ -133,26 +109,6 @@
       "require": {
         "types": "./dist-cdn/types/globals-f64.d.cts",
         "default": "./dist-cdn/types/index.cjs"
-      }
-    },
-    "./types/swizzle": {
-      "import": {
-        "types": "./dist/types/swizzle/index.d.mts",
-        "default": "./dist/types/swizzle/index.js"
-      },
-      "require": {
-        "types": "./dist/types/swizzle/index.d.cts",
-        "default": "./dist/types/swizzle/index.cjs"
-      }
-    },
-    "./types/swizzle/f64": {
-      "import": {
-        "types": "./dist/types/swizzle/f64/index.d.mts",
-        "default": "./dist/types/swizzle/f64/index.js"
-      },
-      "require": {
-        "types": "./dist/types/swizzle/f64/index.d.cts",
-        "default": "./dist/types/swizzle/f64/index.cjs"
       }
     },
     "./util": {

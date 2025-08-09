@@ -1,5 +1,5 @@
 ---
-title: 4. Classic API
+title: 3. Classic API
 category: API Usage
 ---
 ## Classic API

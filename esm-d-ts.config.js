@@ -26,11 +26,7 @@ const configs = [
    { input: './src/classic/index.ts', output: './dist/classic/index.d.mts', emitCTS, importsLocal },
    { input: './src/common/index.ts', output: './dist/common/index.d.mts', emitCTS, importsLocal },
    { input: './src/f64/index.ts', output: './dist/f64/index.d.mts', emitCTS, importsLocal },
-   { input: './src/swizzle/index.ts', output: './dist/swizzle/index.d.mts', emitCTS, importsLocal },
-   { input: './src/swizzle/f64/index.ts', output: './dist/swizzle/f64/index.d.mts', emitCTS, importsLocal },
    { input: './src/types/index.ts', output: './dist/types/index.d.mts', emitCTS, importsLocal },
-   { input: './src/types/swizzle/index.ts', output: './dist/types/swizzle/index.d.mts', emitCTS, importsLocal, dtsReplace },
-   { input: './src/types/swizzle/f64/index.ts', output: './dist/types/swizzle/f64/index.d.mts', emitCTS, importsLocal, dtsReplace },
    { input: './src/util/index.ts', output: './dist/util/index.d.mts', emitCTS, importsLocal },
 
    // Bundles CDN types.

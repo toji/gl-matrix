@@ -40,11 +40,7 @@ try {
       { in: 'src/classic/index.ts', out: 'classic/index' },                      // gl-matrix/classic
       { in: 'src/common/index.ts', out: 'common/index' },                        // gl-matrix/common
       { in: 'src/f64/index.ts', out: 'f64/index' },                              // gl-matrix/f64
-      { in: 'src/swizzle/index.ts', out: 'swizzle/index' },                      // gl-matrix/swizzle
-      { in: 'src/swizzle/f64/index.ts', out: 'swizzle/f64/index' },              // gl-matrix/swizzle/f64
       { in: 'src/types/index.ts', out: 'types/index' },                          // gl-matrix/types
-      { in: 'src/types/swizzle/index.ts', out: 'types/swizzle/index' },          // gl-matrix/types
-      { in: 'src/types/swizzle/f64/index.ts', out: 'types/swizzle/f64/index' },  // gl-matrix/types
       { in: 'src/util/index.ts', out: 'util/index' },                            // gl-matrix/util
     ],
     bundle: true,

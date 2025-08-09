@@ -6,7 +6,5 @@
 
 /* v8 ignore next 5 */
 export * from '#gl-matrix/f64';
-export * from '#gl-matrix/swizzle/f64';
 export * from '#gl-matrix/types';
-export * from '#gl-matrix/types/swizzle/f64';
 export * from '#gl-matrix/util';

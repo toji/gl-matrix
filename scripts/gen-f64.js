@@ -40,7 +40,6 @@ function copyDir(srcDir, outDir) {
       [/EnableSwizzles/g, 'EnableSwizzlesF64'],
       [/Float32Array/g, 'Float64Array'],
       [/['"]#gl-matrix['"]/g, '\'#gl-matrix/f64\''],
-      [/['"]#gl-matrix\/swizzle['"]/g, '\'#gl-matrix/swizzle/f64\'']
     ]);
   }
 }

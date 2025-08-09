@@ -100,7 +100,7 @@ declare class Mat2 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Mat2Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * A string representation of `this`
    * Equivalent to `Mat2.str(this);`
@@ -150,10 +150,10 @@ declare class Mat2 extends Float64Array {
    * Inverts this {@link Mat2}
    * Equivalent to `Mat4.invert(this, this);`
    *
-   * @returns `this`
+   * @returns `this` or `null` if the matrix is not invertible
    * @category Methods
    */
-  invert(): this;
+  invert(): this | null;
   /**
    * Scales this {@link Mat2} by the dimensions in the given vec3 not using vectorization
    * Equivalent to `Mat2.scale(this, this, v);`
@@ -201,7 +201,7 @@ declare class Mat2 extends Float64Array {
    * @param a - Matrix to copy
    * @returns `out`
    */
-  static copy(out: Mat2Like, a: Readonly<Mat2Like>): Mat2Like;
+  static copy<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>): T;
   /**
    * Create a new {@link Mat2} with the given values
    * @category Static
@@ -218,7 +218,7 @@ declare class Mat2 extends Float64Array {
    * @param values - Matrix components
    * @returns `out`
    */
-  static set(out: Mat2Like, ...values: number[]): Mat2Like;
+  static set<T extends Mat2Like>(out: T, ...values: number[]): T;
   /**
    * Set a {@link Mat2} to the identity matrix
    * @category Static
@@ -226,7 +226,7 @@ declare class Mat2 extends Float64Array {
    * @param out - The receiving matrix
    * @returns `out`
    */
-  static identity(out: Mat2Like): Mat2Like;
+  static identity<T extends Mat2Like>(out: T): T;
   /**
    * Transpose the values of a {@link Mat2}
    * @category Static
@@ -235,7 +235,7 @@ declare class Mat2 extends Float64Array {
    * @param a - the source matrix
    * @returns `out`
    */
-  static transpose(out: Mat2Like, a: Readonly<Mat2Like>): Mat2Like;
+  static transpose<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>): T;
   /**
    * Inverts a {@link Mat2}
    * @category Static
@@ -244,7 +244,7 @@ declare class Mat2 extends Float64Array {
    * @param a - the source matrix
    * @returns `out` or `null` if the matrix is not invertible
    */
-  static invert(out: Mat2Like, a: Mat2Like): Mat2Like | null;
+  static invert<T extends Mat2Like>(out: T, a: Mat2Like): T | null;
   /**
    * Calculates the adjugate of a {@link Mat2}
    * @category Static
@@ -253,7 +253,7 @@ declare class Mat2 extends Float64Array {
    * @param a - the source matrix
    * @returns `out`
    */
-  static adjoint(out: Mat2Like, a: Mat2Like): Mat2Like;
+  static adjoint<T extends Mat2Like>(out: T, a: Mat2Like): T;
   /**
    * Calculates the determinant of a {@link Mat2}
    * @category Static
@@ -271,7 +271,7 @@ declare class Mat2 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like;
+  static add<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): T;
   /**
    * Subtracts matrix b from matrix a
    * @category Static
@@ -281,12 +281,12 @@ declare class Mat2 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like;
+  static subtract<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): T;
   /**
    * Alias for {@link Mat2.subtract}
    * @category Static
    */
-  static sub(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like;
+  static sub<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): T;
   /**
    * Multiplies two {@link Mat2}s
    * @category Static
@@ -296,12 +296,12 @@ declare class Mat2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static multiply(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like;
+  static multiply<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): T;
   /**
    * Alias for {@link Mat2.multiply}
    * @category Static
    */
-  static mul(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): Mat2Like;
+  static mul<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>): T;
   /**
    * Rotates a {@link Mat2} by the given angle
    * @category Static
@@ -311,7 +311,7 @@ declare class Mat2 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static rotate(out: Mat2Like, a: Readonly<Mat2Like>, rad: number): Mat2Like;
+  static rotate<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, rad: number): T;
   /**
    * Scales the {@link Mat2} by the dimensions in the given {@link Vec2}
    * @category Static
@@ -321,7 +321,7 @@ declare class Mat2 extends Float64Array {
    * @param v - the {@link Vec2} to scale the matrix by
    * @returns `out`
    **/
-  static scale(out: Mat2Like, a: Readonly<Mat2Like>, v: Readonly<Vec2Like>): Mat2Like;
+  static scale<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, v: Readonly<Vec2Like>): T;
   /**
    * Creates a {@link Mat2} from a given angle around a given axis
    * This is equivalent to (but much faster than):
@@ -335,7 +335,7 @@ declare class Mat2 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static fromRotation(out: Mat2Like, rad: number): Mat2Like;
+  static fromRotation<T extends Mat2Like>(out: T, rad: number): T;
   /**
    * Creates a {@link Mat2} from a vector scaling
    * This is equivalent to (but much faster than):
@@ -349,7 +349,7 @@ declare class Mat2 extends Float64Array {
    * @param v - Scaling vector
    * @returns `out`
    */
-  static fromScaling(out: Mat2Like, v: Readonly<Vec2Like>): Mat2Like;
+  static fromScaling<T extends Mat2Like>(out: T, v: Readonly<Vec2Like>): T;
   /**
    * Returns Frobenius norm of a {@link Mat2}
    * @category Static
@@ -367,7 +367,7 @@ declare class Mat2 extends Float64Array {
    * @param b - amount to scale the matrix's elements by
    * @returns `out`
    */
-  static multiplyScalar(out: Mat2Like, a: Readonly<Mat2Like>, b: number): Mat2Like;
+  static multiplyScalar<T extends Mat2Like>(out: T, a: Readonly<Mat2Like>, b: number): T;
   /**
    * Adds two {@link Mat2}'s after multiplying each element of the second operand by a scalar value.
    * @category Static
@@ -378,7 +378,12 @@ declare class Mat2 extends Float64Array {
    * @param scale - the amount to scale b's elements by before adding
    * @returns `out`
    */
-  static multiplyScalarAndAdd(out: Mat2Like, a: Readonly<Mat2Like>, b: Readonly<Mat2Like>, scale: number): Mat2Like;
+  static multiplyScalarAndAdd<T extends Mat2Like>(
+    out: T,
+    a: Readonly<Mat2Like>,
+    b: Readonly<Mat2Like>,
+    scale: number,
+  ): T;
   /**
    * Returns L, D and U matrices (Lower triangular, Diagonal and Upper triangular) by factorizing the input matrix
    * @category Static
@@ -432,7 +437,7 @@ declare class Mat2d extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Mat2dLike> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * A string representation of `this`
    * Equivalent to `Mat2d.str(this);`
@@ -750,7 +755,7 @@ declare class Mat3 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat3Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Mat3Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * A string representation of `this`
    * Equivalent to `Mat3.str(this);`
@@ -803,9 +808,9 @@ declare class Mat3 extends Float64Array {
    * Equivalent to `Mat4.invert(this, this);`
    * @category Methods
    *
-   * @returns `this`
+   * @returns `this` or `null` id the matrix isn't invertable
    */
-  invert(): this;
+  invert(): this | null;
   /**
    * Translate this {@link Mat3} by the given vector
    * Equivalent to `Mat3.translate(this, this, v);`
@@ -862,7 +867,7 @@ declare class Mat3 extends Float64Array {
    * @param a - Matrix to copy
    * @returns `out`
    */
-  static copy(out: Mat3Like, a: Readonly<Mat3Like>): Mat3Like;
+  static copy<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>): T;
   /**
    * Create a new {@link Mat3} with the given values
    * @category Static
@@ -879,7 +884,7 @@ declare class Mat3 extends Float64Array {
    * @param values - Matrix components
    * @returns `out`
    */
-  static set(out: Mat3Like, ...values: number[]): Mat3Like;
+  static set<T extends Mat3Like>(out: T, ...values: number[]): T;
   /**
    * Set a {@link Mat3} to the identity matrix
    * @category Static
@@ -887,7 +892,7 @@ declare class Mat3 extends Float64Array {
    * @param out - The receiving matrix
    * @returns `out`
    */
-  static identity(out: Mat3Like): Mat3Like;
+  static identity<T extends Mat3Like>(out: T): T;
   /**
    * Transpose the values of a {@link Mat3}
    * @category Static
@@ -896,7 +901,7 @@ declare class Mat3 extends Float64Array {
    * @param a - the source matrix
    * @returns `out`
    */
-  static transpose(out: Mat3Like, a: Readonly<Mat3Like>): Mat3Like;
+  static transpose<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>): T;
   /**
    * Inverts a {@link Mat3}
    * @category Static
@@ -905,7 +910,7 @@ declare class Mat3 extends Float64Array {
    * @param a - the source matrix
    * @returns `out` or `null` if the matrix is not invertible
    */
-  static invert(out: Mat3Like, a: Mat3Like): Mat3Like | null;
+  static invert<T extends Mat3Like>(out: T, a: Mat3Like): T | null;
   /**
    * Calculates the adjugate of a {@link Mat3}
    * @category Static
@@ -914,7 +919,7 @@ declare class Mat3 extends Float64Array {
    * @param a - the source matrix
    * @returns `out`
    */
-  static adjoint(out: Mat3Like, a: Mat3Like): Mat3Like;
+  static adjoint<T extends Mat3Like>(out: T, a: Mat3Like): T;
   /**
    * Calculates the determinant of a {@link Mat3}
    * @category Static
@@ -932,7 +937,7 @@ declare class Mat3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): Mat3Like;
+  static add<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): T;
   /**
    * Subtracts matrix b from matrix a
    * @category Static
@@ -942,12 +947,12 @@ declare class Mat3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): Mat3Like;
+  static subtract<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): T;
   /**
    * Alias for {@link Mat3.subtract}
    * @category Static
    */
-  static sub(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): Mat3Like;
+  static sub<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): T;
   /**
    * Multiplies two {@link Mat3}s
    * @category Static
@@ -957,12 +962,12 @@ declare class Mat3 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static multiply(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): Mat3Like;
+  static multiply<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): T;
   /**
    * Alias for {@link Mat3.multiply}
    * @category Static
    */
-  static mul(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): Mat3Like;
+  static mul<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>): T;
   /**
    * Translate a {@link Mat3} by the given vector
    * @category Static
@@ -972,7 +977,7 @@ declare class Mat3 extends Float64Array {
    * @param v - vector to translate by
    * @returns `out`
    */
-  static translate(out: Mat3Like, a: Readonly<Mat3Like>, v: Readonly<Vec2Like>): Mat3Like;
+  static translate<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, v: Readonly<Vec2Like>): T;
   /**
    * Rotates a {@link Mat3} by the given angle
    * @category Static
@@ -982,7 +987,7 @@ declare class Mat3 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static rotate(out: Mat3Like, a: Readonly<Mat3Like>, rad: number): Mat3Like;
+  static rotate<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, rad: number): T;
   /**
    * Scales the {@link Mat3} by the dimensions in the given {@link Vec2}
    * @category Static
@@ -992,7 +997,7 @@ declare class Mat3 extends Float64Array {
    * @param v - the {@link Vec2} to scale the matrix by
    * @returns `out`
    **/
-  static scale(out: Mat3Like, a: Readonly<Mat3Like>, v: Readonly<Vec2Like>): Mat3Like;
+  static scale<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, v: Readonly<Vec2Like>): T;
   /**
    * Creates a {@link Mat3} from a vector translation
    * This is equivalent to (but much faster than):
@@ -1006,7 +1011,7 @@ declare class Mat3 extends Float64Array {
    * @param v - Translation vector
    * @returns `out`
    */
-  static fromTranslation(out: Mat3Like, v: Readonly<Vec2Like>): Mat3Like;
+  static fromTranslation<T extends Mat3Like>(out: T, v: Readonly<Vec2Like>): T;
   /**
    * Creates a {@link Mat3} from a given angle around a given axis
    * This is equivalent to (but much faster than):
@@ -1019,7 +1024,7 @@ declare class Mat3 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static fromRotation(out: Mat3Like, rad: number): Mat3Like;
+  static fromRotation<T extends Mat3Like>(out: T, rad: number): T;
   /**
    * Creates a {@link Mat3} from a vector scaling
    * This is equivalent to (but much faster than):
@@ -1033,7 +1038,7 @@ declare class Mat3 extends Float64Array {
    * @param v - Scaling vector
    * @returns `out`
    */
-  static fromScaling(out: Mat3Like, v: Readonly<Vec2Like>): Mat3Like;
+  static fromScaling<T extends Mat3Like>(out: T, v: Readonly<Vec2Like>): T;
   /**
    * Copies the upper-left 3x3 values of a {@link Mat2d} into the given
    * {@link Mat3}.
@@ -1043,7 +1048,7 @@ declare class Mat3 extends Float64Array {
    * @param a - the source 2x3 matrix
    * @returns `out`
    */
-  static fromMat2d(out: Mat3Like, a: Readonly<Mat2dLike>): Mat3Like;
+  static fromMat2d<T extends Mat3Like>(out: T, a: Readonly<Mat2dLike>): T;
   /**
    * Calculates a {@link Mat3} from the given quaternion
    * @category Static
@@ -1052,7 +1057,7 @@ declare class Mat3 extends Float64Array {
    * @param q - {@link Quat} to create matrix from
    * @returns `out`
    */
-  static fromQuat(out: Mat3Like, q: Readonly<QuatLike>): Mat3Like;
+  static fromQuat<T extends Mat3Like>(out: T, q: Readonly<QuatLike>): T;
   /**
    * Copies the upper-left 3x3 values of a {@link Mat4} into the given
    * {@link Mat3}.
@@ -1062,28 +1067,23 @@ declare class Mat3 extends Float64Array {
    * @param a - the source 4x4 matrix
    * @returns `out`
    */
-  static fromMat4(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like;
+  static fromMat4<T extends Mat3Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
-   * Calculates a 3x3 normal matrix (transpose inverse) from the 4x4 matrix
+   * Calculates a {@link Mat3} normal matrix (adjoint) from the upper 3x3 of a {@link Mat4}.
+   * See https://www.shadertoy.com/view/3s33zj for details.
    * @category Static
    *
    * @param {mat3} out mat3 receiving operation result
    * @param {ReadonlyMat4} a Mat4 to derive the normal matrix from
    * @returns `out` or `null` if the matrix is not invertible
    */
-  static normalFromMat4(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like | null;
+  static normalFromMat4<T extends Mat3Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
-   * Calculates a {@link Mat3} normal matrix (transpose inverse) from a {@link Mat4}
-   * This version omits the calculation of the constant factor (1/determinant), so
-   * any normals transformed with it will need to be renormalized.
-   * From https://stackoverflow.com/a/27616419/25968
+   * Alias for {@link Mat3.adjointFromMat4}
    * @category Static
-   *
-   * @param out - Matrix receiving operation result
-   * @param a - Mat4 to derive the normal matrix from
-   * @returns `out`
+   * @deprecated Use {@link Mat3.normalFromMat4}
    */
-  static normalFromMat4Fast(out: Mat3Like, a: Readonly<Mat4Like>): Mat3Like;
+  static normalFromMat4Fast<T extends Mat3Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
    * Generates a 2D projection matrix with the given bounds
    * @category Static
@@ -1093,7 +1093,7 @@ declare class Mat3 extends Float64Array {
    * @param height Height of gl context
    * @returns `out`
    */
-  static projection(out: Mat3Like, width: number, height: number): Mat3Like;
+  static projection<T extends Mat3Like>(out: T, width: number, height: number): T;
   /**
    * Returns Frobenius norm of a {@link Mat3}
    * @category Static
@@ -1111,7 +1111,7 @@ declare class Mat3 extends Float64Array {
    * @param b - amount to scale the matrix's elements by
    * @returns `out`
    */
-  static multiplyScalar(out: Mat3Like, a: Readonly<Mat3Like>, b: number): Mat3Like;
+  static multiplyScalar<T extends Mat3Like>(out: T, a: Readonly<Mat3Like>, b: number): T;
   /**
    * Adds two {@link Mat3}'s after multiplying each element of the second operand by a scalar value.
    * @category Static
@@ -1122,7 +1122,12 @@ declare class Mat3 extends Float64Array {
    * @param scale - the amount to scale b's elements by before adding
    * @returns `out`
    */
-  static multiplyScalarAndAdd(out: Mat3Like, a: Readonly<Mat3Like>, b: Readonly<Mat3Like>, scale: number): Mat3Like;
+  static multiplyScalarAndAdd<T extends Mat3Like>(
+    out: T,
+    a: Readonly<Mat3Like>,
+    b: Readonly<Mat3Like>,
+    scale: number,
+  ): T;
   /**
    * Returns whether two {@link Mat3}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
@@ -1161,7 +1166,7 @@ declare class Mat4 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Mat4Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Mat4Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * A string representation of `this`
    * Equivalent to `Mat4.str(this);`
@@ -1212,9 +1217,9 @@ declare class Mat4 extends Float64Array {
    * Equivalent to `Mat4.invert(this, this);`
    * @category Methods
    *
-   * @returns `this`
+   * @returns `this` or `null` if the matrix isn't invertable
    */
-  invert(): this;
+  invert(): this | null;
   /**
    * Translate this {@link Mat4} by the given vector
    * Equivalent to `Mat4.translate(this, this, v);`
@@ -1361,7 +1366,7 @@ declare class Mat4 extends Float64Array {
    * @param a - Matrix to copy
    * @returns `out`
    */
-  static copy(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like;
+  static copy<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
    * Create a new mat4 with the given values
    * @category Static
@@ -1378,7 +1383,7 @@ declare class Mat4 extends Float64Array {
    * @param values - Matrix components
    * @returns `out`
    */
-  static set(out: Mat4Like, ...values: number[]): Mat4Like;
+  static set<T extends Mat4Like>(out: T, ...values: number[]): T;
   /**
    * Set a {@link Mat4} to the identity matrix
    * @category Static
@@ -1386,7 +1391,7 @@ declare class Mat4 extends Float64Array {
    * @param out - The receiving Matrix
    * @returns `out`
    */
-  static identity(out: Mat4Like): Mat4Like;
+  static identity<T extends Mat4Like>(out: T): T;
   /**
    * Transpose the values of a {@link Mat4}
    * @category Static
@@ -1395,7 +1400,7 @@ declare class Mat4 extends Float64Array {
    * @param a - the source matrix
    * @returns `out`
    */
-  static transpose(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like;
+  static transpose<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
    * Inverts a {@link Mat4}
    * @category Static
@@ -1404,7 +1409,7 @@ declare class Mat4 extends Float64Array {
    * @param a - the source matrix
    * @returns `out` or `null` if the matrix is not invertible
    */
-  static invert(out: Mat4Like, a: Mat4Like): Mat4Like | null;
+  static invert<T extends Mat4Like>(out: T, a: Mat4Like): T | null;
   /**
    * Calculates the adjugate of a {@link Mat4}
    * @category Static
@@ -1413,7 +1418,7 @@ declare class Mat4 extends Float64Array {
    * @param a - the source matrix
    * @returns `out`
    */
-  static adjoint(out: Mat4Like, a: Mat4Like): Mat4Like;
+  static adjoint<T extends Mat4Like>(out: T, a: Mat4Like): T;
   /**
    * Calculates the determinant of a {@link Mat4}
    * @category Static
@@ -1431,12 +1436,12 @@ declare class Mat4 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static multiply(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like;
+  static multiply<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): T;
   /**
    * Alias for {@link Mat4.multiply}
    * @category Static
    */
-  static mul(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like;
+  static mul<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): T;
   /**
    * Translate a {@link Mat4} by the given vector
    * @category Static
@@ -1446,7 +1451,7 @@ declare class Mat4 extends Float64Array {
    * @param v - vector to translate by
    * @returns `out`
    */
-  static translate(out: Mat4Like, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): Mat4Like;
+  static translate<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): T;
   /**
    * Scales the {@link Mat4} by the dimensions in the given {@link Vec3} not using vectorization
    * @category Static
@@ -1456,7 +1461,7 @@ declare class Mat4 extends Float64Array {
    * @param v - the {@link Vec3} to scale the matrix by
    * @returns `out`
    **/
-  static scale(out: Mat4Like, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): Mat4Like;
+  static scale<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, v: Readonly<Vec3Like>): T;
   /**
    * Rotates a {@link Mat4} by the given angle around the given axis
    * @category Static
@@ -1467,7 +1472,7 @@ declare class Mat4 extends Float64Array {
    * @param axis - the axis to rotate around
    * @returns `out` or `null` if axis has a length of 0
    */
-  static rotate(out: Mat4Like, a: Readonly<Mat4Like>, rad: number, axis: Readonly<Vec3Like>): Mat4Like | null;
+  static rotate<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, rad: number, axis: Readonly<Vec3Like>): T | null;
   /**
    * Rotates a matrix by the given angle around the X axis
    * @category Static
@@ -1477,7 +1482,7 @@ declare class Mat4 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static rotateX(out: Mat4Like, a: Readonly<Mat4Like>, rad: number): Mat4Like;
+  static rotateX<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, rad: number): T;
   /**
    * Rotates a matrix by the given angle around the Y axis
    * @category Static
@@ -1487,7 +1492,7 @@ declare class Mat4 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static rotateY(out: Mat4Like, a: Readonly<Mat4Like>, rad: number): Mat4Like;
+  static rotateY<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, rad: number): T;
   /**
    * Rotates a matrix by the given angle around the Z axis
    * @category Static
@@ -1497,7 +1502,7 @@ declare class Mat4 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static rotateZ(out: Mat4Like, a: Readonly<Mat4Like>, rad: number): Mat4Like;
+  static rotateZ<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, rad: number): T;
   /**
    * Creates a {@link Mat4} from a vector translation
    * This is equivalent to (but much faster than):
@@ -1511,7 +1516,7 @@ declare class Mat4 extends Float64Array {
    * @param v - Translation vector
    * @returns `out`
    */
-  static fromTranslation(out: Mat4Like, v: Readonly<Vec3Like>): Mat4Like;
+  static fromTranslation<T extends Mat4Like>(out: T, v: Readonly<Vec3Like>): T;
   /**
    * Creates a {@link Mat4} from a vector scaling
    * This is equivalent to (but much faster than):
@@ -1525,7 +1530,7 @@ declare class Mat4 extends Float64Array {
    * @param v - Scaling vector
    * @returns `out`
    */
-  static fromScaling(out: Mat4Like, v: Readonly<Vec3Like>): Mat4Like;
+  static fromScaling<T extends Mat4Like>(out: T, v: Readonly<Vec3Like>): T;
   /**
    * Creates a {@link Mat4} from a given angle around a given axis
    * This is equivalent to (but much faster than):
@@ -1540,7 +1545,7 @@ declare class Mat4 extends Float64Array {
    * @param axis - the axis to rotate around
    * @returns `out` or `null` if `axis` has a length of 0
    */
-  static fromRotation(out: Mat4Like, rad: number, axis: Readonly<Vec3Like>): Mat4Like | null;
+  static fromRotation<T extends Mat4Like>(out: T, rad: number, axis: Readonly<Vec3Like>): T | null;
   /**
    * Creates a matrix from the given angle around the X axis
    * This is equivalent to (but much faster than):
@@ -1554,7 +1559,7 @@ declare class Mat4 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static fromXRotation(out: Mat4Like, rad: number): Mat4Like;
+  static fromXRotation<T extends Mat4Like>(out: T, rad: number): T;
   /**
    * Creates a matrix from the given angle around the Y axis
    * This is equivalent to (but much faster than):
@@ -1568,7 +1573,7 @@ declare class Mat4 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static fromYRotation(out: Mat4Like, rad: number): Mat4Like;
+  static fromYRotation<T extends Mat4Like>(out: T, rad: number): T;
   /**
    * Creates a matrix from the given angle around the Z axis
    * This is equivalent to (but much faster than):
@@ -1582,7 +1587,7 @@ declare class Mat4 extends Float64Array {
    * @param rad - the angle to rotate the matrix by
    * @returns `out`
    */
-  static fromZRotation(out: Mat4Like, rad: number): Mat4Like;
+  static fromZRotation<T extends Mat4Like>(out: T, rad: number): T;
   /**
    * Creates a matrix from a quaternion rotation and vector translation
    * This is equivalent to (but much faster than):
@@ -1600,7 +1605,7 @@ declare class Mat4 extends Float64Array {
    * @param v - Translation vector
    * @returns `out`
    */
-  static fromRotationTranslation(out: Mat4Like, q: Readonly<QuatLike>, v: Readonly<Vec3Like>): Mat4Like;
+  static fromRotationTranslation<T extends Mat4Like>(out: T, q: Readonly<QuatLike>, v: Readonly<Vec3Like>): T;
   /**
    * Sets a {@link Mat4} from a {@link Quat2}.
    * @category Static
@@ -1609,28 +1614,23 @@ declare class Mat4 extends Float64Array {
    * @param a - Dual Quaternion
    * @returns `out`
    */
-  static fromQuat2(out: Mat4Like, a: Quat2Like): Mat4Like;
+  static fromQuat2<T extends Mat4Like>(out: T, a: Quat2Like): T;
   /**
-   * Calculates a {@link Mat4} normal matrix (transpose inverse) from a {@link Mat4}
-   * @category Static
-   *
-   * @param out - Matrix receiving operation result
-   * @param a - Mat4 to derive the normal matrix from
-   * @returns `out` or `null` if the matrix is not invertible
-   */
-  static normalFromMat4(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like | null;
-  /**
-   * Calculates a {@link Mat4} normal matrix (transpose inverse) from a {@link Mat4}
-   * This version omits the calculation of the constant factor (1/determinant), so
-   * any normals transformed with it will need to be renormalized.
-   * From https://stackoverflow.com/a/27616419/25968
+   * Calculates a {@link Mat4} normal matrix (adjoint) from a {@link Mat4}
+   * See https://www.shadertoy.com/view/3s33zj for details.
    * @category Static
    *
    * @param out - Matrix receiving operation result
    * @param a - Mat4 to derive the normal matrix from
    * @returns `out`
    */
-  static normalFromMat4Fast(out: Mat4Like, a: Readonly<Mat4Like>): Mat4Like;
+  static normalFromMat4<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>): T;
+  /**
+   * Alias for {@link Mat4.adjointFromMat4}
+   * @category Static
+   * @deprecated Use {@link Mat4.normalFromMat4}
+   */
+  static normalFromMat4Fast<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
    * Returns the translation vector component of a transformation
    * matrix. If a matrix is built with fromRotationTranslation,
@@ -1642,7 +1642,7 @@ declare class Mat4 extends Float64Array {
    * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
    * @return {vec3} out
    */
-  static getTranslation(out: Vec3Like, mat: Readonly<Mat4Like>): Vec3Like;
+  static getTranslation<T extends Vec3Like>(out: T, mat: Readonly<Mat4Like>): T;
   /**
    * Returns the scaling factor component of a transformation
    * matrix. If a matrix is built with fromRotationTranslationScale
@@ -1655,7 +1655,7 @@ declare class Mat4 extends Float64Array {
    * @param  {ReadonlyMat4} mat Matrix to be decomposed (input)
    * @return {vec3} out
    */
-  static getScaling(out: Vec3Like, mat: Readonly<Mat4Like>): Vec3Like;
+  static getScaling<T extends Vec3Like>(out: T, mat: Readonly<Mat4Like>): T;
   /**
    * Returns a quaternion representing the rotational component
    * of a transformation matrix. If a matrix is built with
@@ -1667,7 +1667,7 @@ declare class Mat4 extends Float64Array {
    * @param mat - Matrix to be decomposed (input)
    * @return `out`
    */
-  static getRotation(out: QuatLike, mat: Readonly<Mat4Like>): QuatLike;
+  static getRotation<T extends QuatLike>(out: T, mat: Readonly<Mat4Like>): T;
   /**
    * Decomposes a transformation matrix into its rotation, translation
    * and scale components. Returns only the rotation component
@@ -1679,7 +1679,7 @@ declare class Mat4 extends Float64Array {
    * @param mat - Matrix to be decomposed (input)
    * @returns `out_r`
    */
-  static decompose(out_r: QuatLike, out_t: Vec3Like, out_s: Vec3Like, mat: Readonly<Mat4Like>): QuatLike;
+  static decompose<T extends QuatLike>(out_r: T, out_t: Vec3Like, out_s: Vec3Like, mat: Readonly<Mat4Like>): T;
   /**
    * Creates a matrix from a quaternion rotation, vector translation and vector scale
    * This is equivalent to (but much faster than):
@@ -1699,12 +1699,12 @@ declare class Mat4 extends Float64Array {
    * @param s - Scaling vector
    * @returns `out`
    */
-  static fromRotationTranslationScale(
-    out: Mat4Like,
+  static fromRotationTranslationScale<T extends Mat4Like>(
+    out: T,
     q: Readonly<QuatLike>,
     v: Readonly<Vec3Like>,
     s: Readonly<Vec3Like>,
-  ): Mat4Like;
+  ): T;
   /**
    * Creates a matrix from a quaternion rotation, vector translation and vector scale, rotating and scaling around the
    * given origin. This is equivalent to (but much faster than):
@@ -1727,13 +1727,13 @@ declare class Mat4 extends Float64Array {
    * @param o - The origin vector around which to scale and rotate
    * @returns `out`
    */
-  static fromRotationTranslationScaleOrigin(
-    out: Mat4Like,
+  static fromRotationTranslationScaleOrigin<T extends Mat4Like>(
+    out: T,
     q: Readonly<QuatLike>,
     v: Readonly<Vec3Like>,
     s: Readonly<Vec3Like>,
     o: Readonly<Vec3Like>,
-  ): Mat4Like;
+  ): T;
   /**
    * Calculates a 4x4 matrix from the given quaternion
    * @category Static
@@ -1742,7 +1742,7 @@ declare class Mat4 extends Float64Array {
    * @param q - Quaternion to create matrix from
    * @returns `out`
    */
-  static fromQuat(out: Mat4Like, q: Readonly<QuatLike>): Mat4Like;
+  static fromQuat<T extends Mat4Like>(out: T, q: Readonly<QuatLike>): T;
   /**
    * Generates a frustum matrix with the given bounds
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
@@ -1759,29 +1759,29 @@ declare class Mat4 extends Float64Array {
    * @param far -  Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static frustumNO(
-    out: Mat4Like,
+  static frustumNO<T extends Mat4Like>(
+    out: T,
     left: number,
     right: number,
     bottom: number,
     top: number,
     near: number,
     far?: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Alias for {@link Mat4.frustumNO}
    * @category Static
    * @deprecated Use {@link Mat4.frustumNO} or {@link Mat4.frustumZO} explicitly
    */
-  static frustum(
-    out: Mat4Like,
+  static frustum<T extends Mat4Like>(
+    out: T,
     left: number,
     right: number,
     bottom: number,
     top: number,
     near: number,
     far?: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Generates a frustum matrix with the given bounds
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
@@ -1798,15 +1798,15 @@ declare class Mat4 extends Float64Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static frustumZO(
-    out: Mat4Like,
+  static frustumZO<T extends Mat4Like>(
+    out: T,
     left: number,
     right: number,
     bottom: number,
     top: number,
     near: number,
     far?: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Generates a perspective projection matrix with the given bounds.
    * The near/far clip planes correspond to a normalized device coordinate Z range of [-1, 1],
@@ -1821,13 +1821,13 @@ declare class Mat4 extends Float64Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static perspectiveNO(out: Mat4Like, fovy: number, aspect: number, near: number, far?: number): Mat4Like;
+  static perspectiveNO<T extends Mat4Like>(out: T, fovy: number, aspect: number, near: number, far?: number): T;
   /**
    * Alias for {@link Mat4.perspectiveNO}
    * @category Static
    * @deprecated Use {@link Mat4.perspectiveNO} or {@link Mat4.perspectiveZO} explicitly
    */
-  static perspective(out: Mat4Like, fovy: number, aspect: number, near: number, far?: number): Mat4Like;
+  static perspective<T extends Mat4Like>(out: T, fovy: number, aspect: number, near: number, far?: number): T;
   /**
    * Generates a perspective projection matrix suitable for WebGPU with the given bounds.
    * The near/far clip planes correspond to a normalized device coordinate Z range of [0, 1],
@@ -1842,7 +1842,7 @@ declare class Mat4 extends Float64Array {
    * @param far - Far bound of the frustum, can be null or Infinity
    * @returns `out`
    */
-  static perspectiveZO(out: Mat4Like, fovy: number, aspect: number, near: number, far?: number): Mat4Like;
+  static perspectiveZO<T extends Mat4Like>(out: T, fovy: number, aspect: number, near: number, far?: number): T;
   /**
    * Generates a perspective projection matrix with the given field of view. This is primarily useful for generating
    * projection matrices to be used with the still experimental WebVR API.
@@ -1855,8 +1855,8 @@ declare class Mat4 extends Float64Array {
    * @returns `out`
    * @deprecated
    */
-  static perspectiveFromFieldOfView(
-    out: Mat4Like,
+  static perspectiveFromFieldOfView<T extends Mat4Like>(
+    out: T,
     fov: {
       upDegrees: number;
       downDegrees: number;
@@ -1865,7 +1865,7 @@ declare class Mat4 extends Float64Array {
     },
     near: number,
     far: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Generates an orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
    * normalized device coordinate Z range of [-1, 1], which matches WebGL / OpenGLs clip volume.
@@ -1880,29 +1880,29 @@ declare class Mat4 extends Float64Array {
    * @param far - Far bound of the frustum
    * @returns `out`
    */
-  static orthoNO(
-    out: Mat4Like,
+  static orthoNO<T extends Mat4Like>(
+    out: T,
     left: number,
     right: number,
     bottom: number,
     top: number,
     near: number,
     far: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Alias for {@link Mat4.orthoNO}
    * @category Static
    * @deprecated Use {@link Mat4.orthoNO} or {@link Mat4.orthoZO} explicitly
    */
-  static ortho(
-    out: Mat4Like,
+  static ortho<T extends Mat4Like>(
+    out: T,
     left: number,
     right: number,
     bottom: number,
     top: number,
     near: number,
     far: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Generates a orthogonal projection matrix with the given bounds. The near / far clip planes correspond to a
    * normalized device coordinate Z range of [0, 1], which matches WebGPU / Vulkan / DirectX / Metal's clip volume.
@@ -1917,15 +1917,15 @@ declare class Mat4 extends Float64Array {
    * @param far - Far bound of the frustum
    * @returns `out`
    */
-  static orthoZO(
-    out: Mat4Like,
+  static orthoZO<T extends Mat4Like>(
+    out: T,
     left: number,
     right: number,
     bottom: number,
     top: number,
     near: number,
     far: number,
-  ): Mat4Like;
+  ): T;
   /**
    * Generates a look-at matrix with the given eye position, focal point, and up axis. If you want a matrix that
    * actually makes an object look at another object, you should use targetTo instead.
@@ -1937,7 +1937,12 @@ declare class Mat4 extends Float64Array {
    * @param up - vec3 pointing up
    * @returns `out`
    */
-  static lookAt(out: Mat4Like, eye: Readonly<Vec3Like>, center: Readonly<Vec3Like>, up: Readonly<Vec3Like>): Mat4Like;
+  static lookAt<T extends Mat4Like>(
+    out: T,
+    eye: Readonly<Vec3Like>,
+    center: Readonly<Vec3Like>,
+    up: Readonly<Vec3Like>,
+  ): T;
   /**
    * Generates a matrix that makes something look at something else.
    * @category Static
@@ -1948,7 +1953,12 @@ declare class Mat4 extends Float64Array {
    * @param up - vec3 pointing up
    * @returns `out`
    */
-  static targetTo(out: Mat4Like, eye: Readonly<Vec3Like>, target: Readonly<Vec3Like>, up: Readonly<Vec3Like>): Mat4Like;
+  static targetTo<T extends Mat4Like>(
+    out: T,
+    eye: Readonly<Vec3Like>,
+    target: Readonly<Vec3Like>,
+    up: Readonly<Vec3Like>,
+  ): T;
   /**
    * Returns Frobenius norm of a {@link Mat4}
    * @category Static
@@ -1966,7 +1976,7 @@ declare class Mat4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like;
+  static add<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): T;
   /**
    * Subtracts matrix b from matrix a
    * @category Static
@@ -1976,12 +1986,12 @@ declare class Mat4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like;
+  static subtract<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): T;
   /**
    * Alias for {@link Mat4.subtract}
    * @category Static
    */
-  static sub(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): Mat4Like;
+  static sub<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>): T;
   /**
    * Multiply each element of the matrix by a scalar.
    * @category Static
@@ -1991,7 +2001,7 @@ declare class Mat4 extends Float64Array {
    * @param b - amount to scale the matrix's elements by
    * @returns `out`
    */
-  static multiplyScalar(out: Mat4Like, a: Readonly<Mat4Like>, b: number): Mat4Like;
+  static multiplyScalar<T extends Mat4Like>(out: T, a: Readonly<Mat4Like>, b: number): T;
   /**
    * Adds two mat4's after multiplying each element of the second operand by a scalar value.
    * @category Static
@@ -2002,7 +2012,12 @@ declare class Mat4 extends Float64Array {
    * @param scale - the amount to scale b's elements by before adding
    * @returns `out`
    */
-  static multiplyScalarAndAdd(out: Mat4Like, a: Readonly<Mat4Like>, b: Readonly<Mat4Like>, scale: number): Mat4Like;
+  static multiplyScalarAndAdd<T extends Mat4Like>(
+    out: T,
+    a: Readonly<Mat4Like>,
+    b: Readonly<Mat4Like>,
+    scale: number,
+  ): T;
   /**
    * Returns whether two {@link Mat4}s have exactly the same elements in the same position (when compared with ===).
    * @category Static
@@ -2041,7 +2056,7 @@ declare class Quat extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<QuatLike> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<QuatLike> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * The x component of the quaternion. Equivalent to `this[0];`
    * @category Quaternion Components
@@ -2192,7 +2207,7 @@ declare class Quat extends Float64Array {
    * @param out - the receiving quaternion
    * @returns `out`
    */
-  static identity(out: QuatLike): QuatLike;
+  static identity<T extends QuatLike>(out: T): T;
   /**
    * Sets a quat from the given angle and rotation axis,
    * then returns it.
@@ -2203,7 +2218,7 @@ declare class Quat extends Float64Array {
    * @param rad - the angle in radians
    * @returns `out`
    **/
-  static setAxisAngle(out: QuatLike, axis: Readonly<Vec3Like>, rad: number): QuatLike;
+  static setAxisAngle<T extends QuatLike>(out: T, axis: Readonly<Vec3Like>, rad: number): T;
   /**
    * Gets the rotation axis and angle for a given
    *  quaternion. If a quaternion is created with
@@ -2238,7 +2253,7 @@ declare class Quat extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static multiply(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>): QuatLike;
+  static multiply<T extends QuatLike>(out: T, a: Readonly<QuatLike>, b: Readonly<QuatLike>): T;
   /**
    * Rotates a quaternion by the given angle about the X axis
    * @category Static
@@ -2248,7 +2263,7 @@ declare class Quat extends Float64Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateX(out: QuatLike, a: Readonly<QuatLike>, rad: number): QuatLike;
+  static rotateX<T extends QuatLike>(out: T, a: Readonly<QuatLike>, rad: number): T;
   /**
    * Rotates a quaternion by the given angle about the Y axis
    * @category Static
@@ -2258,7 +2273,7 @@ declare class Quat extends Float64Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateY(out: QuatLike, a: Readonly<QuatLike>, rad: number): QuatLike;
+  static rotateY<T extends QuatLike>(out: T, a: Readonly<QuatLike>, rad: number): T;
   /**
    * Rotates a quaternion by the given angle about the Z axis
    * @category Static
@@ -2268,7 +2283,7 @@ declare class Quat extends Float64Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateZ(out: QuatLike, a: Readonly<QuatLike>, rad: number): QuatLike;
+  static rotateZ<T extends QuatLike>(out: T, a: Readonly<QuatLike>, rad: number): T;
   /**
    * Calculates the W component of a quat from the X, Y, and Z components.
    * Assumes that quaternion is 1 unit in length.
@@ -2279,7 +2294,7 @@ declare class Quat extends Float64Array {
    * @param a - quat to calculate W component of
    * @returns `out`
    */
-  static calculateW(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static calculateW<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Calculate the exponential of a unit quaternion.
    * @category Static
@@ -2288,7 +2303,7 @@ declare class Quat extends Float64Array {
    * @param a - quat to calculate the exponential of
    * @returns `out`
    */
-  static exp(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static exp<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Calculate the natural logarithm of a unit quaternion.
    * @category Static
@@ -2297,7 +2312,7 @@ declare class Quat extends Float64Array {
    * @param a - quat to calculate the exponential of
    * @returns `out`
    */
-  static ln(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static ln<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Calculate the scalar power of a unit quaternion.
    * @category Static
@@ -2307,7 +2322,7 @@ declare class Quat extends Float64Array {
    * @param b - amount to scale the quaternion by
    * @returns `out`
    */
-  static pow(out: QuatLike, a: Readonly<QuatLike>, b: number): QuatLike;
+  static pow<T extends QuatLike>(out: T, a: Readonly<QuatLike>, b: number): T;
   /**
    * Performs a spherical linear interpolation between two quat
    * @category Static
@@ -2318,7 +2333,7 @@ declare class Quat extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static slerp(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>, t: number): QuatLike;
+  static slerp<T extends QuatLike>(out: T, a: Readonly<QuatLike>, b: Readonly<QuatLike>, t: number): T;
   /**
    * Generates a random unit quaternion
    * @category Static
@@ -2334,7 +2349,7 @@ declare class Quat extends Float64Array {
    * @param a - quat to calculate inverse of
    * @returns `out`
    */
-  static invert(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static invert<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Calculates the conjugate of a quat
    * If the quaternion is normalized, this function is faster than `quat.inverse` and produces the same result.
@@ -2344,7 +2359,7 @@ declare class Quat extends Float64Array {
    * @param a - quat to calculate conjugate of
    * @returns `out`
    */
-  static conjugate(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static conjugate<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Creates a quaternion from the given 3x3 rotation matrix.
    *
@@ -2356,7 +2371,7 @@ declare class Quat extends Float64Array {
    * @param m - rotation matrix
    * @returns `out`
    */
-  static fromMat3(out: QuatLike, m: Readonly<Mat3Like>): QuatLike;
+  static fromMat3<T extends QuatLike>(out: T, m: Readonly<Mat3Like>): T;
   /**
    * Creates a quaternion from the given euler angle x, y, z.
    * @category Static
@@ -2368,7 +2383,7 @@ declare class Quat extends Float64Array {
    * @param {'xyz'|'xzy'|'yxz'|'yzx'|'zxy'|'zyx'} order - Intrinsic order for conversion, default is zyx.
    * @returns `out`
    */
-  static fromEuler(out: QuatLike, x: number, y: number, z: number, order?: string): QuatLike;
+  static fromEuler<T extends QuatLike>(out: T, x: number, y: number, z: number, order?: string): T;
   /**
    * Returns a string representation of a quatenion
    * @category Static
@@ -2404,7 +2419,7 @@ declare class Quat extends Float64Array {
    * @param a - the source quaternion
    * @returns `out`
    */
-  static copy(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static copy<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Set the components of a {@link Quat} to the given values
    * @category Static
@@ -2416,7 +2431,7 @@ declare class Quat extends Float64Array {
    * @param w - W component
    * @returns `out`
    */
-  static set(out: QuatLike, x: number, y: number, z: number, w: number): QuatLike;
+  static set<T extends QuatLike>(out: T, x: number, y: number, z: number, w: number): T;
   /**
    * Adds two {@link Quat}'s
    * @category Static
@@ -2426,12 +2441,12 @@ declare class Quat extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>): QuatLike;
+  static add<T extends QuatLike>(out: T, a: Readonly<QuatLike>, b: Readonly<QuatLike>): T;
   /**
    * Alias for {@link Quat.multiply}
    * @category Static
    */
-  static mul(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>): QuatLike;
+  static mul<T extends QuatLike>(out: T, a: Readonly<QuatLike>, b: Readonly<QuatLike>): T;
   /**
    * Scales a quat by a scalar number
    * @category Static
@@ -2441,7 +2456,7 @@ declare class Quat extends Float64Array {
    * @param b - amount to scale the vector by
    * @returns `out`
    */
-  static scale(out: QuatLike, a: Readonly<QuatLike>, scale: number): QuatLike;
+  static scale<T extends QuatLike>(out: T, a: Readonly<QuatLike>, scale: number): T;
   /**
    * Calculates the dot product of two quat's
    * @category Static
@@ -2461,7 +2476,7 @@ declare class Quat extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: QuatLike, a: Readonly<QuatLike>, b: Readonly<QuatLike>, t: number): QuatLike;
+  static lerp<T extends QuatLike>(out: T, a: Readonly<QuatLike>, b: Readonly<QuatLike>, t: number): T;
   /**
    * Calculates the magnitude (length) of a {@link Quat}
    * @category Static
@@ -2508,7 +2523,7 @@ declare class Quat extends Float64Array {
    * @param a - quaternion to normalize
    * @returns `out`
    */
-  static normalize(out: QuatLike, a: Readonly<QuatLike>): QuatLike;
+  static normalize<T extends QuatLike>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Returns whether the quaternions have exactly the same elements in the same position (when compared with ===)
    * @category Static
@@ -2539,7 +2554,7 @@ declare class Quat extends Float64Array {
    * @param b - the destination vector
    * @returns `out`
    */
-  static rotationTo(out: QuatLike, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): QuatLike;
+  static rotationTo<T extends QuatLike>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Performs a spherical linear interpolation with two control points
    * @category Static
@@ -2552,14 +2567,14 @@ declare class Quat extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static sqlerp(
-    out: QuatLike,
+  static sqlerp<T extends QuatLike>(
+    out: T,
     a: Readonly<QuatLike>,
     b: Readonly<QuatLike>,
     c: Readonly<QuatLike>,
     d: Readonly<QuatLike>,
     t: number,
-  ): QuatLike;
+  ): T;
   /**
    * Sets the specified quaternion with values corresponding to the given
    * axes. Each axis is a vec3 and is expected to be unit length and
@@ -2572,7 +2587,12 @@ declare class Quat extends Float64Array {
    * @param up - the vector representing the local `up` direction
    * @returns `out`
    */
-  static setAxes(out: QuatLike, view: Readonly<Vec3Like>, right: Readonly<Vec3Like>, up: Readonly<Vec3Like>): QuatLike;
+  static setAxes<T extends QuatLike>(
+    out: T,
+    view: Readonly<Vec3Like>,
+    right: Readonly<Vec3Like>,
+    up: Readonly<Vec3Like>,
+  ): T;
 }
 
 /**
@@ -2585,7 +2605,7 @@ declare class Quat2 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Quat2Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * A string representation of `this`
    * Equivalent to `Quat2.str(this);`
@@ -2677,7 +2697,7 @@ declare class Quat2 extends Float64Array {
    * @param t - translation vector
    * @returns `out`
    */
-  static fromRotationTranslation(out: Quat2Like, q: Readonly<QuatLike>, t: Readonly<Vec3Like>): Quat2Like;
+  static fromRotationTranslation<T extends Quat2Like>(out: T, q: Readonly<QuatLike>, t: Readonly<Vec3Like>): T;
   /**
    * Sets a {@link Quat2} from a translation
    * @category Static
@@ -2686,7 +2706,7 @@ declare class Quat2 extends Float64Array {
    * @param t - translation vector
    * @returns `out`
    */
-  static fromTranslation(out: Quat2Like, t: Readonly<Vec3Like>): Quat2Like;
+  static fromTranslation<T extends Quat2Like>(out: T, t: Readonly<Vec3Like>): T;
   /**
    * Sets a {@link Quat2} from a quaternion
    * @category Static
@@ -2695,7 +2715,7 @@ declare class Quat2 extends Float64Array {
    * @param q - a normalized quaternion
    * @returns `out`
    */
-  static fromRotation(out: Quat2Like, q: Readonly<QuatLike>): Quat2Like;
+  static fromRotation<T extends Quat2Like>(out: T, q: Readonly<QuatLike>): T;
   /**
    * Sets a {@link Quat2} from a quaternion
    * @category Static
@@ -2704,7 +2724,7 @@ declare class Quat2 extends Float64Array {
    * @param a - the matrix
    * @returns `out`
    */
-  static fromMat4(out: Quat2Like, a: Readonly<Mat4Like>): Quat2Like;
+  static fromMat4<T extends Quat2Like>(out: T, a: Readonly<Mat4Like>): T;
   /**
    * Copy the values from one {@link Quat2} to another
    * @category Static
@@ -2713,7 +2733,7 @@ declare class Quat2 extends Float64Array {
    * @param a - the source dual quaternion
    * @returns `out`
    */
-  static copy(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like;
+  static copy<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Set a {@link Quat2} to the identity dual quaternion
    * @category Static
@@ -2721,7 +2741,7 @@ declare class Quat2 extends Float64Array {
    * @param out - the receiving dual quaternion
    * @returns `out`
    */
-  static identity(out: QuatLike): QuatLike;
+  static identity<T extends Quat2Like>(out: T): T;
   /**
    * Set the components of a {@link Quat2} to the given values
    * @category Static
@@ -2737,8 +2757,8 @@ declare class Quat2 extends Float64Array {
    * @param w2 - 2nd W component
    * @returns `out`
    */
-  static set(
-    out: Quat2Like,
+  static set<T extends Quat2Like>(
+    out: T,
     x1: number,
     y1: number,
     z1: number,
@@ -2747,7 +2767,7 @@ declare class Quat2 extends Float64Array {
     y2: number,
     z2: number,
     w2: number,
-  ): Quat2Like;
+  ): T;
   /**
    * Gets the real part of a dual quat
    * @category Static
@@ -2756,7 +2776,7 @@ declare class Quat2 extends Float64Array {
    * @param a - Dual Quaternion
    * @return `out`
    */
-  static getReal(out: QuatLike, a: Readonly<Quat2Like>): QuatLike;
+  static getReal<T extends QuatLike>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Gets the dual part of a dual quat
    * @category Static
@@ -2765,7 +2785,7 @@ declare class Quat2 extends Float64Array {
    * @param a - Dual Quaternion
    * @return `out`
    */
-  static getDual(out: QuatLike, a: Readonly<Quat2Like>): QuatLike;
+  static getDual<T extends QuatLike>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Set the real component of a {@link Quat2} to the given quaternion
    * @category Static
@@ -2774,7 +2794,7 @@ declare class Quat2 extends Float64Array {
    * @param a - a quaternion representing the real part
    * @return `out`
    */
-  static setReal(out: Quat2Like, a: Readonly<QuatLike>): Quat2Like;
+  static setReal<T extends Quat2Like>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Set the dual component of a {@link Quat2} to the given quaternion
    * @category Static
@@ -2783,7 +2803,7 @@ declare class Quat2 extends Float64Array {
    * @param a - a quaternion representing the dual part
    * @return `out`
    */
-  static setDual(out: Quat2Like, a: Readonly<QuatLike>): Quat2Like;
+  static setDual<T extends Quat2Like>(out: T, a: Readonly<QuatLike>): T;
   /**
    * Gets the translation of a normalized {@link Quat2}
    * @category Static
@@ -2792,7 +2812,7 @@ declare class Quat2 extends Float64Array {
    * @param a - Dual Quaternion to be decomposed
    * @return `out`
    */
-  static getTranslation(out: Vec3Like, a: Readonly<Quat2Like>): Vec3Like;
+  static getTranslation<T extends Vec3Like>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Translates a {@link Quat2} by the given vector
    * @category Static
@@ -2802,7 +2822,7 @@ declare class Quat2 extends Float64Array {
    * @param v - vector to translate by
    * @returns `out`
    */
-  static translate(out: Quat2Like, a: Readonly<Quat2Like>, v: Readonly<Vec3Like>): Quat2Like;
+  static translate<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, v: Readonly<Vec3Like>): T;
   /**
    * Rotates a {@link Quat2} around the X axis
    * @category Static
@@ -2812,7 +2832,7 @@ declare class Quat2 extends Float64Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateX(out: Quat2Like, a: Readonly<Quat2Like>, rad: number): Quat2Like;
+  static rotateX<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, rad: number): T;
   /**
    * Rotates a {@link Quat2} around the Y axis
    * @category Static
@@ -2822,7 +2842,7 @@ declare class Quat2 extends Float64Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateY(out: Quat2Like, a: Readonly<Quat2Like>, rad: number): Quat2Like;
+  static rotateY<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, rad: number): T;
   /**
    * Rotates a {@link Quat2} around the Z axis
    * @category Static
@@ -2832,7 +2852,7 @@ declare class Quat2 extends Float64Array {
    * @param rad - angle (in radians) to rotate
    * @returns `out`
    */
-  static rotateZ(out: Quat2Like, a: Readonly<Quat2Like>, rad: number): Quat2Like;
+  static rotateZ<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, rad: number): T;
   /**
    * Rotates a {@link Quat2} by a given quaternion (a * q)
    * @category Static
@@ -2842,7 +2862,7 @@ declare class Quat2 extends Float64Array {
    * @param q - quaternion to rotate by
    * @returns `out`
    */
-  static rotateByQuatAppend(out: Quat2Like, a: Readonly<Quat2Like>, q: Readonly<QuatLike>): Quat2Like;
+  static rotateByQuatAppend<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, q: Readonly<QuatLike>): T;
   /**
    * Rotates a {@link Quat2} by a given quaternion (q * a)
    * @category Static
@@ -2852,7 +2872,7 @@ declare class Quat2 extends Float64Array {
    * @param a - the dual quaternion to rotate
    * @returns `out`
    */
-  static rotateByQuatPrepend(out: Quat2Like, q: Readonly<QuatLike>, a: Readonly<Quat2Like>): Quat2Like;
+  static rotateByQuatPrepend<T extends Quat2Like>(out: T, q: Readonly<QuatLike>, a: Readonly<Quat2Like>): T;
   /**
    * Rotates a {@link Quat2} around a given axis. Does the normalization automatically
    * @category Static
@@ -2863,7 +2883,12 @@ declare class Quat2 extends Float64Array {
    * @param rad - how far the rotation should be
    * @returns `out`
    */
-  static rotateAroundAxis(out: Quat2Like, a: Readonly<Quat2Like>, axis: Readonly<Vec3Like>, rad: number): Quat2Like;
+  static rotateAroundAxis<T extends Quat2Like>(
+    out: T,
+    a: Readonly<Quat2Like>,
+    axis: Readonly<Vec3Like>,
+    rad: number,
+  ): T;
   /**
    * Adds two {@link Quat2}s
    * @category Static
@@ -2873,7 +2898,7 @@ declare class Quat2 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static add(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like;
+  static add<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): T;
   /**
    * Multiplies two {@link Quat2}s
    * @category Static
@@ -2883,12 +2908,12 @@ declare class Quat2 extends Float64Array {
    * @param b - the second operand
    * @returns {quat2} out
    */
-  static multiply(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like;
+  static multiply<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): T;
   /**
    * Alias for {@link Quat2.multiply}
    * @category Static
    */
-  static mul(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): Quat2Like;
+  static mul<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>): T;
   /**
    * Scales a {@link Quat2} by a scalar value
    * @category Static
@@ -2898,7 +2923,7 @@ declare class Quat2 extends Float64Array {
    * @param b - scalar value to scale the dual quaterion by
    * @returns `out`
    */
-  static scale(out: Quat2Like, a: Readonly<Quat2Like>, b: number): Quat2Like;
+  static scale<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: number): T;
   /**
    * Calculates the dot product of two {@link Quat2}s (The dot product of the real parts)
    * @category Static
@@ -2919,7 +2944,7 @@ declare class Quat2 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Quat2Like, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>, t: number): Quat2Like;
+  static lerp<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>, b: Readonly<Quat2Like>, t: number): T;
   /**
    * Calculates the inverse of a {@link Quat2}. If they are normalized, conjugate is cheaper
    * @category Static
@@ -2928,7 +2953,7 @@ declare class Quat2 extends Float64Array {
    * @param a - dual quat to calculate inverse of
    * @returns `out`
    */
-  static invert(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like;
+  static invert<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Calculates the conjugate of a {@link Quat2}. If the dual quaternion is normalized, this function is faster than
    * {@link Quat2.invert} and produces the same result.
@@ -2938,7 +2963,7 @@ declare class Quat2 extends Float64Array {
    * @param a - dual quaternion to calculate conjugate of
    * @returns `out`
    */
-  static conjugate(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like;
+  static conjugate<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Calculates the magnitude (length) of a {@link Quat2}
    * @category Static
@@ -2985,7 +3010,7 @@ declare class Quat2 extends Float64Array {
    * @param a - dual quaternion to normalize
    * @returns `out`
    */
-  static normalize(out: Quat2Like, a: Readonly<Quat2Like>): Quat2Like;
+  static normalize<T extends Quat2Like>(out: T, a: Readonly<Quat2Like>): T;
   /**
    * Returns a string representation of a {@link Quat2}
    * @category Static
@@ -3023,7 +3048,7 @@ declare class Vec2 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Vec2Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * The x component of the vector. Equivalent to `this[0];`
    * @category Vector Components
@@ -3269,7 +3294,7 @@ declare class Vec2 extends Float64Array {
    * @param a - The source vector
    * @returns `out`
    */
-  static copy(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static copy<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Set the components of a {@link Vec2} to the given values
    * @category Static
@@ -3279,7 +3304,7 @@ declare class Vec2 extends Float64Array {
    * @param y - Y component
    * @returns `out`
    */
-  static set(out: Vec2Like, x: number, y: number): Vec2Like;
+  static set<T extends Vec2Like>(out: T, x: number, y: number): T;
   /**
    * Adds two {@link Vec2}s
    * @category Static
@@ -3289,7 +3314,7 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static add(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static add<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Subtracts vector b from vector a
    * @category Static
@@ -3299,12 +3324,12 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static subtract(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static subtract<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Alias for {@link Vec2.subtract}
    * @category Static
    */
-  static sub(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static sub<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Multiplies two {@link Vec2}s
    * @category Static
@@ -3314,12 +3339,12 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static multiply(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static multiply<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Alias for {@link Vec2.multiply}
    * @category Static
    */
-  static mul(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static mul<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Divides two {@link Vec2}s
    * @category Static
@@ -3329,12 +3354,12 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static divide(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static divide<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Alias for {@link Vec2.divide}
    * @category Static
    */
-  static div(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static div<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Math.ceil the components of a {@link Vec2}
    * @category Static
@@ -3343,7 +3368,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to ceil
    * @returns `out`
    */
-  static ceil(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static ceil<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Math.floor the components of a {@link Vec2}
    * @category Static
@@ -3352,7 +3377,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to floor
    * @returns `out`
    */
-  static floor(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static floor<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Returns the minimum of two {@link Vec2}s
    * @category Static
@@ -3362,7 +3387,7 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static min(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static min<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Returns the maximum of two {@link Vec2}s
    * @category Static
@@ -3372,7 +3397,7 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static max(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static max<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Math.round the components of a {@link Vec2}
    * @category Static
@@ -3381,7 +3406,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to round
    * @returns `out`
    */
-  static round(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static round<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Scales a {@link Vec2} by a scalar number
    * @category Static
@@ -3391,7 +3416,7 @@ declare class Vec2 extends Float64Array {
    * @param b - Amount to scale the vector by
    * @returns `out`
    */
-  static scale(out: Vec2Like, a: Readonly<Vec2Like>, b: number): Vec2Like;
+  static scale<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: number): T;
   /**
    * Adds two Vec2's after scaling the second operand by a scalar value
    * @category Static
@@ -3402,7 +3427,7 @@ declare class Vec2 extends Float64Array {
    * @param scale - The amount to scale b by before adding
    * @returns `out`
    */
-  static scaleAndAdd(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, scale: number): Vec2Like;
+  static scaleAndAdd<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, scale: number): T;
   /**
    * Calculates the Euclidean distance between two {@link Vec2}s
    * @category Static
@@ -3480,7 +3505,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to negate
    * @returns `out`
    */
-  static negate(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static negate<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Returns the inverse of the components of a {@link Vec2}
    * @category Static
@@ -3489,7 +3514,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to invert
    * @returns `out`
    */
-  static inverse(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static inverse<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Returns the absolute value of the components of a {@link Vec2}
    * @category Static
@@ -3498,7 +3523,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to compute the absolute values of
    * @returns `out`
    */
-  static abs(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static abs<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Normalize a {@link Vec2}
    * @category Static
@@ -3507,7 +3532,7 @@ declare class Vec2 extends Float64Array {
    * @param a - Vector to normalize
    * @returns `out`
    */
-  static normalize(out: Vec2Like, a: Readonly<Vec2Like>): Vec2Like;
+  static normalize<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>): T;
   /**
    * Calculates the dot product of two {@link Vec2}s
    * @category Static
@@ -3528,7 +3553,7 @@ declare class Vec2 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static cross(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): Vec2Like;
+  static cross<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>): T;
   /**
    * Performs a linear interpolation between two {@link Vec2}s
    * @category Static
@@ -3539,7 +3564,7 @@ declare class Vec2 extends Float64Array {
    * @param t - Interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, t: number): Vec2Like;
+  static lerp<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, t: number): T;
   /**
    * Transforms the {@link Vec2} with a {@link Mat2}
    *
@@ -3549,7 +3574,7 @@ declare class Vec2 extends Float64Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat2(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat2Like>): Vec2Like;
+  static transformMat2<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat2Like>): T;
   /**
    * Transforms the {@link Vec2} with a {@link Mat2d}
    *
@@ -3559,7 +3584,7 @@ declare class Vec2 extends Float64Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat2d(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat2dLike>): Vec2Like;
+  static transformMat2d<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat2dLike>): T;
   /**
    * Transforms the {@link Vec2} with a {@link Mat3}
    * 3rd vector component is implicitly '1'
@@ -3570,7 +3595,7 @@ declare class Vec2 extends Float64Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat3(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat3Like>): Vec2Like;
+  static transformMat3<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat3Like>): T;
   /**
    * Transforms the {@link Vec2} with a {@link Mat4}
    * 3rd vector component is implicitly '0'
@@ -3582,7 +3607,7 @@ declare class Vec2 extends Float64Array {
    * @returns `out`
    * @category Static
    */
-  static transformMat4(out: Vec2Like, a: Readonly<Vec2Like>, m: Readonly<Mat4Like>): Vec2Like;
+  static transformMat4<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, m: Readonly<Mat4Like>): T;
   /**
    * Rotate a 2D vector
    * @category Static
@@ -3593,7 +3618,7 @@ declare class Vec2 extends Float64Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotate(out: Vec2Like, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, rad: number): Vec2Like;
+  static rotate<T extends Vec2Like>(out: T, a: Readonly<Vec2Like>, b: Readonly<Vec2Like>, rad: number): T;
   /**
    * Get the angle between two 2D vectors
    * @category Static
@@ -3610,7 +3635,7 @@ declare class Vec2 extends Float64Array {
    * @param out - The receiving vector
    * @returns `out`
    */
-  static zero(out: Vec2Like): Vec2Like;
+  static zero<T extends Vec2Like>(out: T): T;
   /**
    * Returns whether the vectors have exactly the same elements in the same position (when compared with ===)
    * @category Static
@@ -3648,7 +3673,7 @@ declare class Vec3 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Vec3Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * The x component of the vector. Equivalent to `this[0];`
    * @category Vector Components
@@ -3935,7 +3960,7 @@ declare class Vec3 extends Float64Array {
    * @param a - the source vector
    * @returns `out`
    */
-  static copy(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static copy<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Set the components of a vec3 to the given values
    * @category Static
@@ -3946,7 +3971,7 @@ declare class Vec3 extends Float64Array {
    * @param z - Z component
    * @returns `out`
    */
-  static set(out: Vec3Like, x: number, y: number, z: number): Vec3Like;
+  static set<T extends Vec3Like>(out: T, x: number, y: number, z: number): T;
   /**
    * Adds two {@link Vec3}s
    * @category Static
@@ -3956,7 +3981,7 @@ declare class Vec3 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static add(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static add<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Subtracts vector b from vector a
    * @category Static
@@ -3966,12 +3991,12 @@ declare class Vec3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static subtract<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Alias for {@link Vec3.subtract}
    * @category Static
    */
-  static sub(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static sub<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Multiplies two vec3's
    * @category Static
@@ -3981,12 +4006,12 @@ declare class Vec3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static multiply(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static multiply<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Alias for {@link Vec3.multiply}
    * @category Static
    */
-  static mul(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static mul<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Divides two vec3's
    * @category Static
@@ -3996,12 +4021,12 @@ declare class Vec3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static divide(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static divide<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Alias for {@link Vec3.divide}
    * @category Static
    */
-  static div(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static div<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Math.ceil the components of a vec3
    * @category Static
@@ -4010,7 +4035,7 @@ declare class Vec3 extends Float64Array {
    * @param a - vector to ceil
    * @returns `out`
    */
-  static ceil(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static ceil<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Math.floor the components of a vec3
    * @category Static
@@ -4019,7 +4044,7 @@ declare class Vec3 extends Float64Array {
    * @param a - vector to floor
    * @returns `out`
    */
-  static floor(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static floor<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Returns the minimum of two vec3's
    * @category Static
@@ -4029,7 +4054,7 @@ declare class Vec3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static min(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static min<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Returns the maximum of two vec3's
    * @category Static
@@ -4039,7 +4064,7 @@ declare class Vec3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static max(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static max<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * symmetric round the components of a vec3
    * @category Static
@@ -4057,7 +4082,7 @@ declare class Vec3 extends Float64Array {
    * @param scale - amount to scale the vector by
    * @returns `out`
    */
-  static scale(out: Vec3Like, a: Readonly<Vec3Like>, scale: number): Vec3Like;
+  static scale<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, scale: number): T;
   /**
    * Adds two vec3's after scaling the second operand by a scalar value
    * @category Static
@@ -4068,7 +4093,7 @@ declare class Vec3 extends Float64Array {
    * @param scale - the amount to scale b by before adding
    * @returns `out`
    */
-  static scaleAndAdd(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, scale: number): Vec3Like;
+  static scaleAndAdd<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, scale: number): T;
   /**
    * Calculates the Euclidean distance between two vec3's
    * @category Static
@@ -4118,7 +4143,7 @@ declare class Vec3 extends Float64Array {
    * @param a - vector to negate
    * @returns `out`
    */
-  static negate(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static negate<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Returns the inverse of the components of a vec3
    * @category Static
@@ -4127,7 +4152,7 @@ declare class Vec3 extends Float64Array {
    * @param a - vector to invert
    * @returns `out`
    */
-  static inverse(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static inverse<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Returns the absolute value of the components of a {@link Vec3}
    * @category Static
@@ -4136,7 +4161,7 @@ declare class Vec3 extends Float64Array {
    * @param a - Vector to compute the absolute values of
    * @returns `out`
    */
-  static abs(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static abs<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Normalize a vec3
    * @category Static
@@ -4145,7 +4170,7 @@ declare class Vec3 extends Float64Array {
    * @param a - vector to normalize
    * @returns `out`
    */
-  static normalize(out: Vec3Like, a: Readonly<Vec3Like>): Vec3Like;
+  static normalize<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>): T;
   /**
    * Calculates the dot product of two vec3's
    * @category Static
@@ -4164,7 +4189,7 @@ declare class Vec3 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static cross(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): Vec3Like;
+  static cross<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>): T;
   /**
    * Performs a linear interpolation between two vec3's
    * @category Static
@@ -4175,7 +4200,7 @@ declare class Vec3 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): Vec3Like;
+  static lerp<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): T;
   /**
    * Performs a spherical linear interpolation between two vec3's
    * @category Static
@@ -4186,7 +4211,7 @@ declare class Vec3 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static slerp(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): Vec3Like;
+  static slerp<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, t: number): T;
   /**
    * Performs a hermite interpolation with two control points
    * @category Static
@@ -4199,14 +4224,14 @@ declare class Vec3 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static hermite(
-    out: Vec3Like,
+  static hermite<T extends Vec3Like>(
+    out: T,
     a: Readonly<Vec3Like>,
     b: Readonly<Vec3Like>,
     c: Readonly<Vec3Like>,
     d: Readonly<Vec3Like>,
     t: number,
-  ): Vec3Like;
+  ): T;
   /**
    * Performs a bezier interpolation with two control points
    * @category Static
@@ -4245,7 +4270,7 @@ declare class Vec3 extends Float64Array {
    * @param m - matrix to transform with
    * @returns `out`
    */
-  static transformMat4(out: Vec3Like, a: Readonly<Vec3Like>, m: Readonly<Mat4Like>): Vec3Like;
+  static transformMat4<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, m: Readonly<Mat4Like>): T;
   /**
    * Transforms the vec3 with a mat3.
    * @category Static
@@ -4255,7 +4280,7 @@ declare class Vec3 extends Float64Array {
    * @param m - the 3x3 matrix to transform with
    * @returns `out`
    */
-  static transformMat3(out: Vec3Like, a: Vec3Like, m: Mat3Like): Vec3Like;
+  static transformMat3<T extends Vec3Like>(out: T, a: Vec3Like, m: Mat3Like): T;
   /**
    * Transforms the vec3 with a quat
    * Can also be used for dual quaternions. (Multiply it with the real part)
@@ -4266,7 +4291,7 @@ declare class Vec3 extends Float64Array {
    * @param q - quaternion to transform with
    * @returns `out`
    */
-  static transformQuat(out: Vec3Like, a: Readonly<Vec3Like>, q: Readonly<QuatLike>): Vec3Like;
+  static transformQuat<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, q: Readonly<QuatLike>): T;
   /**
    * Rotate a 3D vector around the x-axis
    * @category Static
@@ -4277,7 +4302,7 @@ declare class Vec3 extends Float64Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotateX(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): Vec3Like;
+  static rotateX<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): T;
   /**
    * Rotate a 3D vector around the y-axis
    * @category Static
@@ -4288,7 +4313,7 @@ declare class Vec3 extends Float64Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotateY(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): Vec3Like;
+  static rotateY<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): T;
   /**
    * Rotate a 3D vector around the z-axis
    * @category Static
@@ -4299,7 +4324,7 @@ declare class Vec3 extends Float64Array {
    * @param rad - The angle of rotation in radians
    * @returns `out`
    */
-  static rotateZ(out: Vec3Like, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): Vec3Like;
+  static rotateZ<T extends Vec3Like>(out: T, a: Readonly<Vec3Like>, b: Readonly<Vec3Like>, rad: number): T;
   /**
    * Get the angle between two 3D vectors
    * @category Static
@@ -4316,7 +4341,7 @@ declare class Vec3 extends Float64Array {
    * @param out - the receiving vector
    * @returns `out`
    */
-  static zero(out: Vec3Like): Vec3Like;
+  static zero<T extends Vec3Like>(out: T): T;
   /**
    * Returns a string representation of a vector
    * @category Static
@@ -4354,7 +4379,7 @@ declare class Vec4 extends Float64Array {
    *
    * @category Constructor
    */
-  constructor(...values: [Readonly<Vec4Like> | ArrayBufferLike, number?] | number[]);
+  constructor(...values: [Readonly<Vec4Like> | ArrayBufferLike, number?] | number[] | [undefined]);
   /**
    * The x component of the vector. Equivalent to `this[0];`
    * @category Vector Components
@@ -4613,7 +4638,7 @@ declare class Vec4 extends Float64Array {
    * @param a - the source vector
    * @returns `out`
    */
-  static copy(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static copy<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Set the components of a {@link Vec4} to the given values
    * @category Static
@@ -4625,7 +4650,7 @@ declare class Vec4 extends Float64Array {
    * @param w - W component
    * @returns `out`
    */
-  static set(out: Vec4Like, x: number, y: number, z: number, w: number): Vec4Like;
+  static set<T extends Vec4Like>(out: T, x: number, y: number, z: number, w: number): T;
   /**
    * Adds two {@link Vec4}s
    * @category Static
@@ -4635,7 +4660,7 @@ declare class Vec4 extends Float64Array {
    * @param b - The second operand
    * @returns `out`
    */
-  static add(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static add<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Subtracts vector b from vector a
    * @category Static
@@ -4645,12 +4670,12 @@ declare class Vec4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static subtract(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static subtract<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Alias for {@link Vec4.subtract}
    * @category Static
    */
-  static sub(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static sub<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Multiplies two {@link Vec4}'s
    * @category Static
@@ -4660,12 +4685,12 @@ declare class Vec4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static multiply(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static multiply<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Alias for {@link Vec4.multiply}
    * @category Static
    */
-  static mul(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static mul<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Divides two {@link Vec4}'s
    * @category Static
@@ -4675,12 +4700,12 @@ declare class Vec4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static divide(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static divide<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Alias for {@link Vec4.divide}
    * @category Static
    */
-  static div(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static div<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Math.ceil the components of a {@link Vec4}
    * @category Static
@@ -4689,7 +4714,7 @@ declare class Vec4 extends Float64Array {
    * @param a - vector to ceil
    * @returns `out`
    */
-  static ceil(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static ceil<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Math.floor the components of a {@link Vec4}
    * @category Static
@@ -4698,7 +4723,7 @@ declare class Vec4 extends Float64Array {
    * @param a - vector to floor
    * @returns `out`
    */
-  static floor(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static floor<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Returns the minimum of two {@link Vec4}'s
    * @category Static
@@ -4708,7 +4733,7 @@ declare class Vec4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static min(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static min<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Returns the maximum of two {@link Vec4}'s
    * @category Static
@@ -4718,7 +4743,7 @@ declare class Vec4 extends Float64Array {
    * @param b - the second operand
    * @returns `out`
    */
-  static max(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): Vec4Like;
+  static max<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>): T;
   /**
    * Math.round the components of a {@link Vec4}
    * @category Static
@@ -4727,7 +4752,7 @@ declare class Vec4 extends Float64Array {
    * @param a - vector to round
    * @returns `out`
    */
-  static round(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static round<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Scales a {@link Vec4} by a scalar number
    * @category Static
@@ -4737,7 +4762,7 @@ declare class Vec4 extends Float64Array {
    * @param scale - amount to scale the vector by
    * @returns `out`
    */
-  static scale(out: Vec4Like, a: Readonly<Vec4Like>, scale: number): Vec4Like;
+  static scale<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, scale: number): T;
   /**
    * Adds two {@link Vec4}'s after scaling the second operand by a scalar value
    * @category Static
@@ -4748,7 +4773,7 @@ declare class Vec4 extends Float64Array {
    * @param scale - the amount to scale b by before adding
    * @returns `out`
    */
-  static scaleAndAdd(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>, scale: number): Vec4Like;
+  static scaleAndAdd<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>, scale: number): T;
   /**
    * Calculates the Euclidean distance between two {@link Vec4}'s
    * @category Static
@@ -4823,7 +4848,7 @@ declare class Vec4 extends Float64Array {
    * @param a - vector to negate
    * @returns `out`
    */
-  static negate(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static negate<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Returns the inverse of the components of a {@link Vec4}
    * @category Static
@@ -4832,7 +4857,7 @@ declare class Vec4 extends Float64Array {
    * @param a - vector to invert
    * @returns `out`
    */
-  static inverse(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static inverse<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Returns the absolute value of the components of a {@link Vec4}
    * @category Static
@@ -4841,7 +4866,7 @@ declare class Vec4 extends Float64Array {
    * @param a - Vector to compute the absolute values of
    * @returns `out`
    */
-  static abs(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static abs<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Normalize a {@link Vec4}
    * @category Static
@@ -4850,7 +4875,7 @@ declare class Vec4 extends Float64Array {
    * @param a - vector to normalize
    * @returns `out`
    */
-  static normalize(out: Vec4Like, a: Readonly<Vec4Like>): Vec4Like;
+  static normalize<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>): T;
   /**
    * Calculates the dot product of two {@link Vec4}'s
    * @category Static
@@ -4870,7 +4895,7 @@ declare class Vec4 extends Float64Array {
    * @param w - the third vector
    * @returns result
    */
-  static cross(out: Vec4Like, u: Readonly<Vec4Like>, v: Readonly<Vec4Like>, w: Readonly<Vec4Like>): Vec4Like;
+  static cross<T extends Vec4Like>(out: T, u: Readonly<Vec4Like>, v: Readonly<Vec4Like>, w: Readonly<Vec4Like>): T;
   /**
    * Performs a linear interpolation between two {@link Vec4}'s
    * @category Static
@@ -4881,7 +4906,7 @@ declare class Vec4 extends Float64Array {
    * @param t - interpolation amount, in the range [0-1], between the two inputs
    * @returns `out`
    */
-  static lerp(out: Vec4Like, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>, t: number): Vec4Like;
+  static lerp<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, b: Readonly<Vec4Like>, t: number): T;
   /**
    * Generates a random vector with the given scale
    * @category Static
@@ -4899,7 +4924,7 @@ declare class Vec4 extends Float64Array {
    * @param m - matrix to transform with
    * @returns `out`
    */
-  static transformMat4(out: Vec4Like, a: Readonly<Vec4Like>, m: Readonly<Mat4Like>): Vec4Like;
+  static transformMat4<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, m: Readonly<Mat4Like>): T;
   /**
    * Transforms the {@link Vec4} with a {@link Quat}
    * @category Static
@@ -4909,7 +4934,7 @@ declare class Vec4 extends Float64Array {
    * @param q - quaternion to transform with
    * @returns `out`
    */
-  static transformQuat(out: Vec4Like, a: Readonly<Vec4Like>, q: Readonly<QuatLike>): Vec4Like;
+  static transformQuat<T extends Vec4Like>(out: T, a: Readonly<Vec4Like>, q: Readonly<QuatLike>): T;
   /**
    * Set the components of a {@link Vec4} to zero
    * @category Static
@@ -4917,7 +4942,7 @@ declare class Vec4 extends Float64Array {
    * @param out - the receiving vector
    * @returns `out`
    */
-  static zero(out: Vec4Like): Vec4Like;
+  static zero<T extends Vec4Like>(out: T): T;
   /**
    * Returns a string representation of a {@link Vec4}
    * @category Static
@@ -4947,4922 +4972,6 @@ declare class Vec4 extends Float64Array {
 }
 
 /**
- * To enable additional swizzle accessors for vector classes (64-bit) invoke the {@link EnableSwizzlesF64} function from
- * the `gl-matrix/swizzle/f64` sub-path export. To enable ambient module declarations for IDE / Typescript support
- * please see {@link gl-matrix/types/swizzle/f64}.
- *
- * To enable swizzling for the 32-bit variation of `gl-matrix` please see {@link gl-matrix/swizzle}.
- *
- * @example
- * ```ts
- * import { Vec3 } from 'gl-matrix/f64';
- * import { EnableSwizzlesF64 } from 'gl-matrix/swizzle/f64';
- *
- * EnableSwizzlesF64();
- *
- * const vec = new Vec3(0, 1, 2);
- * const vecSwizzled = vec.zyx; // Returns a new Vec3(2, 1, 0).
- * ```
- *
- * @packageDocumentation
- */
-/**
- * Enables Swizzle operations on {@link gl-matrix/f64.Vec2 | Vec2} / {@link gl-matrix/f64.Vec3 | Vec3} /
- * {@link gl-matrix/f64.Vec4 | Vec4} types from {@link gl-matrix/f64} (64-bit).
- *
- * Swizzle operations are performed by using the `.` operator in conjunction with any combination
- * of between two and four component names, either from the set `xyzw` or `rgbw` (though not intermixed).
- * They return a new vector with the same number of components as specified in the swizzle attribute.
- *
- * @example
- * ```js
- * import { Vec3 } from 'gl-matrix/f64';
- * import { EnableSwizzlesF64 } from 'gl-matrix/swizzle/f64';
- *
- * EnableSwizzlesF64();
- *
- * let v = new Vec3(0, 1, 2);
- *
- * v.yx; // returns new Vec2(1, 0)
- * v.xzy; // returns new Vec3(0, 2, 1)
- * v.zyxz; // returns new Vec4(2, 1, 0, 2)
- *
- * v.rgb; // returns new Vec3(0, 1, 2)
- * v.rbg; // returns new Vec3(0, 2, 1)
- * v.gg; // returns new Vec2(1, 1)
- * ```
- */
-declare function EnableSwizzlesF64(): void;
-
-/**
- * Ambient module declarations for `gl-matrix/f64` (64-bit) swizzle extensions for vector classes.
- *
- * When swizzle accessors via {@link gl-matrix/swizzle/f64.EnableSwizzlesF64 | EnableSwizzlesF64} are enabled include
- * this sub-path export as a `side effect` import to add ambient module declarations for the additional accessors to
- * {@link gl-matrix/f64.Vec2 | Vec2} / {@link gl-matrix/f64.Vec3 | Vec3} / {@link gl-matrix/f64.Vec4 | Vec4}.
- *
- * To enable swizzling for the 64-bit variation of `gl-matrix` please see {@link gl-matrix/swizzle/f64}.
- *
- * ```js
- * import { Vec2 } from 'gl-matrix/f64';
- * import { EnableSwizzlesF64 } from 'gl-matrix/swizzle/f64';
- *
- * import 'gl-matrix/types/swizzle/f64';
- *
- * EnableSwizzlesF64();
- *
- * const vec = new Vec2(0, 1);
- *
- * // Swizzled instance - returns new Vec2(1, 0).
- * const vecSwizzled = vec.yx;
- * ```
- *
- * @packageDocumentation
- */
-
-/**
- * A type alias for Vec2 (64-bit).
- * @hidden
- */
-type Vec2Alias = Vec2;
-/**
- * A type alias for Vec3 (64-bit).
- * @hidden
- */
-type Vec3Alias = Vec3;
-/**
- * A type alias for Vec4 (64-bit).
- * @hidden
- */
-type Vec4Alias = Vec4;
-
-/**
- * Vec2 swizzle extension accessors.
- */
-interface Vec2 {
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rr(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gr(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggg(): Vec4Alias;
-}
-/**
- * Vec3 swizzle extension accessors.
- */
-interface Vec3 {
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rr(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gr(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rb(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gb(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get br(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get bg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get bb(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rbr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rbg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rbb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gbr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gbg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gbb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get brr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get brg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get brb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bgr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bgg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bgb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bbr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bbg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bbb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbbb(): Vec4Alias;
-}
-/**
- * Vec4 swizzle extension accessors.
- */
-interface Vec4 {
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rr(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gr(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get rb(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get gb(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get br(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get bg(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get bb(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rrb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rgb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rbr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rbg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rbb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get grb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ggb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gbr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gbg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gbb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get brr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get brg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get brb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bgr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bgg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bgb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bbr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bbg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bbb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get xw(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get yw(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get zw(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get wx(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get wy(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get wz(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ww(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xxw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xyw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xzw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xwx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xwy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xwz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get xww(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yxw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yyw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yzw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ywx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ywy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ywz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get yww(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zxw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zyw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zzw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zwx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zwy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zwz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get zww(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wxx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wxy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wxz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wxw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wyx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wyy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wyz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wyw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wzx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wzy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wzz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wzw(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wwx(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wwy(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get wwz(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get www(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xxww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xywx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xywy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xywz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xyww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xzww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get xwww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yxww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yywx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yywy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yywz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yyww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get yzww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ywww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zxww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zywx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zywy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zywz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zyww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zzww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get zwww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wxww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wywx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wywy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wywz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wyww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wzww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwxx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwxy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwxz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwxw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwyx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwyy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwyz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwyw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwzx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwzy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwzz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwzw(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwwx(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwwy(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwwz(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get wwww(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ra(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ga(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ba(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ar(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ag(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get ab(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec2
-   */
-  get aa(): Vec2Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rra(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rga(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rba(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rar(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rag(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get rab(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get raa(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gra(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gga(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gba(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gar(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gag(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gab(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get gaa(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bra(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bga(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bba(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bar(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bag(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get bab(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get baa(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get arr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get arg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get arb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get ara(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get agr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get agg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get agb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get aga(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get abr(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get abg(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get abb(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get aba(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get aar(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get aag(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get aab(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec3
-   */
-  get aaa(): Vec3Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rrab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rraa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rgaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rbaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rarr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rarg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rarb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rara(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ragr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ragg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ragb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get raga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rabr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rabg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get rabb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get raba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get raar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get raag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get raab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get raaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get grab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get graa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get ggaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gbaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get garr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get garg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get garb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gara(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gagr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gagg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gagb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gaga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gabr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gabg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gabb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gaba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gaar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gaag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gaab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get gaaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get brab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get braa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bgaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bbaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get barr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get barg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get barb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bara(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bagr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bagg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get bagb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get baga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get babr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get babg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get babb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get baba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get baar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get baag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get baab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get baaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get argr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get argg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get argb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get arab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get araa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aggr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aggg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aggb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get agaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abrr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abrg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abrb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abra(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abgr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abgg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abgb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abbr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abbg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abbb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get abaa(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aarr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aarg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aarb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aara(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aagr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aagg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aagb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aaga(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aabr(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aabg(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aabb(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aaba(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aaar(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aaag(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aaab(): Vec4Alias;
-  /**
-   * @category Swizzle Accessors (Optional)
-   * @returns New instance of swizzled Vec4
-   */
-  get aaaa(): Vec4Alias;
-}
-
-/**
  * Convert `radians` to `degrees`.
  *
  * @param value - Angle in `radians`.
@@ -9878,7 +4987,6 @@ declare function toDegree(value: number): number;
 declare function toRadian(value: number): number;
 
 export {
-  EnableSwizzlesF64,
   type FloatArray,
   Mat2,
   type Mat2Like,
