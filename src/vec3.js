@@ -8,7 +8,7 @@ import * as glMatrix from "./common.js";
 /**
  * Creates a new, empty vec3
  *
- * @returns {vec3} a new 3D vector
+ * @returns {ArrayType} a new 3D vector
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(3);
@@ -24,7 +24,7 @@ export function create() {
  * Creates a new vec3 initialized with values from an existing vector
  *
  * @param {ReadonlyVec3} a vector to clone
- * @returns {vec3} a new 3D vector
+ * @returns {ArrayType} a new 3D vector
  */
 export function clone(a) {
   var out = new glMatrix.ARRAY_TYPE(3);
@@ -53,7 +53,7 @@ export function length(a) {
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
- * @returns {vec3} a new 3D vector
+ * @returns {ArrayType} a new 3D vector
  */
 export function fromValues(x, y, z) {
   let out = new glMatrix.ARRAY_TYPE(3);
@@ -66,9 +66,10 @@ export function fromValues(x, y, z) {
 /**
  * Copy the values from one vec3 to another
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the source vector
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function copy(out, a) {
   out[0] = a[0];
@@ -80,11 +81,12 @@ export function copy(out, a) {
 /**
  * Set the components of a vec3 to the given values
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function set(out, x, y, z) {
   out[0] = x;
@@ -96,10 +98,11 @@ export function set(out, x, y, z) {
 /**
  * Adds two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function add(out, a, b) {
   out[0] = a[0] + b[0];
@@ -111,10 +114,11 @@ export function add(out, a, b) {
 /**
  * Subtracts vector b from vector a
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function subtract(out, a, b) {
   out[0] = a[0] - b[0];
@@ -126,10 +130,11 @@ export function subtract(out, a, b) {
 /**
  * Multiplies two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function multiply(out, a, b) {
   out[0] = a[0] * b[0];
@@ -141,10 +146,11 @@ export function multiply(out, a, b) {
 /**
  * Divides two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function divide(out, a, b) {
   out[0] = a[0] / b[0];
@@ -156,9 +162,10 @@ export function divide(out, a, b) {
 /**
  * Math.ceil the components of a vec3
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a vector to ceil
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function ceil(out, a) {
   out[0] = Math.ceil(a[0]);
@@ -170,9 +177,10 @@ export function ceil(out, a) {
 /**
  * Math.floor the components of a vec3
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a vector to floor
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function floor(out, a) {
   out[0] = Math.floor(a[0]);
@@ -184,10 +192,11 @@ export function floor(out, a) {
 /**
  * Returns the minimum of two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function min(out, a, b) {
   out[0] = Math.min(a[0], b[0]);
@@ -199,10 +208,11 @@ export function min(out, a, b) {
 /**
  * Returns the maximum of two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function max(out, a, b) {
   out[0] = Math.max(a[0], b[0]);
@@ -214,9 +224,10 @@ export function max(out, a, b) {
 /**
  * symmetric round the components of a vec3
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a vector to round
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function round(out, a) {
   out[0] = glMatrix.round(a[0]);
@@ -228,10 +239,11 @@ export function round(out, a) {
 /**
  * Scales a vec3 by a scalar number
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the vector to scale
  * @param {Number} b amount to scale the vector by
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function scale(out, a, b) {
   out[0] = a[0] * b;
@@ -243,11 +255,12 @@ export function scale(out, a, b) {
 /**
  * Adds two vec3's after scaling the second operand by a scalar value
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
  * @param {Number} scale the amount to scale b by before adding
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function scaleAndAdd(out, a, b, scale) {
   out[0] = a[0] + b[0] * scale;
@@ -300,9 +313,10 @@ export function squaredLength(a) {
 /**
  * Negates the components of a vec3
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a vector to negate
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function negate(out, a) {
   out[0] = -a[0];
@@ -314,9 +328,10 @@ export function negate(out, a) {
 /**
  * Returns the inverse of the components of a vec3
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a vector to invert
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function inverse(out, a) {
   out[0] = 1.0 / a[0];
@@ -328,9 +343,10 @@ export function inverse(out, a) {
 /**
  * Normalize a vec3
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a vector to normalize
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function normalize(out, a) {
   let x = a[0];
@@ -361,10 +377,11 @@ export function dot(a, b) {
 /**
  * Computes the cross product of two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function cross(out, a, b) {
   let ax = a[0],
@@ -383,11 +400,12 @@ export function cross(out, a, b) {
 /**
  * Performs a linear interpolation between two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function lerp(out, a, b, t) {
   let ax = a[0];
@@ -402,11 +420,12 @@ export function lerp(out, a, b, t) {
 /**
  * Performs a spherical linear interpolation between two vec3's
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function slerp(out, a, b, t) {
   let angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1));
@@ -424,13 +443,14 @@ export function slerp(out, a, b, t) {
 /**
  * Performs a hermite interpolation with two control points
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
  * @param {ReadonlyVec3} c the third operand
  * @param {ReadonlyVec3} d the fourth operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function hermite(out, a, b, c, d, t) {
   let factorTimes2 = t * t;
@@ -449,13 +469,14 @@ export function hermite(out, a, b, c, d, t) {
 /**
  * Performs a bezier interpolation with two control points
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the first operand
  * @param {ReadonlyVec3} b the second operand
  * @param {ReadonlyVec3} c the third operand
  * @param {ReadonlyVec3} d the fourth operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function bezier(out, a, b, c, d, t) {
   let inverseFactor = 1 - t;
@@ -476,9 +497,10 @@ export function bezier(out, a, b, c, d, t) {
 /**
  * Generates a random vector with the given scale
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function random(out, scale) {
   scale = scale === undefined ? 1.0 : scale;
@@ -497,10 +519,11 @@ export function random(out, scale) {
  * Transforms the vec3 with a mat4.
  * 4th vector component is implicitly '1'
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the vector to transform
  * @param {ReadonlyMat4} m matrix to transform with
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function transformMat4(out, a, m) {
   let x = a[0],
@@ -517,10 +540,11 @@ export function transformMat4(out, a, m) {
 /**
  * Transforms the vec3 with a mat3.
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the vector to transform
  * @param {ReadonlyMat3} m the 3x3 matrix to transform with
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function transformMat3(out, a, m) {
   let x = a[0],
@@ -536,10 +560,11 @@ export function transformMat3(out, a, m) {
  * Transforms the vec3 with a quat
  * Can also be used for dual quaternions. (Multiply it with the real part)
  *
- * @param {vec3} out the receiving vector
+ * @template {vec3} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec3} a the vector to transform
  * @param {ReadonlyQuat} q normalized quaternion to transform with
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function transformQuat(out, a, q) {
 
@@ -575,11 +600,12 @@ export function transformQuat(out, a, q) {
 
 /**
  * Rotate a 3D vector around the x-axis
- * @param {vec3} out The receiving vec3
+ * @template {vec3} T
+ * @param {T} out The receiving vec3
  * @param {ReadonlyVec3} a The vec3 point to rotate
  * @param {ReadonlyVec3} b The origin of the rotation
  * @param {Number} rad The angle of rotation in radians
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function rotateX(out, a, b, rad) {
   let p = [],
@@ -604,11 +630,12 @@ export function rotateX(out, a, b, rad) {
 
 /**
  * Rotate a 3D vector around the y-axis
- * @param {vec3} out The receiving vec3
+ * @template {vec3} T
+ * @param {T} out The receiving vec3
  * @param {ReadonlyVec3} a The vec3 point to rotate
  * @param {ReadonlyVec3} b The origin of the rotation
  * @param {Number} rad The angle of rotation in radians
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function rotateY(out, a, b, rad) {
   let p = [],
@@ -633,11 +660,12 @@ export function rotateY(out, a, b, rad) {
 
 /**
  * Rotate a 3D vector around the z-axis
- * @param {vec3} out The receiving vec3
+ * @template {vec3} T
+ * @param {T} out The receiving vec3
  * @param {ReadonlyVec3} a The vec3 point to rotate
  * @param {ReadonlyVec3} b The origin of the rotation
  * @param {Number} rad The angle of rotation in radians
- * @returns {vec3} out
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function rotateZ(out, a, b, rad) {
   let p = [],
@@ -681,8 +709,9 @@ export function angle(a, b) {
 /**
  * Set the components of a vec3 to zero
  *
- * @param {vec3} out the receiving vector
- * @returns {vec3} out
+ * @template {vec3} T
+ * @param {T} out the receiving vector
+ * @returns {ReturnType.Vec3<T>} out
  */
 export function zero(out) {
   out[0] = 0.0;
