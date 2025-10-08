@@ -3,6 +3,3 @@
 tmp
 node_modules
 npm-debug.log
-dist
-!dist/gl-matrix.js
-!dist/gl-matrix.min.js

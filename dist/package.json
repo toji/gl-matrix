@@ -1,0 +1,42 @@
+{
+  "version": "3.4.4",
+  "name": "gl-matrix",
+  "description": "Javascript Matrix and Vector library for High Performance WebGL apps",
+  "sideEffects": false,
+  "type": "module",
+  "main": "./esm/index.js",
+  "module": "./esm/index.js",
+  "exports": {
+    ".": "./esm/index.js",
+    "./common": "./esm/common.js",
+    "./mat2": "./esm/mat2.js",
+    "./mat2d": "./esm/mat2d.js",
+    "./mat3": "./esm/mat3.js",
+    "./mat4": "./esm/mat4.js",
+    "./quat": "./esm/quat.js",
+    "./quat2": "./esm/quat2.js",
+    "./vec2": "./esm/vec2.js",
+    "./vec3": "./esm/vec3.js",
+    "./vec4": "./esm/vec4.js"
+  },
+  "types": "./index.d.ts",
+  "homepage": "http://glmatrix.net",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/toji/gl-matrix/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toji/gl-matrix.git"
+  },
+  "contributors": [
+    {
+      "name": "Brandon Jones",
+      "email": "tojiro@gmail.com"
+    },
+    {
+      "name": "Colin MacKenzie IV",
+      "email": "sinisterchipmunk@gmail.com"
+    }
+  ]
+}
