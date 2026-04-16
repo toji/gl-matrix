@@ -118,7 +118,7 @@ export class Mat2 extends Float32Array {
 
   /**
    * Inverts this {@link Mat2}
-   * Equivalent to `Mat4.invert(this, this);`
+   * Equivalent to `Mat2.invert(this, this);`
    *
    * @returns `this`
    */
