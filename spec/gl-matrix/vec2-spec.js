@@ -661,19 +661,25 @@ describe("vec2", function() {
     });
 
     describe("equals", function() {
-        let vecC, vecD, r0, r1, r2;
+        let vecC, vecD, vecE, vecF, r0, r1, r2, r3, r4;
         beforeEach(function() {
             vecA = [0, 1];
             vecB = [0, 1];
             vecC = [1, 2];
             vecD = [1e-16, 1];
+            vecE = [Infinity, Infinity];
+            vecF = [Infinity, Infinity];
             r0 = vec2.equals(vecA, vecB);
             r1 = vec2.equals(vecA, vecC);
             r2 = vec2.equals(vecA, vecD);
+            r3 = vec2.equals(vecA, vecE);
+            r4 = vec2.equals(vecE, vecF);
         });
         it("should return true for identical vectors", function() { expect(r0).toBe(true); });
         it("should return false for different vectors", function() { expect(r1).toBe(false); });
         it("should return true for close but not identical vectors", function() { expect(r2).toBe(true); });
+        it("should return false comparing a finite vector with an infinite one", function() { expect(r3).toBe(false); });
+        it("should return true comparing two matching infinite vectors", function() { expect(r4).toBe(true); });
         it("should not modify vecA", function() { expect(vecA).toBeEqualish([0, 1]); });
         it("should not modify vecB", function() { expect(vecB).toBeEqualish([0, 1]); });
     });

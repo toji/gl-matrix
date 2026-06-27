@@ -727,12 +727,18 @@ export function equals(a, b) {
     b1 = b[1],
     b2 = b[2];
   return (
-    Math.abs(a0 - b0) <=
-      glMatrix.EPSILON * Math.max(1.0, Math.abs(a0), Math.abs(b0)) &&
-    Math.abs(a1 - b1) <=
-      glMatrix.EPSILON * Math.max(1.0, Math.abs(a1), Math.abs(b1)) &&
-    Math.abs(a2 - b2) <=
-      glMatrix.EPSILON * Math.max(1.0, Math.abs(a2), Math.abs(b2))
+    (a0 === b0 ||
+      Math.abs(a0 - b0) <=
+        glMatrix.EPSILON *
+          Math.min(Number.MAX_VALUE, Math.max(1.0, Math.abs(a0), Math.abs(b0)))) &&
+    (a1 === b1 ||
+      Math.abs(a1 - b1) <=
+        glMatrix.EPSILON *
+          Math.min(Number.MAX_VALUE, Math.max(1.0, Math.abs(a1), Math.abs(b1)))) &&
+    (a2 === b2 ||
+      Math.abs(a2 - b2) <=
+        glMatrix.EPSILON *
+          Math.min(Number.MAX_VALUE, Math.max(1.0, Math.abs(a2), Math.abs(b2))))
   );
 }
 

@@ -65,5 +65,13 @@ export function toDegree(a) {
  * @returns {Boolean} True if the numbers are approximately equal, false otherwise.
  */
 export function equals(a, b, tolerance = EPSILON) {
-  return Math.abs(a - b) <= tolerance * Math.max(1, Math.abs(a), Math.abs(b));
+  // `a === b` handles exactly-equal values (including matching infinities),
+  // while clamping the relative scale to Number.MAX_VALUE prevents an infinite
+  // operand from producing an infinite tolerance (which would make differing
+  // infinities, or a finite value and an infinity, compare as approximately equal).
+  return (
+    a === b ||
+    Math.abs(a - b) <=
+      tolerance * Math.min(Number.MAX_VALUE, Math.max(1, Math.abs(a), Math.abs(b)))
+  );
 }
