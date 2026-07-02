@@ -516,6 +516,11 @@ describe("quat", function() {
           it("should be zero", function() {
               expect(quat.getAngle(quatA, quatA)).toBeEqualish(0);
           });
+
+          it("should be zero for a quaternion from an axis and angle", function() {
+              let q = quat.setAxisAngle(quat.create(), [0, 0, 1], 0.7);
+              expect(quat.getAngle(q, q)).toBeEqualish(0);
+          });
         });
 
         describe("from rotated", function() {

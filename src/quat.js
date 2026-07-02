@@ -96,7 +96,7 @@ export function getAxisAngle(out_axis, q) {
 export function getAngle(a, b) {
   let dotproduct = dot(a, b);
 
-  return Math.acos(2 * dotproduct * dotproduct - 1);
+  return Math.acos(Math.min(Math.max(2 * dotproduct * dotproduct - 1, -1), 1));
 }
 
 /**
