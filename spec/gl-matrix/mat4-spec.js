@@ -634,6 +634,28 @@ function buildMat4Tests() {
                     expect(outangle).toBeEqualish(ang);
                 });
             });
+
+            describe("from a translation, rotation and non-uniform scale matrix", function() {
+                it("should keep the same rotation as when created", function() {
+                    let q = quat.create();
+                    let outVec = vec3.fromValues(5, 6, 7);
+                    let scaleVec = vec3.fromValues(2, 3, 4);
+                    let testVec = vec3.fromValues(1, 5, 2);
+                    let ang = 0.78972;
+
+                    vec3.normalize(testVec, testVec);
+                    q = quat.setAxisAngle(q, testVec, ang);
+                    mat4.fromRotationTranslationScale(out, q, outVec, scaleVec);
+
+                    result = quat.fromValues(2, 3, 4, 6);
+                    mat4.getRotation(result, out);
+                    let outaxis = vec3.create();
+                    let outangle = quat.getAxisAngle(outaxis, result);
+
+                    expect(outaxis).toBeEqualish(testVec);
+                    expect(outangle).toBeEqualish(ang);
+                });
+            });
         });
 
         let out_t, out_s;
@@ -711,17 +733,20 @@ function buildMat4Tests() {
             });
 
             describe("from a translation, rotation and scale matrix", function() {
+                let inputRot;
                 beforeEach(function() {
                     let q = quat.create();
                     let t = vec3.fromValues(1, 2, 3);
                     let s = vec3.fromValues(5, 6, 7);
                     q = quat.setAxisAngle(q, [0, 1, 0], 0.7);
+                    inputRot = quat.clone(q);
                     mat4.fromRotationTranslationScale(out, q, t, s);
                     out_t = vec3.fromValues(7, 8, 9);
                     out_s = vec3.fromValues(4, 5, 6);
                     result = quat.fromValues(2, 3, 4, 6);
                     mat4.decompose(result, out_t, out_s, out);
                 })
+                it("should return the same rotation when created", function() { expect(result).toBeEqualish(inputRot); });
                 it("should return the same scaling factor when created", function() { expect(out_s).toBeEqualish([5, 6, 7]); });
                 it("should return the same translation when created", function() { expect(out_t).toBeEqualish([1, 2, 3]); });
             });

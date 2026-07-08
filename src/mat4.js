@@ -1185,13 +1185,13 @@ export function getRotation(out, mat) {
   let is3 = 1 / scaling[2];
 
   let sm11 = mat[0] * is1;
-  let sm12 = mat[1] * is2;
-  let sm13 = mat[2] * is3;
-  let sm21 = mat[4] * is1;
+  let sm12 = mat[1] * is1;
+  let sm13 = mat[2] * is1;
+  let sm21 = mat[4] * is2;
   let sm22 = mat[5] * is2;
-  let sm23 = mat[6] * is3;
-  let sm31 = mat[8] * is1;
-  let sm32 = mat[9] * is2;
+  let sm23 = mat[6] * is2;
+  let sm31 = mat[8] * is3;
+  let sm32 = mat[9] * is3;
   let sm33 = mat[10] * is3;
 
   let trace = sm11 + sm22 + sm33;
@@ -1259,13 +1259,13 @@ export function decompose(out_r, out_t, out_s, mat) {
   let is3 = 1 / out_s[2];
 
   let sm11 = m11 * is1;
-  let sm12 = m12 * is2;
-  let sm13 = m13 * is3;
-  let sm21 = m21 * is1;
+  let sm12 = m12 * is1;
+  let sm13 = m13 * is1;
+  let sm21 = m21 * is2;
   let sm22 = m22 * is2;
-  let sm23 = m23 * is3;
-  let sm31 = m31 * is1;
-  let sm32 = m32 * is2;
+  let sm23 = m23 * is2;
+  let sm31 = m31 * is3;
+  let sm32 = m32 * is3;
   let sm33 = m33 * is3;
 
   let trace = sm11 + sm22 + sm33;
