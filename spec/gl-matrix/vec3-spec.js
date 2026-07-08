@@ -593,6 +593,10 @@ describe("vec3", function() {
           let result = vec3.slerp([], [1,0,0], [0,1,0], 0.5);
           expect(result).toBeEqualish([0.7071067811865475,0.7071067811865475,0]);
         });
+        it('should return the shared vector when both inputs are equal', () => {
+          let result = vec3.slerp([], [0,0,1], [0,0,1], 0.5);
+          expect(result).toBeEqualish([0,0,1]);
+        });
       });
 
     describe("random", function() {
