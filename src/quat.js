@@ -71,7 +71,7 @@ export function setAxisAngle(out, axis, rad) {
  * @return {Number}     Angle, in radians, of the rotation
  */
 export function getAxisAngle(out_axis, q) {
-  let rad = Math.acos(q[3]) * 2.0;
+  let rad = Math.acos(Math.min(Math.max(q[3], -1), 1)) * 2.0;
   let s = Math.sin(rad / 2.0);
   if (s > glMatrix.EPSILON) {
     out_axis[0] = q[0] / s;

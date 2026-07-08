@@ -472,6 +472,15 @@ describe("quat", function() {
             it("should return a multiple of 2*PI as the angle component", function() { expect(deg90 % (Math.PI * 2.0)).toBeEqualish(0.0); });
         });
 
+        describe("for a rotation composed with its own conjugate", function() {
+            beforeEach(function() {
+                let q = quat.setAxisAngle(quat.create(), [1, 0, 0], (50 * Math.PI) / 180);
+                quat.multiply(out, q, quat.conjugate(quat.create(), q));
+                deg90 = quat.getAxisAngle(vec, out);
+            });
+            it("should return a multiple of 2*PI as the angle component", function() { expect(deg90 % (Math.PI * 2.0)).toBeEqualish(0.0); });
+        });
+
         describe("for a simple rotation about X axis", function() {
             beforeEach(function() { result = quat.setAxisAngle(out, [1, 0, 0], 0.7778); deg90 = quat.getAxisAngle(vec, out); });
             it("should return the same provided angle", function() { expect(deg90).toBeEqualish(0.7778); });
