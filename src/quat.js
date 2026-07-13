@@ -11,7 +11,7 @@ import * as vec4 from "./vec4.js";
 /**
  * Creates a new identity quat
  *
- * @returns {quat} a new quaternion
+ * @returns {ReturnType.Quat<ArrayType>} a new quaternion
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(4);
@@ -27,8 +27,9 @@ export function create() {
 /**
  * Set a quat to the identity quaternion
  *
- * @param {quat} out the receiving quaternion
- * @returns {quat} out
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
+ * @returns {ReturnType.Quat<T>} out
  */
 export function identity(out) {
   out[0] = 0;
@@ -42,10 +43,11 @@ export function identity(out) {
  * Sets a quat from the given angle and rotation axis,
  * then returns it.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyVec3} axis the axis around which to rotate
  * @param {Number} rad the angle in radians
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  **/
 export function setAxisAngle(out, axis, rad) {
   rad = rad * 0.5;
@@ -102,10 +104,11 @@ export function getAngle(a, b) {
 /**
  * Multiplies two quat's
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a the first operand
  * @param {ReadonlyQuat} b the second operand
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function multiply(out, a, b) {
   let ax = a[0],
@@ -127,10 +130,11 @@ export function multiply(out, a, b) {
 /**
  * Rotates a quaternion by the given angle about the X axis
  *
- * @param {quat} out quat receiving operation result
+ * @template {quat} T
+ * @param {T} out quat receiving operation result
  * @param {ReadonlyQuat} a quat to rotate
  * @param {number} rad angle (in radians) to rotate
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function rotateX(out, a, rad) {
   rad *= 0.5;
@@ -152,10 +156,11 @@ export function rotateX(out, a, rad) {
 /**
  * Rotates a quaternion by the given angle about the Y axis
  *
- * @param {quat} out quat receiving operation result
+ * @template {quat} T
+ * @param {T} out quat receiving operation result
  * @param {ReadonlyQuat} a quat to rotate
  * @param {number} rad angle (in radians) to rotate
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function rotateY(out, a, rad) {
   rad *= 0.5;
@@ -177,10 +182,11 @@ export function rotateY(out, a, rad) {
 /**
  * Rotates a quaternion by the given angle about the Z axis
  *
- * @param {quat} out quat receiving operation result
+ * @template {quat} T
+ * @param {T} out quat receiving operation result
  * @param {ReadonlyQuat} a quat to rotate
  * @param {number} rad angle (in radians) to rotate
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function rotateZ(out, a, rad) {
   rad *= 0.5;
@@ -204,9 +210,10 @@ export function rotateZ(out, a, rad) {
  * Assumes that quaternion is 1 unit in length.
  * Any existing W component will be ignored.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quat to calculate W component of
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function calculateW(out, a) {
   let x = a[0],
@@ -223,9 +230,10 @@ export function calculateW(out, a) {
 /**
  * Calculate the exponential of a unit quaternion.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quat to calculate the exponential of
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function exp(out, a) {
   let x = a[0],
@@ -248,9 +256,10 @@ export function exp(out, a) {
 /**
  * Calculate the natural logarithm of a unit quaternion.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quat to calculate the exponential of
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function ln(out, a) {
   let x = a[0],
@@ -272,10 +281,11 @@ export function ln(out, a) {
 /**
  * Calculate the scalar power of a unit quaternion.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quat to calculate the exponential of
  * @param {Number} b amount to scale the quaternion by
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function pow(out, a, b) {
   ln(out, a);
@@ -287,11 +297,12 @@ export function pow(out, a, b) {
 /**
  * Performs a spherical linear interpolation between two quat
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a the first operand
  * @param {ReadonlyQuat} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function slerp(out, a, b, t) {
   // benchmarks:
@@ -342,8 +353,9 @@ export function slerp(out, a, b, t) {
 /**
  * Generates a random unit quaternion
  *
- * @param {quat} out the receiving quaternion
- * @returns {quat} out
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
+ * @returns {ReturnType.Quat<T>} out
  */
 export function random(out) {
   // Implementation of http://planning.cs.uiuc.edu/node198.html
@@ -365,9 +377,10 @@ export function random(out) {
 /**
  * Calculates the inverse of a quat
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quat to calculate inverse of
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function invert(out, a) {
   let a0 = a[0],
@@ -390,9 +403,10 @@ export function invert(out, a) {
  * Calculates the conjugate of a quat
  * If the quaternion is normalized, this function is faster than quat.inverse and produces the same result.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quat to calculate conjugate of
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export function conjugate(out, a) {
   out[0] = -a[0];
@@ -408,9 +422,10 @@ export function conjugate(out, a) {
  * NOTE: The resultant quaternion is not normalized, so you should be sure
  * to renormalize the quaternion yourself where necessary.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyMat3} m rotation matrix
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export function fromMat3(out, m) {
@@ -449,12 +464,13 @@ export function fromMat3(out, m) {
 /**
  * Creates a quaternion from the given euler angle x, y, z using the provided intrinsic order for the conversion.
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {Number} x Angle to rotate around X axis in degrees.
  * @param {Number} y Angle to rotate around Y axis in degrees.
  * @param {Number} z Angle to rotate around Z axis in degrees.
  * @param {'xyz'|'xzy'|'yxz'|'yzx'|'zxy'|'zyx'} order Intrinsic order for conversion, default is zyx.
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export function fromEuler(out, x, y, z, order = glMatrix.ANGLE_ORDER) {
@@ -534,7 +550,7 @@ export function str(a) {
  * Creates a new quat initialized with values from an existing quaternion
  *
  * @param {ReadonlyQuat} a quaternion to clone
- * @returns {quat} a new quaternion
+ * @returns {ReturnType.Quat<ArrayType>} a new quaternion
  * @function
  */
 export const clone = vec4.clone;
@@ -546,7 +562,7 @@ export const clone = vec4.clone;
  * @param {Number} y Y component
  * @param {Number} z Z component
  * @param {Number} w W component
- * @returns {quat} a new quaternion
+ * @returns {ReturnType.Quat<ArrayType>} a new quaternion
  * @function
  */
 export const fromValues = vec4.fromValues;
@@ -554,9 +570,10 @@ export const fromValues = vec4.fromValues;
 /**
  * Copy the values from one quat to another
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a the source quaternion
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export const copy = vec4.copy;
@@ -564,12 +581,13 @@ export const copy = vec4.copy;
 /**
  * Set the components of a quat to the given values
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
  * @param {Number} w W component
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export const set = vec4.set;
@@ -577,10 +595,11 @@ export const set = vec4.set;
 /**
  * Adds two quat's
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a the first operand
  * @param {ReadonlyQuat} b the second operand
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export const add = vec4.add;
@@ -594,10 +613,11 @@ export const mul = multiply;
 /**
  * Scales a quat by a scalar number
  *
- * @param {quat} out the receiving vector
+ * @template {quat} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyQuat} a the vector to scale
  * @param {Number} b amount to scale the vector by
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export const scale = vec4.scale;
@@ -615,11 +635,12 @@ export const dot = vec4.dot;
 /**
  * Performs a linear interpolation between two quat's
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a the first operand
  * @param {ReadonlyQuat} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export const lerp = vec4.lerp;
@@ -656,9 +677,10 @@ export const sqrLen = squaredLength;
 /**
  * Normalize a quat
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a quaternion to normalize
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  * @function
  */
 export const normalize = vec4.normalize;
@@ -691,10 +713,11 @@ export function equals(a, b) {
  *
  * Both vectors are assumed to be unit length.
  *
- * @param {quat} out the receiving quaternion.
+ * @template {quat} T
+ * @param {T} out the receiving quaternion.
  * @param {ReadonlyVec3} a the initial vector
  * @param {ReadonlyVec3} b the destination vector
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export const rotationTo = (function () {
   let tmpvec3 = vec3.create();
@@ -729,13 +752,14 @@ export const rotationTo = (function () {
 /**
  * Performs a spherical linear interpolation with two control points
  *
- * @param {quat} out the receiving quaternion
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyQuat} a the first operand
  * @param {ReadonlyQuat} b the second operand
  * @param {ReadonlyQuat} c the third operand
  * @param {ReadonlyQuat} d the fourth operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export const sqlerp = (function () {
   let temp1 = create();
@@ -755,10 +779,12 @@ export const sqlerp = (function () {
  * axes. Each axis is a vec3 and is expected to be unit length and
  * perpendicular to all other specified axes.
  *
+ * @template {quat} T
+ * @param {T} out the receiving quaternion
  * @param {ReadonlyVec3} view  the vector representing the viewing direction
  * @param {ReadonlyVec3} right the vector representing the local "right" direction
  * @param {ReadonlyVec3} up    the vector representing the local "up" direction
- * @returns {quat} out
+ * @returns {ReturnType.Quat<T>} out
  */
 export const setAxes = (function () {
   let matr = mat3.create();

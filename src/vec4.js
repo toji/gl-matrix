@@ -3,12 +3,12 @@ import * as glMatrix from "./common.js";
 /**
  * 4 Dimensional Vector
  * @module vec4
- */
+*/
 
 /**
  * Creates a new, empty vec4
  *
- * @returns {vec4} a new 4D vector
+ * @returns {ArrayType} a new 4D vector
  */
 export function create() {
   let out = new glMatrix.ARRAY_TYPE(4);
@@ -25,7 +25,7 @@ export function create() {
  * Creates a new vec4 initialized with values from an existing vector
  *
  * @param {ReadonlyVec4} a vector to clone
- * @returns {vec4} a new 4D vector
+ * @returns {ArrayType} a new 4D vector
  */
 export function clone(a) {
   let out = new glMatrix.ARRAY_TYPE(4);
@@ -43,7 +43,7 @@ export function clone(a) {
  * @param {Number} y Y component
  * @param {Number} z Z component
  * @param {Number} w W component
- * @returns {vec4} a new 4D vector
+ * @returns {ArrayType} a new 4D vector
  */
 export function fromValues(x, y, z, w) {
   let out = new glMatrix.ARRAY_TYPE(4);
@@ -57,9 +57,10 @@ export function fromValues(x, y, z, w) {
 /**
  * Copy the values from one vec4 to another
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the source vector
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function copy(out, a) {
   out[0] = a[0];
@@ -72,12 +73,13 @@ export function copy(out, a) {
 /**
  * Set the components of a vec4 to the given values
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {Number} x X component
  * @param {Number} y Y component
  * @param {Number} z Z component
  * @param {Number} w W component
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function set(out, x, y, z, w) {
   out[0] = x;
@@ -90,10 +92,11 @@ export function set(out, x, y, z, w) {
 /**
  * Adds two vec4's
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function add(out, a, b) {
   out[0] = a[0] + b[0];
@@ -106,10 +109,11 @@ export function add(out, a, b) {
 /**
  * Subtracts vector b from vector a
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function subtract(out, a, b) {
   out[0] = a[0] - b[0];
@@ -122,10 +126,11 @@ export function subtract(out, a, b) {
 /**
  * Multiplies two vec4's
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function multiply(out, a, b) {
   out[0] = a[0] * b[0];
@@ -138,10 +143,11 @@ export function multiply(out, a, b) {
 /**
  * Divides two vec4's
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function divide(out, a, b) {
   out[0] = a[0] / b[0];
@@ -154,9 +160,10 @@ export function divide(out, a, b) {
 /**
  * Math.ceil the components of a vec4
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a vector to ceil
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function ceil(out, a) {
   out[0] = Math.ceil(a[0]);
@@ -169,9 +176,10 @@ export function ceil(out, a) {
 /**
  * Math.floor the components of a vec4
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a vector to floor
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function floor(out, a) {
   out[0] = Math.floor(a[0]);
@@ -184,10 +192,11 @@ export function floor(out, a) {
 /**
  * Returns the minimum of two vec4's
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function min(out, a, b) {
   out[0] = Math.min(a[0], b[0]);
@@ -200,10 +209,11 @@ export function min(out, a, b) {
 /**
  * Returns the maximum of two vec4's
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function max(out, a, b) {
   out[0] = Math.max(a[0], b[0]);
@@ -216,9 +226,10 @@ export function max(out, a, b) {
 /**
  * symmetric round the components of a vec4
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a vector to round
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function round(out, a) {
   out[0] = glMatrix.round(a[0]);
@@ -231,10 +242,11 @@ export function round(out, a) {
 /**
  * Scales a vec4 by a scalar number
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the vector to scale
  * @param {Number} b amount to scale the vector by
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function scale(out, a, b) {
   out[0] = a[0] * b;
@@ -247,11 +259,12 @@ export function scale(out, a, b) {
 /**
  * Adds two vec4's after scaling the second operand by a scalar value
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
  * @param {Number} scale the amount to scale b by before adding
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function scaleAndAdd(out, a, b, scale) {
   out[0] = a[0] + b[0] * scale;
@@ -322,9 +335,10 @@ export function squaredLength(a) {
 /**
  * Negates the components of a vec4
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a vector to negate
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function negate(out, a) {
   out[0] = -a[0];
@@ -337,9 +351,10 @@ export function negate(out, a) {
 /**
  * Returns the inverse of the components of a vec4
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a vector to invert
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function inverse(out, a) {
   out[0] = 1.0 / a[0];
@@ -352,9 +367,10 @@ export function inverse(out, a) {
 /**
  * Normalize a vec4
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a vector to normalize
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function normalize(out, a) {
   let x = a[0];
@@ -386,11 +402,12 @@ export function dot(a, b) {
 /**
  * Returns the cross-product of three vectors in a 4-dimensional space
  *
- * @param {ReadonlyVec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} u the first vector
  * @param {ReadonlyVec4} v the second vector
  * @param {ReadonlyVec4} w the third vector
- * @returns {vec4} result
+ * @returns {ReturnType.Vec4<T>} result
  */
 export function cross(out, u, v, w) {
   let A = v[0] * w[1] - v[1] * w[0],
@@ -415,11 +432,12 @@ export function cross(out, u, v, w) {
 /**
  * Performs a linear interpolation between two vec4's
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the first operand
  * @param {ReadonlyVec4} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function lerp(out, a, b, t) {
   let ax = a[0];
@@ -436,9 +454,10 @@ export function lerp(out, a, b, t) {
 /**
  * Generates a random vector with the given scale
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function random(out, scale) {
   scale = scale === undefined ? 1.0 : scale;
@@ -471,10 +490,11 @@ export function random(out, scale) {
 /**
  * Transforms the vec4 with a mat4.
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the vector to transform
  * @param {ReadonlyMat4} m matrix to transform with
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function transformMat4(out, a, m) {
   let x = a[0],
@@ -491,10 +511,11 @@ export function transformMat4(out, a, m) {
 /**
  * Transforms the vec4 with a quat
  *
- * @param {vec4} out the receiving vector
+ * @template {vec4} T
+ * @param {T} out the receiving vector
  * @param {ReadonlyVec4} a the vector to transform
  * @param {ReadonlyQuat} q normalized quaternion to transform with
- * @returns {vec4} out
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function transformQuat(out, a, q) {
 
@@ -531,8 +552,9 @@ export function transformQuat(out, a, q) {
 /**
  * Set the components of a vec4 to zero
  *
- * @param {vec4} out the receiving vector
- * @returns {vec4} out
+ * @template {vec4} T
+ * @param {T} out the receiving vector
+ * @returns {ReturnType.Vec4<T>} out
  */
 export function zero(out) {
   out[0] = 0.0;
