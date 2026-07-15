@@ -7,20 +7,18 @@
 export const EPSILON = 0.000001;
 export let ARRAY_TYPE =
   typeof Float32Array !== "undefined" ? Float32Array : Array;
+// If an array is required to initialize to zero.
+export let ARRAY_ZERO_INIT_TYPE = ARRAY_TYPE === Array ? _createFastZeroInit(ARRAY_TYPE) : ARRAY_TYPE;
 export let RANDOM = Math.random;
 export let ANGLE_ORDER = "zyx";
 
 /**
  * Symmetric round
- * see https://www.npmjs.com/package/round-half-up-symmetric#user-content-detailed-background
  *
  * @param {Number} a value to round
  */
 export function round(a) {
-  if (a >= 0)
-    return Math.round(a);
-
-  return (a % 0.5 === 0) ? Math.floor(a) : Math.round(a);
+	return Math.round(Math.abs(a)) * Math.sign(a);
 }
 
 /**
@@ -29,7 +27,15 @@ export function round(a) {
  * @param {Float32ArrayConstructor | ArrayConstructor} type Array type, such as Float32Array or Array
  */
 export function setMatrixArrayType(type) {
-  ARRAY_TYPE = type;
+
+	ARRAY_TYPE = type;
+
+	// If the Array is not a TypedArray, create a constructor that automatically fills it with zeroes.
+	if (Array.isArray(type)) {
+		ARRAY_ZERO_INIT_TYPE = _createFastZeroInit(type);
+		return;
+	}
+	ARRAY_ZERO_INIT_TYPE = type;
 }
 
 const degree = Math.PI / 180;
@@ -74,4 +80,21 @@ export function equals(a, b, tolerance = EPSILON) {
     Math.abs(a - b) <=
       tolerance * Math.min(Number.MAX_VALUE, Math.max(1, Math.abs(a), Math.abs(b)))
   );
+}
+
+
+
+/**
+ * Creates a subclass of an Array-like class that initializes all it's elements to zero.
+ * @private
+ * @param {ArrayConstructor} type The Array-like class.
+ * @returns {ArrayConstructor} The zero-initializer subclass.
+ */
+function _createFastZeroInit(type) {
+	return class ArrayInitZero extends type {
+		constructor(...args) {
+			super(...args);
+			this.fill(0);
+		}
+	}
 }

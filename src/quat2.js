@@ -16,16 +16,7 @@ import * as mat4 from "./mat4.js";
  * @returns {quat2} a new dual quaternion [real -> rotation, dual -> translation]
  */
 export function create() {
-  let dq = new glMatrix.ARRAY_TYPE(8);
-  if (glMatrix.ARRAY_TYPE != Float32Array) {
-    dq[0] = 0;
-    dq[1] = 0;
-    dq[2] = 0;
-    dq[4] = 0;
-    dq[5] = 0;
-    dq[6] = 0;
-    dq[7] = 0;
-  }
+  let dq = new glMatrix.ARRAY_ZERO_INIT_TYPE(8);
   dq[3] = 1;
   return dq;
 }

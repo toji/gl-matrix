@@ -11,13 +11,7 @@ import * as glMatrix from "./common.js";
  * @returns {vec3} a new 3D vector
  */
 export function create() {
-  let out = new glMatrix.ARRAY_TYPE(3);
-  if (glMatrix.ARRAY_TYPE != Float32Array) {
-    out[0] = 0;
-    out[1] = 0;
-    out[2] = 0;
-  }
-  return out;
+  return new glMatrix.ARRAY_ZERO_INIT_TYPE(3);
 }
 
 /**
@@ -41,10 +35,7 @@ export function clone(a) {
  * @returns {Number} length of a
  */
 export function length(a) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  return Math.sqrt(x * x + y * y + z * z);
+  return Math.hypot(a[0], a[1], a[2]);
 }
 
 /**
@@ -264,10 +255,7 @@ export function scaleAndAdd(out, a, b, scale) {
  * @returns {Number} distance between a and b
  */
 export function distance(a, b) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  return Math.sqrt(x * x + y * y + z * z);
+  return Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
 }
 
 /**
@@ -278,10 +266,7 @@ export function distance(a, b) {
  * @returns {Number} squared distance between a and b
  */
 export function squaredDistance(a, b) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  return x * x + y * y + z * z;
+  return Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]) ** 2;
 }
 
 /**
@@ -291,10 +276,7 @@ export function squaredDistance(a, b) {
  * @returns {Number} squared length of a
  */
 export function squaredLength(a) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  return x * x + y * y + z * z;
+  return a[0] ** 2 + a[1] ** 2 + a[2] ** 2;
 }
 
 /**
@@ -333,17 +315,10 @@ export function inverse(out, a) {
  * @returns {vec3} out
  */
 export function normalize(out, a) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let len = x * x + y * y + z * z;
-  if (len > 0) {
-    //TODO: evaluate use of glm_invsqrt here?
-    len = 1 / Math.sqrt(len);
-  }
-  out[0] = a[0] * len;
-  out[1] = a[1] * len;
-  out[2] = a[2] * len;
+  let len = Math.max(Math.hypot(a[0], a[1], a[2]), glMatrix.EPSILON);
+  out[0] = a[0] / len;
+  out[1] = a[1] / len;
+  out[2] = a[2] / len;
   return out;
 }
 
@@ -480,9 +455,7 @@ export function bezier(out, a, b, c, d, t) {
  * @param {Number} [scale] Length of the resulting vector. If omitted, a unit vector will be returned
  * @returns {vec3} out
  */
-export function random(out, scale) {
-  scale = scale === undefined ? 1.0 : scale;
-
+export function random(out, scale = 1.0) {
   let r = glMatrix.RANDOM() * 2.0 * Math.PI;
   let z = glMatrix.RANDOM() * 2.0 - 1.0;
   let zScale = Math.sqrt(1.0 - z * z) * scale;
@@ -799,15 +772,9 @@ export const sqrLen = squaredLength;
 export const forEach = (function () {
   let vec = create();
 
-  return function (a, stride, offset, count, fn, arg) {
+  return function (a, stride, offset = 0, count, fn, arg) {
     let i, l;
-    if (!stride) {
-      stride = 3;
-    }
-
-    if (!offset) {
-      offset = 0;
-    }
+	stride = stride || 3;
 
     if (count) {
       l = Math.min(count * stride + offset, a.length);

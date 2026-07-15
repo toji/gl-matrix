@@ -11,14 +11,7 @@ import * as glMatrix from "./common.js";
  * @returns {vec4} a new 4D vector
  */
 export function create() {
-  let out = new glMatrix.ARRAY_TYPE(4);
-  if (glMatrix.ARRAY_TYPE != Float32Array) {
-    out[0] = 0;
-    out[1] = 0;
-    out[2] = 0;
-    out[3] = 0;
-  }
-  return out;
+  return new glMatrix.ARRAY_ZERO_INIT_TYPE(4);
 }
 
 /**
@@ -269,11 +262,7 @@ export function scaleAndAdd(out, a, b, scale) {
  * @returns {Number} distance between a and b
  */
 export function distance(a, b) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  let w = b[3] - a[3];
-  return Math.sqrt(x * x + y * y + z * z + w * w);
+  return Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2], b[3] - a[3]);
 }
 
 /**
@@ -284,11 +273,7 @@ export function distance(a, b) {
  * @returns {Number} squared distance between a and b
  */
 export function squaredDistance(a, b) {
-  let x = b[0] - a[0];
-  let y = b[1] - a[1];
-  let z = b[2] - a[2];
-  let w = b[3] - a[3];
-  return x * x + y * y + z * z + w * w;
+  return Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2], b[3] - a[3]) ** 2;
 }
 
 /**
@@ -298,11 +283,7 @@ export function squaredDistance(a, b) {
  * @returns {Number} length of a
  */
 export function length(a) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let w = a[3];
-  return Math.sqrt(x * x + y * y + z * z + w * w);
+  return Math.hypot(a[0], a[1], a[2], a[3]);;
 }
 
 /**
@@ -312,11 +293,7 @@ export function length(a) {
  * @returns {Number} squared length of a
  */
 export function squaredLength(a) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let w = a[3];
-  return x * x + y * y + z * z + w * w;
+  return Math.hypot(a[0], a[1], a[2], a[3]) ** 2;
 }
 
 /**
@@ -357,18 +334,15 @@ export function inverse(out, a) {
  * @returns {vec4} out
  */
 export function normalize(out, a) {
-  let x = a[0];
-  let y = a[1];
-  let z = a[2];
-  let w = a[3];
-  let len = x * x + y * y + z * z + w * w;
-  if (len > 0) {
-    len = 1 / Math.sqrt(len);
-  }
-  out[0] = x * len;
-  out[1] = y * len;
-  out[2] = z * len;
-  out[3] = w * len;
+  let x = a[0],
+    y = a[1],
+	z = a[2],
+	w = a[3];
+  let len = Math.max(Math.hypot(x, y, z, w), glMatrix.EPSILON);
+  out[0] = x / len;
+  out[1] = y / len;
+  out[2] = z / len;
+  out[3] = w / len;
   return out;
 }
 
@@ -656,15 +630,9 @@ export const sqrLen = squaredLength;
 export const forEach = (function() {
   let vec = create();
 
-  return function(a, stride, offset, count, fn, arg) {
+  return function(a, stride, offset = 0, count, fn, arg) {
     let i, l;
-    if (!stride) {
-      stride = 4;
-    }
-
-    if (!offset) {
-      offset = 0;
-    }
+	stride = stride || 4;
 
     if (count) {
       l = Math.min(count * stride + offset, a.length);

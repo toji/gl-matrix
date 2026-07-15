@@ -11,15 +11,7 @@ import * as glMatrix from "./common.js";
  * @returns {mat3} a new 3x3 matrix
  */
 export function create() {
-  let out = new glMatrix.ARRAY_TYPE(9);
-  if (glMatrix.ARRAY_TYPE != Float32Array) {
-    out[1] = 0;
-    out[2] = 0;
-    out[3] = 0;
-    out[5] = 0;
-    out[6] = 0;
-    out[7] = 0;
-  }
+  let out = new glMatrix.ARRAY_ZERO_INIT_TYPE(9);
   out[0] = 1;
   out[4] = 1;
   out[8] = 1;
@@ -171,15 +163,15 @@ export function identity(out) {
 export function transpose(out, a) {
   // If we are transposing ourselves we can skip a few steps but have to cache some values
   if (out === a) {
-    let a01 = a[1],
-      a02 = a[2],
-      a12 = a[5];
-    out[1] = a[3];
-    out[2] = a[6];
-    out[3] = a01;
+  let a01 = a[1],
+	a02 = a[2],
+	a12 = a[5];
+  out[1] = a[3];
+  out[2] = a[6];
+  out[3] = a01;
     out[5] = a[7];
-    out[6] = a02;
-    out[7] = a12;
+  out[6] = a02;
+  out[7] = a12;
   } else {
     out[0] = a[0];
     out[1] = a[3];
@@ -189,7 +181,7 @@ export function transpose(out, a) {
     out[5] = a[7];
     out[6] = a[2];
     out[7] = a[5];
-    out[8] = a[8];
+  out[8] = a[8];
   }
 
   return out;
@@ -700,10 +692,10 @@ export function frob(a) {
     a[2] * a[2] +
     a[3] * a[3] +
     a[4] * a[4] +
-    a[5] * a[5] +
-    a[6] * a[6] +
-    a[7] * a[7] +
-    a[8] * a[8]
+	a[5] * a[5] +
+	a[6] * a[6] +
+	a[7] * a[7] +
+	a[8] * a[8]
   );
 }
 
