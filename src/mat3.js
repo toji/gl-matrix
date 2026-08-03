@@ -574,6 +574,39 @@ export function fromQuat(out, q) {
 }
 
 /**
+ * Calculates a 3x3 matrix from the given euler angles
+ *
+ * @param {mat3} out mat3 receiving operation result
+ * @param {Number} roll Roll angle to create matrix from
+ * @param {Number} pitch Pitch angle to create matrix from
+ * @param {Number} yaw Yaw angle to create matrix from
+ *
+ * @returns {mat3} out
+ */
+export function fromEuler(out, roll, pitch, yaw) {
+  const cp = Math.cos(pitch);
+  const sp = Math.sin(pitch);
+  const sr = Math.sin(roll);
+  const cr = Math.cos(roll);
+  const sy = Math.sin(yaw);
+  const cy = Math.cos(yaw);
+
+  out[0] = cp * cy;
+  out[1] = (sr * sp * cy) - (cr * sy);
+  out[2] = (cr * sp * cy) + (sr * sy);
+
+  out[3] = cp * sy;
+  out[4] = (sr * sp * sy) + (cr * cy);
+  out[5] = (cr * sp * sy) - (sr * cy);
+
+  out[6] = -sp;
+  out[7] = sr * cp;
+  out[8] = cr * cp;
+
+  return out;
+}
+
+/**
  * Calculates a 3x3 normal matrix (transpose inverse) from the 4x4 matrix
  *
  * @param {mat3} out mat3 receiving operation result
