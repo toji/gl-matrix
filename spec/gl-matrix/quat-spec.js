@@ -694,6 +694,17 @@ describe("quat", function() {
             it("should return quatB", function() { expect(result).toBe(quatB); });
             it("should not modify quatA", function() { expect(quatA).toBeEqualish([1, 2, 3, 4]); });
         });
+
+        describe("where a == -b", function() {
+            beforeEach(function() {
+                result = quat.lerp(out, [1, 0, 0, 0], [-1, 0, 0, 0], 0.5);
+            });
+
+            it("should return out", function() { expect(result).toBe(out); });
+            it("should calculate proper quat", function() {
+                expect(result).toBeEqualish([1, 0, 0, 0]);
+            });
+        });
     });
 
     describe("slerp", function() {

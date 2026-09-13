@@ -614,15 +614,25 @@ export const dot = vec4.dot;
 
 /**
  * Performs a linear interpolation between two quat's
+ * NOTE: The resulting quaternion won't always be normalized (The error is most noticeable when t = 0.5)
  *
  * @param {quat} out the receiving quaternion
  * @param {ReadonlyQuat} a the first operand
  * @param {ReadonlyQuat} b the second operand
  * @param {Number} t interpolation amount, in the range [0-1], between the two inputs
  * @returns {quat} out
- * @function
  */
-export const lerp = vec4.lerp;
+export function lerp(out, a, b, t) {
+  let mt = 1 - t;
+  if (dot(a, b) < 0) t = -t;
+
+  out[0] = a[0] * mt + b[0] * t;
+  out[1] = a[1] * mt + b[1] * t;
+  out[2] = a[2] * mt + b[2] * t;
+  out[3] = a[3] * mt + b[3] * t;
+
+  return out;
+}
 
 /**
  * Calculates the length of a quat
