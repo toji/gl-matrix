@@ -876,6 +876,26 @@ function buildMat4Tests() {
                 });
             });
 
+            describe("view direction parallel to up (#466)", function() {
+                beforeEach(function() {
+                    result = mat4.lookAt(out, [10, 38, 2], [10, 8, 2], [0, 1, 0]);
+                });
+
+                it("should produce a valid rotation matrix", function() {
+                    expect(result).toBeEqualish([
+                        1, 0, 0, 0,
+                        0, 0, 1, 0,
+                        0, -1, 0, 0,
+                        -10, 2, -38, 1
+                    ]);
+                });
+
+                it("scaling should be [1, 1, 1]", function() {
+                    result = mat4.getScaling(new Float32Array(3), out);
+                    expect(result).toBeEqualish([1, 1, 1]);
+                });
+            });
+
             beforeEach(function() {
                 eye    = new Float32Array([0, 0, 1]);
                 center = new Float32Array([0, 0, -1]);
@@ -955,6 +975,26 @@ function buildMat4Tests() {
                 it("scaling should be [1, 1, 1]", function(){
                     var scaling = mat4.getScaling(new Float32Array(3), out);
                     expect(scaling).toBeEqualish([1, 1, 1]);
+                });
+            });
+
+            describe("view direction parallel to up (#466)", function() {
+                beforeEach(function() {
+                    result = mat4.targetTo(out, [10, 38, 2], [10, 8, 2], [0, 1, 0]);
+                });
+
+                it("should produce a valid rotation matrix", function() {
+                    expect(result).toBeEqualish([
+                        1, 0, 0, 0,
+                        0, 0, -1, 0,
+                        0, 1, 0, 0,
+                        10, 38, 2, 1
+                    ]);
+                });
+
+                it("scaling should be [1, 1, 1]", function() {
+                    result = mat4.getScaling(new Float32Array(3), out);
+                    expect(result).toBeEqualish([1, 1, 1]);
                 });
             });
 
