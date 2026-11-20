@@ -597,6 +597,20 @@ describe("vec3", function() {
           let result = vec3.slerp([], [0,0,1], [0,0,1], 0.5);
           expect(result).toBeEqualish([0,0,1]);
         });
+        it('should stay on the unit sphere for opposite vectors', () => {
+          for (let t of [0.25, 0.5, 0.75]) {
+            let result = vec3.slerp([], [1,0,0], [-1,0,0], t);
+            expect(vec3.length(result)).toBeEqualish(1);
+            expect(result[0]).toBeEqualish(Math.cos(t * Math.PI));
+          }
+          expect(vec3.slerp([], [1,0,0], [-1,0,0], 0)).toBeEqualish([1,0,0]);
+          expect(vec3.slerp([], [1,0,0], [-1,0,0], 1)).toBeEqualish([-1,0,0]);
+          expect(vec3.length(vec3.slerp([], [0,0,1], [0,0,-1], 0.5))).toBeEqualish(1);
+        });
+        it('should turn towards b for nearly opposite vectors', () => {
+          let result = vec3.slerp([], [1,0,0], [-1,1e-9,0], 0.5);
+          expect(result).toBeEqualish([0,1,0]);
+        });
       });
 
     describe("random", function() {
