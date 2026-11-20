@@ -409,8 +409,47 @@ export function lerp(out, a, b, t) {
  * @returns {vec3} out
  */
 export function slerp(out, a, b, t) {
-  let angle = Math.acos(Math.min(Math.max(dot(a, b), -1), 1));
+  let d = dot(a, b);
+  let angle = Math.acos(Math.min(Math.max(d, -1), 1));
   let sinTotal = Math.sin(angle);
+
+  if (sinTotal <= glMatrix.EPSILON && d < 0) {
+    // a and b point in (nearly) opposite directions, where a linear blend
+    // would pass through zero. Rotate a towards b around a x b instead, or
+    // around any axis perpendicular to a when they are exactly opposite.
+    // read a first, so that out can be a
+    let ax = a[0],
+      ay = a[1],
+      az = a[2];
+    let nx = a[1] * b[2] - a[2] * b[1],
+      ny = a[2] * b[0] - a[0] * b[2],
+      nz = a[0] * b[1] - a[1] * b[0];
+    let len = Math.hypot(nx, ny, nz);
+    let theta = Math.atan2(len, d);
+    if (len === 0) {
+      // a x [1, 0, 0], or a x [0, 1, 0] when a is close to the x axis
+      if (Math.abs(a[0]) < 0.9) {
+        nx = 0;
+        ny = a[2];
+        nz = -a[1];
+      } else {
+        nx = -a[2];
+        ny = 0;
+        nz = a[0];
+      }
+      len = Math.hypot(nx, ny, nz);
+    }
+    nx /= len;
+    ny /= len;
+    nz /= len;
+    // n x a is perpendicular to a, on the side of b
+    let c = Math.cos(t * theta),
+      s = Math.sin(t * theta);
+    out[0] = c * ax + s * (ny * az - nz * ay);
+    out[1] = c * ay + s * (nz * ax - nx * az);
+    out[2] = c * az + s * (nx * ay - ny * ax);
+    return out;
+  }
 
   let ratioA = sinTotal > glMatrix.EPSILON ? Math.sin((1 - t) * angle) / sinTotal : 1 - t;
   let ratioB = sinTotal > glMatrix.EPSILON ? Math.sin(t * angle) / sinTotal : t;
