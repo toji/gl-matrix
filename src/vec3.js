@@ -417,6 +417,10 @@ export function slerp(out, a, b, t) {
     // a and b point in (nearly) opposite directions, where a linear blend
     // would pass through zero. Rotate a towards b around a x b instead, or
     // around any axis perpendicular to a when they are exactly opposite.
+    // read a first, so that out can be a
+    let ax = a[0],
+      ay = a[1],
+      az = a[2];
     let nx = a[1] * b[2] - a[2] * b[1],
       ny = a[2] * b[0] - a[0] * b[2],
       nz = a[0] * b[1] - a[1] * b[0];
@@ -441,9 +445,9 @@ export function slerp(out, a, b, t) {
     // n x a is perpendicular to a, on the side of b
     let c = Math.cos(t * theta),
       s = Math.sin(t * theta);
-    out[0] = c * a[0] + s * (ny * a[2] - nz * a[1]);
-    out[1] = c * a[1] + s * (nz * a[0] - nx * a[2]);
-    out[2] = c * a[2] + s * (nx * a[1] - ny * a[0]);
+    out[0] = c * ax + s * (ny * az - nz * ay);
+    out[1] = c * ay + s * (nz * ax - nx * az);
+    out[2] = c * az + s * (nx * ay - ny * ax);
     return out;
   }
 

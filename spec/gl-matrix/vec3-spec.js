@@ -611,6 +611,10 @@ describe("vec3", function() {
           let result = vec3.slerp([], [1,0,0], [-1,1e-9,0], 0.5);
           expect(result).toBeEqualish([0,1,0]);
         });
+        it('should work in place for opposite vectors', () => {
+          let v = [1,0,0];
+          expect(vec3.slerp(v, v, [-1,1e-9,0], 0.5)).toBeEqualish([0,1,0]);
+        });
       });
 
     describe("random", function() {
